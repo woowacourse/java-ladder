@@ -3,23 +3,20 @@ package domain.game;
 import domain.ladder.LineNumber;
 
 public class GameResult {
-    private final GameResultDescription gameResultDescription;
+    private final String description;
     private final LineNumber lineNumber;
 
-    public GameResult(final GameResultDescription gameResultDescription, final LineNumber lineNumber) {
-        this.gameResultDescription = gameResultDescription;
+    public GameResult(final String description, final LineNumber lineNumber) {
+        this.description = description;
         this.lineNumber = lineNumber;
     }
 
     public static GameResult of(final String gameResultDescription, final int lineNumber) {
-        return new GameResult(
-                new GameResultDescription(gameResultDescription),
-                new LineNumber(lineNumber)
-        );
+        return new GameResult(gameResultDescription, new LineNumber(lineNumber));
     }
 
-    public GameResultDescription getGameResultDescription() {
-        return gameResultDescription;
+    public String getDescription() {
+        return description;
     }
 
     public boolean isEqualLineNumber(final LineNumber lineNumber) {

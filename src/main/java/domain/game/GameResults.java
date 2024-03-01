@@ -24,7 +24,7 @@ public class GameResults {
 
     public List<String> getGameResults() {
         return gameResults.stream()
-                .map(gameResult -> gameResult.getGameResultDescription().value())
+                .map(GameResult::getDescription)
                 .toList();
     }
 

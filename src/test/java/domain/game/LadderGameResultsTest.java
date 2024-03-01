@@ -45,6 +45,6 @@ public class LadderGameResultsTest {
 
         // Then
         assertThat(playerGameResults.get(0).getPlayerName().value()).isEqualTo(findPlayerName);
-        assertThat(playerGameResults.get(0).getGameResult().getGameResultDescription().value()).isEqualTo("당첨");
+        assertThat(playerGameResults.get(0).getGameResult().getDescription()).isEqualTo("당첨");
     }
 }
