@@ -1,6 +1,6 @@
 package controller;
 
-import dto.Result;
+import dto.LadderInfo;
 import java.util.List;
 import model.Ladder;
 import model.People;
@@ -13,6 +13,8 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderGame {
+    private static final String SHOW_ALL_COMMAND = "all";
+
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -27,9 +29,9 @@ public class LadderGame {
         final Ladder ladder = initLadder(people);
 
         people.climbDown(ladder);
-        final Result result = Result.from(people, ladder, presents);
-        outputView.printResult(result);
-        PresentMatches presentMatches = PresentMatches.from(people, presents);
+        final LadderInfo ladderInfo = LadderInfo.from(people, ladder, presents);
+        outputView.printLadderInfo(ladderInfo);
+        final PresentMatches presentMatches = PresentMatches.from(people, presents);
         while (true) {
             showMatches(presentMatches, people);
         }
@@ -74,23 +76,23 @@ public class LadderGame {
     }
 
     private void searchMatches(PresentMatches presentMatches, People people) {
-        String finding = inputView.inputFinding();
-        if (finding.equals("all")) {
+        final String finding = inputView.inputFinding();
+        if (finding.equals(SHOW_ALL_COMMAND)) {
             printAllMatches(presentMatches, people);
             return;
         }
-        PersonName personName = new PersonName(finding);
+        final PersonName personName = new PersonName(finding);
         if (!people.contains(personName)) {
             throw new IllegalArgumentException("존재하지 않는 이름입니다.");
         }
-        Present present = presentMatches.findByPersonName(personName);
+        final Present present = presentMatches.findByPersonName(personName);
         outputView.printMatched(present.name());
     }
 
     private void printAllMatches(PresentMatches presentMatches, People people) {
-        List<PersonName> names = people.getPersonNames();
+        final List<PersonName> names = people.getPersonNames();
         names.forEach(personName -> {
-            Present present = presentMatches.findByPersonName(personName);
+            final Present present = presentMatches.findByPersonName(personName);
             outputView.printMatched(personName.name(), present.name());
         });
     }

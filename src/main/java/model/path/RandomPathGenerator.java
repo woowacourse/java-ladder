@@ -18,13 +18,20 @@ public class RandomPathGenerator implements PathGenerator {
     }
 
     private Path getNextPath(final List<Path> paths) {
-        if (getLastPath(paths).isExist()) {
+        if (isLastPathExist(paths)) {
             return Path.NOT_EXIST;
         }
         if (random.nextBoolean()) {
             return Path.EXIST;
         }
         return Path.NOT_EXIST;
+    }
+
+    private boolean isLastPathExist(List<Path> paths) {
+        if (paths.isEmpty()) {
+            return false;
+        }
+        return getLastPath(paths).isExist();
     }
 
     private Path getLastPath(final List<Path> paths) {

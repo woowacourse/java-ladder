@@ -1,12 +1,11 @@
 package view;
 
 import dto.LineInfo;
-import dto.Result;
+import dto.LadderInfo;
 import formatter.LineFormatter;
 import formatter.NamesFormatter;
 import formatter.PresentNamesFormatter;
 import java.util.List;
-import model.PersonName;
 
 public class OutputView {
 
@@ -14,11 +13,11 @@ public class OutputView {
         System.out.println("[error] " + message);
     }
 
-    public void printResult(final Result result) {
+    public void printLadderInfo(final LadderInfo ladderInfo) {
         printInitialMessages();
-        printNames(result.names());
-        printLines(result.lines());
-        printPresentNames(result.presentNames());
+        printNames(ladderInfo.names());
+        printLines(ladderInfo.lines());
+        printPresentNames(ladderInfo.presentNames());
     }
 
     private void printInitialMessages() {
