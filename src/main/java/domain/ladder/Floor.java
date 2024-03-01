@@ -26,7 +26,7 @@ public class Floor {
         }
     }
 
-    public Direction getBridgeLocation(final int playerPosition) {
+    public Direction getBridgePosition(final int playerPosition) {
         if (isBridgeOnLeft(playerPosition)) {
             return Direction.LEFT;
         }
@@ -37,11 +37,20 @@ public class Floor {
     }
 
     private boolean isBridgeOnLeft(final int playerPosition) {
-        return playerPosition != 0 && bridges.get(playerPosition - 1).isExist();
+        int bridgePosition = playerPosition - 1;
+        return !isBridgeOutOfRangeLeft(playerPosition) && bridges.get(bridgePosition).isExist();
+    }
+
+    private boolean isBridgeOutOfRangeLeft(final int playerPosition) {
+        return playerPosition == 0;
     }
 
     private boolean isBridgeOnRight(final int playerPosition) {
-        return playerPosition != bridges.size() && bridges.get(playerPosition).isExist();
+        return !isBridgeOutOfRangeRight(playerPosition) && bridges.get(playerPosition).isExist();
+    }
+
+    private boolean isBridgeOutOfRangeRight(final int playerPosition) {
+        return playerPosition == bridges.size();
     }
 
     public List<LadderBridge> getBridges() {

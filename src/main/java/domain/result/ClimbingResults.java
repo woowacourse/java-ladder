@@ -31,7 +31,7 @@ public class ClimbingResults {
             final Map<String, String> results) {
         for (int i = 0; i < ladderResults.getPlayerCount(); i++) {
             Player player = ladderResults.getPlayerIndexOf(i);
-            Direction bridgeLocation = floor.getBridgeLocation(player.getPosition());
+            Direction bridgeLocation = floor.getBridgePosition(player.getPosition());
             player.moveTo(bridgeLocation.getValue());
             results.put(player.getName(), ladderResults.getLadderResultOfIndex(player.getPosition()));
         }
