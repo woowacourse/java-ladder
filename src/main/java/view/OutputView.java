@@ -18,32 +18,34 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printResultMessage() {
-        System.out.println("실행 결과");
-        System.out.println();
+    public static void printLadder(Ladder ladder, Players players, Prizes prizes) {
+        System.out.println("사다리 결과" + System.lineSeparator());
+        int maxLength = Math.max(players.findMaxNameLength(), prizes.findMaxPrizeNameLength());
+        printPlayerNames(players, maxLength);
+        printLadder(ladder, maxLength);
+        printPrizes(prizes, maxLength);
     }
 
-    public static void printPlayerNames(Players players) {
-        int maxLength = players.findMaxNameLength();
+    private static void printPlayerNames(Players players, int maxLength) {
         players.getNames().stream()
-                .map(name -> alignNameCenter(name, maxLength + EMPTY_COUNT))
+                .map(name -> alignCenter(name, maxLength + EMPTY_COUNT))
                 .forEach(System.out::print);
         System.out.println();
     }
 
-    private static String alignNameCenter(String name, int length) {
+    private static String alignCenter(String name, int length) {
         int spaces = length - name.length();
         int left = spaces / 2;
         int right = spaces - left;
         return EMPTY_SPACE.repeat(left) + name + EMPTY_SPACE.repeat(right);
     }
 
-    public static void printLadder(int length, Ladder ladder) {
+    private static void printLadder(Ladder ladder, int maxLength) {
         ladder.getRows()
                 .stream()
                 .map(LadderRow::getRungs)
                 .forEach(rungs ->
-                        System.out.printf("%s%s%n", EMPTY_SPACE.repeat(length), makeRungMessage(rungs, length))
+                        System.out.printf("%s%s%n", EMPTY_SPACE.repeat(maxLength), makeRungMessage(rungs, maxLength))
                 );
     }
 
@@ -60,14 +62,14 @@ public class OutputView {
         return DISCONNECTED_RUNG_CHARACTER.repeat(length);
     }
 
-    public static void printErrorMessage(Exception e) {
-        System.out.println(e.getMessage());
-    }
-
-    public static void printPrizes(Prizes prizes, int length) {
+    private static void printPrizes(Prizes prizes, int maxLength) {
         prizes.getPrizes().stream()
-                .map(prize -> alignNameCenter(prize, length + EMPTY_COUNT))
+                .map(prize -> alignCenter(prize, maxLength + EMPTY_COUNT))
                 .forEach(System.out::print);
         System.out.println();
+    }
+
+    public static void printErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
     }
 }
