@@ -23,19 +23,19 @@ public class Users {
         validateDuplicateName(userNames);
     }
 
+
+    private void validateLength(final List<String> userNames) {
+        if (userNames.size() <= 1) {
+            throw new IllegalArgumentException(String.format("입력된 값: %d, 사용자는 최소 두명 이상이여야 합니다.", userNames.size()));
+        }
+        if (userNames.size() > 50) {
+            throw new IllegalArgumentException(String.format("입력된 값: %d, 사용자는 최대 50명입니다.", userNames.size()));
+        }
+    }
     private void validateDuplicateName(final List<String> userNames) {
         List<String> uniqueUserNames = userNames.stream().distinct().toList();
         if (userNames.size() != uniqueUserNames.size()) {
             throw new IllegalArgumentException("사용자 이름은 겹칠 수 없습니다.");
-        }
-    }
-
-    private void validateLength(final List<String> userNames) {
-        if (userNames.size() <= 1) {
-            throw new IllegalArgumentException(String.format("입력된 값: %d, 사용자는 두명 이상이여야 합니다.", userNames.size()));
-        }
-        if (userNames.size() > 50) {
-            throw new IllegalArgumentException(String.format("입력된 값: %d, 사용자는 최대 50명입니다.", userNames.size()));
         }
     }
 
