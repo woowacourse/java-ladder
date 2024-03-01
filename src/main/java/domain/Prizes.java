@@ -13,15 +13,19 @@ public class Prizes {
     public Prizes(List<String> prizeInputs, int playerCount) {
         validatePrizesLength(prizeInputs, playerCount);
         this.prizes = new ArrayList<>();
-        for (int i = 0; i < prizeInputs.size(); i++) {
-            Prize prize = new Prize(prizeInputs.get(i));
-            prizes.add(prize);
-        }
+        preparePrizes(prizeInputs);
     }
 
     private void validatePrizesLength(List<String> prizes, int columnLength) {
         if (prizes.size() != columnLength) {
             throw new IllegalArgumentException(ERROR_IS_INVALID_LENGTH);
+        }
+    }
+
+    private void preparePrizes(List<String> prizeInputs) {
+        for (int i = 0; i < prizeInputs.size(); i++) {
+            Prize prize = new Prize(prizeInputs.get(i));
+            prizes.add(prize);
         }
     }
 
