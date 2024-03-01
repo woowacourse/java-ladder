@@ -5,8 +5,6 @@ import java.util.Map;
 
 public class Game {
 
-    private static final Name ALL = new Name("all");
-
     private final People people;
     private final Results results;
     private final Ladder ladder;
@@ -17,12 +15,12 @@ public class Game {
         this.ladder = ladder;
     }
 
-    public Map<Name, Result> play(Name target) {
-        if (ALL.equals(target)) {
+    public PlayResults play(Name target) {
+        if (target.isAll()) {
             return playAll();
         }
         Result result = playOne(target);
-        return Map.of(target, result);
+        return new PlayResults(Map.of(target, result));
     }
 
     private Result playOne(Name target) {
@@ -31,12 +29,12 @@ public class Game {
         return results.find(resultPosition);
     }
 
-    private Map<Name, Result> playAll() {
+    private PlayResults playAll() {
         Map<Name, Result> results = new LinkedHashMap<>();
         for (Name name : people.getNames()) {
             Result result = playOne(name);
             results.put(name, result);
         }
-        return results;
+        return new PlayResults(results);
     }
 }

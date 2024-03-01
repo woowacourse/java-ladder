@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import org.assertj.core.api.InstanceOfAssertFactories;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -58,13 +59,13 @@ class GameTest {
         Name name = new Name("pobi");
 
         // when
-        Map<Name, Result> playResults = game.play(name);
+        PlayResults playResults = game.play(name);
 
         // then
-        Map<Name, Result> expected = Map.of(
-                new Name("pobi"), result3
-        );
-        assertThat(playResults).containsAllEntriesOf(expected);
+        assertThat(playResults)
+                .extracting("value")
+                .asInstanceOf(InstanceOfAssertFactories.map(Name.class, Result.class))
+                .containsEntry(new Name("pobi"), result3);
     }
 
     @Test
@@ -75,15 +76,17 @@ class GameTest {
         Name all = new Name("all");
 
         // when
-        Map<Name, Result> playResults = game.play(all);
+        PlayResults playResults = game.play(all);
 
         // then
-        Map<Name, Result> expected = Map.of(
-                new Name("pobi"), result3,
-                new Name("honux"), result1,
-                new Name("crong"), result4,
-                new Name("jk"), result2
-        );
-        assertThat(playResults).containsAllEntriesOf(expected);
+        assertThat(playResults)
+                .extracting("value")
+                .asInstanceOf(InstanceOfAssertFactories.map(Name.class, Result.class))
+                .containsAllEntriesOf(Map.of(
+                        new Name("pobi"), result3,
+                        new Name("honux"), result1,
+                        new Name("crong"), result4,
+                        new Name("jk"), result2
+                ));
     }
 }
