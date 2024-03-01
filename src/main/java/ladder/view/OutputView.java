@@ -12,7 +12,7 @@ import java.util.StringJoiner;
 
 public class OutputView {
     private static final String EXECUTION_RESULT = "실행결과" + System.lineSeparator();
-    private static final String PEOPLE_NAMES_DELIMITER = " ";
+    private static final String ITEM_NAMES_DELIMITER = " ";
     private static final String LADDER_FORMAT = String.format("%%%ds", Person.getMaxLength());
     private static final String LINE_PILLAR = "|";
     private static final String LINE_PREFIX = String.format(LADDER_FORMAT, LINE_PILLAR);
@@ -31,18 +31,19 @@ public class OutputView {
 
     public void printResult(LadderItems ladderItems, Ladder ladder) {
         printResultTitle();
-        printPeopleNames(ladderItems.getPeopleNames());
+        printItemNames(ladderItems.getPeopleNames());
         printLadder(ladder);
+        printItemNames(ladderItems.getWinningItemNames());
     }
 
     private void printResultTitle() {
         System.out.println(EXECUTION_RESULT);
     }
 
-    private void printPeopleNames(List<String> peopleNames) {
-        StringJoiner joiner = new StringJoiner(PEOPLE_NAMES_DELIMITER);
-        for (String name : peopleNames) {
-            joiner.add(String.format(LADDER_FORMAT, name));
+    private void printItemNames(List<String> itemNames) {
+        StringJoiner joiner = new StringJoiner(ITEM_NAMES_DELIMITER);
+        for (String itemName : itemNames) {
+            joiner.add(String.format(LADDER_FORMAT, itemName));
         }
 
         System.out.println(joiner);

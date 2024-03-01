@@ -52,4 +52,10 @@ public class LadderItems {
                 .map(Person::getName)
                 .toList();
     }
+
+    public List<String> getWinningItemNames() {
+        return winningItems.stream()
+                .map(WinningItem::getName)
+                .toList();
+    }
 }
