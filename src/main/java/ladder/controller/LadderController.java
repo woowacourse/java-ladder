@@ -28,7 +28,7 @@ public class LadderController {
         LadderGame ladderGame = new LadderGame(new RandomLadderCreator(new RandomLineCreator()));
         Ladder ladder = ladderGame.createLadder(ladderItems, ladderHeight);
 
-        outputView.printResult(ladderItems, ladder);
+        outputView.printLadder(ladderItems, ladder);
     }
 
     private LadderItems requestLadderItemsUntilValid() {

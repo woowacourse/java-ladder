@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.StringJoiner;
 
 public class OutputView {
-    private static final String EXECUTION_RESULT = "실행결과" + System.lineSeparator();
+    private static final String EXECUTION_RESULT = "사다리 결과" + System.lineSeparator();
     private static final String ITEM_NAMES_DELIMITER = " ";
     private static final String LADDER_FORMAT = String.format("%%%ds", Person.getMaxLength());
     private static final String LINE_PILLAR = "|";
@@ -25,11 +25,7 @@ public class OutputView {
         CONNECTION_FORMAT.put(Connection.EMPTY, LADDER_EMPTY);
     }
 
-    public void printMessage(String message) {
-        System.out.println(message);
-    }
-
-    public void printResult(LadderItems ladderItems, Ladder ladder) {
+    public void printLadder(LadderItems ladderItems, Ladder ladder) {
         printResultTitle();
         printItemNames(ladderItems.getPeopleNames());
         printLadder(ladder);
