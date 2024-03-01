@@ -22,10 +22,14 @@ public class InputView {
     }
 
     private List<String> getUserInput() {
+        String input = getInput();
+        String removedInput = removeBlank(input);
+        return split(removedInput);
+    }
+
+    private String getInput() {
         try {
-            String input = bufferedReader.readLine();
-            String removedInput = removeBlank(input);
-            return split(removedInput);
+            return bufferedReader.readLine();
         } catch (IOException e) {
             throw new IllegalArgumentException("입력을 받는 도중 에러가 발생했습니다.");
         }
@@ -35,11 +39,17 @@ public class InputView {
         System.out.println();
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         try {
-            String input = bufferedReader.readLine();
+            String input = getInput();
             return Integer.parseInt(input);
-        } catch (NumberFormatException | IOException e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("높이는 최소 2이상, 최대 10이하의 숫자만 가능합니다.");
         }
+    }
+
+    public String readPlayerResult() {
+        System.out.println();
+        System.out.println("결과를 보고 싶은 사람은?");
+        return removeBlank(getInput());
     }
 
     private String removeBlank(String input) {
