@@ -1,12 +1,12 @@
 package game;
 
-public enum Command {
+public enum LadderCommand {
 
     ALL("all");
 
     private final String command;
 
-    Command(String command) {
+    LadderCommand(String command) {
         this.command = command;
     }
 

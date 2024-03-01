@@ -6,14 +6,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class CommandTest {
+class LadderCommandTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"all", "ALL", "All"})
     @DisplayName("All 명령어 매칭이 정상적으로 동작한다.")
     void checkSameCommandTest(String command) {
         // when
-        boolean actual = Command.ALL.isSameCommand(command);
+        boolean actual = LadderCommand.ALL.isSameCommand(command);
         // then
         assertThat(actual).isTrue();
     }

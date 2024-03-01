@@ -43,7 +43,7 @@ public class LadderGame {
     }
 
     private void printLadderResults(Ladder ladder, Players players, Results results, String command) {
-        if (Command.ALL.isSameCommand(command)) {
+        if (LadderCommand.ALL.isSameCommand(command)) {
             printAllResults(ladder, players, results);
             return;
         }
