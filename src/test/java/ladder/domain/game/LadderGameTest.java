@@ -51,7 +51,7 @@ class LadderGameTest {
                 .build();
     }
 
-    @DisplayName("사다리 게임을 실행한다.")
+    @DisplayName("사다리 게임 실행 결과에서 사용자에 맞는 결과를 반환한다.")
     @Test
     void play() {
         LadderGame ladderGame = LadderGame.of(players(), rewards(), ladder());

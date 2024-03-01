@@ -46,6 +46,7 @@ class RewardsTest {
     void climbFromException() {
         Rewards rewards = new Rewards(rewards(), new Width<>(3));
         assertThatThrownBy(() -> rewards.get(-1))
-                .isInstanceOf(IllegalStateException.class);
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("잘못된 위치입니다");
     }
 }

@@ -10,7 +10,7 @@ public record Height<L>(int value) {
 
     public Height {
         if (value < MIN_HEIGHT) {
-            throw new IllegalArgumentException("높이는 %d이상입니다.".formatted(MIN_HEIGHT));
+            throw new IllegalArgumentException("자연수를 입력해주세요: %d".formatted(value));
         }
     }
 

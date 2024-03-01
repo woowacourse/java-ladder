@@ -19,7 +19,7 @@ class LadderTest {
 
     @DisplayName("사람 수와 높이를 입력받아 사다리를 생성한다.")
     @Test
-    void ladderSizeTest() {
+    void ladderConstructTest() {
         Ladder ladder = LadderBuilder.builder()
                 .width(new Width<>(5))
                 .height(new Height<>(4))
@@ -37,7 +37,7 @@ class LadderTest {
 
     @DisplayName("사다리의 출발점을 입력하면 도착점을 반환한다.")
     @Test
-    void climbFrom() {
+    void climbDownFromTest() {
         Ladder ladder = LadderBuilder.builder()
                 .width(new Width<>(4))
                 .height(new Height<>(5))

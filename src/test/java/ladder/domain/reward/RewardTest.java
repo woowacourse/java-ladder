@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class RewardTest {
 
-    @DisplayName("입력한 결과가 1-5자 범위를 벗어날 경우 예외를 발생한다.")
+    @DisplayName("입력한 결과가 1-5자 범위를 벗어나면 예외를 발생한다.")
     @ValueSource(strings = {"", "우아한테크코스"})
     @ParameterizedTest
     void constructException(String name) {

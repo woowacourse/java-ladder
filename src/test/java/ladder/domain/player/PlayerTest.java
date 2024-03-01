@@ -13,6 +13,7 @@ class PlayerTest {
     @ParameterizedTest
     void nameLengthTest(String name) {
         assertThatThrownBy(() -> new Player(name))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("이름은 1~5글자로 입력해주세요");
     }
 }
