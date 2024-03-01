@@ -6,6 +6,7 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 import ladder.view.Result;
 import ladder.view.ResultView;
+import ladder.view.enums.Command;
 
 public class LadderGameController {
     public LadderGameController() {
@@ -30,9 +31,18 @@ public class LadderGameController {
 
     private void printResult(LadderGame ladderGame) {
         Result result = ladderGame.getResult();
-
-        while (ResultView.isRetry()) {
-            ResultView.print(InputView.readName(), result);
+        String input;
+        while (!Command.STOP.isSameWith(input = InputView.readName())) {
+            printResultByInput(input, result);
         }
+    }
+
+    private void printResultByInput(String input, Result result) {
+        if (Command.PRINT_ALL.isSameWith(input)) {
+            ResultView.printAll(result);
+            return;
+        }
+
+        ResultView.printResultOf(input, result);
     }
 }
