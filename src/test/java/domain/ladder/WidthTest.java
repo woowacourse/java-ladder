@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class WidthTest {
 
-    @DisplayName("참가자들로부터 사다리의 너비를 구한다.")
+    @DisplayName("사다리 너비는 (참가자수 - 1) 만큼의 값을 가진다.")
     @Test
     void calculateLadderWidth() {
         //given

@@ -3,7 +3,6 @@ package domain.ladder;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import domain.PickedBridgeGenerator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,14 +13,13 @@ class LadderTest {
     @Test
     void climbLadder() {
         //given
-        BridgeGenerator bridgeGenerator = new PickedBridgeGenerator(List.of(
-                true, false, true,
-                false, true, false,
-                true, false, false,
-                false, true, false,
-                true, false, true
-        ));
-        final Ladder ladder = LadderFactory.createByStrategy(bridgeGenerator, new Height(5), new Width(3));
+        final Ladder ladder = new Ladder(List.of(
+                new Floor(List.of(Bridge.EXIST, Bridge.NOT_EXIST, Bridge.EXIST)),
+                new Floor(List.of(Bridge.NOT_EXIST, Bridge.EXIST, Bridge.NOT_EXIST)),
+                new Floor(List.of(Bridge.EXIST, Bridge.NOT_EXIST, Bridge.NOT_EXIST)),
+                new Floor(List.of(Bridge.NOT_EXIST, Bridge.EXIST, Bridge.NOT_EXIST)),
+                new Floor(List.of(Bridge.EXIST, Bridge.NOT_EXIST, Bridge.EXIST)))
+        );
 
         // when & then
         assertAll(

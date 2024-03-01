@@ -1,6 +1,6 @@
 package domain.player;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
@@ -24,7 +24,7 @@ class PlayerNamesTest {
                 .doesNotThrowAnyException();
     }
 
-    @DisplayName("참가자의 수가 2명 이상 10명 이하이면 객체가 잘 생성된다.")
+    @DisplayName("참가자의 수가 2명 미만 10명 초과이면 객체 생성시 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"1", "1,2,3,4,5,6,7,8,9,10,11"})
     void invalidPlayerCount(String playerNamesBundle) {
