@@ -15,15 +15,25 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 class LineTest {
 
     @Test
-    @DisplayName("연속으로 이어진 다리가 생성되는 경우 예외처리 된다.")
+    @DisplayName("다리 생성 테스트")
     void validateContinuouslyConnected() {
-        assertThatThrownBy(() -> {
-            new Line(ConnectionStatus.CONNECTION, ConnectionStatus.CONNECTION, ConnectionStatus.DISCONNECTION);
-        })
-                .isInstanceOf(IllegalStateException.class)
-                .hasMessage("유효하지 않은 다리가 생성되었습니다.");
+        Line line = new Line(
+                List.of(
+                        ConnectionStatus.CONNECTION,
+                        ConnectionStatus.CONNECTION,
+                        ConnectionStatus.CONNECTION,
+                        ConnectionStatus.CONNECTION,
+                        ConnectionStatus.DISCONNECTION));
 
+        assertAll(
+                () -> assertThat(line.getConnectionStatuses().get(0)).isEqualTo(ConnectionStatus.CONNECTION),
+                () -> assertThat(line.getConnectionStatuses().get(1)).isEqualTo(ConnectionStatus.DISCONNECTION),
+                () -> assertThat(line.getConnectionStatuses().get(2)).isEqualTo(ConnectionStatus.CONNECTION),
+                () -> assertThat(line.getConnectionStatuses().get(3)).isEqualTo(ConnectionStatus.DISCONNECTION),
+                () -> assertThat(line.getConnectionStatuses().get(4)).isEqualTo(ConnectionStatus.DISCONNECTION)
+        );
     }
+
     @Test
     @DisplayName("연속으로 True를 가질 수 없다.")
     void notConsecutiveDraw() {

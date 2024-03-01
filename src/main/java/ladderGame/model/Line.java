@@ -11,24 +11,18 @@ public class Line {
         this(List.of(connectionStatuses));
     }
 
-    public Line(List<ConnectionStatus> connectionStatuses) {
-        validate(connectionStatuses);
-        this.connectionStatuses = connectionStatuses;
-    }
+    public Line(List<ConnectionStatus> connections) {
+        List<ConnectionStatus> statuses = new ArrayList<>();
 
-    private void validate(List<ConnectionStatus> connectionStatuses) {
-        boolean isContinuous = IntStream.range(0, connectionStatuses.size() - 1)
-                .anyMatch(i -> {
-                    return isConnectedTwice(connectionStatuses.get(i), connectionStatuses.get(i + 1));
-                });
-
-        if(isContinuous) {
-            throw new IllegalStateException("유효하지 않은 다리가 생성되었습니다.");
+        statuses.add(connections.get(0));
+        for (int i = 1; i < connections.size(); i++) {
+            if(statuses.get(i - 1) == ConnectionStatus.DISCONNECTION) {
+                statuses.add(connections.get(i));
+                continue;
+            }
+            statuses.add(ConnectionStatus.DISCONNECTION);
         }
-    }
-
-    private boolean isConnectedTwice(ConnectionStatus left, ConnectionStatus right) {
-        return (left == ConnectionStatus.CONNECTION) && (left == right);
+        this.connectionStatuses = statuses;
     }
 
     public int descend(int index) {
