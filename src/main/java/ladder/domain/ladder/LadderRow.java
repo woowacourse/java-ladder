@@ -7,10 +7,6 @@ import ladder.domain.ladder.direction.LadderDirection;
 
 public record LadderRow(List<LadderDirection> ladderRow) {
 
-    public static LadderRow from(final List<LadderDirection> ladderDirections) {
-        return new LadderRow(ladderDirections);
-    }
-
     public void forEach(final Consumer<LadderDirection> consumer) {
         ladderRow.forEach(consumer);
     }

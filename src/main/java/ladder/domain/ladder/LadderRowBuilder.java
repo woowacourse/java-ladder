@@ -37,7 +37,7 @@ public class LadderRowBuilder {
     public LadderRow build() {
         ladderRow = new ArrayList<>(width.repeat(() -> LadderDirection.NONE));
         width.repeat(this::selectDirectionIfNotExistsAt);
-        return LadderRow.from(ladderRow);
+        return new LadderRow(ladderRow);
     }
 
     private void selectDirectionIfNotExistsAt(final int index) {
