@@ -47,7 +47,8 @@ public class PeopleTest {
     void checkRightParticipant () {
         People people = new People(List.of("a", "b", "c"));
 
-        assertThat(people.isProper("d")).isFalse();
-        assertThat(people.isProper("a")).isTrue();
+        assertThatThrownBy(()->people.findProperParticipant("d"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(people.findProperParticipant("a")).isEqualTo("a");
     }
 }
