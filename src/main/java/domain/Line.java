@@ -11,7 +11,7 @@ public class Line {
 
     public Line(int playersCount, BridgeGenerator bridgeGenerator) {
         for (int index = 0; index < playersCount - 1; index++) {
-            Bridge previous = bridges.getOrDefault(index, Bridge.BLANK);
+            Bridge previous = bridges.getOrDefault(index - 1, Bridge.BLANK);
             Bridge generatedBridge = bridgeGenerator.generate(previous);
             bridges.put(index, generatedBridge);
         }
