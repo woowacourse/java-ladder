@@ -32,6 +32,10 @@ public class OutputView {
         System.out.println(System.lineSeparator() + "실행 결과");
     }
 
+    public void printToken(String token) {
+        System.out.println(token);
+    }
+
     public void printTokens(List<String> tokens) {
         StringJoiner joiner = new StringJoiner(" ");
         tokens.stream()

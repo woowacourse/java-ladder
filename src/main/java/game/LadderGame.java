@@ -47,7 +47,7 @@ public class LadderGame {
             printAllResults(ladder, players, results);
             return;
         }
-        printSingleResult(players, command, results);
+        printSingleResult(ladder, players, results, command);
     }
 
     private void printLadder(Ladder ladder, Players players, Results results) {
@@ -63,10 +63,11 @@ public class LadderGame {
         outputView.printTokens(results.getNames());
     }
 
-    private void printSingleResult(Players players, String command, Results results) {
+    private void printSingleResult(Ladder ladder, Players players, Results results, String command) {
         int index = players.findIndexByName(command);
-        String result = results.getNameByIndex(index);
-        outputView.printPlayerResult(command, result);
+        int resultIndex = ladder.climbDown(index);
+        String result = results.getNameByIndex(resultIndex);
+        outputView.printToken(result);
     }
 
     private void printAllResults(Ladder ladder, Players players, Results results) {
