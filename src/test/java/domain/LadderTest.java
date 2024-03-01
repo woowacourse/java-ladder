@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class LadderTest {
 
     @Test
-    @DisplayName("두 지점 사이에 연결이 없는 사다리가 생성되지 않는지 검증")
+    @DisplayName("정상적인 사다리가 생성되는지 검증")
     void validLadder() {
         Assertions.assertThatNoException()
                 .isThrownBy(() -> new Ladder(
