@@ -12,7 +12,7 @@ public class Line {
 
     private final List<Direction> directions;
 
-    public Line(List<Direction> directions) {
+    Line(List<Direction> directions) {
         validateSize(directions);
         validateDirections(directions);
         this.directions = directions;
