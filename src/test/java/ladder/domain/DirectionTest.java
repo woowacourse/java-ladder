@@ -8,15 +8,15 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
 public class DirectionTest {
     @DisplayName("RIGHT 다음은 무조건 LEFT이다.")
-    @Test
-    void nextTest() {
-        assertAll(
-                () -> assertThat(RIGHT.next(() -> RIGHT)).isEqualTo(LEFT),
-                () -> assertThat(RIGHT.next(() -> NONE)).isEqualTo(LEFT)
-        );
+    @EnumSource(Direction.class)
+    @ParameterizedTest
+    void nextTest(Direction direction) {
+        assertThat(RIGHT.next(() -> direction)).isEqualTo(LEFT);
     }
 
     @DisplayName("마지막이 RIGHT이면 invalid이다.")
