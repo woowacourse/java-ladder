@@ -10,24 +10,24 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class PlayersTest {
-    private static final Player mang = new Player("mang");
-    private static final Player roro = new Player("roro");
+    private static final Player MANG = new Player("mang");
+    private static final Player RORO = new Player("roro");
 
     @Test
     @DisplayName("이름이 정상적으로 생성되는가")
     void does_name_create_correctly() {
-        Players players = new Players(List.of(mang, roro));
+        Players players = new Players(List.of(MANG, RORO));
 
         assertAll(
-                () -> assertThat(players.getSequence(mang)).isEqualTo(0),
-                () -> assertThat(players.getSequence(roro)).isEqualTo(1)
+                () -> assertThat(players.getSequence(MANG)).isEqualTo(0),
+                () -> assertThat(players.getSequence(RORO)).isEqualTo(1)
         );
     }
 
     @Test
     @DisplayName("중복된 이름인가")
     void is_duplicated_names() {
-        assertThatThrownBy(() -> new Players(List.of(mang, mang)))
+        assertThatThrownBy(() -> new Players(List.of(MANG, MANG)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
