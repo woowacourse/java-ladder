@@ -78,6 +78,6 @@ class Line {
     int move(int startIndex) {
         Point start = points.get(startIndex);
         Point next = start.next();
-        return next.getIndex();
+        return next.index();
     }
 }

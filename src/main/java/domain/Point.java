@@ -1,55 +1,11 @@
 package domain;
 
-class Point {
-    private final Direction direction;
-    private final int index;
-
+record Point(Direction direction, int index) {
     Point(Direction direction) {
         this(direction, 0);
     }
 
-    Point(Direction direction, int index) {
-        this.direction = direction;
-        this.index = index;
-    }
-
     Point next() {
         return direction.nextPoint(index);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Point point = (Point) o;
-
-        if (index != point.index) {
-            return false;
-        }
-        return direction == point.direction;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = direction != null ? direction.hashCode() : 0;
-        result = 31 * result + index;
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Point{" +
-                "direction=" + direction +
-                ", index=" + index +
-                '}';
-    }
-
-    int getIndex() {
-        return index;
     }
 }
