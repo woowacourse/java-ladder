@@ -52,7 +52,7 @@ public class LadderController {
     }
 
     private List<LadderResult> createLadderResults() {
-        List<String> ladderResults = retryHandler.retry(() -> inputView.readLadderResult());
+        List<String> ladderResults = retryHandler.retry(() -> inputView.readLadderResults());
         return ladderResults.stream()
                 .map(LadderResult::new)
                 .toList();
