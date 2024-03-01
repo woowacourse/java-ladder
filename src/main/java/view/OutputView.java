@@ -15,6 +15,7 @@ public class OutputView {
     private static final String LADDER_VERTICAL = "|";
     private static final String LADDER_BLANK = " ";
     private static final String LADDER_HORIZONTAL = "-";
+    private static final String NO_REWARD = "꽝";
 
     public void printGame(Game game) {
         System.out.println("사다리 결과");
@@ -74,7 +75,7 @@ public class OutputView {
     }
 
     private void printRewardFormatted(Reward reward) {
-        if (reward.getName().equals("꽝")) {
+        if (reward.getName().equals(NO_REWARD)) {
             System.out.printf("%" + (MAX_NAME_LENGTH - 1) + "s ", reward.getName());
             return;
         }

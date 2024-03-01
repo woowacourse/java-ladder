@@ -4,6 +4,7 @@ public class Reward {
 
     private static final int MIN_REWARD = 1;
     private static final int MAX_REWARD = 99999;
+    private static final String NO_REWARD = "꽝";
 
     private final String name;
 
@@ -19,7 +20,7 @@ public class Reward {
 
     private void validate(String name) {
         validateBlank(name);
-        if (!name.equals("꽝")) {
+        if (!name.equals(NO_REWARD)) {
             validateNumeric(name);
             validateRange(name);
         }
@@ -35,7 +36,7 @@ public class Reward {
         try {
             Integer.parseInt(name);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자 혹은 '꽝'만 입력 가능합니다.");
+            throw new IllegalArgumentException(String.format("숫자 혹은 '%s'만 입력 가능합니다.", NO_REWARD));
         }
     }
 
@@ -43,7 +44,7 @@ public class Reward {
         int reward = Integer.parseInt(name);
         if (reward < MIN_REWARD || reward > MAX_REWARD) {
             throw new IllegalArgumentException(
-                MIN_REWARD + " 이상 " + MAX_REWARD + " 이하의 숫자만 입력 가능합니다.");
+                String.format("%d 이상 %d 이하의 숫자만 입력 가능합니다.", MIN_REWARD, MAX_REWARD));
         }
     }
 

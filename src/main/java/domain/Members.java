@@ -31,7 +31,7 @@ public class Members {
     private void validate(List<Member> members) {
         if (members.size() < MIN_MEMBER_COUNT || members.size() > MAX_MEMBER_COUNT) {
             throw new IllegalArgumentException(
-                "참여자는 " + MIN_MEMBER_COUNT + "~" + MAX_MEMBER_COUNT + "명만 허용됩니다.");
+                String.format("참여자는 %d~%d명만 허용됩니다.", MIN_MEMBER_COUNT, MAX_MEMBER_COUNT));
         }
     }
 

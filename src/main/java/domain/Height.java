@@ -19,7 +19,7 @@ public class Height {
     private static void validate(int height) {
         if (height < MIN_HEIGHT || height > MAX_HEIGHT) {
             throw new IllegalArgumentException(
-                MIN_HEIGHT + " 이상 " + MAX_HEIGHT + " 이하의 숫자를 입력해 주세요.");
+                String.format("%d 이상 %d 이하의 숫자를 입력해 주세요.", MIN_HEIGHT, MAX_HEIGHT));
         }
     }
 

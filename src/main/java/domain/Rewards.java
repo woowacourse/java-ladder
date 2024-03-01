@@ -24,7 +24,7 @@ public class Rewards {
 
     private void validate(int membersCount, List<Reward> rewards) {
         if (membersCount != rewards.size()) {
-            throw new IllegalArgumentException("플레이어 수(" + membersCount + ")만큼 입력해주세요.");
+            throw new IllegalArgumentException(String.format("플레이어 수(%d)만큼 입력해주세요.", membersCount));
         }
     }
 

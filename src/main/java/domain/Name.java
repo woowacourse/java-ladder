@@ -39,7 +39,8 @@ public class Name {
 
     private void validateLength(String name) {
         if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(MIN_NAME_LENGTH + "~" + MAX_NAME_LENGTH + "자의 이름만 허용합니다.");
+            throw new IllegalArgumentException(
+                String.format("%d~%d자의 이름만 허용합니다.", MIN_NAME_LENGTH, MAX_NAME_LENGTH));
         }
     }
 
