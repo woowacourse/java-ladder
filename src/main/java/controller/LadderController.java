@@ -41,10 +41,15 @@ public class LadderController {
                 inputView.askLadderHeight(),
                 people.getParticipantsSize()));
 
-        String prizesText = inputView.askPrizes();
-        ladderGame = handler.handleWithRetry(() -> new LadderGame(people, ladder, prizesText));
+        String prizesText = handler.handleWithRetry(() -> makeLadder(people, ladder));
         resultView.printLadderResult(people, ladder);
         resultView.printPrizes(Arrays.stream(prizesText.split(DELIMITER)).toList());
+    }
+
+    private String makeLadder(People people, Ladder ladder) {
+        String prizesText = inputView.askPrizes();
+        ladderGame = new LadderGame(people, ladder, prizesText);
+        return prizesText;
     }
 
     private void insertAndProceedCommand(People people) {
