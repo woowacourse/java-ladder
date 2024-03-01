@@ -54,4 +54,8 @@ class Point {
                 ", index=" + index +
                 '}';
     }
+
+    int getIndex() {
+        return index;
+    }
 }

@@ -74,4 +74,10 @@ class Line {
         Point nextPoint = points.get(index + 1);
         return point.next().equals(nextPoint);
     }
+
+    int move(int startIndex) {
+        Point start = points.get(startIndex);
+        Point next = start.next();
+        return next.getIndex();
+    }
 }

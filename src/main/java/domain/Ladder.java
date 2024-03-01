@@ -26,6 +26,10 @@ public class Ladder {
     }
 
     public int climb(int startIndex) {
-        return 1;
+        int endIndex = startIndex;
+        for (Line line : lines) {
+            endIndex = line.move(endIndex);
+        }
+        return endIndex;
     }
 }
