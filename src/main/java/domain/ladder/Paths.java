@@ -1,7 +1,5 @@
 package domain.ladder;
 
-import domain.LineNumber;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

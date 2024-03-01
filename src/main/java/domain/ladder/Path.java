@@ -1,7 +1,5 @@
 package domain.ladder;
 
-import domain.LineNumber;
-
 public class Path {
     private final LineNumber startLineNumber;
     private final LineNumber endLineNumber;

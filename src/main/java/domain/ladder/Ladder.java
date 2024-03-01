@@ -1,7 +1,5 @@
 package domain.ladder;
 
-import domain.LineFloor;
-import domain.LineNumber;
 import domain.player.Player;
 
 import java.util.List;

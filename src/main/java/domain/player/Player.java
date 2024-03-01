@@ -1,7 +1,7 @@
 package domain.player;
 
-import domain.LineFloor;
-import domain.LineNumber;
+import domain.ladder.LineFloor;
+import domain.ladder.LineNumber;
 
 public class Player {
     private final PlayerName playerName;

@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 public record LineNumber(int value) {
     private static final int MINIMUM_LINE_NUMBER = 1;

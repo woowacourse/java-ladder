@@ -1,6 +1,6 @@
 package domain.game;
 
-import domain.LineNumber;
+import domain.ladder.LineNumber;
 
 public class GameResult {
     private final GameResultDescription gameResultDescription;

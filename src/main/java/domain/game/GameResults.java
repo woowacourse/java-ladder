@@ -1,6 +1,6 @@
 package domain.game;
 
-import domain.LineNumber;
+import domain.ladder.LineNumber;
 
 import java.util.List;
 import java.util.stream.IntStream;

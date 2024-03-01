@@ -1,5 +1,6 @@
-package domain;
+package domain.ladder;
 
+import domain.ladder.LineFloor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

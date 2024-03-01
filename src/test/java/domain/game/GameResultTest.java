@@ -1,6 +1,6 @@
 package domain.game;
 
-import domain.LineNumber;
+import domain.ladder.LineNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
