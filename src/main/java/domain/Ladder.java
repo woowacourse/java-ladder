@@ -24,4 +24,8 @@ public class Ladder {
         return lines.stream()
                 .anyMatch(line -> line.isConnectWithNextPoint(index));
     }
+
+    public int climb(int startIndex) {
+        return 1;
+    }
 }
