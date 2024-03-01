@@ -3,13 +3,12 @@ package domain.ladder;
 import static fixture.PlayersFixture.참가자들;
 import static fixture.PrizesFixture.상품들;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import domain.height.Height;
-import domain.player.Name;
 import domain.player.Players;
-import domain.prize.Prize;
 import domain.prize.Prizes;
 import java.util.List;
 import java.util.Map;
@@ -48,7 +47,7 @@ public class LadderTest {
         Prizes prizes = 상품들(3);
 
         // when & then
-        assertThatThrownBy(() -> Ladder.create(new Height(1), players, prizes, new ConnectedLadderRungGenerator()))
+        assertThatCode(() -> Ladder.create(new Height(1), players, prizes, new ConnectedLadderRungGenerator()))
                 .doesNotThrowAnyException();
     }
 
@@ -77,13 +76,13 @@ public class LadderTest {
         LadderResult ladderResult = ladder.climb();
 
         // then
-        Map<Name, Prize> results = ladderResult.getAllResults();
+        Map<String, String> results = ladderResult.getAllResults();
         assertAll(
-                () -> assertThat(results.get(new Name("프린")).getPrize()).isEqualTo("300"),
-                () -> assertThat(results.get(new Name("땡이")).getPrize()).isEqualTo("꽝"),
-                () -> assertThat(results.get(new Name("포비")).getPrize()).isEqualTo("1000"),
-                () -> assertThat(results.get(new Name("토미")).getPrize()).isEqualTo("100"),
-                () -> assertThat(results.get(new Name("네오")).getPrize()).isEqualTo("500")
+                () -> assertThat(results.get("프린")).isEqualTo("300"),
+                () -> assertThat(results.get("땡이")).isEqualTo("꽝"),
+                () -> assertThat(results.get("포비")).isEqualTo("1000"),
+                () -> assertThat(results.get("토미")).isEqualTo("100"),
+                () -> assertThat(results.get("네오")).isEqualTo("500")
         );
     }
 }
