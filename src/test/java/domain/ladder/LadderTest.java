@@ -10,7 +10,7 @@ class LadderTest {
 
     @Test
     @DisplayName("사람 수와 높이로 Ladder 생성")
-    void createLadderWithPersonCountAndMaxHeight() throws Exception {
+    void createLadderWithPersonCountAndMaxHeight() {
         //given
         int maxHeight = 4;
         int personCount = 4;

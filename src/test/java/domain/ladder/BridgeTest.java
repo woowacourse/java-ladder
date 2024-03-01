@@ -9,8 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class BridgeTest {
 
     @Test
-    @DisplayName("Test name")
-    void methodName() throws Exception {
+    @DisplayName("boolean 값으로 Brdige 찾아오기")
+    void findBridge() {
         //given
         //when
         //then
