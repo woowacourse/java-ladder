@@ -8,7 +8,7 @@ public class People {
 
     private final List<Person> personGroup;
 
-    private People(final List<Person> personGroup) {
+    public People(final List<Person> personGroup) {
         validatePersonCount(personGroup.size());
         validateDuplicatedPersonNames(personGroup);
         this.personGroup = personGroup;

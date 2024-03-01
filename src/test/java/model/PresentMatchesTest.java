@@ -12,7 +12,7 @@ class PresentMatchesTest {
     @CsvSource({"1, 'q'", "2, 'w'", "3, 'e'", "4, 'r'", "5, 't'"})
     void createPresentMatches(String finding, String expected) {
         People people = People.from(List.of("1", "2", "3", "4", "5"));
-        Presents presents = Presents.from(List.of("q", "w", "e", "r", "t"), 5);
+        Presents presents = Presents.from(List.of("q", "w", "e", "r", "t"), people);
         PresentMatches presentMatches = PresentMatches.from(people, presents);
         PersonName personName = new PersonName(finding);
         Present present = presentMatches.findByPersonName(personName);

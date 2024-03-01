@@ -12,8 +12,9 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder from(final int height, final int personCount, final PathGenerator pathGenerator) {
+    public static Ladder from(final int height, final People people, final PathGenerator pathGenerator) {
         validateHeight(height);
+        final int personCount = people.getPersonCount();
         final List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             final Line line = new Line(pathGenerator.generate(personCount - 1));

@@ -9,7 +9,8 @@ public class Presents {
         this.presentGroup = presentGroup;
     }
 
-    public static Presents from(List<String> presentNames, int personCount) {
+    public static Presents from(List<String> presentNames, People people) {
+        final int personCount = people.getPersonCount();
         validatePresentCount(presentNames.size(), personCount);
         final List<Present> presentGroup = presentNames.stream()
                 .map(Present::new)

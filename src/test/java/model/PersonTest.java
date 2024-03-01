@@ -45,14 +45,17 @@ class PersonTest {
     @ParameterizedTest(name = "사다리를 타고 올바른 경로로 내려가야 합니다.")
     @CsvSource({"0, 2", "1, 1", "2, 0", "3, 3", "4, 4"})
     void climbDown(int before, int expected) {
+        List<Person> personGroup = List.of(Person.from("0", 0), Person.from("1", 1),
+                Person.from("2", 2), Person.from("3", 3), Person.from("4", 4));
+        Person person = personGroup.get(before);
         List<List<Path>> lines = List.of(
                 List.of(Path.EXIST, Path.NOT_EXIST, Path.NOT_EXIST, Path.EXIST),
                 List.of(Path.NOT_EXIST, Path.EXIST, Path.NOT_EXIST, Path.EXIST),
                 List.of(Path.EXIST, Path.NOT_EXIST, Path.EXIST, Path.NOT_EXIST),
                 List.of(Path.NOT_EXIST, Path.NOT_EXIST, Path.EXIST, Path.NOT_EXIST)
         );
-        Ladder ladder = Ladder.from(4, 5, new TestPathGenerator(lines));
-        Person person = Person.from("loky", before);
+        Ladder ladder = Ladder.from(4, new People(personGroup), new TestPathGenerator(lines));
+
         person.climbDown(ladder);
         int after = person.getColumn();
         assertAll(

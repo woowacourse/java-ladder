@@ -23,8 +23,8 @@ public class LadderGame {
 
     public void play() {
         final People people = initPeople();
-        final Presents presents = initPresent(people.getPersonCount());
-        final Ladder ladder = initLadder(people.getPersonCount());
+        final Presents presents = initPresent(people);
+        final Ladder ladder = initLadder(people);
 
         people.climbDown(ladder);
         final Result result = Result.from(people, ladder, presents);
@@ -45,23 +45,23 @@ public class LadderGame {
         }
     }
 
-    private Presents initPresent(int personCount) {
+    private Presents initPresent(People people) {
         try {
             final List<String> presentNames = inputView.inputPresentNames();
-            return Presents.from(presentNames, personCount);
+            return Presents.from(presentNames, people);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-            return initPresent(personCount);
+            return initPresent(people);
         }
     }
 
-    private Ladder initLadder(final int personCount) {
+    private Ladder initLadder(final People people) {
         try {
             final int height = inputView.inputHeight();
-            return Ladder.from(height, personCount, new RandomPathGenerator());
+            return Ladder.from(height, people, new RandomPathGenerator());
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-            return initLadder(personCount);
+            return initLadder(people);
         }
     }
 
