@@ -28,4 +28,12 @@ public class LadderRowTest {
                 () -> assertThat(ladderRow.move(new Position(3))).isEqualTo(new Position(4)),
                 () -> assertThat(ladderRow.move(new Position(4))).isEqualTo(new Position(3)));
     }
+
+    /*
+    0     1     2     3     4
+    |-----|     |     |-----|
+
+    0 -> 1
+
+     */
 }

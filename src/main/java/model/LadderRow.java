@@ -30,7 +30,7 @@ public class LadderRow {
         if (position.getValue() > 0 && isLines.get(position.getValue() - 1) == CONNECTED) {
             return position.decrement();
         }
-        if (position.getValue() < isLines.size() && isLines.get(position.getValue()) == NOT_CONNECTED) {
+        if (position.getValue() < isLines.size() && isLines.get(position.getValue()) == CONNECTED) {
             return position.increment();
         }
         return position;

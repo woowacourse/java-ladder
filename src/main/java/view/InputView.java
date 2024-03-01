@@ -73,10 +73,10 @@ public class InputView {
         }
     }
 
-    public Name inputParticipantNameForResult() {
+    public String inputParticipantNameForResult() {
         System.out.println(INPUT_PARTICIPANT_NAME_FOR_RESULT);
         String input = in.nextLine();
         validateNotNullAndBlank(input);
-        return new Name(input);
+        return input;
     }
 }
