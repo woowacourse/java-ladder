@@ -23,12 +23,12 @@ public class Players {
                 .orElseThrow(() -> new NoSuchElementException("[ERROR] 해당하는 이름의 참여자가 존재하지 않습니다"));
     }
 
-    public List<Player> getPlayers() {
-        return List.copyOf(players);
-    }
-
     public int getPlayerCount() {
         return players.size();
+    }
+
+    public List<Player> getPlayers() {
+        return List.copyOf(players);
     }
 
     private void validate(List<Player> players) {

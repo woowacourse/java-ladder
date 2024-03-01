@@ -13,8 +13,4 @@ public class Prize {
     public String getPrizeName() {
         return prizeName.getPrize();
     }
-
-    public int getColumnPosition() {
-        return columnPosition.getColumnPosition();
-    }
 }

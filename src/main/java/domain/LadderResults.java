@@ -3,6 +3,7 @@ package domain;
 import java.util.List;
 
 public class LadderResults {
+
     private final List<LadderResult> results;
 
     public LadderResults(List<LadderResult> results) {

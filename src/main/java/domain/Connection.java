@@ -1,6 +1,7 @@
 package domain;
 
 public enum Connection {
+
     LEFT_CONNECTION(-1),
     RIGHT_CONNECTION(1),
     DISCONNECTION(0);
