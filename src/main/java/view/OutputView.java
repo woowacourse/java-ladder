@@ -1,5 +1,7 @@
 package view;
 
+import static model.Line.CONNECTED;
+
 import java.util.List;
 import java.util.Map;
 import model.Ladder;
@@ -17,11 +19,14 @@ public class OutputView {
     private static final String NAME_FORMAT = "%5s ";
     private static final String PARTICIPANTS_RESULT_FORMAT = "%s : %s ";
 
-    public void printResultMessage() {
+    public void printRandomLadderResult(Participants participants, Ladder ladder, Map<Position, Result> results) {
         System.out.println(RESULT_MESSAGE);
+        printParticipantsName(participants);
+        printLadder(ladder);
+        printResults(results);
     }
 
-    public void printParticipantsName(Participants participants) {
+    private void printParticipantsName(Participants participants) {
         List<String> participantsName = participants.getParticipants().stream()
                 .map(Name::getValue)
                 .toList();
@@ -29,7 +34,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printLadder(Ladder ladder) {
+    private void printLadder(Ladder ladder) {
         for (int i = 0; i < ladder.getHeight(); i++) {
             printRow(ladder.getRow(i));
             System.out.println();
@@ -40,7 +45,7 @@ public class OutputView {
         System.out.print(LadderComponent.EMPTY_LINE);
         for (Line isLine : ladderRow.getIsLines()) {
             System.out.print(LadderComponent.DIVISION);
-            System.out.print(LadderComponent.match(isLine.getConnected()).toString());
+            System.out.print(LadderComponent.match(isLine == CONNECTED).toString());
         }
         System.out.print(LadderComponent.DIVISION);
     }

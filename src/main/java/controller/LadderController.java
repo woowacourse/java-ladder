@@ -31,7 +31,7 @@ public class LadderController {
         Height height = new Height(inputView.inputLadderHeight());
         Ladder ladder = new Ladder(height, new LadderRowGenerator(new RandomBooleanGenerator()), participants.size());
         ladderGame = new LadderGame(participants, ladder, results);
-        printRandomLadder(participants, ladder, results);
+        outputView.printRandomLadderResult(participants, ladder, results);
         printResults();
     }
 
@@ -45,12 +45,5 @@ public class LadderController {
         }
         Map<Name, Result> allResults = ladderGame.findAllParticipantResults();
         outputView.printParticipantResult(allResults);
-    }
-
-    private void printRandomLadder(Participants participants, Ladder ladder, Map<Position, Result> results) {
-        outputView.printResultMessage();
-        outputView.printParticipantsName(participants);
-        outputView.printLadder(ladder);
-        outputView.printResults(results);
     }
 }
