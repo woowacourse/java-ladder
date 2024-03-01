@@ -49,10 +49,10 @@ public class People {
     }
 
     public String findProperParticipant(String name){
-        if(name.equals("all")||!participants.contains(new Person(name))){
-            throw new IllegalArgumentException("존재하지 않는 참가자 입니다.");
+        if(name.equals("all")||participants.contains(new Person(name))){
+            return name;
         }
-        return name;
+        throw new IllegalArgumentException("존재하지 않는 참가자 입니다.");
     }
 
 }
