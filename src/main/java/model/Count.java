@@ -3,7 +3,7 @@ package model;
 public abstract class Count {
     private final int count;
 
-    protected Count(final int count) {
+    Count(final int count) {
         validateCount(count);
         validateNegativeCount(count);
         this.count = count;
@@ -13,7 +13,11 @@ public abstract class Count {
 
     private void validateNegativeCount(final int count) {
         if (count < 0) {
-            throw new IllegalArgumentException("갯수 음수일 수 없습니다.");
+            throw new IllegalArgumentException("카운트는 음수일 수 없습니다.");
         }
+    }
+
+    public int getCount() {
+        return count;
     }
 }
