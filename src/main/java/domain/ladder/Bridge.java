@@ -1,15 +1,9 @@
 package domain.ladder;
 
 public enum Bridge {
-    EMPTY(false), EXIST(true);
+    EMPTY, EXIST;
 
-    private final boolean existence;
-
-    Bridge(final boolean existence) {
-        this.existence = existence;
-    }
-
-    public static Bridge getOne(boolean existence) {
+    public static Bridge of(final boolean existence) {
         if (existence) {
             return EXIST;
         }
@@ -17,10 +11,10 @@ public enum Bridge {
     }
 
     public boolean isExist() {
-        return this.existence;
+        return this == EXIST;
     }
 
     public boolean isEmpty() {
-        return !this.existence;
+        return this == EMPTY;
     }
 }
