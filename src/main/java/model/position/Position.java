@@ -8,6 +8,7 @@ public class Position {
 
     public static final int MIN_CACHED_POSITION = 0;
     public static final int MAX_CACHED_POSITION = 20;
+    private static final String NOT_ALLOWED_NEGATIVE_POSITION = "포지션(위치)은 음수가 될 수 없습니다.";
     private final int currentIndex;
     private static final Map<Integer, Position> positions = new HashMap<>();
 
@@ -18,7 +19,7 @@ public class Position {
 
     void validateNotNegative(int index) {
         if (index < 0) {
-            throw new IllegalArgumentException("포지션(위치)은 음수가 될 수 없습니다.");
+            throw new IllegalStateException(NOT_ALLOWED_NEGATIVE_POSITION);
         }
     }
 
