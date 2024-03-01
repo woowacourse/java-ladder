@@ -4,6 +4,7 @@ package view;
 import domain.Bridge;
 import domain.Ladder;
 import domain.Line;
+import domain.Prizes;
 import java.util.List;
 import java.util.Map;
 
@@ -53,5 +54,18 @@ public class OutputView {
     private void printResults(List<String> results) {
         results.forEach(result -> System.out.print(String.format(RESULT_FORMAT, result)));
         System.out.println();
+    }
+
+    public void printResult(Map<String, Integer> calculatedResults, Prizes prizes) {
+        calculatedResults.forEach(
+                (key, value) -> System.out.println(String.format("%s : %s", key, prizes.getPrizeNameOf(value))));
+    }
+
+    public void printResult(String prizeName) {
+        System.out.println(prizeName);
+    }
+
+    public void printError(String message) {
+        System.out.println(message);
     }
 }
