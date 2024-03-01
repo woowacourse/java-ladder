@@ -4,6 +4,7 @@ import domain.ladder.Ladder;
 import domain.ladder.LadderRow;
 import domain.ladder.LadderRung;
 import domain.player.Players;
+import domain.prize.Prizes;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,5 +62,12 @@ public class OutputView {
 
     public static void printErrorMessage(Exception e) {
         System.out.println(e.getMessage());
+    }
+
+    public static void printPrizes(Prizes prizes, int length) {
+        prizes.getPrizes().stream()
+                .map(prize -> alignNameCenter(prize, length + EMPTY_COUNT))
+                .forEach(System.out::print);
+        System.out.println();
     }
 }

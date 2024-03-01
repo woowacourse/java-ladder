@@ -19,12 +19,13 @@ public class LadderGame {
     public void run() {
         try {
             Players players = generatePlayers();
-            Height height = generateHeight();
             Prizes prizes = generatePrizes();
+            Height height = generateHeight();
             Ladder ladder = Ladder.create(height, players, prizes, ladderRungGenerator);
             OutputView.printResultMessage();
             OutputView.printPlayerNames(players);
             OutputView.printLadder(players.findMaxNameLength(), ladder);
+            OutputView.printPrizes(prizes, players.findMaxNameLength());
         } catch (Exception e) {
             OutputView.printErrorMessage(e);
         }
