@@ -1,9 +1,11 @@
 package domain.ladder;
 
+import domain.strategy.BridgeMakingStrategy;
+
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static java.util.Collections.unmodifiableList;
-import static java.util.stream.IntStream.range;
 
 
 public class Ladder {
@@ -11,11 +13,7 @@ public class Ladder {
     private static final int HEIGHT_MIN = 1, HEIGHT_MAX = 10;
     private final List<Row> rows;
 
-    public Ladder(
-            final int width,
-            final int height,
-            final BridgeMakingStrategy strategy
-    ) {
+    public Ladder(final int width, final int height, final BridgeMakingStrategy strategy) {
         validateSize(width, height);
         this.rows = makeLadder(width, height, strategy);
     }
@@ -24,17 +22,13 @@ public class Ladder {
         if (WIDTH_MIN > width || width > WIDTH_MAX) {
             throw new IllegalArgumentException("잘못된 크기가 입력됐습니다. ");
         }
-        if(HEIGHT_MIN > height || height > HEIGHT_MAX) {
+        if (HEIGHT_MIN > height || height > HEIGHT_MAX) {
             throw new IllegalArgumentException("잘못된 크기가 입력됐습니다. ");
         }
     }
 
-    private List<Row> makeLadder(
-            final int width,
-            final int height,
-            final BridgeMakingStrategy strategy
-    ) {
-        return range(0, height)
+    private List<Row> makeLadder(final int width, final int height, final BridgeMakingStrategy strategy) {
+        return IntStream.range(0, height)
                 .mapToObj(ignore -> new Row(width, strategy))
                 .toList();
     }

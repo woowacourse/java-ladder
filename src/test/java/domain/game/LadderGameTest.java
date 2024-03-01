@@ -31,7 +31,7 @@ class LadderGameTest {
 
         List<Integer> departure = List.of(0, 1, 2);
         List<Integer> arrival = List.of(1, 2, 0);
-
+        // TODO: 반복문 지우기
         for (int i = 0; i < 2; i++) {
             assertThat(pathMapper.find(i)).isEqualTo(arrival.get(i));
         }

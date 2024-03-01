@@ -4,27 +4,30 @@ import domain.ladder.Bridge;
 import domain.ladder.Row;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-
-import static java.util.Collections.swap;
 
 public class LadderClimber {
 
-    public static List<Integer> climbDown(final Row row, final List<Integer> departure) {
-        final List<Integer> arrival = new ArrayList<>(departure.get(0));
+    public static List<Integer> climbDownRow(final List<Integer> departure, final Row row) {
+        final List<Integer> arrival = new ArrayList<>(List.of(departure.get(0)));
         for (final Bridge bridge : row.getBridges()) {
-            arrival.add(departure.get(arrival.size()));
-            swapLastIfBridgeContinuous(bridge, arrival);
+            addBridge(departure, arrival, bridge);
         }
         return arrival;
     }
 
-    private static void swapLastIfBridgeContinuous(final Bridge bridge, final List<Integer> to) {
-        if (!bridge.isEmpty()) {
+    private static void addBridge(final List<Integer> departure, final List<Integer> arrival, final Bridge bridge) {
+        arrival.add(departure.get(arrival.size()));
+        swapLastIfBridgeContinuous(bridge, arrival);
+    }
+
+    private static void swapLastIfBridgeContinuous(final Bridge bridge, final List<Integer> arrival) {
+        if (bridge.isEmpty()) {
             return;
         }
 
-        final int lastIndex = to.size() - 1;
-        swap(to, lastIndex - 1, lastIndex);
+        final int lastIndex = arrival.size() - 1;
+        Collections.swap(arrival, lastIndex - 1, lastIndex);
     }
 }

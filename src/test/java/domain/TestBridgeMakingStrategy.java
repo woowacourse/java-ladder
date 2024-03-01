@@ -1,24 +1,34 @@
 package domain;
 
 import domain.ladder.Bridge;
-import domain.ladder.BridgeMakingStrategy;
+import domain.strategy.BridgeMakingStrategy;
 
 import java.util.List;
 
-public class TestBridgeMakingStrategy implements BridgeMakingStrategy {
+public class TestBridgeMakingStrategy extends BridgeMakingStrategy {
 
     private final List<Bridge> bridges;
     private int index = 0;
 
-    public TestBridgeMakingStrategy(List<Bridge> bridges) {
+    public TestBridgeMakingStrategy(final List<Bridge> bridges) {
         this.bridges = bridges;
     }
 
-    @Override
-    public Bridge getOne(final Bridge previous) {
-        if (index >= bridges.size()) {
+    public Bridge get(final Bridge previous) {
+        if (this.bridges.size() <= this.index) {
             throw new IllegalArgumentException("더이상 호출할 수 없습니다.");
         }
-        return bridges.get(index++);
+
+        return makeBridge();
+    }
+
+    @Override
+    public Bridge get() {
+        return makeBridge();
+    }
+
+    @Override
+    protected Bridge makeBridge() {
+        return this.bridges.get(this.index++);
     }
 }

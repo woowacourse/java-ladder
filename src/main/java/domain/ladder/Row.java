@@ -1,5 +1,7 @@
 package domain.ladder;
 
+import domain.strategy.BridgeMakingStrategy;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,11 +16,10 @@ public class Row {
     }
 
     private List<Bridge> makeBridges(final int width, final BridgeMakingStrategy strategy) {
-        final List<Bridge> bridges = new ArrayList<>();
-        Bridge current = null;
-        for (int i = 0; i < width; i++) {
-            current = strategy.getOne(current);
-            bridges.add(current);
+        final List<Bridge> bridges = new ArrayList<>(List.of(strategy.get()));
+        for (int i = 1; i < width; i++) {
+            Bridge previous = bridges.get(bridges.size() - 1);
+            bridges.add(strategy.get(previous));
         }
         return bridges;
     }

@@ -11,7 +11,7 @@ public class LadderGame {
     public static PathMapper play(final Ladder ladder) {
         List<Integer> path = rangeClosed(0, ladder.getWidth()).boxed().toList();
         for (final Row row : ladder.getRows()) {
-            path = LadderClimber.climbDown(row, path);
+            path = LadderClimber.climbDownRow(path, row);
         }
         return new PathMapper(path);
     }

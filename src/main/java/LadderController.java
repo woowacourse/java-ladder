@@ -7,7 +7,7 @@ import domain.game.LadderGame;
 import domain.game.PathMapper;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
-import domain.ladder.RandomBridgeMakingStrategy;
+import domain.strategy.RandomBridgeMakingStrategy;
 import view.InputView;
 import view.OutputView;
 
