@@ -2,6 +2,7 @@ package controller;
 
 import domain.Ladder;
 import domain.LadderFactory;
+import domain.result.Result;
 import domain.result.Results;
 import domain.user.Users;
 import java.util.Arrays;
@@ -38,7 +39,7 @@ public class LadderGame {
 
         final int endPosition = ladder.play(users.findPositionByName(target));
         ResultView.printTargetResultMessage();
-        ResultView.printTargetResult(results.get(endPosition));
+        ResultView.printTargetResult(results.get(endPosition).toString());
     }
 
     private static void printAllResult(final Users users, final Ladder ladder, final Results results) {
@@ -48,6 +49,7 @@ public class LadderGame {
                         .map(users::findPositionByName)
                         .map(ladder::play)
                         .map(results::get)
+                        .map(Result::toString)
                         .toList());
     }
 
