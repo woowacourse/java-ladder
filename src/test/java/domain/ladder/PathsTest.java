@@ -1,6 +1,5 @@
 package domain.ladder;
 
-import constant.PathStatus;
 import domain.LineNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

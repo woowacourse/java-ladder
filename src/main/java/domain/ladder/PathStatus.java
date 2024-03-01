@@ -1,4 +1,4 @@
-package constant;
+package domain.ladder;
 
 public enum PathStatus {
     EXIST, NONE;

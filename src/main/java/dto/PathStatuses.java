@@ -1,6 +1,6 @@
 package dto;
 
-import constant.PathStatus;
+import domain.ladder.PathStatus;
 import domain.ladder.Paths;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package view;
 
-import constant.PathStatus;
+import domain.ladder.PathStatus;
 import dto.LadderGameResultDto;
 import dto.LadderStatus;
 import dto.PathStatuses;

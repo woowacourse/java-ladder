@@ -1,6 +1,5 @@
 package domain.ladder;
 
-import constant.PathStatus;
 import domain.LineNumber;
 
 import java.util.ArrayList;
