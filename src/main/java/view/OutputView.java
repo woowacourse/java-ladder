@@ -1,5 +1,6 @@
 package view;
 
+import domain.Prize;
 import java.util.List;
 import java.util.Map;
 
@@ -22,10 +23,10 @@ public class OutputView {
         System.out.println(ladder);
     }
 
-    public void printPrizes(List<String> prizes) {
+    public void printPrizes(List<Prize> prizes) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (String prize : prizes) {
-            stringBuilder.append(String.format("%5s ", prize));
+        for (Prize prize : prizes) {
+            stringBuilder.append(String.format("%5s ", prize.getPrize()));
         }
 
         System.out.println(stringBuilder);

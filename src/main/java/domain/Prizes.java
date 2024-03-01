@@ -1,29 +1,21 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class Prizes {
 
-    static final String ERROR_IS_NOT_LOSE_OR_NATURAL_NUMBER = "실행 결과는 꽝 또는 자연수만 입력 가능합니다.";
     static final String ERROR_IS_INVALID_LENGTH = "실행 결과 개수는 참여자 수와 일치해야 합니다.";
-    private static final Pattern NATURAL_NUMBER_FORMAT_REGEX = Pattern.compile("^[1-9][0-9]*$");
-    private static final String LOSE = "꽝";
 
-    private final List<String> prizes;
+    private final List<Prize> prizes;
 
-    public Prizes(List<String> prizes, int playerCount) {
-        validateIsNotLoseOrNaturalNumber(prizes);
-        validatePrizesLength(prizes, playerCount);
-        this.prizes = prizes;
-    }
-
-    private void validateIsNotLoseOrNaturalNumber(List<String> prizes) {
-        for (String prize : prizes) {
-            if (!prize.equals(LOSE) && !NATURAL_NUMBER_FORMAT_REGEX.matcher(prize).matches()) {
-                throw new IllegalArgumentException(ERROR_IS_NOT_LOSE_OR_NATURAL_NUMBER);
-            }
+    public Prizes(List<String> prizeInputs, int playerCount) {
+        validatePrizesLength(prizeInputs, playerCount);
+        this.prizes = new ArrayList<>();
+        for (int i = 0; i < prizeInputs.size(); i++) {
+            Prize prize = new Prize(prizeInputs.get(i));
+            prizes.add(prize);
         }
     }
 
@@ -34,10 +26,10 @@ public class Prizes {
     }
 
     public String findPrizeByPosition(int position) {
-        return prizes.get(position);
+        return prizes.get(position).getPrize();
     }
 
-    public List<String> getPrizes() {
+    public List<Prize> getPrizes() {
         return Collections.unmodifiableList(prizes);
     }
 }
