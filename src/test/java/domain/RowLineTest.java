@@ -36,12 +36,12 @@ class RowLineTest {
                 new Point(new ColumnPosition(2), RIGHT_CONNECTION),
                 new Point(new ColumnPosition(3), LEFT_CONNECTION)
         ));
-        assertThat(rowLine.getConnectionAt(new ColumnPosition(0))).isEqualTo(RIGHT_CONNECTION);
-        assertThat(rowLine.getConnectionAt(new ColumnPosition(1))).isEqualTo(LEFT_CONNECTION);
-        assertThat(rowLine.getConnectionAt(new ColumnPosition(2))).isEqualTo(RIGHT_CONNECTION);
-        assertThat(rowLine.getConnectionAt(new ColumnPosition(3))).isEqualTo(LEFT_CONNECTION);
+        assertThat(rowLine.getPointAt(new ColumnPosition(0)).getConnection()).isEqualTo(RIGHT_CONNECTION);
+        assertThat(rowLine.getPointAt(new ColumnPosition(1)).getConnection()).isEqualTo(LEFT_CONNECTION);
+        assertThat(rowLine.getPointAt(new ColumnPosition(2)).getConnection()).isEqualTo(RIGHT_CONNECTION);
+        assertThat(rowLine.getPointAt(new ColumnPosition(3)).getConnection()).isEqualTo(LEFT_CONNECTION);
     }
-    
+
     @DisplayName("Point 개수를 확인할 수 있다")
     @Test
     void testCalculateConnectionCount() {

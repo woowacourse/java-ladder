@@ -11,14 +11,12 @@ public class RowLine {
     }
 
     public ColumnPosition nextPosition(ColumnPosition columnPosition) {
-        Connection connection = getConnectionAt(columnPosition);
-        return columnPosition.nextPosition(connection.getMoveWeight());
+        return getPointAt(columnPosition).navigateNextPosition();
     }
 
-    public Connection getConnectionAt(ColumnPosition columnPosition) {
+    public Point getPointAt(ColumnPosition columnPosition) {
         return points.stream()
                 .filter(point -> point.getColumnPosition().equals(columnPosition))
-                .map(Point::getConnection)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 위치를 가지는 지점을 찾을 수 없습니다"));
     }

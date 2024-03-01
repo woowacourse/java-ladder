@@ -8,6 +8,7 @@ import domain.Ladder;
 import domain.LadderResult;
 import domain.LadderResults;
 import domain.Players;
+import domain.Point;
 import domain.Prizes;
 import domain.RowLine;
 import java.util.stream.Collectors;
@@ -61,7 +62,8 @@ public class MessageResolver {
 
     private String resolveLineMessage(RowLine rowLine) {
         return LINE_MESSAGE_PREFIX + COLUMN_LINE + IntStream.range(0, rowLine.getPointCount() - 1)
-                .mapToObj(i -> rowLine.getConnectionAt(new ColumnPosition(i)))
+                .mapToObj(i -> rowLine.getPointAt(new ColumnPosition(i)))
+                .map(Point::getConnection)
                 .map(this::resolveConnectionMessage)
                 .collect(Collectors.joining(COLUMN_LINE)) + COLUMN_LINE;
     }
