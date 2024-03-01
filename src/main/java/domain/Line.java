@@ -32,6 +32,9 @@ class Line {
         if (canGoRights[0]) {
             points.add(new Point(Direction.RIGHT, 0));
         }
+        if (!canGoRights[0]) {
+            points.add(new Point(Direction.STRAIGHT, 0));
+        }
     }
 
     private void addRemainPoints(List<Point> points, Boolean[] canGoRights) {
@@ -57,5 +60,9 @@ class Line {
         if (!canGoRights[index - 1] && !canGoRights[index]) {
             points.add(new Point(Direction.STRAIGHT, index));
         }
+    }
+
+    int length() {
+        return points.size();
     }
 }

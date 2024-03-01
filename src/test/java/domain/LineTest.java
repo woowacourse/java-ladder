@@ -8,9 +8,16 @@ class LineTest {
     @Test
     @DisplayName("올바른 Point로 Line이 잘 생성되는지 확인")
     void normal() {
-        Assertions.assertThatNoException()
-                .isThrownBy(
-                        () -> new Line(true, false, false, true, false));
+        // |-----|     |     |-----|
+        Line line = new Line(true, false, false, true, false);
+        int length = line.length();
+        Assertions.assertThat(length)
+                .isEqualTo(5);
+        // |     |     |     |-----|
+        Line line2 = new Line(false, false, false, true, false);
+        int length2 = line.length();
+        Assertions.assertThat(length2)
+                .isEqualTo(5);
     }
 
     @Test
