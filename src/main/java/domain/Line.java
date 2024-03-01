@@ -65,4 +65,13 @@ class Line {
     int length() {
         return points.size();
     }
+
+    boolean isConnectWithNextPoint(int index) {
+        if (index == points.size() - 1) {
+            return false;
+        }
+        Point point = points.get(index);
+        Point nextPoint = points.get(index + 1);
+        return point.next().equals(nextPoint);
+    }
 }
