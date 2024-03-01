@@ -22,4 +22,12 @@ class LineTest {
                 .hasMessage("|-----|-----| 연결 감지!");
     }
 
+    @Test
+    @DisplayName("|-----|----- 인 Point로 Line이 생성되지 않는지 확인")
+    void rightAfterEnd() {
+        Assertions.assertThatThrownBy(
+                        () -> new Line(true, false, true))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("오른쪽 끝에선 오른쪽으로 갈 수 없습니다.");
+    }
 }
