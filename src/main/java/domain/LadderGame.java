@@ -27,8 +27,6 @@ public class LadderGame {
 
     private void validateCountEqual(Ladder ladder, Players players, Prizes prizes) {
         if (ladder.getColumnCount() != prizes.getPrizeCount()) {
-            System.out.println("ladder.getColumnCount() = " + ladder.getColumnCount());
-            System.out.println("prizes.getPrizeCount() = " + prizes.getPrizeCount());
             throw new IllegalArgumentException("[ERROR] 사다리 열과 결과의 개수가 일치하지 않습니다");
         }
     }
