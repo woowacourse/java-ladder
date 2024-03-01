@@ -88,4 +88,4 @@ pobi  honux crong   jk
 - [X] 객체의 관계를 명시하기 위해 ExceptionHandler와 View를 객체로 변경
 - [X] LadderLevel -> LadderRow 이름 변경(readme 또한)
 - [X] Players 검증 로직 병합
-- [ ] InputView 로직 개선(들여쓰기, 메서드 줄 길이)
+- [X] InputView 로직 개선(들여쓰기, 메서드 줄 길이)

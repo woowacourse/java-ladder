@@ -2,7 +2,7 @@ package ladder.domain;
 
 public record Player(String name) {
 
-    public static final String ALL = "all";
+    public static final Player ALL = new Player("all");
 
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;

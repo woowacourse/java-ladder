@@ -1,5 +1,7 @@
 package ladder.view;
 
+import static ladder.domain.Player.ALL;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -25,15 +27,17 @@ public class InputView {
         return exceptionHandler.run(() -> {
             System.out.println("\n참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
             List<Player> names = Arrays.stream(readAndSplitByComma())
-                    .map(name -> {
-                        if (name.equals("all")) {
-                            throw new IllegalArgumentException("플레이어 이름으로 all은 입력할 수 없습니다");
-                        }
-                        return new Player(name);
-                    })
+                    .map(name -> new Player(validateNotAll(name)))
                     .toList();
             return new Players(names);
         });
+    }
+
+    private String validateNotAll(final String input) {
+        if (input.equals("all")) {
+            throw new IllegalArgumentException("참여자 이름으로 all을 입력할 수 없습니다");
+        }
+        return input;
     }
 
     public LadderResults inputLadderResults(Players players) {
@@ -57,11 +61,18 @@ public class InputView {
         return exceptionHandler.run(() -> {
             System.out.println("\n결과를 보고 싶은 사람은?");
             Player player = new Player(readLine());
-            if (!players.exists(player) && !new Player("all").equals(player)) {
-                throw new IllegalArgumentException("존재하지 않는 이름입니다: %s".formatted(player.name()));
-            }
-            return player;
+            return selectPlayer(players, player);
         });
+    }
+
+    private Player selectPlayer(Players players, Player player) {
+        if (player.equals(ALL)) {
+            return ALL;
+        }
+        if (!players.exists(player)) {
+            throw new IllegalArgumentException("존재하지 않는 이름입니다: %s".formatted(player.name()));
+        }
+        return player;
     }
 
     private String readLine() {
