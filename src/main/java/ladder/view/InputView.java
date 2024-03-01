@@ -4,14 +4,17 @@ import static ladder.domain.Player.ALL;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import ladder.domain.Height;
+import ladder.domain.LadderDirection;
 import ladder.domain.LadderResult;
 import ladder.domain.LadderResults;
 import ladder.domain.LadderRow;
 import ladder.domain.Player;
 import ladder.domain.Players;
+import ladder.domain.Width;
 import ladder.exception.ExceptionHandler;
 
 public class InputView {
@@ -41,13 +44,13 @@ public class InputView {
         return input;
     }
 
-    public LadderResults inputLadderResults(Players players) {
+    public LadderResults inputLadderResults(final Width<LadderDirection> width) {
         return exceptionHandler.run(() -> {
             System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
             List<LadderResult> results = Arrays.stream(readAndSplitByComma())
                     .map(LadderResult::new)
                     .toList();
-            return new LadderResults(results, players);
+            return new LadderResults(results, width);
         });
     }
 
@@ -58,19 +61,19 @@ public class InputView {
         });
     }
 
-    public Player inputPlayerFrom(Players players) {
+    public Player inputPlayerFrom(final Map<Player, LadderResult> ladderGameResults) {
         return exceptionHandler.run(() -> {
             System.out.println("\n결과를 보고 싶은 사람은?");
             Player player = new Player(readLine());
-            return selectPlayer(players, player);
+            return selectPlayer(ladderGameResults, player);
         });
     }
 
-    private Player selectPlayer(Players players, Player player) {
+    private Player selectPlayer(final Map<Player, LadderResult> ladderGameResults, final Player player) {
         if (player.equals(ALL)) {
             return ALL;
         }
-        if (!players.exists(player)) {
+        if (!ladderGameResults.containsKey(player)) {
             throw new IllegalArgumentException("존재하지 않는 이름입니다: %s".formatted(player.name()));
         }
         return player;
