@@ -62,6 +62,6 @@ class JudgeTest {
 
         assertThatThrownBy(() -> judge.search("none"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("존재하지 않는 이름입니다.");
+                .hasMessage("사용자를 찾을 수 없습니다.");
     }
 }

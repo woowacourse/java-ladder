@@ -22,34 +22,36 @@ public class Judge {
         this.pathMapper = pathMapper;
     }
 
-    // TODO: 호출하는 부분에서 예외를 어떻게 알게 하는가
-    public Map<Player, Prize> search(final String name) throws IllegalArgumentException {
+    public Map<Player, Prize> search(final String name) {
         final List<Player> targets = getTargets(name);
-        return getResult(targets);
+        return makeResult(targets);
     }
 
     private List<Player> getTargets(final String name) {
         if (SEARCH_ALL_KEY_WORD.equals(name)) {
             return players.players();
         }
-        return List.of(new Player(name));
+
+        final Player player = players.findByName(name).orElseThrow(
+                () -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+
+        return List.of(player);
     }
 
-    private Map<Player, Prize> getResult(final List<Player> targets) {
-        return targets.stream()
-                .collect(Collectors.toMap(
-                        player -> player,
-                        player -> getPrize(player.name()),
-                        (a, b) -> a,
-                        LinkedHashMap::new
-                ));
+    private Map<Player, Prize> makeResult(final List<Player> targets) {
+        return targets.stream().collect(Collectors.toMap(
+                player -> player,
+                this::mapByPath,
+                (a, b) -> a,
+                LinkedHashMap::new
+        ));
     }
 
-    private Prize getPrize(final String name) {
+    private Prize mapByPath(final Player player) {
         try {
-            final int departure = this.players.getSequence(name);
+            final int departure = this.players.getSequence(player);
             final int arrival = this.pathMapper.find(departure);
-            return this.prizes.getPrize(arrival);
+            return this.prizes.getByIndex(arrival);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new IllegalArgumentException("상품이 존재하지 않습니다.");
         }

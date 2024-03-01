@@ -2,6 +2,7 @@ package domain.player;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public record Players(List<Player> players) {
     private static final int PLAYER_LENGTH_MIN = 2;
@@ -33,12 +34,26 @@ public record Players(List<Player> players) {
     public int getSequence(final String name) {
         final int sequence = this.players.indexOf(new Player(name));
         if (sequence == -1) {
-            throw new IllegalArgumentException("존재하지 않는 이름입니다.");
+            throw new IllegalArgumentException("존재하지 않는 사용자입니다.");
+        }
+        return sequence;
+    }
+
+    public int getSequence(final Player player) {
+        final int sequence = this.players.indexOf(player);
+        if (sequence == -1) {
+            throw new IllegalArgumentException("존재하지 않는 사용자입니다.");
         }
         return sequence;
     }
 
     public int size() {
         return this.players.size();
+    }
+
+    public Optional<Player> findByName(final String name) {
+        return this.players.stream()
+                .filter(player -> player.name().equals(name))
+                .findFirst();
     }
 }

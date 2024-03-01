@@ -8,7 +8,7 @@ public record Prizes(List<Prize> prizes) {
         this(Arrays.stream(names).map(Prize::new).toList());
     }
 
-    public Prize getPrize(final int index) {
+    public Prize getByIndex(final int index) {
         return this.prizes.get(index);
     }
 }

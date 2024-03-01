@@ -1,12 +1,12 @@
-import domain.player.Player;
-import domain.player.Players;
-import domain.prize.Prize;
-import domain.prize.Prizes;
 import domain.game.Judge;
 import domain.game.LadderGame;
 import domain.game.PathMapper;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
+import domain.player.Player;
+import domain.player.Players;
+import domain.prize.Prize;
+import domain.prize.Prizes;
 import domain.strategy.RandomBridgeMakingStrategy;
 import view.InputView;
 import view.OutputView;
@@ -40,7 +40,7 @@ public class LadderController {
         }
     }
 
-    private static Map<Player, Prize> getPrizeByName(final Judge judge) throws IllegalArgumentException {
+    private static Map<Player, Prize> getPrizeByName(final Judge judge) {
         final Player playerToSearch = getNameToSearch();
         return judge.search(playerToSearch.name());
     }
