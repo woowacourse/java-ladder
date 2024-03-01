@@ -1,40 +1,41 @@
-//package domain;
-//
-//import static org.assertj.core.api.Assertions.assertThat;
-//import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
-//
-//import java.util.List;
-//import org.junit.jupiter.api.DisplayName;
-//import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.params.ParameterizedTest;
-//import org.junit.jupiter.params.provider.CsvSource;
-//
-//class PointTest {
-//
-//
-//    @Test
-//    @DisplayName("Point가 양쪽으로 연결 되어 있으면 예외가 발생한다")
-//    void biDirectionConnectivity() {
-//        assertThatCode(() -> new Point(true, true)).isInstanceOf(IllegalArgumentException.class);
-//    }
-//
-//    @ParameterizedTest
-//    @CsvSource(value = {"true,false,-1", "false,true,1", "false,false,0"})
-//    @DisplayName("위치가 주어지지 않았을 때 왼쪽 혹은 오른쪽의 연결에 따라 이동한다")
-//    void move(final boolean left, final boolean right, final int expected) {
-//        final Point point = new Point(left, right);
-//
-//        assertThat(point.move()).isEqualTo(expected);
-//    }
-//
-//    @ParameterizedTest
-//    @CsvSource(value = {"true,false,-1", "false,true,1", "false,false,0"})
-//    @DisplayName("위치가 주어졌을 때 왼쪽 혹은 오른쪽의 연결에 따라 한 칸 이동한다")
-//    void moveByIndex(final boolean left, final boolean right, final int expected) {
-//        final Point point = new Point(left, right);
-//        final int index = 4;
-//
-//        assertThat(point.moveByIndex(index)).isEqualTo(index + expected);
-//    }
-//
-//}
+package domain;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
+
+import java.util.List;
+import java.util.function.UnaryOperator;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.ArgumentsSource;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
+
+class PointTest {
+
+
+    @ParameterizedTest
+    @MethodSource("ProvideArgumentsOfMoveByDirection")
+    @DisplayName("인덱스가 주어졌을 때 방향에 맞게 움직인 인덱스를 반환한다")
+    void moveByDirection(final Direction direction, final int expected) {
+        final Point point = new Point(direction);
+        final Index index = new Index(5);
+
+        Index actual = point.move(index);
+
+        assertThat(actual).isEqualTo(new Index(expected));
+    }
+
+    public static Stream<Arguments> ProvideArgumentsOfMoveByDirection() {
+        return Stream.of(
+                Arguments.of(Direction.STRAIGHT, 5),
+                Arguments.of(Direction.LEFT, 4),
+                Arguments.of(Direction.RIGHT, 6)
+        );
+    }
+
+
+}
