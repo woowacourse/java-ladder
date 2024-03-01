@@ -25,6 +25,6 @@ public class LadderController {
 
         Ladder ladder = Ladder.of(height, Width.from(players.size()), new RandomStatusGenerator());
 
-        outputView.printResult(players.getNames(), ladder.getLines());
+        outputView.printResult(players.getNames(), ladder.getLines(), prizes.getPrizes());
     }
 }

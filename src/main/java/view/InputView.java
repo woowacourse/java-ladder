@@ -43,6 +43,7 @@ public class InputView {
     }
 
     public int readHeight() {
+        System.out.println();
         System.out.println(HEIGHT_REQUEST_MESSAGE);
         String rawHeight = scanner.nextLine();
         validateBlank(rawHeight);

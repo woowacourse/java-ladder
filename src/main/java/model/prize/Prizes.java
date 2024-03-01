@@ -29,4 +29,10 @@ public class Prizes {
     public Prize getPrizeByIndex(final int index) {
         return prizes.get(index);
     }
+
+    public List<String> getPrizes() {
+        return prizes.stream()
+                .map(prize -> prize.getName())
+                .toList();
+    }
 }
