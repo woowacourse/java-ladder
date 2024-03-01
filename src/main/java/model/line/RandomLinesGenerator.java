@@ -10,18 +10,15 @@ public class RandomLinesGenerator implements LinesGenerator {
     private final Random random = new Random();
 
     @Override
-    public List<Line> generate(final int height, final int pathCount) {
+    public List<Line> generate(final Height height, final int pathCount) {
         final List<Line> lines = new ArrayList<>();
-        while (lines.size() < height) {
+        int lineSize = lines.size();
+        while (height.isBigger(lines.size())) { // height.isBigger(lines.size());
             final Line generatedLine = generateLine(pathCount);
             lines.add(generatedLine);
+            lineSize++;
         }
         return lines;
-    }
-
-    @Override
-    public List<Line> generate(final Height height, final int pathCount) {
-        return null;
     }
 
     private Line generateLine(final int pathCount) {

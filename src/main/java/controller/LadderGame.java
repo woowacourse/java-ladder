@@ -3,6 +3,7 @@ package controller;
 import dto.LadderInfo;
 import dto.ResultInfo;
 import java.util.List;
+import model.Height;
 import model.Items;
 import model.Ladder;
 import model.People;
@@ -40,7 +41,7 @@ public class LadderGame {
     }
 
     private Ladder initLadder(final int personCount) {
-        final int height = inputView.inputHeight();
+        final Height height = new Height(inputView.inputHeight());
         return Ladder.from(height, personCount, new RandomLinesGenerator());
     }
 

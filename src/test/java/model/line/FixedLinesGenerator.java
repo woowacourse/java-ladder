@@ -11,12 +11,7 @@ public class FixedLinesGenerator implements LinesGenerator {
     }
 
     @Override
-    public List<Line> generate(final int height, final int pathCount) {
-        return this.lines;
-    }
-
-    @Override
     public List<Line> generate(final Height height, final int pathCount) {
-        return null;
+        return this.lines;
     }
 }
