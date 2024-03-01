@@ -8,8 +8,9 @@ import domain.ColumnPosition;
 import domain.Ladder;
 import domain.LadderResult;
 import domain.LadderResults;
-import domain.Names;
+import domain.Player;
 import domain.PlayerName;
+import domain.Players;
 import domain.Prize;
 import domain.PrizeName;
 import domain.Prizes;
@@ -37,13 +38,18 @@ class MessageResolverTest {
         List<RowLine> rowLines = List.of(line1, line2);
 
         Ladder ladder = new Ladder(rowLines);
-        Names names = new Names(List.of(new PlayerName("리비"), new PlayerName("테니"), new PlayerName("잉크")));
+        Players players = new Players(List.of(
+                new Player(new PlayerName("리비"), new ColumnPosition(0)),
+                new Player(new PlayerName("테니"), new ColumnPosition(1)),
+                new Player(new PlayerName("잉크"), new ColumnPosition(2))
+        ));
+
         Prizes prizes = new Prizes(List.of(
                 new Prize(new PrizeName("1"), new ColumnPosition(0)),
                 new Prize(new PrizeName("2"), new ColumnPosition(1)),
                 new Prize(new PrizeName("3"), new ColumnPosition(2))));
 
-        String result = messageResolver.resolveLadderMessage(ladder, names, prizes);
+        String result = messageResolver.resolveLadderMessage(ladder, players, prizes);
 
         assertThat(result).isEqualTo(
                 System.lineSeparator()

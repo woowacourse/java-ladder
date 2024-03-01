@@ -12,9 +12,10 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public int drive(int index) {
+    public int drive(ColumnPosition columnPosition) {
         return IntStream.range(0, getRowLineCount())
-                .reduce(index, (currentColumn, i) -> lines.get(i).navigateNextColumn(currentColumn));
+                .reduce(columnPosition.getColumnPosition(),
+                        (currentColumn, i) -> lines.get(i).navigateNextColumn(currentColumn));
     }
 
     public RowLine getLineByIndex(int index) {

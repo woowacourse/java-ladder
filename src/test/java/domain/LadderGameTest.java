@@ -19,15 +19,17 @@ class LadderGameTest {
         RowLine line1 = new RowLine(List.of(CONNECTED));
         RowLine line2 = new RowLine(List.of(CONNECTED));
 
-        Names names = new Names(List.of(new PlayerName("리비"), new PlayerName("잉크")));
+        Players players = new Players(List.of(
+                new Player(new PlayerName("리비"), new ColumnPosition(0)),
+                new Player(new PlayerName("잉크"), new ColumnPosition(1))
+        ));
         Ladder ladder = new Ladder(List.of(line1, line2));
-
         Prizes prizes = new Prizes(
                 List.of(new Prize(new PrizeName("123"), new ColumnPosition(0)),
                         new Prize(new PrizeName("456"), new ColumnPosition(1))));
 
-        LadderGame ladderGame = new LadderGame(ladder, names, prizes);
-        assertThat(ladderGame.drive("잉크").getResult()).isEqualTo("456");
+        LadderGame ladderGame = new LadderGame(ladder, players, prizes);
+        assertThat(ladderGame.drive(new PlayerName("잉크")).getResult()).isEqualTo("456");
     }
 
     @DisplayName("전체 결과를 얻어올 수 있다")
@@ -36,13 +38,17 @@ class LadderGameTest {
         RowLine line1 = new RowLine(List.of(CONNECTED));
         RowLine line2 = new RowLine(List.of(CONNECTED));
 
-        Names names = new Names(List.of(new PlayerName("리비"), new PlayerName("잉크")));
+        Players players = new Players(List.of(
+                new Player(new PlayerName("리비"), new ColumnPosition(0)),
+                new Player(new PlayerName("잉크"), new ColumnPosition(1))
+        ));
+
         Ladder ladder = new Ladder(List.of(line1, line2));
         Prizes prizes = new Prizes(
                 List.of(new Prize(new PrizeName("123"), new ColumnPosition(0)),
                         new Prize(new PrizeName("456"), new ColumnPosition(1))));
 
-        LadderGame ladderGame = new LadderGame(ladder, names, prizes);
+        LadderGame ladderGame = new LadderGame(ladder, players, prizes);
         assertThat(ladderGame.driveAll().getResults())
                 .extracting("result")
                 .containsExactly("123", "456");
@@ -54,13 +60,16 @@ class LadderGameTest {
         RowLine line1 = new RowLine(List.of(CONNECTED, DISCONNECTED, CONNECTED));
         RowLine line2 = new RowLine(List.of(CONNECTED, DISCONNECTED, CONNECTED));
 
-        Names names = new Names(List.of(new PlayerName("리비"), new PlayerName("잉크")));
+        Players players = new Players(List.of(
+                new Player(new PlayerName("리비"), new ColumnPosition(0)),
+                new Player(new PlayerName("잉크"), new ColumnPosition(1))
+        ));
         Ladder ladder = new Ladder(List.of(line1, line2));
         Prizes prizes = new Prizes(
                 List.of(new Prize(new PrizeName("123"), new ColumnPosition(0)),
                         new Prize(new PrizeName("456"), new ColumnPosition(1))));
 
-        assertThatThrownBy(() -> new LadderGame(ladder, names, prizes))
+        assertThatThrownBy(() -> new LadderGame(ladder, players, prizes))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 사다리 열과 결과의 개수가 일치하지 않습니다");
     }
@@ -70,13 +79,16 @@ class LadderGameTest {
         RowLine line1 = new RowLine(List.of(CONNECTED, DISCONNECTED, CONNECTED));
         RowLine line2 = new RowLine(List.of(CONNECTED, DISCONNECTED, CONNECTED));
 
-        Names names = new Names(List.of(new PlayerName("리비"), new PlayerName("잉크")));
+        Players players = new Players(List.of(
+                new Player(new PlayerName("리비"), new ColumnPosition(0)),
+                new Player(new PlayerName("잉크"), new ColumnPosition(1))
+        ));
         Ladder ladder = new Ladder(List.of(line1, line2));
         Prizes prizes = new Prizes(
                 List.of(new Prize(new PrizeName("123"), new ColumnPosition(0)),
                         new Prize(new PrizeName("456"), new ColumnPosition(1))));
 
-        assertThatCode(() -> new LadderGame(ladder, names, prizes))
+        assertThatCode(() -> new LadderGame(ladder, players, prizes))
                 .doesNotThrowAnyException();
 
     }

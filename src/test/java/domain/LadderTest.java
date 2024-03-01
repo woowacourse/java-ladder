@@ -21,10 +21,10 @@ class LadderTest {
         List<RowLine> rowLines = List.of(line1, line2);
         Ladder ladder = new Ladder(rowLines);
 
-        assertThat(ladder.drive(0)).isEqualTo(0);
-        assertThat(ladder.drive(1)).isEqualTo(1);
-        assertThat(ladder.drive(2)).isEqualTo(3);
-        assertThat(ladder.drive(3)).isEqualTo(2);
+        assertThat(ladder.drive(new ColumnPosition(0))).isEqualTo(0);
+        assertThat(ladder.drive(new ColumnPosition(1))).isEqualTo(1);
+        assertThat(ladder.drive(new ColumnPosition(2))).isEqualTo(3);
+        assertThat(ladder.drive(new ColumnPosition(3))).isEqualTo(2);
     }
 
     @DisplayName("인덱스를 전달받아 해당하는 줄을 반환할 수 있다")

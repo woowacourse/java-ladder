@@ -2,13 +2,12 @@ package controller;
 
 import domain.ColumnPosition;
 import domain.Height;
-import domain.Names;
+import domain.Player;
 import domain.PlayerName;
+import domain.Players;
 import domain.Prize;
 import domain.PrizeName;
 import domain.Prizes;
-import java.util.Arrays;
-import java.util.List;
 import java.util.stream.IntStream;
 
 public class InputMapper {
@@ -16,11 +15,15 @@ public class InputMapper {
     private static final String RESULT_DELIMITER = ",";
     private static final int COLUMN_START = 0;
 
-    public Names mapToNames(String target) {
-        List<String> names = Arrays.asList(target.split(NAME_DELIMITER));
-        return new Names(names.stream()
-                .map(PlayerName::new)
+    public Players mapToNames(String target) {
+        String[] playerNames = target.split(NAME_DELIMITER);
+        return new Players(IntStream.range(COLUMN_START, playerNames.length)
+                .mapToObj(index -> new Player(new PlayerName(playerNames[index]), new ColumnPosition(index)))
                 .toList());
+    }
+
+    public PlayerName mapToName(String target) {
+        return new PlayerName(target);
     }
 
     public Height mapToHeight(String target) {

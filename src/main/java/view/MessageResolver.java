@@ -4,7 +4,7 @@ import domain.ConnectionStatus;
 import domain.Ladder;
 import domain.LadderResult;
 import domain.LadderResults;
-import domain.Names;
+import domain.Players;
 import domain.Prizes;
 import domain.RowLine;
 import java.util.stream.Collectors;
@@ -30,16 +30,16 @@ public class MessageResolver {
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    public String resolveLadderMessage(Ladder ladder, Names names, Prizes prizes) {
+    public String resolveLadderMessage(Ladder ladder, Players players, Prizes prizes) {
         return LADDER_MESSAGE_PREFIX + LINE_SEPARATOR
-                + this.resolveNamesMessage(names) + LINE_SEPARATOR
+                + this.resolveNamesMessage(players) + LINE_SEPARATOR
                 + this.resolveLadderShapeMessage(ladder) + LINE_SEPARATOR
                 + this.resolvePrizesMessage(prizes);
     }
 
-    private String resolveNamesMessage(Names names) {
-        return names.getNames().stream()
-                .map(name -> String.format("%-5s", name.getName()))
+    private String resolveNamesMessage(Players players) {
+        return players.getPlayers().stream()
+                .map(player -> String.format("%-5s", player.getPlayerName().getName()))
                 .collect(Collectors.joining(" "));
     }
 
