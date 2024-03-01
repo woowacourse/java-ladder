@@ -1,4 +1,5 @@
 import domain.Height;
+import domain.Ladder;
 import domain.Players;
 import domain.Prizes;
 import domain.generator.BridgeGenerator;
@@ -26,8 +27,8 @@ public class LadderGame {
         int inputHeight = inputView.readHeight();
         Height height = new Height(inputHeight);
 
-//        Ladder ladder = new Ladder(players, height, bridgeGenerator);
+        Ladder ladder = new Ladder(players, height, bridgeGenerator);
 
-//        outputView.printLadderGame(ladder, players.getNames(), prizes.getPrizes());
+        outputView.printLadderGame(ladder, players.getNames(), prizes.getPrizes());
     }
 }
