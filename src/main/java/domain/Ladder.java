@@ -43,7 +43,7 @@ public class Ladder {
     public int playByPosition(int position) {
 
         for (final Line line : lines) {
-            position += line.getPoints().get(position).move();
+            position += line.move(position);
         }
 
         return position;

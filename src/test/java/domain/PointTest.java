@@ -36,4 +36,5 @@ class PointTest {
 
         assertThat(point.moveByIndex(index)).isEqualTo(index + expected);
     }
+
 }

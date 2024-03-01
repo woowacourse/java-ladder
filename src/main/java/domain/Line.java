@@ -38,4 +38,9 @@ public class Line {
     public List<Point> getPoints() {
         return points;
     }
+
+    public int move(final int position) {
+        Point target = points.get(position);
+        return target.moveByIndex(position);
+    }
 }
