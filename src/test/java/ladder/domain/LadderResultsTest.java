@@ -18,22 +18,15 @@ class LadderResultsTest {
         );
     }
 
-    static Players players() {
-        return new Players(List.of(
-                new Player("제우스"),
-                new Player("명오"),
-                new Player("호티")));
-    }
-
     @DisplayName("사다리 결과의 개수가 인원수와 다르면 예외를 발생한다.")
     @Test
     void ladderResultsException() {
-        List<LadderResult> ladderResultList = List.of(
+        List<LadderResult> ladderResults = List.of(
                 new LadderResult("맥북에어"),
                 new LadderResult("맥북프로")
         );
 
-        assertThatThrownBy(() -> new LadderResults(ladderResultList, players()))
+        assertThatThrownBy(() -> new LadderResults(ladderResults, new Width<>(3)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("인원수와 결과의 개수가 일치하지 않습니다");
     }
@@ -41,7 +34,7 @@ class LadderResultsTest {
     @DisplayName("인덱스를 입력하면 결과를 반환한다.")
     @Test
     void climbFrom() {
-        LadderResults results = new LadderResults(results(), players());
+        LadderResults results = new LadderResults(results(), new Width<>(3));
         assertThat(results.get(0))
                 .isEqualTo(new LadderResult("맥북에어"));
     }
@@ -49,8 +42,8 @@ class LadderResultsTest {
     @DisplayName("잘못된 인덱스를 입력하면 예외를 발생한다.")
     @Test
     void climbFromException() {
-        LadderResults results = new LadderResults(results(), players());
-        assertThatThrownBy(() -> results.get(- 1))
+        LadderResults results = new LadderResults(results(), new Width<>(3));
+        assertThatThrownBy(() -> results.get(-1))
                 .isInstanceOf(IllegalStateException.class);
     }
 }

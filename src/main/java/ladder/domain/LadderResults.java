@@ -7,16 +7,16 @@ public class LadderResults {
 
     private final List<LadderResult> ladderResults;
 
-    public LadderResults(final List<LadderResult> ladderResults, final Players players) {
-        validateSameSize(ladderResults, players);
+    public LadderResults(final List<LadderResult> ladderResults, final Width<LadderDirection> width) {
+        validateSameSize(ladderResults, width);
         this.ladderResults = ladderResults;
     }
 
-    private void validateSameSize(final List<LadderResult> ladderResults, final Players players) {
-        if (ladderResults.size() != players.count()) {
+    private void validateSameSize(final List<LadderResult> ladderResults, final Width<LadderDirection> width) {
+        if (ladderResults.size() != width.value()) {
             throw new IllegalArgumentException(
                     "인원수와 결과의 개수가 일치하지 않습니다: 인원수 %d개, 결과 %d개".formatted(
-                            players.count(),
+                            width.value(),
                             ladderResults.size()));
         }
     }
