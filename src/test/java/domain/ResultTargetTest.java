@@ -14,7 +14,7 @@ public class ResultTargetTest {
     void test_ok_constructor() {
         ResultTarget resultTarget = ResultTarget.of("t1",
                 List.of(new Member("t1"), new Member("t2")));
-        assertThat(resultTarget.getName()).isEqualTo("t1");
+        assertThat(resultTarget.getValue()).isEqualTo("t1");
         assertThat(resultTarget.isAllMembers()).isFalse();
     }
 
@@ -23,7 +23,7 @@ public class ResultTargetTest {
     void test_ok_constructorAll() {
         ResultTarget resultTarget = ResultTarget.of("all",
                 List.of(new Member("m1"), new Member("m2")));
-        assertThat(resultTarget.getName()).isEqualTo("all");
+        assertThat(resultTarget.getValue()).isEqualTo("all");
         assertThat(resultTarget.isAllMembers()).isTrue();
     }
 

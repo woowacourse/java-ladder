@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -22,8 +21,8 @@ public class GameResult {
         if (target.isAllMembers()) {
             return getResultOfAllMember();
         }
-        String memberName = target.getName();
-        Result result = getResultByMemberName(target.getName());
+        String memberName = target.getValue();
+        Result result = getResultByMemberName(target.getValue());
         return new LinkedHashMap<>() {{
             put(memberName, result);
         }};

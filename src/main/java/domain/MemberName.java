@@ -4,7 +4,7 @@ public class MemberName {
 
     public static final int MIN_NAME_LENGTH = 1;
     public static final int MAX_NAME_LENGTH = 5;
-    public static final String INVALID_NAME = "all";
+    private static final String INVALID_NAME = "all";
     private static final String FORMAT_NAME = "^[A-Za-z0-9]+$";
 
     private final String name;
