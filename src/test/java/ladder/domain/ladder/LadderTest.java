@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -42,17 +42,13 @@ public class LadderTest {
                 .hasMessage("사다리는 1개 이상의 라인으로 이루어져야 합니다.");
     }
 
-    /*
-    |-----|     |-----|
-    |     |-----|     |
-     */
     @DisplayName("시작 레일이 주어지면 몇번째 레일에 도착하는지 구한다.")
     @Test
     void climbTest() {
         // given
         Ladder ladder = new Ladder(List.of(
-                new Line(List.of(Connection.RUNG, Connection.EMPTY, Connection.RUNG)),
-                new Line(List.of(Connection.EMPTY, Connection.RUNG, Connection.EMPTY))
+                new Line(List.of(Connection.RUNG, Connection.EMPTY, Connection.RUNG)), // |-----|     |-----|
+                new Line(List.of(Connection.EMPTY, Connection.RUNG, Connection.EMPTY)) // |     |-----|     |
         ));
 
         // when & then

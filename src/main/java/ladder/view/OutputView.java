@@ -1,9 +1,9 @@
 package ladder.view;
 
-import ladder.domain.Connection;
-import ladder.domain.Ladder;
-import ladder.domain.LadderItems;
-import ladder.domain.Person;
+import ladder.domain.item.LadderItems;
+import ladder.domain.item.Person;
+import ladder.domain.ladder.Connection;
+import ladder.domain.ladder.Ladder;
 
 import java.util.EnumMap;
 import java.util.List;
