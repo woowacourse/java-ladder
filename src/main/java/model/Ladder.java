@@ -19,8 +19,21 @@ public class Ladder {
         return new Ladder(lines);
     }
 
+    public static Ladder from(final Height height, final int personCount, final LinesGenerator linesGenerator) {
+        validateHeight(height);
+        int pathCount = personCount - 1;
+        final List<Line> lines = linesGenerator.generate(height, pathCount);
+        return new Ladder(lines);
+    }
+
     private static void validateHeight(final int height) {
         if (height < 1) {
+            throw new IllegalArgumentException("사다리의 높이는 1 이상이어야 합니다.");
+        }
+    }
+
+    private static void validateHeight(final Height height) {
+        if (height.getHeight < 1) {
             throw new IllegalArgumentException("사다리의 높이는 1 이상이어야 합니다.");
         }
     }

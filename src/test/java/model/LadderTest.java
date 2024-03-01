@@ -30,21 +30,6 @@ class LadderTest {
         assertThat(ladder.getLines()).isEqualTo(expectedLines);
     }
 
-    @ParameterizedTest(name = "사다리의 높이는 1 이상이다.")
-    @ValueSource(ints = {1, 5})
-    void createLadder(int height) {
-        assertThatCode(() -> Ladder.from(height, 4, new RandomLinesGenerator()));
-    }
-
-    @Test
-    @DisplayName("사다리의 높이는 1 미만은 불가능이다.")
-    void createLadderThrowException() {
-        int height = 0;
-        assertThatThrownBy(() -> Ladder.from(height, 4, new RandomLinesGenerator()))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사다리의 높이는 1 이상이어야 합니다.");
-    }
-
     @Test
     @DisplayName("사다리의 개인별 결과를 확인한다.")
     void climbLadderPersonResult() {

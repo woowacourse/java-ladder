@@ -3,6 +3,7 @@ package model.line;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import model.Height;
 import model.Path;
 
 public class RandomLinesGenerator implements LinesGenerator {
@@ -16,6 +17,11 @@ public class RandomLinesGenerator implements LinesGenerator {
             lines.add(generatedLine);
         }
         return lines;
+    }
+
+    @Override
+    public List<Line> generate(final Height height, final int pathCount) {
+        return null;
     }
 
     private Line generateLine(final int pathCount) {
