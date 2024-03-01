@@ -40,10 +40,10 @@ public class LadderGameResults {
             return unmodifiableList(ladderGameResults);
         }
 
-        return parseGameResultsWithPlayerName(playerName);
+        return getPlayerLadderGameResult(playerName);
     }
 
-    private List<LadderGameResult> parseGameResultsWithPlayerName(final String playerName) {
+    private List<LadderGameResult> getPlayerLadderGameResult(final String playerName) {
         LadderGameResult targetLadderGameResult = ladderGameResults.stream()
                 .filter(ladderGameResult -> ladderGameResult.isPlayerName(playerName))
                 .findAny()
