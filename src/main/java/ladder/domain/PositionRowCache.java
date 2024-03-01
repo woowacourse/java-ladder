@@ -4,35 +4,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PositionRowCache {
-    private final Map<Key, PositionRow> cache;
+    private final Map<Integer, PositionRow> cache;
 
     public static PositionRowCache of(int cacheLimit) {
-        Map<Key, PositionRow> cache = new HashMap<>();
-        for (int maxPosition = 0; maxPosition <= cacheLimit; maxPosition++) {
-            putInCache(cache, maxPosition);
+        Map<Integer, PositionRow> cache = new HashMap<>();
+        for (int position = 0; position <= cacheLimit; position++) {
+            cache.put(position, new PositionRow(position));
         }
         return new PositionRowCache(cache);
     }
 
-    private static void putInCache(Map<Key, PositionRow> cache, int maxPosition) {
-        for (int position = 0; position <= maxPosition; position++) {
-            cache.put(new Key(position, maxPosition), new PositionRow(position, maxPosition));
-        }
-    }
-
-    private PositionRowCache(Map<Key, PositionRow> cache) {
+    private PositionRowCache(Map<Integer, PositionRow> cache) {
         this.cache = cache;
     }
 
-    public PositionRow get(int position, int maxPosition) {
-        for (Key key : cache.keySet()) {
-            if (key.position == position && key.maxPosition == maxPosition) {
-                return cache.get(key);
-            }
+    public PositionRow get(int position) {
+        if (!cache.containsKey(position)) {
+            throw new IllegalArgumentException("캐싱하지 않는 위치입니다");
         }
-        throw new IllegalArgumentException("캐싱되어 있지 않습니다");
-    }
-
-    private record Key(int position, int maxPosition) {
+        return cache.get(position);
     }
 }

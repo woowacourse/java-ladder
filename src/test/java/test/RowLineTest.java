@@ -73,7 +73,7 @@ class RowLineTest {
         int start = 0;
         int peopleNumber = 5;
         RowLine rowLine = new RowLine(peopleNumber, new AlternativeLineGenerator());
-        PositionRow positionRow = new PositionRow(start, peopleNumber);
+        PositionRow positionRow = new PositionRow(start);
 
         PositionRow nextPositionRow = rowLine.nextPositionOf(positionRow);
         assertThat(nextPositionRow.getPosition()).isEqualTo(1);

@@ -1,44 +1,33 @@
 package ladder.domain;
 
 public class PositionRow {
-    private final int maxPosition;
     private final int position;
     private static final PositionRowCache cache = PositionRowCache.of(5);
 
-    public PositionRow(int start, int maxPosition) {
-        validatePosition(start, maxPosition);
-        validatePositionLimit(start, maxPosition);
-        this.maxPosition = maxPosition;
-        this.position = start;
+    public PositionRow(int position) {
+        validatePosition(position);
+        this.position = position;
     }
 
     public PositionRow left() {
-        validatePositionLimit(position - 1, maxPosition);
-        return getFromCacheOrCreate(position - 1, maxPosition);
+        return getFromCacheOrCreate(position - 1);
     }
 
     public PositionRow right() {
-        validatePositionLimit(position + 1, maxPosition);
-        return getFromCacheOrCreate(position + 1, maxPosition);
+        return getFromCacheOrCreate(position + 1);
     }
 
-    private void validatePosition(int start, int maxPosition) {
-        if (start < 0 || maxPosition < 0) {
+    private void validatePosition(int position) {
+        if (position < 0) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void validatePositionLimit(int position, int maxPosition) {
-        if (position < 0 || position > maxPosition) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private PositionRow getFromCacheOrCreate(int position, int maxPosition) {
+    private PositionRow getFromCacheOrCreate(int position) {
         try {
-            return cache.get(position, maxPosition);
+            return cache.get(position);
         } catch (IllegalArgumentException e) {
-            return new PositionRow(position, maxPosition);
+            return new PositionRow(position);
         }
     }
 

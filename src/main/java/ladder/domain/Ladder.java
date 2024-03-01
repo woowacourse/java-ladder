@@ -34,7 +34,7 @@ public class Ladder {
     }
 
     public int getResultOf(int lineNumber) {
-        PositionRow positionRow = new PositionRow(lineNumber, peopleNumber);
+        PositionRow positionRow = new PositionRow(lineNumber);
 
         for (RowLine rowLine : rowLines) {
             positionRow = rowLine.nextPositionOf(positionRow);
