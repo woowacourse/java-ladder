@@ -15,7 +15,7 @@ public class LadderTest {
         Players players = Players.from(List.of("pobi", "lala"));
         LadderHeight ladderHeight = new LadderHeight(5);
         Ladder ladder = Ladder.of(ladderHeight, players, (count) -> createBridges(List.of(1, 0)));
-        assertThat(ladder.getLines().size())
+        assertThat(ladder.captureLadderLines().size())
                 .isEqualTo(5);
     }
 

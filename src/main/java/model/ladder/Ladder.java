@@ -3,7 +3,6 @@ package model.ladder;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 import model.bridge.BridgesGenerator;
@@ -27,13 +26,16 @@ public class Ladder {
                 .collect(collectingAndThen(toList(), Ladder::new));
     }
 
+    public int play(int currentPosition) {
+        for (Line line : lines) {
+            currentPosition = line.play(currentPosition);
+        }
+        return currentPosition;
+    }
+
     public List<LineState> captureLadderLines() {
         return lines.stream()
                 .map(LineState::from)
                 .toList();
-    }
-
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
     }
 }
