@@ -46,11 +46,12 @@ public class Main {
 
     private static void readAndPrintGameResult(Map<String, String> rewardMap) {
         String name = errorHandler.readUntilNoError(() -> makeMemberName(rewardMap));
-        while (!name.equals(COMMAND_PRINT_ALL)) {
-            outputView.printRewardName(rewardMap.get(name));
-            name = errorHandler.readUntilNoError(() -> makeMemberName(rewardMap));
+        if (name.equals(COMMAND_PRINT_ALL)) {
+            outputView.printAllResult(rewardMap);
+            return;
         }
-        outputView.printAllResult(rewardMap);
+        outputView.printRewardName(rewardMap.get(name));
+        readAndPrintGameResult(rewardMap);
     }
 
     private static String makeMemberName(Map<String, String> rewardMap) {
