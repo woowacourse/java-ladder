@@ -11,22 +11,12 @@ public class Ladder {
     public Ladder(Height height, LadderRowGenerator generator, int participantSize) {
         //TODO: height.repeat()
         this.ladder = IntStream.range(0, height.value())
-                .mapToObj(index -> createLadderRow(generator, participantSize))
+                .mapToObj(index -> new LadderRow(generator, participantSize - 2))
                 .toList();
     }
 
     Ladder(List<LadderRow> ladderRows) {
         this.ladder = ladderRows;
-    }
-
-    private LadderRow createLadderRow(LadderRowGenerator generator, int participantSize) {
-        List<Boolean> rows = new ArrayList<>();
-        rows.add(generator.generate(false));
-        for (int i = 0; i < participantSize - 2; i++) {
-            boolean generated = generator.generate(rows.get(i));
-            rows.add(generated);
-        }
-        return new LadderRow(rows);
     }
 
     public int getHeight() {

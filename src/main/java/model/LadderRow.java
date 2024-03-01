@@ -1,14 +1,25 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class LadderRow {
 
     private final List<Line> isLines;
 
-    public LadderRow(List<Boolean> isLines) {
-        validateLadderRow(isLines);
-        this.isLines = isLines.stream().map(Line::valueOf).toList();
+    public LadderRow(LadderRowGenerator generator, int size) {
+        List<Boolean> row = new ArrayList<>(); //TODO 더 좋은 방법
+        row.add(generator.generate(false));
+        IntStream.range(1, size)
+                .forEach(index -> row.add(generator.generate(row.get(index))));
+        validateLadderRow(row);
+        this.isLines = row.stream().map(Line::valueOf).toList();
+    }
+
+    LadderRow(List<Boolean> row) {
+        validateLadderRow(row); // TODO 위의 LadderRow와 중복 문제 해결
+        this.isLines = row.stream().map(Line::valueOf).toList();
     }
 
     private void validateLadderRow(List<Boolean> isLines) {
