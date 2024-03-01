@@ -16,8 +16,4 @@ public record Height(int value) {
             callback.run();
         }
     }
-
-    public int value() {
-        return value;
-    }
 }
