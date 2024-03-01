@@ -1,15 +1,12 @@
 package view;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import util.StringConvertor;
 import view.message.InputExceptionMessage;
 
 public class InputView {
     public static final String FINISH_COMMAND = "all";
-    public static final String INPUT_DELIMITER = ",";
-    private static final String BLANK_SPACE = " ";
-    private static final String BLANK_EMPTY = "";
 
     private final Scanner scanner;
 
@@ -18,16 +15,14 @@ public class InputView {
     }
 
     public List<String> readPlayerNames() {
-        System.out.println(String.format("참여할 사람 이름을 입력하세요. (%s)로 구분하세요)", INPUT_DELIMITER));
+        System.out.println(String.format("참여할 사람 이름을 입력하세요. (%s)로 구분하세요)", StringConvertor.DELIMITER));
         String playerNamesInput = scanner.nextLine();
-        playerNamesInput = playerNamesInput.replace(InputView.BLANK_SPACE, InputView.BLANK_EMPTY);
         validatePlayerNamesInput(playerNamesInput);
-        return Arrays.stream(playerNamesInput.split(INPUT_DELIMITER))
-                .toList();
+        return StringConvertor.convertToTrimmedList(StringConvertor.splitByComma(playerNamesInput));
     }
 
     private void validatePlayerNamesInput(final String playerNamesInput) {
-        if (!playerNamesInput.contains(INPUT_DELIMITER)) {
+        if (!playerNamesInput.contains(StringConvertor.DELIMITER)) {
             throw new IllegalArgumentException(InputExceptionMessage.PLAYER_NAMES_INPUT_FORMAT);
         }
     }
@@ -41,23 +36,21 @@ public class InputView {
 
     private void validateIntegerFormat(final String value) {
         try {
-            Integer.parseInt(value);
+            StringConvertor.convertToInt(value);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(InputExceptionMessage.INTEGER_FORMAT);
         }
     }
 
-    public List<String> readLadderResult() {
+    public List<String> readLadderResults() {
         System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-        String ladderResult = scanner.nextLine();
-        validateLadderResultInput(ladderResult);
-        return Arrays.stream(ladderResult.split(INPUT_DELIMITER))
-                .map(String::trim)
-                .toList();
+        String ladderResults = scanner.nextLine();
+        validateLadderResultInput(ladderResults);
+        return StringConvertor.convertToTrimmedList(StringConvertor.splitByComma(ladderResults));
     }
 
     private void validateLadderResultInput(final String ladderResult) {
-        if (!ladderResult.contains(INPUT_DELIMITER)) {
+        if (!ladderResult.contains(StringConvertor.DELIMITER)) {
             throw new IllegalArgumentException(InputExceptionMessage.LADDER_RESULT_INPUT_FORMAT);
         }
     }
