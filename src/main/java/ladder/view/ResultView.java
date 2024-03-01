@@ -5,8 +5,8 @@ import static ladder.domain.ladder.direction.LadderDirection.RIGHT;
 import java.util.Map;
 import java.util.StringJoiner;
 
+import ladder.domain.game.LadderGame;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderGame;
 import ladder.domain.ladder.LadderRow;
 import ladder.domain.ladder.direction.LadderDirection;
 import ladder.domain.player.Player;

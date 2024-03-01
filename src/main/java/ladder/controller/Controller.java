@@ -6,9 +6,9 @@ import java.util.Map;
 
 import ladder.domain.attribute.Height;
 import ladder.domain.attribute.Width;
+import ladder.domain.game.LadderGame;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderBuilder;
-import ladder.domain.ladder.LadderGame;
 import ladder.domain.ladder.LadderRow;
 import ladder.domain.ladder.direction.DefaultLadderDirectionSelector;
 import ladder.domain.ladder.direction.LadderDirection;
