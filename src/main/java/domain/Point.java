@@ -1,19 +1,19 @@
 package domain;
 
-public class Point {
+class Point {
     private final Direction direction;
     private final int index;
 
-    public Point(Direction direction) {
+    Point(Direction direction) {
         this(direction, 0);
     }
 
-    public Point(Direction direction, int index) {
+    Point(Direction direction, int index) {
         this.direction = direction;
         this.index = index;
     }
 
-    public Point next() {
+    Point next() {
         if (direction == Direction.LEFT) {
             return new Point(Direction.RIGHT, index - 1);
         }

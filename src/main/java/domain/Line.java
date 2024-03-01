@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Line {
+class Line {
     private final List<Point> points;
 
-    public Line(Boolean... canGoRights) {
+    Line(Boolean... canGoRights) {
         validateLineSize(canGoRights);
         validateRightAfterEnd(canGoRights);
         List<Point> points = new ArrayList<>();

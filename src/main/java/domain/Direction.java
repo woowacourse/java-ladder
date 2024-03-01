@@ -1,5 +1,5 @@
 package domain;
 
-public enum Direction {
+enum Direction {
     RIGHT, LEFT, STRAIGHT
 }
