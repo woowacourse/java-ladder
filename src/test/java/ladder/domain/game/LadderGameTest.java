@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.game;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -10,8 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import ladder.domain.attribute.Height;
 import ladder.domain.attribute.Width;
-import ladder.domain.game.LadderGame;
-import ladder.domain.game.LadderGameResult;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderBuilder;
 import ladder.domain.ladder.direction.LadderDirection;

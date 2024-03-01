@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.reward;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -9,8 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import ladder.domain.attribute.Width;
-import ladder.domain.reward.Reward;
-import ladder.domain.reward.Rewards;
 
 class RewardsTest {
 

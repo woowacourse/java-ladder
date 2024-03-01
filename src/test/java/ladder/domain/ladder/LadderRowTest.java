@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -12,8 +12,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import ladder.domain.attribute.Width;
-import ladder.domain.ladder.LadderRow;
-import ladder.domain.ladder.LadderRowBuilder;
 import ladder.domain.ladder.direction.LadderDirection;
 
 class LadderRowTest {
