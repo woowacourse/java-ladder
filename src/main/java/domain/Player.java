@@ -2,6 +2,7 @@ package domain;
 
 public class Player {
 
+    public static final String ALL = "all";
     private static final int MAXIMUM_NAME_LENGTH = 5;
 
     private final String name;
@@ -14,6 +15,13 @@ public class Player {
     private void validate(String name) {
         validateLength(name);
         validateCharacter(name);
+        validateNameRule(name);
+    }
+
+    private void validateNameRule(String name) {
+        if (ALL.equals(name)) {
+            throw new IllegalArgumentException("플레이어의 이름으로 all은 입력할 수 없습니다.");
+        }
     }
 
     private void validateCharacter(String name) {
