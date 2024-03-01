@@ -37,13 +37,6 @@ public class Ladder {
                 .toList();
     }
 
-    public LadderResponseDto getLadderResult() {
-        List<FloorResponseDto> floorResponseDtos = floors.stream()
-                .map(Floor::getRungs)
-                .toList();
-
-        return new LadderResponseDto(floorResponseDtos);
-    }
 
     public Prizes getSortedPrizesResult(Participants participants, Prizes prizes) {
         List<Name> copiedNames = participants.getNames();
@@ -77,5 +70,13 @@ public class Ladder {
             sortedPrizeNames.add(prizes.getPrizeByIndex(resultPosition));
         }
         return sortedPrizeNames;
+    }
+
+    public LadderResponseDto getLadderResult() {
+        List<FloorResponseDto> floorResponseDtos = floors.stream()
+                .map(Floor::getRungs)
+                .toList();
+
+        return new LadderResponseDto(floorResponseDtos);
     }
 }
