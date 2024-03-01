@@ -35,6 +35,10 @@ public class ResultItems {
         }
     }
 
+    public ResultItem get(Index index) {
+        return resultItems.get(index.getValue());
+    }
+
     public List<ResultItem> getResultItems() {
         return Collections.unmodifiableList(resultItems);
     }
