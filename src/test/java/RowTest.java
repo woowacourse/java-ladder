@@ -21,7 +21,7 @@ public class RowTest {
         final Row row = Row.create(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c"))), new ExistStepGenerator());
 
         // when & then
-        assertThat(row.getSteps()).contains(EXIST_STEP, EMPTY_STEP, EMPTY_STEP);
+        assertThat(row.getSteps()).containsExactly(EXIST_STEP, EMPTY_STEP, EMPTY_STEP);
     }
 
     @Test
@@ -31,6 +31,6 @@ public class RowTest {
         final Row row = Row.create(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c"))), new EmptyStepGenerator());
 
         // when & then
-        assertThat(row.getSteps()).contains(EMPTY_STEP, EMPTY_STEP, EMPTY_STEP);
+        assertThat(row.getSteps()).containsExactly(EMPTY_STEP, EMPTY_STEP, EMPTY_STEP);
     }
 }

@@ -46,6 +46,20 @@ public class Row {
         return playerCount.isSameWith(steps.size() + 1);
     }
 
+    public int playRow(int index) {
+        if (steps.get(index).isExist()) {
+            return index + 1;
+        }
+        if (index > 0 && steps.get(index - 1).isExist()) {
+            return index - 1;
+        }
+        return index;
+    }
+
+    public List<Step> getSteps() {
+        return Collections.unmodifiableList(steps);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -61,9 +75,5 @@ public class Row {
     @Override
     public int hashCode() {
         return Objects.hash(steps);
-    }
-
-    public List<Step> getSteps() {
-        return Collections.unmodifiableList(steps);
     }
 }

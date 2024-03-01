@@ -24,7 +24,15 @@ public class Ladder {
         return rows;
     }
 
+    public int playLadder(int index) {
+        for (Row row : rows) {
+            index = row.playRow(index);
+        }
+        return index;
+    }
+
     public List<Row> getRows() {
         return rows;
     }
+
 }

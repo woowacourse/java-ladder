@@ -3,7 +3,7 @@ package view;
 import domain.ladder.Ladder;
 import domain.ladder.Row;
 import domain.player.Players;
-import domain.result.PlayersPrize;
+import domain.result.GameResult;
 import domain.prize.Prize;
 import domain.prize.Prizes;
 
@@ -49,7 +49,7 @@ public class OutputView {
         printLine(prize.getPrize());
     }
 
-    public void printGameResult(PlayersPrize playersWithPrize) {
+    public void printGameResult(GameResult playersWithPrize) {
         printLine("실행 결과");
         playersWithPrize.getPlayersPrize().forEach((key, value) -> printLine("%s : %s", key.getName(), value.getPrize()));
     }

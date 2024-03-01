@@ -2,11 +2,10 @@ package controller;
 
 import domain.ladder.Height;
 import domain.ladder.Ladder;
-import domain.LadderGame;
 import domain.player.Player;
 import domain.player.PlayerCount;
 import domain.player.Players;
-import domain.result.PlayersPrize;
+import domain.result.GameResult;
 import domain.prize.Prize;
 import domain.prize.Prizes;
 import domain.ladder.RandomStepGenerator;
@@ -33,8 +32,7 @@ public class LadderController {
         final Ladder ladder = Ladder.create(height, PlayerCount.fromPlayers(players), new RandomStepGenerator());
         outputView.printLadderMap(players, ladder, prizes);
 
-        final LadderGame ladderGame = new LadderGame(ladder, players, prizes);
-        showGameResult(ladderGame.getPlayersPrize(), players);
+        showGameResult(GameResult.of(ladder, players, prizes), players);
     }
 
     private Players readPlayers() {
@@ -50,15 +48,15 @@ public class LadderController {
         return new Height(height);
     }
 
-    private void showGameResult(PlayersPrize playersPrize, Players players) {
+    private void showGameResult(GameResult gameResult, Players players) {   // TODO: players 제거
         String command = readWithRetry(this::readSearchingPlayers, players);
 
         while (!command.equals("all")){
-            final Prize prize = playersPrize.search(new Player(command));
+            final Prize prize = gameResult.search(new Player(command));
             outputView.printGameResult(prize);
             command = inputView.inputSearchingPlayer();
         }
-        outputView.printGameResult(playersPrize);
+        outputView.printGameResult(gameResult);
     }
 
     private String readSearchingPlayers(Players players) {
