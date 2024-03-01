@@ -45,23 +45,20 @@ public class Main {
     }
 
     private static void readAndPrintGameResult(Map<String, String> rewardMap) {
-        String name = errorHandler.readUntilNoError(() -> makeMemberName(rewardMap));
-        if (name.equals(COMMAND_PRINT_ALL)) {
+        String memberName = errorHandler.readUntilNoError(() -> makeMemberName(rewardMap));
+        if (memberName.equals(COMMAND_PRINT_ALL)) {
             outputView.printAllResult(rewardMap);
             return;
         }
-        outputView.printRewardName(rewardMap.get(name));
+        outputView.printRewardName(rewardMap.get(memberName));
         readAndPrintGameResult(rewardMap);
     }
 
     private static String makeMemberName(Map<String, String> rewardMap) {
         String memberName = inputView.readMemberName();
-        if (memberName.equals(COMMAND_PRINT_ALL)) {
+        if (memberName.equals(COMMAND_PRINT_ALL) || rewardMap.containsKey(memberName)) {
             return memberName;
         }
-        if (!rewardMap.containsKey(memberName)) {
-            throw new IllegalArgumentException("존재하지 않는 플레이어입니다.");
-        }
-        return memberName;
+        throw new IllegalArgumentException("존재하지 않는 플레이어입니다.");
     }
 }
