@@ -51,7 +51,7 @@ class PositionsTest {
         Positions nowPositions = new Positions(width);
 
         //when
-        Positions nextPositions = nowPositions.calcPosition(customLine.getLine());
+        Positions nextPositions = nowPositions.calculatePosition(customLine.getLine());
 
         //then
         assertThat(nextPositions.getPositions())
@@ -72,7 +72,7 @@ class PositionsTest {
         //when
         Positions finalPositions = new Positions(width);
         for (CustomLine customLine : customLines) {
-            finalPositions = finalPositions.calcPosition(customLine.getLine());
+            finalPositions = finalPositions.calculatePosition(customLine.getLine());
         }
 
         //then

@@ -61,7 +61,7 @@ class ResultTest {
         );
 
         Positions nowPositions = new Positions(width);
-        Positions nextPositions = nowPositions.calcPosition(customLine.getLine());
+        Positions nextPositions = nowPositions.calculatePosition(customLine.getLine());
 
         //when
         Result result = new Result(users.getUsersNames(), prizes.getPrizesNames(), nextPositions.getPositions());
@@ -96,7 +96,7 @@ class ResultTest {
 
         Positions nowPositions = new Positions(width);
         for (CustomLine customLine : customLines) {
-            nowPositions = nowPositions.calcPosition(customLine.getLine());
+            nowPositions = nowPositions.calculatePosition(customLine.getLine());
         }
 
         //when

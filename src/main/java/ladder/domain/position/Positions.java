@@ -25,18 +25,18 @@ public class Positions {
         return positions;
     }
 
-    public Positions calcPosition(Line line) {
+    public Positions calculatePosition(Line line) {
         List<Position> nextPositions = new ArrayList<>();
         List<Direction> directions = line.getDirectionsInfo();
         for (Position position : this.positions) {
             int nowPosition = position.getPosition();
             Direction nowDirection = directions.get(nowPosition);
-            nextPositions.add(new Position(calcDirection(nowPosition, nowDirection)));
+            nextPositions.add(new Position(calculateDirection(nowPosition, nowDirection)));
         }
         return new Positions(nextPositions);
     }
 
-    private int calcDirection(int position, Direction direction) {
+    private int calculateDirection(int position, Direction direction) {
         if (direction == Direction.RIGHT) {
             return position + 1;
         }

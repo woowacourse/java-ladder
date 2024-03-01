@@ -78,7 +78,7 @@ public class LadderController {
         List<Line> lines = ladder.getLines();
         Positions nowPositions = defaultPositions;
         for (Line line : lines) {
-            nowPositions = nowPositions.calcPosition(line);
+            nowPositions = nowPositions.calculatePosition(line);
         }
         return nowPositions;
     }
