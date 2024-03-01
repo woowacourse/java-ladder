@@ -3,7 +3,6 @@ package ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,11 +30,10 @@ class HeightTest {
     @DisplayName("값만큼 입력된 함수를 반복 실행한다.")
     @Test
     void repeatTest() {
-        List<Integer> counter = new ArrayList<>();
         Height height = new Height(5);
 
-        height.repeat(() -> counter.add(0));
+        List<Integer> intList = height.repeat(() -> 0);
 
-        assertThat(counter.size()).isEqualTo(5);
+        assertThat(intList.size()).isEqualTo(5);
     }
 }

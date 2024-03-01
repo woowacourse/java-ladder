@@ -1,6 +1,8 @@
 package ladder.domain;
 
-import java.util.stream.IntStream;
+import java.util.List;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 public record Height(int value) {
     private static final int MIN_HEIGHT = 1;
@@ -13,8 +15,7 @@ public record Height(int value) {
         }
     }
 
-    public void repeat(Runnable runnable) {
-        IntStream.range(0, value)
-                .forEach(index -> runnable.run());
+    public <T> List<T> repeat(Supplier<T> supplier) {
+        return Stream.generate(supplier).limit(value).toList();
     }
 }
