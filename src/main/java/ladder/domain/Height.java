@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.stream.IntStream;
+
 public record Height(int value) {
     private static final int MIN_HEIGHT = 1;
 
@@ -11,9 +13,8 @@ public record Height(int value) {
         }
     }
 
-    public void repeat(Runnable callback) {
-        for (int i = 0; i < this.value; i++) {
-            callback.run();
-        }
+    public void repeat(Runnable runnable) {
+        IntStream.range(0, value)
+                .forEach(index -> runnable.run());
     }
 }
