@@ -31,8 +31,8 @@ public class LadderController {
     public void run() {
         Participants participants = repeatUntilValid(this::getParticipants);
         int participantsCount = participants.getCount();
-        Prizes prizes = repeatUntilValid(() -> getPrizes(participantsCount));
         Ladder ladder = repeatUntilValid(() -> getLadder(participantsCount));
+        Prizes prizes = repeatUntilValid(() -> getPrizes(participantsCount));
         printLadderResult(ladder, participants, prizes);
 
         Prizes sortedPrizes = ladder.getSortedPrizesResult(participants, prizes);
