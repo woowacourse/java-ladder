@@ -46,11 +46,11 @@ public class Controller {
     }
 
     private static boolean printRewardOf(ResultsOfPlayers resultsOfPlayers, String input) {
-        if (input.equals(QUIT_RESULT_COMMAND)) {
+        if (QUIT_RESULT_COMMAND.equals(input)) {
             OutputView.printQuitMessage();
             return false;
         }
-        if (input.equals(ALL_RESULT_COMMAND)) {
+        if (ALL_RESULT_COMMAND.equals(input)) {
             OutputView.printAllResults(resultsOfPlayers.getResultsOfPlayers());
             return true;
         }
