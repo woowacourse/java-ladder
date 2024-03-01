@@ -5,9 +5,9 @@ import java.util.Set;
 
 public class PlayResults {
 
-    private final Map<Name, Result> value;
+    private final Map<Target, Result> value;
 
-    PlayResults(Map<Name, Result> value) {
+    PlayResults(Map<Target, Result> value) {
         this.value = value;
     }
 
@@ -15,11 +15,11 @@ public class PlayResults {
         return value.size();
     }
 
-    public Result find(Name target) {
+    public Result find(Target target) {
         return value.get(target);
     }
 
-    public Set<Name> getNames() {
+    public Set<Target> getNames() {
         return value.keySet();
     }
 }

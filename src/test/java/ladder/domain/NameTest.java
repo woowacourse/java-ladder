@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 
 class NameTest {
 
@@ -53,15 +52,13 @@ class NameTest {
     }
 
     @Test
-    @DisplayName("이름이 all 이라면 참이다.")
+    @DisplayName("all이라는 이름을 생성할 수 없다.")
     void isAll() {
         // given
         String all = "all";
 
-        // when
-        Name name = new Name(all);
-
-        // then
-        assertThat(name.isAll()).isTrue();
+        // when & then
+        assertThatThrownBy(() -> new Name(all))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

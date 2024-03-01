@@ -35,7 +35,7 @@ class PlayResultsTest {
         ));
 
         // when
-        Set<Name> names = playResults.getNames();
+        Set<Target> names = playResults.getNames();
 
         // then
         assertThat(names).contains(new Name("이름1"), new Name("이름2"));

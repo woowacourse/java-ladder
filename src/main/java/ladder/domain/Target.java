@@ -6,7 +6,7 @@ public class Target {
 
     static final String ALL = "all";
 
-    private final String value;
+    final String value;
 
     public Target(String value) {
         this.value = value.trim();
@@ -14,10 +14,6 @@ public class Target {
 
     public boolean isAll() {
         return ALL.equals(value);
-    }
-
-    public int getLength() {
-        return value.length();
     }
 
     @Override

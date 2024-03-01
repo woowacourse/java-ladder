@@ -50,7 +50,7 @@ public class People {
         return Collections.unmodifiableList(names);
     }
 
-    public int findPosition(Name name) {
-        return names.indexOf(name);
+    public int findPosition(Target target) {
+        return names.indexOf(target);
     }
 }
