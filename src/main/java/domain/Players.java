@@ -11,6 +11,7 @@ class Players {
 
     Players(List<Player> players) {
         validateDuplicateName(players);
+        validatePlayersCount(players);
         this.players = Collections.unmodifiableList(players);
     }
 
@@ -18,6 +19,12 @@ class Players {
         Set<Player> distinctPlayers = new HashSet<>(players);
         if (distinctPlayers.size() != players.size()) {
             throw new IllegalStateException("이름이 같은 참가자는 있을 수 없습니다.");
+        }
+    }
+
+    private void validatePlayersCount(List<Player> players) {
+        if (players == null || players.size() < 2 || players.size() > 10) {
+            throw new IllegalStateException("참가자는 2명 이상 10명 이하여야 합니다.");
         }
     }
 
