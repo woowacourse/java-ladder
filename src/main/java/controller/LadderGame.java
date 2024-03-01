@@ -34,7 +34,7 @@ public class LadderGame {
         Height height = retryUntilSuccess(this::inputHeight);
 
         Ladder ladder = Ladder.of(height, players.getPlayerCount(), lineItemGenerator);
-        printLadder(ladder, players, prizes);
+        printLadder(players, ladder, prizes);
 
         String input = "";
         while (!input.equals(ALL_COMMAND)) {
@@ -59,11 +59,10 @@ public class LadderGame {
         return new Height(inputView.inputHeight());
     }
 
-    private void printLadder(Ladder ladder, Players players, Prizes prizes) {
+    private void printLadder(Players players, Ladder ladder, Prizes prizes) {
         outputView.printLadderResultMessage();
-        outputView.printPlayerNames(players.getPlayerNames());
-        outputView.printLadder(LadderView.createLadder(ladder.getLadder()));
-        outputView.printPrizes(prizes.getPrizes());
+        outputView.printLadderResult(players.getPlayerNames(),
+                LadderView.createLadder(ladder.getLadder()), prizes.getPrizes());
     }
 
     private void printLadderGameResult(Ladder ladder, Players players, Prizes prizes, String input) {

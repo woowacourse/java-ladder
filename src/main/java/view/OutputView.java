@@ -10,7 +10,13 @@ public class OutputView {
         System.out.println("\n사다리 결과\n");
     }
 
-    public void printPlayerNames(List<String> playerNames) {
+    public void printLadderResult(List<String> playerNames, String ladder, List<Prize> prizes) {
+        printPlayerNames(playerNames);
+        printLadder(ladder);
+        printPrizes(prizes);
+    }
+
+    private void printPlayerNames(List<String> playerNames) {
         StringBuilder stringBuilder = new StringBuilder();
         for (String playerName : playerNames) {
             stringBuilder.append(String.format("%5s ", playerName));
@@ -19,11 +25,11 @@ public class OutputView {
         System.out.println(stringBuilder);
     }
 
-    public void printLadder(String ladder) {
+    private void printLadder(String ladder) {
         System.out.println(ladder);
     }
 
-    public void printPrizes(List<Prize> prizes) {
+    private void printPrizes(List<Prize> prizes) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Prize prize : prizes) {
             stringBuilder.append(String.format("%5s ", prize.getPrize()));
