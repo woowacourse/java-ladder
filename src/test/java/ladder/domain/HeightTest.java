@@ -3,6 +3,8 @@ package ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -24,5 +26,16 @@ class HeightTest {
         assertThatThrownBy(() -> new Height(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("높이는 1 이상이여야 합니다: %d".formatted(value));
+    }
+
+    @DisplayName("값만큼 입력된 함수를 반복 실행한다.")
+    @Test
+    void repeatTest() {
+        List<Integer> counter = new ArrayList<>();
+        Height height = new Height(5);
+
+        height.repeat(() -> counter.add(0));
+
+        assertThat(counter.size()).isEqualTo(5);
     }
 }
