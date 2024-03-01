@@ -9,18 +9,12 @@ import java.util.stream.IntStream;
 public class LadderGame {
     private final Players players;
     private final Gifts gifts;
-    private final Supplier<Boolean[]> ladderMakeStrategy;
-    private final Integer ladderHeight;
-
     private final Ladder ladder;
 
-    //Todo: 매개 변수 너무 많음
     private LadderGame(Players players, Gifts gifts, Supplier<Boolean[]> ladderMakeStrategy, int ladderHeight) {
         validateRequiredValues(players, gifts, ladderMakeStrategy, ladderHeight);
         this.players = players;
         this.gifts = gifts;
-        this.ladderMakeStrategy = ladderMakeStrategy;
-        this.ladderHeight = ladderHeight;
         List<Line> lines = IntStream.range(0, ladderHeight)
                 .mapToObj(value -> new Line(ladderMakeStrategy.get()))
                 .toList();
