@@ -14,8 +14,8 @@ public class LadderGame {
     }
 
     public LadderResult drive(PlayerName playerName) {
-        int index = ladder.drive(players.columnPositionOf(playerName));
-        Prize prize = prizes.getPrize(new ColumnPosition(index));
+        ColumnPosition arrivalPoint = ladder.drive(players.columnPositionOf(playerName));
+        Prize prize = prizes.getPrize(arrivalPoint);
         return new LadderResult(prize.getPrizeName(), playerName.getName());
     }
 

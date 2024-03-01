@@ -11,11 +11,10 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public int drive(ColumnPosition columnPosition) {
+    public ColumnPosition drive(ColumnPosition columnPosition) {
         return lines.stream()
                 .reduce(columnPosition, (currentPosition, rowLine) -> rowLine.nextPosition(currentPosition),
-                        (a, b) -> b)
-                .getColumnPosition();
+                        (a, b) -> b);
     }
 
     public RowLine getLineByIndex(int index) {
