@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 public class Result {
     private static final Pattern ALPHABET_NUMERIC = Pattern.compile("^[a-zA-Z0-9]*$");
     private static final int MAX_LENGTH = 5;
+
     private final String name;
 
     public Result(final String name) {
