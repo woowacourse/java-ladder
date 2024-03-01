@@ -17,18 +17,29 @@ public class Line {
 
     private void validate(final List<Point> points) {
 //        validateEmptiness(points);
-        validateFirstPoint(points);
-        validateLastPoint(points);
+        validateFirstPointDirection(points);
+        validateLastPointDirection(points);
+        validateConnection(points);
     }
 
-    private void validateFirstPoint(final List<Point> points) {
+    private void validateConnection(final List<Point> points) {
+        for (int i = 1; i < points.size(); i++) {
+            Point beforePoint = points.get(i - 1);
+            Point currentPoint = points.get(i);
+            if (!beforePoint.isConnected(currentPoint)) {
+                throw new IllegalArgumentException("유효한 가로선이 되려면 서로 방향이 달라야합니다");
+            }
+        }
+    }
+
+    private void validateFirstPointDirection(final List<Point> points) {
         final Point firstPoint = points.get(0);
         if (firstPoint.equals(new Point(Direction.LEFT))) {
             throw new IllegalArgumentException("첫번째 위치에서 왼쪽으로 연결 될 수 없습니다.");
         }
     }
 
-    private void validateLastPoint(final List<Point> points) {
+    private void validateLastPointDirection(final List<Point> points) {
         final Point lastPoint = points.get(points.size() - 1);
         if (lastPoint.equals(new Point(Direction.RIGHT))) {
             throw new IllegalArgumentException("마지막 위치에서 오른쪽으로 연결 될 수 없습니다.");
