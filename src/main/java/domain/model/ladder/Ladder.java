@@ -23,12 +23,12 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-    public int goToConsequence(int position, int sequence){
-        if(sequence==lines.size()) {
+    public int goToConsequence(int position, int sequence) {
+        if (sequence == lines.size()) {
             return position;
         }
         Line currentLine = lines.get(sequence);
         Direction direction = currentLine.showDirection(position);
-        return goToConsequence(position+direction.getMovementOfIndex(), sequence+1);
+        return goToConsequence(position + direction.getMovementOfIndex(), sequence + 1);
     }
 }

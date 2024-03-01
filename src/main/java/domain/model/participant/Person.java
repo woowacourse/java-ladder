@@ -3,7 +3,7 @@ package domain.model.participant;
 import java.util.Objects;
 
 public class Person {
-    private static final int SIZE_LIMIT=5;
+    private static final int SIZE_LIMIT = 5;
     private final String name;
 
     public Person(final String name) {
@@ -28,17 +28,19 @@ public class Person {
             throw new IllegalArgumentException("공백 이름은 허용하지 않습니다.");
         }
     }
-    private void validateNamedAll(String name){
-        if(name.equals("all")){
+
+    private void validateNamedAll(String name) {
+        if (name.equals("all")) {
             throw new IllegalArgumentException("all이란 이름은 허용하지 않습니다.");
         }
     }
+
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof Person)){
+        if (!(obj instanceof Person)) {
             return false;
         }
-        Person person=(Person)obj;
+        Person person = (Person) obj;
         return person.getName().equals(this.name);
     }
 

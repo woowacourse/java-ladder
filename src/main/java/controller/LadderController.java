@@ -35,6 +35,12 @@ public class LadderController {
         showResult(result);
     }
 
+    private Result playGame() {
+        LadderGame ladderGame = new LadderGame(ladder, people, consequences);
+        ladderGame.play();
+        return ladderGame.giveResult();
+    }
+
     private void showResult(Result result) {
         String chosen = askChosen();
         if (chosen.equals("all")) {
@@ -45,11 +51,6 @@ public class LadderController {
         showResult(result);
     }
 
-    private Result playGame() {
-        LadderGame ladderGame = new LadderGame(ladder, people, consequences);
-        ladderGame.play();
-        return ladderGame.giveResult();
-    }
 
     private String askChosen() {
         Supplier<String> chosenSupplier = () -> {
@@ -83,8 +84,7 @@ public class LadderController {
         return registerWithRetry(consequencesSupplier);
     }
 
-
-    public <T> T registerWithRetry(Supplier<T> callback) {
+    private <T> T registerWithRetry(Supplier<T> callback) {
         return handler.handle(callback);
     }
 }
