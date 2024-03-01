@@ -39,16 +39,16 @@ public class LadderController {
         return Players.from(inputView.inputPlayers());
     }
 
-    private Prizes readPrizes(Players players) {
+    private Prizes readPrizes(final Players players) {
         final List<String> prizes = inputView.inputPrizes(players.getCount());
         return Prizes.from(prizes);
     }
 
-    private Height readHeight(int height) {
+    private Height readHeight(final int height) {
         return new Height(height);
     }
 
-    private void showGameResult(GameResult gameResult, Players players) {   // TODO: players 제거
+    private void showGameResult(final GameResult gameResult, final Players players) {
         String command = readWithRetry(this::readSearchingPlayers, players);
 
         while (!command.equals("all")){
@@ -59,7 +59,7 @@ public class LadderController {
         outputView.printGameResult(gameResult);
     }
 
-    private String readSearchingPlayers(Players players) {
+    private String readSearchingPlayers(final Players players) {
         final String inputName = readWithRetry(inputView::inputSearchingPlayer);
         players.validateExistPlayer(inputName);
         return inputName;

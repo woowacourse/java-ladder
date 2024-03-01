@@ -20,13 +20,14 @@ public class GameResult {
         return new GameResult(createGameResult(ladder, players, prizes));
     }
 
-    private static Map<Player, Prize> createGameResult(Ladder ladder, Players players, Prizes prizes) {
+    private static Map<Player, Prize> createGameResult(final Ladder ladder, final Players players,
+                                                       final Prizes prizes) {
         Map<Player, Prize> playersWithPrize = new LinkedHashMap<>();
 
         for (int index = 0; players.isCountMoreThan(index); index++) {
-            int resultIndex = ladder.playLadder(index);
-            Player player = players.findByIndex(index);
-            Prize prize = prizes.findByIndex(resultIndex);
+            final int resultIndex = ladder.playLadder(index);
+            final Player player = players.findByIndex(index);
+            final Prize prize = prizes.findByIndex(resultIndex);
 
             playersWithPrize.put(player, prize);
         }
@@ -34,7 +35,7 @@ public class GameResult {
 
     }
 
-    public Prize search(Player player) {
+    public Prize search(final Player player) {
         return playersPrize.get(player);
     }
 

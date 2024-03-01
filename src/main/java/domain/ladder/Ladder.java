@@ -2,6 +2,7 @@ package domain.ladder;
 
 import domain.player.PlayerCount;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -11,11 +12,11 @@ public class Ladder {
         this.rows = rows;
     }
 
-    public static Ladder create(Height height, PlayerCount playerCount, StepGenerator stepGenerator) {
+    public static Ladder create(final Height height, final PlayerCount playerCount, final StepGenerator stepGenerator) {
         return new Ladder(createRows(height, playerCount, stepGenerator));
     }
 
-    private static List<Row> createRows(Height height, PlayerCount playerCount, StepGenerator stepGenerator) {
+    private static List<Row> createRows(final Height height, final PlayerCount playerCount, final StepGenerator stepGenerator) {
         List<Row> rows = new ArrayList<>();
 
         for (int buildHeight = 0; height.isBiggerThan(buildHeight); buildHeight++) {
@@ -32,7 +33,7 @@ public class Ladder {
     }
 
     public List<Row> getRows() {
-        return rows;
+        return Collections.unmodifiableList(rows);
     }
 
 }

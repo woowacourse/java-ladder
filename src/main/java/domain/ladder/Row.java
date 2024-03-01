@@ -13,11 +13,11 @@ public class Row {
         this.steps = steps;
     }
 
-    public static Row create(PlayerCount playerCount, StepGenerator stepGenerator) {
+    public static Row create(final PlayerCount playerCount, final StepGenerator stepGenerator) {
         return new Row(createSteps(playerCount, stepGenerator));
     }
 
-    private static List<Step> createSteps(PlayerCount playerCount, StepGenerator stepGenerator) {
+    private static List<Step> createSteps(final PlayerCount playerCount, final StepGenerator stepGenerator) {
         List<Step> steps = new ArrayList<>();
 
         for (int buildCount = 0; playerCount.isBiggerThan(buildCount); buildCount++) {
@@ -26,23 +26,23 @@ public class Row {
         return steps;
     }
 
-    private static Step createStep(List<Step> steps, StepGenerator stepGenerator,
-                                   PlayerCount playerCount) {
+    private static Step createStep(final List<Step> steps, final StepGenerator stepGenerator,
+                                   final PlayerCount playerCount) {
         if (hasBeforeStep(steps) || isLastStep(steps, playerCount)) {
             return Step.EMPTY;
         }
         return stepGenerator.generate();
     }
 
-    private static boolean hasBeforeStep(List<Step> steps) {
-        int index = steps.size();
+    private static boolean hasBeforeStep(final List<Step> steps) {
+        final int index = steps.size();
         if (index == 0) {
             return false;
         }
         return steps.get(index - 1).isExist();
     }
 
-    private static boolean isLastStep(List<Step> steps, PlayerCount playerCount) {
+    private static boolean isLastStep(final List<Step> steps, final PlayerCount playerCount) {
         return playerCount.isSameWith(steps.size() + 1);
     }
 

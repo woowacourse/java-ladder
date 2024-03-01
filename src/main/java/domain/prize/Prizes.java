@@ -10,17 +10,17 @@ public class Prizes {
         this.prizes = prizes;
     }
 
-    public static Prizes from(List<String> prizes) {
+    public static Prizes from(final List<String> prizes) {
         return new Prizes(convertToPrizes(prizes));
     }
 
-    private static List<Prize> convertToPrizes(List<String> prizes) {
+    private static List<Prize> convertToPrizes(final List<String> prizes) {
         return prizes.stream().
                 map(Prize::new)
                 .toList();
     }
 
-    public Prize findByIndex(int index) {
+    public Prize findByIndex(final int index) {
         return prizes.get(index);
     }
 
