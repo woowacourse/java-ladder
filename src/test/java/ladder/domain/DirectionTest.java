@@ -45,4 +45,25 @@ class DirectionTest {
         // then
         assertThat(expected.getValue()).isEqualTo(1);
     }
+
+    @DisplayName("방향이 왼쪽이다.")
+    @Test
+    void isLeft() {
+        // when & then
+        assertThat(Direction.LEFT.isLeft()).isTrue();
+    }
+
+    @DisplayName("방향이 오른쪽이다.")
+    @Test
+    void isRight() {
+        // when & then
+        assertThat(Direction.RIGHT.isRight()).isTrue();
+    }
+
+    @DisplayName("방향이 그대로이다.")
+    @Test
+    void isDown() {
+        // when & then
+        assertThat(Direction.DOWN.isDown()).isTrue();
+    }
 }
