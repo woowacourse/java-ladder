@@ -1,5 +1,7 @@
 package domain.model;
 
+import java.util.Objects;
+
 public class Person {
     private static final int SIZE_LIMIT=5;
     private final String name;
@@ -24,5 +26,19 @@ public class Person {
         if (name.isBlank()) {
             throw new IllegalArgumentException("공백 이름은 허용하지 않습니다.");
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof Person)){
+            return false;
+        }
+        Person person=(Person)obj;
+        return person.getName().equals(this.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(name);
     }
 }

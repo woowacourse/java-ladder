@@ -47,4 +47,9 @@ public class People {
         Person person = participants.get(order);
         return person.getName();
     }
+
+    public boolean isProper(String name){
+        return participants.contains(new Person(name));
+    }
+
 }
