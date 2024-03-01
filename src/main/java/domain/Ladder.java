@@ -1,14 +1,12 @@
 package domain;
 
 import util.BooleanGenerator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class Ladder {
-
-    private static final Pattern HEIGHT_FORMAT_REGEX = Pattern.compile("^[1-9][0-9]*$");
 
     private final List<Line> ladder;
 
@@ -16,19 +14,12 @@ public class Ladder {
         this.ladder = ladder;
     }
 
-    public static Ladder of(String height, int participantsCount, BooleanGenerator booleanGenerator) {
+    public static Ladder of(Height height, int participantsCount, BooleanGenerator booleanGenerator) {
         List<Line> ladder = new ArrayList<>();
 
-        validateHeight(height);
-        makeLadder(ladder, Integer.parseInt(height), participantsCount, booleanGenerator);
+        makeLadder(ladder, height.getHeight(), participantsCount, booleanGenerator);
 
         return new Ladder(ladder);
-    }
-
-    private static void validateHeight(String height) {
-        if (height == null || !HEIGHT_FORMAT_REGEX.matcher(height).matches()) {
-            throw new IllegalArgumentException("사다리의 최대 높이는 자연수여야 합니다.");
-        }
     }
 
     private static void makeLadder(List<Line> ladder, int height, int participantsCount, BooleanGenerator booleanGenerator) {

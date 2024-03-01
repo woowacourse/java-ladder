@@ -62,7 +62,7 @@ public class LadderGame {
     private Ladder makeLadder(int participantsCount, BooleanGenerator booleanGenerator) {
         String input = inputView.inputHeight();
 
-        return Ladder.of(input, participantsCount, booleanGenerator);
+        return Ladder.of(new Height(input), participantsCount, booleanGenerator);
     }
 
     private void printLadderOutput(Ladder ladder, Participants participants, Prizes prizes) {
