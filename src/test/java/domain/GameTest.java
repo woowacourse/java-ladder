@@ -1,11 +1,13 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import strategy.RandomConnectStrategy;
 
 class GameTest {
 
@@ -14,7 +16,7 @@ class GameTest {
     void test_ok_findRewardMap() {
         Members members = Members.from(List.of("a", "b", "c", "d"));
         Height height = Height.from(3);
-        Rewards rewards = Rewards.from(4, List.of("꽝", "100", "200", "300"));
+        Rewards rewards = Rewards.from(List.of("꽝", "100", "200", "300"));
         Game game = Game.of(members, height, rewards, () -> Connection.CONNECTED);
         Assertions.assertAll(
             () -> assertThat(game.findRewardMap().get("a")).isEqualTo("100"),
@@ -22,5 +24,16 @@ class GameTest {
             () -> assertThat(game.findRewardMap().get("c")).isEqualTo("300"),
             () -> assertThat(game.findRewardMap().get("d")).isEqualTo("200")
         );
+    }
+
+    @Test
+    @DisplayName("Game 생성 실패: 플레이어 수 != 상품 수")
+    void test_exception_countNotEqual() {
+        Members members = Members.from(List.of("a", "b", "c", "d"));
+        Height height = Height.from(3);
+        Rewards rewards = Rewards.from(List.of("꽝", "100", "200"));
+        assertThatThrownBy(() -> Game.of(members, height, rewards, new RandomConnectStrategy()))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("플레이어 수와 상품 수가 일치하지 않습니다.");
     }
 }

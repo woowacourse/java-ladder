@@ -11,9 +11,16 @@ public class Game {
     private final Rewards rewards;
 
     private Game(Members members, Lines lines, Rewards rewards) {
+        validate(members, rewards);
         this.members = members;
         this.lines = lines;
         this.rewards = rewards;
+    }
+
+    private void validate(Members members, Rewards rewards) {
+        if (members.getCount() != rewards.getCount()) {
+            throw new IllegalArgumentException("플레이어 수와 상품 수가 일치하지 않습니다.");
+        }
     }
 
     public static Game of(
