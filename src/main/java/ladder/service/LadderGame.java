@@ -38,4 +38,12 @@ public class LadderGame {
                 .boxed()
                 .collect(Collectors.toMap(finalPosition::get, rewards::get));
     }
+
+    public List<String> getPlayerNames() {
+        return players.getPlayerNames();
+    }
+
+    public List<String> getRewards() {
+        return rewards;
+    }
 }
