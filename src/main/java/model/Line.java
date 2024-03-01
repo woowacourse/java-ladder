@@ -7,20 +7,20 @@ public enum Line {
     CONNECTED(true),
     NOT_CONNECTED(false);
 
-    private final Boolean isConnected;
+    private final Boolean value;
 
-    Line(Boolean isConnected) {
-        this.isConnected = isConnected;
+    Line(Boolean value) {
+        this.value = value;
     }
 
-    public static Line valueOf(Boolean isConnected) {
+    public static Line valueOf(Boolean value) {
         return Arrays.stream(values())
-                .filter(liine -> liine.getConnected() == isConnected)
+                .filter(liine -> liine.isConnected() == value)
                 .findAny()
                 .orElseThrow(() -> new IllegalStateException("존재하지 않는 값입니다."));
     }
 
-    public Boolean getConnected() {
-        return isConnected;
+    public Boolean isConnected() {
+        return value;
     }
 }
