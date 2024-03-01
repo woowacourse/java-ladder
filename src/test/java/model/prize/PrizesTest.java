@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class PrizesTest {
+
     @DisplayName("실행 결과 수가 참여자 등록 수와 같으면 객체 생성 성공")
     @ParameterizedTest
     @MethodSource("provideValidPrizeNamesAndPlayers")
@@ -21,8 +22,8 @@ class PrizesTest {
 
     private static Stream<Arguments> provideValidPrizeNamesAndPlayers() {
         return Stream.of(
-                Arguments.of(List.of("꽝", "식권"), Players.of(List.of("pobi", "dora"))),
-                Arguments.of(List.of("배민상품권", "꽝", "꽝"), Players.of(List.of("pobi", "doraa", "jojo")))
+            Arguments.of(List.of("꽝", "식권"), Players.of(List.of("pobi", "dora"))),
+            Arguments.of(List.of("배민상품권", "꽝", "꽝"), Players.of(List.of("pobi", "doraa", "jojo")))
         );
     }
 
@@ -31,14 +32,14 @@ class PrizesTest {
     @MethodSource("provideInvalidPrizeNamesAndPlayers")
     void testInvalidPlayersSize(List<String> prizeNames, Players players) {
         assertThatThrownBy(() -> Prizes.from(prizeNames, players))
-                .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     private static Stream<Arguments> provideInvalidPrizeNamesAndPlayers() {
         return Stream.of(
-                Arguments.of(List.of("꽝", "식권", "꽝"), Players.of(List.of("pobi", "dora"))),
-                Arguments.of(List.of("배민상품권", "꽝"), Players.of(List.of("pobi", "doraa", "jojo"))),
-                Arguments.of(List.of(), Players.of(List.of("doraa", "jojo")))
+            Arguments.of(List.of("꽝", "식권", "꽝"), Players.of(List.of("pobi", "dora"))),
+            Arguments.of(List.of("배민상품권", "꽝"), Players.of(List.of("pobi", "doraa", "jojo"))),
+            Arguments.of(List.of(), Players.of(List.of("doraa", "jojo")))
         );
     }
 }

@@ -2,7 +2,7 @@ package controller;
 
 import java.util.List;
 import java.util.function.Supplier;
-import model.gameResult.GameResult;
+import model.gameresult.GameResult;
 import model.ladder.Ladder;
 import model.ladder.LadderHeight;
 import model.line.LineGenerator;
@@ -13,6 +13,7 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
+
     private static final String SEARCHING_END_CONDITION = "all";
 
     public void run() {

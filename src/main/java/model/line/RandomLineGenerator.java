@@ -8,11 +8,12 @@ import java.util.stream.IntStream;
 import model.bridge.Bridge;
 
 public class RandomLineGenerator implements LineGenerator {
+
     @Override
     public Line generateLine(int width) {
         return IntStream.range(0, width)
-                .mapToObj(i -> getRandomBridge())
-                .collect(collectingAndThen(toList(), Line::new));
+            .mapToObj(i -> getRandomBridge())
+            .collect(collectingAndThen(toList(), Line::new));
     }
 
     private static Bridge getRandomBridge() {

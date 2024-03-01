@@ -3,7 +3,7 @@ package view;
 import java.util.List;
 import java.util.stream.Collectors;
 import model.bridge.Bridge;
-import model.gameResult.GameResult;
+import model.gameresult.GameResult;
 import model.ladder.Ladder;
 import model.line.Line;
 import model.player.Player;
@@ -12,6 +12,7 @@ import model.prize.Prize;
 import model.prize.Prizes;
 
 public class OutputView {
+
     private static final String LADDER_RESULT_INTRO = "\n사다리 결과\n";
     private static final String GAME_RESULT_INTRO = "\n실행 결과";
     private static final int BRIDGE_LENGTH = 5;
@@ -37,9 +38,9 @@ public class OutputView {
 
     private static void printPlayerNames(Players players) {
         List<String> names = players.getNames()
-                .stream()
-                .map(name -> String.format(NAMES_FORMAT, name))
-                .toList();
+            .stream()
+            .map(name -> String.format(NAMES_FORMAT, name))
+            .toList();
         String result = String.join(NAMES_DELIMITER, names);
         System.out.println(result);
     }
@@ -49,8 +50,8 @@ public class OutputView {
         for (Line line : lines) {
             List<Bridge> bridges = line.getBridges();
             String result = bridges.stream()
-                    .map(OutputView::formatBridge)
-                    .collect(Collectors.joining(BRIDGE_DELIMITER));
+                .map(OutputView::formatBridge)
+                .collect(Collectors.joining(BRIDGE_DELIMITER));
             System.out.println(BRIDGE_PREFIX + result + BRIDGE_DELIMITER);
         }
     }
@@ -64,9 +65,9 @@ public class OutputView {
 
     private static void printPrizeNames(Prizes prizes) {
         List<String> names = prizes.getNames()
-                .stream()
-                .map(name -> String.format(NAMES_FORMAT, name))
-                .toList();
+            .stream()
+            .map(name -> String.format(NAMES_FORMAT, name))
+            .toList();
         String result = String.join(NAMES_DELIMITER, names);
         System.out.println(result);
     }
@@ -82,7 +83,7 @@ public class OutputView {
 
     public static void printGameResultAll(GameResult gameResult) {
         gameResult.getPlayers()
-                .forEach(player -> printPlayerAndPrize(gameResult, player));
+            .forEach(player -> printPlayerAndPrize(gameResult, player));
     }
 
     private static void printPlayerAndPrize(GameResult gameResult, Player player) {

@@ -6,6 +6,7 @@ import java.util.List;
 import model.bridge.Bridge;
 
 public class Line {
+
     private static final int LAST_BRIDGE_OFFSET = 1;
     private static final int LEFT_OFFSET = 1;
 

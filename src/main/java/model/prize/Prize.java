@@ -1,6 +1,7 @@
 package model.prize;
 
 public class Prize {
+
     private static final int MAX_NAME_LENGTH = 5;
     private static final String INVALID_NAME_LENGTH = "실행 결과는 최대 5글자입니다.";
 

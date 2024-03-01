@@ -1,6 +1,7 @@
 package model.ladder;
 
 public class LadderHeight {
+
     private static final int MIN_HEIGHT_VALUE = 1;
     private static final String INVALID_HEIGHT_VALUE = "사다리 높이는 1이상입니다.";
 

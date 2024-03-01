@@ -11,18 +11,19 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class PlayersTest {
+
     @DisplayName("참여자 수가 2명 미만이면 예외 발생")
     @ParameterizedTest
     @MethodSource("provideInvalidPlayerNames")
     void testInvalidSizeOfPlayers(List<String> names) {
         assertThatThrownBy(() -> Players.of(names))
-                .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     private static Stream<Arguments> provideInvalidPlayerNames() {
         return Stream.of(
-                Arguments.of(List.of("pobi")),
-                Arguments.of(List.of())
+            Arguments.of(List.of("pobi")),
+            Arguments.of(List.of())
         );
     }
 
@@ -35,8 +36,8 @@ class PlayersTest {
 
     private static Stream<Arguments> provideValidPlayerNames() {
         return Stream.of(
-                Arguments.of(List.of("pobi", "dora")),
-                Arguments.of(List.of("pobi", "doraa", "jojo"))
+            Arguments.of(List.of("pobi", "dora")),
+            Arguments.of(List.of("pobi", "doraa", "jojo"))
         );
     }
 
@@ -45,13 +46,13 @@ class PlayersTest {
     @MethodSource("provideDuplicatedPlayerNames")
     void testInvalidPlayerNamesUnique(List<String> names) {
         assertThatThrownBy(() -> Players.of(names))
-                .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     private static Stream<Arguments> provideDuplicatedPlayerNames() {
         return Stream.of(
-                Arguments.of(List.of("pobi", "pobi")),
-                Arguments.of(List.of("dora", "jojo", "dora"))
+            Arguments.of(List.of("pobi", "pobi")),
+            Arguments.of(List.of("dora", "jojo", "dora"))
         );
     }
 
@@ -64,8 +65,8 @@ class PlayersTest {
 
     private static Stream<Arguments> provideUniquePlayerNames() {
         return Stream.of(
-                Arguments.of(List.of("pobi", "dora")),
-                Arguments.of(List.of("pobi", "doraa", "jojo"))
+            Arguments.of(List.of("pobi", "dora")),
+            Arguments.of(List.of("pobi", "doraa", "jojo"))
         );
     }
 }

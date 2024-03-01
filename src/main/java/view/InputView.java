@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
+
     private static final String SPLIT_DELIMITER = ",";
     private static final String ASK_PLAYER_NAMES = "\n참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String ASK_PRIZE_NAMES = "\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
@@ -29,8 +30,8 @@ public class InputView {
 
     private static List<String> splitInputByDelimiter(String input) {
         return Arrays.stream(input.split(SPLIT_DELIMITER))
-                .map(String::strip)
-                .toList();
+            .map(String::strip)
+            .toList();
     }
 
     public static int askLadderHeight() {

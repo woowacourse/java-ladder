@@ -1,4 +1,4 @@
-package model.gameResult;
+package model.gameresult;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -8,6 +8,7 @@ import model.prize.Prize;
 import model.prize.Prizes;
 
 public class GameResult {
+
     private static final String NOT_EXIST_PLAYER_NAME = "존재하지 않는 참가자입니다.";
 
     private final ConcurrentHashMap<Player, Prize> result;
@@ -32,10 +33,10 @@ public class GameResult {
 
     private Player findPlayerByName(String playerName) {
         return result.keySet()
-                .stream()
-                .filter(player -> player.isNameEqual(playerName))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_PLAYER_NAME));
+            .stream()
+            .filter(player -> player.isNameEqual(playerName))
+            .findAny()
+            .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_PLAYER_NAME));
     }
 
     public Prize findPrizeByPlayer(Player player) {
@@ -44,7 +45,7 @@ public class GameResult {
 
     public List<Player> getPlayers() {
         return result.keySet()
-                .stream()
-                .toList();
+            .stream()
+            .toList();
     }
 }
