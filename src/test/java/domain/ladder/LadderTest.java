@@ -4,11 +4,15 @@ import static fixture.PlayersFixture.참가자들;
 import static fixture.PrizesFixture.상품들;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import domain.height.Height;
+import domain.player.Name;
 import domain.player.Players;
+import domain.prize.Prize;
 import domain.prize.Prizes;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 import support.ConnectedLadderRungGenerator;
 import support.FixedLadderRungGenerator;
@@ -55,12 +59,13 @@ public class LadderTest {
         |-----|     |-----|     |
         |     |-----|     |     |
         |-----|     |     |-----|
+        100   꽝   300   500   1000
         */
 
         // given
         Height height = new Height(3);
         Players players = 참가자들("프린", "땡이", "포비", "토미", "네오");
-        Prizes prizes = 상품들("꽝", "꽝", "꽝", "꽝", "10000");
+        Prizes prizes = 상품들("100", "꽝", "300", "500", "1000");
         List<LadderRung> ladderRungs = List.of(
                 LadderRung.CONNECTED, LadderRung.DISCONNECTED, LadderRung.CONNECTED, LadderRung.DISCONNECTED,
                 LadderRung.DISCONNECTED, LadderRung.CONNECTED, LadderRung.DISCONNECTED, LadderRung.DISCONNECTED,
@@ -69,9 +74,16 @@ public class LadderTest {
 
         // when
         Ladder ladder = Ladder.create(height, players, prizes, new FixedLadderRungGenerator(ladderRungs));
-        List<String> resultNames = ladder.climb();
+        LadderResult ladderResult = ladder.climb();
 
         // then
-        assertThat(resultNames).containsExactly("토미", "땡이", "프린", "네오", "포비");
+        Map<Name, Prize> results = ladderResult.getAllResults();
+        assertAll(
+                () -> assertThat(results.get(new Name("프린")).getPrize()).isEqualTo("300"),
+                () -> assertThat(results.get(new Name("땡이")).getPrize()).isEqualTo("꽝"),
+                () -> assertThat(results.get(new Name("포비")).getPrize()).isEqualTo("1000"),
+                () -> assertThat(results.get(new Name("토미")).getPrize()).isEqualTo("100"),
+                () -> assertThat(results.get(new Name("네오")).getPrize()).isEqualTo("500")
+        );
     }
 }

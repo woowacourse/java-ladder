@@ -1,11 +1,15 @@
 package domain.ladder;
 
 import domain.height.Height;
+import domain.player.Name;
 import domain.player.Players;
+import domain.prize.Prize;
 import domain.prize.Prizes;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Ladder {
     private static final String PLAYER_PRIZE_COUNT_EXCEPTION_MESSAGE = "[ERROR] 참가자 수: %d, 상품 수: %d - 두 수는 같아야 합니다.";
@@ -42,12 +46,20 @@ public class Ladder {
         }
     }
 
-    public List<String> climb() {
-        List<String> playerNames = new ArrayList<>(players.getNames());
-        for (LadderRow row : rows) {
-            row.crossRungs(playerNames);
+    public LadderResult climb() {
+        Map<Name, Prize> result = new LinkedHashMap<>();
+        for (int start = 0; start < players.count(); start++) {
+            int end = crossRow(start);
+            result.put(players.get(start), prizes.get(end));
         }
-        return playerNames;
+        return new LadderResult(result);
+    }
+
+    private int crossRow(int index) {
+        for (LadderRow row : rows) {
+            index = row.crossRung(index);
+        }
+        return index;
     }
 
     public List<LadderRow> getRows() {

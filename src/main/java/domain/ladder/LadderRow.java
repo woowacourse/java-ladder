@@ -36,7 +36,7 @@ public class LadderRow {
         }
     }
 
-    private int crossRung(int nowIndex) {
+    int crossRung(int nowIndex) {
         if (existsConnectedLeftRung(nowIndex)) {
             return nowIndex - 1;
         }

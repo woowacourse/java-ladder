@@ -62,4 +62,8 @@ public class Players {
     public int count() {
         return names.size();
     }
+
+    public Name get(int index) {
+        return names.get(index);
+    }
 }
