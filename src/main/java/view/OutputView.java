@@ -15,7 +15,7 @@ public class OutputView {
     private static final String VALUE_DELIMITER = " ";
     private static final String FIRST_COLUMN = "    |";
     private static final String COLUMN = "|";
-    private static final String RESULT_SEPARATOR = " : ";
+    private static final String NAME_RESULT_SEPARATOR = " : ";
 
     private OutputView() {
     }
@@ -36,31 +36,31 @@ public class OutputView {
     }
 
     private static void printLadder(Ladder ladder) {
-        StringJoiner ladderShapeJoiner = new StringJoiner(System.lineSeparator());
-        for (final Floor bridges : ladder.getLadder()) {
-            ladderShapeJoiner.add(getBridgesShape(bridges));
+        StringJoiner floorJoiner = new StringJoiner(System.lineSeparator());
+        for (final Floor floor : ladder.getFloors()) {
+            floorJoiner.add(getFloorShape(floor));
         }
-        System.out.print(ladderShapeJoiner);
+        System.out.print(floorJoiner);
     }
 
-    private static String getBridgesShape(final Floor bridges) {
-        StringJoiner bridgesShapeJoiner = new StringJoiner(COLUMN, FIRST_COLUMN, COLUMN);
-        for (Bridge bridge : bridges.getBridges()) {
-            bridgesShapeJoiner.add(BridgeShape.convertForView(bridge));
+    private static String getFloorShape(final Floor floor) {
+        StringJoiner bridgeJoiner = new StringJoiner(COLUMN, FIRST_COLUMN, COLUMN);
+        for (Bridge bridge : floor.getBridges()) {
+            bridgeJoiner.add(BridgeShape.convertForView(bridge));
         }
-        return bridgesShapeJoiner.toString();
+        return bridgeJoiner.toString();
     }
 
-    public static void printResult(GameResult gameResult) {
+    public static void printGameResult(GameResult gameResult) {
         System.out.println(System.lineSeparator() + "실행 결과");
         System.out.println(gameResult.result());
     }
 
-    public static void printResults(GameResults gameResults) {
+    public static void printGameResults(GameResults gameResults) {
         System.out.println(System.lineSeparator() + "실행 결과");
         for (int index = 0; index < gameResults.count(); index++) {
             final GameResult gameResult = gameResults.findBy(index);
-            System.out.println(gameResult.playerName() + RESULT_SEPARATOR + gameResult.result());
+            System.out.println(gameResult.playerName() + NAME_RESULT_SEPARATOR + gameResult.result());
         }
     }
 }

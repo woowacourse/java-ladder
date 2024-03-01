@@ -17,7 +17,7 @@ public class LadderMain {
 
     public static void main(String[] args) {
         final LadderGame ladderGame = makeLadderGame();
-        OutputView.printGameBoard(ladderGame.getNames(), ladderGame.getLadder(), ladderGame.getResults());
+        OutputView.printGameBoard(ladderGame.getPlayerNames(), ladderGame.getLadder(), ladderGame.getResults());
 
         final GameResults gameResults = ladderGame.calculateGameResults();
 
@@ -39,10 +39,10 @@ public class LadderMain {
         boolean doesSelectAll = Objects.equals(playerNameSelected, SELECT_ALL);
 
         while (!doesSelectAll) {
-            OutputView.printResult(gameResults.findBy(playerNameSelected));
+            OutputView.printGameResult(gameResults.findBy(playerNameSelected));
             playerNameSelected = InputView.selectPlayer();
             doesSelectAll = Objects.equals(playerNameSelected, SELECT_ALL);
         }
-        OutputView.printResults(gameResults);
+        OutputView.printGameResults(gameResults);
     }
 }

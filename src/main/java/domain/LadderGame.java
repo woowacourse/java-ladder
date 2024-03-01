@@ -44,7 +44,7 @@ public class LadderGame {
         return new GameResult(playerName.value(), result.value());
     }
 
-    public PlayerNames getNames() {
+    public PlayerNames getPlayerNames() {
         return playerNames;
     }
 

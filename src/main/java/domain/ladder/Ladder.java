@@ -4,21 +4,21 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    private final List<Floor> ladder;
+    private final List<Floor> floors;
 
-    public Ladder(List<Floor> ladder) {
-        this.ladder = ladder;
+    public Ladder(List<Floor> floors) {
+        this.floors = floors;
     }
 
     public int calculateResultPosition(final int startPosition) {
         int resultPosition = startPosition;
-        for (final Floor floor : ladder) {
+        for (final Floor floor : floors) {
             resultPosition = floor.calculateResultPosition(resultPosition);
         }
         return resultPosition;
     }
 
-    public List<Floor> getLadder() {
-        return Collections.unmodifiableList(ladder);
+    public List<Floor> getFloors() {
+        return Collections.unmodifiableList(floors);
     }
 }
