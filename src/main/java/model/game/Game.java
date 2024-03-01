@@ -8,13 +8,13 @@ import model.prize.Prize;
 import model.prize.Prizes;
 
 public class Game {
-    private final Ladder ladder;
     private final Players players;
+    private final Ladder ladder;
     private final Prizes prizes;
 
-    public Game(final Ladder ladder, final Players players, final Prizes prizes) {
-        this.ladder = ladder;
+    public Game(final Players players, final Ladder ladder, final Prizes prizes) {
         this.players = players;
+        this.ladder = ladder;
         this.prizes = prizes;
     }
 

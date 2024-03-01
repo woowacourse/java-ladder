@@ -29,7 +29,7 @@ public class LadderGameController {
         Prizes prizes = retryWithReturnOnException(() -> preparePrizes(players));
         LadderHeight ladderHeight = retryWithReturnOnException(this::prepareLadderHeight);
         Ladder ladder = makeLadder(ladderHeight, players, prizes);
-        return new Game(ladder, players, prizes);
+        return new Game(players, ladder, prizes);
     }
 
     private Players preparePlayers() {

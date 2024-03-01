@@ -24,7 +24,7 @@ public class GameTest {
         LadderHeight ladderHeight = new LadderHeight(5);
         Ladder ladder = Ladder.of(ladderHeight, players, (count) -> createBridges(List.of(1)));
         Prizes prizes = Prizes.of(players, List.of("꽝", "3000"));
-        game = new Game(ladder, players, prizes);
+        game = new Game(players, ladder, prizes);
     }
 
     @DisplayName("모든 참여자에 대한 사다리 실행 결과를 얻는다")
