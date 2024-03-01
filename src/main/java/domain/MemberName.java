@@ -4,6 +4,7 @@ public class MemberName {
 
     public static final int MIN_NAME_LENGTH = 1;
     public static final int MAX_NAME_LENGTH = 5;
+    public static final String INVALID_NAME = "all";
     private static final String FORMAT_NAME = "^[A-Za-z0-9]+$";
 
     private final String name;
@@ -32,6 +33,9 @@ public class MemberName {
     }
 
     private void validatePattern(String name) {
+        if (name.equals(INVALID_NAME)) {
+            throw new IllegalArgumentException("'all'이라는 이름을 사용할 수 없습니다.");
+        }
         if (!name.matches(FORMAT_NAME)) {
             throw new IllegalArgumentException("이름은 알파벳과 숫자만 허용합니다.");
         }
