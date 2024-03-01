@@ -37,8 +37,8 @@ class ClimbingResultsTest {
         bridgeGeneratorStub.setBridges(List.of(LadderBridge.BRIDGE, LadderBridge.NONE));
         Ladder ladder = Ladder.of(ladderHeight, players, bridgeGeneratorStub);
         List<LadderResult> results = List.of(ladderResult1, ladderResult2, ladderResult3);
-        LadderResults ladderResults = new LadderResults(players, ladder, results);
-        climbingResults = ClimbingResults.of(ladderResults);
+        LadderResults ladderResults = LadderResults.createMatchesCountOf(players.getPlayerCount(), results);
+        climbingResults = ClimbingResults.of(players, ladder, ladderResults);
     }
 
     @Test
