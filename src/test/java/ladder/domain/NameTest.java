@@ -32,7 +32,6 @@ class NameTest {
                 .isEqualTo("jk");
     }
 
-
     @ParameterizedTest
     @EmptySource
     @DisplayName("이름이 공백이라면 예외가 발생한다.")
@@ -51,5 +50,18 @@ class NameTest {
         Name pobi2 = new Name(name);
 
         assertThat(pobi1).isEqualTo(pobi2);
+    }
+
+    @Test
+    @DisplayName("이름이 all 이라면 참이다.")
+    void isAll() {
+        // given
+        String all = "all";
+
+        // when
+        Name name = new Name(all);
+
+        // then
+        assertThat(name.isAll()).isTrue();
     }
 }
