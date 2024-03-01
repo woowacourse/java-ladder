@@ -17,9 +17,11 @@ public class GameResults {
         final List<GameResult> gameResultFound = gameResults.stream()
                 .filter(gameResult -> Objects.equals(gameResult.playerName(), playerName))
                 .toList();
+
         if (gameResultFound.size() != ONLY_ONE_FOUND) {
             throw new IllegalArgumentException("해당 이름의 참가자가 없거나 이름이 중복됩니다.");
         }
+
         return gameResultFound.get(0);
     }
 

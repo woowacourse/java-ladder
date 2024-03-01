@@ -23,7 +23,7 @@ class FloorTest {
         assertThat(floor.getBridges()).containsExactly(Bridge.NOT_EXIST, Bridge.EXIST, Bridge.NOT_EXIST);
     }
 
-    @DisplayName("위치를 받으면 다리를 따라 이동한 결과 위치를 반환한다.")
+    @DisplayName("위치를 받으면 사다리의 한 층을 따라 이동한 결과 위치를 반환한다.")
     @Test
     void moveAlongBridge() {
         //given

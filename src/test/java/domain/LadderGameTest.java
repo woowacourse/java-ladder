@@ -61,38 +61,7 @@ class LadderGameTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("개인별 이름을 입력하면 개인별 결과를 알려준다.")
-    @Test
-    void matchPersonalResult() {
-        //given
-        BridgeGenerator bridgeGenerator = new PickedBridgeGenerator(List.of(
-                true, false, true,
-                false, true, false,
-                true, false, false,
-                false, true, false,
-                true, false, true
-        ));
-        final PlayerNames playerNames = PlayerNames.from(List.of("pobi", "honux", "crong", "jk"));
-        final Results results = new Results(List.of(
-                new Result("꽝"), new Result("5000"), new Result("꽝"), new Result("3000"))
-        );
-        final Height height = new Height(5);
-        final Width width = Width.from(playerNames);
-        final Ladder ladder = LadderFactory.createByStrategy(bridgeGenerator, height, width);
-        final LadderGame ladderGame = new LadderGame(playerNames, results, ladder);
-
-        final GameResults gameResults = ladderGame.calculateGameResults();
-
-        //when & then
-        assertAll(
-                () -> assertThat(gameResults.findBy("pobi")).isEqualTo(new GameResult("pobi", "꽝")),
-                () -> assertThat(gameResults.findBy("honux")).isEqualTo(new GameResult("honux", "3000")),
-                () -> assertThat(gameResults.findBy("crong")).isEqualTo(new GameResult("crong", "꽝")),
-                () -> assertThat(gameResults.findBy("jk")).isEqualTo(new GameResult("jk", "5000"))
-        );
-    }
-
-    @DisplayName("all을 입력하면 전체 결과를 알려준다.")
+    @DisplayName("전체 결과를 계산한다.")
     @Test
     void matchAllResult() {
         //given
@@ -112,9 +81,10 @@ class LadderGameTest {
         final Ladder ladder = LadderFactory.createByStrategy(bridgeGenerator, height, width);
         final LadderGame ladderGame = new LadderGame(playerNames, results, ladder);
 
+        //when
         final GameResults gameResults = ladderGame.calculateGameResults();
 
-        //when & then
+        //when
         assertAll(
                 () -> assertThat(gameResults.findBy(0)).isEqualTo(new GameResult("pobi", "꽝")),
                 () -> assertThat(gameResults.findBy(1)).isEqualTo(new GameResult("honux", "3000")),

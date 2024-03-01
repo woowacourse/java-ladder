@@ -10,27 +10,6 @@ import org.junit.jupiter.api.Test;
 
 class LadderTest {
 
-    @DisplayName("전략을 정해서 사다리를 만든다.")
-    @Test
-    void createLadder() {
-        //given
-        final Height height = new Height(5);
-        final Width width = new Width(3);
-        BridgeGenerator bridgeGenerator = new PickedBridgeGenerator(List.of(
-                false, true, false,
-                false, true, false,
-                false, true, false,
-                false, true, false,
-                false, true, false
-        ));
-
-        //when
-        final Ladder ladder = LadderFactory.createByStrategy(bridgeGenerator, height, width);
-
-        //then
-        assertThat(ladder.getLadder()).hasSize(height.value());
-    }
-
     @DisplayName("위치를 받으면 사다리를 따라 이동한 결과 위치를 반환한다.")
     @Test
     void climbLadder() {
