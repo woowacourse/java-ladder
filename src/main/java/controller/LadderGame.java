@@ -23,12 +23,18 @@ public class LadderGame {
     }
 
     private void printPlayerResultsUntilTerminate(final PlayerResults playerResults) {
-        String target = inputView.readTarget();
-        while (!Commands.isTerminate(target)) {
+        String target;
+        do {
+            target = inputView.readTarget();
+            printResultBy(target, playerResults);
+        } while (!Commands.isTerminate(target));
+        outputView.printPlayerResult(playerResults.getPlayerResults());
+    }
+
+    private void printResultBy(final String target, final PlayerResults playerResults) {
+        if (!Commands.isTerminate(target)) {
             Result result = playerResults.findResult(target);
             outputView.printResult(result);
-            target = inputView.readTarget();
         }
-        outputView.printPlayerResult(playerResults.getPlayerResults());
     }
 }
