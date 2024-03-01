@@ -43,6 +43,10 @@ public class Players {
                 .collect(collectingAndThen(toList(), Players::new));
     }
 
+    public Player get(int index) {
+        return players.get(index);
+    }
+
     public List<String> getPlayerNames() {
         return players.stream()
                 .map(Player::getName)
@@ -51,9 +55,5 @@ public class Players {
 
     public int getSize() {
         return players.size();
-    }
-
-    public Player get(int index) {
-        return players.get(index);
     }
 }

@@ -27,13 +27,13 @@ public class Ladder {
                 .collect(collectingAndThen(toList(), Ladder::new));
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
-    }
-
     public List<LineState> captureLadderLines() {
         return lines.stream()
                 .map(LineState::from)
                 .toList();
+    }
+
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }
