@@ -27,11 +27,7 @@ public class LadderController {
     public void proceedGame() {
         launchGame();
         while (true) {
-            String participantName = inputView.askGameResult();
-            if (isExit(participantName)) {
-                break;
-            }
-            getPrize(ladderGame.getPeople(), participantName);
+            insertAndProceedCommand(ladderGame.getPeople());
         }
     }
 
@@ -45,16 +41,33 @@ public class LadderController {
         resultView.printPrizes(Arrays.stream(prizesText.split(DELIMITER)).toList());
     }
 
-    private void getPrize(People people, String participantName) {
-        RewardBoard rewardBoard = ladderGame.getRewardBoard();
-        if (isAll(participantName)) {
-            resultView.printAllProceedResult(rewardBoard, people);
+    private void insertAndProceedCommand(People people) {
+        String command = inputView.askGameResult();
+        if (isAll(command)) {
+            getAllPrize(people);
             return;
         }
+        if (isExit(command)) {
+            terminateGame();
+            return;
+        }
+        getPrize(command);
+    }
+
+    private void getPrize(String participantName) {
+        RewardBoard rewardBoard = ladderGame.getRewardBoard();
         Prize findPrize = rewardBoard.findPrizeByName(participantName);
         resultView.printProceedResult(findPrize);
     }
 
+    private void getAllPrize(People people) {
+        RewardBoard rewardBoard = ladderGame.getRewardBoard();
+        resultView.printAllProceedResult(rewardBoard, people);
+    }
+
+    private void terminateGame() {
+        System.exit(0);
+    }
     private boolean isAll(String command) {
         return command.equals(ALL_COMMAND);
     }
