@@ -45,7 +45,7 @@ class LadderTest {
 
     @Test
     @DisplayName("사다리를 탄다")
-    void methodName() {
+    void climbLadder() {
         //given
         Ladder ladder = Ladder.of(3, 4, () -> true);
         /*
