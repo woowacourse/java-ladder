@@ -3,7 +3,7 @@ package view;
 import domain.ladder.PathStatus;
 import dto.LadderGameResultDto;
 import dto.LadderDto;
-import dto.PathStatuses;
+import dto.PathStatusesDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +16,7 @@ public class OutputView {
         System.out.println("사다리 결과");
         System.out.println();
         System.out.println(makeNameMessage(ladderDto.playerNames()));
-        System.out.println(drawRadder(ladderDto.pathStatuses()));
+        System.out.println(drawRadder(ladderDto.pathStatusDtos()));
         System.out.println(makeGameResultMessage(ladderDto.ladderDestinations()));
         System.out.println();
     }
@@ -38,15 +38,15 @@ public class OutputView {
                 .collect(Collectors.joining(" "));
     }
 
-    private static String drawRadder(final List<PathStatuses> pathStatuses) {
-        return pathStatuses.stream()
+    private static String drawRadder(final List<PathStatusesDto> pathStatusDtos) {
+        return pathStatusDtos.stream()
                 .map(OutputView::drawLine)
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    private static String drawLine(final PathStatuses pathStatuses) {
+    private static String drawLine(final PathStatusesDto pathStatusesDto) {
         String prefix = "    |";
-        String steps = pathStatuses.pathStatuses()
+        String steps = pathStatusesDto.pathStatuses()
                 .stream()
                 .map(OutputView::drawStep)
                 .collect(Collectors.joining());
