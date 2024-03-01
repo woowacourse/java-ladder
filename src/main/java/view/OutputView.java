@@ -4,7 +4,6 @@ import domain.ladder.Floor;
 import domain.ladder.Ladder;
 import domain.ladder.LadderBridge;
 import domain.player.Players;
-import domain.result.LadderResult;
 import domain.result.LadderResults;
 import java.util.Map;
 import java.util.StringJoiner;

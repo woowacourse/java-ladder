@@ -1,6 +1,5 @@
 package controller;
 
-import domain.ladder.message.LadderExceptionMessage;
 import java.util.Scanner;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

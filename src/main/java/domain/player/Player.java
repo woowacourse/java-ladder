@@ -1,7 +1,5 @@
 package domain.player;
 
-import java.util.Objects;
-
 public class Player {
     private final PlayerName playerName;
     private int position;

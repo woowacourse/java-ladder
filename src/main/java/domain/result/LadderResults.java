@@ -1,9 +1,5 @@
 package domain.result;
 
-import domain.ladder.Floor;
-import domain.ladder.Ladder;
-import domain.player.Player;
-import domain.player.Players;
 import domain.result.message.ResultExceptionMessage;
 import java.util.List;
 

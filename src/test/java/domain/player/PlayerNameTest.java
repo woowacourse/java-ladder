@@ -1,6 +1,5 @@
 package domain.player;
 
-import domain.ladder.message.LadderExceptionMessage;
 import domain.player.message.PlayerExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
