@@ -35,7 +35,7 @@ public class Controller {
         Ladder ladder = createLadder(width, height);
         LadderGame ladderGame = LadderGame.of(players, rewards, ladder);
         LadderGameResult result = play(ladderGame);
-        printLadderGameResults(result);
+        printLadderGameResult(result);
     }
 
     private Ladder createLadder(final Width<LadderDirection> width, final Height<LadderRow> height) {
@@ -51,14 +51,13 @@ public class Controller {
         return ladderGame.play();
     }
 
-    private void printLadderGameResults(final LadderGameResult result) {
-        while (true) {
-            Player player = inputView.inputPlayerFrom(result);
-            if (player.equals(ALL)) {
-                resultView.printResult(result);
-                break;
-            }
-            resultView.printReward(result.rewardOf(player));
+    private void printLadderGameResult(final LadderGameResult result) {
+        Player player = inputView.inputPlayerFrom(result);
+        if (player.equals(ALL)) {
+            resultView.printResult(result);
+            return;
         }
+        resultView.printReward(result.rewardOf(player));
+        printLadderGameResult(result);
     }
 }
