@@ -1,7 +1,8 @@
-package domain;
+package domain.prize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.ColumnPosition;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

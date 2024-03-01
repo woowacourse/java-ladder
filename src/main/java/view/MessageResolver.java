@@ -1,16 +1,16 @@
 package view;
 
-import static domain.Connection.RIGHT_CONNECTION;
+import static domain.connection.Connection.RIGHT_CONNECTION;
 
 import domain.ColumnPosition;
-import domain.Connection;
-import domain.Ladder;
-import domain.LadderResult;
-import domain.LadderResults;
-import domain.Players;
-import domain.Point;
-import domain.Prizes;
-import domain.RowLine;
+import domain.connection.Connection;
+import domain.ladder.Ladder;
+import domain.line.Point;
+import domain.line.RowLine;
+import domain.player.Players;
+import domain.prize.Prizes;
+import domain.result.LadderResult;
+import domain.result.LadderResults;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 

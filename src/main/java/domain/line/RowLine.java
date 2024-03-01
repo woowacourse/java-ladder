@@ -1,5 +1,6 @@
-package domain;
+package domain.line;
 
+import domain.ColumnPosition;
 import java.util.List;
 
 public class RowLine {

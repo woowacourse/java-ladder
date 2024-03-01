@@ -1,4 +1,7 @@
-package domain;
+package domain.line;
+
+import domain.ColumnPosition;
+import domain.connection.Connection;
 
 public class Point {
 

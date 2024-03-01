@@ -1,5 +1,6 @@
-package domain;
+package domain.player;
 
+import domain.ColumnPosition;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;

@@ -1,13 +1,13 @@
 package controller;
 
 import domain.ColumnPosition;
-import domain.Height;
-import domain.Player;
-import domain.PlayerName;
-import domain.Players;
-import domain.Prize;
-import domain.PrizeName;
-import domain.Prizes;
+import domain.ladder.Height;
+import domain.player.Player;
+import domain.player.PlayerName;
+import domain.player.Players;
+import domain.prize.Prize;
+import domain.prize.PrizeName;
+import domain.prize.Prizes;
 import java.util.stream.IntStream;
 
 public class InputMapper {

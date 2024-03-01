@@ -1,5 +1,6 @@
-package domain;
+package domain.prize;
 
+import domain.ColumnPosition;
 import java.util.List;
 
 public class Prizes {

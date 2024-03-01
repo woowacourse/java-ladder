@@ -1,4 +1,6 @@
-package domain;
+package domain.player;
+
+import domain.ColumnPosition;
 
 public class Player {
 

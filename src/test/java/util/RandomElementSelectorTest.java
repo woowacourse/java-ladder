@@ -1,10 +1,10 @@
 package util;
 
-import static domain.Connection.DISCONNECTION;
-import static domain.Connection.RIGHT_CONNECTION;
+import static domain.connection.Connection.DISCONNECTION;
+import static domain.connection.Connection.RIGHT_CONNECTION;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import domain.Connection;
+import domain.connection.Connection;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

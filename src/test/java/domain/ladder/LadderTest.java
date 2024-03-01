@@ -1,12 +1,15 @@
-package domain;
+package domain.ladder;
 
-import static domain.Connection.DISCONNECTION;
-import static domain.Connection.LEFT_CONNECTION;
-import static domain.Connection.RIGHT_CONNECTION;
+import static domain.connection.Connection.DISCONNECTION;
+import static domain.connection.Connection.LEFT_CONNECTION;
+import static domain.connection.Connection.RIGHT_CONNECTION;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
+import domain.ColumnPosition;
+import domain.line.Point;
+import domain.line.RowLine;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

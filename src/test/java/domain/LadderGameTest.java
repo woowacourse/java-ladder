@@ -4,6 +4,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
+import domain.connection.Connection;
+import domain.ladder.Ladder;
+import domain.line.Point;
+import domain.line.RowLine;
+import domain.player.Player;
+import domain.player.PlayerName;
+import domain.player.Players;
+import domain.prize.Prize;
+import domain.prize.PrizeName;
+import domain.prize.Prizes;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -87,7 +97,7 @@ class LadderGameTest {
         Ladder ladder = new Ladder(List.of(line1, line2));
         Prizes prizes = new Prizes(
                 List.of(new Prize(new PrizeName("123"), new ColumnPosition(0))));
-        
+
         assertThatThrownBy(() -> new LadderGame(ladder, players, prizes))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 사다리 열과 결과의 개수가 일치하지 않습니다");

@@ -1,4 +1,6 @@
-package domain;
+package domain.prize;
+
+import domain.ColumnPosition;
 
 public class Prize {
 

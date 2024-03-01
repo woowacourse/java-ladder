@@ -1,9 +1,10 @@
-package domain;
+package domain.line;
 
-import static domain.Connection.LEFT_CONNECTION;
-import static domain.Connection.RIGHT_CONNECTION;
+import static domain.connection.Connection.LEFT_CONNECTION;
+import static domain.connection.Connection.RIGHT_CONNECTION;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.ColumnPosition;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

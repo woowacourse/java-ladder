@@ -1,10 +1,10 @@
 package view;
 
-import domain.Ladder;
-import domain.LadderResult;
-import domain.LadderResults;
-import domain.Players;
-import domain.Prizes;
+import domain.ladder.Ladder;
+import domain.player.Players;
+import domain.prize.Prizes;
+import domain.result.LadderResult;
+import domain.result.LadderResults;
 
 public class ResultView {
 

@@ -1,22 +1,22 @@
 package view;
 
-import static domain.Connection.DISCONNECTION;
-import static domain.Connection.LEFT_CONNECTION;
-import static domain.Connection.RIGHT_CONNECTION;
+import static domain.connection.Connection.DISCONNECTION;
+import static domain.connection.Connection.LEFT_CONNECTION;
+import static domain.connection.Connection.RIGHT_CONNECTION;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import domain.ColumnPosition;
-import domain.Ladder;
-import domain.LadderResult;
-import domain.LadderResults;
-import domain.Player;
-import domain.PlayerName;
-import domain.Players;
-import domain.Point;
-import domain.Prize;
-import domain.PrizeName;
-import domain.Prizes;
-import domain.RowLine;
+import domain.ladder.Ladder;
+import domain.line.Point;
+import domain.line.RowLine;
+import domain.player.Player;
+import domain.player.PlayerName;
+import domain.player.Players;
+import domain.prize.Prize;
+import domain.prize.PrizeName;
+import domain.prize.Prizes;
+import domain.result.LadderResult;
+import domain.result.LadderResults;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

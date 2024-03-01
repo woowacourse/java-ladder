@@ -1,14 +1,14 @@
 package controller;
 
-import domain.Height;
-import domain.Ladder;
-import domain.LadderCreator;
 import domain.LadderGame;
-import domain.LadderResult;
-import domain.NonContinousConnectionGenerator;
-import domain.Players;
-import domain.Prizes;
-import domain.RowLineGenerator;
+import domain.connection.NonContinousConnectionGenerator;
+import domain.ladder.Height;
+import domain.ladder.Ladder;
+import domain.ladder.LadderCreator;
+import domain.line.RowLineGenerator;
+import domain.player.Players;
+import domain.prize.Prizes;
+import domain.result.LadderResult;
 import view.InputView;
 import view.ResultView;
 

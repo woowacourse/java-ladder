@@ -1,7 +1,10 @@
-package domain;
+package domain.line;
 
-import static domain.Connection.DISCONNECTION;
+import static domain.connection.Connection.DISCONNECTION;
 
+import domain.ColumnPosition;
+import domain.connection.Connection;
+import domain.connection.ConnectionGenerator;
 import java.util.ArrayList;
 import java.util.List;
 

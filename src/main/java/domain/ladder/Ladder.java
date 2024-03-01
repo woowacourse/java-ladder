@@ -1,5 +1,7 @@
-package domain;
+package domain.ladder;
 
+import domain.ColumnPosition;
+import domain.line.RowLine;
 import java.util.List;
 
 public class Ladder {
