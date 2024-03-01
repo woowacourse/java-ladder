@@ -25,10 +25,15 @@ public class LadderGame {
         return ladderItems.countItems() - 1;
     }
 
-    public Map<Person, WinningItem> findResult(Ladder ladder, LadderItems ladderItems) {
+    public LadderResult findResult(Ladder ladder, LadderItems ladderItems) {
+        Map<Integer, Integer> climbResult = climbAll(ladder, ladderItems.countItems());
+        return ladderItems.mapResult(climbResult);
+    }
+
+    public Map<Person, WinningItem> findResult2(Ladder ladder, LadderItems ladderItems) {
         Map<Integer, Integer> climbResult = climbAll(ladder, ladderItems.countItems());
 
-        return ladderItems.mapResult(climbResult);
+        return ladderItems.mapResult2(climbResult);
     }
 
     private Map<Integer, Integer> climbAll(Ladder ladder, int railCounts) {

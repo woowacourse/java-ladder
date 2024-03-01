@@ -80,6 +80,7 @@ public class LadderGameTest {
 
         // when & then
         assertThat(ladderGame.findResult(FIXED_LADDER, ladderItems))
+                .extracting("result")
                 .isEqualTo(expected);
     }
 }

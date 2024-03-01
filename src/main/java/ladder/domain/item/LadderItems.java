@@ -1,5 +1,7 @@
 package ladder.domain.item;
 
+import ladder.domain.LadderResult;
+
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -38,7 +40,14 @@ public class LadderItems {
         }
     }
 
-    public Map<Person, WinningItem> mapResult(Map<Integer, Integer> result) {
+    public LadderResult mapResult(Map<Integer, Integer> climbResult) {
+        return new LadderResult(climbResult.entrySet().stream()
+                .collect(Collectors.toMap(
+                        entry -> people.get(entry.getKey()),
+                        entry -> winningItems.get(entry.getValue()))));
+    }
+
+    public Map<Person, WinningItem> mapResult2(Map<Integer, Integer> result) {
         return result.entrySet().stream()
                 .collect(Collectors.toMap(entry -> people.get(entry.getKey()), entry -> winningItems.get(entry.getValue())));
     }
