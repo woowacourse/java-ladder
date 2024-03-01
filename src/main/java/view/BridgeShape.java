@@ -6,8 +6,8 @@ import java.util.List;
 
 public enum BridgeShape {
 
-    BRIDGE("-----", Bridge.BRIDGE),
-    NO_BRIDGE("     ", Bridge.NO_BRIDGE);
+    BRIDGE("-----", Bridge.EXIST),
+    NO_BRIDGE("     ", Bridge.NOT_EXIST);
 
     private static final int MATCHED_BRIDGE_SHAPE_COUNT = 1;
 

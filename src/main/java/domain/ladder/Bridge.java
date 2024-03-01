@@ -5,8 +5,8 @@ import java.util.List;
 
 public enum Bridge {
 
-    BRIDGE(true),
-    NO_BRIDGE(false);
+    EXIST(true),
+    NOT_EXIST(false);
 
     private static final int ONLY_ONE_FOUND = 1;
     private final boolean exist;

@@ -19,14 +19,14 @@ public class FloorFactory {
 
     private static Bridge findPreviousBridge(List<Bridge> bridges) {
         if (bridges.isEmpty()) {
-            return Bridge.NO_BRIDGE;
+            return Bridge.NOT_EXIST;
         }
         return bridges.get(bridges.size() - 1);
     }
 
     private static Bridge createBridge(final Bridge bridgeCandidate, final Bridge previousBridge) {
-        if (previousBridge == Bridge.BRIDGE) {
-            return Bridge.NO_BRIDGE;
+        if (previousBridge == Bridge.EXIST) {
+            return Bridge.NOT_EXIST;
         }
         return bridgeCandidate;
     }

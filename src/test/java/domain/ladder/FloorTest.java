@@ -20,7 +20,7 @@ class FloorTest {
         Floor floor = FloorFactory.createByStrategy(bridgeGenerator, new Width(3));
 
         //then
-        assertThat(floor.getBridges()).containsExactly(Bridge.NO_BRIDGE, Bridge.BRIDGE, Bridge.NO_BRIDGE);
+        assertThat(floor.getBridges()).containsExactly(Bridge.NOT_EXIST, Bridge.EXIST, Bridge.NOT_EXIST);
     }
 
     @DisplayName("위치를 받으면 다리를 따라 이동한 결과 위치를 반환한다.")

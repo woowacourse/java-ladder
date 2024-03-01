@@ -15,11 +15,11 @@ public class Floor {
 
     public int calculateResultPosition(final int startPosition) {
         final int leftBridgeIndex = startPosition - 1;
-        if (leftBridgeIndex >= MIN_BRIDGE_INDEX && bridges.get(leftBridgeIndex) == Bridge.BRIDGE) {
+        if (leftBridgeIndex >= MIN_BRIDGE_INDEX && bridges.get(leftBridgeIndex) == Bridge.EXIST) {
             return startPosition - 1;
         }
-
-        if (startPosition < bridges.size() && bridges.get(startPosition) == Bridge.BRIDGE) {
+        final int rightBridgeIndex = startPosition;
+        if (rightBridgeIndex < bridges.size() && bridges.get(rightBridgeIndex) == Bridge.EXIST) {
             return startPosition + 1;
         }
 
