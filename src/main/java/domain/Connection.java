@@ -7,8 +7,8 @@ public enum Connection {
     CONNECTED, DISCONNECTED;
 
     public Connection findNextConnection(ConnectStrategy connectStrategy) {
-        if (this.equals(Connection.CONNECTED)) {
-            return Connection.DISCONNECTED;
+        if (this == CONNECTED) {
+            return DISCONNECTED;
         }
         return connectStrategy.generate();
     }
