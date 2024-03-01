@@ -14,16 +14,16 @@ public class PositionTest { // TODO: 마지막 위치여서 혹은 첫번째 위
         @Test
         void moveRight() {
             Position position = new Position(1);
-            Position actual = position.moveRight();
-            Assertions.assertThat(actual).isEqualTo(new Position(2));
+            int moved = position.moveRight();
+            Assertions.assertThat(moved).isEqualTo(2);
         }
 
         @DisplayName("마지막 위치여서 오른쪽으로 이동하는 것에 실패한다.")
         @Test
         void moveLeft() {
             Position position = new Position(3);
-            Position actual = position.moveLeft();
-            Assertions.assertThat(actual).isEqualTo(new Position(2));
+            int moved = position.moveLeft();
+            Assertions.assertThat(moved).isEqualTo(2);
         }
     }
 }

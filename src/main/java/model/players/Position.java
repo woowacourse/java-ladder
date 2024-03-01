@@ -9,12 +9,14 @@ public class Position {
         this.value = value;
     }
 
-    public Position moveRight() {
-        return new Position(value + 1);
+    public int moveRight() {
+        value++;
+        return value;
     }
 
-    public Position moveLeft() {
-        return new Position(value - 1);
+    public int moveLeft() {
+        value--;
+        return value;
     }
 
     @Override
@@ -32,5 +34,9 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    public int getValue() {
+        return value;
     }
 }
