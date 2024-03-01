@@ -4,11 +4,10 @@ package view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class InputView {
 
-    public static final String END_WITH_DELIMITER = "이름이 누락되었습니다. 입력은 쉼표(,)로 끝날 수 없습니다.";
+    public static final String INVALID_DELIMITER_POSITION = "입력은 쉼표(,)로 시작하거나, 끝날 수 없습니다.";
     public static final String INVALID_HEIGHT_FORMAT = "높이는 숫자여야 합니다.";
     private static final String DELIMITER = ",";
     private static final InputView instance = new InputView();
@@ -24,26 +23,30 @@ public class InputView {
     public List<String> readNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         final String rawNames = scanner.nextLine().trim();
-        validateEndWithDelimiter(rawNames);
+        validateDelimiterPosition(rawNames);
 
         return Arrays.stream(rawNames.split(DELIMITER))
                 .map(String::trim)
-                .collect(Collectors.toList());
-    }
-
-    private void validateEndWithDelimiter(final String rawNames) {
-        if (rawNames.endsWith(DELIMITER)) {
-            throw new IllegalArgumentException(END_WITH_DELIMITER);
-        }
+                .toList();
     }
 
     public List<String> readResults() {
         System.out.println(System.lineSeparator() + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         final String rawResults = scanner.nextLine().trim();
+        validateDelimiterPosition(rawResults);
 
         return Arrays.stream(rawResults.split(DELIMITER))
                 .map(String::trim)
-                .collect(Collectors.toList());
+                .toList();
+    }
+
+    private void validateDelimiterPosition(final String rawNames) {
+        if (rawNames.startsWith(DELIMITER)) {
+            throw new IllegalArgumentException(INVALID_DELIMITER_POSITION);
+        }
+        if (rawNames.endsWith(DELIMITER)) {
+            throw new IllegalArgumentException(INVALID_DELIMITER_POSITION);
+        }
     }
 
     public int readHeight() {
