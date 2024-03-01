@@ -12,8 +12,8 @@ public class OutputView {
 
     private static final String NEW_LINE = "\n";
     private static final int MAX_NAME_LENGTH = 5;
-    private static final String CONNECT_SYMBOL = "-----";
-    private static final String NON_CONNECT_SYMBOL = "     ";
+    private static final String ONE_RESULT_FORMAT = "%s";
+    private static final String ALL_RESULT_FORMAT = "%s : %s";
 
     public void printLadderResult(List<String> players, List<List<Direction>> ladder, List<String> resultItems) {
         System.out.println(NEW_LINE + "사다리 결과" + NEW_LINE);
@@ -57,9 +57,9 @@ public class OutputView {
 
     private String getSymbol(Direction direction) {
         if (direction.isRight()) {
-            return CONNECT_SYMBOL;
+            return "-".repeat(MAX_NAME_LENGTH);
         }
-        return NON_CONNECT_SYMBOL;
+        return " ".repeat(MAX_NAME_LENGTH);
     }
 
     public void printExecutionResult(Map<Player, ResultItem> result) {
@@ -78,13 +78,13 @@ public class OutputView {
 
     private String makeOneResultFormatted(Map<Player, ResultItem> result) {
         return result.values().stream()
-                .map(resultItem -> String.format("%s", resultItem.getValue()))
+                .map(resultItem -> String.format(ONE_RESULT_FORMAT, resultItem.getValue()))
                 .collect(Collectors.joining("\n"));
     }
 
     private String makeAllResultFormatted(Map<Player, ResultItem> result) {
         return result.entrySet().stream()
-                .map(entry -> String.format("%s : %s", entry.getKey().getName(), entry.getValue().getValue()))
+                .map(entry -> String.format(ALL_RESULT_FORMAT, entry.getKey().getName(), entry.getValue().getValue()))
                 .collect(Collectors.joining("\n"));
     }
 }
