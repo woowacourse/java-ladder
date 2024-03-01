@@ -1,5 +1,5 @@
 import domain.LadderGame;
-import domain.MatchingItems;
+import domain.Results;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.ladder.LadderFactory;
@@ -19,19 +19,19 @@ public class LadderMain {
 
         ladderGame.play();
         OutputView.printLadderMakingResult(
-                ladderGame.getPlayerNames(), ladderGame.getLadder(), ladderGame.getMatchingItems());
+                ladderGame.getPlayerNames(), ladderGame.getLadder(), ladderGame.getResults().getValues());
 
         printResultUtilSelectAll(ladderGame);
     }
 
     public static LadderGame makeLadderGame() {
         final Players players = Players.createInOrderPoisition(InputView.readNames());
-        final MatchingItems matchingItems = new MatchingItems(InputView.readMatchingItems());
+        final Results results = Results.from(InputView.readMatchingItems());
         final Height height = new Height(InputView.readHeight());
         final Width width = Width.from(players);
 
         final Ladder ladder = LadderFactory.createByStrategy(RandomBridgeGenerator.getInstance(), height, width);
-        return new LadderGame(players, matchingItems, ladder);
+        return new LadderGame(players, results, ladder);
     }
 
     public static void printResultUtilSelectAll(final LadderGame ladderGame) {

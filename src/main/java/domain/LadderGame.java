@@ -9,19 +9,19 @@ import java.util.List;
 public class LadderGame {
 
     private final Players players;
-    private final MatchingItems matchingItems;
+    private final Results results;
     private final Ladder ladder;
 
-    public LadderGame(final Players players, final MatchingItems matchingItems, final Ladder ladder) {
-        validateSameCount(players.count(), matchingItems.count());
+    public LadderGame(final Players players, final Results results, final Ladder ladder) {
+        validateSameCount(players.count(), results.count());
 
         this.players = players;
-        this.matchingItems = matchingItems;
+        this.results = results;
         this.ladder = ladder;
     }
 
-    private void validateSameCount(final int playersCount, final int matchingItemsCount) {
-        if (playersCount != matchingItemsCount) {
+    private void validateSameCount(final int playersCount, final int resultsCount) {
+        if (playersCount != resultsCount) {
             throw new IllegalArgumentException("참가자 수와 실행 결과의 수는 같아야 합니다.");
         }
     }
@@ -35,17 +35,17 @@ public class LadderGame {
 
     public GameResult matchResult(final String playerName) {
         final Position position = players.getPositionBy(playerName);
-        final String matchingItem = matchingItems.getBy(position.value());
+        final Result result = results.getBy(position.value());
 
-        return new GameResult(playerName, matchingItem);
+        return new GameResult(playerName, result.value());
     }
 
     public List<GameResult> matchResultAll() {
         final List<GameResult> allResults = new ArrayList<>();
         for (int i = 0; i < players.count(); i++) {
             final Position position = players.getPositionBy(players.getNameBy(i));
-            final String matchingItem = matchingItems.getBy(position.value());
-            final GameResult eachResult = new GameResult(players.getNameBy(i), matchingItem);
+            final Result result = results.getBy(position.value());
+            final GameResult eachResult = new GameResult(players.getNameBy(i), result.value());
 
             allResults.add(eachResult);
         }
@@ -56,8 +56,8 @@ public class LadderGame {
         return players.getNames();
     }
 
-    public MatchingItems getMatchingItems() {
-        return matchingItems;
+    public Results getResults() {
+        return results;
     }
 
     public Ladder getLadder() {

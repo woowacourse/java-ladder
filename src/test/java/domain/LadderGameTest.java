@@ -31,13 +31,13 @@ class LadderGameTest {
                 true, false, true
         ));
         final Players players = Players.createInOrderPoisition(List.of("pobi", "honux"));
-        final MatchingItems matchingItems = new MatchingItems(List.of("꽝", "3000"));
+        final Results results = new Results(List.of(new Result("꽝"), new Result("3000")));
         final Height height = new Height(5);
         final Width width = Width.from(players);
         final Ladder ladder = LadderFactory.createByStrategy(bridgeGenerator, height, width);
 
         //when & then
-        assertThatCode(() -> new LadderGame(players, matchingItems, ladder))
+        assertThatCode(() -> new LadderGame(players, results, ladder))
                 .doesNotThrowAnyException();
     }
 
@@ -53,13 +53,13 @@ class LadderGameTest {
                 true, false, true
         ));
         final Players players = Players.createInOrderPoisition(List.of("pobi", "honux"));
-        final MatchingItems matchingItems = new MatchingItems(List.of("꽝"));
+        final Results results = new Results(List.of(new Result("꽝")));
         final Height height = new Height(5);
         final Width width = Width.from(players);
         final Ladder ladder = LadderFactory.createByStrategy(bridgeGenerator, height, width);
 
         //when & then
-        assertThatThrownBy(() -> new LadderGame(players, matchingItems, ladder))
+        assertThatThrownBy(() -> new LadderGame(players, results, ladder))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -75,11 +75,13 @@ class LadderGameTest {
                 true, false, true
         ));
         final Players players = Players.createInOrderPoisition(List.of("pobi", "honux", "crong", "jk"));
-        final MatchingItems matchingItems = new MatchingItems(List.of("꽝", "5000", "꽝", "3000"));
+        final Results results = new Results(List.of(
+                new Result("꽝"), new Result("5000"), new Result("꽝"), new Result("3000"))
+        );
         final Height height = new Height(5);
         final Width width = Width.from(players);
         final Ladder ladder = LadderFactory.createByStrategy(bridgeGenerator, height, width);
-        final LadderGame ladderGame = new LadderGame(players, matchingItems, ladder);
+        final LadderGame ladderGame = new LadderGame(players, results, ladder);
 
         ladderGame.play();
         final List<Player> rawPlayers = players.getPlayers();
@@ -105,11 +107,13 @@ class LadderGameTest {
                 true, false, true
         ));
         final Players players = Players.createInOrderPoisition(List.of("pobi", "honux", "crong", "jk"));
-        final MatchingItems matchingItems = new MatchingItems(List.of("꽝", "5000", "꽝", "3000"));
+        final Results results = new Results(List.of(
+                new Result("꽝"), new Result("5000"), new Result("꽝"), new Result("3000"))
+        );
         final Height height = new Height(5);
         final Width width = Width.from(players);
         final Ladder ladder = LadderFactory.createByStrategy(bridgeGenerator, height, width);
-        final LadderGame ladderGame = new LadderGame(players, matchingItems, ladder);
+        final LadderGame ladderGame = new LadderGame(players, results, ladder);
 
         ladderGame.play();
         final GameResult pobiResult = ladderGame.matchResult("pobi");
@@ -138,11 +142,13 @@ class LadderGameTest {
                 true, false, true
         ));
         final Players players = Players.createInOrderPoisition(List.of("pobi", "honux", "crong", "jk"));
-        final MatchingItems matchingItems = new MatchingItems(List.of("꽝", "5000", "꽝", "3000"));
+        final Results results = new Results(List.of(
+                new Result("꽝"), new Result("5000"), new Result("꽝"), new Result("3000"))
+        );
         final Height height = new Height(5);
         final Width width = Width.from(players);
         final Ladder ladder = LadderFactory.createByStrategy(bridgeGenerator, height, width);
-        final LadderGame ladderGame = new LadderGame(players, matchingItems, ladder);
+        final LadderGame ladderGame = new LadderGame(players, results, ladder);
 
         ladderGame.play();
         final List<GameResult> gameResults = ladderGame.matchResultAll();
