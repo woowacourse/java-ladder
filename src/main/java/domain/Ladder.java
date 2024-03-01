@@ -13,7 +13,7 @@
 //    }
 //
 //    private void validate(final List<Line> ladder) {
-//        validateEmptiness(ladder);
+//        validateEmptiness(ladder);s
 //        validateMaxHeight(ladder);
 //        validateLadderShape(ladder);
 //    }

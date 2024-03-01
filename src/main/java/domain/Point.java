@@ -16,4 +16,12 @@ public class Point {
     }
 
 
+    public int move() {
+        if (left) {
+            return -1;
+        } else if (right) {
+            return 1;
+        }
+        return 0;
+    }
 }
