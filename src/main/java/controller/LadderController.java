@@ -1,5 +1,6 @@
 package controller;
 
+import handler.ExceptionHandler;
 import java.util.Arrays;
 import model.Ladder;
 import model.LadderGame;
@@ -17,26 +18,31 @@ public class LadderController {
 
     private final ResultView resultView;
     private final InputView inputView;
+    private final ExceptionHandler handler;
     private LadderGame ladderGame;
 
     public LadderController() {
         this.resultView = new ResultView();
         this.inputView = new InputView();
+        handler = new ExceptionHandler();
     }
 
     public void proceedGame() {
         launchGame();
         while (true) {
-            insertAndProceedCommand(ladderGame.getPeople());
+            handler.handleWithRetry(() -> insertAndProceedCommand(ladderGame.getPeople()));
         }
     }
 
     private void launchGame() {
-        People people = new People(inputView.askParticipants());
+        People people = handler.handleWithRetry(() -> new People(inputView.askParticipants()));
+        Ladder ladder = handler.handleWithRetry(() ->
+                new Ladder(new ThresholdCheckerImpl(),
+                inputView.askLadderHeight(),
+                people.getParticipantsSize()));
+
         String prizesText = inputView.askPrizes();
-        Ladder ladder = new Ladder(new ThresholdCheckerImpl(), inputView.askLadderHeight(),
-                people.getParticipantsSize());
-        ladderGame = new LadderGame(people, ladder, prizesText);
+        ladderGame = handler.handleWithRetry(() -> new LadderGame(people, ladder, prizesText));
         resultView.printLadderResult(people, ladder);
         resultView.printPrizes(Arrays.stream(prizesText.split(DELIMITER)).toList());
     }
@@ -68,6 +74,7 @@ public class LadderController {
     private void terminateGame() {
         System.exit(0);
     }
+
     private boolean isAll(String command) {
         return command.equals(ALL_COMMAND);
     }
