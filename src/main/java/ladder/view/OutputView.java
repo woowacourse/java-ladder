@@ -32,6 +32,7 @@ public class OutputView {
         printItemNames(ladderItems.getPeopleNames());
         printLadder(ladder);
         printItemNames(ladderItems.getWinningItemNames());
+        System.out.println();
     }
 
     private void printResultTitle() {
@@ -63,5 +64,6 @@ public class OutputView {
     public void printResultOfPerson(WinningItem winningItem) {
         System.out.println(EXECUTION_RESULT);
         System.out.println(winningItem.getName());
+        System.out.println();
     }
 }

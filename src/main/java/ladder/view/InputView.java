@@ -60,7 +60,9 @@ public class InputView {
 
     public String readPersonNameForResult() {
         System.out.println(PERSON_NAME_INPUT_MESSAGE);
+        String personName = scanner.nextLine().strip();
 
-        return scanner.nextLine().strip();
+        System.out.println();
+        return personName;
     }
 }
