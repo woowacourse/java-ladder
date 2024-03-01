@@ -1,7 +1,18 @@
 package ladder.domain;
 
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.toMap;
+
+import java.util.Map;
+import java.util.stream.IntStream;
+
 public record Location(int value) {
     private static final int MIN_LOCATION = 0;
+    private static final int MIN_CACHE = 0;
+    private static final int MAX_CACHE = 20;
+    private static final Map<Integer, Location> CACHE = IntStream.range(MIN_CACHE, MAX_CACHE)
+            .boxed()
+            .collect(toMap(identity(), Location::new));
 
     public Location {
         if (value < MIN_LOCATION) {
@@ -14,6 +25,10 @@ public record Location(int value) {
     }
 
     public Location move(Direction direction) {
-        return new Location(value + direction.getMovement());
+        int newValue = value + direction.getMovement();
+        if (MIN_CACHE <= newValue && newValue <= MAX_CACHE) {
+            return CACHE.get(newValue);
+        }
+        return new Location(newValue);
     }
 }
