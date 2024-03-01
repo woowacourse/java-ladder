@@ -30,5 +30,12 @@ class PersonTest {
         Assertions.assertThatThrownBy(() -> new Person(" "))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("이름에 all은 허용하지 않는다")
+    void doesNotAllowNamedAll() {
+        Assertions.assertThatThrownBy(() -> new Person("all"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
 
