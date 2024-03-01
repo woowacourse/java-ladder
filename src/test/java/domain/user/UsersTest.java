@@ -1,4 +1,4 @@
-package domain;
+package domain.user;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class UsersTest {
 
@@ -26,9 +27,10 @@ class UsersTest {
     void createOnlyUsers() {
         //given
         String userNames = "pobi";
+        List<String> names = List.of(userNames);
         //when
         //then
-        assertThatThrownBy(() -> new Users(List.of(userNames.split(","))))
+        assertThatThrownBy(() -> new Users(names))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
