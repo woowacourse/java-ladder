@@ -2,7 +2,7 @@ package view;
 
 import domain.model.*;
 
-import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 import static domain.model.Direction.*;
@@ -13,8 +13,9 @@ public class ResultView {
     private static final String VERTICAL_LINE = "|";
     private static final String HORIZONTAL_LINE = "-----";
     private static final String INTERVAL = "     ";
+    private static final String REQUEST_TOTAL = "all";
 
-    public void printResult(People people, Ladder ladder,Consequences consequences) {
+    public void printLadderGame(People people, Ladder ladder, Consequences consequences) {
         System.out.println("\n사다리 결과\n");
         printNames(people);
         printLadder(people.getNumberOfParticipants(), ladder);
@@ -55,17 +56,30 @@ public class ResultView {
         return INTERVAL;
     }
 
-    private void printConsequences(Consequences consequences){
+    private void printConsequences(Consequences consequences) {
         consequences.getConsequences()
                 .stream()
                 .map(Consequence::getValue)
-                .forEach((consequence)-> System.out.print(fillInterval(consequence)));
+                .forEach((consequence) -> System.out.print(fillInterval(consequence)));
+        System.out.println();
     }
 
     private String fillInterval(String name) {
         StringBuilder filledName = new StringBuilder(name);
         return filledName.insert(START_POSITION, " ".repeat(MAX_INTERVAL - name.length()))
                 .toString();
+    }
+
+    public void printResult(Result result, Person chosen) {
+        System.out.println("\n실행 결과");
+        System.out.println(chosen.getName() + " : " + result.showConsequence(chosen));
+    }
+
+    public void printAll(Result result) {
+        System.out.println("\n실행 결과");
+        Map<Person, Consequence> resultForAll = result.giveResult();
+        resultForAll.forEach((person, consequence) ->
+                System.out.println(person.getName() + " : " + consequence.getValue()));
     }
 
 }
