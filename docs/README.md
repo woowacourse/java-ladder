@@ -28,6 +28,7 @@
 8. Line
     - Bridge를 가지는 일급 컬렉션.
     - 이전 Bridge를 BridgeGenerator에게 넘겨 다음 Bridge를 생성한다.
+    - 플레이어의 인덱스와 Bridge를 계산하여 위치를 반환한다.
 
 9. Ladder
     - Line들을 가지는 일급 컬렉션.

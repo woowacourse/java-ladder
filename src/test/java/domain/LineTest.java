@@ -44,4 +44,21 @@ public class LineTest {
                 () -> assertThat(bridge3).isEqualTo(Bridge.EXIST)
         );
     }
+
+    @DisplayName("플레이어의 인덱스와 Bridge를 계산하여 위치를 반환한다")
+    @Test
+    public void calculatePosition() {
+        int playersCount = 4;
+        Line line = new Line(playersCount, new FixedBridgeGenerator());
+
+        /*
+         0     1     2     3
+         |-----|     |-----|
+         1     0     3     2
+         */
+        assertThat(line.calculatePosition(0)).isEqualTo(1);
+        assertThat(line.calculatePosition(1)).isEqualTo(0);
+        assertThat(line.calculatePosition(2)).isEqualTo(3);
+        assertThat(line.calculatePosition(3)).isEqualTo(2);
+    }
 }
