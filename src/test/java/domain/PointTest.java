@@ -15,8 +15,8 @@ class PointTest {
     void next() {
         // |-----|     |-----|     |
         //Todo 생성시에 올바를 Point 들인지 확인할 수 있어야 함
-        List<Point> points = List.of(new Point(RIGHT), new Point(LEFT), new Point(RIGHT), new Point(LEFT),
-                new Point(STRAIGHT));
+        List<Point> points = List.of(new Point(RIGHT), new Point(LEFT, 1), new Point(RIGHT, 2), new Point(LEFT, 3),
+                new Point(STRAIGHT, 4));
         Assertions.assertThat(points.get(0).next()).isEqualTo(points.get(1));
         Assertions.assertThat(points.get(1).next()).isEqualTo(points.get(0));
         Assertions.assertThat(points.get(2).next()).isEqualTo(points.get(3));
