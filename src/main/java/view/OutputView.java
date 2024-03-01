@@ -4,7 +4,6 @@ package view;
 import domain.Bridge;
 import domain.Ladder;
 import domain.Line;
-import domain.Prizes;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +14,7 @@ public class OutputView {
     private static final String SPACE = " ";
     private static final String NAME_FORMAT = "%6s";
     private static final String RESULT_FORMAT = "%-6s";
+    private static final String ALL_RESULT_DELIMITER = " : ";
     private static final int OFFSET_COUNT = 5;
 
     public void printLadderGame(Ladder ladder, List<String> names, List<String> results) {
@@ -56,9 +56,8 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printResult(Map<String, Integer> calculatedResults, Prizes prizes) {
-        calculatedResults.forEach(
-                (key, value) -> System.out.println(String.format("%s : %s", key, prizes.getPrizeNameOf(value))));
+    public void printResult(Map<String, String> allResult) {
+        allResult.forEach((key, value) -> System.out.println(String.format(key + ALL_RESULT_DELIMITER + value)));
     }
 
     public void printResult(String prizeName) {
