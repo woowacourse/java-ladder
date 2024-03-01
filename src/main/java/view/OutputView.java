@@ -12,7 +12,7 @@ import java.util.StringJoiner;
 
 public class OutputView {
 
-    private static final String NAME_DELIMITER = " ";
+    private static final String VALUE_DELIMITER = " ";
     private static final String FIRST_COLUMN = "    |";
     private static final String COLUMN = "|";
     private static final String RESULT_SEPARATOR = " : ";
@@ -31,12 +31,12 @@ public class OutputView {
         System.out.println(System.lineSeparator() + "실행결과");
     }
 
-    private static void printWithFormat(List<String> names) {
-        StringJoiner nameJoiner = new StringJoiner(NAME_DELIMITER);
-        for (final String name : names) {
-            nameJoiner.add(String.format("%5s", name));
+    private static void printWithFormat(List<String> values) {
+        StringJoiner valueJoiner = new StringJoiner(VALUE_DELIMITER);
+        for (final String value : values) {
+            valueJoiner.add(String.format("%5s", value));
         }
-        System.out.println(System.lineSeparator() + nameJoiner);
+        System.out.println(System.lineSeparator() + valueJoiner);
     }
 
     private static void printLadder(Ladder ladder) {

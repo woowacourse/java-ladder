@@ -17,9 +17,9 @@ public class InputView {
     }
 
     public static List<String> readResults() {
-        System.out.println("\n실행 결과를 입력하세요. (결과 쉼표(,)로 구분하세요)");
-        final String rawNames = scanner.nextLine().trim();
-        return List.of(rawNames.split(","));
+        System.out.println(System.lineSeparator() + "실행 결과를 입력하세요. (결과 쉼표(,)로 구분하세요)");
+        final String rawResults = scanner.nextLine().trim();
+        return List.of(rawResults.split(","));
     }
 
     public static int readHeight() {
