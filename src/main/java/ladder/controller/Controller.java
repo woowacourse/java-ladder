@@ -2,13 +2,12 @@ package ladder.controller;
 
 import static ladder.domain.Player.ALL;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import ladder.domain.DefaultLadderDirectionSelector;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
-import ladder.domain.LadderPosition;
+import ladder.domain.LadderGame;
 import ladder.domain.LadderResult;
 import ladder.domain.LadderResults;
 import ladder.domain.Player;
@@ -28,31 +27,19 @@ public class Controller {
 
     public void run() {
         Players players = inputView.inputNames();
-        LadderResults results = inputView.inputLadderResults(players);
+        LadderResults ladderResults = inputView.inputLadderResults(players);
         Height height = inputView.inputHeight();
         Ladder ladder = Ladder.of(players, height, new DefaultLadderDirectionSelector());
-        resultView.printLadder(players, ladder, results);
+        LadderGame ladderGame = new LadderGame(players, ladderResults, ladder);
+        resultView.printLadder(players, ladder, ladderResults);
+        Map<Player, LadderResult> climbResults = ladderGame.play();
         while (true) {
             Player player = inputView.inputPlayerFrom(players);
-            if (ALL.equals(player.name())) {
-                Map<Player, LadderResult> result = climbAll(players, results, ladder);
-                resultView.printAllResult(result);
+            if (player.equals(ALL)) {
+                resultView.printAllResult(climbResults);
                 break;
             }
-            LadderResult result = climb(players, player, results, ladder);
-            resultView.printResult(result);
+            resultView.printResult(climbResults.get(player));
         }
-    }
-
-    public Map<Player, LadderResult> climbAll(Players players, LadderResults results, Ladder ladder) {
-        Map<Player, LadderResult> allResult = new LinkedHashMap<>();
-        players.players().forEach(player -> allResult.put(player, climb(players, player, results, ladder)));
-        return allResult;
-    }
-
-    private LadderResult climb(Players players, Player player, LadderResults results, Ladder ladder) {
-        LadderPosition startPosition = new LadderPosition(0, players.orderOf(player));
-        LadderPosition endPosition = ladder.climbFrom(startPosition);
-        return results.get(endPosition.column());
     }
 }
