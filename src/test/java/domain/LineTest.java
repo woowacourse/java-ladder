@@ -12,8 +12,8 @@ class LineTest {
     @DisplayName("가로 라인은 겹치지 않아야 한다.")
     void isLineCannotNextToLine() {
         int personCount = 5;
-        Line line = new Line(personCount, new RandomBooleanGenerator());
-        List<Boolean> points = line.getPoints();
+        Line line = new Line(personCount, new RandomPointGenerator());
+        List<Boolean> points = line.getMovableLinePoints();
         int isInvalidLine = Collections.indexOfSubList(points, List.of(true, true));
 
         assertEquals(-1, isInvalidLine);

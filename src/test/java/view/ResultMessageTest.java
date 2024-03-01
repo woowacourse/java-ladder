@@ -2,9 +2,9 @@ package view;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import domain.BooleanGenerator;
 import domain.Line;
-import domain.Names;
+import domain.Point;
+import domain.PointGenerator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,8 +14,9 @@ class ResultMessageTest {
     @DisplayName("각 라인의 출력 메시지를 반환한다.")
     void generateLineResult() {
         Line line = new Line(3, new FixedGenerator(true));
+        List<Boolean> movableLinePoints = line.getMovableLinePoints();
         String expected = "-----|     |\n";
-        String actual = ResultMessage.of(line);
+        String actual = ResultMessage.of(movableLinePoints);
 
         assertEquals(expected, actual);
     }
@@ -24,13 +25,12 @@ class ResultMessageTest {
     @DisplayName("첫번째 이름 길이만큼 라인 앞 공백을 추가한다.")
     void addPaddingAsFirstNameLength() {
         List<String> rawNames = List.of("pobi", "honux");
-        Names names = new Names(rawNames);
-        String paddedLine = ResultMessage.ladderPadding(names);
+        String paddedLine = ResultMessage.ladderPadding(rawNames);
 
         assertEquals("    |", paddedLine);
     }
 
-    static class FixedGenerator implements BooleanGenerator {
+    static class FixedGenerator implements PointGenerator {
         private final Boolean value;
 
         public FixedGenerator(Boolean value) {
@@ -38,9 +38,11 @@ class ResultMessageTest {
         }
 
         @Override
-        public Boolean generate() {
-            return value;
+        public Point generate() {
+            if (value) {
+                return Point.MOVABLE;
+            }
+            return Point.UNMOVABLE;
         }
-
     }
 }

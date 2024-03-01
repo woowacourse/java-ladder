@@ -1,7 +1,6 @@
 package view;
 
-import domain.Line;
-import domain.Names;
+import java.util.List;
 
 public enum ResultMessage {
     MOVABLE_LINE("-----|"),
@@ -15,23 +14,23 @@ public enum ResultMessage {
         this.message = message;
     }
 
-    public static String of(Line line) {
+    public static String of(final List<Boolean> points) {
         StringBuilder result = new StringBuilder();
-        for (Boolean point : line.getPoints()) {
+        for (boolean point : points) {
             result.append(currentPoint(point));
         }
         result.append("\n");
         return result.toString();
     }
 
-    private static String currentPoint(final boolean point) {
-        if (point) {
+    private static String currentPoint(final boolean isMovable) {
+        if (isMovable) {
             return ResultMessage.MOVABLE_LINE.message;
         }
         return ResultMessage.UNMOVABLE_LINE.message;
     }
 
-    public static String ladderPadding(final Names names) {
-        return " ".repeat(names.nameOf(FIRST_NAME_INDEX).length()) + "|";
+    public static String ladderPadding(final List<String> names) {
+        return " ".repeat(names.get(FIRST_NAME_INDEX).length()) + "|";
     }
 }

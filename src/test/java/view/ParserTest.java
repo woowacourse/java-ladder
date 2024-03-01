@@ -12,7 +12,7 @@ class ParserTest {
     @DisplayName("사람 이름은 쉼표(,)를 기준으로 구분한다.")
     void nameSplitByComma() {
         String input = "pobi,crong,honux";
-        List<String> names = Parser.splitName(input);
+        List<String> names = Parser.splitInputValue(input);
 
         assertEquals(List.of("pobi", "crong", "honux"), names);
     }
@@ -30,6 +30,6 @@ class ParserTest {
     void isNotEndWithComma() {
         String input = "pobi,gugu,";
 
-        assertThrows(IllegalArgumentException.class, () -> Parser.splitName(input));
+        assertThrows(IllegalArgumentException.class, () -> Parser.splitInputValue(input));
     }
 }
