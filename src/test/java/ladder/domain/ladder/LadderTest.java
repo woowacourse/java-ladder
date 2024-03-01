@@ -13,16 +13,16 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class LadderTest {
 
+    /*  0     1     2
+     *  |-----|     |
+     *  |-----|     |
+     *  |-----|     |
+     *  0     1     2
+     */
     @DisplayName("플레이어의 위치에와 사다리에 따라 최종 플레이어의 결과 위치를 찾을 수 있다")
     @ParameterizedTest(name = "초기 위치 : {0}, 최종 위치 : {1}")
     @CsvSource({"0, 1", "1, 0", "2, 2"})
     void progressGameTest(int playerPosition, int expected) {
-        /* 0     1     2
-        *  |-----|     |
-        *  |-----|     |
-        *  |-----|     |
-        *  0     1     2
-        */
         Height height = new Height(3);
         StickListGenerator stickListGenerator = countOfPlayers -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE);
         Ladder ladder = Ladder.of(height, 3, stickListGenerator);

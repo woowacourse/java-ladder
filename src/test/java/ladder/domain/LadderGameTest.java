@@ -73,17 +73,16 @@ class LadderGameTest {
                 .doesNotThrowAnyException();
     }
 
+    /*
+     *   pobi crong    jk
+     *      |-----|     |
+     *      |-----|     |
+     *      |-----|     |
+     *   5000     꽝 3000
+     * */
     @DisplayName("사다리 게임의 결과를 반환할 수 있다")
     @Test
     void progressTest() {
-        /*
-        *   pobi crong    jk
-        *      |-----|     |
-        *      |-----|     |
-        *      |-----|     |
-        *   5000     꽝 3000
-        * */
-
         Ladder ladder = Ladder.of(new Height(3), 3, size -> List.of(Stick.EXISTENCE, Stick.NON_EXISTENCE));
         Players players = Players.from(List.of("pobi", "crong", "jk"));
         Products products = Products.from(List.of("5000", "꽝", "3000"));
