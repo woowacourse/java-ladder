@@ -32,13 +32,13 @@ public class Players {
         return players.size();
     }
 
+    public int getPositionOf(String name) {
+        return getNames().indexOf(name);
+    }
+
     public List<String> getNames() {
         return players.stream()
                 .map(Player::getName)
                 .collect(Collectors.toList());
-    }
-
-    public int getPositionOf(String name) {
-        return getNames().indexOf(name);
     }
 }
