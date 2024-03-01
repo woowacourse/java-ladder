@@ -1,7 +1,9 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.Collections;
 import java.util.List;
+
+import ladder.domain.ladder.direction.LadderDirection;
 
 public class Ladder {
 

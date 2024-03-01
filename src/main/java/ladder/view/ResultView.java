@@ -1,18 +1,18 @@
 package ladder.view;
 
-import static ladder.domain.LadderDirection.RIGHT;
+import static ladder.domain.ladder.direction.LadderDirection.RIGHT;
 
 import java.util.Map;
 import java.util.StringJoiner;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderDirection;
-import ladder.domain.LadderGame;
-import ladder.domain.LadderResult;
-import ladder.domain.LadderResults;
-import ladder.domain.LadderRow;
-import ladder.domain.Player;
-import ladder.domain.Players;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderGame;
+import ladder.domain.ladder.LadderResult;
+import ladder.domain.ladder.LadderResults;
+import ladder.domain.ladder.LadderRow;
+import ladder.domain.ladder.direction.LadderDirection;
+import ladder.domain.player.Player;
+import ladder.domain.player.Players;
 
 public class ResultView {
 

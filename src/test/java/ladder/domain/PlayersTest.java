@@ -8,6 +8,9 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import ladder.domain.player.Player;
+import ladder.domain.player.Players;
+
 class PlayersTest {
 
     @DisplayName("참여자가 2명 미만이면 예외를 발생한다.")

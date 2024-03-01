@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.attribute;
 
 import java.util.List;
 import java.util.function.IntConsumer;

@@ -2,14 +2,19 @@ package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import static ladder.domain.LadderDirection.LEFT;
-import static ladder.domain.LadderDirection.NONE;
-import static ladder.domain.LadderDirection.RIGHT;
+import static ladder.domain.ladder.direction.LadderDirection.LEFT;
+import static ladder.domain.ladder.direction.LadderDirection.NONE;
+import static ladder.domain.ladder.direction.LadderDirection.RIGHT;
 
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import ladder.domain.attribute.Width;
+import ladder.domain.ladder.LadderRow;
+import ladder.domain.ladder.LadderRowBuilder;
+import ladder.domain.ladder.direction.LadderDirection;
 
 class LadderRowTest {
 

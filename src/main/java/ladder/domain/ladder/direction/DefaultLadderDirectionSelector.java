@@ -1,7 +1,7 @@
-package ladder.domain;
+package ladder.domain.ladder.direction;
 
-import static ladder.domain.LadderDirection.NONE;
-import static ladder.domain.LadderDirection.RIGHT;
+import static ladder.domain.ladder.direction.LadderDirection.NONE;
+import static ladder.domain.ladder.direction.LadderDirection.RIGHT;
 
 import java.util.Random;
 

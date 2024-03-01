@@ -1,20 +1,20 @@
 package ladder.view;
 
-import static ladder.domain.Player.ALL;
+import static ladder.domain.player.Player.ALL;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import ladder.domain.Height;
-import ladder.domain.LadderDirection;
-import ladder.domain.LadderResult;
-import ladder.domain.LadderResults;
-import ladder.domain.LadderRow;
-import ladder.domain.Player;
-import ladder.domain.Players;
-import ladder.domain.Width;
+import ladder.domain.attribute.Height;
+import ladder.domain.attribute.Width;
+import ladder.domain.ladder.LadderResult;
+import ladder.domain.ladder.LadderResults;
+import ladder.domain.ladder.LadderRow;
+import ladder.domain.ladder.direction.LadderDirection;
+import ladder.domain.player.Player;
+import ladder.domain.player.Players;
 import ladder.exception.ExceptionHandler;
 
 public class InputView {

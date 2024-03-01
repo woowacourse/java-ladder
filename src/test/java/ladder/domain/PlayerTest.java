@@ -6,6 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import ladder.domain.player.Player;
+
 class PlayerTest {
 
     @DisplayName("이름이 1~5글자 범위를 벗어나면 예외를 발생한다.")

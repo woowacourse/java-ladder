@@ -6,6 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import ladder.domain.ladder.LadderResult;
+
 class LadderResultTest {
 
     @DisplayName("입력한 결과가 1-5자 범위를 벗어날 경우 예외를 발생한다.")

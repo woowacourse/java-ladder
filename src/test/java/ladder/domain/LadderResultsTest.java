@@ -8,6 +8,10 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import ladder.domain.attribute.Width;
+import ladder.domain.ladder.LadderResult;
+import ladder.domain.ladder.LadderResults;
+
 class LadderResultsTest {
 
     static List<LadderResult> results() {

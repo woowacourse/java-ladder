@@ -8,12 +8,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import ladder.domain.attribute.Height;
+
 class HeightTest {
 
     @DisplayName("높이 생성")
     @Test
     void heightConstructTest() {
-        assertThatCode(() -> new Height(1))
+        assertThatCode(() -> new Height<>(1))
                 .doesNotThrowAnyException();
     }
 
@@ -21,7 +23,7 @@ class HeightTest {
     @ValueSource(ints = {0, -1})
     @ParameterizedTest
     void invalidHeightTest(int value) {
-        assertThatThrownBy(() -> new Height(value))
+        assertThatThrownBy(() -> new Height<>(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

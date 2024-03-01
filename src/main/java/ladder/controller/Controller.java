@@ -1,21 +1,21 @@
 package ladder.controller;
 
-import static ladder.domain.Player.ALL;
+import static ladder.domain.player.Player.ALL;
 
 import java.util.Map;
 
-import ladder.domain.DefaultLadderDirectionSelector;
-import ladder.domain.Height;
-import ladder.domain.Ladder;
-import ladder.domain.LadderBuilder;
-import ladder.domain.LadderDirection;
-import ladder.domain.LadderGame;
-import ladder.domain.LadderResult;
-import ladder.domain.LadderResults;
-import ladder.domain.LadderRow;
-import ladder.domain.Player;
-import ladder.domain.Players;
-import ladder.domain.Width;
+import ladder.domain.attribute.Height;
+import ladder.domain.attribute.Width;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderBuilder;
+import ladder.domain.ladder.LadderGame;
+import ladder.domain.ladder.LadderResult;
+import ladder.domain.ladder.LadderResults;
+import ladder.domain.ladder.LadderRow;
+import ladder.domain.ladder.direction.DefaultLadderDirectionSelector;
+import ladder.domain.ladder.direction.LadderDirection;
+import ladder.domain.player.Player;
+import ladder.domain.player.Players;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 

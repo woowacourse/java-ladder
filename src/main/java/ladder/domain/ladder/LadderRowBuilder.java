@@ -1,11 +1,15 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
-import static ladder.domain.LadderDirection.LEFT;
-import static ladder.domain.LadderDirection.NONE;
-import static ladder.domain.LadderDirection.RIGHT;
+import static ladder.domain.ladder.direction.LadderDirection.LEFT;
+import static ladder.domain.ladder.direction.LadderDirection.NONE;
+import static ladder.domain.ladder.direction.LadderDirection.RIGHT;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import ladder.domain.attribute.Width;
+import ladder.domain.ladder.direction.LadderDirection;
+import ladder.domain.ladder.direction.LadderDirectionSelector;
 
 public class LadderRowBuilder {
 
