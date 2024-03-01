@@ -11,9 +11,11 @@ import java.util.stream.IntStream;
 public class Ladder {
 
     private final Map<Integer, Line> lines;
+    private final Result result;
 
     public Ladder(Players players, Height height, BridgeGenerator bridgeGenerator) {
         this.lines = createLines(players, height, bridgeGenerator);
+        this.result = new Result(calculate(players));
     }
 
     private Map<Integer, Line> createLines(Players players, Height height, BridgeGenerator bridgeGenerator) {
@@ -27,7 +29,7 @@ public class Ladder {
                 ));
     }
 
-    public Map<String, Integer> calculate(Players players) {
+    private Map<String, Integer> calculate(Players players) {
         return players.getNames().stream()
                 .collect(Collectors.toMap(Function.identity(), name -> calculatePlayerPosition(name, players)));
     }
@@ -42,5 +44,9 @@ public class Ladder {
 
     public Map<Integer, Line> getLines() {
         return Collections.unmodifiableMap(lines);
+    }
+
+    public Result getResult() {
+        return result;
     }
 }
