@@ -2,7 +2,6 @@ package ladder.view;
 
 import ladder.domain.*;
 
-import java.util.Map;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
@@ -54,15 +53,19 @@ public class OutputView {
         System.out.println("실행결과");
     }
 
-    public void printPlayResult(Map<Name, Result> playResult) {
-        for (Name name : playResult.keySet()) {
-            StringJoiner stringJoiner = new StringJoiner(" : ");
-            if (playResult.size() > 1) {
-                stringJoiner.add(name.toString());
-            }
-            String result = playResult.get(name).toString();
-            String formattedResult = stringJoiner.add(result).toString();
+    public void printPlayResult(PlayResults playResults) {
+        for (Name name : playResults.getNames()) {
+            String formattedResult = getFormattedResult(playResults, name);
             System.out.println(formattedResult);
         }
+    }
+
+    private String getFormattedResult(PlayResults playResults, Name name) {
+        StringJoiner stringJoiner = new StringJoiner(" : ");
+        if (playResults.size() > 1) {
+            stringJoiner.add(name.toString());
+        }
+        Result result = playResults.find(name);
+        return stringJoiner.add(result.toString()).toString();
     }
 }
