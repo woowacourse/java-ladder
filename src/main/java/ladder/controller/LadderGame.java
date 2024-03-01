@@ -1,33 +1,37 @@
 package ladder.controller;
 
+import ladder.domain.generator.LadderStepGenerator;
+import ladder.domain.generator.RandomLadderStepGenerator;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.result.GameResults;
+import ladder.domain.result.LadderGamePrize;
 import ladder.domain.participant.Participants;
 import ladder.exception.ExceptionHandler;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
 import java.util.List;
+import java.util.Objects;
 
 public class LadderGame {
-    private final InputView inputView;
-    private final OutputView outputView;
-    private final ExceptionHandler exceptionHandler;
+    private static final String FINISH_COMMAND = "all";
 
-    public LadderGame(
-            final InputView inputView,
-            final OutputView outputView,
-            final ExceptionHandler exceptionHandler) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-        this.exceptionHandler = exceptionHandler;
-    }
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final ExceptionHandler exceptionHandler = new ExceptionHandler(outputView);
 
     public void run() {
         final Participants participants = exceptionHandler.retryOnException(this::createParticipants);
+        final LadderGamePrize ladderGamePrize = exceptionHandler.retryOnException(this::readLadderGameResult);
         final int width = participants.getNecessaryLadderWidth();
         final Ladder ladder = createLadder(width);
-        printLadder(participants, ladder);
+        participants.playAll(ladder);
+        final GameResults gameResults = ladderGamePrize.calculdateGameResults(participants);
+
+        printLadder(participants, ladder, ladderGamePrize);
+        printGameResult(gameResults);
+
         inputView.closeResource();
     }
 
@@ -38,7 +42,13 @@ public class LadderGame {
 
     private Ladder createLadder(final int stepWidth) {
         final Height height = exceptionHandler.retryOnException(this::readLadderHeight);
-        return new Ladder(height, stepWidth);
+        final LadderStepGenerator ladderStepGenerator = new RandomLadderStepGenerator();
+        return new Ladder(height, stepWidth, ladderStepGenerator);
+    }
+
+    private LadderGamePrize readLadderGameResult() {
+        final List<String> ladderGameResult = inputView.readLadderGameResult();
+        return new LadderGamePrize(ladderGameResult);
     }
 
     private Height readLadderHeight() {
@@ -46,9 +56,31 @@ public class LadderGame {
         return new Height(ladderHeight);
     }
 
-    private void printLadder(final Participants participants, final Ladder ladder) {
-        outputView.printResultPrefix();
+    private void printLadder(
+            final Participants participants,
+            final Ladder ladder,
+            final LadderGamePrize ladderGamePrize) {
+        outputView.printLadderPrefix();
         outputView.printParticipants(participants);
         outputView.printLadder(ladder);
+        outputView.printLadderGamePrize(ladderGamePrize);
+    }
+
+    private void printGameResult(final GameResults gameResults) {
+        boolean retry = true;
+        while (retry) {
+            retry = exceptionHandler.retryOnException(() -> printGameResultByCommand(gameResults));
+        }
+    }
+
+    private boolean printGameResultByCommand(final GameResults gameResults) {
+        final String gameResultTarget = inputView.readGameResultTarget();
+        if (Objects.equals(gameResultTarget, FINISH_COMMAND)) {
+            outputView.printAllGameResults(gameResults);
+            return false;
+        }
+        final String personalGameResult = gameResults.findByName(gameResultTarget);
+        outputView.printPersonalGameResult(personalGameResult);
+        return true;
     }
 }

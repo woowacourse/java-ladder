@@ -1,42 +1,61 @@
 package ladder.domain.participant;
 
-import ladder.exception.participant.DuplicatedNamesException;
-import ladder.exception.participant.InvalidParticipantsCountException;
+import ladder.domain.ladder.Ladder;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Participants {
     private static final int MIN_PARTICIPANTS_COUNT = 2;
 
-    private final List<Participant> participants;
+    private final Map<Participant, Integer> participantsWithPosition;
 
     public Participants(final List<String> names) {
         validateParticipantsCount(names);
         validateDuplicatedNames(names);
-        this.participants = names.stream()
-                .map(Participant::new)
-                .toList();
+        this.participantsWithPosition = createParticipantsWitPosition(names);
     }
 
     private void validateParticipantsCount(final List<String> names) {
         if (names.size() < MIN_PARTICIPANTS_COUNT) {
-            throw new InvalidParticipantsCountException();
+            throw new IllegalArgumentException("참가자 수는 2명 이상입니다.");
         }
     }
 
     private void validateDuplicatedNames(final List<String> names) {
-        final Set<String> uniqueNames = Set.copyOf(names);
+        final Set<String> uniqueNames = new HashSet<>(names);
         if (uniqueNames.size() < names.size()) {
-            throw new DuplicatedNamesException();
+            throw new IllegalArgumentException("중복된 이름이 입력되었습니다.");
         }
     }
 
-    public int getNecessaryLadderWidth() {
-        return participants.size() - 1;
+    private Map<Participant, Integer> createParticipantsWitPosition(final List<String> names) {
+        Map<Participant, Integer> createdParticipantsWithPosition = new LinkedHashMap<>();
+        for (int order = 0; order < names.size(); order++) {
+            createdParticipantsWithPosition.put(new Participant(names.get(order)), order);
+        }
+        return createdParticipantsWithPosition;
     }
 
-    public List<Participant> getValues() {
-        return participants;
+    public int getNecessaryLadderWidth() {
+        return participantsWithPosition.size() - 1;
+    }
+
+    public void playAll(final Ladder ladder) {
+        for (final var entry : participantsWithPosition.entrySet()) {
+            final Participant participant = entry.getKey();
+            final int finalPosition = ladder.playFrom(entry.getValue());
+            participantsWithPosition.put(participant, finalPosition);
+        }
+    }
+
+    public List<String> getParticipantsName() {
+        return participantsWithPosition.keySet()
+                .stream()
+                .map(Participant::getName)
+                .toList();
+    }
+
+    public Map<Participant, Integer> getParticipantsWithPosition() {
+        return participantsWithPosition;
     }
 }

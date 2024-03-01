@@ -1,6 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.exception.ladder.InvalidHeightRangeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -15,7 +14,7 @@ public class HeightTest {
     void checkInvalidLadderHeightTest(final int height) {
         // when & then
         assertThatThrownBy(() -> new Height(height))
-                .isInstanceOf(InvalidHeightRangeException.class);
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("사다리 높이는 1 이상의 정수입니다.");
     }
 
     @ParameterizedTest

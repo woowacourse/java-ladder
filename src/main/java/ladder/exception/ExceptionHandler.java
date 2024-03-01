@@ -2,7 +2,7 @@ package ladder.exception;
 
 import ladder.view.OutputView;
 
-import java.util.Optional;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 public class ExceptionHandler {
@@ -12,22 +12,22 @@ public class ExceptionHandler {
         this.outputView = outputView;
     }
 
-    public  <T> T retryOnException(final Supplier<T> retryOperation) {
+    public <T> T retryOnException(final Supplier<T> retryOperation) {
         boolean retry = true;
-        Optional<T> result = Optional.empty();
+        T result = null;
         while (retry) {
             result = tryOperation(retryOperation);
-            retry = result.isEmpty();
+            retry = Objects.isNull(result);
         }
-        return result.get();
+        return result;
     }
 
-    private <T> Optional<T> tryOperation(final Supplier<T> operation) {
+    private <T> T tryOperation(final Supplier<T> operation) {
         try {
-            return Optional.of(operation.get());
+            return operation.get();
         } catch (IllegalArgumentException e) {
             outputView.printException(e);
-            return Optional.empty();
+            return null;
         }
     }
 }

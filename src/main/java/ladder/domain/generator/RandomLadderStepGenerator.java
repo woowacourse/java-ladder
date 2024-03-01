@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomLadderStepGenerator {
+public class RandomLadderStepGenerator implements LadderStepGenerator {
     private static final Random random = new Random();
 
-    static public LadderStep generate(final int stepWidth) {
+    @Override
+    public LadderStep generate(final int stepWidth) {
         final List<Path> ladderPaths = new ArrayList<>();
         while (ladderPaths.size() < stepWidth) {
             final Path currentPath = generatePath();
@@ -19,7 +20,7 @@ public class RandomLadderStepGenerator {
         return new LadderStep(ladderPaths);
     }
 
-    static private Path generatePath() {
+    private Path generatePath() {
         final boolean isAvailable = random.nextBoolean();
         return Path.from(isAvailable);
     }

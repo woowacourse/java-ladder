@@ -1,12 +1,16 @@
 package ladder.domain.participant;
 
-import ladder.exception.participant.InvalidParticipantsCountException;
+import ladder.domain.generator.LadderStepGenerator;
+import ladder.domain.generator.TestLadderStepGenerator;
+import ladder.domain.ladder.Height;
+import ladder.domain.ladder.Ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,10 +37,46 @@ public class ParticipantsTest {
     void checkParticipantsCountTest(final List<String> names) {
         // given & when
         assertThatThrownBy(() -> new Participants(names))
-                .isInstanceOf(InvalidParticipantsCountException.class);
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("참가자 수는 2명 이상입니다.");
     }
 
     static Stream<List<String>> getInvalidParticipantsNames() {
         return Stream.of(List.of("mia"), List.of());
+    }
+
+    @Test
+    @DisplayName("입력된 순서대로 사다리 위치를 가진 참자들을 생성한다.")
+    void createOrderedParticipantsTest() {
+        // given
+        final List<String> names = List.of("mia", "pota", "dora", "jojo");
+
+        // when
+        final Participants participants = new Participants(names);
+
+        // then
+        final Map<Participant, Integer> participantsWitPosition = participants.getParticipantsWithPosition();
+        assertThat(participantsWitPosition.values())
+                .containsExactly(0, 1, 2, 3);
+    }
+
+    @Test
+    @DisplayName("참가자들이 사다리 게임을 실행한다.")
+    void playLadderTest() {
+        // given
+        final List<String> names = List.of("mia", "pota", "dora", "jojo");
+        final Participants participants = new Participants(names);
+
+        final int stepWidth = 3;
+        final Height height = new Height(3);
+        final LadderStepGenerator ladderStepGenerator = new TestLadderStepGenerator();
+        final Ladder ladder = new Ladder(height, stepWidth, ladderStepGenerator);
+
+        // when
+        participants.playAll(ladder);
+
+        // then
+        final Map<Participant, Integer> participantsWitPosition = participants.getParticipantsWithPosition();
+        assertThat(participantsWitPosition.values())
+                .containsExactly(1, 0, 3, 2);
     }
 }
