@@ -24,7 +24,7 @@ public class LadderGame {
         }
     }
 
-    public Map<String, String> giveResult() {
-        return result.giveResult();
+    public Result giveResult() {
+        return result;
     }
 }

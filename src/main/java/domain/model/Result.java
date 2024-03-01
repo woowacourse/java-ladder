@@ -7,19 +7,21 @@ import java.util.Map;
 public class Result {
     private final People people;
     private final Consequences consequences;
-    private final Map<String, String> result = new LinkedHashMap<>();
+    private final Map<Person, Consequence> result = new LinkedHashMap<>();
     public Result(People people, Consequences consequences) {
         this.people = people;
         this.consequences = consequences;
     }
 
     public void make(int positionOfPerson,int positionOfConsequence){
-        String name= people.getNameByOrder(positionOfPerson);
-        String consequence = consequences.getConsequenceByOrder(positionOfConsequence);
-        result.put(name, consequence);
+        Person person= people.getNameByOrder(positionOfPerson);
+        Consequence consequence = consequences.getConsequenceByOrder(positionOfConsequence);
+        result.put(person, consequence);
     }
-
-    public Map<String,String> giveResult(){
+    public String showConsequence(Person person){
+        return result.get(person).getValue();
+    }
+    public Map<Person,Consequence> giveResult(){
         return Collections.unmodifiableMap(new LinkedHashMap<>(result));
     }
 }

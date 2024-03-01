@@ -19,9 +19,8 @@ public class Consequences {
         }
     }
 
-    public String getConsequenceByOrder(int order) {
-        Consequence consequence=consequences.get(order);
-        return consequence.getValue();
+    public Consequence getConsequenceByOrder(int order) {
+        return consequences.get(order);
     }
 
     public List<Consequence> getConsequences() {
