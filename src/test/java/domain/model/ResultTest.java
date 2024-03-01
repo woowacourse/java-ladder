@@ -30,7 +30,6 @@ public class ResultTest {
         result.make(2,1);
 
         //then
-        Map<String,String> completeResult=result.giveResult();
-        assertThat(completeResult.get(person)).isEqualTo(consequence);
+        assertThat(result.showConsequence(new Person(person))).isEqualTo(consequence);
     }
 }

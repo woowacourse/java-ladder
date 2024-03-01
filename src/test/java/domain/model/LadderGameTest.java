@@ -18,31 +18,31 @@ public class LadderGameTest {
         //given
         // |--|   |
         // |--|   |
-        Ladder ladder = new Ladder("2", 3,()->true);
-        People people=new People(List.of("a","b","c"));
-        Consequences consequences =new Consequences(List.of("꽝","100","200"),3);
+        Ladder ladder = new Ladder("2", 3, () -> true);
+        People people = new People(List.of("a", "b", "c"));
+        Consequences consequences = new Consequences(List.of("꽝", "100", "200"), 3);
         //when
-        LadderGame ladderGame=new LadderGame(ladder,people, consequences);
+        LadderGame ladderGame = new LadderGame(ladder, people, consequences);
         //then
-        assertThatCode(()->new LadderGame(ladder,people, consequences)).doesNotThrowAnyException();
+        assertThatCode(() -> new LadderGame(ladder, people, consequences)).doesNotThrowAnyException();
     }
-    @ParameterizedTest
-    @CsvSource({
-            "a,꽝",
-            "b,100",
-            "c,200"
-    })
+
+    @Test
     @DisplayName("게임을 진행하고 결과를 얻는다")
-    void playGameTest(String person,String consequence) {
+    void playGameTest() {
         //given
-        Ladder ladder = new Ladder("2", 3,()->true);
-        People people=new People(List.of("a","b","c"));
-        Consequences consequences =new Consequences(List.of("꽝","100","200"),3);
-        LadderGame ladderGame=new LadderGame(ladder,people, consequences);
+        Ladder ladder = new Ladder("2", 3, () -> true);
+        People people = new People(List.of("a", "b", "c"));
+        Consequences consequences = new Consequences(List.of("꽝", "100", "200"), 3);
+        LadderGame ladderGame = new LadderGame(ladder, people, consequences);
         //when
         ladderGame.play();
-        Map<String,String> result=ladderGame.giveResult();
+        Result result = ladderGame.giveResult();
         //then
-        assertThat(result.get(person)).isEqualTo(consequence);
+        for (int i = 0; i < 3; i++) {
+            Person person = people.getNameByOrder(i);
+            String consequence=consequences.getConsequenceByOrder(i).getValue();
+            assertThat(result.showConsequence(person)).isEqualTo(consequence);
+        }
     }
 }

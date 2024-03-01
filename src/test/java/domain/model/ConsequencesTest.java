@@ -29,8 +29,8 @@ class ConsequencesTest {
         //given
         Consequences consequences=new Consequences(List.of("100","꽝","200"),3);
         //when
-        String actual=consequences.getConsequenceByOrder(order);
+        Consequence actual=consequences.getConsequenceByOrder(order);
         //then
-        assertThat(expected).isEqualTo(actual);
+        assertThat(expected).isEqualTo(actual.getValue());
     }
 }

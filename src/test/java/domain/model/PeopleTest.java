@@ -36,7 +36,7 @@ public class PeopleTest {
         //given
         People people = new People(List.of("a", "b"));
         //when
-        String actual=people.getNameByOrder(order);
+        String actual=people.getNameByOrder(order).getName();
         //then
         assertThat(expected).isEqualTo(actual);
 
