@@ -20,4 +20,11 @@ public class Ladder {
     public Map<Integer, Line> getLines() {
         return Collections.unmodifiableMap(lines);
     }
+
+    public int calculate(int playerIndex) {
+        for (Line line : lines.values()) {
+            playerIndex = line.calculatePosition(playerIndex);
+        }
+        return playerIndex;
+    }
 }
