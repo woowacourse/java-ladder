@@ -10,4 +10,14 @@ public record Height(int value) {
             );
         }
     }
+
+    public void repeat(Runnable callback) {
+        for (int i = 0; i < this.value; i++) {
+            callback.run();
+        }
+    }
+
+    public int value() {
+        return value;
+    }
 }
