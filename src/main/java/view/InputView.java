@@ -66,7 +66,7 @@ public class InputView {
         }
     }
 
-    public String readPlayerNameToCheck() {
+    public String readPlayersToCheck() {
         System.out.println();
         System.out.println("결과를 보고 싶은 사람은?");
         return scanner.nextLine();
