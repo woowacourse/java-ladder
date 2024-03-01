@@ -27,4 +27,8 @@ public class Prizes {
                 .map(Prize::getPrize)
                 .collect(Collectors.toList());
     }
+
+    public String getPrizeNameOf(int index) {
+        return prizes.get(index).getPrize();
+    }
 }

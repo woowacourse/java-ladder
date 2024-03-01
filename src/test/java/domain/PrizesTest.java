@@ -49,8 +49,19 @@ public class PrizesTest {
     @DisplayName("입력한 상품들을 반환한다")
     @Test
     public void getPrizes() {
-        Prizes prizes = new Prizes(new Players(List.of("pobi", "tommy")), List.of("꽝", "당첨"));
+        Players players = new Players(List.of("pobi", "tommy"));
+        Prizes prizes = new Prizes(players, List.of("꽝", "당첨"));
 
         assertThat(prizes.getPrizes()).isEqualTo(List.of("꽝", "당첨"));
+    }
+
+    @DisplayName("상품들중 일치하는 인덱스의 상품을 반환한다")
+    @Test
+    public void getPrizeNameOf() {
+        Players players = new Players(List.of("pobi", "tommy"));
+        Prizes prizes = new Prizes(players, List.of("꽝", "당첨"));
+
+        assertThat(prizes.getPrizeNameOf(0)).isEqualTo("꽝");
+        assertThat(prizes.getPrizeNameOf(1)).isEqualTo("당첨");
     }
 }
