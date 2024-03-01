@@ -1,7 +1,7 @@
 package domain.ladder;
 
 import domain.height.Height;
-import domain.player.Name;
+import domain.player.Player;
 import domain.player.Players;
 import domain.prize.Prize;
 import domain.prize.Prizes;
@@ -47,7 +47,7 @@ public class Ladder {
     }
 
     public LadderResult climb() {
-        Map<Name, Prize> result = new LinkedHashMap<>();
+        Map<Player, Prize> result = new LinkedHashMap<>();
         for (int start = 0; start < players.count(); start++) {
             int end = crossRow(start);
             result.put(players.get(start), prizes.get(end));

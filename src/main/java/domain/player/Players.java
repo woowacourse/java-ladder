@@ -11,22 +11,22 @@ public class Players {
     private static final String DUPLICATE_EXCEPTION_MESSAGE = "[ERROR] 중복된 이름이 존재합니다.";
     private static final String INVALID_PLAYER_COUNT_EXCEPTION_MESSAGE = "[ERROR] 참가자는 %d ~ %d명이어야 합니다.";
 
-    private final List<Name> names;
+    private final List<Player> players;
 
-    private Players(final List<Name> names) {
-        validateNumberOfPlayers(names);
-        validateDuplicateName(names);
-        this.names = names;
+    private Players(List<Player> players) {
+        validateNumberOfPlayers(players);
+        validateDuplicateName(players);
+        this.players = players;
     }
 
-    public static Players from(List<String> rawNames) {
-        return rawNames.stream()
-                .map(Name::new)
+    public static Players from(List<String> playerNames) { // todo validation 먼저
+        return playerNames.stream()
+                .map(Player::new)
                 .collect(collectingAndThen(toList(), Players::new));
     }
 
-    private void validateNumberOfPlayers(List<Name> names) {
-        if (names.size() < MINIMUM_NUMBER_OF_PLAYERS || names.size() > MAXIMUM_NUMBER_OF_PLAYERS) {
+    private void validateNumberOfPlayers(List<Player> players) {
+        if (players.size() < MINIMUM_NUMBER_OF_PLAYERS || players.size() > MAXIMUM_NUMBER_OF_PLAYERS) {
             throw new IllegalArgumentException(
                     String.format(INVALID_PLAYER_COUNT_EXCEPTION_MESSAGE, MINIMUM_NUMBER_OF_PLAYERS,
                             MAXIMUM_NUMBER_OF_PLAYERS)
@@ -34,36 +34,36 @@ public class Players {
         }
     }
 
-    private void validateDuplicateName(List<Name> names) {
-        if (getUniqueNameCount(names) != names.size()) {
+    private void validateDuplicateName(List<Player> players) {
+        if (getUniqueNameCount(players) != players.size()) {
             throw new IllegalArgumentException(DUPLICATE_EXCEPTION_MESSAGE);
         }
     }
 
-    private long getUniqueNameCount(final List<Name> names) {
-        return names.stream()
+    private long getUniqueNameCount(List<Player> players) {
+        return players.stream()
                 .distinct()
                 .count();
     }
 
     public int findMaxNameLength() {
-        return names.stream()
-                .mapToInt(Name::getLength)
+        return players.stream()
+                .mapToInt(Player::getNameLength)
                 .max()
                 .orElse(0);
     }
 
-    public List<String> getNames() {
-        return names.stream()
-                .map(Name::getValue)
+    public List<String> getPlayerNames() {
+        return players.stream()
+                .map(Player::getName)
                 .toList();
     }
 
     public int count() {
-        return names.size();
+        return players.size();
     }
 
-    public Name get(int index) {
-        return names.get(index);
+    public Player get(int index) { // todo 메서드명, index validation
+        return players.get(index);
     }
 }

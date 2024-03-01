@@ -28,7 +28,7 @@ public class OutputView {
     }
 
     private static void printPlayerNames(Players players, int maxLength) {
-        players.getNames().stream()
+        players.getPlayerNames().stream()
                 .map(name -> alignCenter(name, maxLength + EMPTY_COUNT))
                 .forEach(System.out::print);
         System.out.println();

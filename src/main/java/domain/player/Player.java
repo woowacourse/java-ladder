@@ -1,13 +1,13 @@
 package domain.player;
 
-public class Name {
+public class Player {
     private static final int MINIMUM_NAME_LENGTH = 2;
     private static final int MAXIMUM_NAME_LENGTH = 5;
     private static final String LENGTH_EXCEPTION_MESSAGE = "[ERROR] 잘못된 이름: %s - 이름의 길이는 %d ~ %d 글자여야 합니다.";
 
     private final String name;
 
-    public Name(String name) {
+    public Player(String name) {
         validateLength(name);
         this.name = name;
     }
@@ -20,11 +20,11 @@ public class Name {
         }
     }
 
-    public String getValue() {
+    public String getName() {
         return this.name;
     }
 
-    public int getLength() {
+    public int getNameLength() {
         return this.name.length();
     }
 
@@ -33,8 +33,8 @@ public class Name {
         if (this == obj) {
             return true;
         }
-        if (obj instanceof Name name) {
-            return this.name.equals(name.name);
+        if (obj instanceof Player other) {
+            return this.name.equals(other.name);
         }
         return false;
     }
