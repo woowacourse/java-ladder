@@ -36,7 +36,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("정수가 아닙니다.");
+            throw new IllegalArgumentException("높이는 정수로 입력하세요.");
         }
     }
 
