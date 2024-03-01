@@ -25,7 +25,6 @@ public class LadderController {
         this.retryHandler = retryHandler;
     }
 
-    // TODO : LadderResults가 모든 값들은
     public void start() {
         Players players = readPlayerNames();
         List<LadderResult> ladderResultsOfEntered = createLadderResults();
@@ -43,7 +42,7 @@ public class LadderController {
 
     private Players createPlayers(final List<String> playerNames) {
         List<Player> players = IntStream.range(0, playerNames.size())
-                .mapToObj(i -> new Player(new PlayerName(playerNames.get(i)), i))
+                .mapToObj(name -> new Player(new PlayerName(playerNames.get(name)), name))
                 .toList();
         return new Players(players);
     }
@@ -59,7 +58,7 @@ public class LadderController {
                 .toList();
     }
 
-    private void startClimbingLadder(ClimbingResults climbingResults) {
+    private void startClimbingLadder(final ClimbingResults climbingResults) {
         String playerName = inputView.readPlayerToSeeResult();
         while (!playerName.equals(InputView.FINISH_COMMAND)) {
             findResultByPlayerName(playerName, climbingResults);
@@ -68,7 +67,7 @@ public class LadderController {
         outputView.printAllClimbingLadderResults(climbingResults.getAllResults());
     }
 
-    private void findResultByPlayerName(String playerName, ClimbingResults climbingResults) {
+    private void findResultByPlayerName(final String playerName, final ClimbingResults climbingResults) {
         try {
             String result = climbingResults.findResultByPlayerName(playerName);
             outputView.printSingleClimbingLadderResult(result);

@@ -11,7 +11,7 @@ public class Player {
         this.position = position;
     }
 
-    public void moveTo(int direction) {
+    public void moveTo(final int direction) {
         position += direction;
     }
 

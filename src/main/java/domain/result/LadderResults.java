@@ -25,7 +25,7 @@ public class LadderResults {
         }
     }
 
-    public String getPlayerNameOfIndex(int index) {
+    public String getPlayerNameOfIndex(final int index) {
         return players.getNameOfIndex(index);
     }
 
@@ -41,7 +41,7 @@ public class LadderResults {
         return ladder;
     }
 
-    public String getLadderResultOfIndex(int index) {
+    public String getLadderResultOfIndex(final int index) {
         return results.get(index).getResult();
     }
 
@@ -49,7 +49,7 @@ public class LadderResults {
         return results.size();
     }
 
-    public Player getPlayerIndexOf(int index) {
+    public Player getPlayerIndexOf(final int index) {
         return players.getPlayerOfIndex(index);
     }
 }

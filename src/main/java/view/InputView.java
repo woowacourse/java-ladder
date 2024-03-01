@@ -56,7 +56,7 @@ public class InputView {
                 .toList();
     }
 
-    private void validateLadderResultInput(String ladderResult) {
+    private void validateLadderResultInput(final String ladderResult) {
         if (!ladderResult.contains(INPUT_DELIMITER)) {
             throw new IllegalArgumentException(InputExceptionMessage.LADDER_RESULT_INPUT_FORMAT);
         }

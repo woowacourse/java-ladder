@@ -23,7 +23,7 @@ public class Ladder {
         return new Ladder(floors);
     }
 
-    private static int calculateBridgeCount(Players players) {
+    private static int calculateBridgeCount(final Players players) {
         return players.getPlayerCount() - 1;
     }
 

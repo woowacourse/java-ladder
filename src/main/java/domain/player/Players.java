@@ -45,7 +45,7 @@ public class Players {
         return players.size();
     }
 
-    public Player getPlayerOfIndex(int index) {
+    public Player getPlayerOfIndex(final int index) {
         return players.get(index);
     }
 

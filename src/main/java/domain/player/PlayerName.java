@@ -13,7 +13,7 @@ public class PlayerName {
         this.name = name;
     }
 
-    private void validate(String name) {
+    private void validate(final String name) {
         validateIsBlank(name);
         validateNameLength(name);
     }
