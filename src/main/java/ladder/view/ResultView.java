@@ -8,7 +8,7 @@ import static ladder.view.enums.Command.PRINT_ALL;
 import static ladder.view.enums.Command.STOP;
 
 public class ResultView {
-    public static boolean retry = true;
+    private static boolean retry = true;
 
     public static void print(String name, Result result) {
         if (!Command.contains(name)) {
