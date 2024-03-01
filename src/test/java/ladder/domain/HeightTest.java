@@ -27,7 +27,7 @@ class HeightTest {
                 .hasMessage("높이는 1 이상이여야 합니다: %d".formatted(value));
     }
 
-    @DisplayName("값만큼 입력된 함수를 반복 실행한다.")
+    @DisplayName("값만큼 입력된 함수를 반복 실행하여 리스트를 생성한다.")
     @Test
     void repeatTest() {
         Height height = new Height(5);

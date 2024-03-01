@@ -2,8 +2,8 @@ package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -27,13 +27,13 @@ class WidthTest {
                 .hasMessage("너비는 2 이상이여야 합니다: %d".formatted(value));
     }
 
-    @DisplayName("자신의 값이 입력된 값보다 크면 true를 반환한다.")
+    @DisplayName("값만큼 입력된 함수를 반복 실행하여 리스트를 생성한다.")
     @Test
-    void isLargerThanTest() {
-        Width width = new Width(3);
-        assertAll(
-                () -> assertThat(width.isLargerThan(2)).isTrue(),
-                () -> assertThat(width.isLargerThan(3)).isFalse()
-        );
+    void repeatTest() {
+        Width width = new Width(5);
+
+        List<Integer> intList = width.repeat(() -> 0);
+
+        assertThat(intList.size()).isEqualTo(5);
     }
 }

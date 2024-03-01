@@ -4,14 +4,16 @@ import static ladder.domain.Direction.NONE;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 public class LadderLevel {
     private final List<Direction> ladderLevel;
+    private Direction latest;
 
     public LadderLevel(Width width, DirectionGenerator directionGenerator) {
-        ladderLevel = createLadderLevel(width, directionGenerator);
+        latest = NONE;
+        ladderLevel = new ArrayList<>(width.repeat(() -> nextDirection(directionGenerator)));
+        changeInvalidLast();
     }
 
     public Location move(Location location) {
@@ -26,26 +28,15 @@ public class LadderLevel {
         return Collections.unmodifiableList(ladderLevel);
     }
 
-    private ArrayList<Direction> createLadderLevel(Width width, DirectionGenerator directionGenerator) {
-        LinkedList<Direction> directions = new LinkedList<>();
-        Direction latest = NONE;
-        while (width.isLargerThan(directions.size())) {
-            latest = nextDirection(directionGenerator, latest);
-            directions.add(latest);
-        }
-        changeInvalidLast(directions, latest);
-        return new ArrayList<>(List.copyOf(directions));
-    }
-
-    private Direction nextDirection(DirectionGenerator directionGenerator, Direction latest) {
+    private Direction nextDirection(DirectionGenerator directionGenerator) {
         latest = latest.next(directionGenerator);
         return latest;
     }
 
-    private static void changeInvalidLast(LinkedList<Direction> directions, Direction latest) {
+    private void changeInvalidLast() {
         if (latest.isInvalidLast()) {
-            directions.removeLast();
-            directions.add(NONE);
+            ladderLevel.remove(ladderLevel.lastIndexOf(latest));
+            ladderLevel.add(NONE);
         }
     }
 }

@@ -1,5 +1,9 @@
 package ladder.domain;
 
+import java.util.List;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
+
 public record Width(int value) {
     private static final int MIN_WIDTH = 2;
 
@@ -11,7 +15,7 @@ public record Width(int value) {
         }
     }
 
-    public boolean isLargerThan(int size) {
-        return size < value;
+    public <T> List<T> repeat(Supplier<T> supplier) {
+        return Stream.generate(supplier).limit(value).toList();
     }
 }
