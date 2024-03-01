@@ -5,8 +5,8 @@ import domain.player.Players;
 import domain.prize.Prize;
 import domain.prize.Prizes;
 
+import java.util.Collections;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -23,31 +23,34 @@ public class Judge {
     }
 
     public Map<Player, Prize> search(final String name) {
-        final List<Player> targets = getTargets(name);
-        return makeResult(targets);
-    }
-
-    private List<Player> getTargets(final String name) {
         if (SEARCH_ALL_KEY_WORD.equals(name)) {
-            return players.players();
+            return makeResultAll();
         }
 
-        final Player player = players.findByName(name).orElseThrow(
+        final Player target = getTarget(name);
+        return makeResult(target);
+    }
+
+    private Map<Player, Prize> makeResultAll() {
+        return this.players.players().stream()
+                .collect(Collectors.toMap(
+                        player -> player,
+                        this::mapPrizeByPath,
+                        (a, b) -> a,
+                        LinkedHashMap::new
+                ));
+    }
+
+    private Player getTarget(final String name) {
+        return this.players.findByName(name).orElseThrow(
                 () -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
-
-        return List.of(player);
     }
 
-    private Map<Player, Prize> makeResult(final List<Player> targets) {
-        return targets.stream().collect(Collectors.toMap(
-                player -> player,
-                this::mapByPath,
-                (a, b) -> a,
-                LinkedHashMap::new
-        ));
+    private Map<Player, Prize> makeResult(final Player player) {
+        return Collections.singletonMap(player, mapPrizeByPath(player));
     }
 
-    private Prize mapByPath(final Player player) {
+    private Prize mapPrizeByPath(final Player player) {
         try {
             final int departure = this.players.getSequence(player);
             final int arrival = this.pathMapper.find(departure);

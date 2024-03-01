@@ -32,17 +32,13 @@ public class LadderController {
     private static void searchGameResult(final Judge judge) {
         while (true) {
             try {
-                final Map<Player, Prize> result = getPrizeByName(judge);
+                final String name = InputView.readNameToSearch();
+                final Map<Player, Prize> result = judge.search(name);
                 OutputView.printSearchResult(result);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e);
             }
         }
-    }
-
-    private static Map<Player, Prize> getPrizeByName(final Judge judge) {
-        final Player playerToSearch = getNameToSearch();
-        return judge.search(playerToSearch.name());
     }
 
     private static Players getNames() {
@@ -55,10 +51,6 @@ public class LadderController {
 
     private static Height getHeight() {
         return new Height(InputView.readHeight());
-    }
-
-    private static Player getNameToSearch() {
-        return new Player(InputView.readNameToSearch());
     }
 
     private static Ladder makeLadder(final Players players, final Height height) {
