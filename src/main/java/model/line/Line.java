@@ -36,7 +36,7 @@ public class Line {
         return bridges.get(bridges.size() - LAST_BRIDGE_OFFSET);
     }
 
-    public Integer cross(int previousPosition) {
+    public int cross(int previousPosition) {
         int nextPosition = crossRightBridge(previousPosition);
         if (previousPosition == nextPosition) {
             nextPosition = crossLeftBridge(previousPosition);

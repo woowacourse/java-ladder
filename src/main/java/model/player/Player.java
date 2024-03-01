@@ -14,7 +14,7 @@ public record Player(String name) {
         }
     }
 
-    public Boolean isNameEqual(String name) {
+    public boolean isNameEqual(String name) {
         return name.equals(this.name);
     }
 }

@@ -14,7 +14,7 @@ public enum Bridge {
         return position + movement;
     }
 
-    public Integer moveLeft(int position) {
+    public int moveLeft(int position) {
         return position - movement;
     }
 
