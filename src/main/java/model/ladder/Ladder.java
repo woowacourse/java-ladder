@@ -33,7 +33,7 @@ public class Ladder {
 
     public List<LineState> captureLadderLines() {
         return lines.stream()
-                .map(LineState::create)
+                .map(LineState::from)
                 .toList();
     }
 }
