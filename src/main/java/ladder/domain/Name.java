@@ -6,6 +6,7 @@ public class Name {
 
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
+    private static final String ALL = "all";
 
     private final String value;
 
@@ -24,6 +25,10 @@ public class Name {
 
     public int getLength() {
         return value.length();
+    }
+
+    public boolean isAll() {
+        return value.equals(ALL);
     }
 
     @Override
