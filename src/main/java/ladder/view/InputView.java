@@ -65,11 +65,11 @@ public class InputView {
         return exceptionHandler.run(() -> {
             System.out.println("\n결과를 보고 싶은 사람은?");
             Player player = new Player(readLine());
-            return selectPlayer(ladderGameResults, player);
+            return playerOrAll(ladderGameResults, player);
         });
     }
 
-    private Player selectPlayer(final LadderGameResult result, final Player player) {
+    private Player playerOrAll(final LadderGameResult result, final Player player) {
         if (player == ALL) {
             return ALL;
         }
