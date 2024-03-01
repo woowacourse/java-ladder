@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class InputView {
 
     private static final String SEPARATOR = ",";
+    private static final String NEW_LINE = System.lineSeparator();
     private static final int MIN_LADDER_HEIGHT = 1;
 
     private final Scanner scanner = new Scanner(System.in);
@@ -20,7 +21,7 @@ public class InputView {
     }
 
     public List<String> readPrizeNames() {
-        System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        System.out.println(NEW_LINE + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String input = scanner.nextLine();
         validatePrizeInput(input);
         return Arrays.stream(input.split(SEPARATOR))
@@ -28,13 +29,13 @@ public class InputView {
     }
 
     public int readLadderHeight() {
-        System.out.println("\n최대 사다리 높이는 몇 개인가요?");
+        System.out.println(NEW_LINE + "최대 사다리 높이는 몇 개인가요?");
         String input = scanner.nextLine();
         return convertInteger(input);
     }
 
     public String readUserNameForResult() {
-        System.out.println("\n결과를 보고 싶은 사람은? ('all' 입력 시 종료)");
+        System.out.println(NEW_LINE + "결과를 보고 싶은 사람은? ('all' 입력 시 종료)");
         return scanner.nextLine();
     }
 
