@@ -4,9 +4,9 @@ import domain.Height;
 import domain.Ladder;
 import domain.Players;
 import domain.Prizes;
+import domain.Result;
 import domain.generator.BridgeGenerator;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Supplier;
 import view.InputView;
 import view.OutputView;
@@ -31,19 +31,7 @@ public class LadderGame {
         Ladder ladder = new Ladder(players, height, bridgeGenerator);
 
         outputView.printLadderGame(ladder, players.getNames(), prizes.getPrizes());
-        Map<String, Integer> calculatedResults = ladder.calculate(players);
-
-        repeat(getResultRunnable(calculatedResults, prizes));
-    }
-
-    private Height getHeight() {
-        int inputHeight = inputView.readHeight();
-        return new Height(inputHeight);
-    }
-
-    private Prizes getPrizes(Players players) {
-        List<String> inputResults = inputView.readResults();
-        return new Prizes(players, inputResults);
+        repeat(getResultRunnable(ladder.getResult(), prizes));
     }
 
     private Players getPlayers() {
@@ -51,17 +39,31 @@ public class LadderGame {
         return new Players(inputNames);
     }
 
-    private void printResult(Map<String, Integer> calculatedResults, Prizes prizes) {
+    private Prizes getPrizes(Players players) {
+        List<String> inputResults = inputView.readResults();
+        return new Prizes(players, inputResults);
+    }
+
+    private Height getHeight() {
+        int inputHeight = inputView.readHeight();
+        return new Height(inputHeight);
+    }
+
+    private Runnable getResultRunnable(Result result, Prizes prizes) {
+        return () -> printResult(result, prizes);
+    }
+
+    private void printResult(Result result, Prizes prizes) {
         String nameForResult = inputView.readPlayerResult();
         if (ALL.equals(nameForResult)) {
-            outputView.printResult(calculatedResults, prizes);
+            outputView.printResult(result.matchAll(prizes));
             return;
         }
-        if (!calculatedResults.containsKey(nameForResult)) {
+        if (!result.isContain(nameForResult)) {
             throw new IllegalArgumentException("존재하지 않는 플레이어입니다.");
         }
-        outputView.printResult(prizes.getPrizeNameOf(calculatedResults.get(nameForResult)));
-        repeat(getResultRunnable(calculatedResults, prizes));
+        outputView.printResult(result.match(nameForResult, prizes));
+        repeat(getResultRunnable(result, prizes));
     }
 
     private <T> T repeat(Supplier<T> supplier) {
@@ -80,9 +82,5 @@ public class LadderGame {
             outputView.printError(e.getMessage());
             repeat(runnable);
         }
-    }
-
-    private Runnable getResultRunnable(Map<String, Integer> calculatedResults, Prizes prizes) {
-        return () -> printResult(calculatedResults, prizes);
     }
 }
