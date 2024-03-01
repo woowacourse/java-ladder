@@ -13,10 +13,16 @@ public class Ladder {
     private final Map<Integer, Line> lines;
 
     public Ladder(Players players, Height height, BridgeGenerator bridgeGenerator) {
-        this.lines = IntStream.range(0, height.getHeight())
+        this.lines = createLines(players, height, bridgeGenerator);
+    }
+
+    private Map<Integer, Line> createLines(Players players, Height height, BridgeGenerator bridgeGenerator) {
+        return IntStream.range(0, height.getHeight())
                 .boxed()
-                .collect(Collectors.toMap(index -> index,
-                        index -> new Line(players.getTotalPlayerSize(), bridgeGenerator)));
+                .collect(Collectors.toMap(
+                        index -> index,
+                        index -> new Line(players.getTotalPlayerSize(), bridgeGenerator)
+                ));
     }
 
     public Map<String, Integer> calculate(Players players) {
