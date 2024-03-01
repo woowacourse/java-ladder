@@ -91,3 +91,7 @@ pobi  honux crong   jk
 - [X] InputView 로직 개선(들여쓰기, 메서드 줄 길이)
 - [X] controller 메서드 길이 줄이기
 - [X] 전체 결과를 저장하는 객체 추가
+- [ ] `InputView.inputPlayerFrom() → InputView.inputPlayerOrAll()`
+- [ ] `Height, Width`의 자연수 검증 로직을 View로 이동
+- [ ] `Player, Reward` 이름 길이 검증 로직을 View로 이동
+- [ ] `Players.forEach()` 파라미터에 `final` 키워드 추가
