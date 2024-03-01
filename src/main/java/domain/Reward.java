@@ -20,10 +20,11 @@ public class Reward {
 
     private void validate(String name) {
         validateBlank(name);
-        if (!name.equals(NO_REWARD)) {
-            validateNumeric(name);
-            validateRange(name);
+        if (name.equals(NO_REWARD)) {
+            return;
         }
+        validateNumeric(name);
+        validateRange(name);
     }
 
     private void validateBlank(String name) {

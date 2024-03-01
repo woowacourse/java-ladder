@@ -4,7 +4,7 @@ public class Name {
 
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
-    private static final String UPPER_LOWER_DIGIT = "^[A-Za-z0-9]+$";
+    private static final String ALPHABETS_NUMBERS = "^[A-Za-z0-9]+$";
     private static final String COMMAND_ALL_RESULT = "all";
 
     private final String name;
@@ -45,9 +45,10 @@ public class Name {
     }
 
     private void validatePattern(String name) {
-        if (!name.matches(UPPER_LOWER_DIGIT)) {
-            throw new IllegalArgumentException("이름은 알파벳과 숫자만 허용합니다.");
+        if (name.matches(ALPHABETS_NUMBERS)) {
+            return;
         }
+        throw new IllegalArgumentException("이름은 알파벳과 숫자만 허용합니다.");
     }
 
     public String getName() {
