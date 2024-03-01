@@ -10,6 +10,7 @@ public class InputView {
     private static final String WINNING_NAMES_INPUT_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String ITEMS_DELIMITER = ",";
     private static final String LADDER_HEIGHT_INPUT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
+    private static final String PERSON_NAME_INPUT_MESSAGE = "결과를 보고 싶은 사람은?";
 
     public List<String> readPeopleNames() {
         System.out.println(PEOPLE_NAMES_INPUT_MESSAGE);
@@ -55,5 +56,11 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("사다리의 높이는 숫자이어야 합니다.");
         }
+    }
+
+    public String readPersonNameForResult() {
+        System.out.println(PERSON_NAME_INPUT_MESSAGE);
+
+        return scanner.nextLine().strip();
     }
 }
