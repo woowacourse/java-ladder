@@ -12,10 +12,10 @@ import ladder.domain.ladder.LadderGame;
 import ladder.domain.ladder.LadderRow;
 import ladder.domain.ladder.direction.DefaultLadderDirectionSelector;
 import ladder.domain.ladder.direction.LadderDirection;
-import ladder.domain.ladder.reward.Reward;
-import ladder.domain.ladder.reward.Rewards;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
+import ladder.domain.reward.Reward;
+import ladder.domain.reward.Rewards;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 

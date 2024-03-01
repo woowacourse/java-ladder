@@ -1,4 +1,4 @@
-package ladder.domain.ladder.reward;
+package ladder.domain.reward;
 
 import java.util.Collections;
 import java.util.List;

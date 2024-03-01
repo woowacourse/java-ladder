@@ -3,10 +3,10 @@ package ladder.domain.ladder;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import ladder.domain.ladder.reward.Reward;
-import ladder.domain.ladder.reward.Rewards;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
+import ladder.domain.reward.Reward;
+import ladder.domain.reward.Rewards;
 
 public class LadderGame {
 

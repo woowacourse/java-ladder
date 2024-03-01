@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import ladder.domain.ladder.reward.Reward;
+import ladder.domain.reward.Reward;
 
 class RewardTest {
 

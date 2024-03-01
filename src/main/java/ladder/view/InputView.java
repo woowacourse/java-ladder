@@ -11,10 +11,10 @@ import ladder.domain.attribute.Height;
 import ladder.domain.attribute.Width;
 import ladder.domain.ladder.LadderRow;
 import ladder.domain.ladder.direction.LadderDirection;
-import ladder.domain.ladder.reward.Reward;
-import ladder.domain.ladder.reward.Rewards;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
+import ladder.domain.reward.Reward;
+import ladder.domain.reward.Rewards;
 import ladder.exception.ExceptionHandler;
 
 public class InputView {

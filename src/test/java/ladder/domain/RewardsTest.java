@@ -9,8 +9,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import ladder.domain.attribute.Width;
-import ladder.domain.ladder.reward.Reward;
-import ladder.domain.ladder.reward.Rewards;
+import ladder.domain.reward.Reward;
+import ladder.domain.reward.Rewards;
 
 class RewardsTest {
 
