@@ -33,4 +33,30 @@ class PlayersInputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("입력이 구분자로 시작하거나 끝나면 안됩니다.");
     }
+
+    @Test
+    @DisplayName("참가자 이름 길이 검증")
+    void validatePlayerNameLength() {
+        Assertions.assertThatThrownBy(() -> PlayersInputView.getPlayerNames("123456,aa"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("참가자 이름은 1글자 이상 5글자 이하여야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"!,zbc", "zbc, ", "zvb,가나다", "zbv,abc "})
+    @DisplayName("참가자 이름 구성 문자 검증")
+    void validatePlayerNameCharacter(String input) {
+        Assertions.assertThatThrownBy(() -> PlayersInputView.getPlayerNames(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("참가자 이름은 알파벳 대소문자와 숫자만으로 이루어져야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"all,aa"})
+    @DisplayName("참가자 이름 블랙리스트 검증")
+    void validateNameBlackList(String input) {
+        Assertions.assertThatThrownBy(() -> PlayersInputView.getPlayerNames(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("참가자 이름은 all이 될 수 없습니다.");
+    }
 }
