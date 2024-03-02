@@ -1,40 +1,73 @@
 package domain;
 
-import domain.Ladder;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
+import static domain.Direction.*;
 import static org.assertj.core.api.Assertions.*;
 
 class LadderTest {
-
     @Test
-    @DisplayName("사람 수와 높이로 Ladder 생성")
-    void createLadderWithPersonCountAndMaxHeight() {
-        int maxHeight = 4;
-        int personCount = 4;
+    @DisplayName("사다리 최대 높이가 100을 초과하면 예외가 발생한다")
+    void maxHeightTest() {
+        final List<Line> lines = new ArrayList<>();
+        final Line line = Line.ofDirections(STRAIGHT);
+        IntStream.range(0, 101).forEach(number -> lines.add(line));
 
-        assertThatCode(() -> new Ladder(maxHeight, personCount)).doesNotThrowAnyException();
+        assertThatThrownBy(() -> new Ladder(lines)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    @DisplayName("사다리를 생성한다")
-    void generate() {
-        int maxHeight = 4;
-        int personCount = 4;
+    @DisplayName("주어진 사다리의 가로 길이가 일정하지 않을시 예외가 발생한다")
+    void LadderShapeTest() {
+        final Line line1 = Line.ofDirections(STRAIGHT, STRAIGHT, STRAIGHT);
+        final Line line2 = Line.ofDirections(STRAIGHT);
+        List<Line> lines = List.of(line1, line2);
 
-        Ladder ladder = new Ladder(maxHeight, personCount);
+        assertThatThrownBy(() -> new Ladder(lines)).isInstanceOf(IllegalArgumentException.class);
+    }
 
-        assertThat(maxHeight).isEqualTo(ladder.getHeight());
+    @ParameterizedTest
+    @CsvSource(value = {"0,0", "1,1", "2,2", "3,3"})
+    @DisplayName("가로 선이 없는 사다리 게임을 실행 했을 때 같은 위치의 값을 반환한다")
+    void nonHorizontalLine(final int startPosition, final int expected) {
+        final Ladder ladder = Ladder.of(
+                Line.ofDirections(STRAIGHT, STRAIGHT, STRAIGHT, STRAIGHT),
+                Line.ofDirections(STRAIGHT, STRAIGHT, STRAIGHT, STRAIGHT),
+                Line.ofDirections(STRAIGHT, STRAIGHT, STRAIGHT, STRAIGHT)
+        );
+
+        final int endPosition = ladder.play(startPosition);
+
+        assertThat(endPosition).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0,3", "1,0", "2,1", "3,2"})
+    @DisplayName("사다리 게임을 실행 했을 때 올바른 결과를 반환한다")
+    void gameResultTest(final int startPosition, final int expected) {
+        final Ladder ladder = Ladder.of(
+                Line.ofDirections(RIGHT, LEFT, STRAIGHT, STRAIGHT),
+                Line.ofDirections(STRAIGHT, RIGHT, LEFT, STRAIGHT),
+                Line.ofDirections(STRAIGHT, STRAIGHT, RIGHT, LEFT)
+        );
+
+        final int endPosition = ladder.play(startPosition);
+
+        assertThat(endPosition).isEqualTo(expected);
     }
 
     @Test
-    @DisplayName("사다리 최대 높이는 100이다.")
-    void maxHeight() {
-        int maxHeight = 101;
-        int personCount = 4;
+    @DisplayName("빈 리스트가 주어졌을 때 사다리를 생성하면 예외를 발생시킨다")
+    void emptyList() {
+        final List<Line> lines = new ArrayList<>();
 
-        assertThatThrownBy(() -> new Ladder(maxHeight, personCount))
+        assertThatThrownBy(() -> LadderFactory.createLadder(lines))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
