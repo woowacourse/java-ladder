@@ -1,5 +1,6 @@
 package test;
 
+import ladder.domain.PositionRow;
 import ladder.domain.RowLine;
 import ladder.domain.linegenerator.LineGenerator;
 import ladder.domain.linegenerator.RandomLineGenerator;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import test.linegenerator.AlternativeLineGenerator;
 import test.linegenerator.SuccessiveLineGenerator;
 
 import java.util.List;
@@ -62,5 +64,18 @@ class RowLineTest {
     void rowLineConnectionSizeTest(int n) {
         List<Boolean> connection = new RowLine(n, new RandomLineGenerator()).getConnection();
         assertThat(connection).hasSize(n - 1);
+    }
+
+    // |-----|     |-----|     |
+    @DisplayName("RowLine의 상태에 따라 다음 PositionRow 객체를 가져올 수 있다")
+    @Test
+    void movePositionRowTest() {
+        int start = 0;
+        int peopleNumber = 5;
+        RowLine rowLine = new RowLine(peopleNumber, new AlternativeLineGenerator());
+        PositionRow positionRow = new PositionRow(start);
+
+        PositionRow nextPositionRow = rowLine.nextPositionOf(positionRow);
+        assertThat(nextPositionRow.getPosition()).isEqualTo(1);
     }
 }
