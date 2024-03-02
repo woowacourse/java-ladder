@@ -21,6 +21,12 @@ public class InputView {
                 .toList();
     }
 
+    private void validateInput(String input) {
+        if (input.isEmpty() || input.endsWith(SEPARATOR)) {
+            throw new IllegalArgumentException("[ERROR] 올바르지 않은 사용자 이름입니다.");
+        }
+    }
+
     public List<String> readPrizeNames() {
         System.out.println(NEW_LINE + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String input = scanner.nextLine();
@@ -29,31 +35,16 @@ public class InputView {
                 .toList();
     }
 
-    public int readLadderHeight() {
-        System.out.println(NEW_LINE + "최대 사다리 높이는 몇 개인가요?");
-        String input = scanner.nextLine();
-        return convertInteger(input);
-    }
-
-    public String readUserNameForResult() {
-        System.out.println(NEW_LINE + "결과를 보고 싶은 사람은? ('all' 입력 시 종료)");
-        return scanner.nextLine();
-    }
-
-    private void validateInput(String input) {
-        if (input.isEmpty() || input.endsWith(SEPARATOR)) {
-            throw new IllegalArgumentException("[ERROR] 올바르지 않은 사용자 이름입니다.");
-        }
-    }
-
-    public boolean validateUserNameForGameEnd(String userName) {
-        return userName.equals(USER_NAME_FOR_GAME_END);
-    }
-
     private void validatePrizeInput(String input) {
         if (input.isEmpty() || input.endsWith(SEPARATOR)) {
             throw new IllegalArgumentException("[ERROR] 올바르지 않은 실행 결과 이름입니다.");
         }
+    }
+
+    public int readLadderHeight() {
+        System.out.println(NEW_LINE + "최대 사다리 높이는 몇 개인가요?");
+        String input = scanner.nextLine();
+        return convertInteger(input);
     }
 
     private int convertInteger(String input) {
@@ -74,5 +65,14 @@ public class InputView {
         if (ladderHeight < MIN_LADDER_HEIGHT) {
             throw new IllegalArgumentException("[ERROR] 최대 사다리 높이는 양의 정수여야 합니다.");
         }
+    }
+
+    public String readUserNameForResult() {
+        System.out.println(NEW_LINE + "결과를 보고 싶은 사람은? ('all' 입력 시 종료)");
+        return scanner.nextLine();
+    }
+
+    public boolean validateUserNameForGameEnd(String userName) {
+        return userName.equals(USER_NAME_FOR_GAME_END);
     }
 }
