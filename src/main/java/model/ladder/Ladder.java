@@ -2,6 +2,7 @@ package model.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import model.Index;
 import model.line.Line;
 import model.line.LinesGenerator;
@@ -31,15 +32,10 @@ public class Ladder {
     }
 
     public List<Index> climbAll() {
-        List<Index> resultIndexes = new ArrayList<>();
-
-        Index index = new Index(0);
-        while (index.isLower(findPersonCount())) {
-            Index resultIndex = climb(index);
-            resultIndexes.add(resultIndex);
-            index = index.getNext();
-        }
-        return resultIndexes;
+        return IntStream.range(0, findPersonCount())
+                .mapToObj(Index::new)
+                .map(this::climb)
+                .toList();
     }
 
     private int findPersonCount() {
