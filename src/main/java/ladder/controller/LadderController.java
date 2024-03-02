@@ -42,9 +42,16 @@ public class LadderController {
 
     private LadderItems requestLadderItems() {
         List<String> peopleNames = inputView.readPeopleNames();
+        validateIsPeopleNamesCommand(peopleNames);
         List<String> winningItems = inputView.readWinningItems();
 
         return LadderItems.of(peopleNames, winningItems);
+    }
+
+    private void validateIsPeopleNamesCommand(List<String> peopleNames) {
+        if (peopleNames.stream().anyMatch(Command.ALL_RESULT::isText)) {
+            throw new IllegalArgumentException("사람의 이름은 \"all\"일 수 없습니다.");
+        }
     }
 
     private LadderHeight requestLadderHeightUntilValid() {
@@ -62,7 +69,7 @@ public class LadderController {
     private void responseResult(LadderResult ladderResult) {
         String personName = inputView.readPersonNameForResult();
 
-        while (!Command.ALL_RESULT.isCommand(personName)) {
+        while (!Command.ALL_RESULT.isText(personName)) {
             WinningItem winningItem = ladderResult.findWinningItemByPersonName(personName);
             outputView.printResultOfPerson(winningItem);
             personName = inputView.readPersonNameForResult();
