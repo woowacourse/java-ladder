@@ -36,7 +36,7 @@ public class LadderController {
         outputView.printInputtedResultsOf(players, ladder, ladderResults);
         LadderClimbingGame ladderClimbingGame = new LadderClimbingGame(players, ladder, ladderResults);
         ClimbingResults climbingResults = ladderClimbingGame.createClimbingResults();
-        startClimbingLadder(climbingResults);
+        findResultBy(climbingResults);
     }
 
     private Players readPlayerNames() {
@@ -61,8 +61,7 @@ public class LadderController {
                 .toList();
     }
 
-    // TODO : 이부분 변경된 구조에 맞게 수정할 필요 있음
-    private void startClimbingLadder(final ClimbingResults climbingResults) {
+    private void findResultBy(final ClimbingResults climbingResults) {
         String playerName = inputView.readPlayerToSeeResult();
         while (!playerName.equals(Command.FINISH.getValue())) {
             findResultByPlayerName(playerName, climbingResults);
