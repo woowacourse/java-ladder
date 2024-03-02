@@ -2,14 +2,21 @@ package ladder.controller;
 
 import java.util.List;
 import java.util.function.Supplier;
-import ladder.domain.Ladder;
-import ladder.domain.dto.LadderResponseDto;
+import ladder.controller.dto.LadderResponseDto;
+import ladder.controller.dto.ParticipantsResponseDto;
+import ladder.controller.dto.PrizesResponseDto;
+import ladder.domain.GameResult;
+import ladder.domain.Prizes;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.RungGenerator;
+import ladder.domain.participant.Name;
 import ladder.domain.participant.Participants;
-import ladder.domain.randomGenerator.RungGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class LadderController {
+
+    private static final String ALL_RESULT_INPUT_KEYWORD = "all";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -23,27 +30,17 @@ public class LadderController {
 
     public void run() {
         Participants participants = repeatUntilValid(this::getParticipants);
-        int participantsCount = participants.getParticipantsCount();
-
+        int participantsCount = participants.getCount();
         Ladder ladder = repeatUntilValid(() -> getLadder(participantsCount));
-        LadderResponseDto ladderResponseDto = ladder.getResultLadders();
+        Prizes prizes = repeatUntilValid(() -> getPrizes(participantsCount));
+        printLadderResult(ladder, participants, prizes);
 
-        outputView.printResult(ladderResponseDto, participants.getNames());
+        Prizes sortedPrizes = ladder.getSortedPrizesResult(participants, prizes);
+        GameResult gameResult = new GameResult(participants, sortedPrizes);
+        Name name = repeatUntilValid(() -> getName(gameResult));
+        printLadderGameResult(gameResult, name);
     }
 
-    private Participants getParticipants() {
-        List<String> inputNames = inputView.getNames();
-        return new Participants(inputNames);
-    }
-
-    private Ladder getLadder(int participantsCount) {
-        String height = getHeight();
-        return new Ladder(height, participantsCount, rungGenerator);
-    }
-
-    private String getHeight() {
-        return inputView.getHeight();
-    }
 
     private <T> T repeatUntilValid(Supplier<T> function) {
         try {
@@ -53,4 +50,51 @@ public class LadderController {
             return repeatUntilValid(function);
         }
     }
+
+    private Participants getParticipants() {
+        List<String> inputNames = inputView.getNames();
+        return new Participants(inputNames);
+    }
+
+    private Ladder getLadder(int participantsCount) {
+        int height = inputView.getHeight();
+        return new Ladder(height, participantsCount, rungGenerator);
+    }
+
+    private Prizes getPrizes(int participantsCount) {
+        List<String> prizeNames = inputView.getPrizeNames();
+        return new Prizes(prizeNames, participantsCount);
+    }
+
+    private void printLadderResult(Ladder ladder, Participants participants, Prizes prizes) {
+        ParticipantsResponseDto participantsResponseDto = ParticipantsResponseDto.from(participants);
+        LadderResponseDto ladderResponseDto = LadderResponseDto.from(ladder);
+        PrizesResponseDto prizesResponseDto = PrizesResponseDto.from(prizes);
+
+        outputView.printLadderResult(participantsResponseDto, ladderResponseDto, prizesResponseDto);
+    }
+
+    private Name getName(GameResult gameResult) {
+        Name name = new Name(inputView.getName());
+
+        if (isAllResultInputKeyword(name)) {
+            return name;
+        }
+        gameResult.checkResultContainName(name);
+        return name;
+    }
+
+    private void printLadderGameResult(GameResult gameResult, Name nameSearch) {
+        if (isAllResultInputKeyword(nameSearch)) {
+            outputView.printAllMatchResult(gameResult.getGameResult());
+            return;
+        }
+
+        outputView.printNameMatchResult(gameResult.getGameResult(), nameSearch);
+    }
+
+    private boolean isAllResultInputKeyword(Name nameSearch) {
+        return ALL_RESULT_INPUT_KEYWORD.equals(nameSearch.getName());
+    }
+
 }

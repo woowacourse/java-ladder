@@ -41,11 +41,15 @@ public class Participants {
                 .toList();
     }
 
-    public int getParticipantsCount() {
+    public int getCount() {
         return names.size();
     }
 
     public List<Name> getNames() {
         return new ArrayList<>(names);
+    }
+
+    public Name getNameByIndex(int index) {
+        return names.get(index);
     }
 }

@@ -1,10 +1,8 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-import ladder.domain.dto.FloorResponseDto;
-import ladder.domain.randomGenerator.RungGenerator;
 
 public class Floor {
 
@@ -23,15 +21,17 @@ public class Floor {
     private List<Rung> makeRungs(int personCount) {
         List<Rung> rungs = new ArrayList<>();
 
-        IntStream.range(0, personCount - EXCLUDE_LAST_POSITION)
-                .forEach(currentPosition -> rungs.add(generateRung(currentPosition, rungs)));
+        for (int currentPosition = 0; currentPosition < personCount - EXCLUDE_LAST_POSITION; currentPosition++) {
+            rungs.add(generateRung(currentPosition, rungs));
+        }
 
         return rungs;
     }
 
     private Rung generateRung(int currentPosition, List<Rung> rungs) {
+        Rung randomStatusRung = rungGenerator.getRandomStatusRung();
         if (checkPreviousPositionNotExist(currentPosition, rungs)) {
-            return rungGenerator.getRandomStatusRung();
+            return randomStatusRung;
         }
         return Rung.NOT_EXIST;
     }
@@ -43,7 +43,14 @@ public class Floor {
         return FIRST_POSITION_NOT_EXIST;
     }
 
-    public FloorResponseDto getRungs() {
-        return FloorResponseDto.of(rungs);
+    public List<Integer> getExistRungPositions() {
+        return IntStream.range(0, rungs.size())
+                .filter(position -> rungs.get(position) == Rung.EXIST)
+                .boxed()
+                .toList();
+    }
+
+    public List<Rung> getRungs() {
+        return rungs;
     }
 }
