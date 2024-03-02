@@ -52,5 +52,9 @@ public enum Connection {
         return moveFunction.applyAsInt(currentIndex);
     }
 
+    public boolean isLeft() {
+        return this == LEFT;
+    }
+
     public abstract Connection next(boolean isConnected);
 }

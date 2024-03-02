@@ -82,6 +82,6 @@ public class OutputView {
 
     public static void printAllPlayerResult(Map<String, String> results) {
         System.out.println("실행 결과");
-        results.forEach((name, prize) -> System.out.println(name + " : " + prize));
+        results.forEach((name, prize) -> System.out.printf("%s : %s%n", name, prize));
     }
 }
