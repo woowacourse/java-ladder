@@ -1,7 +1,8 @@
 package model.gameresult;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Map;
 import model.player.Player;
 import model.player.Players;
 import model.prize.Prize;
@@ -11,14 +12,14 @@ public class GameResult {
 
     private static final String NOT_EXIST_PLAYER_NAME = "존재하지 않는 참가자입니다.";
 
-    private final ConcurrentHashMap<Player, Prize> result;
+    private final Map<Player, Prize> result;
 
-    public GameResult(ConcurrentHashMap<Player, Prize> result) {
+    public GameResult(Map<Player, Prize> result) {
         this.result = result;
     }
 
     public static GameResult of(List<Integer> positions, Players players, Prizes prizes) {
-        ConcurrentHashMap<Player, Prize> result = new ConcurrentHashMap<>();
+        Map<Player, Prize> result = new HashMap<>();
         for (int start = 0; start < positions.size(); start++) {
             int end = positions.get(start);
             result.put(players.findPlayer(start), prizes.findPrize(end));
