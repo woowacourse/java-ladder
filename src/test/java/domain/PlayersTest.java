@@ -28,7 +28,7 @@ public class PlayersTest {
         );
     }
 
-    @DisplayName("갖고 있는 List를 방어적 복사로 반환한다.")
+    @DisplayName("갖고 있는 List를 반환한다.")
     @Test
     void getNamesFromList() {
         Players players = new Players(List.of("test1", "test2"));
