@@ -31,8 +31,7 @@ public class LadderPositions {
     public int count() {
         return positions.size();
     }
-
-
+    
     public LadderPositions calculatePosition(Row row) {
         List<Bridge> bridges = row.getBridges();
         List<Integer> calculatedPosition = swapPosition(bridges);
@@ -60,9 +59,7 @@ public class LadderPositions {
 
     private void swapIfBridgeExist(int index, Bridge bridge, List<Integer> calculatedPosition) {
         if (bridge == Bridge.EXIST) {
-            Integer temp = calculatedPosition.get(index);
-            calculatedPosition.set(index, calculatedPosition.get(index - 1));
-            calculatedPosition.set(index - 1, temp);
+            Collections.swap(calculatedPosition, index, index - 1);
         }
     }
 }
