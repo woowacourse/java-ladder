@@ -3,6 +3,7 @@ package domain.line;
 import static domain.connection.Connection.LEFT_CONNECTION;
 import static domain.connection.Connection.RIGHT_CONNECTION;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import domain.ColumnPosition;
 import java.util.List;
@@ -22,10 +23,12 @@ class RowLineTest {
                 new Point(new ColumnPosition(3), LEFT_CONNECTION)
         ));
 
-        assertThat(rowLine.nextPosition(new ColumnPosition(0))).isEqualTo(new ColumnPosition(1));
-        assertThat(rowLine.nextPosition(new ColumnPosition(1))).isEqualTo(new ColumnPosition(0));
-        assertThat(rowLine.nextPosition(new ColumnPosition(2))).isEqualTo(new ColumnPosition(3));
-        assertThat(rowLine.nextPosition(new ColumnPosition(3))).isEqualTo(new ColumnPosition(2));
+        assertAll(
+                () -> assertThat(rowLine.nextPosition(new ColumnPosition(0))).isEqualTo(new ColumnPosition(1)),
+                () -> assertThat(rowLine.nextPosition(new ColumnPosition(1))).isEqualTo(new ColumnPosition(0)),
+                () -> assertThat(rowLine.nextPosition(new ColumnPosition(2))).isEqualTo(new ColumnPosition(3)),
+                () -> assertThat(rowLine.nextPosition(new ColumnPosition(3))).isEqualTo(new ColumnPosition(2))
+        );
     }
 
     @DisplayName("특정 위치의 연결을 조회할 수 있다")
@@ -37,10 +40,12 @@ class RowLineTest {
                 new Point(new ColumnPosition(2), RIGHT_CONNECTION),
                 new Point(new ColumnPosition(3), LEFT_CONNECTION)
         ));
-        assertThat(rowLine.getPointAt(new ColumnPosition(0)).getConnection()).isEqualTo(RIGHT_CONNECTION);
-        assertThat(rowLine.getPointAt(new ColumnPosition(1)).getConnection()).isEqualTo(LEFT_CONNECTION);
-        assertThat(rowLine.getPointAt(new ColumnPosition(2)).getConnection()).isEqualTo(RIGHT_CONNECTION);
-        assertThat(rowLine.getPointAt(new ColumnPosition(3)).getConnection()).isEqualTo(LEFT_CONNECTION);
+        assertAll(
+                () -> assertThat(rowLine.getPointAt(new ColumnPosition(0)).getConnection()).isEqualTo(RIGHT_CONNECTION),
+                () -> assertThat(rowLine.getPointAt(new ColumnPosition(1)).getConnection()).isEqualTo(LEFT_CONNECTION),
+                () -> assertThat(rowLine.getPointAt(new ColumnPosition(2)).getConnection()).isEqualTo(RIGHT_CONNECTION),
+                () -> assertThat(rowLine.getPointAt(new ColumnPosition(3)).getConnection()).isEqualTo(LEFT_CONNECTION)
+        );
     }
 
     @DisplayName("Point 개수를 확인할 수 있다")

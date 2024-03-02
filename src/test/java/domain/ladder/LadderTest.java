@@ -6,6 +6,7 @@ import static domain.connection.Connection.RIGHT_CONNECTION;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import domain.ColumnPosition;
 import domain.line.Point;
@@ -36,10 +37,13 @@ class LadderTest {
         List<RowLine> rowLines = List.of(line1, line2);
         Ladder ladder = new Ladder(rowLines);
 
-        assertThat(ladder.drive(new ColumnPosition(0))).isEqualTo(new ColumnPosition(0));
-        assertThat(ladder.drive(new ColumnPosition(1))).isEqualTo(new ColumnPosition(1));
-        assertThat(ladder.drive(new ColumnPosition(2))).isEqualTo(new ColumnPosition(3));
-        assertThat(ladder.drive(new ColumnPosition(3))).isEqualTo(new ColumnPosition(2));
+        assertAll(
+                () -> assertThat(ladder.drive(new ColumnPosition(0))).isEqualTo(new ColumnPosition(0)),
+                () -> assertThat(ladder.drive(new ColumnPosition(1))).isEqualTo(new ColumnPosition(1)),
+                () -> assertThat(ladder.drive(new ColumnPosition(2))).isEqualTo(new ColumnPosition(3)),
+                () -> assertThat(ladder.drive(new ColumnPosition(3))).isEqualTo(new ColumnPosition(2))
+        );
+
     }
 
     @DisplayName("인덱스를 전달받아 해당하는 줄을 반환할 수 있다")
