@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -29,10 +28,6 @@ public class LadderGameResult {
 
     public LadderResults getLadderResults() {
         return ladderResults;
-    }
-
-    public Map<Name, LadderResult> getLadderGameResult() {
-        return Collections.unmodifiableMap(ladderGameResult);
     }
 
     public LadderResult getLadderResultFromName(Name name) {

@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.List;
-import java.util.Map;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -84,7 +83,7 @@ class LadderGameResultTest {
         Ladder expected = VALID_LADDER;
         Assertions.assertThat(actual).isEqualTo(expected);
     }
-    
+
     @Test
     @DisplayName("참여자 이름이 존재하지 않을 경우 예외 발생")
     void validateNameExist() {
@@ -92,13 +91,5 @@ class LadderGameResultTest {
         Assertions.assertThatThrownBy(() -> VALID_LADDER_GAME_RESULT.getLadderResultFromName(name))
                 .isInstanceOf(LadderGameException.class)
                 .hasMessage(ExceptionType.INVALID_SEARCH_NAME.getMessage());
-    }
-
-    @Test
-    @DisplayName("전체 참여자 별 사다리 결과 반환")
-    void testGetLadderGameResult() {
-        Map<Name, LadderResult> ladderGameResult = VALID_LADDER_GAME_RESULT.getLadderGameResult();
-        VALID_NAMES.getNames()
-                .forEach(name -> Assertions.assertThat(ladderGameResult.get(name)).isNotNull());
     }
 }

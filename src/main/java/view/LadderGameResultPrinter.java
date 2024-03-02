@@ -3,7 +3,7 @@ package view;
 import domain.LadderGameResult;
 import domain.LadderResult;
 import domain.Name;
-import java.util.Map;
+import domain.Names;
 import java.util.stream.Collectors;
 
 public class LadderGameResultPrinter {
@@ -18,18 +18,20 @@ public class LadderGameResultPrinter {
     public void printFromName(String searchName) {
         Name name = new Name(searchName);
         LadderResult ladderResult = ladderGameResult.getLadderResultFromName(name);
-        System.out.println(
-                String.join("\n", LADDER_RESULT_PREFIX, ladderResult.getLadderResult() + "\n"));
+        String ladderResultString = ladderResult.getLadderResult();
+        System.out.println(String.join("\n", LADDER_RESULT_PREFIX, ladderResultString + "\n"));
     }
 
     public void printAll() {
-        Map<Name, LadderResult> ladderResultMap = this.ladderGameResult.getLadderGameResult();
-        String allNameLadderResult = ladderResultMap
-                .keySet()
-                .stream()
-                .map(name -> NAME_LADDER_RESULT_FORMAT
-                        .formatted(name.getName(), ladderResultMap.get(name).getLadderResult()))
-                .collect(Collectors.joining("\n"));
+        Names names = ladderGameResult.getNames();
+        String allNameLadderResult = makeAllNameLadderResultString(names);
         System.out.println(String.join("\n", LADDER_RESULT_PREFIX, allNameLadderResult));
+    }
+
+    private String makeAllNameLadderResultString(Names names) {
+        return names.getNames().stream()
+                .map(name -> NAME_LADDER_RESULT_FORMAT.formatted(
+                        name.getName(), ladderGameResult.getLadderResultFromName(name)))
+                .collect(Collectors.joining("\n"));
     }
 }
