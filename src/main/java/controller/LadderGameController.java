@@ -35,7 +35,7 @@ public class LadderGameController {
 
     private void printResult(LadderGameResult ladderGameResult) {
         String oneNameOrAll = inputView.readOneNameOrAll();
-        while (!oneNameOrAll.equals("all")) {
+        while (!oneNameOrAll.equalsIgnoreCase("all")) {
             resultView.printOneResult(ladderGameResult.getOneResult(oneNameOrAll));
             oneNameOrAll = inputView.readOneNameOrAll();
         }
