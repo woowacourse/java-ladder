@@ -21,8 +21,8 @@ public class LadderGameResult {
         this.ladderIndexConnection = ladderIndexConnection;
     }
 
-    public Prize getOneResult(String oneNameOrALl) {
-        int nameIndex = names.findIndex(oneNameOrALl);
+    public Prize getOneResult(String name) {
+        int nameIndex = names.findIndex(name);
         return prizes.getOnePrizeByIndex(ladderIndexConnection.getPrizeIndex(nameIndex));
     }
 
