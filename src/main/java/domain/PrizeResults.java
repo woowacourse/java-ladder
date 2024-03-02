@@ -16,16 +16,11 @@ public class PrizeResults {
     }
 
     public static PrizeResults of(Players players, Prizes prizes, Ladder ladder) {
-        Map<Player, Prize> generated = generate(players, prizes, ladder);
-        return new PrizeResults(generated);
-    }
-
-    private static Map<Player, Prize> generate(Players players, Prizes prizes, Ladder ladder) {
-        Map<Player, Prize> results = new LinkedHashMap<>();
+        Map<Player, Prize> generated = new LinkedHashMap<>();
         for (int i = 0; i < players.getSize(); i++) {
-            results.put(players.get(i), prizes.get(ladder.getDestinationIndex(i)));
+            generated.put(players.get(i), prizes.get(ladder.getDestinationIndex(i)));
         }
-        return results;
+        return new PrizeResults(generated);
     }
 
     public Map<Player, Prize> getByOperator(String operator) {
