@@ -11,14 +11,19 @@ import java.util.Map;
 
 public class LadderGameRecord {
 
-    private final Map<Player, Result> playerResult;
+    private final Players players;
+    private final Ladder ladder;
+    private final Results results;
 
-    private LadderGameRecord(Map<Player, Result> playerResult) {
-        this.playerResult = playerResult;
+    public LadderGameRecord(Players players, Ladder ladder, Results results) {
+        this.players = players;
+        this.ladder = ladder;
+        this.results = results;
     }
 
-    public static LadderGameRecord of(Players players, Ladder ladder, Results results) {
+    public Map<Player, Result> getAllPlayerResults() {
         Map<Player, Result> playerResult = new LinkedHashMap<>();
+
         for (int start = 0; start < players.getPlayerSize(); start++) {
             int end = ladder.climb(start);
             Player player = players.getPlayers().get(start);
@@ -26,20 +31,13 @@ public class LadderGameRecord {
             playerResult.put(player, result);
         }
 
-        return new LadderGameRecord(playerResult);
-    }
-
-    public Map<Player, Result> getAllPlayerResults() {
         return playerResult;
     }
 
     public Result getOnePlayerResult(String playerName) {
-        Player player = playerResult.keySet()
-                .stream()
-                .filter(e -> e.getName().equals(playerName))
-                .findFirst()
-                .get();
+        int start = players.getStartPositionOf(playerName);
+        int end = ladder.climb(start);
 
-        return playerResult.get(player);
+        return results.getResults().get(end);
     }
 }

@@ -50,4 +50,8 @@ public class Players {
     public int getPlayerSize() {
         return this.players.size();
     }
+
+    public int getStartPositionOf(String playerName) {
+        return getPlayerNames().indexOf(playerName);
+    }
 }

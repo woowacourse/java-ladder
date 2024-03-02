@@ -1,7 +1,7 @@
 package controller;
 
 import domain.LadderGameRecord;
-import domain.SelectedPlayer;
+import domain.ResultViewPlayer;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.ladder.sticks.SticksGenerator;
@@ -39,7 +39,7 @@ public class LadderGame {
 
         Ladder ladder = Ladder.of(height, players.getPlayerSize(), sticksGenerator);
         outputView.printLadder(players, ladder, results);
-        return LadderGameRecord.of(players, ladder, results);
+        return new LadderGameRecord(players, ladder, results);
     }
 
     private Players readPlayers() {
@@ -72,10 +72,10 @@ public class LadderGame {
         }
     }
 
-    private SelectedPlayer readTargetPlayerIn(List<String> players) {
+    private ResultViewPlayer readTargetPlayerIn(List<String> players) {
         try {
             String inputTargetPlayer = inputView.readTargetPlayer();
-            return new SelectedPlayer(inputTargetPlayer, players);
+            return new ResultViewPlayer(inputTargetPlayer, players);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return readTargetPlayerIn(players);
@@ -83,14 +83,14 @@ public class LadderGame {
     }
 
     private void printResult(Players players, LadderGameRecord ladderGameRecord) {
-        SelectedPlayer selectedPlayer = readTargetPlayerIn(players.getPlayerNames());
+        ResultViewPlayer resultViewPlayer = readTargetPlayerIn(players.getPlayerNames());
 
-        if (selectedPlayer.isAll()) {
+        if (resultViewPlayer.isAll()) {
             printAllPlayerResult(ladderGameRecord);
             return;
         }
 
-        printOnePlayerResult(selectedPlayer.getName(), ladderGameRecord);
+        printOnePlayerResult(resultViewPlayer.getName(), ladderGameRecord);
     }
 
     private void printAllPlayerResult(LadderGameRecord ladderGameRecord) {

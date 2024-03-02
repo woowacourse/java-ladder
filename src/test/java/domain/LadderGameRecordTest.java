@@ -29,7 +29,7 @@ class LadderGameRecordTest {
         Players players = new Players(List.of("산초", "아톰"));
         Ladder ladder = Ladder.of(new Height(height), players.getPlayerSize(), mockSticksGenerator());
         Results results = new Results(List.of("꽝", "당첨"), players.getPlayerSize());
-        ladderGameRecord = LadderGameRecord.of(players, ladder, results);
+        ladderGameRecord = new LadderGameRecord(players, ladder, results);
     }
 
     private StickGenerator mockStickGenerator() {

@@ -2,13 +2,13 @@ package domain;
 
 import java.util.List;
 
-public class SelectedPlayer {
+public class ResultViewPlayer {
 
     private static final String ALL_COMMEND = "all";
 
     private final String name;
 
-    public SelectedPlayer(String name, List<String> names) {
+    public ResultViewPlayer(String name, List<String> names) {
         if (!names.contains(name) && !name.equals(ALL_COMMEND)) {
             String message = String.format("%s이나 기존 사용자 이름을 입력해야 합니다.", ALL_COMMEND);
             throw new IllegalArgumentException(message);
