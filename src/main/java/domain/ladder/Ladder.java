@@ -32,7 +32,7 @@ public class Ladder {
         Map<Player, Prize> result = new LinkedHashMap<>();
         for (int start = 0; start < players.count(); start++) {
             int end = crossRow(start);
-            result.put(players.get(start), prizes.get(end));
+            result.put(players.findPlayerByIndex(start), prizes.get(end));
         }
         return new LadderResult(result);
     }

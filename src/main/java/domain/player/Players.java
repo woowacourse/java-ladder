@@ -14,6 +14,7 @@ public class Players {
     private static final int UNIQUE_COUNT = 1;
     private static final String DUPLICATE_EXCEPTION_MESSAGE = "[ERROR] rejected value: %s - 중복된 값이 존재합니다.";
     private static final String INVALID_PLAYER_COUNT_EXCEPTION_MESSAGE = "[ERROR] 참가자는 %d ~ %d명이어야 합니다.";
+    private static final String INDEX_EXCEPTION_MESSAGE = "[ERROR] rejected value: %d - 인덱스 범위를 벗어났습니다.";
 
     private final List<Player> players;
 
@@ -61,14 +62,21 @@ public class Players {
                 .orElse(0);
     }
 
+    public Player findPlayerByIndex(int index) {
+        if (isOutOfRange(index)) {
+            throw new IllegalArgumentException(String.format(INDEX_EXCEPTION_MESSAGE, index));
+        }
+        return players.get(index);
+    }
+
+    private boolean isOutOfRange(int index) {
+        return index < 0 || index >= players.size();
+    }
+
     public List<String> getPlayerNames() {
         return players.stream()
                 .map(Player::getName)
                 .toList();
-    }
-
-    public Player get(int index) { // todo 메서드명, index validation
-        return players.get(index);
     }
 
     public int count() {
