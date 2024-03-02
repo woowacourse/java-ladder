@@ -2,6 +2,7 @@ package ladder.view;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import ladder.domain.dto.MadeLadderDto;
 import ladder.domain.dto.MadeLineDto;
 import ladder.domain.ladder.Step;
@@ -26,11 +27,11 @@ public class OutputView {
         System.out.println(prize);
     }
 
-    public void printAllResult(List<Name> names, List<String> prizes) {
+    public void printAllResult(final Map<String, String> allResult) {
         System.out.println("\n실행 결과");
 
-        for (int i = 0; i < names.size(); i++) {
-            System.out.println(names.get(i).getName() + " : " + prizes.get(i));
+        for (String name : allResult.keySet()) {
+            System.out.println(name + " : " + allResult.get(name));
         }
     }
 

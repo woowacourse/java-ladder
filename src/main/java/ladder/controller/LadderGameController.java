@@ -7,6 +7,10 @@ import ladder.domain.carpenter.Carpenter;
 import ladder.domain.carpenter.Energy;
 import ladder.domain.dto.MadeLadderDto;
 import ladder.domain.ladder.Height;
+import ladder.domain.ladderGame.GameExecutionCommand;
+import ladder.domain.ladderGame.LadderResult;
+import ladder.domain.ladderGame.ResultFinder;
+import ladder.domain.participant.Name;
 import ladder.domain.participant.Participants;
 import ladder.domain.prize.GamePrizes;
 import ladder.domain.randomGenerator.NumberGenerator;
@@ -14,6 +18,8 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class LadderGameController {
+
+    private static final String SEE_ALL_PARTICIPANT_COMMEND = "all";
 
     private final NumberGenerator numberGenerator;
     private final OutputView outputView;
@@ -25,7 +31,7 @@ public class LadderGameController {
         this.inputView = inputView;
     }
 
-    public LadderResultController run() {
+    public void run() {
 
         Participants participants = repeatUntilValid(this::readyParticipants, outputView);
         int participantCount = participants.size();
@@ -34,7 +40,9 @@ public class LadderGameController {
         GamePrizes gamePrizes = repeatUntilValid(() -> readyPrizes(participantCount), outputView);
 
         outputView.printMadeLadder(madeLadder, participants.getNames(), gamePrizes.getPrizes());
-        return new LadderResultController(inputView, outputView, madeLadder, participants, gamePrizes);
+
+        showResult(participants, gamePrizes, madeLadder);
+
     }
 
     private Participants readyParticipants() {
@@ -55,13 +63,48 @@ public class LadderGameController {
         return new Carpenter(height, participantsCount, energy);
     }
 
+    private Height initHeight() {
+        String inputHeight = inputView.getHeight();
+        return new Height(inputHeight);
+    }
+
     private GamePrizes readyPrizes(int participantCount) {
         List<String> inputPrizes = inputView.getPrizes();
         return new GamePrizes(inputPrizes, participantCount);
     }
 
-    private Height initHeight() {
-        String inputHeight = inputView.getHeight();
-        return new Height(inputHeight);
+    private void showResult(Participants participants, GamePrizes gamePrizes, MadeLadderDto madeLadder) {
+        boolean endOrNotChoice = repeatUntilValid(this::isEndOrNot, outputView);
+
+        LadderResult ladderResult = new LadderResult(madeLadder, participants.size());
+
+        if (endOrNotChoice) {
+            ResultFinder resultFinder = new ResultFinder(participants, gamePrizes, ladderResult);
+
+            chooseParticipant(resultFinder);
+            showResult(participants, gamePrizes, madeLadder);
+        }
+    }
+
+    private boolean isEndOrNot() {
+        String inputChoice = inputView.getEndOrNotChoice();
+
+        return GameExecutionCommand.isExecuteGameCommand(inputChoice);
+    }
+
+    private void chooseParticipant(ResultFinder resultFinder) {
+        String participantChoice = inputView.getSeeResultParticipant();
+
+        if (SEE_ALL_PARTICIPANT_COMMEND.equals(participantChoice)) {
+            outputView.printAllResult(resultFinder.findAllPrizes());
+            return;
+        }
+
+        try {
+            Name name = new Name(participantChoice);
+            outputView.printSingleResult(resultFinder.findPrize(name));
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e);
+        }
     }
 }
