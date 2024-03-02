@@ -1,8 +1,8 @@
-package domain;
+package laddergame.domain;
 
 import java.util.Random;
 
-class RandomStickGenerator implements StickGenerator {
+public class RandomStickGenerator implements StickGenerator {
 
     private static final int RANDOM_BOUND = 2;
 
@@ -10,7 +10,7 @@ class RandomStickGenerator implements StickGenerator {
 
     @Override
     public Stick generateOne() {
-        int random = this.randomGenerator.nextInt(RANDOM_BOUND);
+        int random = randomGenerator.nextInt(RANDOM_BOUND);
 
         if (random == 0) {
             return Stick.NOT_FILLED;

@@ -1,6 +1,7 @@
-package domain;
+package laddergame.domain;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Players {
 
@@ -31,17 +32,28 @@ public class Players {
         return names.stream().distinct().count();
     }
 
-    public List<Player> mapToPlayer(List<String> names) {
+    private List<Player> mapToPlayer(List<String> names) {
         return names.stream()
                 .map(name -> new Player(name.trim()))
                 .toList();
     }
 
-    public List<Player> getPlayers() {
-        return this.players;
+    public Column findPlayerColumn(Player target) {
+        Player foundPlayer = players.stream()
+                .filter(target::equals)
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("존재하지 않는 사용자입니다."));
+
+        return new Column(players.indexOf(foundPlayer));
     }
 
-    public int getPlayerSize() {
-        return this.players.size();
+    public int size() {
+        return players.size();
+    }
+
+    public List<String> getPlayerNames() {
+        return players.stream()
+                .map(Player::getName)
+                .toList();
     }
 }

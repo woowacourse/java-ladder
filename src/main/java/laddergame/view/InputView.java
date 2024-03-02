@@ -1,4 +1,4 @@
-package view;
+package laddergame.view;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +11,17 @@ public class InputView {
     public List<String> readNames() {
         String inputNames = readLine("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
-        return Arrays.stream(inputNames.split(",")).toList();
+        return split(inputNames, ",");
+    }
+
+    public List<String> readGameResults() {
+        String inputGameResults = readLine("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+
+        return split(inputGameResults, ",");
+    }
+
+    private List<String> split(String input, String delimeter) {
+        return Arrays.stream(input.split(delimeter)).toList();
     }
 
     public int readHeight() {
@@ -21,6 +31,10 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new NumberFormatException("높이는 정수여야 합니다.");
         }
+    }
+
+    public String readNameForResult() {
+        return readLine("결과를 보고 싶은 사람은?");
     }
 
     private String readLine(String message) {
