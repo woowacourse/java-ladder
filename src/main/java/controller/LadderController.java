@@ -6,8 +6,10 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import model.ExecutionResult;
 import model.Ladder;
+import model.LadderGame;
 import model.Participants;
 import model.ResultInterestedPeople;
+import model.dto.GamePrize;
 import model.dto.LayerSteps;
 import model.dto.ParticipantName;
 import model.vo.Height;
@@ -27,33 +29,20 @@ public class LadderController {
         Participants participants = repeatUntilSuccess(this::prepareParticipants);
         ExecutionResult executionResult = repeatUntilSuccess(this::prepareExecutionResult, participants);
         Ladder ladder = repeatUntilSuccess(this::prepareLadder, participants);
+        printCreatedLadderGame(participants, ladder, executionResult);
 
+        ResultInterestedPeople resultInterestedPeople =
+                repeatUntilSuccess(this::prepareResultInterestedPeople, captureParticipantsName(participants));
+
+        LadderGame ladderGame = new LadderGame(ladder, executionResult);
+        ladderGame.gameStart(captureParticipantsName(participants));
+        outputView.printExecutionResult(resultInterestedPeople, new GamePrize(ladderGame));
+    }
+
+    private void printCreatedLadderGame(Participants participants, Ladder ladder, ExecutionResult executionResult) {
         outputView.printParticipantsName(captureParticipantsName(participants));
         outputView.printLadder(captureLayerSteps(ladder));
         outputView.printExecutionResultBottomLadder(executionResult);
-
-        gamePrepare(participants, ladder, executionResult);
-    }
-
-    private void gamePrepare(Participants participants, Ladder ladder, ExecutionResult executionResult) {
-        ResultInterestedPeople resultInterestedPeople =
-                repeatUntilSuccess(this::prepareResultInterestedPeople, captureParticipantsName(participants));
-        if (resultInterestedPeople.getResultInterestedName().size() != participants.getParticipantsSize()) {
-            gameStart(resultInterestedPeople, ladder, executionResult);
-            gamePrepare(participants, ladder, executionResult);
-            return;
-        }
-        gameStart(resultInterestedPeople, ladder, executionResult);
-    }
-
-    private void gameStart(ResultInterestedPeople resultInterestedPeople, Ladder ladder,
-                           ExecutionResult executionResult) {
-        resultInterestedPeople.forEachPosition(position -> {
-            int positionResult = ladder.move(position);
-            String result = executionResult.getExecutionResult().get(positionResult);
-            resultInterestedPeople.actualExecutionResult(result);
-        });
-        outputView.printExecutionResult(resultInterestedPeople);
     }
 
     private Participants prepareParticipants() {
