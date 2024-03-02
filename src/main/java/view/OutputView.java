@@ -4,7 +4,7 @@ import java.util.List;
 
 public class OutputView {
 
-    public void printParticipantLineUp(String result) {
+    public void printPlayers(String result) {
         System.out.println("\n사다리 결과\n" + result);
     }
 

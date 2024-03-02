@@ -2,15 +2,15 @@ package domain;
 
 import java.util.*;
 
-public class Participants {
+public class Players {
 
-    private final List<Participant> participants = new ArrayList<>();
+    private final List<Player> players = new ArrayList<>();
 
-    public Participants(List<String> names) {
+    public Players(List<String> names) {
         validateNamesLength(names);
         validateDuplicatedNames(names);
 
-        makeParticipants(names);
+        makePlayers(names);
     }
 
     private void validateNamesLength(List<String> names) {
@@ -25,24 +25,24 @@ public class Participants {
         }
     }
 
-    private void makeParticipants(List<String> names) {
+    private void makePlayers(List<String> names) {
         for (String name : names) {
-            participants.add(new Participant(name));
+            players.add(new Player(name));
         }
     }
 
-    public Participant findParticipantByName(String name) {
-        return participants.stream()
-                .filter(participant -> participant.getName().equals(name))
+    public Player findPlayersByName(String name) {
+        return players.stream()
+                .filter(player -> player.getName().equals(name))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참가자 이름입니다."));
     }
 
-    public Participant findParticipantByInitPosition(int position) {
-        return participants.get(position);
+    public Player findPlayersByPosition(int position) {
+        return players.get(position);
     }
 
-    public int getParticipantsCount() {
-        return participants.size();
+    public int getPlayersCount() {
+        return players.size();
     }
 }

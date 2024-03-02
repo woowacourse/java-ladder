@@ -1,12 +1,12 @@
 package domain;
 
-public class Participant {
+public class Player {
 
     private static final Integer MAX_NAME_LENGTH = 5;
 
     private final String name;
 
-    public Participant(String name) {
+    public Player(String name) {
         validateNameLength(name);
         this.name = name;
     }

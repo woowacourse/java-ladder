@@ -6,17 +6,17 @@ import java.util.Map;
 
 public class GameResult {
 
-    private final Map<Participant, String> participantsResult = new HashMap<>();
+    private final Map<Player, String> playersResult = new HashMap<>();
 
-    public void recordParticipantsResult(Participant participant, Prizes prizes, int position) {
-        participantsResult.put(participant, prizes.getPrizeByPosition(position));
+    public void recordPlayersResult(Player player, Prizes prizes, int position) {
+        playersResult.put(player, prizes.getPrizeByPosition(position));
     }
 
-    public String getResultByParticipant(Participant participant) {
-        return participantsResult.get(participant);
+    public String getResultByPlayer(Player player) {
+        return playersResult.get(player);
     }
 
-    public Map<Participant, String> getParticipantsResult() {
-        return Collections.unmodifiableMap(participantsResult);
+    public Map<Player, String> getPlayersResult() {
+        return Collections.unmodifiableMap(playersResult);
     }
 }

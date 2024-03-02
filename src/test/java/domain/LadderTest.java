@@ -26,19 +26,19 @@ class LadderTest {
     @DisplayName("사다리 게임 진행")
     @Test
     void playLadder() {
-        Participants participants = new Participants(List.of("1", "2", "3", "4"));
+        Players players = new Players(List.of("1", "2", "3", "4"));
         Prizes prizes = new Prizes(List.of("꽝", "1000", "2000", "3000"));
         GameResult gameResult = new GameResult();
 
-        Map<Participant, String> expected = new HashMap<>();
-        expected.put(participants.findParticipantByName("1"), prizes.getPrizeByPosition(1));
-        expected.put(participants.findParticipantByName("2"), prizes.getPrizeByPosition(0));
-        expected.put(participants.findParticipantByName("3"), prizes.getPrizeByPosition(3));
-        expected.put(participants.findParticipantByName("4"), prizes.getPrizeByPosition(2));
+        Map<Player, String> expected = new HashMap<>();
+        expected.put(players.findPlayersByName("1"), prizes.getPrizeByPosition(1));
+        expected.put(players.findPlayersByName("2"), prizes.getPrizeByPosition(0));
+        expected.put(players.findPlayersByName("3"), prizes.getPrizeByPosition(3));
+        expected.put(players.findPlayersByName("4"), prizes.getPrizeByPosition(2));
 
-        Ladder ladder = Ladder.of(new Height("5"), participants.getParticipantsCount(), new TestBooleanGenerator(true));
+        Ladder ladder = Ladder.of(new Height("5"), players.getPlayersCount(), new TestBooleanGenerator(true));
 
-        ladder.playLadder(gameResult, prizes, participants);
-        assertThat(gameResult.getParticipantsResult()).isEqualTo(expected);
+        ladder.playLadder(gameResult, prizes, players);
+        assertThat(gameResult.getPlayersResult()).isEqualTo(expected);
     }
 }
