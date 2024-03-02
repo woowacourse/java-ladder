@@ -7,6 +7,7 @@ import java.util.Map;
 public class LadderResult {
 
     private static final String ALL_RESULT_COMMAND = "all";
+    private static final String ALL_RESULT_DELIMITER = " : ";
     private final Map<String, String> results;
 
     public LadderResult(Map<String, String> results) {
@@ -23,11 +24,11 @@ public class LadderResult {
 
     private List<String> getAll() {
         List<String> resultAll = new ArrayList<>();
-        for (Map.Entry<String, String> entry : results.entrySet()) {
-            String player = entry.getKey();
-            String winning = entry.getValue();
-            resultAll.add(player + " : " + winning);
-        }
+        results.forEach((key, value) -> resultAll.add(
+                String.join(ALL_RESULT_DELIMITER,
+                        key,
+                        value)
+        ));
         return resultAll;
     }
 
