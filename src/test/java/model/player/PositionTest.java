@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-public class PositionTest { // TODO: 마지막 위치여서 혹은 첫번째 위치여서 오른쪽, 왼쪽으로 이동하지 못하는 테스트 추가
+public class PositionTest {
     @DisplayName("이동 테스트")
     @Nested
     class move {

@@ -7,6 +7,7 @@ import static model.ladderGame.Direction.STRAIGHT;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import model.ladder.generator.StepStatusGenerator;
 import model.ladderGame.Direction;
 import model.players.Position;
@@ -69,5 +70,22 @@ public class Line {
 
     public boolean isConnected(final int index) {
         return steps.get(index).isStatus(CONNECTED);
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final Line line = (Line) o;
+        return Objects.equals(steps, line.steps);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(steps);
     }
 }
