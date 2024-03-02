@@ -75,7 +75,7 @@ class MessageResolverTest {
     @DisplayName("단일 결과 메시지 테스트")
     @Test
     void testResultMessage() {
-        LadderResult ladderResult = new LadderResult("1등", "리비");
+        LadderResult ladderResult = new LadderResult("리비", "1등");
         assertThat(messageResolver.resolveResultMessage(ladderResult)).isEqualTo(
                 System.lineSeparator() + "실행 결과" + System.lineSeparator() + "1등");
     }
@@ -83,11 +83,11 @@ class MessageResolverTest {
     @DisplayName("총 결과 메시지 테스트")
     @Test
     void testResultsMessage() {
-        LadderResult ladderResult1 = new LadderResult("1등", "리비");
-        LadderResult ladderResult2 = new LadderResult("2등", "잉크");
-        LadderResult ladderResult3 = new LadderResult("3등", "테니");
-        LadderResult ladderResult4 = new LadderResult("4등", "에버");
-        LadderResult ladderResult5 = new LadderResult("5등", "제리");
+        LadderResult ladderResult1 = new LadderResult("리비", "1등");
+        LadderResult ladderResult2 = new LadderResult("잉크", "2등");
+        LadderResult ladderResult3 = new LadderResult("테니", "3등");
+        LadderResult ladderResult4 = new LadderResult("에버", "4등");
+        LadderResult ladderResult5 = new LadderResult("제리", "5등");
 
         LadderResults ladderResults = new LadderResults(
                 List.of(ladderResult1, ladderResult2, ladderResult3, ladderResult4, ladderResult5));

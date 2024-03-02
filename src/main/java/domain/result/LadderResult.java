@@ -2,12 +2,12 @@ package domain.result;
 
 public class LadderResult {
 
-    private final String result;
     private final String name;
+    private final String result;
 
-    public LadderResult(String result, String name) {
-        this.result = result;
+    public LadderResult(String name, String result) {
         this.name = name;
+        this.result = result;
     }
 
     public String getResult() {
