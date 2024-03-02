@@ -42,18 +42,4 @@ class NamesTest {
         List<String> names = List.of("리비", "잉크");
         assertThatCode(() -> Names.from(names)).doesNotThrowAnyException();
     }
-
-    @DisplayName("찾는 이름이 있으면 검증에 성공한다.")
-    @Test
-    void testValidateGetName() {
-        Names names = Names.from(List.of("a", "b", "c"));
-        assertThatCode(() -> names.findName("b")).doesNotThrowAnyException();
-    }
-
-    @DisplayName("찾는 이름이 없으면 검증에 실패한다.")
-    @Test
-    void testInvalidateGetName() {
-        Names names = Names.from(List.of("a", "b", "c"));
-        assertThatThrownBy(() -> names.findName("d")).isInstanceOf(IllegalArgumentException.class);
-    }
 }

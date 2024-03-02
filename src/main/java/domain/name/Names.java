@@ -37,17 +37,6 @@ public class Names {
         }
     }
 
-    public int getNameCount() {
-        return names.size();
-    }
-
-    public Name findName(String findingName) {
-        return names.stream()
-                .filter(name -> name.getName().equals(findingName))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 찾는 이름이 없습니다."));
-    }
-
     public int findIndex(String findingName) {
         for (int i = 0; i < names.size(); i++) {
             if (names.get(i).getName().equals(findingName)) {
@@ -63,5 +52,9 @@ public class Names {
 
     public List<Name> getNames() {
         return List.copyOf(names);
+    }
+
+    public int getNameCount() {
+        return names.size();
     }
 }
