@@ -14,6 +14,7 @@ import laddergame.model.participants.Participants;
 public class OutputView {
     private static final int STANDARD_NAME_LENGTH = 5;
     private static final int SINGLE_GAME_RESUlT_COUNT = 1;
+    private static final String MULTIPLE_RESULTS_DELIMITER_ONE_LINE = " ";
 
     public void printResultHeader() {
         System.out.println();
@@ -26,7 +27,7 @@ public class OutputView {
                 .stream()
                 .map(Participant::name)
                 .map(this::alignNameText)
-                .collect(Collectors.joining(" "));
+                .collect(Collectors.joining(MULTIPLE_RESULTS_DELIMITER_ONE_LINE));
         System.out.println(result);
     }
 
@@ -43,7 +44,7 @@ public class OutputView {
                 .stream()
                 .map(ExecutionResult::name)
                 .map(this::alignNameText)
-                .collect(Collectors.joining(" "));
+                .collect(Collectors.joining(MULTIPLE_RESULTS_DELIMITER_ONE_LINE));
         System.out.println(result);
     }
 
