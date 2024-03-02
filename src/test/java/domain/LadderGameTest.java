@@ -17,10 +17,13 @@ public class LadderGameTest {
 
     @BeforeEach
     void setLadderGame() {
+        Ladder ladder = new Ladder(List.of(
+                new Line(List.of(4, 5))
+        ));
         ladderGame = new LadderGame(
                 new PlayerNames(List.of("a", "b")),
                 new WinningNames(List.of("1", "2"), 2),
-                new Height(1),
+                ladder,
                 new CustomGenerator(List.of(false, true))
         );
     }

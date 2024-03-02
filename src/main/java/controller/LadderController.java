@@ -1,11 +1,17 @@
 package controller;
 
 import domain.Height;
+import domain.Ladder;
 import domain.LadderGame;
 import domain.LadderResult;
+import domain.Line;
 import domain.PlayerNames;
 import domain.WinningNames;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import util.ConsoleReader;
+import util.RandomGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -21,7 +27,8 @@ public class LadderController {
         PlayerNames playerNames = nameInput(MAX_TRY_COUNT);
         WinningNames winningNames = winningsInput(MAX_TRY_COUNT, playerNames.getPersonCount());
         Height height = heightInput(MAX_TRY_COUNT);
-        LadderGame ladderGame = new LadderGame(playerNames, winningNames, height);
+        List<Line> lines = makeLines(playerNames.getPersonCount(), height);
+        LadderGame ladderGame = new LadderGame(playerNames, winningNames, new Ladder(lines));
         OutputView.printLadder(ladderGame.getLadderSequence());
 
         LadderResult ladderResult = new LadderResult(ladderGame.getResult());
@@ -68,6 +75,15 @@ public class LadderController {
             OutputView.printError(e.getMessage());
             return heightInput(tryCount - 1);
         }
+    }
+
+    private List<Line> makeLines(int personCount, Height height) {
+        List<Line> lines = new ArrayList<>();
+        RandomGenerator randomGenerator = new RandomGenerator();
+        for (int i = 0; i < height.getHeight(); ++i) {
+            lines.add(new Line(randomGenerator.generate(personCount)));
+        }
+        return lines;
     }
 
     private void validateTryCount(int tryCount) {

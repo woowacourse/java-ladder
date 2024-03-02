@@ -20,22 +20,18 @@ public class LadderGame {
     private final WinningNames winningNames;
     private final Generator generator;
 
-    public LadderGame(PlayerNames playerNames, WinningNames winningNames, Height height) {
+    public LadderGame(PlayerNames playerNames, WinningNames winningNames, Ladder ladder) {
         this.playerNames = playerNames;
         this.winningNames = winningNames;
-        this.ladder = new Ladder(height);
+        this.ladder = ladder;
         this.generator = new RandomGenerator();
-
-        this.ladder.init(playerNames.getPersonCount(), this.generator);
     }
 
-    LadderGame(PlayerNames playerNames, WinningNames winningNames, Height height, Generator generator) {
+    LadderGame(PlayerNames playerNames, WinningNames winningNames, Ladder ladder, Generator generator) {
         this.playerNames = playerNames;
         this.winningNames = winningNames;
-        this.ladder = new Ladder(height);
+        this.ladder = ladder;
         this.generator = generator;
-
-        this.ladder.init(playerNames.getPersonCount(), this.generator);
     }
 
     public List<String> getLadderSequence() {
