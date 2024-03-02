@@ -14,7 +14,7 @@ public class LadderTest {
     @Test
     void ladderHeight() {
         Height height = new Height(5);
-        Ladder ladder = new Ladder(height, new LadderRowGenerator(() -> true), 2);
+        Ladder ladder = new Ladder(height, () -> true, 2);
         assertThat(ladder.getHeight()).isEqualTo(height.value());
     }
 
@@ -22,7 +22,7 @@ public class LadderTest {
     @Test
     void ladderColumnOneLessThanParticipantSize() {
         Height height = new Height(5);
-        Ladder ladder = new Ladder(height, new LadderRowGenerator(() -> true), 2);
+        Ladder ladder = new Ladder(height, () -> true, 2);
         assertThat(ladder.getLadderRowSize()).isEqualTo(1);
     }
 

@@ -8,10 +8,10 @@ public class LadderRow {
 
     private final List<Line> isLines;
 
-    public LadderRow(LadderRowGenerator generator, int size) {
+    public LadderRow(BooleanGenerator generator, int size) {
         List<Boolean> row = new ArrayList<>(); //TODO 더 좋은 방법
-        row.add(generator.generate(false));
-        IntStream.range(1, size).forEach(index -> row.add(generator.generate(row.get(index - 1))));
+        row.add(generator.generate());
+        IntStream.range(1, size).forEach(index -> row.add(generateNext(row.get(index - 1), generator)));
         this.isLines = row.stream().map(Line::valueOf).toList();
     }
 
@@ -22,6 +22,13 @@ public class LadderRow {
 
     private void validateLadderRow(List<Boolean> isLines) {//TODO reduce(), atomicInteger
         IntStream.range(1, isLines.size()).forEach(index -> isConsecutiveTrue(isLines, index));
+    }
+
+    private boolean generateNext(boolean isTrue, BooleanGenerator generator) {
+        if (isTrue) {
+            return false;
+        }
+        return generator.generate();
     }
 
     private void isConsecutiveTrue(List<Boolean> isLines, int index) {

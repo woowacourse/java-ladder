@@ -1,10 +1,13 @@
 package model;
 
+import static model.Line.CONNECTED;
+import static model.Line.NOT_CONNECTED;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,6 +31,14 @@ public class LadderRowTest {
                 () -> assertThat(ladderRow.move(new Position(2))).isEqualTo(new Position(2)),
                 () -> assertThat(ladderRow.move(new Position(3))).isEqualTo(new Position(4)),
                 () -> assertThat(ladderRow.move(new Position(4))).isEqualTo(new Position(3)));
+    }
+
+    @DisplayName("연속된 true 값이 나올 수 없다.")
+    @Test
+    void createNotConsecutiveTrue() {
+        LadderRow ladderRow = new LadderRow(() -> true, 5);
+        Assertions.assertThat(ladderRow.getIsLines())
+                .isEqualTo(List.of(CONNECTED, NOT_CONNECTED, CONNECTED, NOT_CONNECTED, CONNECTED));
     }
 
     /*

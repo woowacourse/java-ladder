@@ -4,7 +4,6 @@ import java.util.Map;
 import model.Height;
 import model.Ladder;
 import model.LadderGame;
-import model.LadderRowGenerator;
 import model.Name;
 import model.Participant;
 import model.Participants;
@@ -32,7 +31,7 @@ public class LadderController {
         participants = new Participants(inputView.inputParticipantsName());
         results = new Results(inputView.inputResults());
         Height height = new Height(inputView.inputLadderHeight());
-        Ladder ladder = new Ladder(height, new LadderRowGenerator(new RandomBooleanGenerator()), participants.size());
+        Ladder ladder = new Ladder(height, new RandomBooleanGenerator(), participants.size());
         ladderGame = new LadderGame(participants, ladder, results);
         outputView.printRandomLadderResult(participants, ladder, results);
         printResults();
