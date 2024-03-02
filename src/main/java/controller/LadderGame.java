@@ -16,6 +16,7 @@ import view.OutputView;
 
 public class LadderGame {
     private static final String ALL = "all";
+  
     private final InputView inputView;
     private final OutputView outputView;
 
