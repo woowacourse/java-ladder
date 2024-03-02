@@ -44,7 +44,7 @@ public class Participants {
     }
 
     public List<Participant> getParticipants() {
-        return participants.keySet().stream().toList();
+        return new ArrayList<>(participants.keySet());
     }
 
     public Position getPosition(Participant participant) {
