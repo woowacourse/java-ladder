@@ -6,12 +6,17 @@ public class PlayerName {
 
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
+    private static final String SPECIAL_NAME_ALL = "all";
 
     private final String name;
 
     public PlayerName(String name) {
         validateLength(name);
         this.name = name;
+    }
+
+    public boolean isNotSpecialKeyWord() {
+        return !name.equals(SPECIAL_NAME_ALL);
     }
 
     public String getName() {

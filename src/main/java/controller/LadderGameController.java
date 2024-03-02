@@ -45,7 +45,7 @@ public class LadderGameController {
 
     private void repeatSingleTargetDrive(LadderGame ladderGame) {
         PlayerName driverName = inputMapper.mapToName(inputView.readDriver());
-        while (!driverName.getName().equals("all")) {
+        while (driverName.isNotSpecialKeyWord()) {
             LadderResult result = ladderGame.drive(driverName);
             resultView.printResult(result);
             driverName = inputMapper.mapToName(inputView.readDriver());
