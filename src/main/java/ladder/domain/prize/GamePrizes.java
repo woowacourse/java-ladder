@@ -6,6 +6,7 @@ import java.util.List;
 public class GamePrizes {
 
     private static final int MAXIMUM_PRIZE_LENGTH = 5;
+
     private final List<String> prizes;
 
     public GamePrizes(List<String> gamePrizesInput, int availablePrizeCount) {
@@ -29,9 +30,13 @@ public class GamePrizes {
 
     private void validateHasOverMaximumLength(List<String> gamePrizesInput) {
         for (String gamePrize : gamePrizesInput) {
-            if (gamePrize.length() > MAXIMUM_PRIZE_LENGTH) {
-                throw new IllegalArgumentException("최대 글자 개수는 " + MAXIMUM_PRIZE_LENGTH + "개 입니다.");
-            }
+            checkEachPrize(gamePrize.length());
+        }
+    }
+
+    private void checkEachPrize(int prizeLength) {
+        if (prizeLength > MAXIMUM_PRIZE_LENGTH) {
+            throw new IllegalArgumentException("최대 글자 개수는 " + MAXIMUM_PRIZE_LENGTH + "개 입니다.");
         }
     }
 
