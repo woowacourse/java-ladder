@@ -7,26 +7,26 @@ public enum Command {
     ALL("all"),
     EXIT("exit");
 
-    private final String command;
+    private final String value;
 
-    Command(String command) {
-        this.command = command;
+    Command(String value) {
+        this.value = value;
     }
 
-    public static boolean contains(String string) {
+    public static boolean contains(String input) {
         return Arrays.stream(Command.values())
-                .anyMatch(e -> e.command.equals(string));
+                .anyMatch(e -> e.value.equals(input));
     }
 
     public static String getCommandToString() {
         StringJoiner result = new StringJoiner(", ");
         for (Command e : Command.values()) {
-            result.add(e.getCommand());
+            result.add(e.getValue());
         }
         return result.toString();
     }
 
-    public String getCommand() {
-        return this.command;
+    public String getValue() {
+        return this.value;
     }
 }

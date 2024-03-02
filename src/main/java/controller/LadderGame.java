@@ -76,10 +76,10 @@ public class LadderGame {
     }
 
     private void showResultByCommand(String who) {
-        if (Objects.equals(who, Command.EXIT.getCommand())) {
+        if (Objects.equals(who, Command.EXIT.getValue())) {
             System.exit(0);
         }
-        if (Objects.equals(who, Command.ALL.getCommand())) {
+        if (Objects.equals(who, Command.ALL.getValue())) {
             showResultAll();
         }
     }
