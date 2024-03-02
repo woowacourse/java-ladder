@@ -8,7 +8,6 @@ public class Participants {
 
     protected static final String NOT_ALLOWED_DUPLICATED_PARTICIPANT_NAME = "중복된 참가자들은 존재할 수 없습니다.";
     protected static final String NOT_ALLOWED_PARTICIPANT_SIZE_UNDER_THAN_TWO = "참가자가 1명 이하인 경우는 사다리 게임을 진행할 수 없습니다.";
-    protected static final String NOT_EXIST_PARTICIPANT = "존재하지 않는 참가자 입니다.";
     private static final int MINIMUM_PARTICIPANT_SIZE = 2;
     private final Map<Participant, Position> participants;
 
@@ -48,9 +47,6 @@ public class Participants {
     }
 
     public Position getPosition(Participant participant) {
-        if (participants.containsKey(participant)) {
-            return participants.get(participant);
-        }
-        throw new IllegalArgumentException(NOT_EXIST_PARTICIPANT);
+        return participants.get(participant);
     }
 }

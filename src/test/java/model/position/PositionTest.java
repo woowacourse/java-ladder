@@ -34,7 +34,7 @@ class PositionTest {
     @Test
     void validateNotNegative() {
         assertThatThrownBy(() -> Position.valueOf(-1))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(IllegalStateException.class)
                 .hasMessage(NOT_ALLOWED_NEGATIVE_POSITION);
     }
 

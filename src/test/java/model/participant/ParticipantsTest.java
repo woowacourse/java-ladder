@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static model.participant.Participants.*;
+import static model.participant.Participants.NOT_ALLOWED_DUPLICATED_PARTICIPANT_NAME;
+import static model.participant.Participants.NOT_ALLOWED_PARTICIPANT_SIZE_UNDER_THAN_TWO;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -40,12 +41,5 @@ class ParticipantsTest {
         );
     }
 
-    @DisplayName("존재하지 않는 참가자의 시작 순서를 알려고 한다면 예외가 발생한다.")
-    @Test
-    void notExistParticipants() {
-        Participants participants = new Participants(List.of("pobi", "left", "right"));
-        assertThatThrownBy(() -> participants.getPosition(new Participant("tobi")))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NOT_EXIST_PARTICIPANT);
-    }
+
 }
