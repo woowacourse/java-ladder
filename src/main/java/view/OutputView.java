@@ -28,11 +28,10 @@ public class OutputView {
         printResults(ladderGame.getResults());
     }
 
-    private void printParticipantsName(Participants participants) {
-        List<String> participantsName = participants.getParticipants().stream()
-                .map(Participant::getName)
-                .toList();
-        participantsName.forEach(name -> System.out.printf(NAME_FORMAT, name));
+    private void printParticipantsName(List<Participant> participants) {
+        for (Participant participant : participants){
+            System.out.printf(NAME_FORMAT, participant.getName());
+        }
         System.out.println();
     }
 
@@ -52,11 +51,10 @@ public class OutputView {
         System.out.print(LadderComponent.DIVISION.getOutput());
     }
 
-    private void printResults(Results results) {
-        List<String> result = results.getResults().stream()
-                .map(Result::name)
-                .toList();
-        result.forEach(resultName -> System.out.printf(NAME_FORMAT, resultName));
+    private void printResults(List<Result> results) {
+        for (Result result : results){
+            System.out.printf(NAME_FORMAT, result.name());
+        }
         System.out.println();
     }
 
@@ -67,7 +65,7 @@ public class OutputView {
 
     public void printLadderGameResult(ParticipantsResult participantsResult) {
         System.out.println(System.lineSeparator() + RESULT_MESSAGE);
-        for (Map.Entry<Participant, Result> reward : participantsResult.getRewards().entrySet()) {
+        for (Map.Entry<Participant, Result> reward : participantsResult.getParticipantsResult().entrySet()) {
             System.out.println(reward.getKey().getName() + DELIMITER + reward.getValue().name());
         }
     }

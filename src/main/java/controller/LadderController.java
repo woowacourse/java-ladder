@@ -40,10 +40,10 @@ public class LadderController {
     private ParticipantsResult play(LadderGame ladderGame) {
         String participantName = inputView.inputParticipantName();
         while (!participantName.equals(InputView.ENTIRE_PARTICIPANTS)) {
-            outputView.printParticipantResult(ladderGame.matchResult(new Participant(participantName)));
+            outputView.printParticipantResult(ladderGame.getParticipantsResult().getResult(new Participant(participantName)));
             participantName = inputView.inputParticipantName();
         }
-        return ladderGame.matchAllResults();
+        return ladderGame.getParticipantsResult();
     }
 
     private <T> T attempt(Supplier<T> inputSupplier) {
