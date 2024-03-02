@@ -47,7 +47,7 @@ public class LineTest {
         }
     }
 
-    @DisplayName("현재위치(Index)를 받으면 다음 라인의 위치를 반환한다.")
+    @DisplayName("현재위치(Index)를 받으면 움직인 후 다음 라인의 다리 위치를 반환한다.")
     @Test
     void findNextIndex() {
         Line line = new Line(new RandomLegGenerateStrategy() {
@@ -57,8 +57,8 @@ public class LineTest {
             }
         }, 3);
         Assertions.assertAll(
-                () -> assertThat(line.moveToNextIndex(0)).isEqualTo(1),
-                () -> assertThat(line.moveToNextIndex(3)).isEqualTo(2)
+                () -> assertThat(line.moveToNextLeg(0)).isEqualTo(1),
+                () -> assertThat(line.moveToNextLeg(3)).isEqualTo(2)
         );
 
     }

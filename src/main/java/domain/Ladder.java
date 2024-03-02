@@ -26,7 +26,7 @@ public class Ladder {
         int presentIndex = startTopIndex;
         for (int i = 0; i < height.getHeight(); i++) {
             Line presentLine = lines.get(i);
-            presentIndex = presentLine.moveToNextIndex(presentIndex);
+            presentIndex = presentLine.moveToNextLeg(presentIndex);
         }
         return presentIndex;
     }
