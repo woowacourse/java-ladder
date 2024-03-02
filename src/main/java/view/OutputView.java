@@ -53,7 +53,7 @@ public class OutputView {
     private static void printLine(List<Leg> legs) {
         for (Leg leg : legs) {
             System.out.print(STICK);
-            System.out.print(extractLeg(leg.isExistLeg()));
+            System.out.print(extractLeg(leg.isConnected()));
         }
         System.out.print(STICK + lineSeparator());
     }

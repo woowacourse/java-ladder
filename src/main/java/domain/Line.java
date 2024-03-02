@@ -13,7 +13,7 @@ public class Line {
 
     private List<Leg> makeLegs(LegGenerateStrategy legGenerateStrategy, int legCount) {
         List<Leg> legs = new ArrayList<>();
-        legs.add(new Leg(legGenerateStrategy.generateLeg()));
+        legs.add(legGenerateStrategy.generateLeg());
         for (int i = 1; i < legCount; i++) {
             decideLegExist(legGenerateStrategy, legs, i);
         }
@@ -22,18 +22,18 @@ public class Line {
 
 
     private static void decideLegExist(LegGenerateStrategy legGenerateStrategy, List<Leg> legs, int legIndex) {
-        if (legs.get(legIndex - 1).isExistLeg()) {
-            legs.add(new Leg(false));
+        if (legs.get(legIndex - 1).isConnected()) {
+            legs.add(Leg.UN_CONNECTED);
             return;
         }
-        legs.add(new Leg(legGenerateStrategy.generateLeg()));
+        legs.add(legGenerateStrategy.generateLeg());
     }
 
     public int moveToNextIndex(int index) {
-        if (index < legs.size() && legs.get(index).isExistLeg()) {
+        if (index < legs.size() && legs.get(index).isConnected()) {
             return index + 1;
         }
-        if (index > 0 && legs.get(index - 1).isExistLeg()) {
+        if (index > 0 && legs.get(index - 1).isConnected()) {
             return index - 1;
         }
         return index;

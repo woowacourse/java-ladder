@@ -22,8 +22,8 @@ public class LadderGameTest {
         //given
         Ladder ladder = new Ladder(new RandomLegGenerateStrategy() {
             @Override
-            public boolean generateLeg() {
-                return true;
+            public Leg generateLeg() {
+                return Leg.CONNECTED;
             }
         }, new Height(1), 3);
         PlayerNames playerNames = new PlayerNames(
@@ -64,8 +64,8 @@ public class LadderGameTest {
         //given
         Ladder ladder = new Ladder(new RandomLegGenerateStrategy() {
             @Override
-            public boolean generateLeg() {
-                return true;
+            public Leg generateLeg() {
+                return Leg.CONNECTED;
             }
         }, new Height(1), 3);
 

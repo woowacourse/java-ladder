@@ -4,7 +4,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomLegGenerateStrategy implements LegGenerateStrategy {
     @Override
-    public boolean generateLeg() {
-        return ThreadLocalRandom.current().nextBoolean();
+    public Leg generateLeg() {
+        if (ThreadLocalRandom.current().nextBoolean()) {
+            return Leg.CONNECTED;
+
+        }
+        return Leg.UN_CONNECTED;
     }
 }

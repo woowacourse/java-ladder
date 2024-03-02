@@ -35,15 +35,15 @@ public class LineTest {
     void makeLegWithUnOverlap() {
         Line line = new Line(new RandomLegGenerateStrategy() {
             @Override
-            public boolean generateLeg() {
-                return true;
+            public Leg generateLeg() {
+                return Leg.CONNECTED;
             }
         }, 3);
 
         List<Leg> legs = line.getLegs();
 
         for (int i = 1; i < legs.size(); i++) {
-            assertThat(legs.get(i).isExistLeg()).isNotEqualTo(legs.get(i - 1).isExistLeg());
+            assertThat(legs.get(i).isConnected()).isNotEqualTo(legs.get(i - 1).isConnected());
         }
     }
 
@@ -52,8 +52,8 @@ public class LineTest {
     void findNextIndex() {
         Line line = new Line(new RandomLegGenerateStrategy() {
             @Override
-            public boolean generateLeg() {
-                return true;
+            public Leg generateLeg() {
+                return Leg.CONNECTED;
             }
         }, 3);
         Assertions.assertAll(
