@@ -45,10 +45,16 @@ public class Line {
     }
 
     private boolean isMovableLeft(int position) {
-        return position != 0 && bridges.get(position - 1).isExist();
+        if(position == 0){
+            return false;
+        }
+        return bridges.get(position - 1).isExist();
     }
 
     private boolean isMovableRight(int position) {
-        return position != bridges.size() && bridges.get(position).isExist();
+        if(position == bridges.size()){
+            return false;
+        }
+        return bridges.get(position).isExist();
     }
 }
