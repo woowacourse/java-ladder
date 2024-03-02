@@ -36,13 +36,6 @@ public class LadderController {
         playLadderGame(ladderGame);
     }
 
-    private void playLadderGame(LadderGame ladderGame) {
-        while (ladderGame.isInProgress()) {
-            Map<Player, ResultItem> result = executeLadderGameWithRetry(ladderGame);
-            outputView.printExecutionResult(result);
-        }
-    }
-
     private Players createPlayersWithRetry() {
         return RetryHandler.run(this::createPlayersFromInput);
     }
@@ -73,6 +66,13 @@ public class LadderController {
     private Ladder createLadder(int personCount, int heightValue) {
         RandomLadderGenerator randomLadderGenerator = new RandomLadderGenerator();
         return new Ladder(heightValue, randomLadderGenerator.generate(personCount, heightValue));
+    }
+
+    private void playLadderGame(LadderGame ladderGame) {
+        while (ladderGame.isInProgress()) {
+            Map<Player, ResultItem> result = executeLadderGameWithRetry(ladderGame);
+            outputView.printExecutionResult(result);
+        }
     }
 
     private Map<Player, ResultItem> executeLadderGameWithRetry(LadderGame ladderGame) {
