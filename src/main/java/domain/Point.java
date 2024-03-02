@@ -22,6 +22,16 @@ public class Point {
         return new Point(left, right);
     }
 
+    public int move(final int index) {
+        if (right) {
+            return index + 1;
+        }
+        if (left) {
+            return index -1;
+        }
+        return index;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {

@@ -34,8 +34,11 @@ public class RowTest {
         assertThat(row.getSteps()).containsExactly(EMPTY_STEP, EMPTY_STEP, EMPTY_STEP);
     }
 
+    // |-----|     |-----|
     @Test
-    void step1() {
-
+    void playRow() {
+        final Row row = Row.create(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c"))), new ExistStepGenerator());
+        int index = row.playRow(0);
+        assertThat(index).isEqualTo(1);
     }
 }

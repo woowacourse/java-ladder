@@ -15,15 +15,23 @@ public class PointTest {
 
     @Test
     @DisplayName("양쪽 다 다리가 있는 경우에는 예외를 발생한다.")
-    void move() {
+    void invalidPoint() {
         assertThatIllegalArgumentException().isThrownBy(() -> Point.of(true, true));
     }
 
-//    @Test
-//    @DisplayName("오른쪽에만 다리가 있는 경우에는 가로로 1칸 이동한다.")
-//    void move() {
-//        Point point = Point.of(false, true);
-//        int resultIndex = point.move(0);
-//        assertThat(resultIndex).isEqualTo(1);
-//    }
+    @Test
+    @DisplayName("오른쪽에만 다리가 있는 경우에는 가로 위치가 1 증가한다.")
+    void moveRight() {
+        Point point = Point.of(false, true);
+        int resultIndex = point.move(0);
+        assertThat(resultIndex).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("왼쪽에만 다리가 있는 경우에는 가로 위치가 1 감소한다.")
+    void moveLeft() {
+        Point point = Point.of(true, false);
+        int resultIndex = point.move(1);
+        assertThat(resultIndex).isEqualTo(0);
+    }
 }
