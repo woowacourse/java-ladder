@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.List;
 import java.util.Map;
 import model.Height;
 import model.Ladder;
@@ -9,7 +8,6 @@ import model.LadderRowGenerator;
 import model.Name;
 import model.Participant;
 import model.Participants;
-import model.Position;
 import model.RandomBooleanGenerator;
 import model.Result;
 import model.Results;

@@ -1,19 +1,14 @@
 package view;
 
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import model.Height;
 import model.Name;
 import model.Participant;
 import model.Position;
 import model.Result;
-import model.Results;
 
 public class InputView {
 
@@ -46,6 +41,7 @@ public class InputView {
                 .mapToObj(index -> new Result(new Position(index), results.get(index)))
                 .toList();
     }
+
     private List<String> splitInputByDelimiter(String input, String delimiter) {
         return Arrays.stream(input.split(delimiter))
                 .map(String::trim)

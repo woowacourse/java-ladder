@@ -2,16 +2,12 @@ package view;
 
 import static model.Line.CONNECTED;
 
-import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
 import model.Ladder;
 import model.LadderRow;
-import model.Line;
-import model.Name;
 import model.Participant;
 import model.Participants;
-import model.Position;
 import model.Result;
 import model.Results;
 

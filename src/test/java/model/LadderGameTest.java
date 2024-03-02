@@ -44,8 +44,6 @@ public class LadderGameTest {
                 () -> assertThat(forthResult).isEqualTo(new Result(new Position(2), "꽝")));
     }
 
-
-
 //    @DisplayName("모든 참가자의 게임 결과를 얻는다.")
 //    @Test
 //    void findAllResults() {

@@ -19,10 +19,14 @@ public class Participant {
 
     public void moveRight() {
         this.position = position.increment();
-    }
+    } //TODO 사용 안함
 
     public void moveLeft() {
         this.position = position.decrement();
+    } //TODO 사용 안함
+
+    public boolean isSameName(Name name) {
+        return this.name.equals(name);
     }
 
     public Position getPosition() {
@@ -31,10 +35,6 @@ public class Participant {
 
     public Name getName() {
         return name;
-    }
-
-    public boolean isSameName(Name name) {
-        return this.name.equals(name);
     }
 
     @Override

@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Objects;
-
 public record Name(String value) {
 
     private static final String NULL_EMPTY_NAME = "참가자의 이름은 null 이거나 공백일 수 없습니다.";
