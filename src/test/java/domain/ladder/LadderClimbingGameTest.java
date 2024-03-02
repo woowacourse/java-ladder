@@ -14,7 +14,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LadderGameTest {
+class LadderClimbingGameTest {
 
     @Test
     @DisplayName("사다리타기 결과를 생성한다.")
@@ -35,11 +35,11 @@ class LadderGameTest {
         // when
         Players players = new Players(List.of(player1, player2, player3));
         bridgeGeneratorStub.setBridges(List.of(LadderBridge.BRIDGE, LadderBridge.NONE));
-        Ladder ladder = Ladder.of(ladderHeight, players, bridgeGeneratorStub);
+        Ladder ladder = new  Ladder(ladderHeight, players, bridgeGeneratorStub);
         List<LadderResult> results = List.of(ladderResult1, ladderResult2, ladderResult3);
         LadderResults ladderResults = LadderResults.createMatchesCountOf(players.getPlayerCount(), results);
-        LadderGame ladderGame = new LadderGame(players, ladder, ladderResults);
-        ClimbingResults climbingResults = ladderGame.createClimbingResults();
+        LadderClimbingGame ladderClimbingGame = new LadderClimbingGame(players, ladder, ladderResults);
+        ClimbingResults climbingResults = ladderClimbingGame.createClimbingResults();
 
         // then
         assertAll(

@@ -8,12 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LadderGame {
+public class LadderClimbingGame {
     private final Players players;
     private final Ladder ladder;
     private final LadderResults ladderResults;
 
-    public LadderGame(final Players players, final Ladder ladder, final LadderResults ladderResults) {
+    public LadderClimbingGame(final Players players, final Ladder ladder, final LadderResults ladderResults) {
         this.players = players;
         this.ladder = ladder;
         this.ladderResults = ladderResults;
@@ -21,7 +21,7 @@ public class LadderGame {
 
     public ClimbingResults createClimbingResults() {
         Map<String, String> results = new HashMap<>();
-        List<Floor> floors = ladder.getFloors();
+        List<Floor> floors = ladder.createFloors();
         for (Floor floor : floors) {
             results.putAll(climbLadder(floor));
         }
