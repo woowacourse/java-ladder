@@ -8,8 +8,8 @@ class LadderGameTest {
     private static final String VALID_NAMES = "a,b,c";
     private static final String VALID_LADDER_RESULTS = "당첨,꽝,당첨";
     private static final int VALID_HEIGHT = 5;
-    private static final RowGenerator VALID_GENERATOR = new RowGenerator(() -> Bridge.EXIST);
-    
+    private static final BridgeGenerator VALID_GENERATOR = () -> Bridge.EXIST;
+
     @Test
     @DisplayName("적절한 참여자 이름과, 높이로 생성하면 예외가 발생하지 않음")
     void testCreateLadderGame() {
