@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import model.ladder.generator.StepStatusGenerator;
+import model.ladderGame.Direction;
 import model.players.Position;
 
 public class Ladder {
@@ -24,7 +25,8 @@ public class Ladder {
 
     public int move(Position position) {
         for (Line line : lines) {
-            line.move(position);
+            Direction direction = line.getDirection(position);
+            position.move(direction);
         }
         return position.getValue();
     }
