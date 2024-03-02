@@ -2,7 +2,6 @@ package model.items;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import model.people.PersonCount;
@@ -25,7 +24,7 @@ class ItemsTest {
         List<String> items = List.of("꽝", "5000", "꽝", "3000");
         PersonCount personCount = new PersonCount(4);
         Items generatedItems = Items.of(items, personCount);
-        Item item1 = generatedItems.get(0);
+        Item item1 = generatedItems.findBy(0);
         assertThat(item1.getName()).isEqualTo("꽝");
     }
 }
