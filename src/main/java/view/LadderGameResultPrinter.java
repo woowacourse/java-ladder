@@ -30,8 +30,9 @@ public class LadderGameResultPrinter {
 
     private String makeAllNameLadderResultString(Names names) {
         return names.getNames().stream()
-                .map(name -> NAME_LADDER_RESULT_FORMAT.formatted(
-                        name.getName(), ladderGameResult.getLadderResultFromName(name)))
-                .collect(Collectors.joining("\n"));
+                .map(name -> {
+                    LadderResult ladderResult = ladderGameResult.getLadderResultFromName(name);
+                    return NAME_LADDER_RESULT_FORMAT.formatted(name.getName(), ladderResult.getLadderResult());
+                }).collect(Collectors.joining("\n"));
     }
 }
