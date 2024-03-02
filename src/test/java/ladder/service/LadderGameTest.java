@@ -13,11 +13,10 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class LadderGameTest {
     private Players generatePlayersOf(int count) {
-        return Players.from(
-                IntStream.range(0, count)
-                        .mapToObj(i -> "P" + i)
-                        .toList()
-        );
+        List<String> testPlayerNames = IntStream.range(0, count)
+                .mapToObj(i -> "P" + i)
+                .toList();
+        return Players.from(testPlayerNames);
     }
 
     private List<String> generateRewardsOf(int count) {
