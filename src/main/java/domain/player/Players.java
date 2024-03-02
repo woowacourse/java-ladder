@@ -9,8 +9,8 @@ public class Players {
     private final List<Player> players;
 
     public Players(List<String> playerNames) {
-        validatePlayerSize(playerNames);
         validateDuplicated(playerNames);
+        validatePlayerSize(playerNames);
 
         this.players = convertToPlayer(playerNames);
     }
