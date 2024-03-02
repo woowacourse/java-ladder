@@ -31,7 +31,7 @@ public class Line {
     }
 
     public List<Boolean> getBridgesInformation() {
-        return bridges.stream().map(Bridge::toBoolean).toList();
+        return bridges.stream().map(Bridge::isExist).toList();
     }
 
     public int getNextPosition(int position) {
@@ -45,10 +45,10 @@ public class Line {
     }
 
     private boolean isMovableLeft(int position) {
-        return position != 0 && bridges.get(position - 1).toBoolean();
+        return position != 0 && bridges.get(position - 1).isExist();
     }
 
     private boolean isMovableRight(int position) {
-        return position != bridges.size() && bridges.get(position).toBoolean();
+        return position != bridges.size() && bridges.get(position).isExist();
     }
 }

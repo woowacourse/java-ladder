@@ -17,7 +17,7 @@ public enum Bridge {
         return BLANK;
     }
 
-    public boolean toBoolean() {
+    public boolean isExist() {
         return isExist;
     }
 }
