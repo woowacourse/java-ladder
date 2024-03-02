@@ -1,5 +1,7 @@
 package ladder.controller;
 
+import static ladder.controller.util.RepeatUtil.repeatUntilValid;
+
 import java.util.ArrayList;
 import java.util.List;
 import ladder.domain.dto.MadeLadderDto;
@@ -10,28 +12,29 @@ import ladder.domain.prize.GamePrizes;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-public class LadderResultController extends RepeatableController {
+public class LadderResultController {
 
     private static final String KEEP_CHECK = "Y";
     private static final String STOP_CHECK = "N";
     private static final String SEE_ALL_PARTICIPANT_COMMEND = "all";
 
     private final InputView inputView;
+    private final OutputView outputView;
     private final LadderResult ladderResult;
     private final Participants participants;
     private final GamePrizes gamePrizes;
 
     public LadderResultController(InputView inputView, OutputView outputView, MadeLadderDto ladderResult,
                                   Participants participants, GamePrizes gamePrizes) {
-        super(outputView);
         this.inputView = inputView;
+        this.outputView = outputView;
         this.ladderResult = new LadderResult(ladderResult, participants.size());
         this.participants = participants;
         this.gamePrizes = gamePrizes;
     }
 
     public void showResult() {
-        boolean endOrNotChoice = repeatUntilValid(this::isEndOrNot);
+        boolean endOrNotChoice = repeatUntilValid(this::isEndOrNot, outputView);
 
         if (endOrNotChoice) {
             chooseParticipant();
