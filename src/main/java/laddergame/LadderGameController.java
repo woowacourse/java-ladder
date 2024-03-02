@@ -2,7 +2,7 @@ package laddergame;
 
 import laddergame.domain.*;
 import laddergame.domain.PlayersResult;
-import laddergame.util.RandomLinesGenerator;
+import laddergame.util.RandomRungGenerator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -17,7 +17,9 @@ public class LadderGameController {
     public void run() {
         Players players = retryUntilValidated(() -> new Players(inputView.readPlayersName()));
         Height height = retryUntilValidated(() -> new Height(inputView.readLadderHeight()));
-        Ladder ladder = new Ladder(new RandomLinesGenerator(), players.getPlayersCount(), height);
+
+        LineBuilder lineBuilder = new LineBuilder(new RandomRungGenerator(), players.getPlayersCount() - 1);
+        Ladder ladder = new Ladder(lineBuilder, height);
 
         PlayersResult playersResult = executeLadderGame(players, ladder);
 

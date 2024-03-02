@@ -1,7 +1,7 @@
 package laddergame.domain;
 
-import laddergame.util.RandomLinesGenerator;
-import laddergame.util.LinesGenerator;
+import laddergame.util.RandomRungGenerator;
+import laddergame.util.RungGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,8 +22,7 @@ public class LadderTest {
 
         //when
         Ladder ladder = new Ladder(
-                new RandomLinesGenerator(),
-                players.getPlayersCount(),
+                new LineBuilder(new RandomRungGenerator(), 1),
                 height);
 
         //then
@@ -38,37 +37,39 @@ public class LadderTest {
         final Height height = new Height("1");
         final List<String> playersName = List.of("name1", "name2", "name3", "name4");
         final Players players = new Players(playersName);
-        final List<Rung> expected = List.of(Rung.EMPTY, Rung.BRIDGE, Rung.EMPTY);
+        final List<Rung> expected = List.of(Rung.EMPTY, Rung.EMPTY, Rung.EMPTY);
 
-        LinesGenerator expectedLinesGenerator = new LinesGenerator() {
+        RungGenerator expectedRungGenerator = new RungGenerator() {
             @Override
-            public Line generate(int width) {
-                return new Line(expected);
+            public Rung generate() {
+                return Rung.EMPTY;
             }
         };
 
         //when
-        Ladder ladder = new Ladder(expectedLinesGenerator, players.getPlayersCount(), height);
+        Ladder ladder = new Ladder(new LineBuilder(expectedRungGenerator, 3), height);
 
         //then
         assertEquals(expected, ladder.getLines().get(0).getLine());
+        assertEquals(3, ladder.getLines().get(0).getLine().size());
+        assertEquals(1, ladder.getLines().size());
     }
 
     @Test
-    @DisplayName("세번째 플레이어가 두번 이동했을 때 위치가 x = 2, y = 2인지 테스트")
+    @DisplayName("세번째 플레이어가 두번 이동했을 때 위치가 올바른지 테스트")
     void moveTwoLines() {
         final Height height = new Height("2");
         final List<String> playersName = List.of("name1", "name2", "name3", "name4");
         final Players players = new Players(playersName);
         final List<Rung> expected = List.of(Rung.EMPTY, Rung.BRIDGE, Rung.EMPTY);
-        LinesGenerator expectedLinesGenerator = new LinesGenerator() {
+        RungGenerator expectedRungGenerator = new RungGenerator() {
             @Override
-            public Line generate(int width) {
-                return new Line(expected);
+            public Rung generate() {
+                return Rung.EMPTY;
             }
         };
 
-        Ladder ladder = new Ladder(expectedLinesGenerator, players.getPlayersCount(), height);
+        Ladder ladder = new Ladder(new LineBuilder(expectedRungGenerator, 3), height);
         players.getPlayers().get(2).moveLine(ladder.move(players.getPlayers().get(2).getPosition()));
         players.getPlayers().get(2).moveLine(ladder.move(players.getPlayers().get(2).getPosition()));
 
