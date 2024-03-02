@@ -9,6 +9,8 @@ import java.util.Map;
 
 public class LadderIndexConnection {
 
+    public static final int MOVE = 1;
+
     private final Map<Integer, Integer> indexConnections;
 
     private LadderIndexConnection(Map<Integer, Integer> indexConnections) {
@@ -28,29 +30,18 @@ public class LadderIndexConnection {
 
     private static int movePosition(int position, List<RowLine> lines) {
         for (int height = 0; height < lines.size(); height++) {
-            Direction direction = findDirection(lines, height, position);
-            position = movePosition(direction, position);
+            position = findDirection(lines, height, position);
         }
         return position;
     }
 
-    private static Direction findDirection(List<RowLine> lines, int height, int position) {
+    private static int findDirection(List<RowLine> lines, int height, int position) {
         List<ConnectionStatus> lineStatus = lines.get(height).getConnections();
         if (position < lineStatus.size() && lineStatus.get(position).isConnect()) {
-            return Direction.RIGHT;
+            return position + MOVE;
         }
         if (position > 0 && lineStatus.get(position - 1).isConnect()) {
-            return Direction.LEFT;
-        }
-        return Direction.DOWN;
-    }
-
-    private static int movePosition(Direction direction, int position) {
-        if (direction.equals(Direction.RIGHT)) {
-            position++;
-        }
-        if (direction.equals(Direction.LEFT)) {
-            position--;
+            return position - MOVE;
         }
         return position;
     }
