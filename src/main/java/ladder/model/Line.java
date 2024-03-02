@@ -8,10 +8,12 @@ import static ladder.model.LadderPath.*;
 
 public class Line {
     private final List<LadderPath> row;
+    private final List<Boolean> connected;
 
     public Line(List<LadderPath> row) {
         validate(row);
         this.row = row;
+        this.connected = calculateConnectedPosition();
     }
 
     private void validate(List<LadderPath> row) {
@@ -21,6 +23,12 @@ public class Line {
         if (!isLeftAlwaysExistAfterRight(row) || !isRightAlwaysExistBeforeLeft(row)) {
             throw new IllegalArgumentException("유효한 가로줄이 아닙니다.");
         }
+    }
+
+    private List<Boolean> calculateConnectedPosition() {
+        return IntStream.range(0, row.size() - 1)
+                .mapToObj(idx -> LadderPath.isPathExist(row.get(idx), row.get(idx + 1)))
+                .toList();
     }
 
     private boolean isLeftOnFirst(List<LadderPath> row) {
@@ -59,13 +67,11 @@ public class Line {
         return initialPosition;
     }
 
-    public int size() {
-        return row.size();
+    public List<Boolean> getConnected() {
+        return connected;
     }
 
-    public List<Boolean> getConnected() {
-        return IntStream.range(0, row.size() - 1)
-                .mapToObj(idx -> LadderPath.isPathExist(row.get(idx), row.get(idx + 1)))
-                .toList();
+    public int size() {
+        return row.size();
     }
 }
