@@ -32,11 +32,18 @@ public class LadderItems {
     private void validate(List<Person> people, List<WinningItem> winningItems) {
         validateMinSize(people);
         validateMinSize(winningItems);
+        validateSameCount(people, winningItems);
     }
 
     private void validateMinSize(List<?> items) {
         if (items.size() < MIN_ITEMS_SIZE) {
             throw new IllegalArgumentException("사다리 게임의 아이템들의 개수는 각각 2개 이상이어야 합니다.");
+        }
+    }
+
+    private void validateSameCount(List<Person> people, List<WinningItem> winningItems) {
+        if (people.size() != winningItems.size()) {
+            throw new IllegalArgumentException("사람의 수와 당첨 아이템의 개수는 동일해야 합니다.");
         }
     }
 

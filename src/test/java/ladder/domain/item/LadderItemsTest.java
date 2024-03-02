@@ -52,4 +52,17 @@ public class LadderItemsTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리 게임의 아이템들의 개수는 각각 2개 이상이어야 합니다.");
     }
+
+    @DisplayName("사람의 수와 당첨 아이템의 개수가 동일하지 않으면 예외를 발생시킨다.")
+    @Test
+    void countNotSameTest() {
+        // given
+        List<String> peopleNames = List.of("pobi", "nak", "neo");
+        List<String> winningItemNames = List.of("1등", "2등", "3등", "4등");
+
+        // when & then
+        assertThatThrownBy(() -> LadderItems.of(peopleNames, winningItemNames))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사람의 수와 당첨 아이템의 개수는 동일해야 합니다.");
+    }
 }
