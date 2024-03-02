@@ -25,15 +25,14 @@ class Controller {
     public void run() {
         Game game = createGame();
         outputView.printLadder(game);
-        play(game, inputView.readNameForResult());
+        play(game);
     }
 
     private Game createGame() {
         Players players = createPlayers();
         Height height = createHeight();
         List<GameResult> gameResults = createGameResult();
-        int playerSize = players.size();
-        Ladder ladder = new Ladder(height, playerSize, new RandomStickGenerator());
+        Ladder ladder = new Ladder(height, players.size(), new RandomStickGenerator());
 
         return new Game(players, ladder, gameResults);
     }
@@ -58,13 +57,14 @@ class Controller {
                 .toList();
     }
 
-    private void play(Game game, String targetPlayerName) {
-        if (ALL_RESULT_COMMAND.equals(targetPlayerName)) {
-            outputView.printResultAll(game.showResultAll());
-            return;
+    private void play(Game game) {
+        String targetPlayerName = inputView.readNameForResult();
+
+        while (!ALL_RESULT_COMMAND.equals(targetPlayerName)) {
+            outputView.printResult(game.showResult(targetPlayerName));
+            targetPlayerName = inputView.readNameForResult();
         }
 
-        outputView.printResult(game.showResult(targetPlayerName));
-        play(game, inputView.readNameForResult());
+        outputView.printResultAll(game.showResultAll());
     }
 }
