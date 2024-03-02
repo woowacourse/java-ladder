@@ -84,4 +84,8 @@ public class OutputView {
             System.out.printf(FORMAT_ALL_PLAYER_RESULT, playerName.getName(), allPlayerReward.get(playerName));
         }
     }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }

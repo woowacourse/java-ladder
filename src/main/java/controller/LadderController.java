@@ -13,9 +13,9 @@ public class LadderController {
     private static final String SHOW_RESULT_BREAK_WORD = "all";
 
     public void run() {
-        PlayerNames playerNames = new PlayerNames(InputView.readPlayerNames());
-        Rewards rewards = new Rewards(InputView.readRewards(), playerNames.getPlayerNames().size());
-        Height ladderHeight = new Height(InputView.readLadderHeight());
+        PlayerNames playerNames = readPlayerNames();
+        Rewards rewards = readRewards(playerNames.getPlayerNames().size());
+        Height ladderHeight = readHeight();
 
         int ladderWidth = playerNames.getPlayerNames().size() - 1;
         Ladder ladder = new Ladder(new RandomLegGenerateStrategy(), ladderHeight, ladderWidth);
@@ -23,6 +23,36 @@ public class LadderController {
 
         LadderGame ladderGame = new LadderGame(ladder, playerNames, rewards);
         showResult(ladderGame);
+    }
+
+    private PlayerNames readPlayerNames() {
+        try {
+            return new PlayerNames(InputView.readPlayerNames());
+        } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
+            System.exit(0);
+        }
+        return null;
+    }
+
+    private Rewards readRewards(int playerCount) {
+        try {
+            return new Rewards(InputView.readRewards(), playerCount);
+        } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
+            System.exit(0);
+        }
+        return null;
+    }
+
+    private Height readHeight() {
+        try {
+            return new Height(InputView.readLadderHeight());
+        } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
+            System.exit(0);
+        }
+        return null;
     }
 
     private void showResult(LadderGame ladderGame) {
