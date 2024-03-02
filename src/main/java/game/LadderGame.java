@@ -1,53 +1,102 @@
 package game;
 
-import domain.ladder.Ladder;
-import domain.ladder.LadderHeight;
-import domain.ladder.LadderRowPattern;
-import domain.player.Players;
 import java.util.List;
 import java.util.function.BooleanSupplier;
-import util.LoopFunction;
+import ladder.Ladder;
+import ladder.Line;
+import player.Players;
+import result.Results;
 import view.InputView;
+import view.LadderUnit;
 import view.OutputView;
 
 public class LadderGame {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final BooleanSupplier supplier;
+    private final BooleanSupplier connectionAttemptSupplier;
 
-    public LadderGame(InputView inputView, OutputView outputView, BooleanSupplier supplier) {
+    public LadderGame(InputView inputView, OutputView outputView, BooleanSupplier connectionAttemptSupplier) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.supplier = supplier;
+        this.connectionAttemptSupplier = connectionAttemptSupplier;
     }
 
     public void play() {
-        Players players = LoopFunction.retryOnException(this::getNames);
-        LadderHeight height = LoopFunction.retryOnException(this::getHeight);
+        Players players = getPlayers();
+        int height = getHeight();
+        Results results = getResults();
+        validateSize(players, results);
 
-        Ladder ladder = Ladder.of(players, height);
-        ladder.drawLines(supplier);
-        List<LadderRowPattern> patterns = ladder.getLadderPatterns();
+        Ladder ladder = new Ladder(players.size(), height, connectionAttemptSupplier);
+        printLadder(ladder, players, results);
 
-        printLadderResult(players.getNames(), patterns);
-    }
-
-    private Players getNames() {
-        outputView.printReadNames();
-        List<String> names = inputView.readNames();
-        return new Players(names);
-    }
-
-    private LadderHeight getHeight() {
-        outputView.printReadLadderHeight();
-        int height = inputView.readLadderHeight();
-        return new LadderHeight(height);
-    }
-
-    private void printLadderResult(List<String> names, List<LadderRowPattern> rowPatterns) {
+        String command = getCommand();
         outputView.printResultMessage();
-        outputView.printNames(names);
-        outputView.printLadder(rowPatterns);
+        printLadderResults(ladder, players, results, command);
+    }
+
+    private void validateSize(Players players, Results results) {
+        if (players.size() != results.size()) {
+            throw new IllegalArgumentException("참가자 수와 결과 수가 다릅니다.");
+        }
+    }
+
+    private void printLadderResults(Ladder ladder, Players players, Results results, String command) {
+        if (LadderCommand.ALL.isSameCommand(command)) {
+            printAllResults(ladder, players, results);
+            return;
+        }
+        printSingleResult(ladder, players, results, command);
+    }
+
+    private void printLadder(Ladder ladder, Players players, Results results) {
+        outputView.printLadderCreationMessage();
+        outputView.printTokens(players.getNames());
+
+        for (Line line : ladder.getLines()) {
+            List<LadderUnit> ladderUnits = line.getDirections().stream()
+                    .map(LadderUnit::fromDirection)
+                    .toList();
+            outputView.printLadderUnits(ladderUnits);
+        }
+        outputView.printTokens(results.getNames());
+    }
+
+    private void printSingleResult(Ladder ladder, Players players, Results results, String command) {
+        int index = players.findIndexByName(command);
+        int resultIndex = ladder.climbDown(index);
+        String result = results.findNameByIndex(resultIndex);
+        outputView.printToken(result);
+    }
+
+    private void printAllResults(Ladder ladder, Players players, Results results) {
+        for (int index = 0; index < players.size(); index++) {
+            String name = players.findNameByIndex(index);
+            int resultIndex = ladder.climbDown(index);
+            outputView.printPlayerResult(name, results.findNameByIndex(resultIndex));
+        }
+    }
+
+    private Players getPlayers() {
+        outputView.printReadNames();
+        List<String> nameTokens = inputView.readTokens();
+        return new Players(nameTokens);
+    }
+
+    private Results getResults() {
+        outputView.printReadResults();
+        List<String> resultTokens = inputView.readTokens();
+        return new Results(resultTokens);
+    }
+
+    private int getHeight() {
+        outputView.printReadLadderHeight();
+        return inputView.readLadderHeight();
+    }
+
+    private String getCommand() {
+        outputView.printReadNameForResult();
+        return inputView.readToken();
     }
 }

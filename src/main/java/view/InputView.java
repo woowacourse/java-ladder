@@ -2,27 +2,28 @@ package view;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class InputView {
 
-    private static final String NAME_SPLIT_DELIMITER = ",";
+    private static final String SPLIT_DELIMITER = ",";
 
-    private final Reader reader;
+    private final Scanner scanner = new Scanner(System.in);
 
-    public InputView(Reader reader) {
-        this.reader = reader;
+    public String readToken() {
+        return scanner.nextLine();
     }
 
-    public List<String> readNames() {
-        String names = reader.readLine();
-        String[] splitNames = names.split(NAME_SPLIT_DELIMITER);
+    public List<String> readTokens() {
+        String names = scanner.nextLine();
+        String[] splitTokens = names.split(SPLIT_DELIMITER);
 
-        return Arrays.stream(splitNames)
+        return Arrays.stream(splitTokens)
                 .toList();
     }
 
     public int readLadderHeight() {
-        String input = reader.readLine();
+        String input = scanner.nextLine();
         return convertToInteger(input);
     }
 
