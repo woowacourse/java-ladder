@@ -36,10 +36,12 @@ public class MessageResolver {
     }
 
     public String resolveLadderMessage(LadderGame ladderGame) {
-        return LADDER_MESSAGE_PREFIX + LINE_SEPARATOR
-                + this.resolveNamesMessage(ladderGame.getPlayers()) + LINE_SEPARATOR
-                + this.resolveLadderShapeMessage(ladderGame.getLadder()) + LINE_SEPARATOR
-                + this.resolvePrizesMessage(ladderGame.getPrizes());
+        return String.join(LINE_SEPARATOR,
+                LADDER_MESSAGE_PREFIX,
+                this.resolveNamesMessage(ladderGame.getPlayers()),
+                this.resolveLadderShapeMessage(ladderGame.getLadder()),
+                this.resolvePrizesMessage(ladderGame.getPrizes())
+        );
     }
 
     private String resolveNamesMessage(Players players) {
