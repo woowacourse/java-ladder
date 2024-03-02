@@ -32,7 +32,7 @@ public class Prizes {
 
     public List<String> getPrizesName() {
         return prizes.stream()
-                .map(prize -> prize.getName())
+                .map(Prize::getName)
                 .toList();
     }
 }
