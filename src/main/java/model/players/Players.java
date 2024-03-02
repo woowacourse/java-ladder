@@ -11,29 +11,8 @@ public class Players {
     private final List<Player> players;
 
     public Players(List<String> players) {
-        validate(players);
+        Validator.validate(players);
         this.players = convert(players);
-    }
-
-    private void validate(List<String> players) {
-        validateSize(players);
-        validateDuplicates(players);
-    }
-
-    private void validateSize(List<String> players) {
-        if (players.size() < MIN_PLAYERS) {
-            throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
-        }
-    }
-
-    private void validateDuplicates(List<String> players) {
-        if (isDuplicated(players)) {
-            throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
-        }
-    }
-
-    private boolean isDuplicated(List<String> players) {
-        return Set.copyOf(players).size() != players.size();
     }
 
     private List<Player> convert(List<String> players) {
@@ -46,10 +25,6 @@ public class Players {
         return players.stream()
                 .map(Player::getName)
                 .toList();
-    }
-
-    public int size() {
-        return players.size();
     }
 
     public Position findPositionByName(final String name) {
@@ -68,5 +43,32 @@ public class Players {
             }
         }
         throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
+    }
+
+    public int size() {
+        return players.size();
+    }
+
+    private class Validator {
+        public static void validate(List<String> players) {
+            validateSize(players);
+            validateDuplicates(players);
+        }
+
+        private static void validateSize(List<String> players) {
+            if (players.size() < MIN_PLAYERS) {
+                throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
+            }
+        }
+
+        private static void validateDuplicates(List<String> players) {
+            if (isDuplicated(players)) {
+                throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
+            }
+        }
+
+        private static boolean isDuplicated(List<String> players) {
+            return Set.copyOf(players).size() != players.size();
+        }
     }
 }

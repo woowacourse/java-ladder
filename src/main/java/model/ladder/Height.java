@@ -9,18 +9,8 @@ public class Height {
     private final int value;
 
     public Height(int value) {
-        validate(value);
+        Validator.validate(value);
         this.value = value;
-    }
-
-    private void validate(int value) {
-        if (isOutOfRange(value)) {
-            throw new IllegalArgumentException(Message.INVALID_HEIGHT_ERROR.getMessage());
-        }
-    }
-
-    private boolean isOutOfRange(int value) {
-        return value <= 0 || value > UPPER_BOUND;
     }
 
     @Override
@@ -42,5 +32,17 @@ public class Height {
 
     public int size() {
         return value;
+    }
+
+    private class Validator {
+        private static void validate(int value) {
+            if (isOutOfRange(value)) {
+                throw new IllegalArgumentException(Message.INVALID_HEIGHT_ERROR.getMessage());
+            }
+        }
+
+        private static boolean isOutOfRange(int value) {
+            return value <= 0 || value > UPPER_BOUND;
+        }
     }
 }
