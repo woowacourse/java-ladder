@@ -37,10 +37,14 @@ public class Players {
         }
     }
 
-    public static Players from(List<String> names) {
-        return names.stream()
+    public static Players from(List<String> playerNames) {
+        return playerNames.stream()
                 .map(Player::new)
                 .collect(collectingAndThen(toList(), Players::new));
+    }
+
+    public Player get(int index) {
+        return players.get(index);
     }
 
     public List<String> getPlayerNames() {
