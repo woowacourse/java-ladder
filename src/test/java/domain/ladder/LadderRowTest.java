@@ -3,108 +3,73 @@ package domain.ladder;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import support.ConnectedLadderRungGenerator;
-import support.DisconnectedLadderRungGenerator;
-import support.FixedLadderRungGenerator;
+import support.FixedBooleanGenerator;
+import support.TrueOnlyGenerator;
 
-@TestInstance(Lifecycle.PER_CLASS)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class LadderRowTest {
     @Test
-    void 주어진_너비만큼_가로대를_생성한다() {
+    void 주어진_너비만큼_커넥션을_생성한다() {
         // given
-        final int width = 5;
+        int width = 5;
 
         // when
-        LadderRow ladderRow = LadderRow.create(width, new ConnectedLadderRungGenerator());
+        LadderRow ladderRow = LadderRow.create(width, new TrueOnlyGenerator());
 
         // then
-        assertThat(ladderRow.getRungs()).hasSize(width);
+        assertThat(ladderRow.getConnections()).hasSize(width);
     }
 
-    @Test
-    void 이전_가로대가_연결되어_있으면_가로대를_연속해서_놓을_수_없다() {
-        // given
-        LadderRungGenerator connectedLadderRungGenerator = new ConnectedLadderRungGenerator();
-
+    @ParameterizedTest
+    @MethodSource("provideConnections")
+    void 주어진_커넥션대로_사다리_층을_생성한다(List<Boolean> connections, List<Connection> expected) {
         // when
-        LadderRow ladderRow = LadderRow.create(4, connectedLadderRungGenerator);
+        LadderRow ladderRow = LadderRow.create(connections.size(), new FixedBooleanGenerator(connections));
 
         // then
-        List<LadderRung> rungs = ladderRow.getRungs();
-        assertAll(
-                () -> assertThat(rungs.get(0).isConnected()).isTrue(),
-                () -> assertThat(rungs.get(1).isConnected()).isFalse(),
-                () -> assertThat(rungs.get(2).isConnected()).isTrue(),
-                () -> assertThat(rungs.get(3).isConnected()).isFalse()
+        List<Connection> result = ladderRow.getConnections();
+        assertThat(result).isEqualTo(expected);
+    }
+
+    Stream<Arguments> provideConnections() {
+        return Stream.of(Arguments.of(
+                        // |---|   |   |---|
+                        List.of(true, true, false, true, true),
+                        List.of(Connection.RIGHT, Connection.LEFT, Connection.DISCONNECTED, Connection.RIGHT,
+                                Connection.LEFT)
+                ), Arguments.of(
+                        // |   |---|   |---|
+                        List.of(false, true, true, true, true),
+                        List.of(Connection.DISCONNECTED, Connection.RIGHT, Connection.LEFT, Connection.RIGHT,
+                                Connection.LEFT)
+                )
         );
     }
 
     @Test
-    void 가로대가_연결되어_있으면_타고_이동한다() {
+    void 커넥션에_따라_인덱스를_이동한다() {
+        // |   |---|   |---|   |
         // given
-        LadderRungGenerator connectedLadderRungGenerator = new ConnectedLadderRungGenerator();
-        List<String> names = new ArrayList<>(List.of("프린", "땡이", "포비", "토미"));
+        List<Boolean> connections = List.of(false, true, true, true, true, false);
 
         // when
-        LadderRow ladderRow = LadderRow.create(names.size() - 1, connectedLadderRungGenerator);
-        ladderRow.crossRungs(names);
+        LadderRow ladderRow = LadderRow.create(connections.size(), new FixedBooleanGenerator(connections));
 
         // then
-        assertThat(names).containsExactly("땡이", "프린", "토미", "포비");
-    }
-
-    @Test
-    void 가로대가_연결되어_있지_않으면_타고_이동하지_않는다() {
-        // given
-        LadderRungGenerator disconnectedLadderRungGenerator = new DisconnectedLadderRungGenerator();
-        List<String> names = new ArrayList<>(List.of("프린", "땡이", "포비", "토미"));
-
-        // when
-        LadderRow ladderRow = LadderRow.create(names.size() - 1, disconnectedLadderRungGenerator);
-        ladderRow.crossRungs(names);
-
-        // then
-        assertThat(names).containsExactly("프린", "땡이", "포비", "토미");
-    }
-
-    @ParameterizedTest
-    @MethodSource("provideRungConnections")
-    void 주어진_가로대_연결정보로_타고_이동한다(List<LadderRung> ladderRungs, List<String> result) {
-        // given
-        LadderRungGenerator fixedLadderRungGenerator = new FixedLadderRungGenerator(ladderRungs);
-        List<String> names = new ArrayList<>(List.of("프린", "땡이", "포비", "토미"));
-
-        // when
-        LadderRow ladderRow = LadderRow.create(names.size() - 1, fixedLadderRungGenerator);
-        ladderRow.crossRungs(names);
-
-        // then
-        assertThat(names).containsExactlyElementsOf(result);
-    }
-
-    private Stream<Arguments> provideRungConnections() {
-        return Stream.of(
-                Arguments.of(
-                        List.of(LadderRung.DISCONNECTED, LadderRung.DISCONNECTED, LadderRung.CONNECTED),
-                        List.of("프린", "땡이", "토미", "포비")),
-                Arguments.of(
-                        List.of(LadderRung.CONNECTED, LadderRung.DISCONNECTED, LadderRung.DISCONNECTED),
-                        List.of("땡이", "프린", "포비", "토미")),
-                Arguments.of(
-                        List.of(LadderRung.DISCONNECTED, LadderRung.CONNECTED, LadderRung.DISCONNECTED),
-                        List.of("프린", "포비", "땡이", "토미")),
-                Arguments.of(
-                        List.of(LadderRung.CONNECTED, LadderRung.DISCONNECTED, LadderRung.CONNECTED),
-                        List.of("땡이", "프린", "토미", "포비"))
+        assertAll(
+                () -> assertThat(ladderRow.move(0)).isEqualTo(0),
+                () -> assertThat(ladderRow.move(1)).isEqualTo(2),
+                () -> assertThat(ladderRow.move(2)).isEqualTo(1),
+                () -> assertThat(ladderRow.move(3)).isEqualTo(4),
+                () -> assertThat(ladderRow.move(4)).isEqualTo(3),
+                () -> assertThat(ladderRow.move(5)).isEqualTo(5)
         );
     }
 }

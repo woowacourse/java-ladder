@@ -3,8 +3,6 @@ package domain.ladder;
 import static fixture.PlayersFixture.참가자들;
 import static fixture.PrizesFixture.상품들;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import domain.height.Height;
@@ -13,8 +11,8 @@ import domain.prize.Prizes;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
-import support.ConnectedLadderRungGenerator;
-import support.FixedLadderRungGenerator;
+import support.FixedBooleanGenerator;
+import support.TrueOnlyGenerator;
 
 public class LadderTest {
     @Test
@@ -23,32 +21,10 @@ public class LadderTest {
         Height height = new Height(5);
 
         // when
-        Ladder ladder = Ladder.create(height, 참가자들(3), 상품들(3), new ConnectedLadderRungGenerator());
+        Ladder ladder = Ladder.create(height, 참가자들(3), new TrueOnlyGenerator());
 
         // then
         assertThat(ladder.getRows()).hasSize(height.getValue());
-    }
-
-    @Test
-    void 참가자_수와_상품_수가_일치하지_않으면_예외가_발생한다() {
-        // given
-        Players players = 참가자들(3);
-        Prizes prizes = 상품들(4);
-
-        // when & then
-        assertThatThrownBy(() -> Ladder.create(new Height(1), players, prizes, new ConnectedLadderRungGenerator()))
-                .isExactlyInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 참가자_수와_상품_수가_일치하면_예외가_발생하지_않는다() {
-        // given
-        Players players = 참가자들(3);
-        Prizes prizes = 상품들(3);
-
-        // when & then
-        assertThatCode(() -> Ladder.create(new Height(1), players, prizes, new ConnectedLadderRungGenerator()))
-                .doesNotThrowAnyException();
     }
 
     @Test
@@ -65,15 +41,15 @@ public class LadderTest {
         Height height = new Height(3);
         Players players = 참가자들("프린", "땡이", "포비", "토미", "네오");
         Prizes prizes = 상품들("100", "꽝", "300", "500", "1000");
-        List<LadderRung> ladderRungs = List.of(
-                LadderRung.CONNECTED, LadderRung.DISCONNECTED, LadderRung.CONNECTED, LadderRung.DISCONNECTED,
-                LadderRung.DISCONNECTED, LadderRung.CONNECTED, LadderRung.DISCONNECTED, LadderRung.DISCONNECTED,
-                LadderRung.CONNECTED, LadderRung.DISCONNECTED, LadderRung.DISCONNECTED, LadderRung.CONNECTED
+        List<Boolean> connections = List.of(
+                true, true, true, true, false,
+                false, true, true, false, false,
+                true, true, false, true, true
         );
 
         // when
-        Ladder ladder = Ladder.create(height, players, prizes, new FixedLadderRungGenerator(ladderRungs));
-        LadderResult ladderResult = ladder.climb();
+        Ladder ladder = Ladder.create(height, players, new FixedBooleanGenerator(connections));
+        LadderResult ladderResult = ladder.climb(players, prizes);
 
         // then
         Map<String, String> results = ladderResult.getAllResults();
