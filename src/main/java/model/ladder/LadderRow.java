@@ -8,6 +8,7 @@ import java.util.List;
 public class LadderRow {
 
     private final List<Space> spaces;
+    private static final int FIRST_POSITION = 0;
 
     public LadderRow(List<Boolean> spaces) {
         verifyContinuousLine(spaces);
@@ -40,11 +41,11 @@ public class LadderRow {
     }
 
     private boolean isEitherEnd(Position position) {
-        return position.same(0) || position.same(spaces.size());
+        return position.same(FIRST_POSITION) || position.same(spaces.size());
     }
 
     private Position climbOnEnd(Position position) {
-        if (position.same(0)) {
+        if (position.same(FIRST_POSITION)) {
             return climbRight(position);
         }
         return climbLeft(position);
