@@ -21,8 +21,22 @@ class LadderTest {
         Height height = new Height(5);
         Width width = new Width(5);
 
-        Assertions.assertThatCode(() -> new Ladder(height, width, new RowGenerator(new BridgeRandomGenerator())))
+        Assertions.assertThatCode(() -> new Ladder(height, width, new RowGenerator(() -> Bridge.EXIST)))
                 .doesNotThrowAnyException();
 
+    }
+
+    @Test
+    @DisplayName("생성된 사타리를 타면 폭 값 만큼의 사다리 위치들 반환")
+    void testClimbDown() {
+        Height height = new Height(5);
+        Width width = new Width(5);
+        Ladder ladder = new Ladder(height, width, new RowGenerator(() -> Bridge.EXIST));
+
+        LadderPositions positions = ladder.climbDown();
+        int actual = positions.count();
+        int expected = 5;
+
+        Assertions.assertThat(actual).isEqualTo(expected);
     }
 }
