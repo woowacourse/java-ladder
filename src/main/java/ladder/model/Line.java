@@ -55,12 +55,12 @@ public class Line {
 
     public <T> List<T> climbDown(List<T> initialPosition) {
         List<Boolean> isConnected = this.getConnected();
-        List<Integer> connectdIndices = IntStream.range(0, isConnected.size())
+        List<Integer> connectedIndices = IntStream.range(0, isConnected.size())
                 .filter(isConnected::get)
                 .boxed()
                 .toList();
 
-        for (int connectedIndex : connectdIndices) {
+        for (int connectedIndex : connectedIndices) {
             Collections.swap(initialPosition, connectedIndex, connectedIndex + 1);
         }
 

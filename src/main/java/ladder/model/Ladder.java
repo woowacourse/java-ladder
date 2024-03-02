@@ -37,7 +37,7 @@ public class Ladder {
 
     private static List<LadderPath> makeRandomRow(int width) {
         List<LadderPath> randomPath = new ArrayList<>(generatePairableRandomPath(width));
-        fillPathifNotEnough(randomPath, width);
+        fillPathIfNotEnough(randomPath, width);
 
         return randomPath;
     }
@@ -61,7 +61,7 @@ public class Ladder {
         return List.of(LadderPath.STAY);
     }
 
-    private static void fillPathifNotEnough(List<LadderPath> createdPath, int width) {
+    private static void fillPathIfNotEnough(List<LadderPath> createdPath, int width) {
         if (createdPath.size() < width) {
             createdPath.add(LadderPath.STAY);
         }
