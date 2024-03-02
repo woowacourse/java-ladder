@@ -10,8 +10,8 @@ class LadderGameTest {
     private static final String VALID_LADDER_RESULTS = "당첨,꽝,당첨";
     private static final int VALID_HEIGHT = 5;
 
-    private static final BridgesGenerator VALID_GENERATOR = new BridgesGenerator(
-            new LadderGameResultTest.TestBridgeGenerator(List.of(true, false)));
+    private static final RowGenerator VALID_GENERATOR = new RowGenerator(
+            new LadderGameResultTest.TestBridgeGenerator(List.of(Bridge.EXIST, Bridge.NONE)));
 
 
     @Test

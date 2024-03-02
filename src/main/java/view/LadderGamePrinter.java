@@ -1,12 +1,13 @@
 package view;
 
-import domain.Bridges;
+import domain.Bridge;
 import domain.Ladder;
 import domain.LadderGame;
 import domain.LadderResult;
 import domain.LadderResults;
 import domain.Name;
 import domain.Names;
+import domain.Row;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,21 +43,21 @@ public class LadderGamePrinter {
     }
 
     private String makeLadderString(Ladder ladder) {
-        return ladder.getLadder().stream()
-                .map(Bridges::getBridges)
+        return ladder.getRows().stream()
+                .map(Row::getBridges)
                 .map(this::makeBridgesString)
                 .collect(Collectors.joining("\n"));
     }
 
-    private String makeBridgesString(List<Boolean> bridges) {
+    private String makeBridgesString(List<Bridge> bridges) {
         String rawBridgesString = bridges.stream()
                 .map(this::makeBridge)
                 .collect(Collectors.joining(VERTICAL_BRIDGE));
         return "    |%s|".formatted(rawBridgesString);
     }
 
-    private String makeBridge(Boolean aBoolean) {
-        if (aBoolean) {
+    private String makeBridge(Bridge bridge) {
+        if (bridge == Bridge.EXIST) {
             return EXIST_BRIDGE;
         }
         return NONE_BRIDGE;

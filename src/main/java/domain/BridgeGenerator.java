@@ -1,5 +1,5 @@
 package domain;
 
 public interface BridgeGenerator {
-    Boolean generate();
+    Bridge generate();
 }

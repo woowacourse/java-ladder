@@ -25,12 +25,12 @@ class LadderGameResultTest {
             List.of(new LadderResult("상품1"), new LadderResult("상품2"), new LadderResult("상품3"),
                     new LadderResult("상품4")));
     private static final Ladder VALID_LADDER = new Ladder(VALID_HEIGHT, VALID_WIDTH,
-            new BridgesGenerator(new TestBridgeGenerator(List.of(
-                    true, false, false,
-                    false, true, false,
-                    false, false, true,
-                    true, false, false,
-                    false, true, false))));
+            new RowGenerator(new TestBridgeGenerator(List.of(
+                    Bridge.EXIST, Bridge.NONE, Bridge.NONE,
+                    Bridge.NONE, Bridge.EXIST, Bridge.NONE,
+                    Bridge.NONE, Bridge.NONE, Bridge.EXIST,
+                    Bridge.EXIST, Bridge.NONE, Bridge.NONE,
+                    Bridge.NONE, Bridge.EXIST, Bridge.NONE))));
 
     @Test
     @DisplayName("이름 개수와 사다리 결과 개수가 같지 않으면 예외 발생")
@@ -79,15 +79,15 @@ class LadderGameResultTest {
 
 
     static class TestBridgeGenerator implements BridgeGenerator {
-        private final List<Boolean> bridges;
+        private final List<Bridge> bridges;
         private int currentPosition = 0;
 
-        TestBridgeGenerator(List<Boolean> bridges) {
+        TestBridgeGenerator(List<Bridge> bridges) {
             this.bridges = bridges;
         }
 
         @Override
-        public Boolean generate() {
+        public Bridge generate() {
             if (currentPosition >= bridges.size()) {
                 currentPosition = 0;
             }

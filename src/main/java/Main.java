@@ -1,6 +1,6 @@
 import domain.BridgeRandomGenerator;
-import domain.BridgesGenerator;
 import domain.LadderGame;
+import domain.RowGenerator;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -25,8 +25,8 @@ public class Main {
         String nameInput = inputView.getNamesInputFromConsole();
         String rawLadderResult = inputView.getLadderResultsFromConsole();
         int ladderHeight = inputView.getHeightInputFromConsole();
-        BridgesGenerator bridgesGenerator = new BridgesGenerator(new BridgeRandomGenerator());
-        return new LadderGame(nameInput, rawLadderResult, ladderHeight, bridgesGenerator);
+        RowGenerator rowGenerator = new RowGenerator(new BridgeRandomGenerator());
+        return new LadderGame(nameInput, rawLadderResult, ladderHeight, rowGenerator);
     }
 
     private static void searchLadderResultFromName(InputView inputView, OutputView outputView) {

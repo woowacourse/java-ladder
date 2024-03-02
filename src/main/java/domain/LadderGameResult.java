@@ -46,18 +46,18 @@ public class LadderGameResult {
     }
 
     private void calculateLadder(Ladder ladder, Map<Integer, Integer> nameIndexMap) {
-        ladder.getLadder().stream()
-                .map(Bridges::getBridges)
+        ladder.getRows().stream()
+                .map(Row::getBridges)
                 .forEach(bridges -> swapNameIndexMap(nameIndexMap, bridges));
     }
 
-    private void swapNameIndexMap(Map<Integer, Integer> nameIndexMap, List<Boolean> bridges) {
+    private void swapNameIndexMap(Map<Integer, Integer> nameIndexMap, List<Bridge> bridges) {
         IntStream.range(0, bridges.size())
                 .forEach(index -> swapIfBridgeExist(nameIndexMap, index, bridges));
     }
 
-    private void swapIfBridgeExist(Map<Integer, Integer> nameIndexMap, int index, List<Boolean> bridges) {
-        if (bridges.get(index)) {
+    private void swapIfBridgeExist(Map<Integer, Integer> nameIndexMap, int index, List<Bridge> bridges) {
+        if (bridges.get(index) == Bridge.EXIST) {
             var right = nameIndexMap.get(index + 1);
             var left = nameIndexMap.get(index);
             nameIndexMap.put(index + 1, left);

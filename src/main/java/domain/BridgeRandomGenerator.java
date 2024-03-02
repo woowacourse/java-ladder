@@ -6,7 +6,10 @@ public class BridgeRandomGenerator implements BridgeGenerator {
     private final Random random = new Random();
 
     @Override
-    public Boolean generate() {
-        return random.nextBoolean();
+    public Bridge generate() {
+        if (random.nextBoolean()) {
+            return Bridge.EXIST;
+        }
+        return Bridge.NONE;
     }
 }

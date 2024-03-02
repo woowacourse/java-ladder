@@ -7,7 +7,7 @@ public class LadderGame {
     private final NamesCreator namesCreator = new NamesCreator();
     private final LadderResultCreator ladderResultCreator = new LadderResultCreator();
 
-    public LadderGame(String userNames, String rawLadderResults, int ladderHeight, BridgesGenerator generator) {
+    public LadderGame(String userNames, String rawLadderResults, int ladderHeight, RowGenerator generator) {
         names = namesCreator.create(userNames);
         ladderResults = ladderResultCreator.create(rawLadderResults);
         Height height = new Height(ladderHeight);
