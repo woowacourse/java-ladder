@@ -9,13 +9,13 @@ public class InputView {
     public List<String> requestParticipantsName() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String input = scanner.nextLine();
-        return splitName(input);
+        return splitName(removeBlank(input));
     }
 
     public List<String> requestExecutionResult() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String input = scanner.nextLine();
-        return splitName(input);
+        return splitName(removeBlank(input));
     }
 
     private List<String> splitName(String input) {
@@ -25,7 +25,7 @@ public class InputView {
     public int requestLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         String input = scanner.nextLine();
-        return parseNumeric(input);
+        return parseNumeric(removeBlank(input));
     }
 
     private int parseNumeric(String input) {
@@ -39,6 +39,10 @@ public class InputView {
     public List<String> requestResultInterestedPeople() {
         System.out.println("결과를 보고 싶은 사람은?");
         String input = scanner.nextLine();
-        return splitName(input);
+        return splitName(removeBlank(input));
+    }
+
+    private String removeBlank(String input) {
+        return input.replaceAll("\\s+", "");
     }
 }
