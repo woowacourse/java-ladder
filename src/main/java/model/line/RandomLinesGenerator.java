@@ -26,7 +26,7 @@ public class RandomLinesGenerator implements LinesGenerator {
     }
 
     private Path getNextPath(final List<Path> paths) {
-        if (!paths.isEmpty() && getLastPath(paths) == Path.EXIST) {
+        if (!paths.isEmpty() && existLastPath(paths)) {
             return Path.NOT_EXIST;
         }
         if (random.nextBoolean()) {
@@ -37,5 +37,9 @@ public class RandomLinesGenerator implements LinesGenerator {
 
     private Path getLastPath(final List<Path> paths) {
         return paths.get(paths.size() - 1);
+    }
+
+    private boolean existLastPath(final List<Path> paths) {
+        return getLastPath(paths) == Path.EXIST;
     }
 }

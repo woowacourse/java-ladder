@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 
 class ItemFormatterTest {
     @Test
-    @DisplayName("실행 결과는 좌측 정렬하여 출력한다.")
+    @DisplayName("실행 결과는 우측 정렬하여 출력한다.")
     void format() {
         ItemFormatter itemFormatter = new ItemFormatter();
         String itemName = "꽝";
         String formattedItemName = itemFormatter.format(itemName);
-        assertThat(formattedItemName).isEqualTo("꽝   ");
+        assertThat(formattedItemName).isEqualTo("    꽝");
     }
 }
