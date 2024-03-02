@@ -2,10 +2,9 @@ package model;
 
 import dto.ParticipantName;
 import java.util.Objects;
+import utils.Constant;
 
 public class Participant {
-    private static final int MAX_NAME_LENGTH = 5;
-
     private final String name;
 
     public Participant(String name) {
@@ -17,11 +16,11 @@ public class Participant {
         if (name == null) {
             throw new IllegalArgumentException("이름은 null일 수 없다.");
         }
-        if (name.isEmpty() || name.isBlank() || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름은 한글자 이상 다섯글자 이하로 입력해야합니다.");
+        if (name.isEmpty() || name.isBlank() || name.length() > Constant.STEP_LENGTH) {
+            throw new IllegalArgumentException("이름은 1 ~ " + Constant.STEP_LENGTH + " 길이의 문자이어야합니다.");
         }
-        if (name.equals("all")) {
-            throw new IllegalArgumentException("\"all\"이라는 이름은 입력할 수 없다.");
+        if (name.equals(Constant.TOTAL_RESULT_KEYWORD)) {
+            throw new IllegalArgumentException("\"" + Constant.TOTAL_RESULT_KEYWORD + "\"이라는 이름은 입력할 수 없다.");
         }
     }
 

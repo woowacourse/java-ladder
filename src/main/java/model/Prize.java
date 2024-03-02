@@ -1,10 +1,9 @@
 package model;
 
 import dto.PrizeName;
+import utils.Constant;
 
 public class Prize {
-    private static final int MAX_PRIZE_LENGTH = 5;
-
     private final String prizeName;
 
     public Prize(String prizeName) {
@@ -16,8 +15,8 @@ public class Prize {
         if (prizeName == null) {
             throw new IllegalArgumentException("결과 이름은 null일 수 없다.");
         }
-        if (prizeName.isEmpty() || prizeName.isBlank() || prizeName.length() > MAX_PRIZE_LENGTH) {
-            throw new IllegalArgumentException("결과 이름은 한글자 이상 다섯글자 이하로 입력해야합니다.");
+        if (prizeName.isEmpty() || prizeName.isBlank() || prizeName.length() > Constant.STEP_LENGTH) {
+            throw new IllegalArgumentException("결과 이름은 1 ~ " + Constant.STEP_LENGTH + " 길이의 문자이어야합니다.");
         }
     }
 

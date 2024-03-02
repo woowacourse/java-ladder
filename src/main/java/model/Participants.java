@@ -4,10 +4,10 @@ import dto.ParticipantName;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import utils.Constant;
 
 public class Participants {
     private static final int MIN_PARTICIPANT_COUNT = 2;
-    private static final String SPECIAL_NAME = "all";
 
     private final List<Participant> participants;
 
@@ -21,7 +21,7 @@ public class Participants {
 
     private void validateNameSize(List<String> names) {
         if (names.size() < MIN_PARTICIPANT_COUNT) {
-            throw new IllegalArgumentException("참여할 사람은 두명 이상이어야한다.");
+            throw new IllegalArgumentException("참여할 사람은 " + MIN_PARTICIPANT_COUNT + "명 이상이어야한다.");
         }
     }
 
@@ -33,8 +33,8 @@ public class Participants {
     }
 
     public ParticipantName findByName(String name) {
-        if (name.equals(SPECIAL_NAME)) {
-            return new ParticipantName(SPECIAL_NAME);
+        if (name.equals(Constant.TOTAL_RESULT_KEYWORD)) {
+            return new ParticipantName(Constant.TOTAL_RESULT_KEYWORD);
         }
         return participants.stream().filter(m -> m.hasEquivalentName(name))
                 .findAny()
