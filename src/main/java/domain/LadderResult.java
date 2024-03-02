@@ -13,12 +13,12 @@ public class LadderResult {
         this.results = results;
     }
 
-    public List<String> getWinning(String player) {
-        if (RESULT_ALL.equals(player)) {
+    public List<String> getWinning(String playerName) {
+        if (RESULT_ALL.equals(playerName)) {
             return getAll();
         }
-        validateContains(player);
-        return List.of(results.get(player));
+        validateContains(playerName);
+        return List.of(results.get(playerName));
     }
 
     private List<String> getAll() {
