@@ -9,7 +9,9 @@ public class Ladder {
     private final int width;
 
     public Ladder(Height height, int playerSize, StickGenerator stickGenerator) {
-        for (int i = 0; i < height.getValue(); i++) {
+        int heightValue = height.getValue();
+
+        for (int i = 0; i < heightValue; i++) {
             lines.add(new Line(stickGenerator, playerSize));
         }
 
