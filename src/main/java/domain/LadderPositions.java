@@ -20,6 +20,10 @@ public class LadderPositions {
         return positions;
     }
 
+    public Integer getPosition(int index) {
+        return positions.get(index);
+    }
+
     public LadderPositions calculatePosition(Row row) {
         List<Bridge> bridges = row.getBridges();
         List<Integer> calculatedPosition = swapPosition(bridges);

@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LadderPositionTest {
+class LadderPositionsTest {
 
     @Test
     @DisplayName("위치 값이 0 이상의 양수일 경우 예외가 발생하지 않음")
@@ -27,8 +27,8 @@ class LadderPositionTest {
     }
 
     @Test
-    @DisplayName("위치 값이 적절하면 위치 값을 반환할 수 있음")
-    void testGetPosition() {
+    @DisplayName("위치 값이 적절하면 위치 값을 반환")
+    void testGetPositions() {
         LadderPositions ladderPositions = new LadderPositions(List.of(0, 1, 2, 3, 4));
         List<Integer> actual = ladderPositions.getPositions();
         List<Integer> expected = List.of(0, 1, 2, 3, 4);
@@ -37,7 +37,16 @@ class LadderPositionTest {
     }
 
     @Test
-    @DisplayName("사다리 가로 값으로 위치를 반환할 수 있음")
+    @DisplayName("index 값을 전달하면 해당 index의 위치 값을 반환")
+    void testGetPosition() {
+        LadderPositions ladderPositions = new LadderPositions(List.of(1, 2, 3));
+        Integer actual = ladderPositions.getPosition(2);
+        Integer expected = 3;
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("사다리 가로 값으로 위치를 반환")
     void testCalculatePosition() {
         LadderPositions ladderPositions = new LadderPositions(List.of(1, 2, 3));
         // row = |     |-----|
@@ -48,4 +57,6 @@ class LadderPositionTest {
 
         Assertions.assertThat(actual).isEqualTo(expected);
     }
+
+
 }
