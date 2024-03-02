@@ -33,7 +33,7 @@ public class LadderController {
         Ladder ladder = new Ladder(new LadderGenerateStrategy(),
                 attempt(() -> new Height(inputView.inputLadderHeight())), participants);
         LadderGame ladderGame = new LadderGame(ladder, participants, results);
-        outputView.printLadder(ladderGame);
+        outputView.printLadder(participants, results, ladder);
         outputView.printLadderGameResult(attempt(() -> play(ladderGame)));
     }
 

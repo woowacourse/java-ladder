@@ -1,7 +1,6 @@
 package view;
 
 import model.ladder.Ladder;
-import model.ladder.LadderGame;
 import model.ladder.LadderRow;
 import model.ladder.Space;
 import model.participant.Participant;
@@ -21,15 +20,15 @@ public class OutputView {
     private static final String NAME_FORMAT = "%5s ";
     private static final String DELIMITER = " : ";
 
-    public void printLadder(LadderGame ladderGame) {
+    public void printLadder(Participants participants, Results results, Ladder ladder) {
         System.out.println(LADDER_RESULT_MESSAGE);
-        printParticipantsName(ladderGame.getParticipants());
-        printLadderDetail(ladderGame.getLadder());
-        printResults(ladderGame.getResults());
+        printParticipantsName(participants.getParticipants());
+        printLadderDetail(ladder);
+        printResults(results);
     }
 
     private void printParticipantsName(List<Participant> participants) {
-        for (Participant participant : participants){
+        for (Participant participant : participants) {
             System.out.printf(NAME_FORMAT, participant.getName());
         }
         System.out.println();
@@ -51,8 +50,8 @@ public class OutputView {
         System.out.print(LadderComponent.DIVISION.getOutput());
     }
 
-    private void printResults(List<Result> results) {
-        for (Result result : results){
+    private void printResults(Results results) {
+        for (Result result : results.getResults()) {
             System.out.printf(NAME_FORMAT, result.name());
         }
         System.out.println();
@@ -65,8 +64,8 @@ public class OutputView {
 
     public void printLadderGameResult(ParticipantsResult participantsResult) {
         System.out.println(System.lineSeparator() + RESULT_MESSAGE);
-        for (Map.Entry<Participant, Result> reward : participantsResult.getParticipantsResult().entrySet()) {
-            System.out.println(reward.getKey().getName() + DELIMITER + reward.getValue().name());
+        for (Map.Entry<Participant, Result> matched : participantsResult.getParticipantsResult().entrySet()) {
+            System.out.println(matched.getKey().getName() + DELIMITER + matched.getValue().name());
         }
     }
 
