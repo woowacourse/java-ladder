@@ -4,6 +4,10 @@ import domain.ladder.BridgeGenerator;
 import domain.ladder.Ladder;
 import domain.ladder.LadderCreator;
 import domain.ladder.LadderPositions;
+import domain.name.Names;
+import domain.name.NamesCreator;
+import domain.result.LadderResultCreator;
+import domain.result.LadderResults;
 
 public class LadderGame {
     private final Ladder ladder;

@@ -1,5 +1,7 @@
 package domain;
 
+import domain.exception.ExceptionType;
+import domain.exception.LadderGameException;
 import domain.ladder.Bridge;
 import domain.ladder.BridgeRandomGenerator;
 import domain.ladder.Height;
@@ -7,6 +9,10 @@ import domain.ladder.Ladder;
 import domain.ladder.LadderPositions;
 import domain.ladder.RowGenerator;
 import domain.ladder.Width;
+import domain.name.Name;
+import domain.name.Names;
+import domain.result.LadderResult;
+import domain.result.LadderResults;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

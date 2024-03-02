@@ -1,5 +1,7 @@
-package domain;
+package domain.result;
 
+import domain.exception.ExceptionType;
+import domain.exception.LadderGameException;
 import java.util.List;
 
 public class LadderResults {

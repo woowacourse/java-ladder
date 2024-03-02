@@ -1,5 +1,7 @@
-package domain;
+package domain.name;
 
+import domain.exception.ExceptionType;
+import domain.exception.LadderGameException;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;

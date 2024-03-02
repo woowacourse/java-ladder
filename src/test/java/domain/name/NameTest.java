@@ -1,7 +1,9 @@
-package domain;
+package domain.name;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import domain.exception.ExceptionType;
+import domain.exception.LadderGameException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

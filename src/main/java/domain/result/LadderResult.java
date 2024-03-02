@@ -1,4 +1,7 @@
-package domain;
+package domain.result;
+
+import domain.exception.ExceptionType;
+import domain.exception.LadderGameException;
 
 public class LadderResult {
     public static final int MAX_LADDER_RESULT_LENGTH = 5;

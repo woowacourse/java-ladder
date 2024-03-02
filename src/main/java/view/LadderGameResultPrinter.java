@@ -1,9 +1,9 @@
 package view;
 
 import domain.LadderGameResult;
-import domain.LadderResult;
-import domain.Name;
-import domain.Names;
+import domain.name.Name;
+import domain.name.Names;
+import domain.result.LadderResult;
 import java.util.stream.Collectors;
 
 public class LadderGameResultPrinter {

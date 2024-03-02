@@ -1,5 +1,7 @@
-package domain;
+package domain.name;
 
+import domain.exception.ExceptionType;
+import domain.exception.LadderGameException;
 import java.util.List;
 
 public class Names {
@@ -7,17 +9,17 @@ public class Names {
     private static final int MAX_NAMES_COUNT = 10;
     private final List<Name> names;
 
-    Names(List<Name> names) {
+    public Names(List<Name> names) {
         validateDuplicateName(names);
         validateNameCount(names);
         this.names = names;
     }
-    
+
     public List<Name> getNames() {
         return names;
     }
 
-    int count() {
+    public int count() {
         return names.size();
     }
 

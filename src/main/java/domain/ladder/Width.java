@@ -1,7 +1,7 @@
 package domain.ladder;
 
-import domain.ExceptionType;
-import domain.LadderGameException;
+import domain.exception.ExceptionType;
+import domain.exception.LadderGameException;
 
 public class Width {
     private static final int MIN = 2;

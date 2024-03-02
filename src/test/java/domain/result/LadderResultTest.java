@@ -1,5 +1,7 @@
-package domain;
+package domain.result;
 
+import domain.exception.ExceptionType;
+import domain.exception.LadderGameException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

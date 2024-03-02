@@ -1,7 +1,7 @@
 package domain.ladder;
 
-import domain.ExceptionType;
-import domain.LadderGameException;
+import domain.exception.ExceptionType;
+import domain.exception.LadderGameException;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;

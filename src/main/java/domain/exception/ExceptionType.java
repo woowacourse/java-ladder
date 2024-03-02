@@ -1,4 +1,4 @@
-package domain;
+package domain.exception;
 
 public enum ExceptionType {
     INVALID_HEIGHT_RANGE("높이는 5이상 10 이하여야 합니다."),

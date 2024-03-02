@@ -1,5 +1,7 @@
-package domain;
+package domain.name;
 
+import domain.exception.ExceptionType;
+import domain.exception.LadderGameException;
 import java.util.Arrays;
 import java.util.List;
 import org.assertj.core.api.Assertions;
