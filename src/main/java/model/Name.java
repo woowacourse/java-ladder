@@ -3,18 +3,14 @@ package model;
 import java.util.Objects;
 
 public abstract class Name {
-    private final String name;
+    private final String value;
 
-    protected Name(final String name) {
-        validateName(name);
-        this.name = name;
+    protected Name(final String rawName) {
+        validateName(rawName);
+        this.value = rawName;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    protected abstract void validateName(final String name);
+    protected abstract void validateName(final String rawName);
 
     @Override
     public boolean equals(final Object o) {
@@ -25,11 +21,15 @@ public abstract class Name {
             return false;
         }
         Name otherName = (Name) o;
-        return Objects.equals(name, otherName.name);
+        return Objects.equals(value, otherName.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(value);
+    }
+
+    public String getName() {
+        return value;
     }
 }

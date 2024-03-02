@@ -3,23 +3,23 @@ package model;
 public abstract class Count {
     private static final int MINIMUM_NUMBER = 0;
 
-    private final int count;
+    private final int value;
 
-    protected Count(final int count) {
-        validateCount(count);
-        validateNegativeCount(count);
-        this.count = count;
+    protected Count(final int rawCount) {
+        validateCount(rawCount);
+        validateNegativeCount(rawCount);
+        this.value = rawCount;
     }
 
-    protected abstract void validateCount(final int count);
+    protected abstract void validateCount(final int rawCount);
 
-    private void validateNegativeCount(final int count) {
-        if (count < MINIMUM_NUMBER) {
+    private void validateNegativeCount(final int rawCount) {
+        if (rawCount < MINIMUM_NUMBER) {
             throw new IllegalArgumentException("카운트는 음수일 수 없습니다.");
         }
     }
 
     public int getCount() {
-        return count;
+        return value;
     }
 }
