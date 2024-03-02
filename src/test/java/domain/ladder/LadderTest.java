@@ -20,7 +20,7 @@ class LadderTest {
         Height height = new Height(3);
         int playerSize = 9;
 
-        Ladder ladder = new Ladder(height, playerSize, mockSticksGenerator());
+        Ladder ladder = Ladder.of(height, playerSize, mockSticksGenerator());
         int actualHeight = ladder.getHeight();
 
         assertThat(actualHeight).isEqualTo(height.getHeight());
@@ -32,7 +32,7 @@ class LadderTest {
         Height height = new Height(3);
         int playerSize = 3;
 
-        Ladder ladder = new Ladder(height, playerSize, mockSticksGenerator());
+        Ladder ladder = Ladder.of(height, playerSize, mockSticksGenerator());
         int position0 = ladder.climb(0);
         int position1 = ladder.climb(1);
         int position2 = ladder.climb(2);

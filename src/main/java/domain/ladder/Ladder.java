@@ -9,16 +9,23 @@ import java.util.List;
 public class Ladder {
 
     private final Height height;
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
 
-    public Ladder(Height height, int playerSize, SticksGenerator sticksGenerator) {
+    private Ladder(Height height, List<Line> lines) {
         this.height = height;
+        this.lines = lines;
+    }
+
+    public static Ladder of(Height height, int playerSize, SticksGenerator sticksGenerator) {
         int stickCount = playerSize - 1;
+        List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height.getHeight(); i++) {
             List<Stick> sticks = sticksGenerator.generate(stickCount);
-            this.lines.add(new Line(sticks));
+            lines.add(new Line(sticks));
         }
+
+        return new Ladder(height, lines);
     }
 
     public List<Line> getLines() {

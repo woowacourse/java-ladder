@@ -37,9 +37,9 @@ public class LadderGame {
         Results results = readResultsOfSize(players.getPlayerSize());
         Height height = readHeight();
 
-        Ladder ladder = new Ladder(height, players.getPlayerSize(), sticksGenerator);
+        Ladder ladder = Ladder.of(height, players.getPlayerSize(), sticksGenerator);
         outputView.printLadder(players, ladder, results);
-        return new LadderGameRecord(players, ladder, results);
+        return LadderGameRecord.of(players, ladder, results);
     }
 
     private Players readPlayers() {
