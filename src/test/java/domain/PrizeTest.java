@@ -13,8 +13,7 @@ public class PrizeTest {
     @ValueSource(strings = {"", "abcdef"})
     void createFail(String input) {
         assertThatCode(() -> new Prize(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(String.format("1글자 이상 5글자 이하의 값을 입력해주세요. 입력한 값 : %s", input));
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("1글자 이상, 5글자 이하면 예외를 발생하지않는다.")

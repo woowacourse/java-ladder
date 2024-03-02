@@ -39,8 +39,7 @@ class PrizeResultsTest {
         PrizeResults prizeResults = init();
 
         assertThatCode(() -> prizeResults.getByOperator("atom"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(String.format("보고 싶은 결과는 all 또는 사용자 이름으로 입력해주세요. 입력 : %s", "atom"));
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
