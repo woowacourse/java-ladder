@@ -3,7 +3,7 @@ package model.result;
 import dto.GameResultsDto;
 import dto.ParticipantName;
 import dto.PrizeName;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import model.participant.Participant;
 import model.prize.Prize;
@@ -20,7 +20,7 @@ public class GameResults {
         if (name.equals(Constant.TOTAL_RESULT_KEYWORD)) {
             return convertTotalResultsToDto();
         }
-        Map<Participant, Prize> findResult = new HashMap<>();
+        Map<Participant, Prize> findResult = new LinkedHashMap<>();
         gameResults.entrySet().stream()
                 .filter(entry -> entry.getKey().getName().equals(name))
                 .forEach(entry -> findResult.put(entry.getKey(), entry.getValue()));
@@ -28,7 +28,7 @@ public class GameResults {
     }
 
     public GameResultsDto convertTotalResultsToDto() {
-        Map<ParticipantName, PrizeName> gameResultsDto = new HashMap<>();
+        Map<ParticipantName, PrizeName> gameResultsDto = new LinkedHashMap<>();
         for (Map.Entry<Participant, Prize> entry : gameResults.entrySet()) {
             ParticipantName participantName = entry.getKey().convertToParticipantName();
             PrizeName prizeName = entry.getValue().convertToPrizeName();
@@ -38,7 +38,7 @@ public class GameResults {
     }
 
     private GameResultsDto convertEachResultToDto(Map<Participant, Prize> eachResult) {
-        Map<ParticipantName, PrizeName> convertedResult = new HashMap<>();
+        Map<ParticipantName, PrizeName> convertedResult = new LinkedHashMap<>();
         eachResult.forEach((participant, prize) ->
                 convertedResult.put(participant.convertToParticipantName(), prize.convertToPrizeName()));
         return new GameResultsDto(convertedResult);

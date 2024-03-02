@@ -2,7 +2,7 @@ package model.ladder;
 
 import dto.LayerSteps;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import model.generator.StepExistenceGenerator;
@@ -33,7 +33,7 @@ public class Ladder {
     }
 
     public GameResults climbDownAll(Participants participants, Prizes prizes) {
-        Map<Participant, Prize> results = new HashMap<>();
+        Map<Participant, Prize> results = new LinkedHashMap<>();
         for (int i = 0; i < participants.size(); i++) {
             Participant participant = participants.findParticipantByIndex(i);
             Prize assignedPrize = prizes.getPrizeByIndex(climbDownEach(i));
