@@ -24,4 +24,14 @@ class PeopleTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참여 인원은 최소 2여야 합니다.");
     }
+
+    @Test
+    @DisplayName("참여자들의 이름 중 중복되는 이름은 존재할 수 없다.")
+    void createPersonGroupWithDuplicate() {
+        String duplicateName = "moly";
+        List<String> personNames = List.of(duplicateName, duplicateName, "mola");
+        assertThatThrownBy(() -> People.from(personNames))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("");
+    }
 }
