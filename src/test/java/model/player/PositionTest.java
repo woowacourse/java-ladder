@@ -1,5 +1,8 @@
 package model.player;
 
+import static model.ladderGame.Direction.LEFT;
+import static model.ladderGame.Direction.RIGHT;
+
 import model.players.Position;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -14,15 +17,15 @@ public class PositionTest { // TODO: 마지막 위치여서 혹은 첫번째 위
         @Test
         void moveRight() {
             Position position = new Position(1);
-            int moved = position.moveRight();
+            int moved = position.move(RIGHT);
             Assertions.assertThat(moved).isEqualTo(2);
         }
 
-        @DisplayName("마지막 위치여서 오른쪽으로 이동하는 것에 실패한다.")
+        @DisplayName("왼쪽으로 성공적으로 이동한다.")
         @Test
         void moveLeft() {
             Position position = new Position(3);
-            int moved = position.moveLeft();
+            int moved = position.move(LEFT);
             Assertions.assertThat(moved).isEqualTo(2);
         }
     }

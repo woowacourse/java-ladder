@@ -1,6 +1,7 @@
 package model.players;
 
 import java.util.Objects;
+import model.ladderGame.Direction;
 
 public class Position {
     private int value;
@@ -9,14 +10,21 @@ public class Position {
         this.value = value;
     }
 
-    public int moveRight() {
-        value++;
+    public int move(Direction direction) {
+        direction.move(this);
         return value;
     }
 
-    public int moveLeft() {
+    public void moveRight() {
+        value++;
+    }
+
+    public void moveLeft() {
         value--;
-        return value;
+    }
+
+    public boolean doesNotMatch(final int size) {
+        return value != size;
     }
 
     @Override
