@@ -20,23 +20,26 @@
 5. Height
     - 높이는 최소 2이상, 최대 10이하만 가능하다.
 
-6. Bridge
+6. Level
+    - 사다리의 가로 층을 표현한다.
+
+7. Bridge
     - 사다리가 존재하는지 여부를 표현한다.
 
-7. BridgeGenerator
+8. BridgeGenerator
     - 이전 Bridge가 존재하면 다리를 연결하지 않는다.
     - 이전 Bridge가 존재하지 않으면 50% 확률로 다리를 연결한다.
 
-8. Line
+9. Line
     - Bridge를 가지는 일급 컬렉션.
     - 이전 Bridge를 BridgeGenerator에게 넘겨 다음 Bridge를 생성한다.
     - 플레이어의 인덱스와 Bridge를 계산하여 위치를 반환한다.
 
-9. Ladder
+10. Ladder
     - 사다리의 가로줄과 생성된 사다리를 바탕으로 계산된 결과를 가진다.
     - 생성자에서 참가자, 최대 높이, 랜덤 구현체를 바탕으로 사다리를 만든다.
 
-10. Result
+11. Result
     - 플레이어의 사다리 결과를 가진다.
     - 플레이어 이름과 상품들을 받아서 결과를 반환한다.
 
