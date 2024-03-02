@@ -22,4 +22,7 @@ public class InputView {
         return Integer.parseInt(br.readLine());
     }
 
+    public static String readNameForResult() throws IOException {
+        return br.readLine();
+    }
 }
