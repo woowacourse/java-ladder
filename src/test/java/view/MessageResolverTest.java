@@ -6,6 +6,7 @@ import static domain.connection.Connection.RIGHT_CONNECTION;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import domain.ColumnPosition;
+import domain.LadderGame;
 import domain.ladder.Ladder;
 import domain.line.Point;
 import domain.line.RowLine;
@@ -61,7 +62,7 @@ class MessageResolverTest {
                 new Prize(new PrizeName("2"), new ColumnPosition(1)),
                 new Prize(new PrizeName("3"), new ColumnPosition(2))));
 
-        String result = messageResolver.resolveLadderMessage(ladder, players, prizes);
+        String result = messageResolver.resolveLadderMessage(new LadderGame(ladder, players, prizes));
 
         assertThat(result).isEqualTo(
                 System.lineSeparator()

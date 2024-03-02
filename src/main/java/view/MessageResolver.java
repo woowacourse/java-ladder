@@ -3,6 +3,7 @@ package view;
 import static domain.connection.Connection.RIGHT_CONNECTION;
 
 import domain.ColumnPosition;
+import domain.LadderGame;
 import domain.connection.Connection;
 import domain.ladder.Ladder;
 import domain.line.Point;
@@ -34,11 +35,11 @@ public class MessageResolver {
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    public String resolveLadderMessage(Ladder ladder, Players players, Prizes prizes) {
+    public String resolveLadderMessage(LadderGame ladderGame) {
         return LADDER_MESSAGE_PREFIX + LINE_SEPARATOR
-                + this.resolveNamesMessage(players) + LINE_SEPARATOR
-                + this.resolveLadderShapeMessage(ladder) + LINE_SEPARATOR
-                + this.resolvePrizesMessage(prizes);
+                + this.resolveNamesMessage(ladderGame.getPlayers()) + LINE_SEPARATOR
+                + this.resolveLadderShapeMessage(ladderGame.getLadder()) + LINE_SEPARATOR
+                + this.resolvePrizesMessage(ladderGame.getPrizes());
     }
 
     private String resolveNamesMessage(Players players) {

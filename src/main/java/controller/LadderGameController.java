@@ -6,6 +6,7 @@ import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.ladder.LadderCreator;
 import domain.line.RowLineGenerator;
+import domain.player.PlayerName;
 import domain.player.Players;
 import domain.prize.Prizes;
 import domain.result.LadderResult;
@@ -25,23 +26,29 @@ public class LadderGameController {
     }
 
     public void run() {
+        LadderGame ladderGame = createLadderGameFromInput();
+        resultView.printLadder(ladderGame);
+        repeatSingleTargetDrive(ladderGame);
+        resultView.printResults(ladderGame.driveAll());
+    }
+
+    private LadderGame createLadderGameFromInput() {
         Players players = inputMapper.mapToNames(inputView.readNames());
         Height height = inputMapper.mapToHeight(inputView.readHeight());
         Prizes prizes = inputMapper.mapToPrizes(inputView.readResults());
-
         RowLineGenerator rowLineGenerator = new RowLineGenerator(new NonContinousConnectionGenerator());
         Ladder ladder = new LadderCreator().createLadder(rowLineGenerator, players.getPlayerCount(), height);
 
-        resultView.printLadder(ladder, players, prizes);
+        return new LadderGame(ladder, players, prizes);
+    }
 
-        LadderGame ladderGame = new LadderGame(ladder, players, prizes);
 
-        String driverName;
-        while (!(driverName = inputView.readDriver()).equals("all")) {
-            LadderResult result = ladderGame.drive(inputMapper.mapToName(driverName));
+    private void repeatSingleTargetDrive(LadderGame ladderGame) {
+        PlayerName driverName = inputMapper.mapToName(inputView.readDriver());
+        while (!driverName.getName().equals("all")) {
+            LadderResult result = ladderGame.drive(driverName);
             resultView.printResult(result);
+            driverName = inputMapper.mapToName(inputView.readDriver());
         }
-
-        resultView.printResults(ladderGame.driveAll());
     }
 }

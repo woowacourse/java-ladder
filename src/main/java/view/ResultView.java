@@ -1,8 +1,6 @@
 package view;
 
-import domain.ladder.Ladder;
-import domain.player.Players;
-import domain.prize.Prizes;
+import domain.LadderGame;
 import domain.result.LadderResult;
 import domain.result.LadderResults;
 
@@ -16,8 +14,8 @@ public class ResultView {
         this.messageResolver = messageResolver;
     }
 
-    public void printLadder(Ladder ladder, Players players, Prizes prizes) {
-        System.out.println(messageResolver.resolveLadderMessage(ladder, players, prizes));
+    public void printLadder(LadderGame ladderGame) {
+        System.out.println(messageResolver.resolveLadderMessage(ladderGame));
     }
 
     public void printResult(LadderResult result) {
