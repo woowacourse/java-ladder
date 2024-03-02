@@ -44,7 +44,9 @@ public class Players {
     }
 
     public List<String> getNames() {
-        return players.stream().map(Player::getName).toList();
+        return players.stream()
+                .map(Player::getName)
+                .toList();
     }
 
     public Player get(int index) {

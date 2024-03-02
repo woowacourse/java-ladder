@@ -25,7 +25,8 @@ public class Player {
     }
 
     private boolean isAlphabet(String name) {
-        return name.chars().noneMatch(character -> isUpperCase(character) || isLowerCase(character));
+        return name.chars()
+                .noneMatch(character -> isUpperCase(character) || isLowerCase(character));
     }
 
     private boolean isUpperCase(int character) {
