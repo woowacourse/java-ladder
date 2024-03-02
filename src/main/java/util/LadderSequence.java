@@ -31,11 +31,9 @@ public class LadderSequence {
 
     private static List<String> getLadderSequence(Ladder ladder) {
         List<Line> lines = ladder.getLines();
-        List<String> ladderSequence = new ArrayList<>();
-        lines.stream()
+        return lines.stream()
                 .map(LadderSequence::getLineSequence)
-                .forEach(ladderSequence::add);
-        return ladderSequence;
+                .toList();
     }
 
     private static String getLineSequence(Line line) {
