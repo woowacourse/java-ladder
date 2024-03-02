@@ -7,9 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
 import util.Connection;
-import util.Generator;
 import util.LadderSequence;
-import util.RandomGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,20 +16,11 @@ public class LadderGame {
     private final Ladder ladder;
     private final PlayerNames playerNames;
     private final WinningNames winningNames;
-    private final Generator generator;
 
     public LadderGame(PlayerNames playerNames, WinningNames winningNames, Ladder ladder) {
         this.playerNames = playerNames;
         this.winningNames = winningNames;
         this.ladder = ladder;
-        this.generator = new RandomGenerator();
-    }
-
-    LadderGame(PlayerNames playerNames, WinningNames winningNames, Ladder ladder, Generator generator) {
-        this.playerNames = playerNames;
-        this.winningNames = winningNames;
-        this.ladder = ladder;
-        this.generator = generator;
     }
 
     public List<String> getLadderSequence() {

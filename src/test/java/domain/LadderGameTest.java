@@ -23,8 +23,7 @@ public class LadderGameTest {
         ladderGame = new LadderGame(
                 new PlayerNames(List.of("a", "b")),
                 new WinningNames(List.of("1", "2"), 2),
-                ladder,
-                new CustomGenerator(List.of(false, true))
+                ladder
         );
     }
 

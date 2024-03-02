@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomGenerator implements Generator{
+public class RandomGenerator{
     public RandomGenerator() {}
 
-    @Override
     public List<Integer> generate(int personCount) {
         Random random = new Random();
         List<Integer> result = new ArrayList<>();
