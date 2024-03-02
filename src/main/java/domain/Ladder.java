@@ -20,8 +20,7 @@ public class Ladder {
     }
 
     public LadderPositions climbDown() {
-        List<Integer> initPositions = IntStream.range(0, width.getLength()).boxed().toList();
-        LadderPositions ladderPositions = new LadderPositions(initPositions);
+        LadderPositions ladderPositions = new LadderPositions(width.getLength());
         for (Row row : rows) {
             ladderPositions = ladderPositions.calculatePosition(row);
         }
