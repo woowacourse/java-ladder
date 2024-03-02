@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import ladder.domain.dto.ParticipantsResponseDto;
 
 public class Participants {
 
@@ -52,13 +51,5 @@ public class Participants {
 
     public Name getNameByIndex(int index) {
         return names.get(index);
-    }
-
-    public ParticipantsResponseDto getParticipantsResult() {
-        List<String> participantsNames = names.stream()
-                .map(Name::getName)
-                .toList();
-
-        return new ParticipantsResponseDto(participantsNames);
     }
 }

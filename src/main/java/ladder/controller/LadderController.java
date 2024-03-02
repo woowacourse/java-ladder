@@ -67,7 +67,7 @@ public class LadderController {
     }
 
     private void printLadderResult(Ladder ladder, Participants participants, Prizes prizes) {
-        ParticipantsResponseDto participantsResponseDto = participants.getParticipantsResult();
+        ParticipantsResponseDto participantsResponseDto = ParticipantsResponseDto.from(participants);
         LadderResponseDto ladderResponseDto = ladder.getLadderResult();
         PrizesResponseDto prizesResponseDto = prizes.getPrizesResult();
 
