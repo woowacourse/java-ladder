@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -8,7 +8,7 @@ public class Ladder {
 
     private final Width width;
 
-    Ladder(Height height, Width width, RowGenerator rowGenerator) {
+    public Ladder(Height height, Width width, RowGenerator rowGenerator) {
         rows = IntStream.range(0, height.getLength())
                 .mapToObj(value -> rowGenerator.generate(width.getLength() - 1))
                 .toList();

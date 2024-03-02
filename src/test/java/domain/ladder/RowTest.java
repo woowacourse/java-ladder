@@ -1,5 +1,7 @@
-package domain;
+package domain.ladder;
 
+import domain.ExceptionType;
+import domain.LadderGameException;
 import java.util.List;
 import java.util.stream.IntStream;
 import org.assertj.core.api.Assertions;

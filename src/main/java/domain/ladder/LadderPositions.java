@@ -1,5 +1,7 @@
-package domain;
+package domain.ladder;
 
+import domain.ExceptionType;
+import domain.LadderGameException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -56,7 +58,7 @@ public class LadderPositions {
             throw new LadderGameException(ExceptionType.INVALID_LADDER_POSITIONS_RANGE);
         }
     }
-    
+
     private void swapIfBridgeExist(int index, Bridge bridge, List<Integer> calculatedPosition) {
         if (bridge == Bridge.EXIST) {
             Collections.swap(calculatedPosition, index, index - 1);

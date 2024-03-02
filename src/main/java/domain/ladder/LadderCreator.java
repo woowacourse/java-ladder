@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder;
 
 public class LadderCreator {
     public Ladder create(int height, int width, BridgeGenerator generator) {

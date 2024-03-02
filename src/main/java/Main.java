@@ -1,4 +1,4 @@
-import domain.BridgeRandomGenerator;
+import domain.ladder.BridgeRandomGenerator;
 import domain.LadderGame;
 import domain.LadderGameResult;
 import java.io.BufferedReader;

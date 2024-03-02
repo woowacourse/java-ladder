@@ -1,5 +1,7 @@
 package domain;
 
+import domain.ladder.Ladder;
+import domain.ladder.LadderPositions;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

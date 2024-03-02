@@ -1,13 +1,13 @@
 package view;
 
-import domain.Bridge;
-import domain.Ladder;
+import domain.ladder.Bridge;
+import domain.ladder.Ladder;
 import domain.LadderGameResult;
 import domain.LadderResult;
 import domain.LadderResults;
 import domain.Name;
 import domain.Names;
-import domain.Row;
+import domain.ladder.Row;
 import java.util.List;
 import java.util.stream.Collectors;
 
