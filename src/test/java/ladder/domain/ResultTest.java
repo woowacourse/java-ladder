@@ -21,48 +21,62 @@ class ResultTest {
     @DisplayName("특정 참여자의 결과 항목을 저장한다.")
     @Test
     void put() {
+        // given
+        Player player = new Player("pobi");
+        ResultItem resultItem = new ResultItem("꽝");
+
         // when
-        result.put(new Player("pobi"), new ResultItem("꽝"));
+        result.put(player, resultItem);
 
         // then
-        assertThat(result.get(new Player("pobi"))).containsAllEntriesOf(Map.of(
-                new Player("pobi"), new ResultItem("꽝")
-        ));
+        assertThat(result.get(player)).containsAllEntriesOf(Map.of(player, resultItem));
     }
 
     @DisplayName("특정 참여자의 결과 항목을 조회한다.")
     @Test
     void get() {
         // given
-        result.put(new Player("pobi"), new ResultItem("꽝"));
+        Player player = new Player("pobi");
+        ResultItem resultItem = new ResultItem("꽝");
+        result.put(player, resultItem);
 
         // when
-        Map<Player, ResultItem> expected = result.get(new Player("pobi"));
+        Map<Player, ResultItem> expected = result.get(player);
 
         // then
-        assertThat(expected).containsAllEntriesOf(Map.of(
-                new Player("pobi"), new ResultItem("꽝")
-        ));
+        assertThat(expected).containsAllEntriesOf(Map.of(player, resultItem));
     }
 
     @DisplayName("모든 참여자의 결과 항목을 조회한다.")
     @Test
     void getAll() {
         // given
-        result.put(new Player("pobi"), new ResultItem("꽝"));
-        result.put(new Player("honux"), new ResultItem("3000"));
-        result.put(new Player("crong"), new ResultItem("꽝"));
-        result.put(new Player("jk"), new ResultItem("5000"));
+        Player player1 = new Player("pobi");
+        ResultItem resultItem1 = new ResultItem("꽝");
+
+        Player player2 = new Player("honux");
+        ResultItem resultItem2 = new ResultItem("3000");
+
+        Player player3 = new Player("crong");
+        ResultItem resultItem3 = new ResultItem("꽝");
+
+        Player player4 = new Player("jk");
+        ResultItem resultItem4 = new ResultItem("5000");
+
+        result.put(player1, resultItem1);
+        result.put(player2, resultItem2);
+        result.put(player3, resultItem3);
+        result.put(player4, resultItem4);
 
         // when
         Map<Player, ResultItem> expected = result.getAll();
 
         // then
         assertThat(expected).containsAllEntriesOf(Map.of(
-                new Player("pobi"), new ResultItem("꽝"),
-                new Player("honux"), new ResultItem("3000"),
-                new Player("crong"), new ResultItem("꽝"),
-                new Player("jk"), new ResultItem("5000")
+                player1, resultItem1,
+                player2, resultItem2,
+                player3, resultItem3,
+                player4, resultItem4
         ));
     }
 

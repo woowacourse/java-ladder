@@ -21,6 +21,14 @@ class ResultItemsTest {
         assertThat(resultItems.getRawResultItems()).containsExactly("꽝", "5000", "꽝", "3000");
     }
 
+    @DisplayName("결과 항목 수가 참여자 수와 같지 않으면 예외가 발생한다.")
+    @Test
+    void validateSize() {
+        // when & then
+        assertThatThrownBy(() -> new ResultItems(2, "꽝", "5000", "꽝", "3000"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("결과 항목들을 생성한다.")
     @Test
     void createResultItems() {
@@ -32,14 +40,6 @@ class ResultItemsTest {
 
         // then
         assertThat(resultItems.getRawResultItems()).containsExactly("꽝", "5000", "꽝", "3000");
-    }
-
-    @DisplayName("결과 항목 수가 참여자 수와 같지 않으면 예외가 발생한다.")
-    @Test
-    void validateSize() {
-        // when & then
-        assertThatThrownBy(() -> new ResultItems(2, "꽝", "5000", "꽝", "3000"))
-                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("인덱스의 결과 항목을 찾는다.")

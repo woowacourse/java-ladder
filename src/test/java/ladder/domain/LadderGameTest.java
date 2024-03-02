@@ -14,11 +14,12 @@ import org.junit.jupiter.params.provider.CsvSource;
 class LadderGameTest {
 
     private LadderGame ladderGame;
+    private ResultItems resultItems;
 
     @BeforeEach
     void createLadderGame() {
         Players players = new Players("pobi", "honux", "crong", "jk");
-        ResultItems resultItems = new ResultItems(4, "꽝", "5000", "꽝", "3000");
+        resultItems = new ResultItems(4, "꽝", "5000", "꽝", "3000");
         /*
         |-----|     |-----|
         |     |-----|     |
@@ -46,23 +47,23 @@ class LadderGameTest {
 
         // then
         assertThat(result).containsExactlyEntriesOf(new LinkedHashMap<>() {{
-            put(new Player("pobi"), new ResultItem("꽝"));
-            put(new Player("honux"), new ResultItem("3000"));
-            put(new Player("crong"), new ResultItem("꽝"));
-            put(new Player("jk"), new ResultItem("5000"));
+            put(new Player("pobi"), resultItems.get(new Index(0)));
+            put(new Player("honux"), resultItems.get(new Index(3)));
+            put(new Player("crong"), resultItems.get(new Index(2)));
+            put(new Player("jk"), resultItems.get(new Index(1)));
         }});
     }
 
     @DisplayName("특정 참여자의 사다리를 실행한다.")
     @ParameterizedTest
-    @CsvSource(value = {"pobi, 꽝", "honux, 3000", "crong, 꽝", "jk, 5000"})
-    void executeOne(String target, String resultItem) {
+    @CsvSource(value = {"pobi, 0", "honux, 3", "crong, 2", "jk, 1"})
+    void executeOne(String target, int resultItemsIndex) {
         // when
         Map<Player, ResultItem> result = ladderGame.execute(target);
 
         // then
         assertThat(result).containsExactlyEntriesOf(Map.of(
-                new Player(target), new ResultItem(resultItem)));
+                new Player(target), resultItems.get(new Index(resultItemsIndex))));
     }
 
     @DisplayName("참여하지 않은 사람의 사다리를 실행한다.")
