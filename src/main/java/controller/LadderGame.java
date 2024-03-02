@@ -58,13 +58,8 @@ public class LadderGame {
         return new Height(height);
     }
 
-    private ResultViewPlayer readTargetPlayerIn(List<String> players) {
-        String inputTargetPlayer = inputView.readTargetPlayer();
-        return new ResultViewPlayer(inputTargetPlayer, players);
-    }
-
     private void printResult(Players players, LadderGameRecord ladderGameRecord) {
-        ResultViewPlayer resultViewPlayer = readTargetPlayerIn(players.getPlayerNames());
+        ResultViewPlayer resultViewPlayer = retryUntilSuccess(() -> readResultViewPlayer(players));
 
         if (resultViewPlayer.isAll()) {
             printAllPlayerResult(ladderGameRecord);
@@ -72,6 +67,11 @@ public class LadderGame {
         }
 
         printOnePlayerResult(resultViewPlayer.getName(), ladderGameRecord);
+    }
+
+    private ResultViewPlayer readResultViewPlayer(Players players) {
+        String inputTargetPlayer = inputView.readTargetPlayer();
+        return new ResultViewPlayer(inputTargetPlayer, players);
     }
 
     private void printAllPlayerResult(LadderGameRecord ladderGameRecord) {

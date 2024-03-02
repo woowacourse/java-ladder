@@ -15,15 +15,15 @@ public class Players {
         this.players = convertToPlayer(playerNames);
     }
 
-    private void validatePlayerSize(List<String> names) {
-        if (names.size() < MIN_PLAYER_SIZE) {
-            throw new IllegalArgumentException(String.format("사용자는 최소 %d명이어야 합니다.", MIN_PLAYER_SIZE));
-        }
-    }
-
     private void validateDuplicated(List<String> names) {
         if (getUniqueSize(names) != names.size()) {
             throw new IllegalArgumentException("사용자는 중복될 수 없습니다.");
+        }
+    }
+
+    private void validatePlayerSize(List<String> names) {
+        if (names.size() < MIN_PLAYER_SIZE) {
+            throw new IllegalArgumentException(String.format("사용자는 최소 %d명이어야 합니다.", MIN_PLAYER_SIZE));
         }
     }
 
@@ -35,10 +35,6 @@ public class Players {
         return names.stream()
                 .map(name -> new Player(name.trim()))
                 .toList();
-    }
-
-    public List<Player> getPlayers() {
-        return this.players;
     }
 
     public List<String> getPlayerNames() {
@@ -53,5 +49,13 @@ public class Players {
 
     public int getStartPositionOf(String playerName) {
         return getPlayerNames().indexOf(playerName);
+    }
+
+    public List<Player> getPlayers() {
+        return this.players;
+    }
+
+    public boolean isPlayerExistByName(String name) {
+        return getPlayerNames().contains(name);
     }
 }

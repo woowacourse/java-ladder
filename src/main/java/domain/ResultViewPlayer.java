@@ -1,6 +1,6 @@
 package domain;
 
-import java.util.List;
+import domain.player.Players;
 
 public class ResultViewPlayer {
 
@@ -8,12 +8,17 @@ public class ResultViewPlayer {
 
     private final String name;
 
-    public ResultViewPlayer(String name, List<String> names) {
-        if (!names.contains(name) && !name.equals(ALL_COMMEND)) {
+    public ResultViewPlayer(String name, Players players) {
+        validateExistingPlayerOrCommend(name, players);
+
+        this.name = name;
+    }
+
+    private static void validateExistingPlayerOrCommend(String name, Players players) {
+        if (!players.isPlayerExistByName(name) && !name.equals(ALL_COMMEND)) {
             String message = String.format("%s이나 기존 사용자 이름을 입력해야 합니다.", ALL_COMMEND);
             throw new IllegalArgumentException(message);
         }
-        this.name = name;
     }
 
     public boolean isAll() {
