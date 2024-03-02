@@ -14,8 +14,8 @@ public class StepExistenceGenerator {
 
         for (int i = 1; i < numberOfParticipants; i++) {
             boolean doesExist = generateEachExistence(priorExistence);
-            priorExistence = doesExist;
             steps.add(Step.findByExistence(doesExist));
+            priorExistence = doesExist;
         }
         return steps;
     }
