@@ -29,7 +29,7 @@ public class LadderGameResult {
     public Map<Name, Prize> getAllResult() {
         Map<Name, Prize> allResults = new LinkedHashMap<>();
         for (int i = 0; i < names.getNameCount(); i++) {
-            allResults.put(names.getNames().get(i),
+            allResults.put(names.getByIndex(i),
                     prizes.getPrizes().get(ladderIndexConnection.getResult().get(i)));
         }
         return Collections.unmodifiableMap(allResults);

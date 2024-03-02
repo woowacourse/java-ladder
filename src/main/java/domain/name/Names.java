@@ -57,6 +57,10 @@ public class Names {
         throw new IllegalArgumentException("[ERROR] 찾는 이름이 목록에 없습니다.");
     }
 
+    public Name getByIndex(int i) {
+        return names.get(i);
+    }
+
     public List<Name> getNames() {
         return List.copyOf(names);
     }
