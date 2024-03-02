@@ -15,7 +15,7 @@ public class Row {
     }
 
     private List<Bridge> makeBridges(final int width, final BridgeMakingStrategy strategy) {
-        final List<Bridge> bridges = new ArrayList<>(List.of(strategy.get()));
+        final List<Bridge> bridges = new ArrayList<>(List.of(strategy.getFirst()));
         for (int i = 1; i < width; i++) {
             final Bridge previous = bridges.get(bridges.size() - 1);
             bridges.add(strategy.get(previous));

@@ -8,12 +8,12 @@ public class RandomBridgeMakingStrategy extends BridgeMakingStrategy {
     private static final Random RANDOM_GENERATOR = new Random();
 
     @Override
-    public Bridge get() {
+    public Bridge getFirst() {
         return makeBridge();
     }
 
     @Override
-    public Bridge makeBridge() {
+    protected Bridge makeBridge() {
         return Bridge.of(RANDOM_GENERATOR.nextBoolean());
     }
 }

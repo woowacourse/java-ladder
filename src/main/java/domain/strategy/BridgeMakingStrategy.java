@@ -21,7 +21,7 @@ public abstract class BridgeMakingStrategy {
     /**
      * Row의 첫 Bridge를 생성할 때만 사용하는 것을 권장함
       */
-    public abstract Bridge get();
+    public abstract Bridge getFirst();
 
-    protected abstract Bridge makeBridge();
+     protected abstract Bridge makeBridge();
 }

@@ -27,7 +27,7 @@ public class TestBridgeMakingStrategy extends BridgeMakingStrategy {
     }
 
     @Override
-    public Bridge get() {
+    public Bridge getFirst() {
         increaseIndex();
         return makeBridge();
     }
