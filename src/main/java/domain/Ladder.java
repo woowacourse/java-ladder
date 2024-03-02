@@ -24,9 +24,7 @@ public class Ladder {
 
     private static void makeLadder(List<Line> ladder, int height, int playersCount, BooleanGenerator booleanGenerator) {
         for (int i = 0; i < height; i++) {
-            Line line = new Line(playersCount);
-            line.makeLine(booleanGenerator);
-
+            Line line = new Line(playersCount, booleanGenerator);
             ladder.add(line);
         }
     }

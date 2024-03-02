@@ -26,8 +26,7 @@ class LineTest {
     @MethodSource("methodSourceEnum")
     void makeLineTest(boolean actual, List<LadderItem> expected) {
         TestBooleanGenerator testDirectionGenerator = new TestBooleanGenerator(actual);
-        Line line = new Line(4);
-        line.makeLine(testDirectionGenerator);
+        Line line = new Line(4, testDirectionGenerator);
 
         assertThat(line).extracting("points").isEqualTo(expected);
     }
@@ -37,8 +36,7 @@ class LineTest {
     @CsvSource(value = {"0,1", "1,0", "2,3", "3,2"}, delimiter = ',')
     void getLineResultTest(int actual, int expected) {
         TestBooleanGenerator testtestBooleanGenerator = new TestBooleanGenerator(true);
-        Line line = new Line(4);
-        line.makeLine(testtestBooleanGenerator);
+        Line line = new Line(4, testtestBooleanGenerator);
 
         assertThat(line.decideNextPosition(actual)).isEqualTo(expected);
     }

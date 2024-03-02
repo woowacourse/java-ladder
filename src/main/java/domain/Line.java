@@ -7,18 +7,17 @@ import java.util.List;
 
 public class Line {
     private final List<LadderItem> points;
-    private final int columnLength;
 
-    public Line(int columnLength) {
+    public Line(int playersCount, BooleanGenerator booleanGenerator) {
         this.points = new ArrayList<>();
-        this.columnLength = columnLength;
+        makeLine(playersCount, booleanGenerator);
     }
 
-    public void makeLine(BooleanGenerator booleanGenerator) {
+    private void makeLine(int playersCount, BooleanGenerator booleanGenerator) {
         // 0번째 point는 이전 point의 영향을 받지 않으므로 미리 추가
         points.add(makeRandomLadderItem(booleanGenerator));
 
-        for (int position = 1; position < columnLength - 1; position++) {
+        for (int position = 1; position < playersCount - 1; position++) {
             LadderItem isConnectable = makeRandomLadderItem(booleanGenerator);
 
             points.add(decideConnectable(position, isConnectable));
@@ -38,11 +37,13 @@ public class Line {
     }
 
     public int decideNextPosition(int position) {
-        if ((position == columnLength || position - 1 >= 0) && isEqualWithPosition(position-1, LadderItem.CONNECTED)) {
+        int playersCount = points.size() + 1;
+
+        if ((position == playersCount || position - 1 >= 0) && isEqualWithPosition(position-1, LadderItem.CONNECTED)) {
             return position - 1;
         }
 
-        if ((position == 0 || position < columnLength - 1) && isEqualWithPosition(position, LadderItem.CONNECTED)) {
+        if ((position == 0 || position < playersCount - 1) && isEqualWithPosition(position, LadderItem.CONNECTED)) {
             return position + 1;
         }
 
