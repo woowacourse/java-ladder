@@ -11,11 +11,14 @@ public abstract class BridgeMakingStrategy {
      * 연속된 Bridge를 생성하는 것을 방지
      * 일반적인 상황에서 사용하는 것을 권장함
       */
-    public Bridge get(final Bridge previous) {
+    public final Bridge get(final Bridge previous) {
+        final Bridge bridge = makeBridge();
+
         if (previous == null || previous.isExist()) {
             return Bridge.EMPTY;
         }
-        return makeBridge();
+
+        return bridge;
     }
 
     /**

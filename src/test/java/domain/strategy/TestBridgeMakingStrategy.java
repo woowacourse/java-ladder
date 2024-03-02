@@ -6,34 +6,23 @@ import java.util.List;
 
 public class TestBridgeMakingStrategy extends BridgeMakingStrategy {
     private final List<Bridge> bridges;
-    private int index = -1;
+    private int index = 0;
 
     public TestBridgeMakingStrategy(final List<Bridge> bridges) {
         this.bridges = bridges;
     }
 
-    public Bridge get(final Bridge previous) {
-        increaseIndex();
-
-        if (this.bridges.size() <= this.index) {
-            throw new IllegalArgumentException("더이상 호출할 수 없습니다.");
-        }
-
-        return super.get(previous);
-    }
-
-    private void increaseIndex() {
-        this.index++;
-    }
-
     @Override
     public Bridge getFirst() {
-        increaseIndex();
         return makeBridge();
     }
 
     @Override
     protected Bridge makeBridge() {
-        return this.bridges.get(this.index);
+        if (this.bridges.size() <= this.index) {
+            throw new IllegalArgumentException("더이상 호출할 수 없습니다.");
+        }
+
+        return this.bridges.get(this.index++);
     }
 }
