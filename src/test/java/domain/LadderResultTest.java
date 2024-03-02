@@ -14,10 +14,8 @@ public class LadderResultTest {
     @BeforeEach
     void setLadderResult() {
         ladderResult = new LadderResult(Map.of(
-                "사람1",
-                "보상1",
-                "사람2",
-                "보상2"
+                "사람1", "보상1",
+                "사람2", "보상2"
         ));
     }
 
