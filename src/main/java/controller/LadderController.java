@@ -61,6 +61,7 @@ public class LadderController {
                 .toList();
     }
 
+    // TODO : 이부분 변경된 구조에 맞게 수정할 필요 있음
     private void startClimbingLadder(final ClimbingResults climbingResults) {
         String playerName = inputView.readPlayerToSeeResult();
         while (!playerName.equals(Command.FINISH.getValue())) {
@@ -72,8 +73,8 @@ public class LadderController {
 
     private void findResultByPlayerName(final String playerName, final ClimbingResults climbingResults) {
         try {
-            String result = climbingResults.findResultByPlayerName(playerName);
-            outputView.printSingleClimbingLadderResult(result);
+            LadderResult result = climbingResults.findResultByPlayerName(playerName);
+            outputView.printSingleClimbingLadderResult(result.getValue());
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
         }

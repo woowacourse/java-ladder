@@ -3,6 +3,7 @@ package domain.ladder;
 import domain.player.Player;
 import domain.player.Players;
 import domain.result.ClimbingResults;
+import domain.result.LadderResult;
 import domain.result.LadderResults;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +21,7 @@ public class LadderClimbingGame {
     }
 
     public ClimbingResults createClimbingResults() {
-        Map<String, String> results = new HashMap<>();
+        Map<Player, LadderResult> results = new HashMap<>();
         List<Floor> floors = ladder.createFloors();
         for (Floor floor : floors) {
             results.putAll(climbLadder(floor));
@@ -28,13 +29,13 @@ public class LadderClimbingGame {
         return new ClimbingResults(results);
     }
 
-    private Map<String, String> climbLadder(Floor floor) {
-        Map<String, String> results = new HashMap<>();
+    private Map<Player, LadderResult> climbLadder(final Floor floor) {
+        Map<Player, LadderResult> results = new HashMap<>();
         for (int i = 0; i < players.getPlayerCount(); i++) {
             Player player = players.getPlayerOfIndex(i);
             int bridgeLocation = floor.getBridgePosition(player.getPosition());
             player.moveTo(bridgeLocation);
-            results.put(player.getName(), ladderResults.getLadderResultOfIndex(player.getPosition()));
+            results.put(player, ladderResults.getLadderResultOfIndex(player.getPosition()));
         }
         return results;
     }

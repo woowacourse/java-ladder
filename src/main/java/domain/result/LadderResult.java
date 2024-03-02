@@ -32,7 +32,7 @@ public class LadderResult {
         }
     }
 
-    public String getResult() {
+    public String getValue() {
         return result;
     }
 }

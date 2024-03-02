@@ -3,7 +3,9 @@ package view;
 import domain.ladder.Floor;
 import domain.ladder.Ladder;
 import domain.ladder.LadderBridge;
+import domain.player.Player;
 import domain.player.Players;
+import domain.result.LadderResult;
 import domain.result.LadderResults;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -62,7 +64,7 @@ public class OutputView {
     private void printLadderResult(final LadderResults ladderResults) {
         StringJoiner resultJoiner = new StringJoiner(JOIN_DELIMITER);
         for (int i = 0; i < ladderResults.getLadderHeight(); i++) {
-            String formattedResult = String.format(OUTPUT_FORMAT, ladderResults.getLadderResultOfIndex(i));
+            String formattedResult = String.format(OUTPUT_FORMAT, ladderResults.getLadderResultOfIndex(i).getValue());
             resultJoiner.add(formattedResult);
         }
         System.out.println(resultJoiner);
@@ -73,11 +75,11 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public void printAllClimbingLadderResults(final Map<String, String> results) {
+    public void printAllClimbingLadderResults(final Map<Player, LadderResult> results) {
         System.out.println("\n실행 결과");
         StringBuilder builder = new StringBuilder();
-        for (Map.Entry<String, String> result : results.entrySet()) {
-            builder.append(String.format("%s : %s", result.getKey(), result.getValue()))
+        for (Map.Entry<Player, LadderResult> result : results.entrySet()) {
+            builder.append(String.format("%s : %s", result.getKey().getName(), result.getValue().getValue()))
                     .append("\n");
         }
         System.out.println(builder);

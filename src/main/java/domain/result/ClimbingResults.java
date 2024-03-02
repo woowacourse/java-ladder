@@ -1,29 +1,33 @@
 package domain.result;
 
 import common.Command;
+import domain.player.Player;
 import java.util.Map;
 
 public class ClimbingResults {
     public static final String NOT_PARTICIPATION_PLAYER = "참가자가 아닙니다.";
 
-    private final Map<String, String> playerResults;
+    private final Map<Player, LadderResult> playerResults;
 
-    public ClimbingResults(final Map<String, String> playerResults) {
+    public ClimbingResults(final Map<Player, LadderResult> playerResults) {
         this.playerResults = Map.copyOf(playerResults);
     }
 
-    public String findResultByPlayerName(final String playerName) {
-        validateIsParticipant(playerName);
-        return playerResults.get(playerName);
+    public LadderResult findResultByPlayerName(final String playerName) {
+        Player participatedPlayer = getParticipatedPlayer(playerName);
+        return playerResults.get(participatedPlayer);
     }
 
-    private void validateIsParticipant(final String playerName) {
-        if (!playerName.equals(Command.FINISH.getValue()) && !playerResults.containsKey(playerName)) {
-            throw new IllegalArgumentException(NOT_PARTICIPATION_PLAYER);
+    private Player getParticipatedPlayer(final String playerName) {
+        for (Player player : playerResults.keySet()) {
+            if (playerName.equals(Command.FINISH.getValue()) || player.getName().equals(playerName)) {
+                return player;
+            }
         }
+        throw new IllegalArgumentException(NOT_PARTICIPATION_PLAYER);
     }
 
-    public Map<String, String> getAllResults() {
+    public Map<Player, LadderResult> getAllResults() {
         return playerResults;
     }
 }

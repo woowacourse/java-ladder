@@ -22,8 +22,8 @@ public class LadderResults {
         }
     }
 
-    public String getLadderResultOfIndex(final int index) {
-        return results.get(index).getResult();
+    public LadderResult getLadderResultOfIndex(final int index) {
+        return results.get(index);
     }
 
     public int getLadderHeight() {

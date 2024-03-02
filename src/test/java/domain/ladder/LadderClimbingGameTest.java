@@ -12,13 +12,15 @@ import domain.result.LadderResult;
 import domain.result.LadderResults;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class LadderClimbingGameTest {
 
-    @Test
+    @ParameterizedTest
+    @CsvSource(value = {"'a','꽝'", "'b','당첨'", "'c','꽝'"})
     @DisplayName("사다리타기 결과를 생성한다.")
-    void createClimbingResults() {
+    void createClimbingResults(String playerName, String expected) {
         // given
         Player player1 = new Player(new PlayerName("a"), 0);
         Player player2 = new Player(new PlayerName("b"), 1);
@@ -42,10 +44,6 @@ class LadderClimbingGameTest {
         ClimbingResults climbingResults = ladderClimbingGame.createClimbingResults();
 
         // then
-        assertAll(
-                () -> assertThat(climbingResults.findResultByPlayerName("a")).isEqualTo("꽝"),
-                () -> assertThat(climbingResults.findResultByPlayerName("b")).isEqualTo("당첨"),
-                () -> assertThat(climbingResults.findResultByPlayerName("c")).isEqualTo("꽝")
-        );
+        assertThat(climbingResults.findResultByPlayerName(playerName).getValue()).isEqualTo(expected);
     }
 }
