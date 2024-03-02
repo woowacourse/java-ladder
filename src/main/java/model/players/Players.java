@@ -1,8 +1,10 @@
 package model.players;
 
-import exception.Message;
+import static exception.Message.INVALID_PLAYER_ERROR;
+
 import java.util.List;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 public class Players {
 
@@ -28,21 +30,22 @@ public class Players {
     }
 
     public Position findPositionByName(final String name) {
-        for (int index = 0; index < players.size(); index++) {
-            if (players.get(index).getName().equals(name)) {
-                return new Position(index);
-            }
-        }
-        throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
+        return IntStream.range(0, players.size())
+                .filter(index -> isPlayerNameMatch(name, index))
+                .mapToObj(Position::new)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_PLAYER_ERROR.getMessage()));
+    }
+
+    private boolean isPlayerNameMatch(final String name, final int index) {
+        return players.get(index).getName().equals(name);
     }
 
     public Player findByName(final String name) {
-        for (Player player : players) {
-            if (player.getName().equals(name)) {
-                return player;
-            }
-        }
-        throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
+        return players.stream()
+                .filter(player -> player.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_PLAYER_ERROR.getMessage()));
     }
 
     public int size() {
@@ -57,13 +60,13 @@ public class Players {
 
         private static void validateSize(List<String> players) {
             if (players.size() < MIN_PLAYERS) {
-                throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
+                throw new IllegalArgumentException(INVALID_PLAYER_ERROR.getMessage());
             }
         }
 
         private static void validateDuplicates(List<String> players) {
             if (isDuplicated(players)) {
-                throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
+                throw new IllegalArgumentException(INVALID_PLAYER_ERROR.getMessage());
             }
         }
 
