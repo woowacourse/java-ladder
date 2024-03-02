@@ -1,6 +1,5 @@
 package view;
 
-import ladder.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +16,7 @@ public class InputViewTest {
     @DisplayName(",로 구분하여 이름을 입력하면 List<String>로 반환한다.")
     @Test
     void parseNamesWithDelimiter() {
-        List<String> names = InputView.readNames(() -> "a,b,c");
+        List<String> names = InputView.readStringsWithDelimiter(() -> "a,b,c", "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         assertThat(names).containsExactly("a", "b", "c");
     }
 
@@ -27,7 +26,7 @@ public class InputViewTest {
     @ValueSource(strings = {" ", "  ", "\t", "\n"})
     void validateNamesWithNullOrEmpty(final String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> InputView.readNames(() -> input))
+                .isThrownBy(() -> InputView.readStringsWithDelimiter(() -> input, "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)"))
                 .withMessage("공백을 넣을 수 없습니다.");
     }
 
@@ -37,7 +36,7 @@ public class InputViewTest {
     @ValueSource(strings = {" ", "  ", "\t", "\n"})
     void validateLadderHeightWithNullOrEmpty(final String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> InputView.readLadderHeight(() -> input))
+                .isThrownBy(() -> InputView.readNumber(() -> input, "최대 사다리 높이는 몇 개인가요?"))
                 .withMessage("공백을 넣을 수 없습니다.");
     }
 
@@ -46,7 +45,7 @@ public class InputViewTest {
     @ParameterizedTest
     void readLadderHeightByNotNumber(final String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> InputView.readLadderHeight(() -> input))
-                .withMessage("사다리 높이는 2 ~ 10 사이의 숫자로 입력해야 합니다.");
+                .isThrownBy(() -> InputView.readNumber(() -> input, "최대 사다리 높이는 몇 개인가요?"))
+                .withMessage("정수만 입력할 수 있습니다.");
     }
 }
