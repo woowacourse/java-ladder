@@ -15,7 +15,7 @@ public class Prize {
     private void validateLength(String prizeName) {
         if (prizeName.length() < MIN_LENGTH || prizeName.length() > MAX_LENGTH) {
             throw new IllegalArgumentException
-                    ("[ERROR] 상품 이름의 길이는 " + MIN_LENGTH + " ~ " + MAX_LENGTH + "5 글자여야 합니다.");
+                    ("[ERROR] 상품 이름의 길이는 " + MIN_LENGTH + " ~ " + MAX_LENGTH + " 글자여야 합니다.");
         }
     }
 
