@@ -3,7 +3,6 @@ package ladder.domain.ladder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-import ladder.domain.dto.FloorResponseDto;
 
 public class Floor {
 
@@ -51,7 +50,7 @@ public class Floor {
                 .toList();
     }
 
-    public FloorResponseDto getRungs() {
-        return FloorResponseDto.of(rungs);
+    public List<Rung> getRungs() {
+        return rungs;
     }
 }
