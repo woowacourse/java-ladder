@@ -8,6 +8,9 @@ import ladder.domain.Line;
 
 public class RandomLadderGenerator {
 
+    private static final int FIRST_MIDDLE_INDEX = 1;
+    private static final int START_END_COUNT = 2;
+
     private final Random random = new Random();
 
     public List<Line> generate(int width, int height) {
@@ -29,7 +32,7 @@ public class RandomLadderGenerator {
         List<Direction> directions = new ArrayList<>() {{
             add(randomStartDirection());
         }};
-        for (int i = 1; i < size - 1; i++) {
+        for (int i = FIRST_MIDDLE_INDEX; i < size - 1; i++) {
             Direction previous = directions.get(i - 1);
             directions.add(randomMiddleDirection(previous));
         }
@@ -75,6 +78,6 @@ public class RandomLadderGenerator {
     }
 
     private int randomMiddleIndex(int size) {
-        return random.nextInt(size - 2) + 1;
+        return random.nextInt(size - START_END_COUNT) + FIRST_MIDDLE_INDEX;
     }
 }
