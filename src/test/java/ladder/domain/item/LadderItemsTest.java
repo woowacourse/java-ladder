@@ -65,4 +65,17 @@ public class LadderItemsTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사람의 수와 당첨 아이템의 개수는 동일해야 합니다.");
     }
+
+    @DisplayName("사람의 이름이 중복된다면 예외를 발생시킨다.")
+    @Test
+    void peopleNamesDuplicationTest() {
+        // given
+        List<String> peopleNames = List.of("pobi", "pobi", "neo");
+        List<String> winningItemNames = List.of("1등", "2등", "3등");
+
+        // when & then
+        assertThatThrownBy(() -> LadderItems.of(peopleNames, winningItemNames))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사람의 이름은 중복될 수 없습니다.");
+    }
 }

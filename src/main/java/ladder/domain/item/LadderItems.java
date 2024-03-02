@@ -4,6 +4,7 @@ import ladder.domain.LadderResult;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class LadderItems {
@@ -33,6 +34,7 @@ public class LadderItems {
         validateMinSize(people);
         validateMinSize(winningItems);
         validateSameCount(people, winningItems);
+        validateDuplication(people);
     }
 
     private void validateMinSize(List<?> items) {
@@ -44,6 +46,12 @@ public class LadderItems {
     private void validateSameCount(List<Person> people, List<WinningItem> winningItems) {
         if (people.size() != winningItems.size()) {
             throw new IllegalArgumentException("사람의 수와 당첨 아이템의 개수는 동일해야 합니다.");
+        }
+    }
+
+    private void validateDuplication(List<Person> people) {
+        if (Set.copyOf(people).size() != people.size()) {
+            throw new IllegalArgumentException("사람의 이름은 중복될 수 없습니다.");
         }
     }
 
