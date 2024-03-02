@@ -22,8 +22,8 @@ public enum LineItem {
                 .orElseThrow();
     }
 
-    public static boolean isUnconnected(LineItem lineItem) {
-        return lineItem.equals(LineItem.UNCONNECTED);
+    public boolean isConnected() {
+        return isConnected;
     }
 
     public String getShape() {

@@ -13,15 +13,20 @@ public class Ladder {
         this.ladder = ladder;
     }
 
-    public static Ladder of(Height height, int columnLength, LineItemGenerator lineItemGenerator) {
+    public static Ladder of(Height height, int playerCount, LineItemGenerator lineItemGenerator) {
         List<Line> ladder = new ArrayList<>();
         for (int i = 0; i < height.getHeight(); i++) {
-            Line line = new Line(columnLength);
-            line.makeLine(lineItemGenerator);
-
+            Line line = new Line(playerCount, lineItemGenerator);
             ladder.add(line);
         }
         return new Ladder(ladder);
+    }
+
+    public int playLadderGame(int position) {
+        for (Line line : ladder) {
+            position = line.move(position);
+        }
+        return position;
     }
 
     public List<Line> getLadder() {

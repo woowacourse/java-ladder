@@ -1,19 +1,21 @@
 package controller;
 
+import domain.Command;
 import domain.Height;
 import domain.Ladder;
-import domain.Line;
-import domain.Participant;
-import domain.Participants;
-import view.LineItem;
+import domain.PlayerResults;
+import domain.Players;
+import domain.Prizes;
+import view.LadderView;
 import util.LineItemGenerator;
 import view.InputView;
 import view.OutputView;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
 public class LadderGame {
+
+    private static final String ERROR_PLAYER_NAME_IS_NOT_EXISTED = "참여자 목록에 없는 이름입니다.";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -26,22 +28,63 @@ public class LadderGame {
     }
 
     public void start() {
-        Participants participants = retryUntilSuccess(this::prepareParticipants);
+        Players players = retryUntilSuccess(this::preparePlayers);
+        Prizes prizes = retryUntilSuccess(() -> inputPrizes(players.getPlayerCount()));
         Height height = retryUntilSuccess(this::inputHeight);
 
-        Ladder ladder = Ladder.of(height, participants.getParticipantsCount(), lineItemGenerator);
-        printLadder(ladder, participants);
+        Ladder ladder = Ladder.of(height, players.getPlayerCount(), lineItemGenerator);
+        printLadder(players, ladder, prizes);
+
+        PlayerResults playerResults = PlayerResults.of(players, ladder, prizes);
+
+        String input = "";
+        while (!Command.isAllCommand(input)) {
+            input = retryUntilSuccess(() -> inputPlayerName(playerResults));
+            printPlayerResult(playerResults, input);
+        }
     }
 
-    private Participants prepareParticipants() {
+    private Players preparePlayers() {
         String input = inputView.inputName();
         List<String> names = List.of(input.split(","));
+        return new Players(names);
+    }
 
-        return new Participants(names);
+    private Prizes inputPrizes(int playerCount) {
+        String input = inputView.inputPrizes();
+        List<String> prizes = List.of(input.split(","));
+        return new Prizes(prizes, playerCount);
     }
 
     private Height inputHeight() {
         return new Height(inputView.inputHeight());
+    }
+
+    private void printLadder(Players players, Ladder ladder, Prizes prizes) {
+        outputView.printLadderResultMessage();
+        outputView.printLadderResult(players.getPlayerNames(),
+                LadderView.createLadder(ladder.getLadder()), prizes.getPrizes());
+    }
+
+    private String inputPlayerName(PlayerResults playerResults) {
+        String input = inputView.inputPlayerName();
+
+        if (playerResults.hasResult(input)) {
+            return input;
+
+        }
+        throw new IllegalArgumentException(ERROR_PLAYER_NAME_IS_NOT_EXISTED);
+    }
+
+    private void printPlayerResult(PlayerResults playerResults, String input) {
+        outputView.printResultMessage();
+
+        if (Command.isAllCommand(input)) {
+            outputView.printAllPlayerResults(playerResults.getPlayerResults());
+            return;
+        }
+
+        outputView.printPlayerResult(playerResults.findPlayerResultByPlayer(input).getPrize());
     }
 
     private <T> T retryUntilSuccess(Supplier<T> supplier) {
@@ -51,44 +94,6 @@ public class LadderGame {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-        }
-    }
-
-    private void printLadder(Ladder ladder, Participants participants) {
-        List<String> result = new ArrayList<>();
-        List<Line> createdLadder = ladder.getLadder();
-
-        createParticipantsLineUp(result, participants.getParticipants());
-        createLadder(result, createdLadder);
-
-        outputView.printResultMessage();
-        outputView.printLadder(result);
-    }
-
-    private void createParticipantsLineUp(List<String> result, List<Participant> participants) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("\n");
-        for (Participant participant : participants) {
-            stringBuilder.append(String.format("%5s ", participant.getName()));
-        }
-
-        result.add(stringBuilder.toString());
-    }
-
-    private void createLadder(List<String> result, List<Line> createdLadder) {
-        for (Line line : createdLadder) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("    |");
-
-            createLine(line, stringBuilder);
-
-            result.add(stringBuilder.toString());
-        }
-    }
-
-    private void createLine(Line line, StringBuilder stringBuilder) {
-        for (LineItem point : line.getLineItems()) {
-            stringBuilder.append(point.getShape());
         }
     }
 }
