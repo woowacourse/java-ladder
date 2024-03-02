@@ -1,18 +1,16 @@
 package model.position;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
 
 public class Position {
-
-    public static final int MIN_CACHED_POSITION = 0;
-    public static final int MAX_CACHED_POSITION = 20;
+    private static final int LOW_CACHED_POSITION = 0;
+    private static final int HIGH_CACHED_POSITION = 20;
+    private static final Position[] cache = new Position[HIGH_CACHED_POSITION];
     protected static final String NOT_ALLOWED_NEGATIVE_POSITION = "포지션(위치)은 음수가 될 수 없습니다.";
     private final int currentIndex;
-    private static final Map<Integer, Position> positions = new HashMap<>();
+
 
     private Position(int currentIndex) {
         validateNotNegative(currentIndex);
@@ -26,17 +24,15 @@ public class Position {
     }
 
     static {
-        IntStream.range(MIN_CACHED_POSITION, MAX_CACHED_POSITION)
-                .forEach(position -> positions.put(position, new Position(position)));
+        IntStream.range(LOW_CACHED_POSITION, HIGH_CACHED_POSITION)
+                .forEach(position -> cache[position] = new Position(position));
     }
 
     public static Position valueOf(int index) {
-        if (positions.containsKey(index)) {
-            return positions.get(index);
+        if (cache.length > index && index >= LOW_CACHED_POSITION) {
+            return cache[index];
         }
-        Position position = new Position(index);
-        positions.put(index, position);
-        return position;
+        return new Position(index);
     }
 
     public boolean same(int other) {

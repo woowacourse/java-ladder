@@ -38,20 +38,20 @@ class PositionTest {
                 .hasMessage(NOT_ALLOWED_NEGATIVE_POSITION);
     }
 
-    @DisplayName("캐싱된 값을 가져올 수 있다")
+    @DisplayName("캐싱된 값을 가져올 경우 같은 객체를 반환한다.")
     @Test
     void cachedPosition() {
         assertAll(
-                () -> assertThat(Position.valueOf(0).index()).isEqualTo(Position.MIN_CACHED_POSITION),
-                () -> assertThat(Position.valueOf(20).index()).isEqualTo(Position.MAX_CACHED_POSITION)
+                () -> assertThat(Position.valueOf(0) == Position.valueOf(0)).isTrue(),
+                () -> assertThat(Position.valueOf(19) == Position.valueOf(19)).isTrue()
         );
     }
 
 
-    @DisplayName("초기에 캐싱되지 않은 값이 들어올 경우 값을 추가하고 가져올 수 있다")
+    @DisplayName("초기에 캐싱되지 않은 값이 들어올 경우 다른 객체를 반환한다.")
     @Test
     void nonCachedPosition() {
-        assertThat(Position.valueOf(21).index()).isEqualTo(Position.MAX_CACHED_POSITION + 1);
+        assertThat(Position.valueOf(20) == Position.valueOf(20)).isFalse();
     }
 
 }
