@@ -97,7 +97,7 @@ public class LadderController {
     }
 
     private void showSingleUserPrizeResult(String userName, Users users, Result result) {
-        if (inputView.validateUserNameForGameEnd(userName)) {
+        if (!inputView.validateUserNameForGameEnd(userName)) {
             users.validateExistUserName(userName);
             outputView.printUserPrize(userName, result);
             showPrizeByUserName(users, result);
