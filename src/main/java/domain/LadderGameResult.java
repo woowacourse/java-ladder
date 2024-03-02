@@ -40,9 +40,10 @@ public class LadderGameResult {
 
     private Map<Name, LadderResult> mapNamesLadderResults(Names names, LadderResults ladderResults,
                                                           LadderPositions ladderPositions) {
-        return IntStream.range(0, names.getNames().size())
+        return IntStream.range(0, names.count())
                 .boxed()
-                .collect(Collectors.toMap(index -> names.getNames().get(ladderPositions.getPosition(index)),
+                .collect(Collectors.toMap(
+                        index -> names.getNames().get(ladderPositions.getPosition(index)),
                         index -> ladderResults.getLadderResults().get(index)));
 
     }
