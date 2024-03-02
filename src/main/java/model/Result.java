@@ -15,7 +15,7 @@ public class Result {
         this.value = value;
     }
 
-    public boolean isRightPosition(Position position) {
+    public boolean isSamePosition(Position position) {
         return this.position.equals(position);
     }
 

@@ -29,8 +29,8 @@ public class Ladder {
         return ladderRows.get(0).size();
     }
 
-    public Position moveAll(Position participantIndex) {
-        Position currentPosition = ladderRows.get(0).move(participantIndex);
+    public Position moveAll(Position participantPosition) {
+        Position currentPosition = ladderRows.get(0).move(participantPosition);
         for (int i = 1; i < ladderRows.size(); i++) {
             currentPosition = ladderRows.get(i).move(currentPosition);
         }

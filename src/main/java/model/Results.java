@@ -10,15 +10,15 @@ public class Results {
         this.results = results;
     }
 
-    public int size() {
-        return this.results.size();
-    }
-
     public Result findResult(Position position) {
         return results.stream()
-                .filter(result -> result.isRightPosition(position))
+                .filter(result -> result.isSamePosition(position))
                 .findAny()
                 .orElseThrow(() -> new IllegalStateException("주어진 위치에 결과가 존재하지 않습니다."));
+    }
+
+    public int size() {
+        return this.results.size();
     }
 
     public List<Result> getResults() {
