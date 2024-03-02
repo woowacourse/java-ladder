@@ -45,7 +45,7 @@ class InquirySubjectTest {
             List<IndexInfo> result = inquirySubject.getIndexInfos();
             //then
             assertThat(result).hasSize(1);
-            assertThat(result.get(0).getIndex()).isEqualTo(expected);
+            assertThat(result.get(0).index()).isEqualTo(expected);
         }
 
         @DisplayName("조회 대상자가 all이면 모든 참여자들이 위치한 인덱스를 반환한다.")

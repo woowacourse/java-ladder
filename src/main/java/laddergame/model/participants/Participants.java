@@ -24,7 +24,7 @@ public class Participants {
 
     private void validateParticipantsDuplication(List<Participant> participants) {
         Set<String> set = participants.stream()
-                .map(Participant::getName)
+                .map(Participant::name)
                 .collect(Collectors.toUnmodifiableSet());
         if (set.size() != participants.size()) {
             throw new IllegalArgumentException("[ERROR] 참여자 이름이 중복되었습니다.");

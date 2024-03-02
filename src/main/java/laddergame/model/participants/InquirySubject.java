@@ -16,7 +16,7 @@ public class InquirySubject {
 
     private void validateInquirySubject(Participant subject, Participants participants, boolean isALLCommand) {
         if (isALLCommand && participants.contains(subject) || !isALLCommand && !participants.contains(subject)) {
-            String message = "[ERROR] 조회 대상자는 all이거나 참여자들 중 하나여야 합니다. 입력값: " + subject.getName();
+            String message = "[ERROR] 조회 대상자는 all이거나 참여자들 중 하나여야 합니다. 입력값: " + subject.name();
             throw new IllegalArgumentException(message);
         }
     }
@@ -27,7 +27,7 @@ public class InquirySubject {
             return indexInfos;
         }
         return indexInfos.stream()
-                .filter(indexInfo -> indexInfo.getIndex() == participants.indexOf(subject))
+                .filter(indexInfo -> indexInfo.index() == participants.indexOf(subject))
                 .toList();
     }
 }

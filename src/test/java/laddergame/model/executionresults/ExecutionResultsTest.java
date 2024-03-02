@@ -48,10 +48,10 @@ class ExecutionResultsTest {
                     .collect(collectingAndThen(toList(), results -> new ExecutionResults(results, participants)));
             //then
             assertAll(
-                    () -> assertThat(executionResults.findByIndex(0).getName()).isEqualTo("꽝"),
-                    () -> assertThat(executionResults.findByIndex(1).getName()).isEqualTo("꽝"),
-                    () -> assertThat(executionResults.findByIndex(2).getName()).isEqualTo("당첨"),
-                    () -> assertThat(executionResults.findByIndex(3).getName()).isEqualTo("청소")
+                    () -> assertThat(executionResults.findByIndex(0).name()).isEqualTo("꽝"),
+                    () -> assertThat(executionResults.findByIndex(1).name()).isEqualTo("꽝"),
+                    () -> assertThat(executionResults.findByIndex(2).name()).isEqualTo("당첨"),
+                    () -> assertThat(executionResults.findByIndex(3).name()).isEqualTo("청소")
             );
         }
 

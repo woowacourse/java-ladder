@@ -12,7 +12,7 @@ public class RandomLinesGenerator {
     private final Random random = new Random();
 
     public LadderGame getLadderGame(LadderHeight ladderHeight, Participants participants) {
-        List<List<Boolean>> booleans = generateBooleans(ladderHeight.getHeight(), participants.getSize());
+        List<List<Boolean>> booleans = generateBooleans(ladderHeight.height(), participants.getSize());
         return booleans.stream()
                 .map(LineGenerator::new)
                 .map(LineGenerator::generate)

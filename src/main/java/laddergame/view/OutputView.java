@@ -24,7 +24,7 @@ public class OutputView {
     public void printParticipantsNames(Participants participants) {
         String result = participants.getParticipants()
                 .stream()
-                .map(Participant::getName)
+                .map(Participant::name)
                 .map(this::alignNameText)
                 .collect(Collectors.joining(" "));
         System.out.println(result);
@@ -41,7 +41,7 @@ public class OutputView {
     public void printExecutionResults(ExecutionResults executionResults) {
         String result = executionResults.getExecutionResults()
                 .stream()
-                .map(ExecutionResult::getName)
+                .map(ExecutionResult::name)
                 .map(this::alignNameText)
                 .collect(Collectors.joining(" "));
         System.out.println(result);
@@ -81,13 +81,13 @@ public class OutputView {
     private String convertResultText(List<GameResult> gameResults) {
         if (gameResults.size() == SINGLE_GAME_RESUlT_COUNT) {
             return gameResults.stream()
-                    .map(GameResult::getExecutionResult)
-                    .map(ExecutionResult::getName)
+                    .map(GameResult::executionResult)
+                    .map(ExecutionResult::name)
                     .collect(Collectors.joining(""));
         }
         return gameResults.stream()
-                .map(result -> String.format("%s : %s", result.getParticipant().getName(),
-                        result.getExecutionResult().getName()))
+                .map(result -> String.format("%s : %s", result.participant().name(),
+                        result.executionResult().name()))
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 }

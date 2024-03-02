@@ -26,6 +26,6 @@ public class ResultProcessor {
     }
 
     private GameResult getGameResult(IndexInfo info) {
-        return new GameResult(info.getParticipant(), executionResults.findByIndex(info.getIndex()));
+        return new GameResult(info.participant(), executionResults.findByIndex(info.index()));
     }
 }

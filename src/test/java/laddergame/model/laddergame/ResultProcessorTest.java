@@ -31,7 +31,7 @@ class ResultProcessorTest {
         List<GameResult> gameResults = resultProcessor.getGameResults();
         //them
         assertThat(gameResults).hasSize(1);
-        assertThat(gameResults.get(0).getExecutionResult()).isEqualTo(executionResults.findByIndex(changedIndex));
+        assertThat(gameResults.get(0).executionResult()).isEqualTo(executionResults.findByIndex(changedIndex));
     }
 
     @DisplayName("전체 사다리 게임 결과를 반환한다.")
@@ -47,13 +47,13 @@ class ResultProcessorTest {
         List<GameResult> gameResults = resultProcessor.getGameResults();
         //then
         assertAll(
-                () -> assertThat(gameResults.get(0).getExecutionResult())
+                () -> assertThat(gameResults.get(0).executionResult())
                         .isEqualTo(executionResults.findByIndex(changedIndexes.get(0))),
-                () -> assertThat(gameResults.get(1).getExecutionResult())
+                () -> assertThat(gameResults.get(1).executionResult())
                         .isEqualTo(executionResults.findByIndex(changedIndexes.get(1))),
-                () -> assertThat(gameResults.get(2).getExecutionResult())
+                () -> assertThat(gameResults.get(2).executionResult())
                         .isEqualTo(executionResults.findByIndex(changedIndexes.get(2))),
-                () -> assertThat(gameResults.get(3).getExecutionResult())
+                () -> assertThat(gameResults.get(3).executionResult())
                         .isEqualTo(executionResults.findByIndex(changedIndexes.get(3)))
         );
     }

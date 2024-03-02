@@ -1,11 +1,8 @@
 package laddergame.model.executionresults;
 
-public class ExecutionResult {
-    private final String name;
-
-    public ExecutionResult(String name) {
+public record ExecutionResult(String name) {
+    public ExecutionResult {
         validateName(name);
-        this.name = name;
     }
 
     private void validateName(String name) {
@@ -13,9 +10,5 @@ public class ExecutionResult {
             String message = "[ERROR] 실행 결과는 공백일 수 없습니다. 입력값: " + name;
             throw new IllegalArgumentException(message);
         }
-    }
-
-    public String getName() {
-        return name;
     }
 }
