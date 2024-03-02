@@ -1,9 +1,7 @@
 package domain;
 
 import java.util.Collections;
-import util.Generator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder{

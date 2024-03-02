@@ -9,7 +9,6 @@ import domain.PlayerNames;
 import domain.WinningNames;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import util.ConsoleReader;
 import util.RandomGenerator;
 import view.InputView;
