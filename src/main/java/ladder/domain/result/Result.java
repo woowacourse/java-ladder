@@ -21,7 +21,7 @@ public class Result {
         for (int i = 0; i < userNames.size(); i++) {
             Position endPosition = endPositions.get(i);
             result.put(userNames.get(i),
-                    prizeNames.get(endPosition.getPosition()));
+                    prizeNames.get(endPosition.position()));
         }
         return result;
     }

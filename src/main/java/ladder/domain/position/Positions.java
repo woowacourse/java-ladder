@@ -29,7 +29,7 @@ public class Positions {
         List<Position> nextPositions = new ArrayList<>();
         List<Direction> directions = line.getDirectionsInfo();
         for (Position position : this.positions) {
-            int nowPosition = position.getPosition();
+            int nowPosition = position.position();
             Direction nowDirection = directions.get(nowPosition);
             nextPositions.add(new Position(calculateDirection(nowPosition, nowDirection)));
         }
