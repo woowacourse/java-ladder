@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import view.InputView;
 import view.OutputView;
-import view.message.InputExceptionMessage;
 
 class RetryHandlerTest {
 
@@ -17,7 +16,7 @@ class RetryHandlerTest {
 
         Assertions.assertThatThrownBy(() -> repeatMethodOverLimitCount(retryHandler))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(InputExceptionMessage.READ_LIMIT_OVER);
+                .hasMessage(InputView.READ_LIMIT_OVER);
     }
 
     private void repeatMethodOverLimitCount(RetryHandler retryHandler) {

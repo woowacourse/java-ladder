@@ -1,11 +1,19 @@
 package view;
 
+import controller.RetryHandler;
 import java.util.List;
 import java.util.Scanner;
 import util.StringConvertor;
-import view.message.InputExceptionMessage;
 
 public class InputView {
+    public static final String READ_LIMIT_OVER = String.format("입력 횟수 제한(%d)를 초과하였습니다", RetryHandler.READ_LIMIT);
+    private static final String PLAYER_NAMES_INPUT_FORMAT = String.format("참가자 이름은 %s로 구분하여 입력해야합니다",
+            StringConvertor.DELIMITER);
+    private static final String LADDER_RESULT_INPUT_FORMAT = String.format("실행 결과는 %s로 구분하여 입력해야합니다",
+            StringConvertor.DELIMITER);
+
+    private static final String INTEGER_FORMAT = "정수 형태만 입력 가능합니다";
+
     private final Scanner scanner;
 
     public InputView(Scanner scanner) {
@@ -21,7 +29,7 @@ public class InputView {
 
     private void validatePlayerNamesInput(final String playerNamesInput) {
         if (!playerNamesInput.contains(StringConvertor.DELIMITER)) {
-            throw new IllegalArgumentException(InputExceptionMessage.PLAYER_NAMES_INPUT_FORMAT);
+            throw new IllegalArgumentException(PLAYER_NAMES_INPUT_FORMAT);
         }
     }
 
@@ -36,7 +44,7 @@ public class InputView {
         try {
             StringConvertor.convertToInt(value);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(InputExceptionMessage.INTEGER_FORMAT);
+            throw new IllegalArgumentException(INTEGER_FORMAT);
         }
     }
 
@@ -49,7 +57,7 @@ public class InputView {
 
     private void validateLadderResultInput(final String ladderResult) {
         if (!ladderResult.contains(StringConvertor.DELIMITER)) {
-            throw new IllegalArgumentException(InputExceptionMessage.LADDER_RESULT_INPUT_FORMAT);
+            throw new IllegalArgumentException(LADDER_RESULT_INPUT_FORMAT);
         }
     }
 

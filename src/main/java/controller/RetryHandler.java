@@ -3,7 +3,6 @@ package controller;
 import java.util.function.Supplier;
 import view.InputView;
 import view.OutputView;
-import view.message.InputExceptionMessage;
 
 public class RetryHandler {
     public static final int READ_LIMIT = 10;
@@ -32,7 +31,7 @@ public class RetryHandler {
 
     private void validateRetryCountLimit() {
         if (retryCount++ == READ_LIMIT) {
-            throw new IllegalArgumentException(InputExceptionMessage.READ_LIMIT_OVER);
+            throw new IllegalArgumentException(InputView.READ_LIMIT_OVER);
         }
     }
 }
