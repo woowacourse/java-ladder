@@ -1,6 +1,6 @@
 package domain.player;
 
-import domain.ladder.DirectionalRung;
+import domain.ladder.DirectionalPoint;
 import java.util.Objects;
 
 public class Player {
@@ -12,8 +12,8 @@ public class Player {
         this.position = position;
     }
 
-    public void move(DirectionalRung direction) {
-        position += direction.getDirection();
+    public void move(DirectionalPoint ladderPoint) {
+        position += ladderPoint.getDirection();
     }
 
     public String getName() {

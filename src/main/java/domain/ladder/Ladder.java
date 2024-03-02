@@ -7,25 +7,25 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    private final List<LadderRow> rows;
+    private final List<LadderRow> ladderRows;
 
     public Ladder(final BooleanGenerator booleanGenerator, final Height height, final int playerSize) {
-        rows = new ArrayList<>();
+        ladderRows = new ArrayList<>();
         for (int i = 0; i < height.getValue(); i++) {
             final LadderRow ladderRow = new LadderRow(booleanGenerator, playerSize);
-            rows.add(ladderRow);
+            ladderRows.add(ladderRow);
         }
     }
 
     public void play(final Players players) {
-        rows.forEach(row -> row.playRow(players));
+        ladderRows.forEach(ladderRow -> ladderRow.playRow(players));
     }
 
-    public List<LadderRow> getRows() {
-        return Collections.unmodifiableList(rows);
+    public List<LadderRow> getLadderRows() {
+        return Collections.unmodifiableList(ladderRows);
     }
 
     public int getHeight() {
-        return rows.size();
+        return ladderRows.size();
     }
 }

@@ -1,21 +1,21 @@
 package domain.ladder;
 
-public enum DirectionalRung {
+public enum DirectionalPoint {
     LEFT(-1),
-    MID(0),
+    STRAIGHT(0),
     RIGHT(1);
 
     private final int direction;
 
-    DirectionalRung(final int direction) {
+    DirectionalPoint(final int direction) {
         this.direction = direction;
     }
 
-    public static DirectionalRung findRung(final boolean isConnected) {
+    public static DirectionalPoint findDirectionalPoint(final boolean isConnected) {
         if (isConnected) {
             return RIGHT;
         }
-        return MID;
+        return STRAIGHT;
     }
 
     public int getDirection() {

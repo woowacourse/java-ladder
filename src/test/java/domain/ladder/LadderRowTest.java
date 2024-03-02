@@ -23,7 +23,7 @@ public class LadderRowTest {
         LadderRow ladderRow = new LadderRow(trueGenerator, playerSize);
 
         // then
-        assertThat(ladderRow.getRungs()).hasSize(playerSize);
+        assertThat(ladderRow.getLadderPoints()).hasSize(playerSize);
     }
 
     @Test
@@ -35,12 +35,12 @@ public class LadderRowTest {
         LadderRow ladderRow = new LadderRow(trueGenerator, playerSize);
 
         // then
-        List<DirectionalRung> rungs = ladderRow.getRungs();
+        List<DirectionalPoint> ladderPoint = ladderRow.getLadderPoints();
         assertAll(
-                () -> assertThat(rungs.get(0)).isEqualTo(DirectionalRung.RIGHT),
-                () -> assertThat(rungs.get(1)).isEqualTo(DirectionalRung.LEFT),
-                () -> assertThat(rungs.get(2)).isEqualTo(DirectionalRung.RIGHT),
-                () -> assertThat(rungs.get(3)).isEqualTo(DirectionalRung.LEFT)
+                () -> assertThat(ladderPoint.get(0)).isEqualTo(DirectionalPoint.RIGHT),
+                () -> assertThat(ladderPoint.get(1)).isEqualTo(DirectionalPoint.LEFT),
+                () -> assertThat(ladderPoint.get(2)).isEqualTo(DirectionalPoint.RIGHT),
+                () -> assertThat(ladderPoint.get(3)).isEqualTo(DirectionalPoint.LEFT)
         );
     }
 

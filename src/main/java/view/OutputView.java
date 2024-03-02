@@ -1,6 +1,8 @@
 package view;
 
-import domain.ladder.DirectionalRung;
+import static domain.ladder.DirectionalPoint.RIGHT;
+
+import domain.ladder.DirectionalPoint;
 import domain.ladder.Ladder;
 import domain.ladder.LadderRow;
 import domain.player.Players;
@@ -9,8 +11,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    private static final String CONNECTED_RUNG = "-";
-    private static final String NOT_CONNECTED_RUNG = " ";
+    private static final String CONNECTED_LADDER_POINT = "-";
+    private static final String NOT_CONNECTED_LADDER_POINT = " ";
     private static final String LADDER_COLUMN = "|";
     public static final String SPACE = " ";
 
@@ -49,25 +51,25 @@ public class OutputView {
     }
 
     public static void printLadder(Ladder ladder, int length) {
-        ladder.getRows()
+        ladder.getLadderRows()
                 .stream()
-                .map(LadderRow::getRungs)
-                .forEach(rungs -> System.out.println(makeLadderRowText(rungs, length)));
+                .map(LadderRow::getLadderPoints)
+                .forEach(ladderPoints -> System.out.println(makeLadderRowText(ladderPoints, length)));
     }
 
-    private static String makeLadderRowText(List<DirectionalRung> rungs, int length) {
+    private static String makeLadderRowText(List<DirectionalPoint> ladderPoints, int length) {
         return SPACE.repeat(length) +
-                rungs.stream()
-                        .limit(rungs.size() - 1)
-                        .map(rung -> makeLadderRungText(rung, length))
+                ladderPoints.stream()
+                        .limit(ladderPoints.size() - 1)
+                        .map(point -> makeLadderPointText(point, length))
                         .collect(Collectors.joining(LADDER_COLUMN, LADDER_COLUMN, LADDER_COLUMN));
     }
 
-    private static String makeLadderRungText(DirectionalRung rung, int length) {
-        if (rung == DirectionalRung.RIGHT) {
-            return CONNECTED_RUNG.repeat(length);
+    private static String makeLadderPointText(DirectionalPoint point, int length) {
+        if (point == RIGHT) {
+            return CONNECTED_LADDER_POINT.repeat(length);
         }
-        return NOT_CONNECTED_RUNG.repeat(length);
+        return NOT_CONNECTED_LADDER_POINT.repeat(length);
     }
 
     public static void printErrorMessage(Exception e) {
