@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import model.participant.Participant;
 import model.prize.Prize;
+import utils.Constant;
 
 public class GameResults {
     private final Map<Participant, Prize> gameResults;
@@ -15,18 +16,32 @@ public class GameResults {
         this.gameResults = gameResults;
     }
 
-    public GameResultsDto convertToResultDto() {
-        return new GameResultsDto(this);
+    public GameResultsDto getResultsByTargetName(String name) {
+        if (name.equals(Constant.TOTAL_RESULT_KEYWORD)) {
+            return convertTotalResultsToDto();
+        }
+        Map<Participant, Prize> findResult = new HashMap<>();
+        gameResults.entrySet().stream()
+                .filter(entry -> entry.getKey().getName().equals(name))
+                .forEach(entry -> findResult.put(entry.getKey(), entry.getValue()));
+        return convertEachResultToDto(findResult);
     }
 
-    public Map<ParticipantName, PrizeName> convertToGameResultsDto() {
+    public GameResultsDto convertTotalResultsToDto() {
         Map<ParticipantName, PrizeName> gameResultsDto = new HashMap<>();
         for (Map.Entry<Participant, Prize> entry : gameResults.entrySet()) {
             ParticipantName participantName = entry.getKey().convertToParticipantName();
             PrizeName prizeName = entry.getValue().convertToPrizeName();
             gameResultsDto.put(participantName, prizeName);
         }
-        return gameResultsDto;
+        return new GameResultsDto(gameResultsDto);
+    }
+
+    private GameResultsDto convertEachResultToDto(Map<Participant, Prize> eachResult) {
+        Map<ParticipantName, PrizeName> convertedResult = new HashMap<>();
+        eachResult.forEach((participant, prize) ->
+                convertedResult.put(participant.convertToParticipantName(), prize.convertToPrizeName()));
+        return new GameResultsDto(convertedResult);
     }
 
     public Map<Participant, Prize> getGameResults() {

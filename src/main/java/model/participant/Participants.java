@@ -32,13 +32,13 @@ public class Participants {
         }
     }
 
-    public ParticipantName findByName(String name) {
+    public String findByName(String name) {
         if (name.equals(Constant.TOTAL_RESULT_KEYWORD)) {
-            return new ParticipantName(Constant.TOTAL_RESULT_KEYWORD);
+            return Constant.TOTAL_RESULT_KEYWORD;
         }
         return participants.stream().filter(m -> m.hasEquivalentName(name))
                 .findAny()
-                .map(ParticipantName::new)
+                .map(Participant::getName)
                 .orElseThrow(() -> new IllegalArgumentException("참여한 사람 목록에 일치하는 이름이 있어야한다"));
     }
 

@@ -1,24 +1,28 @@
 package view;
 
 import dto.GameResultsDto;
-import dto.ParticipantName;
 import utils.Constant;
 
 public class ResultView {
     private static final String RESULT_TITLE = "\n실행결과";
 
-    public void printResult(GameResultsDto gameResultsDto, ParticipantName participantName) {
+    public void printResult(GameResultsDto gameResultsDto, String targetName) {
         System.out.println(RESULT_TITLE);
-        if (participantName.name().equals(Constant.TOTAL_RESULT_KEYWORD)) {
+        if (targetName.equals(Constant.TOTAL_RESULT_KEYWORD)) {
             printTotalResults(gameResultsDto);
             return;
         }
-        System.out.println(gameResultsDto.getPrizeNameByParticipantName(participantName).prizeName());
+        printOneResult(gameResultsDto);
     }
 
     private void printTotalResults(GameResultsDto gameResultsDto) {
         gameResultsDto.gameResults().entrySet().forEach(
                 result -> System.out.println(
                         result.getKey().name() + " : " + result.getValue().prizeName()));
+    }
+
+    private void printOneResult(GameResultsDto gameResultsDto) {
+        gameResultsDto.gameResults().values()
+                .forEach(prize -> System.out.println(prize.prizeName()));
     }
 }

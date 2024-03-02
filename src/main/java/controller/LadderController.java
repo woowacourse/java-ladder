@@ -1,6 +1,5 @@
 package controller;
 
-import dto.ParticipantName;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -59,14 +58,14 @@ public class LadderController {
 
     private void printResult(Participants participants, GameResults results) {
         while (true) {
-            ParticipantName participantName = repeatUntilSuccess(this::prepareParticipantName, participants);
-            resultView.printResult(results.convertToResultDto(), participantName);
+            String targetName = repeatUntilSuccess(this::prepareTargetName, participants);
+            resultView.printResult(results.getResultsByTargetName(targetName), targetName);
         }
     }
 
-    private ParticipantName prepareParticipantName(Participants participants) {
-        String name = inputView.requestFindName();
-        return participants.findByName(name);
+    private String prepareTargetName(Participants participants) {
+        String targetName = inputView.requestFindName();
+        return participants.findByName(targetName);
     }
 
     private <T> T repeatUntilSuccess(Supplier<T> supplier) {
