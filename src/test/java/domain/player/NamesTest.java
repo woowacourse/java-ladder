@@ -39,5 +39,9 @@ class NamesTest {
         );
     }
 
-
+    @DisplayName("중복된 이름을 사용하면 예외가 발생한다.")
+    @Test
+    void constructFailWithDuplicatedName() {
+        assertThatThrownBy(() -> new Names(List.of("파랑", "파랑")));
+    }
 }
