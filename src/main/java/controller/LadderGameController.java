@@ -9,12 +9,15 @@ import domain.ladder.Ladder;
 import domain.ladder.LadderHeight;
 import domain.player.Player;
 import domain.player.Players;
+import domain.prize.Prize;
 import domain.prize.Prizes;
 import generator.RandomLadderGenerator;
 import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
+
+	private static final String ALL_PLAYER = "all";
 
 	private final InputView inputView;
 	private final OutputView outputView;
@@ -41,7 +44,7 @@ public class LadderGameController {
 
 		String playerNameToGetResult = retryOnException(() -> getPlayerNameForPrize(players.getNames()));
 
-		if ("all".equals(playerNameToGetResult)) {
+		if (ALL_PLAYER.equals(playerNameToGetResult)) {
 			outputView.printAllPlayerResults(ladder.getAllPlayerPrizes(players, prizes));
 			return;
 		}
@@ -54,7 +57,7 @@ public class LadderGameController {
 		outputView.printCurrentLadder(
 			players.getNames(),
 			ladder.createLadderConnectionStatus(),
-			prizes.names()
+			prizes.getNames()
 		);
 	}
 
@@ -73,9 +76,11 @@ public class LadderGameController {
 
 	private Prizes getPrizes(int playerCount) {
 		outputView.printRequestPrizesMessage();
-		List<String> prizeNames = inputView.readPrizes(playerCount);
+		List<Prize> prizes = inputView.readPrizes(playerCount).stream()
+			.map(Prize::new)
+			.toList();
 
-		return new Prizes(prizeNames);
+		return new Prizes(prizes);
 	}
 
 	private LadderHeight getHeight() {
