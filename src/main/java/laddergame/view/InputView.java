@@ -14,6 +14,8 @@ import laddergame.model.participants.Participant;
 import laddergame.model.participants.Participants;
 
 public class InputView {
+    private static final String MULTIPLE_INPUTS_DELIMITER = ",";
+
     private final Scanner scanner = new Scanner(System.in);
 
     public Participants readParticipantNames() {
@@ -21,7 +23,7 @@ public class InputView {
             System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
             String input = scanner.nextLine();
             validateMultipleInputs(input);
-            return Arrays.stream(input.split(","))
+            return Arrays.stream(input.split(MULTIPLE_INPUTS_DELIMITER))
                     .map(Participant::new)
                     .collect(collectingAndThen(toList(), Participants::new));
         });
@@ -33,7 +35,7 @@ public class InputView {
             System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
             String input = scanner.nextLine();
             validateMultipleInputs(input);
-            return Arrays.stream(input.split(","))
+            return Arrays.stream(input.split(MULTIPLE_INPUTS_DELIMITER))
                     .map(ExecutionResult::new)
                     .collect(collectingAndThen(toList(), results -> new ExecutionResults(results, participants)));
         });
@@ -61,7 +63,7 @@ public class InputView {
     }
 
     private void validateMultipleInputs(String input) {
-        if (input == null || input.isBlank() || input.endsWith(",")) {
+        if (input == null || input.isBlank() || input.endsWith(MULTIPLE_INPUTS_DELIMITER)) {
             String message = "[ERROR] 입력값은 공백이거나 구분자(,)로 끝날 수 없습니다. 입력값 : " + input;
             throw new IllegalArgumentException(message);
         }
