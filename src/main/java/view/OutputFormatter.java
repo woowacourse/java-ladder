@@ -1,6 +1,6 @@
 package view;
 
-import domain.Point;
+import domain.ladder.Point;
 import domain.ladder.Row;
 import domain.player.Player;
 import domain.player.Players;

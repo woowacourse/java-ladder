@@ -9,7 +9,7 @@ import domain.player.Players;
 import domain.prize.Prizes;
 import domain.result.GameResult;
 import java.util.List;
-import mock.RightPointGenerator;
+import mock.trueSupplier;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +27,7 @@ public class LadderGameTest {
         // given
         final Players players = Players.from(List.of("a", "b", "c", "d"));
         final Prizes prizes = Prizes.from(List.of("A", "B", "C", "D"));
-        final Ladder ladder = Ladder.create(new Height(3), PlayerCount.fromPlayers(players), new RightPointGenerator());
+        final Ladder ladder = Ladder.create(new Height(3), PlayerCount.fromPlayers(players), new trueSupplier());
 
         // when
         final GameResult gameResult = GameResult.of(ladder, players, prizes);

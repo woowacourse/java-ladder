@@ -56,7 +56,6 @@
 - [x] 컨벤션 전체 확인 돌리기
 - [ ] 일반 메서드 로컬변수, 파라미터에 final 키워드 추가
 - [ ] TODO 체크
-- [ ] randomPointGenerator 변수 선언 부분 pointGenerator로 바꾸기
 
 ## 고민점
 - [x] Players의 findByIndex, getCount() 처럼 갖고오는 게 디미터 법칙 위반은 아닐까?
@@ -64,5 +63,4 @@
   - [x] Step 스스로 움직이게(벽을 만나거나 등)
   - [ ] Index의 원시값 포장 필요성이 느껴지나?
 - [ ] 그 과정에서 createPoint에 대해서도 얘가 상황봐서 만드는 게 맞나?
-- [ ] 새 형태로 더 쉬운 테스트 주입할 수 있을 것 같은데?
 - [ ] 아니면 지금 테스트가 어려운 이유가 라인을 generate하지 않아서라면, lineGenerator로 바꾸면 되는 거 아닌가?

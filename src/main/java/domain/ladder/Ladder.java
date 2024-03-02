@@ -1,10 +1,10 @@
 package domain.ladder;
 
-import domain.PointGenerator;
 import domain.player.PlayerCount;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.BooleanSupplier;
 
 public class Ladder {
     private final List<Row> rows;
@@ -13,15 +13,15 @@ public class Ladder {
         this.rows = rows;
     }
 
-    public static Ladder create(final Height height, final PlayerCount playerCount, final PointGenerator pointGenerator) {
-        return new Ladder(createRows(height, playerCount, pointGenerator));
+    public static Ladder create(final Height height, final PlayerCount playerCount, final BooleanSupplier booleanSupplier) {
+        return new Ladder(createRows(height, playerCount, booleanSupplier));
     }
 
-    private static List<Row> createRows(final Height height, final PlayerCount playerCount, final PointGenerator pointGenerator) {
+    private static List<Row> createRows(final Height height, final PlayerCount playerCount, final BooleanSupplier booleanSupplier) {
         List<Row> rows = new ArrayList<>();
 
         for (int buildHeight = 0; height.isBiggerThan(buildHeight); buildHeight++) {
-            rows.add(Row.create(playerCount, pointGenerator));
+            rows.add(Row.create(playerCount, booleanSupplier));
         }
         return rows;
     }

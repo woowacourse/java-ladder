@@ -1,6 +1,6 @@
 package controller;
 
-import domain.RandomPointGenerator;
+import domain.RandomBooleanSupplier;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.player.Player;
@@ -29,7 +29,8 @@ public class LadderController {
         final Prizes prizes = readWithRetry(this::readPrizes, players);
         final Height height = readWithRetry(this::readHeight, inputView.inputHeight());
 
-        final Ladder ladder = Ladder.create(height, PlayerCount.fromPlayers(players), new RandomPointGenerator());
+//        final Ladder ladder = Ladder.create2(height, PlayerCount.fromPlayers(players), new RandomPointGenerator());
+        final Ladder ladder = Ladder.create(height, PlayerCount.fromPlayers(players), new RandomBooleanSupplier());
         outputView.printLadderMap(players, ladder, prizes);
 
         showGameResult(GameResult.of(ladder, players, prizes), players);

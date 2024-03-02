@@ -1,17 +1,16 @@
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import domain.Point;
+import domain.ladder.Point;
+import domain.player.PlayerCount;
+import domain.player.Players;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.BooleanSupplier;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class PointTest {
-    @Test   //TODO: 있어야할까? 없으면 equals 없앨 수 있는데
-    @DisplayName("왼쪽, 오른쪽 다리 유무를 갖고 사다리의 한 지점을 생성한다.")
-    void newPoint() {
-        Point point = Point.of(false, true);
-        assertThat(point).isEqualTo(Point.of(false, true));
-    }
 
     @Test
     @DisplayName("양쪽 다 다리가 있는 경우에는 예외를 발생한다.")
@@ -33,5 +32,22 @@ public class PointTest {
         Point point = Point.of(true, false);
         int resultIndex = point.move(1);
         assertThat(resultIndex).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("첫번째 지점에는 왼쪽 발판이 있을 수 없다.")
+    void createFisrt() {
+        BooleanSupplier trueSupplier = () -> true;
+        List<Point> points = new ArrayList<>();
+        Point point = Point.create(trueSupplier, PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c", "d"))), points);
+        assertThat(point.isLeft()).isFalse();
+    }
+    @Test
+    @DisplayName("마지막 지점에는 오른쪽 발판이 있을 수 없다.")
+    void createLast() {
+        BooleanSupplier trueSupplier = () -> true;
+        List<Point> points = List.of(Point.of(false, false), Point.of(false, false));
+        Point point = Point.create(trueSupplier, PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c"))), points);
+        assertThat(point.isRight()).isFalse();
     }
 }

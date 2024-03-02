@@ -1,6 +1,6 @@
 import static org.assertj.core.api.Assertions.assertThat;
 
-import domain.RandomPointGenerator;
+import domain.RandomBooleanSupplier;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.player.PlayerCount;
@@ -16,7 +16,7 @@ public class LadderTest {
     void makeLadder() {
         // given
         final Ladder ladder = Ladder.create(new Height(4), PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c"))),
-                new RandomPointGenerator());
+                new RandomBooleanSupplier());
 
         // when & then
         assertThat(ladder.getRows()).hasSize(4);
