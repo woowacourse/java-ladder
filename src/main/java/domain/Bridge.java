@@ -7,4 +7,8 @@ public enum Bridge {
     public boolean isExist() {
         return this == EXIST;
     }
+
+    public boolean isNotExist() {
+        return this == BLANK;
+    }
 }

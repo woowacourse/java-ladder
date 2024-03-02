@@ -9,7 +9,7 @@ public class RandomBridgeGenerator implements BridgeGenerator {
 
     @Override
     public Bridge generate(Bridge bridge) {
-        if (!bridge.isExist() && RANDOM.nextBoolean()) {
+        if (bridge.isNotExist() && RANDOM.nextBoolean()) {
             return Bridge.EXIST;
         }
         return Bridge.BLANK;
