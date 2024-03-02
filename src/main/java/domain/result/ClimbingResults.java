@@ -22,22 +22,23 @@ public class ClimbingResults {
         Map<String, String> results = new HashMap<>();
         List<Floor> floors = ladder.getFloors();
         for (Floor floor : floors) {
-            climbLadder(players, floor, ladderResults, results);
+            results.putAll(climbLadder(players, floor, ladderResults));
         }
         return new ClimbingResults(results);
     }
 
-    private static void climbLadder(
+    private static Map<String, String> climbLadder(
             final Players players,
             final Floor floor,
-            final LadderResults ladderResults,
-            final Map<String, String> results) {
+            final LadderResults ladderResults) {
+        Map<String, String> results = new HashMap<>();
         for (int i = 0; i < players.getPlayerCount(); i++) {
             Player player = players.getPlayerOfIndex(i);
             int bridgeLocation = floor.getBridgePosition(player.getPosition());
             player.moveTo(bridgeLocation);
             results.put(player.getName(), ladderResults.getLadderResultOfIndex(player.getPosition()));
         }
+        return results;
     }
 
     public String findResultByPlayerName(final String playerName) {
