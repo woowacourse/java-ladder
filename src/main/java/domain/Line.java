@@ -30,13 +30,21 @@ public class Line {
     }
 
     public int moveToNextLeg(int index) {
-        if (index < legs.size() && legs.get(index).isConnected()) {
+        if (notFarRightIndex(index) && legs.get(index).isConnected()) {
             return index + 1;
         }
-        if (index > 0 && legs.get(index - 1).isConnected()) {
+        if (notFarLeftIndex(index) && legs.get(index - 1).isConnected()) {
             return index - 1;
         }
         return index;
+    }
+
+    private boolean notFarRightIndex(int index) {
+        return index < legs.size();
+    }
+
+    private boolean notFarLeftIndex(int index) {
+        return index > 0;
     }
 
     public List<Leg> getLegs() {
