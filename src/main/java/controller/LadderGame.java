@@ -67,12 +67,12 @@ public class LadderGame {
     }
 
     private void showResult() {
-        String who = inputView.readWho();
-        if (Command.contains(who)) {
-            showResultByCommand(who);
+        String input = inputView.readWhatResult();
+        if (Command.contains(input)) {
+            showResultByCommand(input);
             return;
         }
-        showResultByName(who);
+        showResultByName(input);
     }
 
     private void showResultByCommand(String who) {
