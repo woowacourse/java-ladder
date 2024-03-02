@@ -11,7 +11,7 @@ import ladder.view.OutputView;
 import java.util.List;
 
 public class LadderController {
-    private static final String QUERY_FOR_EVERY_REWARD = "all";
+    private static final String QUERY_FOR_ALL_REWARD = "all";
     private LadderGame ladderGame;
 
     public void start() {
@@ -62,7 +62,7 @@ public class LadderController {
     private void showReward(String target) {
         Map<String, String> result = ladderGame.play();
 
-        if (target.equals("all")) {
+        if (target.equals(QUERY_FOR_ALL_REWARD)) {
             OutputView.printRewardForAll(result);
             return;
         }
