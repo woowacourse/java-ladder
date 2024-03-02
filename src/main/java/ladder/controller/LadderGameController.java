@@ -8,7 +8,7 @@ import ladder.domain.carpenter.Energy;
 import ladder.domain.dto.MadeLadderDto;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladderGame.GameExecutionCommand;
-import ladder.domain.ladderGame.LadderResult;
+import ladder.domain.ladderGame.LadderMapper;
 import ladder.domain.ladderGame.ResultFinder;
 import ladder.domain.participant.Name;
 import ladder.domain.participant.Participants;
@@ -76,10 +76,10 @@ public class LadderGameController {
     private void showResult(Participants participants, GamePrizes gamePrizes, MadeLadderDto madeLadder) {
         boolean endOrNotChoice = repeatUntilValid(this::isEndOrNot, outputView);
 
-        LadderResult ladderResult = new LadderResult(madeLadder, participants.size());
+        LadderMapper ladderMapper = new LadderMapper(madeLadder, participants.size());
 
         if (endOrNotChoice) {
-            ResultFinder resultFinder = new ResultFinder(participants, gamePrizes, ladderResult);
+            ResultFinder resultFinder = new ResultFinder(participants, gamePrizes, ladderMapper);
 
             chooseParticipant(resultFinder);
             showResult(participants, gamePrizes, madeLadder);

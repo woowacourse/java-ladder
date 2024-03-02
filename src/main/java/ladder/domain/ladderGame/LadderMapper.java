@@ -8,11 +8,11 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import ladder.domain.dto.MadeLadderDto;
 
-public class LadderResult {
+public class LadderMapper {
 
     private final Map<Integer, Integer> ladderStartEndMapping;
 
-    public LadderResult(MadeLadderDto madeLadder, int stepSpaceCount) {
+    public LadderMapper(MadeLadderDto madeLadder, int stepSpaceCount) {
         this.ladderStartEndMapping = mapLadderPosition(madeLadder, stepSpaceCount,
                 madeLadder.madeLines().size());
     }

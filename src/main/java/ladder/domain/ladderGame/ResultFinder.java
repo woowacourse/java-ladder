@@ -11,12 +11,12 @@ public class ResultFinder {
 
     private final Participants participants;
     private final GamePrizes gamePrizes;
-    private final LadderResult ladderResult;
+    private final LadderMapper ladderMapper;
 
-    public ResultFinder(Participants participants, GamePrizes gamePrizes, LadderResult ladderResult) {
+    public ResultFinder(Participants participants, GamePrizes gamePrizes, LadderMapper ladderMapper) {
         this.participants = participants;
         this.gamePrizes = gamePrizes;
-        this.ladderResult = ladderResult;
+        this.ladderMapper = ladderMapper;
     }
 
     public Map<String, String> findAllPrizes() {
@@ -30,7 +30,7 @@ public class ResultFinder {
 
     public String findPrize(Name name) {
         int position = participants.findNamePosition(name);
-        int prizePosition = ladderResult.getEndPosition(position);
+        int prizePosition = ladderMapper.getEndPosition(position);
         return gamePrizes.findPrize(prizePosition);
     }
 }

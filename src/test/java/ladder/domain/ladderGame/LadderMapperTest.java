@@ -12,7 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LadderResultTest {
+public class LadderMapperTest {
 
     private Participants participants;
     private Carpenter carpenter;
@@ -28,7 +28,7 @@ public class LadderResultTest {
     void notParticipant() {
         MadeLadderDto resultStepLadderDto = carpenter.getResultLadders();
         carpenter.buildLadders(participants.size());
-        LadderResult ladderMap = new LadderResult(resultStepLadderDto, participants.size());
+        LadderMapper ladderMap = new LadderMapper(resultStepLadderDto, participants.size());
         Integer prizePosition = ladderMap.getEndPosition(0);
 
         Assertions.assertThat(prizePosition).isEqualTo(1);
