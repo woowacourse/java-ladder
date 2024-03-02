@@ -1,17 +1,17 @@
 package domain.result;
 
 import common.Command;
-import domain.ladder.Direction;
 import domain.ladder.Floor;
 import domain.ladder.Ladder;
 import domain.player.Player;
 import domain.player.Players;
-import domain.result.message.ResultExceptionMessage;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ClimbingResults {
+    public static final String NOT_PARTICIPATION_PLAYER = "참가자가 아닙니다.";
+
     private final Map<String, String> playerResults;
 
     private ClimbingResults(final Map<String, String> playerResults) {
@@ -47,7 +47,7 @@ public class ClimbingResults {
 
     private void validateIsParticipant(final String playerName) {
         if (!playerName.equals(Command.FINISH.getValue()) && !playerResults.containsKey(playerName)) {
-            throw new IllegalArgumentException(ResultExceptionMessage.NOT_PARTICIPATION_PLAYER);
+            throw new IllegalArgumentException(NOT_PARTICIPATION_PLAYER);
         }
     }
 

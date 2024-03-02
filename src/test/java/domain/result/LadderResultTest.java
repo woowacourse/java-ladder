@@ -3,7 +3,6 @@ package domain.result;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-import domain.result.message.ResultExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -22,7 +21,7 @@ class LadderResultTest {
         void createLadderResultFailByBlank(String ladderResult) {
             assertThatThrownBy(() -> new LadderResult(ladderResult))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(ResultExceptionMessage.LADDER_RESULT_BLANK);
+                    .hasMessage(LadderResult.LADDER_RESULT_BLANK);
         }
 
         @Test
@@ -32,7 +31,7 @@ class LadderResultTest {
 
             assertThatThrownBy(() -> new LadderResult(ladderResult))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(ResultExceptionMessage.LADDER_RESULT_LENGTH);
+                    .hasMessage(LadderResult.LADDER_RESULT_LENGTH);
         }
     }
 

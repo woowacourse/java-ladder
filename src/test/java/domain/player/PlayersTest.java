@@ -3,7 +3,6 @@ package domain.player;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import domain.player.message.PlayerExceptionMessage;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -50,7 +49,7 @@ class PlayersTest {
         void createPlayerNamesFailByRange(List<Player> players) {
             Assertions.assertThatThrownBy(() -> new Players(players))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(PlayerExceptionMessage.PLAYER_NAMES_RANGE);
+                    .hasMessage(Players.PLAYER_NAMES_RANGE);
         }
 
         private static Stream<Arguments> createPlayersFailByRangeArguments() {
@@ -92,7 +91,7 @@ class PlayersTest {
             // then
             Assertions.assertThatThrownBy(() -> new Players(players))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(PlayerExceptionMessage.PLAYER_NAMES_DUPLICATION);
+                    .hasMessage(Players.PLAYER_NAMES_DUPLICATION);
         }
     }
 

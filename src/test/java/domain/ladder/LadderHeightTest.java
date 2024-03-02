@@ -1,6 +1,5 @@
 package domain.ladder;
 
-import domain.ladder.message.LadderExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -25,7 +24,7 @@ public class LadderHeightTest {
         void createLadderHeightFailByRange(int value) {
             Assertions.assertThatThrownBy(() -> new LadderHeight(value))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(LadderExceptionMessage.LADDER_HEIGHT_RANGE);
+                    .hasMessage(LadderHeight.LADDER_HEIGHT_RANGE);
         }
     }
 }

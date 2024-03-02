@@ -1,6 +1,5 @@
 package domain.player;
 
-import domain.player.message.PlayerExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -20,7 +19,7 @@ public class PlayerNameTest {
         void createPlayerNameFailByBlank(String name) {
             Assertions.assertThatThrownBy(() -> new PlayerName(name))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(PlayerExceptionMessage.PLAYER_NAME_BLANK);
+                    .hasMessage(PlayerName.PLAYER_NAME_BLANK);
         }
 
         @Test
@@ -30,7 +29,7 @@ public class PlayerNameTest {
 
             Assertions.assertThatThrownBy(() -> new PlayerName(name))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(PlayerExceptionMessage.PLAYER_NAME_LENGTH);
+                    .hasMessage(PlayerName.PLAYER_NAME_LENGTH);
         }
     }
 }

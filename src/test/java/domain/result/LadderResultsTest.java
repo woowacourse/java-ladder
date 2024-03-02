@@ -3,14 +3,9 @@ package domain.result;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-import domain.ladder.Ladder;
-import domain.ladder.LadderBridge;
-import domain.ladder.LadderHeight;
-import domain.ladder.strategy.BridgeGeneratorStub;
 import domain.player.Player;
 import domain.player.PlayerName;
 import domain.player.Players;
-import domain.result.message.ResultExceptionMessage;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,7 +30,7 @@ class LadderResultsTest {
         // then
         assertThatThrownBy(() -> LadderResults.createMatchesCountOf(players.getPlayerCount(), ladderResults))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ResultExceptionMessage.TOTAL_RESULTS_SIZE);
+                .hasMessage(LadderResults.TOTAL_RESULTS_SIZE);
     }
 
     @Test

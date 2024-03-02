@@ -11,7 +11,6 @@ import domain.ladder.strategy.BridgeGeneratorStub;
 import domain.player.Player;
 import domain.player.PlayerName;
 import domain.player.Players;
-import domain.result.message.ResultExceptionMessage;
 import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -46,7 +45,7 @@ class ClimbingResultsTest {
     void createClimbingResultsFailNotPlayer() {
         assertThatThrownBy(() -> climbingResults.findResultByPlayerName("kaki"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ResultExceptionMessage.NOT_PARTICIPATION_PLAYER);
+                .hasMessage(ClimbingResults.NOT_PARTICIPATION_PLAYER);
     }
 
     @Test

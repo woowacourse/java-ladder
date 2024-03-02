@@ -1,11 +1,13 @@
 package domain.player;
 
-import domain.player.message.PlayerExceptionMessage;
 import java.util.List;
 
 public class Players {
     public static final int PLAYER_NAMES_MIN_RANGE = 2;
     public static final int PLAYER_NAMES_MAX_RANGE = 10;
+    public static final String PLAYER_NAMES_RANGE = String.format("참가자의 수는 %d 이상, %d 이하여야 합니다",
+            PLAYER_NAMES_MIN_RANGE, PLAYER_NAMES_MAX_RANGE);
+    public static final String PLAYER_NAMES_DUPLICATION = "참가자 이름은 중복될 수 없습니다";
 
     private final List<Player> players;
 
@@ -21,7 +23,7 @@ public class Players {
 
     private void validateRange(final List<Player> players) {
         if (players.size() < PLAYER_NAMES_MIN_RANGE || players.size() > PLAYER_NAMES_MAX_RANGE) {
-            throw new IllegalArgumentException(PlayerExceptionMessage.PLAYER_NAMES_RANGE);
+            throw new IllegalArgumentException(PLAYER_NAMES_RANGE);
         }
     }
 
@@ -33,7 +35,7 @@ public class Players {
                 .count();
 
         if (playerCount != distinctCount) {
-            throw new IllegalArgumentException(PlayerExceptionMessage.PLAYER_NAMES_DUPLICATION);
+            throw new IllegalArgumentException(PLAYER_NAMES_DUPLICATION);
         }
     }
 

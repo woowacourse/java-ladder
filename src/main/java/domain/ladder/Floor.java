@@ -1,9 +1,10 @@
 package domain.ladder;
 
-import domain.ladder.message.LadderExceptionMessage;
 import java.util.List;
 
 public class Floor {
+    public static final String SERIAL_LADDER_BRIDGE = "사다리의 가로 라인에 연속되는 다리가 올 수 없습니다";
+
     private final List<LadderBridge> bridges;
 
     public Floor(final List<LadderBridge> bridges) {
@@ -22,7 +23,7 @@ public class Floor {
 
     private void isSerialBridge(final LadderBridge beforeBridge, final LadderBridge nextBridge) {
         if (beforeBridge.equals(LadderBridge.BRIDGE) && beforeBridge == nextBridge) {
-            throw new IllegalArgumentException(LadderExceptionMessage.SERIAL_LADDER_BRIDGE);
+            throw new IllegalArgumentException(SERIAL_LADDER_BRIDGE);
         }
     }
 
