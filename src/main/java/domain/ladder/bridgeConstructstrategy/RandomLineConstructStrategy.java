@@ -1,24 +1,24 @@
-package domain.bridgeConstructstrategy;
+package domain.ladder.bridgeConstructstrategy;
 
-import domain.Bridge;
-import domain.Bridges;
+import domain.ladder.Bridge;
+import domain.ladder.Line;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class RandomBridgeConstructStrategy implements BridgeConstructStrategy {
+public class RandomLineConstructStrategy implements LineConstructStrategy {
 
     private static final List<Bridge> BRIDGE_STATUSES = Arrays.stream(Bridge.values()).toList();
 
     @Override
-    public Bridges generate(int count) {
+    public Line generate(int count) {
         List<Bridge> result = new ArrayList<>();
         Random random = new Random();
         for (int index = 0; index < count; index++) {
             addToBridge(result, random, index);
         }
-        return new Bridges(result);
+        return new Line(result);
     }
 
     private void addToBridge(List<Bridge> result, Random random, int index) {
@@ -32,6 +32,9 @@ public class RandomBridgeConstructStrategy implements BridgeConstructStrategy {
     }
 
     private boolean hasPreviousBridge(List<Bridge> result, int index) {
-        return index != 0 && result.get(index - 1) == Bridge.BUILT;
+        if (index == 0) {
+            return false;
+        }
+        return result.get(index - 1) == Bridge.BUILT;
     }
 }
