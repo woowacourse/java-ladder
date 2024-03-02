@@ -33,7 +33,7 @@ class LadderTest {
         Width width = new Width(5);
         Ladder ladder = new Ladder(height, width, new RowGenerator(() -> Bridge.EXIST));
 
-        LadderPositions positions = ladder.climbDown();
+        LadderPositions positions = ladder.goDown();
         int actual = positions.count();
         int expected = 5;
 

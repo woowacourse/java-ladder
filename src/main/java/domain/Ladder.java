@@ -19,7 +19,7 @@ public class Ladder {
         return rows;
     }
 
-    public LadderPositions climbDown() {
+    public LadderPositions goDown() {
         LadderPositions ladderPositions = new LadderPositions(width.getLength());
         for (Row row : rows) {
             ladderPositions = ladderPositions.calculatePosition(row);
