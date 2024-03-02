@@ -2,20 +2,22 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Row {
 
     private static final int MIN_SIZE = 2;
+    private static final LadderStrategy strategy = new RandomLadderStrategy();
     private final List<Direction> row;
 
 
-    public Row(final int size, final LadderStrategy strategy) {
+    public Row(final int size) {
         validationSize(size);
 
         this.row = new ArrayList<>();
-        while (row.size() < size - 1) {
-            addDirection(strategy.creatable());
-        }
+
+        IntStream.range(0, size)
+                .forEach(i -> row.add(getDirection(size)));
     }
 
     public int goDown(final int index) {
@@ -26,24 +28,24 @@ public class Row {
         return row;
     }
 
+    public int size() {
+        return row.size();
+    }
+
     private void validationSize(final int size) {
         if (size < MIN_SIZE) {
             throw new IllegalArgumentException("사람은 2명 이상이어야 한다.");
         }
     }
 
-    private void addDirection(final boolean creatable) {
-        if (isPreviousDirectionRight()) {
-            this.row.add(Direction.LEFT);
-            return;
+    private Direction getDirection(final int size) {
+        if (isPreviousDirectionRight() && size() < size - 1) {
+            return Direction.LEFT;
         }
-
-        if (creatable) {
-            this.row.add(Direction.RIGHT);
-            return;
+        if (strategy.creatable()) {
+            return Direction.RIGHT;
         }
-
-        this.row.add(Direction.INPLACE);
+        return Direction.INPLACE;
     }
 
     private boolean isPreviousDirectionRight() {
@@ -51,6 +53,6 @@ public class Row {
             return false;
         }
 
-        return row.get(row.size() - 1) == Direction.RIGHT;
+        return row.get(size() - 1) == Direction.RIGHT;
     }
 }

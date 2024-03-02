@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
@@ -14,10 +15,27 @@ public class Ladder {
 
         LadderStrategy strategy = new RandomLadderStrategy();
         this.rows = IntStream.range(0, height)
-                .mapToObj(i -> new Row(width, strategy))
+                .mapToObj(i -> new Row(width))
                 .toList();
     }
-    public int match(int index) {
+
+    public Map<Integer, Integer> getAllMatch() {
+        Map<Integer, Integer> playerResult = new HashMap<>();
+
+        final int width = rows.get(0).getRow().size();
+        for (int index = 0; index < width; ++index) {
+            int result = match(index);
+            playerResult.put(index, result);
+        }
+
+        return playerResult;
+    }
+
+    public List<Row> getRows() {
+        return rows;
+    }
+
+    private int match(int index) {
         validationIndex(index);
 
         int position = index;
@@ -25,10 +43,6 @@ public class Ladder {
             position = row.goDown(position);
         }
         return position;
-    }
-
-    public List<Row> getRows() {
-        return rows;
     }
 
     private void validationSize(final int width, final int height) {
