@@ -1,39 +1,51 @@
 package domain;
 
 import util.BooleanGenerator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class Ladder {
 
-    private static final Pattern HEIGHT_FORMAT_REGEX = Pattern.compile("^[1-9][0-9]*$");
-
-    private final int height;
     private final List<Line> ladder;
 
-    public Ladder(String height) {
-        validateHeight(height);
-        this.height = Integer.parseInt(height);
-        this.ladder = new ArrayList<>();
+    private Ladder(List<Line> ladder) {
+        this.ladder = ladder;
     }
 
-    private void validateHeight(String height) {
-        if (height == null || !HEIGHT_FORMAT_REGEX.matcher(height).matches()) {
-            throw new IllegalArgumentException("사다리의 최대 높이는 자연수여야 합니다.");
-        }
+    public static Ladder of(Height height, int playersCount, BooleanGenerator booleanGenerator) {
+        List<Line> ladder = new ArrayList<>();
+
+        makeLadder(ladder, height.getHeight(), playersCount, booleanGenerator);
+
+        return new Ladder(ladder);
     }
 
-    public List<Line> makeLadder(int columnLength, BooleanGenerator booleanGenerator) {
+    private static void makeLadder(List<Line> ladder, int height, int playersCount, BooleanGenerator booleanGenerator) {
         for (int i = 0; i < height; i++) {
-            Line line = new Line(columnLength);
-            line.makeLine(booleanGenerator);
-
+            Line line = new Line(playersCount, booleanGenerator);
             ladder.add(line);
         }
+    }
 
-        return ladder;
+    public void playLadder(GameResult gameResult, Prizes prizes, Players players) {
+        for (int initPosition = 0; initPosition < players.getPlayersCount(); initPosition++) {
+            Player player = players.findPlayersByPosition(initPosition);
+            int position = getNextPosition(initPosition);
+
+            gameResult.recordPlayersResult(player, prizes, position);
+        }
+    }
+
+    private int getNextPosition(int initPosition) {
+        int position = initPosition;
+
+        for (Line line : ladder) {
+            position = line.decideNextPosition(position);
+        }
+
+        return position;
     }
 
     public List<Line> getLadder() {

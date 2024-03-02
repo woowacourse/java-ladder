@@ -7,24 +7,21 @@ import java.util.List;
 
 public class Line {
     private final List<LadderItem> points;
-    private final int columnLength;
 
-    public Line(int columnLength) {
+    public Line(int playersCount, BooleanGenerator booleanGenerator) {
         this.points = new ArrayList<>();
-        this.columnLength = columnLength;
+        makeLine(playersCount, booleanGenerator);
     }
 
-    public List<LadderItem> makeLine(BooleanGenerator booleanGenerator) {
+    private void makeLine(int playersCount, BooleanGenerator booleanGenerator) {
         // 0번째 point는 이전 point의 영향을 받지 않으므로 미리 추가
         points.add(makeRandomLadderItem(booleanGenerator));
 
-        for (int position = 1; position < columnLength - 1; position++) {
+        for (int position = 1; position < playersCount - 1; position++) {
             LadderItem isConnectable = makeRandomLadderItem(booleanGenerator);
 
             points.add(decideConnectable(position, isConnectable));
         }
-
-        return points;
     }
 
     private LadderItem makeRandomLadderItem(BooleanGenerator booleanGenerator) {
@@ -32,11 +29,29 @@ public class Line {
     }
 
     private LadderItem decideConnectable(int position, LadderItem isConnectable) {
-        if (points.get(position - 1).equals(LadderItem.UNCONNECTED)) {
+        if (isEqualWithPosition(position - 1, LadderItem.UNCONNECTED)) {
             return isConnectable;
         }
 
         return LadderItem.UNCONNECTED;
+    }
+
+    public int decideNextPosition(int position) {
+        int playersCount = points.size() + 1;
+
+        if ((position == playersCount || position - 1 >= 0) && isEqualWithPosition(position-1, LadderItem.CONNECTED)) {
+            return position - 1;
+        }
+
+        if ((position == 0 || position < playersCount - 1) && isEqualWithPosition(position, LadderItem.CONNECTED)) {
+            return position + 1;
+        }
+
+        return position;
+    }
+
+    private boolean isEqualWithPosition(int position, LadderItem ladderItem) {
+        return points.get(position).equals(ladderItem);
     }
 
     public List<LadderItem> getPoints() {

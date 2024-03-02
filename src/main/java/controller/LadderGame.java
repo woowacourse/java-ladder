@@ -1,17 +1,21 @@
 package controller;
 
-import domain.Ladder;
-import domain.LadderItem;
-import domain.Line;
-import domain.Participant;
-import domain.Participants;
+import domain.*;
 import util.BooleanGenerator;
+import util.RetryUtil;
 import view.InputView;
+import view.LadderShape;
 import view.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LadderGame {
+
+    private static final String INPUT_SPLIT_DELIMITER = ",";
+    private static final String OUTPUT_FORMAT = "%5s ";
+    private static final String PRINT_ALL_COMMAND = "all";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -24,60 +28,131 @@ public class LadderGame {
     }
 
     public void start() {
-        Participants participants = makeParticipants(inputName());
-        Ladder ladder = new Ladder(inputHeight());
+        Players players = RetryUtil.retryUntilNoException(this::makePlayers);
+        Prizes prizes = RetryUtil.retryUntilNoException(() -> makePrize(players));
+        Ladder ladder = RetryUtil.retryUntilNoException(() -> makeLadder(players.getPlayersCount(), booleanGenerator));
 
-        ladder.makeLadder(participants.getParticipantsCount(), booleanGenerator);
-        printLadder(ladder, participants);
+        printLadderOutput(ladder, players, prizes);
+
+        GameResult gameResult = new GameResult();
+        ladder.playLadder(gameResult, prizes, players);
+        printGameResultUntilEmptyName(players, gameResult);
     }
 
-    private List<String> inputName() {
+    private Players makePlayers() {
         String input = inputView.inputName();
 
-        return List.of(input.split(","));
+        List<String> names = List.of(input.split(INPUT_SPLIT_DELIMITER));
+
+        return new Players(names);
     }
 
-    private Participants makeParticipants(List<String> names) {
-        return new Participants(names);
+    private Prizes makePrize(Players players) {
+        String input = inputView.inputResults();
+
+        validateResultsLength(input, players.getPlayersCount());
+        List<String> prizes = List.of(input.split(INPUT_SPLIT_DELIMITER));
+
+        return new Prizes(prizes);
     }
 
-    private String inputHeight() {
-        return inputView.inputHeight();
+    private void validateResultsLength(String results, int playersCount) {
+        if (results.split(INPUT_SPLIT_DELIMITER).length != playersCount) {
+            throw new IllegalArgumentException("실행 결과의 수는 참가자 수와 동일해야 합니다.");
+        }
     }
 
-    private void printLadder(Ladder ladder, Participants participants) {
-        List<String> result = new ArrayList<>();
-        List<Line> createdLadder = ladder.getLadder();
+    private Ladder makeLadder(int playersCount, BooleanGenerator booleanGenerator) {
+        String input = inputView.inputHeight();
 
-        createParticipantsLineUp(result, participants.getParticipants());
-        createLadder(result, createdLadder);
-
-        outputView.printLadder(result);
+        return Ladder.of(new Height(input), playersCount, booleanGenerator);
     }
 
-    private void createParticipantsLineUp(List<String> result, List<Participant> participants) {
+    private void printLadderOutput(Ladder ladder, Players players, Prizes prizes) {
+        printPlayers(players);
+        printLadder(ladder);
+        printPrizes(prizes);
+    }
+
+    private void printPlayers(Players players) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Participant participant : participants) {
-            stringBuilder.append(String.format("%5s ", participant.getName()));
+
+        for (int initPosition = 0; initPosition < players.getPlayersCount(); initPosition++) {
+            String name = players.findPlayersByPosition(initPosition).getName();
+
+            stringBuilder.append(String.format(OUTPUT_FORMAT, name));
         }
 
-        result.add(stringBuilder.toString());
+        outputView.printPlayers(stringBuilder.toString());
     }
 
-    private void createLadder(List<String> result, List<Line> createdLadder) {
-        for (Line line : createdLadder) {
+    private void printLadder(Ladder ladder) {
+        List<String> output = new ArrayList<>();
+
+        for (Line line : ladder.getLadder()) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("    |");
 
-            createLine(line, stringBuilder);
+            createLineOutput(line, stringBuilder);
 
-            result.add(stringBuilder.toString());
+            output.add(stringBuilder.toString());
+        }
+
+        outputView.printLadderOutput(output);
+    }
+
+    private void createLineOutput(Line line, StringBuilder stringBuilder) {
+        for (LadderItem point : line.getPoints()) {
+            stringBuilder.append(LadderShape.getShapeByLadderItem(point));
         }
     }
 
-    private void createLine(Line line, StringBuilder stringBuilder) {
-        for (LadderItem point : line.getPoints()) {
-            stringBuilder.append(point.getShape());
+    private void printPrizes(Prizes prizes) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (String gameResult : prizes.getPrizes()) {
+            stringBuilder.append(String.format(OUTPUT_FORMAT, gameResult));
         }
+
+        outputView.printResultsOutput(stringBuilder.toString());
+    }
+
+    private void printGameResultUntilEmptyName(Players players, GameResult gameResult) {
+        boolean keepInput = true;
+
+        while (keepInput) {
+            keepInput = RetryUtil.retryUntilNoException(() -> printGameResult(players, gameResult));
+        }
+    }
+
+    private boolean printGameResult(Players players, GameResult gameResult) {
+        String name = inputView.inputResultName();
+        boolean keepInput = !name.isEmpty();
+
+        if (keepInput) {
+            outputView.printResultsOutput(makeGameResult(name, players, gameResult));
+        }
+
+        return keepInput;
+    }
+
+    private String makeGameResult(String name, Players players, GameResult gameResult) {
+        if (name.equals(PRINT_ALL_COMMAND)) {
+            return makeAllGameResult(gameResult);
+        }
+
+        Player player = players.findPlayersByName(name);
+
+        return gameResult.getResultByPlayer(player);
+    }
+
+    private String makeAllGameResult(GameResult gameResult) {
+        List<String> allResult = new ArrayList<>();
+
+        for (Map.Entry<Player, String> result : gameResult.getPlayersResult().entrySet()) {
+            allResult.add(result.getKey().getName() + " : " + result.getValue());
+        }
+
+        return String.join("\n", allResult);
     }
 }
