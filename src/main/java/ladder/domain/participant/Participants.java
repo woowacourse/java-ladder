@@ -32,11 +32,14 @@ public class Participants {
 
     public int findNamePosition(Name name) {
         int index = names.indexOf(name);
+        validateNameExist(index);
+        return index;
+    }
 
-        if (index == -1) {
+    private void validateNameExist(int nameIndex) {
+        if (nameIndex == -1) {
             throw new IllegalArgumentException("입력한 이름이 존재하지 않습니다.");
         }
-        return index;
     }
 
     private List<Name> enrollNames(List<String> names) {
