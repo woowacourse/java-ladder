@@ -25,18 +25,18 @@ public class Users {
         return users.get(index);
     }
 
-    private void validateUsersSize(List<User> users) {
-        if (users.size() < MIN_USER_SIZE || users.size() > MAX_USER_SIZE) {
+    private void validateUsersSize(List<User> validationUsers) {
+        if (validationUsers.size() < MIN_USER_SIZE || validationUsers.size() > MAX_USER_SIZE) {
             throw new IllegalArgumentException("[ERROR] 사용자는 2~10명 까지만 등록 가능합니다.");
         }
     }
 
-    private void validateDuplicatedUserName(List<User> users) {
-        Set<String> distinctNames = users.stream()
+    private void validateDuplicatedUserName(List<User> validationUsers) {
+        Set<String> distinctNames = validationUsers.stream()
                 .map(User::getUserName)
                 .collect(Collectors.toSet());
 
-        if (distinctNames.size() != users.size()) {
+        if (distinctNames.size() != validationUsers.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 사용자명이 존재합니다.");
         }
     }
