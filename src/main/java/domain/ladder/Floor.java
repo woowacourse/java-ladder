@@ -23,7 +23,7 @@ public class Floor {
         return new Floor(connections);
     }
 
-    int moveNextConnection(int index) {
+    int crossConnection(int index) {
         validateIndexRange(index);
         Connection connection = connections.get(index);
         return connection.move(index);

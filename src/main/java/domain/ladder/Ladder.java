@@ -30,15 +30,15 @@ public class Ladder {
     public LadderResult climb(Players players, Prizes prizes) {
         Map<Player, Prize> result = new LinkedHashMap<>();
         for (int start = 0; start < players.count(); start++) {
-            int end = moveDown(start);
+            int end = climbFloors(start);
             result.put(players.findPlayerByIndex(start), prizes.findPrizeByIndex(end));
         }
         return new LadderResult(result);
     }
 
-    private int moveDown(int index) {
+    private int climbFloors(int index) {
         for (Floor floor : floors) {
-            index = floor.moveNextConnection(index);
+            index = floor.crossConnection(index);
         }
         return index;
     }

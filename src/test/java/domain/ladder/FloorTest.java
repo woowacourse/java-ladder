@@ -64,12 +64,12 @@ public class FloorTest {
 
         // then
         assertAll(
-                () -> assertThat(floor.moveNextConnection(0)).isEqualTo(0),
-                () -> assertThat(floor.moveNextConnection(1)).isEqualTo(2),
-                () -> assertThat(floor.moveNextConnection(2)).isEqualTo(1),
-                () -> assertThat(floor.moveNextConnection(3)).isEqualTo(4),
-                () -> assertThat(floor.moveNextConnection(4)).isEqualTo(3),
-                () -> assertThat(floor.moveNextConnection(5)).isEqualTo(5)
+                () -> assertThat(floor.crossConnection(0)).isEqualTo(0),
+                () -> assertThat(floor.crossConnection(1)).isEqualTo(2),
+                () -> assertThat(floor.crossConnection(2)).isEqualTo(1),
+                () -> assertThat(floor.crossConnection(3)).isEqualTo(4),
+                () -> assertThat(floor.crossConnection(4)).isEqualTo(3),
+                () -> assertThat(floor.crossConnection(5)).isEqualTo(5)
         );
     }
 }
