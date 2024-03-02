@@ -36,7 +36,7 @@ public class Ladder {
         return ladderRows.size();
     }
 
-    public Position getEndPositionBy(Position startPosition) {
+    public Position getFinishPositionBy(Position startPosition) {
         Position endPosition = startPosition;
         for (LadderRow ladderRow : ladderRows) {
             endPosition = ladderRow.climb(endPosition);

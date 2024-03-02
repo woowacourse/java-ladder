@@ -42,7 +42,6 @@ public class LadderTest {
     }
 
 
-
 //                |-----|     |-----|
 //                |     |-----|     |
 //                |-----|     |     |
@@ -57,10 +56,10 @@ public class LadderTest {
                 List.of(false, true, false),
                 List.of(true, false, false)), height, participants);
         assertAll(
-                () -> assertThat(ladder.getEndPositionBy(Position.valueOf(0))).isEqualTo(Position.valueOf(2)),
-                () -> assertThat(ladder.getEndPositionBy(Position.valueOf(1))).isEqualTo(Position.valueOf(1)),
-                () -> assertThat(ladder.getEndPositionBy(Position.valueOf(2))).isEqualTo(Position.valueOf(3)),
-                () -> assertThat(ladder.getEndPositionBy(Position.valueOf(3))).isEqualTo(Position.valueOf(0))
+                () -> assertThat(ladder.getFinishPositionBy(Position.valueOf(0))).isEqualTo(Position.valueOf(2)),
+                () -> assertThat(ladder.getFinishPositionBy(Position.valueOf(1))).isEqualTo(Position.valueOf(1)),
+                () -> assertThat(ladder.getFinishPositionBy(Position.valueOf(2))).isEqualTo(Position.valueOf(3)),
+                () -> assertThat(ladder.getFinishPositionBy(Position.valueOf(3))).isEqualTo(Position.valueOf(0))
         );
 
 
