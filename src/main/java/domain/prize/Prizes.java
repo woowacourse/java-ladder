@@ -16,11 +16,11 @@ public class Prizes {
                 .toList());
     }
 
-    public int getPrizeCount() {
+    public int getSize() {
         return prizes.size();
     }
 
-    public Prize getOnePrizeByIndex(int prizeIndex) {
+    public Prize getBy(int prizeIndex) {
         return prizes.get(prizeIndex);
     }
 

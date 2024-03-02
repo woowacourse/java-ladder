@@ -23,7 +23,7 @@ public class LadderGameResult {
 
     public Prize getOneResult(Name name) {
         int nameIndex = names.getNames().indexOf(name);
-        return prizes.getOnePrizeByIndex(ladderIndexConnection.getPrizeIndex(nameIndex));
+        return prizes.getBy(ladderIndexConnection.getPrizeIndex(nameIndex));
     }
 
     public Map<Name, Prize> getAllResult() {

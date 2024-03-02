@@ -28,7 +28,7 @@ public class Ladder {
     }
 
     private static void validatePersonPrizesCount(Names names, Prizes prizes) {
-        if (prizes.getPrizeCount() != names.getNameCount()) {
+        if (prizes.getSize() != names.getNameCount()) {
             throw new IllegalArgumentException("[ERROR] 상품의 수는 참여자 수와 일치해야 합니다.");
         }
     }
