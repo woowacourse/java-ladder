@@ -1,9 +1,10 @@
-package model;
+package model.participant;
 
 import dto.ParticipantName;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import utils.Constant;
 
 public class Participants {
     private static final int MIN_PARTICIPANT_COUNT = 2;
@@ -20,7 +21,7 @@ public class Participants {
 
     private void validateNameSize(List<String> names) {
         if (names.size() < MIN_PARTICIPANT_COUNT) {
-            throw new IllegalArgumentException("참여할 사람은 두명 이상이어야한다.");
+            throw new IllegalArgumentException("참여할 사람은 " + MIN_PARTICIPANT_COUNT + "명 이상이어야한다.");
         }
     }
 
@@ -31,11 +32,25 @@ public class Participants {
         }
     }
 
-    public List<ParticipantName> captureParticipantsName() {
+    public String findByName(String name) {
+        if (name.equals(Constant.TOTAL_RESULT_KEYWORD)) {
+            return Constant.TOTAL_RESULT_KEYWORD;
+        }
+        return participants.stream().filter(m -> m.hasEquivalentName(name))
+                .findAny()
+                .map(Participant::getName)
+                .orElseThrow(() -> new IllegalArgumentException("참여한 사람 목록에 일치하는 이름이 있어야한다"));
+    }
+
+    public Participant findParticipantByIndex(int index) {
+        return participants.get(index);
+    }
+
+    public List<ParticipantName> convertToParticipantsNames() {
         return participants.stream().map(ParticipantName::new).toList();
     }
 
-    public int getParticipantsSize() {
+    public int size() {
         return participants.size();
     }
 }
