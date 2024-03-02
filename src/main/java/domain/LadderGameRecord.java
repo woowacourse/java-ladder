@@ -9,11 +9,11 @@ import domain.result.Results;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class LadderGame {
+public class LadderGameRecord {
 
     private final Map<Player, Result> playerResult = new LinkedHashMap<>();
 
-    public LadderGame(Players players, Ladder ladder, Results results) {
+    public LadderGameRecord(Players players, Ladder ladder, Results results) {
         for (int start = 0; start < players.getPlayerSize(); start++) {
             int end = ladder.climb(start);
 

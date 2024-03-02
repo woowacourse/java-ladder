@@ -1,4 +1,4 @@
-import controller.LadderGameController;
+import controller.LadderGame;
 import domain.ladder.stick.RandomStickGenerator;
 import domain.ladder.stick.StickGenerator;
 import domain.ladder.sticks.NotRepeatedSticksGenerator;
@@ -14,8 +14,8 @@ class Main {
         StickGenerator stickGenerator = new RandomStickGenerator();
         SticksGenerator sticksGenerator = new NotRepeatedSticksGenerator(stickGenerator);
 
-        LadderGameController ladderGameController = new LadderGameController(inputView, outputView, sticksGenerator);
+        LadderGame ladderGame = new LadderGame(inputView, outputView, sticksGenerator);
 
-        ladderGameController.run();
+        ladderGame.run();
     }
 }

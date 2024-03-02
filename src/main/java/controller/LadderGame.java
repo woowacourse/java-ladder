@@ -1,7 +1,7 @@
 package controller;
 
-import domain.LadderGame;
-import domain.TargetPlayer;
+import domain.LadderGameRecord;
+import domain.SelectedPlayer;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.ladder.sticks.SticksGenerator;
@@ -15,13 +15,13 @@ import view.OutputView;
 import java.util.List;
 import java.util.Map;
 
-public class LadderGameController {
+public class LadderGame {
 
     private final InputView inputView;
     private final OutputView outputView;
     private final SticksGenerator sticksGenerator;
 
-    public LadderGameController(InputView inputView, OutputView outputView, SticksGenerator sticksGenerator) {
+    public LadderGame(InputView inputView, OutputView outputView, SticksGenerator sticksGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.sticksGenerator = sticksGenerator;
@@ -29,17 +29,17 @@ public class LadderGameController {
 
     public void run() {
         Players players = readPlayers();
-        LadderGame ladderGame = play(players);
-        printResult(players, ladderGame);
+        LadderGameRecord ladderGameRecord = play(players);
+        printResult(players, ladderGameRecord);
     }
 
-    private LadderGame play(Players players) {
+    private LadderGameRecord play(Players players) {
         Results results = readResultsOfSize(players.getPlayerSize());
         Height height = readHeight();
 
         Ladder ladder = new Ladder(height, players.getPlayerSize(), sticksGenerator);
         outputView.printLadder(players, ladder, results);
-        return new LadderGame(players, ladder, results);
+        return new LadderGameRecord(players, ladder, results);
     }
 
     private Players readPlayers() {
@@ -72,34 +72,34 @@ public class LadderGameController {
         }
     }
 
-    private TargetPlayer readTargetPlayerIn(List<String> players) {
+    private SelectedPlayer readTargetPlayerIn(List<String> players) {
         try {
             String inputTargetPlayer = inputView.readTargetPlayer();
-            return new TargetPlayer(inputTargetPlayer, players);
+            return new SelectedPlayer(inputTargetPlayer, players);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return readTargetPlayerIn(players);
         }
     }
 
-    private void printResult(Players players, LadderGame ladderGame) {
-        TargetPlayer targetPlayer = readTargetPlayerIn(players.getPlayerNames());
+    private void printResult(Players players, LadderGameRecord ladderGameRecord) {
+        SelectedPlayer selectedPlayer = readTargetPlayerIn(players.getPlayerNames());
 
-        if (targetPlayer.isAll()) {
-            printAllPlayerResult(ladderGame);
+        if (selectedPlayer.isAll()) {
+            printAllPlayerResult(ladderGameRecord);
             return;
         }
 
-        printOnePlayerResult(targetPlayer.getName(), ladderGame);
+        printOnePlayerResult(selectedPlayer.getName(), ladderGameRecord);
     }
 
-    private void printAllPlayerResult(LadderGame ladderGame) {
-        Map<Player, Result> allPlayerResults = ladderGame.getAllPlayerResults();
+    private void printAllPlayerResult(LadderGameRecord ladderGameRecord) {
+        Map<Player, Result> allPlayerResults = ladderGameRecord.getAllPlayerResults();
         outputView.printAllPlayerResults(allPlayerResults);
     }
 
-    private void printOnePlayerResult(String targetPlayerName, LadderGame ladderGame) {
-        Result onePlayerResult = ladderGame.getOnePlayerResult(targetPlayerName);
+    private void printOnePlayerResult(String targetPlayerName, LadderGameRecord ladderGameRecord) {
+        Result onePlayerResult = ladderGameRecord.getOnePlayerResult(targetPlayerName);
         outputView.printOnePlayerResult(onePlayerResult);
     }
 }
