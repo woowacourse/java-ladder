@@ -11,11 +11,12 @@ import ladder.view.OutputView;
 import java.util.List;
 
 public class LadderController {
+    private static final String QUERY_FOR_EVERY_REWARD = "all";
     private LadderGame ladderGame;
 
     public void start() {
         init();
-        showLadder();
+        showGame();
         showReward(readLookupTarget());
     }
 
@@ -46,15 +47,16 @@ public class LadderController {
         return InputView.inputLookupTarget();
     }
 
-    private void showLadder() {
-        OutputView.printResultDescription();
-        OutputView.printPlayerNames(ladderGame.getPlayerNames());
-
+    private void showGame() {
         List<LineDto> lineDtos = ladderGame.getLines().stream()
                 .map(LineDto::from)
                 .toList();
-        OutputView.printLadder(lineDtos);
-        OutputView.printRewards(ladderGame.getRewards());
+
+        OutputView.printGame(
+                ladderGame.getPlayerNames(),
+                lineDtos,
+                ladderGame.getRewards()
+        );
     }
 
     private void showReward(String target) {

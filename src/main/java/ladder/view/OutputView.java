@@ -18,11 +18,18 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printResultDescription() {
+    public static void printGame(List<String> playerNames, List<LineDto> lineDtos, List<String> rewardNames) {
+        printResultDescription();
+        printPlayerNames(playerNames);
+        printLadder(lineDtos);
+        printRewards(rewardNames);
+    }
+
+    private static void printResultDescription() {
         System.out.println(RESULT_DESCRIPTION + '\n');
     }
 
-    public static void printPlayerNames(List<String> playerNames) {
+    private static void printPlayerNames(List<String> playerNames) {
         StringBuilder sb = new StringBuilder();
         for (String name : playerNames) {
             sb.append(padName(name));
@@ -30,7 +37,7 @@ public class OutputView {
         System.out.println(sb);
     }
 
-    public static void printLadder(List<LineDto> ladder) {
+    private static void printLadder(List<LineDto> ladder) {
         StringBuilder sb = new StringBuilder();
         for (LineDto lineDto : ladder) {
             sb.append(createLineString(lineDto));
@@ -57,7 +64,7 @@ public class OutputView {
         return VERTICAL_CHAR + EMPTY_SPACE.repeat(PATH_WIDTH);
     }
 
-    public static void printRewards(List<String> rewards) {
+    private static void printRewards(List<String> rewards) {
         StringBuilder sb = new StringBuilder();
         for (String name : rewards) {
             sb.append(padName(name));
