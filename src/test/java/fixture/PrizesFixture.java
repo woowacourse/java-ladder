@@ -13,7 +13,6 @@ public class PrizesFixture {
         return IntStream.range(0, count)
                 .mapToObj(i -> "상품" + i)
                 .collect(collectingAndThen(toList(), prizeNames -> Prizes.of(prizeNames, 참가자들(count))));
-
     }
 
     public static Prizes 상품들(String... names) {
