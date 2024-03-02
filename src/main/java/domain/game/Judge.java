@@ -15,11 +15,13 @@ public class Judge {
     private final Players players;
     private final Prizes prizes;
     private final PathMapper pathMapper;
+    private final JudgeCache CACHE;
 
     public Judge(final Players players, final Prizes prizes, final PathMapper pathMapper) {
         this.players = players;
         this.prizes = prizes;
         this.pathMapper = pathMapper;
+        this.CACHE = new JudgeCache();
     }
 
     public Map<Player, Prize> search(final String name) {
@@ -54,10 +56,15 @@ public class Judge {
     }
 
     private Prize getPrizeMappedByLadder(final Player player) {
+        if (CACHE.hasPlayer(player)) {
+            return CACHE.find(player);
+        }
+
         try {
             final int departure = this.players.getSequence(player);
             final int arrival = this.pathMapper.findArrival(departure);
-            return this.prizes.getByIndex(arrival);
+            CACHE.save(player, this.prizes.getByIndex(arrival));
+            return CACHE.find(player);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new IllegalArgumentException("상품이 존재하지 않습니다.");
         }
