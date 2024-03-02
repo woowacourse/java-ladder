@@ -1,5 +1,7 @@
 package model.ladder;
 
+import static model.ladder.StepStatus.CONNECTED;
+
 import java.util.ArrayList;
 import java.util.List;
 import model.ladder.generator.StepStatusGenerator;
@@ -28,12 +30,12 @@ public class Line {
     }
 
     public boolean isConnected(final int index) {
-        return steps.get(index).isConnected();
+        return steps.get(index).isStatus(CONNECTED);
     }
 
     public void move(Position position) {
         if (isFirst(position)) {
-            if (getRightStep(position).isConnected()) {
+            if (getRightStep(position).isStatus(CONNECTED)) {
                 position.moveRight();
                 return;
             }
@@ -41,18 +43,18 @@ public class Line {
         }
 
         if (isLast(position)) {
-            if (getLeftStep(position).isConnected()) {
+            if (getLeftStep(position).isStatus(CONNECTED)) {
                 position.moveLeft();
                 return;
             }
             return;
         }
 
-        if (getRightStep(position).isConnected()) {
+        if (getRightStep(position).isStatus(CONNECTED)) {
             position.moveRight();
             return;
         }
-        if (getLeftStep(position).isConnected()) {
+        if (getLeftStep(position).isStatus(CONNECTED)) {
             position.moveLeft();
         }
     }

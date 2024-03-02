@@ -1,5 +1,8 @@
 package model.ladder;
 
+import static model.ladder.StepStatus.DISCONNECTED;
+import static model.ladder.StepStatus.EMPTY;
+
 import java.util.Objects;
 import model.ladder.generator.StepStatusGenerator;
 
@@ -19,27 +22,19 @@ public class Step {
         if (isNotOverlapped(previous)) {
             return stepStatusGenerator.generate();
         }
-        return StepStatus.DISCONNECTED;
+        return DISCONNECTED;
     }
 
     private static boolean isNotOverlapped(final Step previous) {
-        return previous.isEmpty() || previous.isDisconnected();
+        return previous.isStatus(EMPTY) || previous.isStatus(DISCONNECTED);
     }
 
     public static Step from(final StepStatus stepStatus) {
         return new Step(stepStatus);
     }
 
-    public boolean isEmpty() {
-        return stepStatus.equals(StepStatus.EMPTY);
-    }
-
-    public boolean isConnected() {
-        return stepStatus.equals(StepStatus.CONNECTED);
-    }
-
-    public boolean isDisconnected() {
-        return stepStatus.equals(StepStatus.DISCONNECTED);
+    public boolean isStatus(final StepStatus stepStatus) {
+        return this.stepStatus.equals(stepStatus);
     }
 
     @Override
