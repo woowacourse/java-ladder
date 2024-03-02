@@ -1,5 +1,5 @@
-package domain.ladder;
-
-public interface StepGenerator {
-    Step generate();
-}
+//package domain.ladder;
+//
+//public interface StepGenerator {
+//    Step generate();
+//}

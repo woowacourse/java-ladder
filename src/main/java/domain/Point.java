@@ -12,6 +12,10 @@ public class Point {
         this.right = right;
     }
 
+    public static Point empty() {
+        return new Point(false, false);
+    }
+
     private void validate(final boolean left, final boolean right) {
         if (left && right) {
             throw new IllegalArgumentException("양쪽에 모두 다리가 있을 수 없습니다.");
@@ -30,6 +34,14 @@ public class Point {
             return index -1;
         }
         return index;
+    }
+
+    public boolean isRightExist() {
+        return right;
+    }
+
+    public boolean isRight() { // todo
+        return right;
     }
 
     @Override

@@ -54,11 +54,13 @@
 - [x] 이해를 위한 코드 전반의 공백 추가
 - [x] final: 생성자, 테스트 클래스 로컬변수 
 - [x] 컨벤션 전체 확인 돌리기
-- [x] 일반 메서드 로컬변수, 파라미터에 final 키워드 추가
-- [x] TODO 체크
+- [ ] 일반 메서드 로컬변수, 파라미터에 final 키워드 추가
+- [ ] TODO 체크
+- [ ] randomPointGenerator 변수 선언 부분 pointGenerator로 바꾸기
 
 ## 고민점
 - [x] Players의 findByIndex, getCount() 처럼 갖고오는 게 디미터 법칙 위반은 아닐까?
 - [ ] 현재는 Line에 의해 Step의 index가 움직이고 있는데
   - [ ] Step 스스로 움직이게(벽을 만나거나 등)
   - [ ] Index의 원시값 포장 필요성이 느껴지나?
+- [ ] 그 과정에서 createPoint에 대해서도 얘가 상황봐서 만드는 게 맞나?

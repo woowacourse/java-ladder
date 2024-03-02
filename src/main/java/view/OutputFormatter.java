@@ -1,11 +1,11 @@
 package view;
 
+import domain.Point;
 import domain.ladder.Row;
 import domain.player.Player;
 import domain.player.Players;
 import domain.prize.Prize;
 import domain.prize.Prizes;
-import domain.ladder.Step;
 import java.util.stream.Collectors;
 
 public class OutputFormatter {
@@ -19,8 +19,8 @@ public class OutputFormatter {
     }
 
     public String toRow(final Row rawRow) {
-        final String row = rawRow.getSteps().stream()
-                .map(this::getStep)
+        final String row = rawRow.getPoints().stream()
+                .map(this::getPoint)
                 .collect(Collectors.joining());
         return "    " + row;
     }
@@ -49,8 +49,8 @@ public class OutputFormatter {
         return name + SPACE;
     }
 
-    private String getStep(final Step step) {
-        if (step.isExist()) {
+    private String getPoint(final Point point) {
+        if (point.isRight()) {  // TODO
             return BAR + "-----";
         }
         return BAR + "     ";

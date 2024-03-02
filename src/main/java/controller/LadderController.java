@@ -1,14 +1,14 @@
 package controller;
 
+import domain.RandomPointGenerator;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.player.Player;
 import domain.player.PlayerCount;
 import domain.player.Players;
-import domain.result.GameResult;
 import domain.prize.Prize;
 import domain.prize.Prizes;
-import domain.ladder.RandomStepGenerator;
+import domain.result.GameResult;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -29,7 +29,7 @@ public class LadderController {
         final Prizes prizes = readWithRetry(this::readPrizes, players);
         final Height height = readWithRetry(this::readHeight, inputView.inputHeight());
 
-        final Ladder ladder = Ladder.create(height, PlayerCount.fromPlayers(players), new RandomStepGenerator());
+        final Ladder ladder = Ladder.create(height, PlayerCount.fromPlayers(players), new RandomPointGenerator());
         outputView.printLadderMap(players, ladder, prizes);
 
         showGameResult(GameResult.of(ladder, players, prizes), players);
