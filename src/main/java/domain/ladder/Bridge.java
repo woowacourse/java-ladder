@@ -1,14 +1,14 @@
-package domain;
+package domain.ladder;
 
 import java.util.Arrays;
 import java.util.List;
 
 public enum Bridge {
 
-    BRIDGE(true),
-    NO_BRIDGE(false);
+    EXIST(true),
+    NOT_EXIST(false);
 
-    private static final int MATCHED_BRIDGE_COUNT = 1;
+    private static final int ONLY_ONE_FOUND = 1;
     private final boolean exist;
 
     Bridge(final boolean exist) {
@@ -20,7 +20,7 @@ public enum Bridge {
                 .filter(bridge -> bridge.exist == exist)
                 .toList();
 
-        if (matchedBridge.size() != MATCHED_BRIDGE_COUNT) {
+        if (matchedBridge.size() != ONLY_ONE_FOUND) {
             throw new IllegalStateException("Bridge를 찾을 수 없거나 중복되는 값이 존재합니다.");
         }
 

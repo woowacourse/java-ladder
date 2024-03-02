@@ -1,41 +1,66 @@
 package view;
 
-import domain.Bridge;
-import domain.Bridges;
+import domain.GameResult;
+import domain.GameResults;
+import domain.Results;
+import domain.ladder.Bridge;
+import domain.ladder.Floor;
+import domain.ladder.Ladder;
+import domain.player.PlayerNames;
 import java.util.List;
 import java.util.StringJoiner;
 
 public class OutputView {
 
-    private static final String NAME_DELIMITER = " ";
+    private static final String VALUE_DELIMITER = " ";
     private static final String FIRST_COLUMN = "    |";
     private static final String COLUMN = "|";
+    private static final String NAME_RESULT_SEPARATOR = " : ";
 
-    public void printResultMessage() {
+    private OutputView() {
+    }
+
+    public static void printGameBoard(final PlayerNames playerNames, final Ladder ladder, final Results results) {
         System.out.println(System.lineSeparator() + "실행결과");
+        printWithFormat(playerNames.getValues());
+        printLadder(ladder);
+        printWithFormat(results.getValues());
     }
 
-    public void printPlayers(List<String> names) {
-        StringJoiner nameJoiner = new StringJoiner(NAME_DELIMITER);
-        for (final String name : names) {
-            nameJoiner.add(String.format("%5s", name));
+    private static void printWithFormat(List<String> values) {
+        StringJoiner valueJoiner = new StringJoiner(VALUE_DELIMITER);
+        for (final String value : values) {
+            valueJoiner.add(String.format("%5s", value));
         }
-        System.out.println(System.lineSeparator() + nameJoiner);
+        System.out.println(System.lineSeparator() + valueJoiner);
     }
 
-    public void printLadder(List<Bridges> ladder) {
-        StringJoiner ladderShapeJoiner = new StringJoiner(System.lineSeparator());
-        for (final Bridges bridges : ladder) {
-            ladderShapeJoiner.add(getBridgesShape(bridges));
+    private static void printLadder(Ladder ladder) {
+        StringJoiner floorJoiner = new StringJoiner(System.lineSeparator());
+        for (final Floor floor : ladder.getFloors()) {
+            floorJoiner.add(getFloorShape(floor));
         }
-        System.out.println(ladderShapeJoiner);
+        System.out.print(floorJoiner);
     }
 
-    private static String getBridgesShape(final Bridges bridges) {
-        StringJoiner bridgesShapeJoiner = new StringJoiner(COLUMN, FIRST_COLUMN, COLUMN);
-        for (Bridge bridge : bridges.getBridges()) {
-            bridgesShapeJoiner.add(BridgeShape.convertForView(bridge));
+    private static String getFloorShape(final Floor floor) {
+        StringJoiner bridgeJoiner = new StringJoiner(COLUMN, FIRST_COLUMN, COLUMN);
+        for (Bridge bridge : floor.getBridges()) {
+            bridgeJoiner.add(BridgeShape.convertForView(bridge));
         }
-        return bridgesShapeJoiner.toString();
+        return bridgeJoiner.toString();
+    }
+
+    public static void printGameResult(GameResult gameResult) {
+        System.out.println(System.lineSeparator() + "실행 결과");
+        System.out.println(gameResult.result());
+    }
+
+    public static void printGameResults(GameResults gameResults) {
+        System.out.println(System.lineSeparator() + "실행 결과");
+        for (int index = 0; index < gameResults.count(); index++) {
+            final GameResult gameResult = gameResults.findBy(index);
+            System.out.println(gameResult.playerName() + NAME_RESULT_SEPARATOR + gameResult.result());
+        }
     }
 }

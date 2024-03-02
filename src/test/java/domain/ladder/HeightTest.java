@@ -1,6 +1,8 @@
-package domain;
+package domain.ladder;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -12,7 +14,7 @@ class HeightTest {
     @ValueSource(ints = {1, 10})
     void validHeight(final int rawHeight) {
         //when & then
-        Assertions.assertThatCode(() -> new Height(rawHeight))
+        assertThatCode(() -> new Height(rawHeight))
                 .doesNotThrowAnyException();
     }
 
@@ -21,7 +23,7 @@ class HeightTest {
     @ValueSource(ints = {0, 11})
     void invalidHeight(final int rawHeight) {
         //when & then
-        Assertions.assertThatThrownBy(() -> new Height(rawHeight))
+        assertThatThrownBy(() -> new Height(rawHeight))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
