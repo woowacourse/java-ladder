@@ -7,8 +7,15 @@ public class Point {
     private final boolean right;
 
     public Point(final boolean left, final boolean right) {
+        validate(left, right);
         this.left = left;
         this.right = right;
+    }
+
+    private void validate(final boolean left, final boolean right) {
+        if (left && right) {
+            throw new IllegalArgumentException("양쪽에 모두 다리가 있을 수 없습니다.");
+        }
     }
 
     public static Point of(final boolean left, final boolean right) {
