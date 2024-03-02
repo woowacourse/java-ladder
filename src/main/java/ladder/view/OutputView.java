@@ -2,11 +2,11 @@ package ladder.view;
 
 import java.util.List;
 import java.util.Map;
+import ladder.controller.dto.FloorResponseDto;
+import ladder.controller.dto.LadderResponseDto;
+import ladder.controller.dto.ParticipantsResponseDto;
+import ladder.controller.dto.PrizesResponseDto;
 import ladder.domain.Prize;
-import ladder.domain.dto.FloorResponseDto;
-import ladder.domain.dto.LadderResponseDto;
-import ladder.domain.dto.ParticipantsResponseDto;
-import ladder.domain.dto.PrizesResponseDto;
 import ladder.domain.participant.Name;
 
 public class OutputView {

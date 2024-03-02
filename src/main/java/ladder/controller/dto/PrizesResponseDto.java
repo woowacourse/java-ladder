@@ -1,4 +1,4 @@
-package ladder.domain.dto;
+package ladder.controller.dto;
 
 import java.util.List;
 import ladder.domain.Prize;

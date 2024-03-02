@@ -2,11 +2,11 @@ package ladder.controller;
 
 import java.util.List;
 import java.util.function.Supplier;
+import ladder.controller.dto.LadderResponseDto;
+import ladder.controller.dto.ParticipantsResponseDto;
+import ladder.controller.dto.PrizesResponseDto;
 import ladder.domain.GameResult;
 import ladder.domain.Prizes;
-import ladder.domain.dto.LadderResponseDto;
-import ladder.domain.dto.ParticipantsResponseDto;
-import ladder.domain.dto.PrizesResponseDto;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.RungGenerator;
 import ladder.domain.participant.Name;
