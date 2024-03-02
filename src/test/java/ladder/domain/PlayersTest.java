@@ -10,11 +10,21 @@ import static org.assertj.core.api.Assertions.*;
 
 class PlayersTest {
 
+    @DisplayName("가변 인자로 참여자들을 생성한다.")
+    @Test
+    void createPlayersWithVarargs() {
+        // when
+        Players players = new Players("pobi", "honux", "crong", "jk");
+
+        // then
+        assertThat(players.getRawPlayers()).containsExactly("pobi", "honux", "crong", "jk");
+    }
+
     @DisplayName("참여자가 두 명 미만이면 예외가 발생한다.")
     @Test
     void validateMinSize() {
         // when & then
-        assertThatThrownBy(() -> new Players(List.of("pobi")))
+        assertThatThrownBy(() -> new Players("pobi"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -22,7 +32,7 @@ class PlayersTest {
     @Test
     void validateDuplicate() {
         // when & then
-        assertThatThrownBy(() -> new Players(List.of("pobi", "pobi")))
+        assertThatThrownBy(() -> new Players("pobi", "pobi"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -30,7 +40,7 @@ class PlayersTest {
     @Test
     void createPlayers() {
         // when
-        Players players = new Players("pobi", "honux", "crong", "jk");
+        Players players = new Players(List.of("pobi", "honux", "crong", "jk"));
 
         // then
         assertThat(players.getRawPlayers()).containsExactly("pobi", "honux", "crong", "jk");

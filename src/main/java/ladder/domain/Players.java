@@ -48,16 +48,16 @@ public class Players {
         }
     }
 
-    public int getSize() {
-        return players.size();
-    }
-
     public Index findIndexOfPlayer(Player target) {
         return IntStream.range(0, players.size())
                 .filter(i -> players.get(i).equals(target))
                 .mapToObj(Index::new)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("참여자가 아닙니다."));
+    }
+
+    public int getSize() {
+        return players.size();
     }
 
     List<Player> getPlayers() {

@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,6 +11,16 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class LineTest {
+
+    @DisplayName("가변 인자로 라인을 생성한다.")
+    @Test
+    void createLineWithVarargs() {
+        // when
+        Line line = new Line(4, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT);
+
+        // then
+        assertThat(line.getRawLine()).containsExactly(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT);
+    }
 
     @DisplayName("사다리 너비가 참여자 수와 같지 않으면 예외가 발생한다.")
     @Test
@@ -55,6 +66,19 @@ public class LineTest {
                 () -> assertThatThrownBy(() -> new Line(4, Direction.DOWN, Direction.LEFT, Direction.RIGHT, Direction.LEFT))
                         .isInstanceOf(IllegalArgumentException.class)
         );
+    }
+
+    @DisplayName("라인을 생성한다.")
+    @Test
+    void createLine() {
+        // given
+        List<Direction> rawLine = List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT);
+
+        // when
+        Line line = new Line(4, rawLine);
+
+        // then
+        assertThat(line.getRawLine()).containsExactly(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT);
     }
 
     @DisplayName("방향에 따라 이동한다.")

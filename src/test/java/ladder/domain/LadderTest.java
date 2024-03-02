@@ -11,9 +11,47 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderTest {
 
+    @DisplayName("가변 인자로 사다리를 생성한다.")
+    @Test
+    void createLadderWithVarargs() {
+        // given
+        Line line1 = new Line(4, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT);
+        Line line2 = new Line(4, Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN);
+        Line line3 = new Line(4, Direction.RIGHT, Direction.LEFT, Direction.DOWN, Direction.DOWN);
+        Line line4 = new Line(4, Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN);
+        Line line5 = new Line(4, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT);
+
+        // when
+        Ladder ladder = new Ladder(5, line1, line2, line3, line4, line5);
+
+        // then
+        assertThat(ladder.getRawLadder()).containsExactly(
+                List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT),
+                List.of(Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN),
+                List.of(Direction.RIGHT, Direction.LEFT, Direction.DOWN, Direction.DOWN),
+                List.of(Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN),
+                List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT)
+        );
+    }
+
     @DisplayName("사다리 높이가 최대 사다리 높이와 같지 않으면 예외가 발생한다.")
     @Test
     void validateHeight() {
+        // given
+        Line line1 = new Line(4, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT);
+        Line line2 = new Line(4, Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN);
+        Line line3 = new Line(4, Direction.RIGHT, Direction.LEFT, Direction.DOWN, Direction.DOWN);
+        Line line4 = new Line(4, Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN);
+        Line line5 = new Line(4, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT);
+
+        // when & then
+        assertThatThrownBy(() -> new Ladder(4, line1, line2, line3, line4, line5))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("사다리를 생성한다.")
+    @Test
+    void createLadder() {
         // given
         List<Line> lines = List.of(
                 new Line(4, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT),
@@ -23,9 +61,17 @@ class LadderTest {
                 new Line(4, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT)
         );
 
-        // when & then
-        assertThatThrownBy(() -> new Ladder(4, lines))
-                .isInstanceOf(IllegalArgumentException.class);
+        // when
+        Ladder ladder = new Ladder(5, lines);
+
+        // then
+        assertThat(ladder.getRawLadder()).containsExactly(
+                List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT),
+                List.of(Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN),
+                List.of(Direction.RIGHT, Direction.LEFT, Direction.DOWN, Direction.DOWN),
+                List.of(Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN),
+                List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT)
+        );
     }
 
     @DisplayName("특정 참여자의 사다리를 탄다.")
