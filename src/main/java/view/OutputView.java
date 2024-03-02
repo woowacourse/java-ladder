@@ -22,7 +22,7 @@ public class OutputView {
     private static final String FORMAT_REWARD = "%6s";
     private static final String FORMAT_ALL_PLAYER_RESULT = "%s : %s" + lineSeparator();
 
-    public static void printLadder(PlayerNames playerNames, Ladder ladder, Rewards rewards) {
+    public static void printLadderGame(PlayerNames playerNames, Ladder ladder, Rewards rewards) {
         System.out.println(LADDER_RESULT);
         printPlayers(playerNames.getPlayerNames());
         printLines(playerNames, ladder);

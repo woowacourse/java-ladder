@@ -19,7 +19,7 @@ public class LadderController {
 
         int ladderWidth = playerNames.getPlayerNames().size() - 1;
         Ladder ladder = new Ladder(new RandomLegGenerateStrategy(), ladderHeight, ladderWidth);
-        OutputView.printLadder(playerNames, ladder, rewards);
+        OutputView.printLadderGame(playerNames, ladder, rewards);
 
         LadderGame ladderGame = new LadderGame(ladder, playerNames, rewards);
         showResult(ladderGame);
