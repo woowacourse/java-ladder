@@ -9,4 +9,9 @@ public class GiftsInputView {
         StringSeparator separator = new StringSeparator(SEPARATOR);
         return separator.splitName(rawString);
     }
+
+    public static List<String> getGiftNames(String rawString, int count) {
+        StringSeparator separator = new StringSeparator(SEPARATOR);
+        return separator.splitName(rawString);
+    }
 }

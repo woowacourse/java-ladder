@@ -33,4 +33,21 @@ class GiftsInputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("입력이 구분자로 시작하거나 끝나면 안됩니다.");
     }
+
+    @Test
+    @DisplayName("상품 이름 길이 검증")
+    void validateGiftNameLength() {
+        Assertions.assertThatThrownBy(() -> GiftsInputView.getGiftNames("123456,abc"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("상품 이름은 1글자 이상 5글자 이하여야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {2, 10})
+    @DisplayName("상품 이름 개수 검증")
+    void validateGiftNameLength(int count) {
+        Assertions.assertThatThrownBy(() -> GiftsInputView.getGiftNames("123456,abc,10", count))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("상품 이름이 너무 많거나 너무 적습니다.");
+    }
 }
