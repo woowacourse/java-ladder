@@ -3,6 +3,7 @@ package model.line;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
 import model.ladder.Height;
 
 public class RandomLinesGenerator implements LinesGenerator {
@@ -10,14 +11,9 @@ public class RandomLinesGenerator implements LinesGenerator {
 
     @Override
     public List<Line> generate(final Height height, final int pathCount) {
-        final List<Line> lines = new ArrayList<>();
-        int lineSize = lines.size();
-        while (height.isBigger(lines.size())) { // height.isBigger(lines.size());
-            final Line generatedLine = generateLine(pathCount);
-            lines.add(generatedLine);
-            lineSize++;
-        }
-        return lines;
+        return IntStream.range(0, height.getHeight())
+                .mapToObj(i -> generateLine(pathCount))
+                .toList();
     }
 
     private Line generateLine(final int pathCount) {

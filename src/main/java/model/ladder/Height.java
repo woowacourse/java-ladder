@@ -3,7 +3,7 @@ package model.ladder;
 public class Height {
     private static final int MINIMUM_HEIGHT = 1;
 
-    public final int height;
+    private final int height;
 
     public Height(final int height) {
         validateHeight(height);
@@ -16,7 +16,7 @@ public class Height {
         }
     }
 
-    public boolean isBigger(final int size) {
-        return height > size;
+    public int getHeight() {
+        return height;
     }
 }
