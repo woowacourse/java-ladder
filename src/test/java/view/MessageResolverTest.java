@@ -39,13 +39,13 @@ class MessageResolverTest {
         RowLine line1 = new RowLine(List.of(
                 new Point(new ColumnPosition(0), RIGHT_CONNECTION),
                 new Point(new ColumnPosition(1), LEFT_CONNECTION),
-                new Point(new ColumnPosition(1), DISCONNECTION)
+                new Point(new ColumnPosition(2), DISCONNECTION)
         ));
 
         RowLine line2 = new RowLine(List.of(
                 new Point(new ColumnPosition(0), DISCONNECTION),
                 new Point(new ColumnPosition(1), DISCONNECTION),
-                new Point(new ColumnPosition(1), DISCONNECTION)
+                new Point(new ColumnPosition(2), DISCONNECTION)
         ));
 
         List<RowLine> rowLines = List.of(line1, line2);
