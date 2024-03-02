@@ -15,13 +15,13 @@ public class LadderTest {
     @DisplayName("사다리 객체를 정상적으로 생성한다.")
     @Test
     void createLadder() {
-        assertThat(Ladder.from(5, 4, randomLineGenerator).getLines().size()).isEqualTo(5);
+        assertThat(Ladder.of(5, 4, randomLineGenerator).getLines().size()).isEqualTo(5);
     }
 
     @DisplayName("주어진 너비에 맞게 사다리의 다리의 개수를 생성한다.")
     @Test
     void makeLinesWithWidth() {
-        Ladder ladder = Ladder.from(5, 4, randomLineGenerator);
+        Ladder ladder = Ladder.of(5, 4, randomLineGenerator);
         Line line = ladder.getLines().get(0);
 
         assertThat(line.getFarRightPosition().getIndex()).isEqualTo(4);
@@ -30,7 +30,7 @@ public class LadderTest {
     @DisplayName("주어진 참여자의 사다리 타기 결과를 인덱스로 반환한다.")
     @Test
     void climb() {
-        Ladder ladder = Ladder.from(5, 4, new CustomLineGenerator());
+        Ladder ladder = Ladder.of(5, 4, new CustomLineGenerator());
 
         assertThat(ladder.climb(new Position(1)).getIndex()).isEqualTo(0);
         assertThat(ladder.climb(new Position(2)).getIndex()).isEqualTo(3);
@@ -39,7 +39,7 @@ public class LadderTest {
     @DisplayName("맨 왼쪽에 위치한 참여자의 사다리 타기 결과를 인덱스로 반환한다.")
     @Test
     void climbWithLeftPlayer() {
-        Ladder ladder = Ladder.from(5, 4, new CustomLineGenerator());
+        Ladder ladder = Ladder.of(5, 4, new CustomLineGenerator());
 
         assertThat(ladder.climb(new Position(0)).getIndex()).isEqualTo(1);
     }
@@ -47,7 +47,7 @@ public class LadderTest {
     @DisplayName("맨 오른쪽에 위치한 참여자의 사다리 타기 결과를 인덱스로 반환한다.")
     @Test
     void climbWithRightPlayer() {
-        Ladder ladder = Ladder.from(5, 4, new CustomLineGenerator());
+        Ladder ladder = Ladder.of(5, 4, new CustomLineGenerator());
 
         assertThat(ladder.climb(new Position(3)).getIndex()).isEqualTo(2);
     }

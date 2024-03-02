@@ -13,7 +13,7 @@ class LadderGameResultTest {
     @DisplayName("LadderGameResult를 생성하면 사다리 타기 게임의 결과가 저장된다.")
     @Test
     void name() {
-        Ladder ladder = Ladder.from(5, 3, new CustomLineGenerator());
+        Ladder ladder = Ladder.of(5, 3, new CustomLineGenerator());
         List<Player> players = List.of(new Player("pobi", new Position(0)), new Player("honux",
                 new Position(1)), new Player("crong", new Position(2)), new Player("jk", new Position(3)));
         List<Result> results = List.of(new Result("꽝"), new Result("5000"), new Result("꽝"), new Result("3000"));

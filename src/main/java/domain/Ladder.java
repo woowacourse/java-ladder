@@ -15,7 +15,7 @@ public class Ladder {
         lines = makeLines(new Height(height), new Width(width), lineGenerator);
     }
 
-    public static Ladder from(int height, int width, LineGenerator lineGenerator) {
+    public static Ladder of(int height, int width, LineGenerator lineGenerator) {
         return new Ladder(height, width, lineGenerator);
     }
 
