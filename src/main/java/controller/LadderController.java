@@ -38,12 +38,13 @@ public class LadderController {
     }
 
     private ParticipantsResult play(LadderGame ladderGame) {
+        ParticipantsResult participantsResult = ladderGame.getParticipantsResult();
         String participantName = inputView.inputParticipantName();
         while (!participantName.equals(InputView.ENTIRE_PARTICIPANTS)) {
-            outputView.printParticipantResult(ladderGame.getParticipantsResult().getResult(new Participant(participantName)));
+            outputView.printParticipantResult(participantsResult.getResult(new Participant(participantName)));
             participantName = inputView.inputParticipantName();
         }
-        return ladderGame.getParticipantsResult();
+        return participantsResult;
     }
 
     private <T> T attempt(Supplier<T> inputSupplier) {
