@@ -3,6 +3,7 @@ package view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import util.Delimiter;
 import util.StringUtil;
 
 public class InputView {
@@ -14,7 +15,9 @@ public class InputView {
     }
 
     public static List<String> inputPlayerNames() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        System.out.printf(
+                "참여할 사람 이름을 입력하세요. (이름은 %s(%s)로 구분하세요)%n", Delimiter.COMMA.getKorName(), Delimiter.COMMA.getValue()
+        );
         String playerNames = SCANNER.nextLine();
         System.out.println();
         validate(playerNames);
@@ -22,7 +25,9 @@ public class InputView {
     }
 
     public static List<String> inputPrizeNames() {
-        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        System.out.printf(
+                "실행 결과를 입력하세요. (결과는 %s(%s)로 구분하세요)%n", Delimiter.COMMA.getKorName(), Delimiter.COMMA.getValue()
+        );
         String prizesNames = SCANNER.nextLine();
         System.out.println();
         validate(prizesNames);
