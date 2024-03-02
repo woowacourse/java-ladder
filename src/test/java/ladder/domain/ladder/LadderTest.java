@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import ladder.MockRungGenerator;
 import ladder.domain.Prizes;
-import ladder.domain.dto.FloorResponseDto;
-import ladder.domain.dto.LadderResponseDto;
 import ladder.domain.participant.Participants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -32,8 +30,7 @@ public class LadderTest {
     @Test
     @DisplayName("매개변수 height와 생성되는 사다리와 사다리의 높이는 일치해야 한다.")
     void ladderHeightTest() {
-        LadderResponseDto resultLadders = ladder.getLadderResult();
-        int ladderHeight = resultLadders.ladderResult().size();
+        int ladderHeight = ladder.getFloors().size();
 
         assertThat(ladderHeight).isEqualTo(3);
     }
@@ -42,9 +39,8 @@ public class LadderTest {
     @ValueSource(ints = {0, 1, 2})
     @DisplayName("생성되는 사다리의 가로 공간은 사람 수 보다 1적어야 한다.")
     void ladderHorizontalLengthTest(int heightPosition) {
-        LadderResponseDto resultLadder = ladder.getLadderResult();
-        FloorResponseDto floorResponseDto = resultLadder.ladderResult().get(heightPosition);
-        int maxRungsCount = floorResponseDto.buildStatusList().size();
+        Floor floor = ladder.getFloors().get(heightPosition);
+        int maxRungsCount = floor.getRungs().size();
 
         assertThat(maxRungsCount).isEqualTo(4);
     }

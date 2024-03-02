@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.stream.IntStream;
 import ladder.domain.Prize;
 import ladder.domain.Prizes;
-import ladder.domain.dto.FloorResponseDto;
-import ladder.domain.dto.LadderResponseDto;
 import ladder.domain.participant.Name;
 import ladder.domain.participant.Participants;
 
@@ -72,11 +70,7 @@ public class Ladder {
         return sortedPrizeNames;
     }
 
-    public LadderResponseDto getLadderResult() {
-        List<FloorResponseDto> floorResponseDtos = floors.stream()
-                .map(Floor::getRungs)
-                .toList();
-
-        return new LadderResponseDto(floorResponseDtos);
+    public List<Floor> getFloors() {
+        return floors;
     }
 }
