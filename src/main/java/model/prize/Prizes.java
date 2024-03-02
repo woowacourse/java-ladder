@@ -30,7 +30,7 @@ public class Prizes {
         return prizes.get(index);
     }
 
-    public List<String> getPrizes() {
+    public List<String> getPrizesName() {
         return prizes.stream()
                 .map(prize -> prize.getName())
                 .toList();

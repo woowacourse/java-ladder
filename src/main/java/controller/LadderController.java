@@ -27,17 +27,17 @@ public class LadderController {
 
         Ladder ladder = Ladder.of(height, Width.from(players.size()), new RandomStatusGenerator());
 
-        outputView.printLadderResult(players.getNames(), ladder.getLines(), prizes.getPrizes());
+        outputView.printLadderResult(players.getNames(), ladder.getLines(), prizes.getPrizesName());
         checkPrize(new LadderGame(players, ladder, prizes));
     }
 
     // TODO: 이름을 기반으로 Player를 조회하는 역할이 LadderGame인지, Controller인지 고민하기
     private void checkPrize(LadderGame ladderGame) {
-        String playerToCheck = inputView.readPlayersToCheck();
+        String playerToCheck = inputView.readPlayerToCheck();
         while (!playerToCheck.equals("all")) {
             Prize prize = ladderGame.move(playerToCheck);
             outputView.printPrizeResult(prize.getName());
-            playerToCheck = inputView.readPlayersToCheck();
+            playerToCheck = inputView.readPlayerToCheck();
         }
         outputView.printPrizesResult(ladderGame.moveAll());
     }
