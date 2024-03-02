@@ -21,14 +21,14 @@ public class Ladder {
         List<Row> rows = new ArrayList<>();
 
         for (int buildHeight = 0; height.isBiggerThan(buildHeight); buildHeight++) {
-            rows.add(Row.create2(playerCount, pointGenerator)); //TODO
+            rows.add(Row.create(playerCount, pointGenerator));
         }
         return rows;
     }
 
     public int playLadder(int index) {
         for (Row row : rows) {
-            index = row.playRow2(index);
+            index = row.playRow(index);
         }
         return index;
     }

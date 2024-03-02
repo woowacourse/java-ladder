@@ -17,36 +17,32 @@ public class RowTest {
     @DisplayName("기둥에 발판이 있으면 연결된 다음 기둥에는 발판이 없어야하고, 마지막 다리는 발판이 없다.")
     void makeLineExist() {
         // given
-        final Row row = Row.create2(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c"))), new RightPointGenerator());
+        final Row row = Row.create(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c", "d"))), new RightPointGenerator());
 
         // when & then
-        assertThat(row.getPoints()).containsExactly(RIGHT_MOVE_POINT, LEFT_MOVE_POINT, RIGHT_MOVE_POINT,
-                LEFT_MOVE_POINT);
+        assertThat(row.getPoints()).containsExactly(RIGHT_MOVE_POINT, LEFT_MOVE_POINT, RIGHT_MOVE_POINT, LEFT_MOVE_POINT);
     }
 
     @Test
     @DisplayName("모든 기둥에 발판이 없는 경우를 확인한다.")
     void makeLineEmpty() {
         // given
-        final Row row = Row.create2(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c"))), new RightPointGenerator());
+        final Row row = Row.create(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c", "d"))), new RightPointGenerator());
 
         // when & then
-        assertThat(row.getPoints()).containsExactly(RIGHT_MOVE_POINT, LEFT_MOVE_POINT, RIGHT_MOVE_POINT,
-                LEFT_MOVE_POINT);
+        assertThat(row.getPoints()).containsExactly(RIGHT_MOVE_POINT, LEFT_MOVE_POINT, RIGHT_MOVE_POINT, LEFT_MOVE_POINT);
     }
 
-    // |-----|     |-----|
     @Test
     void playRow() {
-        final Row row = Row.create2(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c"))), new RightPointGenerator());
-        int index = row.playRow2(0);
+        final Row row = Row.create(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c", "d"))), new RightPointGenerator());
+        int index = row.playRow(0);
         assertThat(index).isEqualTo(1);
     }
 
     @Test
     void create() {
-        Row row = Row.create2(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c"))), new RightPointGenerator());
-        assertThat(row.getPoints()).containsExactly(RIGHT_MOVE_POINT, LEFT_MOVE_POINT,
-                RIGHT_MOVE_POINT, LEFT_MOVE_POINT);
+        Row row = Row.create(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c", "d"))), new RightPointGenerator());
+        assertThat(row.getPoints()).containsExactly(RIGHT_MOVE_POINT, LEFT_MOVE_POINT, RIGHT_MOVE_POINT, LEFT_MOVE_POINT);
     }
 }

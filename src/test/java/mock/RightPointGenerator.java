@@ -8,4 +8,14 @@ public class RightPointGenerator implements PointGenerator {
     public Point generate() {
         return new Point(false, true);
     }
+
+    @Override
+    public Point generateExceptLeft() {
+        return new Point(false, true);
+    }
+
+    @Override
+    public Point generateExceptRight() {
+        return new Point(true, false);
+    }
 }

@@ -15,32 +15,35 @@ public class Row {
         this.points = points;
     }
 
-    public static Row create2(final PlayerCount playerCount, final PointGenerator pointGenerator) {
+    public static Row create(final PlayerCount playerCount, final PointGenerator pointGenerator) {
         return new Row(createPoints(playerCount, pointGenerator));
     }
 
     private static List<Point> createPoints(final PlayerCount playerCount, final PointGenerator pointGenerator) {
         List<Point> points = new ArrayList<>();
 
-        for (int buildCount = 0; playerCount.isBiggerOrThan(buildCount); buildCount++) {
+        for (int buildCount = 0; playerCount.isBiggerThan(buildCount); buildCount++) {
             points.add(createPoint(points, pointGenerator, playerCount));
         }
         return points;
     }
 
     private static Point createPoint(final List<Point> points, final PointGenerator pointGenerator,
-                                     final PlayerCount playerCount) {
-        if (hasBeforePoint(points)) { // 여기 하던중
-            return Point.empty();
+                                     final PlayerCount playerCount) {   // todo: 얘가 만드는 게 맞을까? 아니면 상황을 넘겨주고 point가?
+        if (isFirstPoint(points)) {
+            return pointGenerator.generateExceptLeft();
+        }
+        if (hasBeforePoint(points)) {
+            return Point.left();
         }
         if (isLastPoint(points, playerCount)) {
-            return Point.empty();
+            return pointGenerator.generateExceptRight();
         }
         return pointGenerator.generate();
     }
 
-    private static boolean isLastPoint(final List<Point> points, final PlayerCount playerCount) {
-        return playerCount.isSameWith(points.size() + 1);
+    private static boolean isFirstPoint(final List<Point> points) {
+        return points.isEmpty();
     }
 
     private static boolean hasBeforePoint(final List<Point> points) {
@@ -51,17 +54,11 @@ public class Row {
         return points.get(index - 1).isRightExist();
     }
 
-//    public int playRow(int index) {
-//        if (steps.get(index).isExist()) {
-//            return index + 1;
-//        }
-//        if (index > 0 && steps.get(index - 1).isExist()) {
-//            return index - 1;
-//        }
-//        return index;
-//    }
+    private static boolean isLastPoint(final List<Point> points, final PlayerCount playerCount) {
+        return playerCount.isSameWith(points.size() + 1);
+    }
 
-    public int playRow2(final int index) {
+    public int playRow(final int index) {
         Point targetPoint = points.get(index);
         return targetPoint.move(index);
     }

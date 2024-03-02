@@ -50,7 +50,7 @@ public class OutputFormatter {
     }
 
     private String getPoint(final Point point) {
-        if (point.isRight()) {  // TODO
+        if (point.isRight()) {
             return BAR + "-----";
         }
         return BAR + "     ";

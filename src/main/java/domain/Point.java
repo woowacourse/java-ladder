@@ -16,6 +16,10 @@ public class Point {
         return new Point(false, false);
     }
 
+    public static Point left() {
+        return new Point(true, false);
+    }
+
     private void validate(final boolean left, final boolean right) {
         if (left && right) {
             throw new IllegalArgumentException("양쪽에 모두 다리가 있을 수 없습니다.");
