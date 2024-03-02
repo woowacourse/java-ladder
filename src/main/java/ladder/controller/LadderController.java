@@ -48,13 +48,9 @@ public class LadderController {
     }
 
     private void showGame() {
-        List<LineDto> lineDtos = ladderGame.getLines().stream()
-                .map(LineDto::from)
-                .toList();
-
         OutputView.printGame(
                 ladderGame.getPlayerNames(),
-                lineDtos,
+                LineDto.asList(ladderGame.getLadder()),
                 ladderGame.getRewards()
         );
     }
