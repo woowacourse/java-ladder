@@ -13,28 +13,14 @@ public class Ladder {
         }
     }
 
-    public int climb(int playerColumn) {
-        int nowColumn = playerColumn;
+    public Column climb(Column playerColumn) {
+        Column column = new Column(playerColumn.getValue());
 
         for (Line line : lines) {
-            nowColumn = calculateNowColumn(nowColumn, line);
+            column = column.change(line.move(column));
         }
 
-        return nowColumn;
-    }
-
-    private int calculateNowColumn(int nowColumn, Line line) {
-        Direction direction = line.move(nowColumn);
-
-        if (direction.isLeft()) {
-            nowColumn--;
-        }
-
-        if (direction.isRight()) {
-            nowColumn++;
-        }
-
-        return nowColumn;
+        return column;
     }
 
     public List<Line> getLines() {

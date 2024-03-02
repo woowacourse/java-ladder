@@ -35,10 +35,10 @@ public class Game {
     }
 
     public GameResult showResult(String playerName) {
-        int playerColumn = players.findPlayerColumn(playerName);
-        int resultColumn = ladder.climb(playerColumn);
+        Column playerColumn = players.findPlayerColumn(playerName);
+        Column resultColumn = ladder.climb(playerColumn);
 
-        return gameResults.get(resultColumn);
+        return gameResults.get(resultColumn.getValue());
     }
 
     public List<String> getPlayerNames() {

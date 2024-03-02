@@ -51,7 +51,7 @@ class LineTest {
         );
         Line line = createLine(sticks, 4);
 
-        Direction result = line.move(3);
+        Direction result = line.move(new Column(3));
 
         assertThat(result).isEqualTo(Direction.LEFT);
     }
@@ -66,7 +66,7 @@ class LineTest {
         );
         Line line = createLine(sticks, 4);
 
-        Direction result = line.move(0);
+        Direction result = line.move(new Column(0));
 
         assertThat(result).isEqualTo(Direction.RIGHT);
     }
@@ -80,12 +80,12 @@ class LineTest {
         );
         Line line = createLine(sticks, 3);
 
-        Direction result = line.move(0);
+        Direction result = line.move(new Column(0));
 
         assertThat(result).isEqualTo(Direction.STAY);
     }
 
-    @DisplayName("0이상 부터 막대의 총 갯수 사이의 컬럼만을 이용해서 이동 여부를 판단할 수 있다.")
+    @DisplayName("막대의 총 갯수 이하의 컬럼만을 이용해서 이동 여부를 판단할 수 있다.")
     @Test
     void checkColumnRange() {
         List<Stick> sticks = List.of(
@@ -94,9 +94,7 @@ class LineTest {
         );
         Line line = createLine(sticks, 3);
 
-        assertThatThrownBy(() -> line.move(-1))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> line.move(sticks.size() + 1))
+        assertThatThrownBy(() -> line.move(new Column(sticks.size() + 1)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

@@ -39,10 +39,10 @@ class LadderTest {
         // 0 1 2 3
         Ladder ladder = createLadder();
 
-        assertThat(ladder.climb(0)).isEqualTo(0);
-        assertThat(ladder.climb(1)).isEqualTo(3);
-        assertThat(ladder.climb(2)).isEqualTo(1);
-        assertThat(ladder.climb(3)).isEqualTo(2);
+        assertThat(ladder.climb(new Column(0)).getValue()).isEqualTo(0);
+        assertThat(ladder.climb(new Column(1)).getValue()).isEqualTo(3);
+        assertThat(ladder.climb(new Column(2)).getValue()).isEqualTo(1);
+        assertThat(ladder.climb(new Column(3)).getValue()).isEqualTo(2);
     }
 
     private Ladder createLadder() {

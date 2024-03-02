@@ -44,9 +44,9 @@ class PlayersTest {
         List<String> names = List.of("산초", "아톰", "망쵸");
         Players players = new Players(names);
 
-        int column = players.findPlayerColumn("아톰");
+        Column column = players.findPlayerColumn("아톰");
 
-        assertThat(column).isEqualTo(1);
+        assertThat(column.getValue()).isEqualTo(1);
     }
 
     @DisplayName("주어진 이름의 사용자가 존재하지 않으면 사용자의 위치를 알아낼 수 없다.")

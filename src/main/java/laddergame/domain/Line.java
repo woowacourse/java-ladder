@@ -39,7 +39,7 @@ public class Line {
         return lastStick == stick;
     }
 
-    public Direction move(int column) {
+    public Direction move(Column column) {
         validateColumnSize(column);
 
         Direction moveLeftResult = moveLeft(column);
@@ -48,15 +48,15 @@ public class Line {
         return moveLeftResult.getHigherPriority(moveRightResult);
     }
 
-    private void validateColumnSize(int column) {
+    private void validateColumnSize(Column column) {
         int columnThreshold = sticks.size();
 
-        if (column < 0 || column > columnThreshold) {
+        if (column.isGreaterThan(columnThreshold)) {
             throw new IllegalArgumentException("주어진 컬럼이 범위를 벗어납니다.");
         }
     }
 
-    private Direction moveLeft(int column) {
+    private Direction moveLeft(Column column) {
         Stick leftStick = findLeftStick(column);
         if (leftStick.isFilled()) {
             return Direction.LEFT;
@@ -65,15 +65,15 @@ public class Line {
         return Direction.STAY;
     }
 
-    private Stick findLeftStick(int column) {
-        if (column - 1 < 0) {
+    private Stick findLeftStick(Column column) {
+        if (column.isZero()) {
             return Stick.NOT_FILLED;
         }
 
-        return sticks.get(column - 1);
+        return sticks.get(column.getValue() - 1);
     }
 
-    private Direction moveRight(int column) {
+    private Direction moveRight(Column column) {
         Stick rightStick = findRightStick(column);
         if (rightStick.isFilled()) {
             return Direction.RIGHT;
@@ -82,12 +82,12 @@ public class Line {
         return Direction.STAY;
     }
 
-    private Stick findRightStick(int column) {
-        if (column >= sticks.size()) {
+    private Stick findRightStick(Column column) {
+        if (column.isGreaterThan(sticks.size() - 1)) {
             return Stick.NOT_FILLED;
         }
 
-        return sticks.get(column);
+        return sticks.get(column.getValue());
     }
 
     public List<Stick> getSticks() {

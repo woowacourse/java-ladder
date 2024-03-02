@@ -38,13 +38,13 @@ public class Players {
                 .toList();
     }
 
-    public int findPlayerColumn(String name) {
+    public Column findPlayerColumn(String name) {
         Player foundPlayer = players.stream()
                 .filter(player -> player.isSameName(name))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("존재하지 않는 사용자입니다."));
 
-        return players.indexOf(foundPlayer);
+        return new Column(players.indexOf(foundPlayer));
     }
 
     public int size() {
