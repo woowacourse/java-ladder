@@ -33,16 +33,15 @@ public class RowTest {
         assertThat(row.getPoints()).containsExactly(RIGHT_MOVE_POINT, LEFT_MOVE_POINT, RIGHT_MOVE_POINT, LEFT_MOVE_POINT);
     }
 
+    /*
+    a     b     c     d
+    |-----|     |-----|
+     */
     @Test
+    @DisplayName("발판이 있으면 가로 위치가 1 증가한다.")
     void playRow() {
         final Row row = Row.create(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c", "d"))), new RightPointGenerator());
         int index = row.playRow(0);
         assertThat(index).isEqualTo(1);
-    }
-
-    @Test
-    void create() {
-        Row row = Row.create(PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c", "d"))), new RightPointGenerator());
-        assertThat(row.getPoints()).containsExactly(RIGHT_MOVE_POINT, LEFT_MOVE_POINT, RIGHT_MOVE_POINT, LEFT_MOVE_POINT);
     }
 }

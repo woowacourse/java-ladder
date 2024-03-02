@@ -12,10 +12,6 @@ public class Point {
         this.right = right;
     }
 
-    public static Point empty() {
-        return new Point(false, false);
-    }
-
     public static Point left() {
         return new Point(true, false);
     }
@@ -40,11 +36,7 @@ public class Point {
         return index;
     }
 
-    public boolean isRightExist() {
-        return right;
-    }
-
-    public boolean isRight() { // todo
+    public boolean isRight() {
         return right;
     }
 

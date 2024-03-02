@@ -29,15 +29,15 @@ public class Row {
     }
 
     private static Point createPoint(final List<Point> points, final PointGenerator pointGenerator,
-                                     final PlayerCount playerCount) {   // todo: 얘가 만드는 게 맞을까? 아니면 상황을 넘겨주고 point가?
+                                     final PlayerCount playerCount) {   // TODO: 얘가 만드는 게 맞을까? 아니면 상황을 넘겨주고 point가?
         if (isFirstPoint(points)) {
-            return pointGenerator.generateExceptLeft();
+            return pointGenerator.generateFirstPoint();
         }
         if (hasBeforePoint(points)) {
             return Point.left();
         }
         if (isLastPoint(points, playerCount)) {
-            return pointGenerator.generateExceptRight();
+            return pointGenerator.generateLastPoint();
         }
         return pointGenerator.generate();
     }
@@ -51,7 +51,7 @@ public class Row {
         if (index == 0) {
             return false;
         }
-        return points.get(index - 1).isRightExist();
+        return points.get(index - 1).isRight();
     }
 
     private static boolean isLastPoint(final List<Point> points, final PlayerCount playerCount) {

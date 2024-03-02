@@ -10,12 +10,12 @@ public class RightPointGenerator implements PointGenerator {
     }
 
     @Override
-    public Point generateExceptLeft() {
+    public Point generateFirstPoint() {
         return new Point(false, true);
     }
 
     @Override
-    public Point generateExceptRight() {
+    public Point generateLastPoint() {
         return new Point(true, false);
     }
 }

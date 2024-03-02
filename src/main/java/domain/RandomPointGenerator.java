@@ -6,23 +6,23 @@ public class RandomPointGenerator implements PointGenerator {
     private final Random random = new Random();
 
     @Override
-    public Point generate() {   // todo
-        boolean left = true;
-        boolean right = true;
-        while (left && right) {
-            left = random.nextBoolean();
-            right = random.nextBoolean();
+    public Point generate() {
+        boolean left = random.nextBoolean();
+        boolean right = random.nextBoolean();
+
+        if (left) {
+            right = false;
         }
         return Point.of(left, right);
     }
 
     @Override
-    public Point generateExceptLeft() {
+    public Point generateFirstPoint() {
         return Point.of(false, random.nextBoolean());
     }
 
     @Override
-    public Point generateExceptRight() {
+    public Point generateLastPoint() {
         return Point.of(random.nextBoolean(), false);
     }
 }
