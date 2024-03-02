@@ -32,9 +32,10 @@ public class Ladder {
 
     public Map<Participant, Prize> climbDownAll(Participants participants, Prizes prizes) {
         Map<Participant, Prize> gameResults = new HashMap<>();
-
         for (int i = 0; i < participants.size(); i++) {
-            gameResults.put(participants.findParticipantByIndex(i), prizes.getPrizeByIndex(climbDownEach(i)));
+            Participant participant = participants.findParticipantByIndex(i);
+            Prize assignedPrize = prizes.getPrizeByIndex(climbDownEach(i));
+            gameResults.put(participant, assignedPrize);
         }
         return gameResults;
     }
