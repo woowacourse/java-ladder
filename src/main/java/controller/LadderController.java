@@ -28,9 +28,9 @@ public class LadderController {
         Participants participants = repeatUntilSuccess(this::prepareParticipants);
         Prizes prizes = repeatUntilSuccess(this::preparePrizes, participants);
         Ladder ladder = repeatUntilSuccess(this::prepareLadder, participants);
-        GameResults results = prepareGameResults(participants, prizes, ladder);
-
         printLadder(participants, ladder, prizes);
+
+        GameResults results = ladder.climbDownAll(participants, prizes);
         printResult(participants, results);
     }
 
@@ -55,10 +55,6 @@ public class LadderController {
         outputView.printParticipantsName(participants.convertToParticipantsNames());
         outputView.printLadder(ladder.convertToLayerSteps());
         outputView.printPrizeNames(prizes.convertToPrizesName());
-    }
-
-    private GameResults prepareGameResults(Participants participants, Prizes prizes, Ladder ladder) {
-        return new GameResults(ladder.climbDownAll(participants, prizes));
     }
 
     private void printResult(Participants participants, GameResults results) {

@@ -28,4 +28,8 @@ public class GameResults {
         }
         return gameResultsDto;
     }
+
+    public Map<Participant, Prize> getGameResults() {
+        return gameResults;
+    }
 }

@@ -10,6 +10,7 @@ import model.participant.Participant;
 import model.participant.Participants;
 import model.prize.Prize;
 import model.prize.Prizes;
+import model.result.GameResults;
 
 public class Ladder {
     private final List<Layer> layers;
@@ -31,14 +32,14 @@ public class Ladder {
         return layers;
     }
 
-    public Map<Participant, Prize> climbDownAll(Participants participants, Prizes prizes) {
-        Map<Participant, Prize> gameResults = new HashMap<>();
+    public GameResults climbDownAll(Participants participants, Prizes prizes) {
+        Map<Participant, Prize> results = new HashMap<>();
         for (int i = 0; i < participants.size(); i++) {
             Participant participant = participants.findParticipantByIndex(i);
             Prize assignedPrize = prizes.getPrizeByIndex(climbDownEach(i));
-            gameResults.put(participant, assignedPrize);
+            results.put(participant, assignedPrize);
         }
-        return gameResults;
+        return new GameResults(results);
     }
 
     private int climbDownEach(int startIndex) {

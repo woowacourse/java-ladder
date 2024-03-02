@@ -3,14 +3,13 @@ package model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import java.util.Map;
 import model.ladder.Ladder;
 import model.ladder.Layer;
 import model.ladder.Step;
-import model.participant.Participant;
 import model.participant.Participants;
 import model.prize.Prize;
 import model.prize.Prizes;
+import model.result.GameResults;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -41,9 +40,9 @@ public class LadderTest {
     void 모든_당첨_결과는_각_참여자에게_중복없이_한개씩_배정된다() {
         Participants participants = new Participants(List.of("릴리", "엘라", "애쉬", "다온"));
         Prizes prizes = new Prizes(List.of("당첨1", "당첨2", "당첨3", "당첨4"), 4);
-        Map<Participant, Prize> results = ladder.climbDownAll(participants, prizes);
+        GameResults results = ladder.climbDownAll(participants, prizes);
 
-        assertThat(results.values().stream().map(Prize::getPrizeName))
+        assertThat(results.getGameResults().values().stream().map(Prize::getPrizeName))
                 .containsOnly("당첨1", "당첨2", "당첨3", "당첨4");
     }
 }
