@@ -35,7 +35,7 @@ public class Participants {
         return names;
     }
 
-    public int getParticipantsCount() {
+    public int getCount() {
         return names.size();
     }
 }
