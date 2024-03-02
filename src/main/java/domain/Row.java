@@ -39,10 +39,10 @@ public class Row {
     }
 
     private Direction getDirection(final int size) {
-        if (isPreviousDirectionRight() && size() < size - 1) {
+        if (isPreviousDirectionRight()) {
             return Direction.LEFT;
         }
-        if (strategy.creatable()) {
+        if (strategy.creatable() && size() < size - 1) {
             return Direction.RIGHT;
         }
         return Direction.INPLACE;
