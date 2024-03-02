@@ -26,14 +26,14 @@ public class Floor {
         }
     }
 
-    public Direction getBridgePosition(final int playerPosition) {
+    public int getBridgePosition(final int playerPosition) {
         if (isBridgeOnLeft(playerPosition)) {
-            return Direction.LEFT;
+            return Direction.LEFT.getValue();
         }
         if (isBridgeOnRight(playerPosition)) {
-            return Direction.RIGHT;
+            return Direction.RIGHT.getValue();
         }
-        return Direction.UNDER;
+        return Direction.UNDER.getValue();
     }
 
     private boolean isBridgeOnLeft(final int playerPosition) {
