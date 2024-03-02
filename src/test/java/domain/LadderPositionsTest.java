@@ -45,6 +45,16 @@ class LadderPositionsTest {
     }
 
     @Test
+    @DisplayName("위치 값이 적절하면 위치 값 개수 반환")
+    void testCount() {
+        LadderPositions ladderPositions = new LadderPositions(5);
+        int actual = ladderPositions.count();
+        int expected = 5;
+
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
     @DisplayName("사다리 가로 값으로 위치를 반환")
     void testCalculatePosition() {
         LadderPositions ladderPositions = new LadderPositions(3);

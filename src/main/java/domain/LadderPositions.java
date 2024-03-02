@@ -3,7 +3,6 @@ package domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class LadderPositions {
@@ -38,23 +37,6 @@ public class LadderPositions {
         List<Bridge> bridges = row.getBridges();
         List<Integer> calculatedPosition = swapPosition(bridges);
         return new LadderPositions(Collections.unmodifiableList(calculatedPosition));
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        LadderPositions that = (LadderPositions) o;
-        return Objects.equals(positions, that.positions);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(positions);
     }
 
     private List<Integer> swapPosition(List<Bridge> bridges) {

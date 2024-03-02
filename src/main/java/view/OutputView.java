@@ -1,14 +1,14 @@
 package view;
 
-import domain.LadderGame;
+import domain.LadderGameResult;
 
 public class OutputView {
     private final LadderGamePrinter ladderGamePrinter;
     private final LadderGameResultPrinter ladderGameResultPrinter;
 
-    public OutputView(LadderGame ladderGame) {
-        ladderGamePrinter = new LadderGamePrinter(ladderGame);
-        ladderGameResultPrinter = new LadderGameResultPrinter(ladderGame.calculateLadderGameResult());
+    public OutputView(LadderGameResult ladderGameResult) {
+        ladderGamePrinter = new LadderGamePrinter(ladderGameResult);
+        ladderGameResultPrinter = new LadderGameResultPrinter(ladderGameResult);
     }
 
     public void printLadderResult() {

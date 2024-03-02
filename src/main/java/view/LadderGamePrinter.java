@@ -2,7 +2,7 @@ package view;
 
 import domain.Bridge;
 import domain.Ladder;
-import domain.LadderGame;
+import domain.LadderGameResult;
 import domain.LadderResult;
 import domain.LadderResults;
 import domain.Name;
@@ -17,16 +17,16 @@ public class LadderGamePrinter {
     private static final String PADDING_STYLE = "%5s";
     private static final String EXIST_BRIDGE = "-----";
     private static final String NONE_BRIDGE = "     ";
-    private final LadderGame ladderGame;
+    private final LadderGameResult ladderGameResult;
 
-    LadderGamePrinter(LadderGame ladderGame) {
-        this.ladderGame = ladderGame;
+    LadderGamePrinter(LadderGameResult ladderGameResult) {
+        this.ladderGameResult = ladderGameResult;
     }
 
     public void print() {
-        Names names = ladderGame.getNames();
-        Ladder ladder = ladderGame.getLadder();
-        LadderResults ladderResults = ladderGame.getLadderResults();
+        Names names = ladderGameResult.getNames();
+        Ladder ladder = ladderGameResult.getLadder();
+        LadderResults ladderResults = ladderGameResult.getLadderResults();
 
         String namesString = makeNamesString(names);
         String ladderString = makeLadderString(ladder);

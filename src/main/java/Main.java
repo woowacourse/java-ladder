@@ -1,5 +1,6 @@
 import domain.BridgeRandomGenerator;
 import domain.LadderGame;
+import domain.LadderGameResult;
 import domain.RowGenerator;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,7 +16,8 @@ public class Main {
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
             var inputView = new InputView(bufferedReader);
             LadderGame ladderGame = RetryHelper.retryWithReturn(() -> createLadderGame(inputView));
-            var outputView = new OutputView(ladderGame);
+            LadderGameResult ladderGameResult = ladderGame.play();
+            var outputView = new OutputView(ladderGameResult);
             outputView.printLadderResult();
             RetryHelper.retryWithoutReturn(() -> searchLadderResultFromName(inputView, outputView));
         }

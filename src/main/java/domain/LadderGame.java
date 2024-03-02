@@ -14,20 +14,9 @@ public class LadderGame {
         Width width = new Width(names.count());
         ladder = new Ladder(height, width, generator);
     }
-
-    public Names getNames() {
-        return names;
-    }
-
-    public Ladder getLadder() {
-        return ladder;
-    }
-
-    public LadderResults getLadderResults() {
-        return ladderResults;
-    }
-
-    public LadderGameResult calculateLadderGameResult() {
-        return new LadderGameResult(names, ladderResults, ladder);
+    
+    public LadderGameResult play() {
+        LadderPositions ladderPositions = ladder.climbDown();
+        return new LadderGameResult(names, ladderResults, ladder, ladderPositions);
     }
 }

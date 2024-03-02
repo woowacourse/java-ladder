@@ -1,18 +1,34 @@
 package domain;
 
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderGameResult {
     private final Map<Name, LadderResult> ladderGameResult;
+    private final Names names;
+    private final LadderResults ladderResults;
+    private final Ladder ladder;
 
-    public LadderGameResult(Names names, LadderResults ladderResults, Ladder ladder) {
-        validateNamesLadderResultLength(names, ladderResults);
-        ladderGameResult = calculateLadderGameResult(names, ladderResults, ladder);
+    public LadderGameResult(Names names, LadderResults ladderResults, Ladder ladder, LadderPositions ladderPositions) {
+        validateNamesLadderResultLength(names, ladderResults, ladderPositions);
+        this.names = names;
+        this.ladderResults = ladderResults;
+        this.ladder = ladder;
+        ladderGameResult = mapNamesLadderResults(names, ladderResults, ladderPositions);
+    }
+
+    public Ladder getLadder() {
+        return ladder;
+    }
+
+    public Names getNames() {
+        return names;
+    }
+
+    public LadderResults getLadderResults() {
+        return ladderResults;
     }
 
     public Map<Name, LadderResult> getLadderGameResult() {
@@ -27,49 +43,25 @@ public class LadderGameResult {
         return ladderResult;
     }
 
-    private void validateNamesLadderResultLength(Names names, LadderResults ladderResults) {
+    private Map<Name, LadderResult> mapNamesLadderResults(Names names, LadderResults ladderResults,
+                                                          LadderPositions ladderPositions) {
+        return IntStream.range(0, names.getNames().size())
+                .boxed()
+                .collect(Collectors.toMap(index -> names.getNames().get(ladderPositions.getPosition(index)),
+                        index -> ladderResults.getLadderResults().get(index)));
+
+    }
+
+    private void validateNamesLadderResultLength(Names names, LadderResults ladderResults,
+                                                 LadderPositions ladderPositions) {
         if (names.count() != ladderResults.count()) {
+            throw new LadderGameException(ExceptionType.NOT_ALLOW_DIFFERENT_NAMES_LADDER_RESULTS_LENGTH);
+        }
+
+        if (names.count() != ladderPositions.count()) {
             throw new LadderGameException(ExceptionType.NOT_ALLOW_DIFFERENT_NAMES_LADDER_RESULTS_LENGTH);
         }
     }
 
-    private Map<Name, LadderResult> calculateLadderGameResult(Names names, LadderResults ladderResults, Ladder ladder) {
-        Map<Integer, Integer> nameIndexMap = new HashMap<>();
-        initNameIndexMap(names, nameIndexMap);
-        calculateLadder(ladder, nameIndexMap);
-        return setLadderGameResult(names, ladderResults, nameIndexMap);
-    }
 
-    private void initNameIndexMap(Names names, Map<Integer, Integer> nameIndexMap) {
-        IntStream.range(0, names.count())
-                .forEach(index -> nameIndexMap.put(index, index));
-    }
-
-    private void calculateLadder(Ladder ladder, Map<Integer, Integer> nameIndexMap) {
-        ladder.getRows().stream()
-                .map(Row::getBridges)
-                .forEach(bridges -> swapNameIndexMap(nameIndexMap, bridges));
-    }
-
-    private void swapNameIndexMap(Map<Integer, Integer> nameIndexMap, List<Bridge> bridges) {
-        IntStream.range(0, bridges.size())
-                .forEach(index -> swapIfBridgeExist(nameIndexMap, index, bridges));
-    }
-
-    private void swapIfBridgeExist(Map<Integer, Integer> nameIndexMap, int index, List<Bridge> bridges) {
-        if (bridges.get(index) == Bridge.EXIST) {
-            var right = nameIndexMap.get(index + 1);
-            var left = nameIndexMap.get(index);
-            nameIndexMap.put(index + 1, left);
-            nameIndexMap.put(index, right);
-        }
-    }
-
-    private Map<Name, LadderResult> setLadderGameResult(Names names, LadderResults ladderResults,
-                                                        Map<Integer, Integer> nameIndexMap) {
-        return IntStream.range(0, names.getNames().size())
-                .boxed()
-                .collect(Collectors.toMap(index -> names.getNames().get(nameIndexMap.get(index)),
-                        index -> ladderResults.getLadderResults().get(index)));
-    }
 }
