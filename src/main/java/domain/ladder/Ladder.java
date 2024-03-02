@@ -27,7 +27,7 @@ public class Ladder {
         lines.forEach(bridge -> bridge.moveAllMovableIndex(indexes));
         return IntStream.range(0, getLegSize())
                 .boxed()
-                .collect(Collectors.toMap(indexes::get,Function.identity()));
+                .collect(Collectors.toMap(indexes::get, Function.identity()));
     }
 
     public int getMatchedIndex(int startIndex) {

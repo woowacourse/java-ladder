@@ -40,6 +40,7 @@ public class NameTest {
         assertThatThrownBy(() -> new Name(wrongName))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @DisplayName("대소문자를 구분하지 않고 all과 동일한 이름을 사용하면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"all", "All", "ALL"})

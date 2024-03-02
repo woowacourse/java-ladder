@@ -32,7 +32,6 @@ public class Line {
         IntStream.range(0, bridges.size())
                 .filter(index -> bridges.get(index) == Bridge.BUILT)
                 .forEach((bridgeIndex) -> Collections.swap(indexes, bridgeIndex, bridgeIndex + 1));
-
     }
 
     public int size() {

@@ -2,8 +2,8 @@ package view;
 
 import domain.MatchingResult;
 import domain.ladder.Bridge;
-import domain.ladder.Line;
 import domain.ladder.Ladder;
+import domain.ladder.Line;
 import domain.player.Name;
 import domain.player.Names;
 import domain.result.Prizes;
@@ -39,7 +39,7 @@ public class OutputView {
         }
         return " ".repeat(5);
     }
-  
+
     public static void printResults(Prizes result) {
         for (String name : result.getResults()) {
             System.out.printf("%5s ", name);
