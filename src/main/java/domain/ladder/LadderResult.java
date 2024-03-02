@@ -14,7 +14,7 @@ public class LadderResult {
         this.results = new LinkedHashMap<>(results);
     }
 
-    public String findPrizeByName(String playerName) {
+    public String findPrizeByPlayerName(String playerName) {
         Player player = new Player(playerName);
         if (!results.containsKey(player)) {
             throw new IllegalArgumentException(

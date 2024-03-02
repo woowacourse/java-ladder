@@ -19,7 +19,7 @@ class LadderResultTest {
         LadderResult ladderResult = new LadderResult(results);
 
         // when & then
-        assertThatThrownBy(() -> ladderResult.findPrizeByName("토미"))
+        assertThatThrownBy(() -> ladderResult.findPrizeByPlayerName("토미"))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
@@ -33,7 +33,7 @@ class LadderResultTest {
         LadderResult ladderResult = new LadderResult(results);
 
         // when
-        String prizeName = ladderResult.findPrizeByName("프린");
+        String prizeName = ladderResult.findPrizeByPlayerName("프린");
 
         // then
         assertThat(prizeName).isEqualTo("100");

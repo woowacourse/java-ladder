@@ -12,7 +12,7 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderGame {
-    private static final String GAME_OVER_COMMAND = "all";
+    private static final String GAME_OVER_NAME = "all";
 
     private final BooleanGenerator booleanGenerator;
 
@@ -53,10 +53,10 @@ public class LadderGame {
     }
 
     private void searchPlayerResult(LadderResult result) {
-        String name = InputView.inputPlayerNameToFindResult();
-        while (!GAME_OVER_COMMAND.equals(name)) {
-            OutputView.printSinglePlayerResult(result.findPrizeByName(name));
-            name = InputView.inputPlayerNameToFindResult();
+        String playerName = InputView.inputPlayerNameToFindResult();
+        while (!GAME_OVER_NAME.equals(playerName)) {
+            OutputView.printSinglePlayerResult(result.findPrizeByPlayerName(playerName));
+            playerName = InputView.inputPlayerNameToFindResult();
         }
         OutputView.printAllPlayerResult(result.getAllResults());
     }
