@@ -26,10 +26,6 @@ public class Line {
         return bridges.get(getBridgeCount() - 1) == Bridge.BLANK;
     }
 
-    public Bridge getBridge(int index) {
-        return bridges.get(index);
-    }
-
     public int getBridgeCount() {
         return bridges.size();
     }
