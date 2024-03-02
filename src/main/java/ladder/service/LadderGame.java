@@ -35,7 +35,6 @@ public class LadderGame {
     }
 
     private static boolean playerAndLadderDoesNotMatch(Players players, Ladder ladder) {
-        // TODO: 게터 깊이 줄이기
         return players.getSize() != ladder.getLadder().get(0).size();
     }
 
