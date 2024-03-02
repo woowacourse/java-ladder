@@ -10,8 +10,8 @@ public class RandomLineGenerator implements LineGenerator {
     private final Random random = new Random();
 
     @Override
-    public Line generateLine(int numberOfDirection) {
-        List<Direction> directionInfo = selectDirections(numberOfDirection);
+    public Line generateLine(int numberOfDirections) {
+        List<Direction> directionInfo = selectDirections(numberOfDirections);
         return new Line(directionInfo);
     }
 
@@ -47,7 +47,9 @@ public class RandomLineGenerator implements LineGenerator {
         if (priorDirection == Direction.RIGHT) {
             directions.add(Direction.LEFT);
         }
-        directions.add(selectRandomRightOrNeural());
+        if (priorDirection != Direction.RIGHT) {
+            directions.add(selectRandomRightOrNeural());
+        }
     }
 
     private void addLastDirection(List<Direction> directions, int currentIndex) {
@@ -55,7 +57,9 @@ public class RandomLineGenerator implements LineGenerator {
         if (priorDirection == Direction.RIGHT) {
             directions.add(Direction.LEFT);
         }
-        directions.add(Direction.NEUTRAL);
+        if (priorDirection != Direction.RIGHT) {
+            directions.add(Direction.NEUTRAL);
+        }
     }
 
     private Direction selectRandomRightOrNeural() {
