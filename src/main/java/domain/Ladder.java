@@ -30,7 +30,15 @@ public class Ladder {
         return information;
     }
 
-    public int getDestinationIndex(int start) {
+    public Map<Player, Prize> getResult(Players players, Prizes prizes){
+        Map<Player, Prize> result = new LinkedHashMap<>();
+        for (int i = 0; i < players.getSize(); i++) {
+            result.put(players.get(i), prizes.get(getDestinationIndex(i)));
+        }
+        return result;
+    }
+
+    private int getDestinationIndex(int start) {
         int position = start;
         for (Line line : lines) {
             position = line.getNextPosition(position);

@@ -11,16 +11,8 @@ public class PrizeResults {
 
     private final Map<Player, Prize> results;
 
-    private PrizeResults(Map<Player, Prize> results) {
+    public PrizeResults(Map<Player, Prize> results) {
         this.results = results;
-    }
-
-    public static PrizeResults of(Players players, Prizes prizes, Ladder ladder) {
-        Map<Player, Prize> generated = new LinkedHashMap<>();
-        for (int i = 0; i < players.getSize(); i++) {
-            generated.put(players.get(i), prizes.get(ladder.getDestinationIndex(i)));
-        }
-        return new PrizeResults(generated);
     }
 
     public Map<Player, Prize> getByOperator(String operator) {

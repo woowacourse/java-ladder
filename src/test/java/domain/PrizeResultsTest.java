@@ -19,20 +19,11 @@ class PrizeResultsTest {
         꽝     당첨    꽝
      */
     private PrizeResults init() {
-        return PrizeResults.of(
-                new Players(List.of("wiib", "pobi", "haha")),
-                Prizes.of(List.of("꽝", "당첨", "꽝"), 3),
-                Ladder.of(3, new Height(3), new FixedBooleanGenerator(true)));
+        Ladder ladder = Ladder.of(3,new Height(3),new FixedBooleanGenerator(true));
+        Players players = new Players(List.of("wiib","pobi","haha"));
+        Prizes prizes = Prizes.of(List.of("꽝","당첨","꽝"),3);
+        return new PrizeResults(ladder.getResult(players,prizes));
     }
-
-    @Test
-    @DisplayName("Players, Prizes, Ladder를 통해 생성한다.")
-    void createSuccess() {
-        assertThatCode(this::init
-        ).doesNotThrowAnyException();
-
-    }
-
     @Test
     @DisplayName("all 또는 사용자 이름과 다를 경우, 예외를 발생한다.")
     void checkOperateValidation() {

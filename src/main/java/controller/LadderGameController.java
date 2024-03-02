@@ -27,7 +27,7 @@ public class LadderGameController {
         Prizes prizes = initPrizes(players.getSize());
         Height height = initHeight();
         Ladder ladder = initLadder(players.getSize(), height);
-        PrizeResults prizeResults = initPrizeResults(players, prizes, ladder);
+        PrizeResults prizeResults = new PrizeResults(ladder.getResult(players,prizes));
         outputView.printResult(ladder.getLinesInformation(), players.getNames(), prizes.getPrizeNames());
         viewingUntilGetAll(prizeResults);
     }
@@ -47,11 +47,6 @@ public class LadderGameController {
     private Ladder initLadder(int playerCount, Height height) {
         return Ladder.of(playerCount, height, booleanGenerator);
     }
-
-    private PrizeResults initPrizeResults(Players players, Prizes prizes, Ladder ladder) {
-        return repeatUntilValidInput(() -> PrizeResults.of(players, prizes, ladder));
-    }
-
     private void viewingUntilGetAll(PrizeResults prizeResults) {
         String operator;
         do {
