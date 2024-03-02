@@ -12,6 +12,7 @@ public class Line {
 
     public Line(List<Direction> directionInfo) {
         validateDirectionSize(directionInfo);
+        validateDirectionSequence(directionInfo);
         this.directionInfo = directionInfo;
     }
 
@@ -23,13 +24,62 @@ public class Line {
         return directionInfo.size();
     }
 
-    public boolean isEmpty() {
-        return directionInfo.isEmpty();
-    }
-
     private void validateDirectionSize(List<Direction> directions) {
         if (directions.size() < MIN_DIRECTION_SIZE || directions.size() > MAX_DIRECTION_SIZE) {
             throw new IllegalArgumentException("[ERROR] 방향은 2~10개 까지만 등록 가능합니다.");
+        }
+    }
+
+    private void validateDirectionSequence(List<Direction> directions) {
+        int lastIndex = directions.size() - 1;
+        for (int i = 0; i < directions.size(); i++) {
+            validateDirections(directions, i, lastIndex);
+        }
+    }
+
+    private void validateDirections(List<Direction> directions, int currentIndex, int lastIndex) {
+        Direction priorDirection = getPriorDirection(directions, currentIndex);
+        Direction currentDirection = directions.get(currentIndex);
+
+        if (currentIndex == 0) {
+            validateInitialDirection(currentDirection);
+        }
+        if (currentIndex > 0 && currentIndex < lastIndex) {
+            validateMiddleDirection(priorDirection, currentDirection);
+        }
+        if (currentIndex == lastIndex) {
+            validateLastDirection(priorDirection, currentDirection);
+        }
+    }
+
+    private Direction getPriorDirection(List<Direction> directions, int currentIndex) {
+        if (currentIndex > 0) {
+            return directions.get(currentIndex - 1);
+        }
+        return null;
+    }
+
+    private void validateInitialDirection(Direction currentDirection) {
+        if (currentDirection == Direction.LEFT) {
+            throw new IllegalArgumentException("[ERROR] 첫번째 방향에는 '왼쪽'이 올 수 없습니다.");
+        }
+    }
+
+    private void validateMiddleDirection(Direction priorDirection, Direction currentDirection) {
+        if (priorDirection == Direction.RIGHT && currentDirection != Direction.LEFT) {
+            throw new IllegalArgumentException("[ERROR] 이전 방향이 '오른쪽'일 경우 다음 방향으로 '왼쪽'이 와야 합니다.");
+        }
+        if (priorDirection != Direction.RIGHT && currentDirection == Direction.LEFT) {
+            throw new IllegalArgumentException("[ERROR] 이전 방향이 '오른쪽'이 아닐 경우 다음 방향으로 '왼쪽'이 올 수 없습니다.");
+        }
+    }
+
+    private void validateLastDirection(Direction priorDirection, Direction currentDirection) {
+        if (priorDirection == Direction.RIGHT && currentDirection != Direction.LEFT) {
+            throw new IllegalArgumentException("[ERROR] 이전 방향이 '오른쪽'일 경우 마지막 방향으로 '왼쪽'이 와야 합니다.");
+        }
+        if (priorDirection != Direction.RIGHT && currentDirection != Direction.NEUTRAL) {
+            throw new IllegalArgumentException("[ERROR] 이전 방향이 '오른쪽'이 아닐 경우 마지막 방향으로 '중립'이 와야 합니다.");
         }
     }
 
