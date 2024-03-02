@@ -1,7 +1,6 @@
 package domain.ladder.strategy;
 
 import domain.ladder.LadderBridge;
-import domain.ladder.strategy.BridgeGenerator;
 import java.util.List;
 
 public class BridgeGeneratorStub implements BridgeGenerator {

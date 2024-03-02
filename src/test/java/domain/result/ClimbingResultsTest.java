@@ -2,7 +2,6 @@ package domain.result;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 import domain.player.Player;
 import domain.player.PlayerName;

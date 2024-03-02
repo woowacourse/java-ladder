@@ -1,7 +1,6 @@
 package domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 import domain.ladder.strategy.BridgeGeneratorStub;
 import domain.player.Player;
