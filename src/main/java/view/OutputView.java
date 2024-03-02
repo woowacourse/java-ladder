@@ -6,15 +6,16 @@ import model.ladder.LadderRow;
 import model.ladder.Space;
 import model.participant.Participant;
 import model.participant.Participants;
+import model.result.ParticipantsResult;
 import model.result.Result;
 import model.result.Results;
-import model.result.ParticipantsResult;
 
 import java.util.List;
 import java.util.Map;
 
 public class OutputView {
 
+    private static final String SUFFIX_OF_EXCEPTION_MESSAGE = System.lineSeparator() + "다시 입력해주세요.";
     private static final String LADDER_RESULT_MESSAGE = "\n사다리 결과\n";
     private static final String RESULT_MESSAGE = "실행결과";
     private static final String NAME_FORMAT = "%5s ";
@@ -72,6 +73,6 @@ public class OutputView {
     }
 
     public void printException(String message) {
-        System.out.println(message);
+        System.out.println(message + SUFFIX_OF_EXCEPTION_MESSAGE);
     }
 }

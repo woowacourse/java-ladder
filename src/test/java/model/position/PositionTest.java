@@ -3,6 +3,7 @@ package model.position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static model.position.Position.NOT_ALLOWED_NEGATIVE_POSITION;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -34,7 +35,7 @@ class PositionTest {
     void validateNotNegative() {
         assertThatThrownBy(() -> Position.valueOf(-1))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("포지션(위치)은 음수가 될 수 없습니다.");
+                .hasMessage(NOT_ALLOWED_NEGATIVE_POSITION);
     }
 
     @DisplayName("캐싱된 값을 가져올 수 있다")

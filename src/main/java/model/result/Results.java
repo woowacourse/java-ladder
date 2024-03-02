@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Results {
+    protected static final String NOT_ALLOWED_RESULTS_SIZE = "입력된 결과의 개수가 참가자의 수보다 많거나 적어, 한명의 참가자에게 하나의 결과가 매칭될 수 없습니다." + System.lineSeparator() + "참가자의 수와 동일하게 결과를 입력해야 합니다.";
     private final Map<Position, Result> results;
 
     public Results(List<String> results, int participantsSize) {
@@ -17,9 +18,9 @@ public class Results {
         }
     }
 
-    private void validateResultSize(List<String> results, int participantsSize){
-        if(results.size() != participantsSize){
-            throw new IllegalArgumentException("결과의 개수와 참가자의 수가 다릅니다.");
+    private void validateResultSize(List<String> results, int participantsSize) {
+        if (results.size() != participantsSize) {
+            throw new IllegalArgumentException(NOT_ALLOWED_RESULTS_SIZE);
         }
     }
 

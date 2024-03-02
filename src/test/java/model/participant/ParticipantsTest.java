@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static model.participant.Participants.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -17,7 +18,7 @@ class ParticipantsTest {
     void validateNotDuplicateName() {
         assertThatThrownBy(() -> new Participants(List.of("pobi", "pobi")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("중복된 참가자들은 존재할 수 없습니다.");
+                .hasMessage(NOT_ALLOWED_DUPLICATED_PARTICIPANT_NAME);
     }
 
     @Test
@@ -25,7 +26,7 @@ class ParticipantsTest {
     void moreThanOneParticipants() {
         assertThatThrownBy(() -> new Participants(List.of("pobi")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참가자가 1명 이하인 경우는 존재할 수 없습니다.");
+                .hasMessage(NOT_ALLOWED_PARTICIPANT_SIZE_UNDER_THAN_TWO);
     }
 
     @DisplayName("참가자들의 시작 위치를 알 수 있다.")
@@ -45,6 +46,6 @@ class ParticipantsTest {
         Participants participants = new Participants(List.of("pobi", "left", "right"));
         assertThatThrownBy(() -> participants.getPosition(new Participant("tobi")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("존재하지 않는 참가자 입니다.");
+                .hasMessage(NOT_EXIST_PARTICIPANT);
     }
 }

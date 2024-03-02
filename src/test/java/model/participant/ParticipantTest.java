@@ -9,6 +9,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static model.participant.Participant.NOT_ALLOWED_NULL_EMPTY_NAME;
+import static model.participant.Participant.NOT_ALLOWED_OVER_LENGTH_NAME;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ParticipantTest {
@@ -22,10 +24,10 @@ public class ParticipantTest {
 
     static Stream<Arguments> inputName() {
         return Stream.of(
-                Arguments.of("abcdef", "참가자의 이름은 최대 5글자까지 부여할 수 있다.", "참여자의 이름은 최대 5글자입니다."),
-                Arguments.of(null, "참가자의 이름은 null일 수 없다.", "참가자의 이름은 null 이거나 공백일 수 없습니다."),
-                Arguments.of(" ", "참가자의 이름은 공백일 수 없다", "참가자의 이름은 null 이거나 공백일 수 없습니다."),
-                Arguments.of("", "참가자의 이름은 빈 문자일 수 없다", "참가자의 이름은 null 이거나 공백일 수 없습니다.")
+                Arguments.of("abcdef", "참가자의 이름은 최대 5글자까지 부여할 수 있다.", NOT_ALLOWED_OVER_LENGTH_NAME),
+                Arguments.of(null, "참가자의 이름은 null일 수 없다.", NOT_ALLOWED_NULL_EMPTY_NAME),
+                Arguments.of(" ", "참가자의 이름은 공백일 수 없다", NOT_ALLOWED_NULL_EMPTY_NAME),
+                Arguments.of("", "참가자의 이름은 빈 문자일 수 없다", NOT_ALLOWED_NULL_EMPTY_NAME)
         );
     }
 
