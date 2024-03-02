@@ -16,7 +16,8 @@ public class Main {
         OutputView.print("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         List<String> playerNames = retryHelper.retry(() -> PlayersInputView.getPlayerNames(InputView.getInput()));
         OutputView.print("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-        List<String> giftNames = retryHelper.retry(() -> GiftsInputView.getGiftNames(InputView.getInput()));
+        List<String> giftNames = retryHelper.retry(() -> GiftsInputView.getGiftNames(InputView.getInput(),
+                playerNames.size()));
         OutputView.print("최대 사다리 높이는 몇 개인가요?");
         Integer ladderHeight = retryHelper.retry(() -> LadderHeightInputView.getLadderHeight(InputView.getInput()));
         RandomLineMakeStrategy randomLineMakeStrategy = new RandomLineMakeStrategy(playerNames.size());
