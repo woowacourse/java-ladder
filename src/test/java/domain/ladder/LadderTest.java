@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import domain.player.Player;
 import domain.player.Players;
+import domain.prize.Prize;
 import domain.prize.Prizes;
 import generator.RandomLadderGenerator;
 
@@ -43,7 +44,11 @@ public class LadderTest {
 			new Player("B", 1),
 			new Player("C", 2)
 		));
-		Prizes prizes = new Prizes(List.of("1등", "2등", "3등"));
+		Prizes prizes = new Prizes(List.of(
+			new Prize("1등"),
+			new Prize("2등"),
+			new Prize("3등")
+		));
 
 		// when
 		Map<String, String> actual = ladder.getAllPlayerPrizes(players, prizes);
@@ -58,7 +63,11 @@ public class LadderTest {
 	void getOnePlayersPrizeName() {
 		// given
 		Player player = new Player("A", 0);
-		Prizes prizes = new Prizes(List.of("1등", "2등", "3등"));
+		Prizes prizes = new Prizes(List.of(
+			new Prize("1등"),
+			new Prize("2등"),
+			new Prize("3등")
+		));
 
 		// when
 		String actual = ladder.getOnePlayerPrize(player, prizes);

@@ -2,32 +2,29 @@ package domain.prize;
 
 import java.util.List;
 
-import domain.validator.NameValidator;
+public class Prizes {
 
-public record Prizes(List<String> names) {
+	private final List<Prize> prizes;
 
-	public Prizes {
-		names.forEach(this::validateName);
+	public Prizes(List<Prize> prizes) {
+		this.prizes = prizes;
 	}
 
 	public String getPlayersPrizeName(int playerFinalPosition) {
 		validatePosition(playerFinalPosition);
-		return names.get(playerFinalPosition);
+		Prize prize = prizes.get(playerFinalPosition);
+		return prize.getName();
 	}
 
 	private void validatePosition(int playerFinalPosition) {
-		if (playerFinalPosition < 0 || playerFinalPosition >= names.size()) {
+		if (playerFinalPosition < 0 || playerFinalPosition >= prizes.size()) {
 			throw new IllegalArgumentException("올바른 위치값이 아닙니다.");
 		}
 	}
 
-	@Override
-	public List<String> names() {
-		return List.copyOf(names);
-	}
-
-	private void validateName(String name) {
-		NameValidator validator = NameValidator.getInstance();
-		validator.validate(name);
+	public List<String> getNames() {
+		return prizes.stream()
+			.map(Prize::getName)
+			.toList();
 	}
 }

@@ -18,7 +18,11 @@ class PrizesTest {
 
 	@BeforeEach
 	void setUP() {
-		prizes = new Prizes(List.of("a", "b", "c"));
+		prizes = new Prizes(List.of(
+			new Prize("a"),
+			new Prize("b"),
+			new Prize("c")
+		));
 	}
 
 	@Test
