@@ -17,13 +17,11 @@ public class Main {
         List<String> playerNames = getPlayerNames(retryHelper);
         List<String> giftNames = getGiftNames(retryHelper, playerNames);
         Integer ladderHeight = getLadderHeight(retryHelper);
-        RandomLineMakeStrategy randomLineMakeStrategy = new RandomLineMakeStrategy(playerNames.size());
-        LadderGame ladderGame = makeLadderGame(playerNames, giftNames, ladderHeight, randomLineMakeStrategy);
+
+        LadderGame ladderGame = makeLadderGame(playerNames, giftNames, ladderHeight);
         printLadderGame(playerNames, giftNames, ladderGame);
-        String ladderGameResultOwner = showLadderGameResult(playerNames, ladderGame);
-        while (!ladderGameResultOwner.equals("all")) {
-            ladderGameResultOwner = showLadderGameResult(playerNames, ladderGame);
-        }
+
+        printLadderGameResults(playerNames, ladderGame);
     }
 
     private static List<String> getPlayerNames(RetryHelper retryHelper) {
@@ -47,6 +45,11 @@ public class Main {
         });
     }
 
+    private static LadderGame makeLadderGame(List<String> playerNames, List<String> giftNames, Integer ladderHeight) {
+        RandomLineMakeStrategy randomLineMakeStrategy = new RandomLineMakeStrategy(playerNames.size());
+        return makeLadderGame(playerNames, giftNames, ladderHeight, randomLineMakeStrategy);
+    }
+
     private static LadderGame makeLadderGame(List<String> playerNames, List<String> giftNames, Integer ladderHeight,
                                              RandomLineMakeStrategy randomLineMakeStrategy) {
         return LadderGameBuilder.builder()
@@ -61,6 +64,13 @@ public class Main {
         OutputView.printPlayers(playerNames);
         OutputView.printLadder(ladderGame.rawLadder());
         OutputView.printGifts(giftNames);
+    }
+
+    private static void printLadderGameResults(List<String> playerNames, LadderGame ladderGame) {
+        String ladderGameResultOwner = showLadderGameResult(playerNames, ladderGame);
+        while (!ladderGameResultOwner.equals("all")) {
+            ladderGameResultOwner = showLadderGameResult(playerNames, ladderGame);
+        }
     }
 
     private static String showLadderGameResult(List<String> playerNames, LadderGame ladderGame) {
