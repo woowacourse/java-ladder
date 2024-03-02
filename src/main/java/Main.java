@@ -6,6 +6,7 @@ import java.util.List;
 import util.RetryHelper;
 import view.GiftsInputView;
 import view.InputView;
+import view.LadderGameOperatorInputView;
 import view.LadderHeightInputView;
 import view.OutputView;
 import view.PlayersInputView;
@@ -19,11 +20,10 @@ public class Main {
         RandomLineMakeStrategy randomLineMakeStrategy = new RandomLineMakeStrategy(playerNames.size());
         LadderGame ladderGame = makeLadderGame(playerNames, giftNames, ladderHeight, randomLineMakeStrategy);
         printLadderGame(playerNames, giftNames, ladderGame);
-        LadderGameResults ladderGameResults = retryHelper.retry(() -> {
-            String operator = InputView.getInput();
-            return ladderGame.start(operator);
-        });
-        OutputView.printLadderGameResults(ladderGameResults);
+        String ladderGameResultOwner = showLadderGameResult(playerNames, ladderGame);
+        while (!ladderGameResultOwner.equals("all")) {
+            ladderGameResultOwner = showLadderGameResult(playerNames, ladderGame);
+        }
     }
 
     private static List<String> getPlayerNames(RetryHelper retryHelper) {
@@ -61,5 +61,15 @@ public class Main {
         OutputView.printPlayers(playerNames);
         OutputView.printLadder(ladderGame.rawLadder());
         OutputView.printGifts(giftNames);
+    }
+
+    private static String showLadderGameResult(List<String> playerNames, LadderGame ladderGame) {
+        RetryHelper retryHelper = new RetryHelper(10);
+        return retryHelper.retry(() -> {
+            String operator = LadderGameOperatorInputView.getOperator(InputView.getInput(), playerNames);
+            LadderGameResults ladderGameResults = ladderGame.start(operator);
+            OutputView.printLadderGameResults(ladderGameResults);
+            return operator;
+        });
     }
 }

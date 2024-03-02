@@ -5,6 +5,7 @@ import dto.LadderGameResults;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
+import util.RetryHelper;
 
 public class LadderGame {
     private final Players players;
@@ -15,10 +16,7 @@ public class LadderGame {
         validateRequiredValues(players, gifts, lineMakeStrategy, ladderHeight);
         this.players = players;
         this.gifts = gifts;
-        List<Line> lines = IntStream.range(0, ladderHeight)
-                .mapToObj(value -> new Line(lineMakeStrategy.get()))
-                .toList();
-        this.ladder = new Ladder(lines);
+        this.ladder = makeLadder(lineMakeStrategy, ladderHeight);
     }
 
     private void validateRequiredValues(Players players, Gifts gifts, Supplier<Boolean[]> ladderMakeStrategy,
@@ -28,7 +26,24 @@ public class LadderGame {
         }
     }
 
+    private static Ladder makeLadder(Supplier<Boolean[]> lineMakeStrategy, int ladderHeight) {
+        RetryHelper retryHelper = new RetryHelper(Integer.MAX_VALUE);
+        return retryHelper.retry(() -> {
+            List<Line> lines = IntStream.range(0, ladderHeight)
+                    .mapToObj(value -> new Line(lineMakeStrategy.get()))
+                    .toList();
+            return new Ladder(lines);
+        });
+    }
+
     public LadderGameResults start(String operator) {
+        if (operator.equals("all")) {
+            return startAllPlayer();
+        }
+        return startSinglePlayer(operator);
+    }
+
+    private LadderGameResults startSinglePlayer(String operator) {
         validateOperator(operator);
         LadderGameResult ladderGameResult = generateLadderGameResult(operator);
         return LadderGameResults.of(ladderGameResult);
@@ -45,6 +60,17 @@ public class LadderGame {
         int endIndex = ladder.climb(startIndex);
         String giftName = gifts.getGiftName(endIndex);
         return new LadderGameResult(operator, giftName);
+    }
+
+    private LadderGameResults startAllPlayer() {
+        List<LadderGameResult> ladderGameResults = players.getPlayerNames().stream()
+                .map(this::generateLadderGameResult)
+                .toList();
+        return new LadderGameResults(ladderGameResults);
+    }
+
+    public List<List<Boolean>> rawLadder() {
+        return ladder.getRawLadder();
     }
 
     public static final class LadderGameBuilder {
@@ -83,9 +109,5 @@ public class LadderGame {
         public LadderGame build() {
             return new LadderGame(players, gifts, ladderMakeStrategy, ladderHeight);
         }
-    }
-
-    public List<List<Boolean>> rawLadder() {
-        return ladder.getRawLadder();
     }
 }
