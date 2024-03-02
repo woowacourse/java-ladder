@@ -67,5 +67,19 @@ class PrizeResultsTest {
 
         assertThat(wiibResultActual).containsExactlyEntriesOf(wiibResultExpected);
     }
+
+    @Test
+    @DisplayName("결과 정보를 원시값으로 반환한다.")
+    void getResultsInformation() {
+        PrizeResults prizeResults = init();
+
+        Map<String,String> actual = prizeResults.convertResultToData(prizeResults.getByOperator("all"));
+        Map<String, String> expected = new LinkedHashMap<>();
+        expected.put("wiib","당첨");
+        expected.put("pobi","꽝");
+        expected.put("haha","꽝");
+
+        assertThat(actual).containsExactlyEntriesOf(expected);
+    }
 }
 

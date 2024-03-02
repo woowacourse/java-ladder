@@ -3,12 +3,9 @@ package controller;
 import domain.BooleanGenerator;
 import domain.Height;
 import domain.Ladder;
-import domain.Player;
 import domain.Players;
-import domain.Prize;
 import domain.PrizeResults;
 import domain.Prizes;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 import view.InputView;
@@ -64,7 +61,7 @@ public class LadderGameController {
 
     private String viewLadderResult(PrizeResults prizeResults) {
         String operator = repeatUntilValidInput(inputView::readPlayerForResultViewing);
-        Map<String, String> results = getResults(prizeResults.getByOperator(operator));
+        Map<String, String> results = prizeResults.convertResultToData(prizeResults.getByOperator(operator));
         outputView.printPrizeResult(results);
         return operator;
     }
@@ -76,13 +73,5 @@ public class LadderGameController {
             outputView.printErrorMessage(e.getMessage());
             return repeatUntilValidInput(supplier);
         }
-    }
-
-    private Map<String, String> getResults(Map<Player, Prize> prizeResults) {
-        Map<String, String> results = new LinkedHashMap<>();
-        for (Player key : prizeResults.keySet()) {
-            results.put(key.getName(), prizeResults.get(key).getName());
-        }
-        return results;
     }
 }
