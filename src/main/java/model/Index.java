@@ -18,13 +18,12 @@ public class Index {
         }
     }
 
-    // TODO:
-    public boolean isLower(int otherValue) {
-        return value < otherValue;
+    public boolean isNotLastIndex(int last) {
+        return value < last;
     }
 
-    public boolean isStartIndex() {
-        return value == 0;
+    public boolean isNotStartIndex() {
+        return value != 0;
     }
 
     @Override

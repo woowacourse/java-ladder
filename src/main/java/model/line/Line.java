@@ -52,7 +52,7 @@ public class Line {
     }
 
     private boolean canMoveRight(final Index currentIndex) {
-        if (currentIndex.isLower(paths.size())) {
+        if (currentIndex.isNotLastIndex(paths.size())) {
             Path right = paths.get(currentIndex.getIndex());
             return right.isExist();
         }
@@ -60,7 +60,7 @@ public class Line {
     }
 
     private boolean canMoveLeft(final Index currentIndex) {
-        if (!currentIndex.isStartIndex()) {
+        if (currentIndex.isNotStartIndex()) {
             Index leftIndex = currentIndex.getPast();
             Path left = paths.get(leftIndex.getIndex());
             return left.isExist();
