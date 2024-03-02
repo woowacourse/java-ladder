@@ -12,7 +12,8 @@ public class Users {
     private final List<User> users;
 
     public Users(List<User> users) {
-        validateUsers(users);
+        validateUsersSize(users);
+        validateDuplicatedUserName(users);
         this.users = users;
     }
 
@@ -22,11 +23,6 @@ public class Users {
 
     public User getUserByIndex(int index) {
         return users.get(index);
-    }
-
-    private void validateUsers(List<User> users) {
-        validateUsersSize(users);
-        validateDuplicatedUserName(users);
     }
 
     private void validateUsersSize(List<User> users) {
