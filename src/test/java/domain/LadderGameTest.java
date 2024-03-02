@@ -7,8 +7,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import domain.ladder.Bridge;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
-import domain.ladder.bridgeConstructstrategy.CustomBridgeConstructStrategy;
-import domain.ladder.bridgeConstructstrategy.RandomBridgeConstructStrategy;
+import domain.ladder.bridgeConstructstrategy.CustomLineConstructStrategy;
+import domain.ladder.bridgeConstructstrategy.RandomLineConstructStrategy;
 import domain.player.Name;
 import domain.player.Names;
 import domain.result.Prize;
@@ -27,7 +27,7 @@ class LadderGameTest {
     private static final Prizes PRIZES_SIZE_OF_THREE = new Prizes(List.of("1", "2", "3"));
     private static final Names NAMES_SIZE_OF_THREE = new Names(List.of("name1", "name2", "name3"));
     private static final Ladder DEFAULT_LADDER_SIZE_OF_THREE =
-            new Ladder(new RandomBridgeConstructStrategy(), NAMES_SIZE_OF_THREE, new Height(5));
+            new Ladder(new RandomLineConstructStrategy(), NAMES_SIZE_OF_THREE, new Height(5));
 
     @DisplayName("정상적으로 사다리게임이 생성된다.")
     @Test
@@ -54,7 +54,7 @@ class LadderGameTest {
     @Test
     void constructFailWithDifferentSizeNamesAndLadder() {
         Ladder differentSizeLadder =
-                new Ladder(new RandomBridgeConstructStrategy(), new Names(List.of("1", "2")), new Height(5));
+                new Ladder(new RandomLineConstructStrategy(), new Names(List.of("1", "2")), new Height(5));
         assertThatThrownBy(() -> new LadderGame(NAMES_SIZE_OF_THREE, PRIZES_SIZE_OF_THREE, differentSizeLadder))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -74,7 +74,7 @@ class LadderGameTest {
         private static final Names NAMES = new Names(List.of("pobi", "honux", "crong", "jk"));
         private static final Prizes PRIZES = new Prizes(List.of("꽝", "5000", "꽝", "3000"));
         private static final Ladder CUSTOM_LADDER = new Ladder(
-                new CustomBridgeConstructStrategy(List.of(
+                new CustomLineConstructStrategy(List.of(
                         List.of(Bridge.BUILT, Bridge.EMPTY, Bridge.BUILT),
                         List.of(Bridge.EMPTY, Bridge.BUILT, Bridge.EMPTY),
                         List.of(Bridge.BUILT, Bridge.EMPTY, Bridge.EMPTY),

@@ -2,7 +2,7 @@ import domain.LadderGame;
 import domain.MatchingResult;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
-import domain.ladder.bridgeConstructstrategy.RandomBridgeConstructStrategy;
+import domain.ladder.bridgeConstructstrategy.RandomLineConstructStrategy;
 import domain.player.Name;
 import domain.player.Names;
 import domain.result.Prizes;
@@ -46,7 +46,7 @@ public class LadderGameController {
             Names names = readNames();
             Prizes prizes = readResults();
             Height height = readHeight();
-            return new LadderGame(names, prizes, new Ladder(new RandomBridgeConstructStrategy(), names, height));
+            return new LadderGame(names, prizes, new Ladder(new RandomLineConstructStrategy(), names, height));
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
             return createLadderGame();

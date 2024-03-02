@@ -4,11 +4,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Bridges {
+public class Line {
 
     private final List<Bridge> bridges;
 
-    public Bridges(List<Bridge> bridges) {
+    public Line(List<Bridge> bridges) {
         validate(bridges);
         this.bridges = bridges;
     }

@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import domain.ladder.bridgeConstructstrategy.BridgeConstructStrategy;
-import domain.ladder.bridgeConstructstrategy.RandomBridgeConstructStrategy;
+import domain.ladder.bridgeConstructstrategy.LineConstructStrategy;
+import domain.ladder.bridgeConstructstrategy.RandomLineConstructStrategy;
 import domain.player.Names;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -17,13 +17,13 @@ public class LadderTest {
     private static final Height DEFAULT_HEIGHT = new Height(4);
     private static final Names names = new Names(List.of("a", "b", "c", "d"));
 
-    static class ContinuousBridgeConstructStrategy implements BridgeConstructStrategy {
+    static class ContinuousLineConstructStrategy implements LineConstructStrategy {
         @Override
-        public Bridges generate(int count) {
+        public Line generate(int count) {
             List<Bridge> bridges = IntStream.range(0, count)
                     .mapToObj((i) -> Bridge.BUILT)
                     .toList();
-            return new Bridges(bridges);
+            return new Line(bridges);
         }
     }
 
@@ -31,13 +31,13 @@ public class LadderTest {
     @Test
     void constructSuccessTest() {
         assertThatNoException()
-                .isThrownBy(() -> new Ladder(new RandomBridgeConstructStrategy(), names, DEFAULT_HEIGHT));
+                .isThrownBy(() -> new Ladder(new RandomLineConstructStrategy(), names, DEFAULT_HEIGHT));
     }
 
     @DisplayName("연속된 브릿지가 존재하면 예외가 발생한다.")
     @Test
     void constructFailWithContinuousBridge() {
-        assertThatThrownBy(() -> new Ladder(new ContinuousBridgeConstructStrategy(), names, DEFAULT_HEIGHT))
+        assertThatThrownBy(() -> new Ladder(new ContinuousLineConstructStrategy(), names, DEFAULT_HEIGHT))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -45,9 +45,9 @@ public class LadderTest {
     @Test
     void ladderContainsRightLength() {
         //when
-        Ladder ladder = new Ladder(new RandomBridgeConstructStrategy(), names, DEFAULT_HEIGHT);
+        Ladder ladder = new Ladder(new RandomLineConstructStrategy(), names, DEFAULT_HEIGHT);
 
         //then
-        assertThat(ladder.getBridge()).hasSize(DEFAULT_HEIGHT.getIntValue());
+        assertThat(ladder.getLines()).hasSize(DEFAULT_HEIGHT.getIntValue());
     }
 }

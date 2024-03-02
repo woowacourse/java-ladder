@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import domain.ladder.bridgeConstructstrategy.BridgeConstructStrategy;
+import domain.ladder.bridgeConstructstrategy.LineConstructStrategy;
 import domain.player.Names;
 import java.util.List;
 import java.util.Map;
@@ -10,12 +10,12 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private final List<Bridges> bridges;
+    private final List<Line> lines;
     private final Map<Integer, Integer> matchedIndexes;
 
-    public Ladder(BridgeConstructStrategy bridgeConstructStrategy, Names names, Height height) {
-        bridges = IntStream.range(0, height.getIntValue())
-                .mapToObj((index) -> bridgeConstructStrategy.generate(names.size() - 1))
+    public Ladder(LineConstructStrategy lineConstructStrategy, Names names, Height height) {
+        lines = IntStream.range(0, height.getIntValue())
+                .mapToObj((index) -> lineConstructStrategy.generate(names.size() - 1))
                 .toList();
         this.matchedIndexes = matchStartIndexToEndIndex();
     }
@@ -24,7 +24,7 @@ public class Ladder {
         List<Integer> indexes = IntStream.range(0, getLegSize())
                 .boxed()
                 .collect(Collectors.toList());
-        bridges.forEach(bridge -> bridge.moveAllMovableIndex(indexes));
+        lines.forEach(bridge -> bridge.moveAllMovableIndex(indexes));
         return IntStream.range(0, getLegSize())
                 .boxed()
                 .collect(Collectors.toMap(indexes::get,Function.identity()));
@@ -35,10 +35,10 @@ public class Ladder {
     }
 
     public int getLegSize() {
-        return bridges.get(0).size() + 1;
+        return lines.get(0).size() + 1;
     }
 
-    public List<Bridges> getBridge() {
-        return bridges;
+    public List<Line> getLines() {
+        return lines;
     }
 }
