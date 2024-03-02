@@ -64,4 +64,8 @@ public class LadderGame {
     public List<String> getRewards() {
         return rewards;
     }
+
+    public List<Line> getLines() {
+        return ladder.getLadder();
+    }
 }

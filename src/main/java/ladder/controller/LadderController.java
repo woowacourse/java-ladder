@@ -11,7 +11,6 @@ import ladder.view.OutputView;
 import java.util.List;
 
 public class LadderController {
-    private Ladder ladder;
     private LadderGame ladderGame;
 
     public void start() {
@@ -27,7 +26,7 @@ public class LadderController {
         int width = ladderPlayers.getSize();
 
         List<String> rewards = readRewards();
-        ladder = Ladder.of(height, width);
+        Ladder ladder = Ladder.of(height, width);
         ladderGame = LadderGame.from(ladderPlayers, rewards, ladder);
     }
 
@@ -51,7 +50,7 @@ public class LadderController {
         OutputView.printResultDescription();
         OutputView.printPlayerNames(ladderGame.getPlayerNames());
 
-        List<LineDto> lineDtos = ladder.getLadder().stream()
+        List<LineDto> lineDtos = ladderGame.getLines().stream()
                 .map(LineDto::from)
                 .toList();
         OutputView.printLadder(lineDtos);
