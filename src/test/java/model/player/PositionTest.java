@@ -1,7 +1,7 @@
 package model.player;
 
-import static model.ladderGame.Direction.LEFT;
-import static model.ladderGame.Direction.RIGHT;
+import static model.laddergame.Direction.LEFT;
+import static model.laddergame.Direction.RIGHT;
 
 import model.players.Position;
 import org.assertj.core.api.Assertions;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-public class PositionTest {
+class PositionTest {
     @DisplayName("이동 테스트")
     @Nested
     class move {

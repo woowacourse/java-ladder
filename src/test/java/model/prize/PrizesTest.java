@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class PrizesTest {
+class PrizesTest {
     @DisplayName("실행 결과들을 저장하는 객체를 생성한다.")
     @Test
     void createPrizesTest() {

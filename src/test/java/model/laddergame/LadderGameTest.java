@@ -1,4 +1,4 @@
-package model.ladderGame;
+package model.laddergame;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
@@ -18,7 +18,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LadderGameTest {
+class LadderGameTest {
     /*
      *  pobi  honux crong   jk
      *     |-----|     |-----|
