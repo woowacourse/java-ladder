@@ -2,7 +2,6 @@ package ladder.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 import ladder.domain.dto.MadeLadderDto;
 import ladder.domain.ladderGame.LadderResult;
 import ladder.domain.participant.Name;
@@ -11,22 +10,21 @@ import ladder.domain.prize.GamePrizes;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-public class LadderResultController {
+public class LadderResultController extends RepeatableController {
 
     private static final String KEEP_CHECK = "Y";
     private static final String STOP_CHECK = "N";
     private static final String SEE_ALL_PARTICIPANT_COMMEND = "all";
 
     private final InputView inputView;
-    private final OutputView outputView;
     private final LadderResult ladderResult;
     private final Participants participants;
     private final GamePrizes gamePrizes;
 
     public LadderResultController(InputView inputView, OutputView outputView, MadeLadderDto ladderResult,
                                   Participants participants, GamePrizes gamePrizes) {
+        super(outputView);
         this.inputView = inputView;
-        this.outputView = outputView;
         this.ladderResult = new LadderResult(ladderResult, participants.size());
         this.participants = participants;
         this.gamePrizes = gamePrizes;
@@ -84,12 +82,4 @@ public class LadderResultController {
         throw new IllegalArgumentException(KEEP_CHECK + " 혹은 " + STOP_CHECK + " 중 하나를 입력해야 합니다.");
     }
 
-    private <T> T repeatUntilValid(Supplier<T> function) {
-        try {
-            return function.get();
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e);
-            return repeatUntilValid(function);
-        }
-    }
 }

@@ -1,7 +1,6 @@
 package ladder.controller;
 
 import java.util.List;
-import java.util.function.Supplier;
 import ladder.domain.carpenter.Carpenter;
 import ladder.domain.carpenter.Energy;
 import ladder.domain.dto.MadeLadderDto;
@@ -12,16 +11,15 @@ import ladder.domain.randomGenerator.NumberGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-public class LadderGameController {
+public class LadderGameController extends RepeatableController {
 
     private final NumberGenerator numberGenerator;
     private final InputView inputView;
-    private final OutputView outputView;
 
     public LadderGameController(NumberGenerator numberGenerator, InputView inputView, OutputView outputView) {
+        super(outputView);
         this.numberGenerator = numberGenerator;
         this.inputView = inputView;
-        this.outputView = outputView;
     }
 
     public LadderResultController run() {
@@ -62,14 +60,5 @@ public class LadderGameController {
     private Height initHeight() {
         String inputHeight = inputView.getHeight();
         return new Height(inputHeight);
-    }
-
-    private <T> T repeatUntilValid(Supplier<T> function) {
-        try {
-            return function.get();
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e);
-            return repeatUntilValid(function);
-        }
     }
 }
