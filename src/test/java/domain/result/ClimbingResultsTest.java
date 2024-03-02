@@ -4,14 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import domain.ladder.Ladder;
-import domain.ladder.LadderBridge;
-import domain.ladder.LadderHeight;
-import domain.ladder.strategy.BridgeGeneratorStub;
-import domain.player.Player;
-import domain.player.PlayerName;
-import domain.player.Players;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,23 +15,12 @@ class ClimbingResultsTest {
 
     @BeforeAll
     static void initClimbingResults() {
-        Player player1 = new Player(new PlayerName("a"), 0);
-        Player player2 = new Player(new PlayerName("b"), 1);
-        Player player3 = new Player(new PlayerName("c"), 2);
+        Map<String, String> results = new HashMap<>();
+        results.put("a", "꽝");
+        results.put("b", "당첨");
+        results.put("c", "꽝");
 
-        BridgeGeneratorStub bridgeGeneratorStub = new BridgeGeneratorStub();
-        LadderHeight ladderHeight = new LadderHeight(2);
-
-        LadderResult ladderResult1 = new LadderResult("꽝");
-        LadderResult ladderResult2 = new LadderResult("당첨");
-        LadderResult ladderResult3 = new LadderResult("꽝");
-
-        Players players = new Players(List.of(player1, player2, player3));
-        bridgeGeneratorStub.setBridges(List.of(LadderBridge.BRIDGE, LadderBridge.NONE));
-        Ladder ladder = Ladder.of(ladderHeight, players, bridgeGeneratorStub);
-        List<LadderResult> results = List.of(ladderResult1, ladderResult2, ladderResult3);
-        LadderResults ladderResults = LadderResults.createMatchesCountOf(players.getPlayerCount(), results);
-        climbingResults = ClimbingResults.of(players, ladder, ladderResults);
+        climbingResults = new ClimbingResults(results);
     }
 
     @Test

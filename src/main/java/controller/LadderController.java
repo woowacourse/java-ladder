@@ -2,6 +2,7 @@ package controller;
 
 import common.Command;
 import domain.ladder.Ladder;
+import domain.ladder.LadderGame;
 import domain.ladder.LadderHeight;
 import domain.ladder.strategy.RandomBridgeGenerator;
 import domain.player.Player;
@@ -33,7 +34,8 @@ public class LadderController {
         Ladder ladder = Ladder.of(ladderHeight, players, new RandomBridgeGenerator());
         LadderResults ladderResults = LadderResults.createMatchesCountOf(players.getPlayerCount(), ladderResultsOfEntered);
         outputView.printInputtedResultsOf(players, ladder, ladderResults);
-        ClimbingResults climbingResults = ClimbingResults.of(players, ladder, ladderResults);
+        LadderGame ladderGame = new LadderGame(players, ladder, ladderResults);
+        ClimbingResults climbingResults = ladderGame.createClimbingResults();
         startClimbingLadder(climbingResults);
     }
 
