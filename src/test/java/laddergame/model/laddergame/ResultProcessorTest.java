@@ -25,7 +25,7 @@ class ResultProcessorTest {
         //given
         Participants participants = createParticipants();
         ExecutionResults executionResults = createExecutionResults(participants);
-        InquirySubject inquirySubject = new InquirySubject(new Participant("daon"), participants);
+        InquirySubject inquirySubject = new InquirySubject(new Participant("daon"), participants, false);
         //when
         ResultProcessor resultProcessor = new ResultProcessor(inquirySubject, executionResults, ladderGame);
         List<GameResult> gameResults = resultProcessor.getGameResults();
@@ -41,7 +41,7 @@ class ResultProcessorTest {
         //given
         Participants participants = createParticipants();
         ExecutionResults executionResults = createExecutionResults(participants);
-        InquirySubject inquirySubject = new InquirySubject(new Participant("all"), participants);
+        InquirySubject inquirySubject = new InquirySubject(new Participant("all"), participants, true);
         //when
         ResultProcessor resultProcessor = new ResultProcessor(inquirySubject, executionResults, ladderGame);
         List<GameResult> gameResults = resultProcessor.getGameResults();

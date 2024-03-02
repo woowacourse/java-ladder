@@ -15,6 +15,7 @@ import laddergame.model.participants.Participants;
 
 public class InputView {
     private static final String MULTIPLE_INPUTS_DELIMITER = ",";
+    private static final String ALL_COMMAND = "all";
 
     private final Scanner scanner = new Scanner(System.in);
 
@@ -58,7 +59,7 @@ public class InputView {
             System.out.println("결과를 보고 싶은 사람은?");
             String input = scanner.nextLine();
             validateSingleInput(input);
-            return new InquirySubject(new Participant(input), participants);
+            return new InquirySubject(new Participant(input), participants, ALL_COMMAND.equals(input));
         });
     }
 

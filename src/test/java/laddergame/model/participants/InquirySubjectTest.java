@@ -12,20 +12,19 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 class InquirySubjectTest {
-    @DisplayName("조회 대상자가 all 또는 참여자들 이름이 아니면 예외를 발생한다.")
+    @DisplayName("조회 대상자가 참여자들 중 한명인데 true를 갖거나 참여자 중에 없는데 false이면 예외를 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"holly", "kelly", "woni", "pobi"})
-    void validateNotInParticipants(String given) {
+    @CsvSource(value = {"all,false", "daon,true", "ted,true", "pobi,false"})
+    void validateNotInParticipants(String given, boolean isChecked) {
         //given
         Participant subject = new Participant(given);
         Participants participants = Stream.of("daon", "mason", "ted", "jk")
                 .map(Participant::new)
                 .collect(collectingAndThen(toList(), Participants::new));
         //when //then
-        assertThatThrownBy(() -> new InquirySubject(subject, participants))
+        assertThatThrownBy(() -> new InquirySubject(subject, participants, isChecked))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -42,7 +41,7 @@ class InquirySubjectTest {
                     .map(Participant::new)
                     .collect(collectingAndThen(toList(), Participants::new));
             //when
-            InquirySubject inquirySubject = new InquirySubject(subject, participants);
+            InquirySubject inquirySubject = new InquirySubject(subject, participants, false);
             List<IndexInfo> result = inquirySubject.getIndexInfos();
             //then
             assertThat(result).hasSize(1);
@@ -58,7 +57,7 @@ class InquirySubjectTest {
                     .map(Participant::new)
                     .collect(collectingAndThen(toList(), Participants::new));
             //when
-            InquirySubject inquirySubject = new InquirySubject(subject, participants);
+            InquirySubject inquirySubject = new InquirySubject(subject, participants, true);
             List<IndexInfo> result = inquirySubject.getIndexInfos();
             //then
             assertThat(result).hasSize(participants.getSize());
