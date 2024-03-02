@@ -26,7 +26,7 @@ public class LadderController {
     public void run() {
         try {
             final Players players = generatePlayers();
-            final Prizes prizes = generatePrizes();
+            final Prizes prizes = generatePrizes(players.getPlayerCount());
             final Height height = generateHeight();
             final Ladder ladder = generateLadder(players, height);
 
@@ -54,11 +54,11 @@ public class LadderController {
         return new Players(players);
     }
 
-    private Prizes generatePrizes() {
-        final List<String> prizes = InputView.inputPrizes();
-        return prizes.stream()
+    private Prizes generatePrizes(final int playerCount) {
+        final List<String> rawPrizes = InputView.inputPrizes();
+        return rawPrizes.stream()
                 .map(Prize::new)
-                .collect(collectingAndThen(toList(), Prizes::new));
+                .collect(collectingAndThen(toList(), prizes -> new Prizes(prizes, playerCount)));
     }
 
     private Height generateHeight() {
