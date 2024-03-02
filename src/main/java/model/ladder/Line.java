@@ -1,15 +1,15 @@
 package model.ladder;
 
 import static model.ladder.StepStatus.CONNECTED;
-import static model.ladderGame.Direction.LEFT;
-import static model.ladderGame.Direction.RIGHT;
-import static model.ladderGame.Direction.STRAIGHT;
+import static model.laddergame.Direction.LEFT;
+import static model.laddergame.Direction.RIGHT;
+import static model.laddergame.Direction.STRAIGHT;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import model.ladder.generator.StepStatusGenerator;
-import model.ladderGame.Direction;
+import model.laddergame.Direction;
 import model.players.Position;
 
 public class Line {

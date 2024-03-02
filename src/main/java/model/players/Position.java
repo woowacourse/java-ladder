@@ -1,7 +1,7 @@
 package model.players;
 
 import java.util.Objects;
-import model.ladderGame.Direction;
+import model.laddergame.Direction;
 
 public class Position {
     private int value;

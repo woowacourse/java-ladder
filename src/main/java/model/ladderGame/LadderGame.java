@@ -1,4 +1,4 @@
-package model.ladderGame;
+package model.laddergame;
 
 import controller.dto.PrizeResult;
 import controller.dto.PrizesResult;

@@ -1,4 +1,4 @@
-package model.ladderGame;
+package model.laddergame;
 
 import java.util.function.Consumer;
 import model.players.Position;

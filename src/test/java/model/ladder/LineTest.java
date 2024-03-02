@@ -8,7 +8,7 @@ import static model.ladder.StepStatus.DISCONNECTED;
 import java.util.Arrays;
 import model.ladder.generator.AlwaysConnectStatusGenerator;
 import model.ladder.generator.AlwaysDisconnectStatusGenerator;
-import model.ladderGame.Direction;
+import model.laddergame.Direction;
 import model.players.Position;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

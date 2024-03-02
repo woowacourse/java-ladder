@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import model.ladder.generator.StepStatusGenerator;
-import model.ladderGame.Direction;
+import model.laddergame.Direction;
 import model.players.Position;
 
 public class Ladder {

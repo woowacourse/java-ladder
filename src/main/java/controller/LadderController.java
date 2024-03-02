@@ -4,7 +4,7 @@ import model.ladder.Height;
 import model.ladder.Ladder;
 import model.ladder.Width;
 import model.ladder.generator.RandomStatusGenerator;
-import model.ladderGame.LadderGame;
+import model.laddergame.LadderGame;
 import model.players.Players;
 import model.prize.Prize;
 import model.prize.Prizes;
