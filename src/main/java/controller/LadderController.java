@@ -10,7 +10,7 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderController {
-    private static final int MAX_TRYCOUNT = 5;
+    private static final int MAX_TRY_COUNT = 5;
     private final ConsoleReader consoleReader;
 
     public LadderController() {
@@ -18,14 +18,14 @@ public class LadderController {
     }
 
     public void run() {
-        Players players = nameInput(MAX_TRYCOUNT);
-        Winnings winnings = winningsInput(MAX_TRYCOUNT, players.getPersonCount());
-        Height height = heightInput(MAX_TRYCOUNT);
+        Players players = nameInput(MAX_TRY_COUNT);
+        Winnings winnings = winningsInput(MAX_TRY_COUNT, players.getPersonCount());
+        Height height = heightInput(MAX_TRY_COUNT);
         LadderGame ladderGame = new LadderGame(players, winnings, height);
         OutputView.printLadder(ladderGame.getLadderSequence());
 
         LadderResult ladderResult = new LadderResult(ladderGame.getResult());
-        resultPhase(ladderResult, MAX_TRYCOUNT);
+        resultPhase(ladderResult, MAX_TRY_COUNT);
     }
 
     private void resultPhase(LadderResult ladderResult, int tryCount) {
