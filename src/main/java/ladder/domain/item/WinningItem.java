@@ -12,21 +12,21 @@ public class WinningItem {
         this.name = name;
     }
 
-    private static void validateMaxLength(String name) {
+    private void validate(String name) {
+        validateMaxLength(name);
+        validateIsBlank(name);
+    }
+
+    private void validateMaxLength(String name) {
         if (name.length() > MAX_LENGTH) {
             throw new IllegalArgumentException("당첨 아이템 이름의 길이는 5자 이하이어야 합니다.");
         }
     }
 
-    private static void validateIsBlank(String name) {
+    private void validateIsBlank(String name) {
         if (name.isBlank()) {
             throw new IllegalArgumentException("당첨 아이템의 이름은 비어있거나 공백일 수 없습니다.");
         }
-    }
-
-    private void validate(String name) {
-        validateMaxLength(name);
-        validateIsBlank(name);
     }
 
     @Override
