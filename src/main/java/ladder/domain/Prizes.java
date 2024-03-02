@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.List;
-import ladder.domain.dto.PrizesResponseDto;
 
 public class Prizes {
     private final List<Prize> prizes;
@@ -34,13 +33,5 @@ public class Prizes {
 
     public Prize getPrizeByIndex(int index) {
         return prizes.get(index);
-    }
-
-    public PrizesResponseDto getPrizesResult() {
-        List<String> prizeNames = prizes.stream()
-                .map(Prize::name)
-                .toList();
-
-        return new PrizesResponseDto(prizeNames);
     }
 }
