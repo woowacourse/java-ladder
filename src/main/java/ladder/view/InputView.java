@@ -8,6 +8,7 @@ public class InputView {
 
     private static final String SEPARATOR = ",";
     private static final String NEW_LINE = System.lineSeparator();
+    private static final String USER_NAME_FOR_GAME_END = "all";
     private static final int MIN_LADDER_HEIGHT = 1;
 
     private final Scanner scanner = new Scanner(System.in);
@@ -43,6 +44,10 @@ public class InputView {
         if (input.isEmpty() || input.endsWith(SEPARATOR)) {
             throw new IllegalArgumentException("[ERROR] 올바르지 않은 사용자 이름입니다.");
         }
+    }
+
+    public boolean validateUserNameForGameEnd(String userName) {
+        return userName.equals(USER_NAME_FOR_GAME_END);
     }
 
     private void validatePrizeInput(String input) {

@@ -10,13 +10,13 @@ import ladder.domain.user.Users;
 
 public class OutputView {
 
+    public static final String NEW_LINE = System.lineSeparator();
+    public static final int BLANK_DEFAULT_COUNT = 4;
     private static final String BLANK = " ";
     private static final String LINE_VERTICAL = "|";
     private static final String LINE_HORIZONTAL = "-----";
     private static final String DELIMITER = " : ";
-    public static final String NEW_LINE = System.lineSeparator();
     private static final int MAX_NAME_LENGTH = 5;
-    public static final int BLANK_DEFAULT_COUNT = 4;
 
     public void printError(String message) {
         System.out.println(message);
