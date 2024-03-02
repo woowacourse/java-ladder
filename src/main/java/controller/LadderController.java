@@ -22,7 +22,7 @@ public class LadderController {
         OutputView.printLadderGame(playerNames, ladder, rewards);
 
         LadderGame ladderGame = new LadderGame(ladder, playerNames, rewards);
-        showResult(ladderGame);
+        printResult(ladderGame);
     }
 
     private PlayerNames readPlayerNames() {
@@ -55,7 +55,7 @@ public class LadderController {
         return null;
     }
 
-    private void showResult(LadderGame ladderGame) {
+    private void printResult(LadderGame ladderGame) {
         String name;
         while (!(name = InputView.getWantedResultName()).equals(SHOW_RESULT_BREAK_WORD)) {
             OutputView.printPlayerResult(ladderGame.getPlayerResult(name));
