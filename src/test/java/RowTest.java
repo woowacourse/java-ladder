@@ -33,4 +33,9 @@ public class RowTest {
         // when & then
         assertThat(row.getSteps()).containsExactly(EMPTY_STEP, EMPTY_STEP, EMPTY_STEP);
     }
+
+    @Test
+    void step1() {
+
+    }
 }
