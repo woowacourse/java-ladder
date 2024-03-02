@@ -34,8 +34,8 @@ public class OutputView {
         List<Line> lines = ladderGame.getLines();
         lines.stream()
                 .map(Line::getLineStates)
-                .map(this::getStringBuilder)
-                .forEach(System.out::println);
+                .map(this::getLadderText)
+                .forEach(text -> System.out.printf("    %s%n", text));
     }
 
     public void printExecutionResults(ExecutionResults executionResults) {
@@ -60,23 +60,22 @@ public class OutputView {
         return name;
     }
 
-    private StringBuilder getStringBuilder(List<LineState> lineStates) {
-        StringBuilder result = new StringBuilder("    ");
-        for (int i = 0; i < lineStates.size() - 1; i++) {
-            LineState now = lineStates.get(i);
-            result.append("|");
-            String text = getDelimiterByState(now);
-            result.append(text);
+    private String getLadderText(List<LineState> lineStates) {
+        StringBuilder result = new StringBuilder();
+        for (LineState lineState : lineStates) {
+            String verticalPole = LadderElement.VERTICAL_POLE.getText();
+            result.append(verticalPole);
+            String horizontalPole = getLadderElementByState(lineState).getText();
+            result.append(horizontalPole);
         }
-        result.append("|");
-        return result;
+        return result.toString().trim();
     }
 
-    private String getDelimiterByState(LineState now) {
+    private LadderElement getLadderElementByState(LineState now) {
         if (now == LineState.START) {
-            return "-----";
+            return LadderElement.CONNECTED_HORIZONTAL_POLE;
         }
-        return "     ";
+        return LadderElement.NOT_CONNECTED_HORIZONTAL_POLE;
     }
 
     private String convertResultText(List<GameResult> gameResults) {
