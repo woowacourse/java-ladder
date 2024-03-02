@@ -14,6 +14,7 @@ import view.OutputView;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
 public class LadderGame {
 
@@ -28,14 +29,14 @@ public class LadderGame {
     }
 
     public void run() {
-        Players players = readPlayers();
+        Players players = retryUntilSuccess(this::readPlayers);
         LadderGameRecord ladderGameRecord = play(players);
         printResult(players, ladderGameRecord);
     }
 
     private LadderGameRecord play(Players players) {
-        Results results = readResultsOfSize(players.getPlayerSize());
-        Height height = readHeight();
+        Results results = retryUntilSuccess(() -> readResultsOfSize(players.getPlayerSize()));
+        Height height = retryUntilSuccess(this::readHeight);
 
         Ladder ladder = Ladder.of(height, players.getPlayerSize(), sticksGenerator);
         outputView.printLadder(players, ladder, results);
@@ -43,43 +44,23 @@ public class LadderGame {
     }
 
     private Players readPlayers() {
-        try {
-            List<String> names = inputView.readNames();
-            return new Players(names);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return readPlayers();
-        }
+        List<String> names = inputView.readNames();
+        return new Players(names);
     }
 
     private Results readResultsOfSize(int playerSize) {
-        try {
-            List<String> results = inputView.readResults();
-            return new Results(results, playerSize);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return readResultsOfSize(playerSize);
-        }
+        List<String> results = inputView.readResults();
+        return new Results(results, playerSize);
     }
 
     private Height readHeight() {
-        try {
-            int height = inputView.readHeight();
-            return new Height(height);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return readHeight();
-        }
+        int height = inputView.readHeight();
+        return new Height(height);
     }
 
     private ResultViewPlayer readTargetPlayerIn(List<String> players) {
-        try {
-            String inputTargetPlayer = inputView.readTargetPlayer();
-            return new ResultViewPlayer(inputTargetPlayer, players);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return readTargetPlayerIn(players);
-        }
+        String inputTargetPlayer = inputView.readTargetPlayer();
+        return new ResultViewPlayer(inputTargetPlayer, players);
     }
 
     private void printResult(Players players, LadderGameRecord ladderGameRecord) {
@@ -101,5 +82,14 @@ public class LadderGame {
     private void printOnePlayerResult(String targetPlayerName, LadderGameRecord ladderGameRecord) {
         Result onePlayerResult = ladderGameRecord.getOnePlayerResult(targetPlayerName);
         outputView.printOnePlayerResult(onePlayerResult);
+    }
+
+    private <T> T retryUntilSuccess(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return retryUntilSuccess(supplier);
+        }
     }
 }
