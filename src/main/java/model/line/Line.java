@@ -1,6 +1,7 @@
 package model.line;
 
 import java.util.List;
+import model.Index;
 
 public class Line {
     private static final int MIN_PATH_SIZE = 1;
@@ -39,29 +40,29 @@ public class Line {
                 .toList();
     }
 
-    public int move(int currentIndex) {
+    public Index move(final Index currentIndex) {
         if (canMoveRight(currentIndex)) {
-            return ++currentIndex;
+            return currentIndex.getNext();
         }
 
         if (canMoveLeft(currentIndex)) {
-            return --currentIndex;
+            return currentIndex.getPast();
         }
         return currentIndex;
     }
 
-    private boolean canMoveRight(int currentIndex) {
-        if (currentIndex < paths.size()) {
-            Path right = paths.get(currentIndex);
+    private boolean canMoveRight(final Index currentIndex) {
+        if (currentIndex.isLower(paths.size())) {
+            Path right = paths.get(currentIndex.getIndex());
             return right.isExist();
         }
         return false;
     }
 
-    private boolean canMoveLeft(int currentIndex) {
-        int leftIndex = currentIndex - 1;
-        if (leftIndex >= 0) {
-            Path left = paths.get(leftIndex);
+    private boolean canMoveLeft(final Index currentIndex) {
+        if (!currentIndex.isStartIndex()) {
+            Index leftIndex = currentIndex.getPast();
+            Path left = paths.get(leftIndex.getIndex());
             return left.isExist();
         }
         return false;

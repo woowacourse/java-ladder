@@ -3,6 +3,7 @@ package controller;
 import dto.LadderInfo;
 import dto.ResultInfo;
 import java.util.List;
+import model.Index;
 import model.ladder.Height;
 import model.items.Items;
 import model.ladder.Ladder;
@@ -52,7 +53,7 @@ public class LadderGame {
     }
 
     private Result findResult(final People people, final Ladder ladder, final Items items) {
-        List<Integer> resultIndexes = ladder.climbAll();
+        List<Index> resultIndexes = ladder.climbAll();
         return Result.of(people, resultIndexes, items);
     }
 

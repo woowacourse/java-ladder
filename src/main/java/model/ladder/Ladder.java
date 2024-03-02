@@ -2,6 +2,7 @@ package model.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Index;
 import model.line.Line;
 import model.line.LinesGenerator;
 import model.people.PersonCount;
@@ -21,21 +22,22 @@ public class Ladder {
         return new Ladder(lines, height);
     }
 
-    public int climb(final int startIndex) {
-        int currentIndex = startIndex;
+    public Index climb(final Index startIndex) {
+        Index currentIndex = startIndex;
         for (Line line : lines) {
             currentIndex = line.move(currentIndex);
         }
         return currentIndex;
     }
 
-    public List<Integer> climbAll() {
-        List<Integer> resultIndexes = new ArrayList<>();
-        int index = 0;
-        while (index < findPersonCount()) {
-            int resultIndex = climb(index);
+    public List<Index> climbAll() {
+        List<Index> resultIndexes = new ArrayList<>();
+
+        Index index = new Index(0);
+        while (index.isLower(findPersonCount())) {
+            Index resultIndex = climb(index);
             resultIndexes.add(resultIndex);
-            index++;
+            index = index.getNext();
         }
         return resultIndexes;
     }

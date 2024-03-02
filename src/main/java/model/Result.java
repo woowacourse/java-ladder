@@ -15,14 +15,14 @@ public class Result {
         this.matchedResult = matchedResult;
     }
 
-    public static Result of(final People people, final List<Integer> resultIndexes, final Items items) {
+    public static Result of(final People people, final List<Index> resultIndexes, final Items items) {
         Map<Person, Item> personAndItemName = new LinkedHashMap<>();
-        int personIndex = 0;
-        for (int itemIndex : resultIndexes) {
+        Index personIndex = new Index(0);
+        for (Index itemIndex : resultIndexes) {
             Person person = people.findBy(personIndex);
             Item item = items.findBy(itemIndex);
             personAndItemName.put(person, item);
-            personIndex++;
+            personIndex = personIndex.getNext();
         }
         return new Result(personAndItemName);
     }

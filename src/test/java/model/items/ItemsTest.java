@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.List;
+import model.Index;
 import model.people.PersonCount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,7 @@ class ItemsTest {
         List<String> items = List.of("꽝", "5000", "꽝", "3000");
         PersonCount personCount = new PersonCount(4);
         Items generatedItems = Items.of(items, personCount);
-        Item item1 = generatedItems.findBy(0);
-        assertThat(item1.getName()).isEqualTo("꽝");
+        Item item = generatedItems.findBy(new Index(0));
+        assertThat(item.getName()).isEqualTo("꽝");
     }
 }

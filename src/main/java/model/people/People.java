@@ -1,6 +1,7 @@
 package model.people;
 
 import java.util.List;
+import model.Index;
 
 public class People {
     private final List<Person> personGroup;
@@ -29,8 +30,8 @@ public class People {
         }
     }
 
-    public Person findBy(int index) {
-        return personGroup.get(index);
+    public Person findBy(Index index) {
+        return personGroup.get(index.getIndex());
     }
 
     public List<String> getNames() {

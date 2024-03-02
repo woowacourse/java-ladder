@@ -5,6 +5,7 @@ import static model.line.Path.NOT_EXIST;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import model.Index;
 import model.line.Line;
 import model.line.FixedLinesGenerator;
 import model.people.PersonCount;
@@ -39,7 +40,8 @@ class LadderTest {
                         new Line(List.of(EXIST, NOT_EXIST, EXIST)))
         );
         Ladder ladder = Ladder.from(height, personCount, pathGenerator);
-        assertThat(ladder.climb(0)).isEqualTo(0);
+        Index startIndex = new Index(0);
+        assertThat(ladder.climb(startIndex)).isEqualTo(startIndex);
     }
 
     @Test
@@ -55,6 +57,6 @@ class LadderTest {
                         new Line(List.of(EXIST, NOT_EXIST, EXIST)))
         );
         Ladder ladder = Ladder.from(height, personCount, pathGenerator);
-        assertThat(ladder.climbAll()).isEqualTo(List.of(0, 3, 2, 1));
+        assertThat(ladder.climbAll()).isEqualTo(List.of(new Index(0), new Index(3), new Index(2), new Index(1)));
     }
 }

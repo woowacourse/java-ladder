@@ -2,6 +2,7 @@ package model.items;
 
 import java.util.Collections;
 import java.util.List;
+import model.Index;
 import model.people.PersonCount;
 
 public class Items {
@@ -21,8 +22,8 @@ public class Items {
         return new Items(items, itemsCount);
     }
 
-    public Item findBy(int index) {
-        return items.get(index);
+    public Item findBy(Index index) {
+        return items.get(index.getIndex());
     }
 
     public List<String> getNames() {
