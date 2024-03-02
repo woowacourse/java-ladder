@@ -1,9 +1,11 @@
 package laddergame.controller;
 
+import java.util.List;
 import laddergame.model.executionresults.ExecutionResults;
 import laddergame.model.laddergame.LadderGame;
+import laddergame.model.laddergame.LadderGameGenerator;
 import laddergame.model.laddergame.LadderHeight;
-import laddergame.model.laddergame.RandomLinesGenerator;
+import laddergame.model.laddergame.RandomDoublyBooleanListGenerator;
 import laddergame.model.laddergame.ResultProcessor;
 import laddergame.model.participants.InquirySubject;
 import laddergame.model.participants.Participants;
@@ -23,12 +25,19 @@ public class LadderGameController {
         Participants participants = inputView.readParticipantNames();
         ExecutionResults executionResults = inputView.readExecutionResults(participants);
         LadderHeight ladderHeight = inputView.readLadderHeight();
-        LadderGame ladderGame = new RandomLinesGenerator().getLadderGame(ladderHeight, participants);
+        LadderGame ladderGame = getLadderGame(ladderHeight, participants);
 
         printResult(participants, ladderGame, executionResults);
         InquirySubject inquirySubject = inputView.readInquirySubject(participants);
         ResultProcessor resultProcessor = new ResultProcessor(inquirySubject, executionResults, ladderGame);
         outputView.printGameResults(resultProcessor.getGameResults());
+    }
+
+    private LadderGame getLadderGame(LadderHeight ladderHeight, Participants participants) {
+        RandomDoublyBooleanListGenerator randomGenerator = new RandomDoublyBooleanListGenerator();
+        List<List<Boolean>> doublyBooleans = randomGenerator.generate(ladderHeight, participants);
+        LadderGameGenerator ladderGameGenerator = new LadderGameGenerator(doublyBooleans);
+        return ladderGameGenerator.getLadderGame();
     }
 
     private void printResult(Participants participants, LadderGame ladderGame, ExecutionResults executionResults) {
