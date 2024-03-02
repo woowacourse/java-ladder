@@ -2,7 +2,6 @@ package laddergame.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class Line {
 
@@ -58,37 +57,37 @@ public class Line {
     }
 
     private Direction moveLeft(int column) {
-        Optional<Stick> leftStick = findLeftStick(column);
-        if (leftStick.isPresent() && leftStick.get().isFilled()) {
+        Stick leftStick = findLeftStick(column);
+        if (leftStick.isFilled()) {
             return Direction.LEFT;
         }
 
         return Direction.STAY;
     }
 
-    private Optional<Stick> findLeftStick(int column) {
-        if (column > 0) {
-            return Optional.ofNullable(sticks.get(column - 1));
+    private Stick findLeftStick(int column) {
+        if (column - 1 < 0) {
+            return Stick.NOT_FILLED;
         }
 
-        return Optional.empty();
+        return sticks.get(column - 1);
     }
 
     private Direction moveRight(int column) {
-        Optional<Stick> rightStick = findRightStick(column);
-        if (rightStick.isPresent() && rightStick.get().isFilled()) {
+        Stick rightStick = findRightStick(column);
+        if (rightStick.isFilled()) {
             return Direction.RIGHT;
         }
 
         return Direction.STAY;
     }
 
-    private Optional<Stick> findRightStick(int column) {
-        if (column < sticks.size()) {
-            return Optional.ofNullable(sticks.get(column));
+    private Stick findRightStick(int column) {
+        if (column >= sticks.size()) {
+            return Stick.NOT_FILLED;
         }
 
-        return Optional.empty();
+        return sticks.get(column);
     }
 
     public List<Stick> getSticks() {
