@@ -1,5 +1,7 @@
 package controller;
 
+import static message.ErrorMessage.INVALID_LADDER_HEIGHT_LANGUAGE_EXCEPTION;
+
 import domain.Height;
 import domain.Ladder;
 import domain.LadderGame;
@@ -48,6 +50,9 @@ public class LadderController {
     private Height readHeight() {
         try {
             return new Height(InputView.readLadderHeight());
+        } catch (NumberFormatException e) {
+            OutputView.printErrorMessage(INVALID_LADDER_HEIGHT_LANGUAGE_EXCEPTION.getMessage());
+            System.exit(0);
         } catch (Exception e) {
             OutputView.printErrorMessage(e.getMessage());
             System.exit(0);
