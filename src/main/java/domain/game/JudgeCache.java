@@ -7,7 +7,11 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class JudgeCache {
-    private static final Map<Player, Prize> cache = new ConcurrentHashMap<>();
+    private final Map<Player, Prize> cache;
+
+    public JudgeCache() {
+        this.cache = new ConcurrentHashMap<>();
+    }
 
     public void save(final Player player, final Prize prize) {
         cache.put(player, prize);
