@@ -38,9 +38,9 @@ public class Players {
                 .toList();
     }
 
-    public Column findPlayerColumn(String name) {
+    public Column findPlayerColumn(Player target) {
         Player foundPlayer = players.stream()
-                .filter(player -> player.isSameName(name))
+                .filter(target::equals)
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("존재하지 않는 사용자입니다."));
 

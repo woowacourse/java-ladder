@@ -44,7 +44,7 @@ class PlayersTest {
         List<String> names = List.of("산초", "아톰", "망쵸");
         Players players = new Players(names);
 
-        Column column = players.findPlayerColumn("아톰");
+        Column column = players.findPlayerColumn(new Player("아톰"));
 
         assertThat(column.getValue()).isEqualTo(1);
     }
@@ -55,7 +55,7 @@ class PlayersTest {
         List<String> names = List.of("산초", "아톰", "망쵸");
         Players players = new Players(names);
 
-        assertThatThrownBy(() -> players.findPlayerColumn("네오"))
+        assertThatThrownBy(() -> players.findPlayerColumn(new Player("네오")))
                 .isInstanceOf(NoSuchElementException.class);
     }
 }

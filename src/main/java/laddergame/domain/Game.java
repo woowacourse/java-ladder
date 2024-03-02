@@ -42,7 +42,8 @@ public class Game {
     }
 
     public GameResult showResult(String playerName) {
-        Column playerColumn = players.findPlayerColumn(playerName);
+        Player targetPlayer = new Player(playerName);
+        Column playerColumn = players.findPlayerColumn(targetPlayer);
         Column resultColumn = ladder.climb(playerColumn);
 
         return gameResults.get(resultColumn.getValue());
