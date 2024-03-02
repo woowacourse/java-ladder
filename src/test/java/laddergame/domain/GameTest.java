@@ -38,10 +38,10 @@ class GameTest {
 
         Map<String, GameResult> result = game.showResultAll();
 
-        assertThat(result.get("pobi")).isEqualTo(new GameResult("3000"));
-        assertThat(result.get("atom")).isEqualTo(new GameResult("꽝"));
-        assertThat(result.get("mang")).isEqualTo(new GameResult("1000"));
-        assertThat(result.get("jay")).isEqualTo(new GameResult("2000"));
+        assertThat(result.get("pobi").getName()).isEqualTo("3000");
+        assertThat(result.get("atom").getName()).isEqualTo("꽝");
+        assertThat(result.get("mang").getName()).isEqualTo("1000");
+        assertThat(result.get("jay").getName()).isEqualTo("2000");
     }
 
     private Game createGame(List<String> playerNames, List<String> gameResults) {
