@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class LadderResult {
 
-    private static final String RESULT_ALL = "all";
+    private static final String ALL_RESULT_COMMAND = "all";
     private final Map<String, String> results;
 
     public LadderResult(Map<String, String> results) {
@@ -14,7 +14,7 @@ public class LadderResult {
     }
 
     public List<String> getWinning(String playerName) {
-        if (RESULT_ALL.equals(playerName)) {
+        if (ALL_RESULT_COMMAND.equals(playerName)) {
             return getAll();
         }
         validateContains(playerName);
