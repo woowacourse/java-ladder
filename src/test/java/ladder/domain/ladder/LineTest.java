@@ -14,7 +14,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class LineTest {
 
-    private static final int FIRST_STEP_INDEX = 0;
     private static final int NEXT_STEP_INDEX = 1;
     private static final int NOT_BUILD_STEP_INDEX = 3;
 
@@ -32,7 +31,7 @@ public class LineTest {
         @DisplayName("이전 포지션에 스텝이 존재하면 True를 반환한다.")
         @Test
         void hasDuplicatedStep() {
-            line.buildSteps(FIRST_STEP_INDEX);
+            line.buildSteps(0);
 
             Boolean hasDuplicateStep = line.isStepDuplicatedWithBeforeStep(NEXT_STEP_INDEX);
 
@@ -42,7 +41,7 @@ public class LineTest {
         @DisplayName("이전 포지션에 스텝이 존재하지 않으면 False를 반환한다.")
         @Test
         void hasNotDuplicatedStep() {
-            line.buildSteps(FIRST_STEP_INDEX);
+            line.buildSteps(0);
 
             Boolean hasDuplicateStep = line.isStepDuplicatedWithBeforeStep(NOT_BUILD_STEP_INDEX);
 

@@ -6,7 +6,6 @@ import ladder.domain.dto.MadeLineDto;
 
 public class Line {
 
-    private static final int STEP_START_INDEX_NUMBER = 0;
     private static final boolean DEFAULT_NO_DUPLICATED_STEP = false;
 
     private final List<Step> steps;
@@ -27,7 +26,7 @@ public class Line {
     public boolean isStepDuplicatedWithBeforeStep(int nowPosition) {
         validateNotNegativePosition(nowPosition);
 
-        if (nowPosition > STEP_START_INDEX_NUMBER) {
+        if (nowPosition > 0) {
             Step step = steps.get(nowPosition - 1);
             return step.getBuildStatus();
         }
@@ -37,7 +36,7 @@ public class Line {
     private List<Step> makeSteps(int stepCount) {
         List<Step> steps = new ArrayList<>();
 
-        for (int currentStep = STEP_START_INDEX_NUMBER; currentStep < stepCount; currentStep++) {
+        for (int currentStep = 0; currentStep < stepCount; currentStep++) {
             steps.add(new Step());
         }
         return steps;
