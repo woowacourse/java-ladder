@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Prizes {
     private static final String PRIZE_COUNT_EXCEPTION_MESSAGE = "[ERROR] 참가자 수 : %d, 상품 수: %d - 참가자 수와 상품 수는 일치해야 합니다.";
+    private static final String INDEX_EXCEPTION_MESSAGE = "[ERROR] rejected value: %d - 인덱스 범위를 벗어났습니다.";
     private final List<Prize> prizes;
 
     private Prizes(List<Prize> prizes) {
@@ -38,13 +39,20 @@ public class Prizes {
                 .orElse(0);
     }
 
+    public Prize findPrizeByIndex(int index) {
+        if (isOutOfRange(index)) {
+            throw new IllegalArgumentException(String.format(INDEX_EXCEPTION_MESSAGE, index));
+        }
+        return prizes.get(index);
+    }
+
+    private boolean isOutOfRange(int index) {
+        return index < 0 || index >= prizes.size();
+    }
+
     public List<String> getPrizeNames() {
         return prizes.stream()
                 .map(Prize::getName)
                 .toList();
-    }
-
-    public Prize get(int index) { // todo 메서드, validation
-        return prizes.get(index);
     }
 }
