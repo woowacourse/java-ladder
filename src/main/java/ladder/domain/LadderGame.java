@@ -39,8 +39,9 @@ public class LadderGame {
 
     private void climb(Player player) {
         if (result.hasNullValueForKey(player)) {
-            Index index = players.findIndexOfPlayer(player);
-            ResultItem resultItem = resultItems.get(ladder.climb(index));
+            Index playerIndex = players.findIndexOfPlayer(player);
+            Index resultItemIndex = ladder.climb(playerIndex);
+            ResultItem resultItem = resultItems.get(resultItemIndex);
             result.put(player, resultItem);
         }
     }

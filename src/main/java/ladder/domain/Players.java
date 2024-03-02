@@ -50,10 +50,14 @@ public class Players {
 
     public Index findIndexOfPlayer(Player target) {
         return IntStream.range(0, players.size())
-                .filter(i -> players.get(i).equals(target))
+                .filter(index -> isEquals(index, target))
                 .mapToObj(Index::new)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("참여자가 아닙니다."));
+    }
+
+    private boolean isEquals(int index, Player target) {
+        return players.get(index).equals(target);
     }
 
     public int getSize() {
