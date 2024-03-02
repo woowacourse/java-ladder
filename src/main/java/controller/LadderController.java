@@ -3,8 +3,8 @@ package controller;
 import domain.Height;
 import domain.LadderGame;
 import domain.LadderResult;
-import domain.Players;
-import domain.Winnings;
+import domain.PlayerNames;
+import domain.WinningNames;
 import util.ConsoleReader;
 import view.InputView;
 import view.OutputView;
@@ -18,10 +18,10 @@ public class LadderController {
     }
 
     public void run() {
-        Players players = nameInput(MAX_TRY_COUNT);
-        Winnings winnings = winningsInput(MAX_TRY_COUNT, players.getPersonCount());
+        PlayerNames playerNames = nameInput(MAX_TRY_COUNT);
+        WinningNames winningNames = winningsInput(MAX_TRY_COUNT, playerNames.getPersonCount());
         Height height = heightInput(MAX_TRY_COUNT);
-        LadderGame ladderGame = new LadderGame(players, winnings, height);
+        LadderGame ladderGame = new LadderGame(playerNames, winningNames, height);
         OutputView.printLadder(ladderGame.getLadderSequence());
 
         LadderResult ladderResult = new LadderResult(ladderGame.getResult());
@@ -40,20 +40,20 @@ public class LadderController {
         }
     }
 
-    private Players nameInput(int tryCount) {
+    private PlayerNames nameInput(int tryCount) {
         validateTryCount(tryCount);
         try {
-            return new Players(InputView.readNames(consoleReader));
+            return new PlayerNames(InputView.readNames(consoleReader));
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return nameInput(tryCount - 1);
         }
     }
 
-    private Winnings winningsInput(int tryCount, int personCount) {
+    private WinningNames winningsInput(int tryCount, int personCount) {
         validateTryCount(tryCount);
         try {
-            return new Winnings(InputView.readWinnings(consoleReader), personCount);
+            return new WinningNames(InputView.readWinnings(consoleReader), personCount);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return winningsInput(tryCount - 1, personCount);

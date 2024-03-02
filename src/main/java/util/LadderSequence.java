@@ -4,8 +4,8 @@ import domain.Ladder;
 import domain.Line;
 
 import domain.Name;
-import domain.Players;
-import domain.Winnings;
+import domain.PlayerNames;
+import domain.WinningNames;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +13,11 @@ public class LadderSequence {
 
     private LadderSequence() {}
 
-    public static List<String> of(Players players, Ladder ladder, Winnings winnings) {
+    public static List<String> of(PlayerNames playerNames, Ladder ladder, WinningNames winningNames) {
         List<String> results = new ArrayList<>();
-        results.add(getNamesWithFormat(players.getNames()));
+        results.add(getNamesWithFormat(playerNames.getNames()));
         results.addAll(LadderSequence.getLadderSequence(ladder));
-        results.add(getNamesWithFormat(winnings.getNames()));
+        results.add(getNamesWithFormat(winningNames.getNames()));
         return results;
     }
 

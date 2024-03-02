@@ -3,11 +3,11 @@ package domain;
 import java.util.Collections;
 import java.util.List;
 
-public class Winnings {
+public class WinningNames {
 
     private final List<Name> names;
 
-    public Winnings(List<String> names, int playersNumber) {
+    public WinningNames(List<String> names, int playersNumber) {
         validateNumber(names, playersNumber);
         this.names = names.stream()
                 .map(Name::new)

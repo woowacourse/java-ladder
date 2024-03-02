@@ -18,8 +18,8 @@ public class LadderGameTest {
     @BeforeEach
     void setLadderGame() {
         ladderGame = new LadderGame(
-                new Players(List.of("a", "b")),
-                new Winnings(List.of("1", "2"), 2),
+                new PlayerNames(List.of("a", "b")),
+                new WinningNames(List.of("1", "2"), 2),
                 new Height(1),
                 new CustomGenerator(List.of(false, true))
         );

@@ -10,13 +10,13 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class PlayersTest {
+public class PlayerNamesTest {
 
     @DisplayName("입력된 이름의 수가 2이상 10이하가 아닌 경우 예외를 발생한다.")
     @ParameterizedTest
     @MethodSource("playerNumberTestMethod")
     void playerNumberTest(List<String> input) {
-        Assertions.assertThatThrownBy(() -> new Players(input))
+        Assertions.assertThatThrownBy(() -> new PlayerNames(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름의 수는 2이상 10이하여야 합니다.");
     }
@@ -31,8 +31,8 @@ public class PlayersTest {
     @DisplayName("갖고 있는 List를 반환한다.")
     @Test
     void getNamesFromList() {
-        Players players = new Players(List.of("test1", "test2"));
-        Assertions.assertThat(players.getNames()
+        PlayerNames playerNames = new PlayerNames(List.of("test1", "test2"));
+        Assertions.assertThat(playerNames.getNames()
                         .stream()
                         .map(Name::getName)
                         .toList())
