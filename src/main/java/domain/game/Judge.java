@@ -32,12 +32,16 @@ public class Judge {
     }
 
     private Map<Player, Prize> makeResultAll() {
-        return this.players.players().stream().collect(Collectors.toMap(
-                player -> player,
-                this::getPrizeMappedByLadder,
-                (a, b) -> a,
-                LinkedHashMap::new
-        ));
+        return this.players.players()
+                .stream()
+                .collect(
+                        Collectors.toMap(
+                                player -> player,
+                                this::getPrizeMappedByLadder,
+                                (a, b) -> a,
+                                LinkedHashMap::new
+                        )
+                );
     }
 
     private Player getTarget(final String name) {

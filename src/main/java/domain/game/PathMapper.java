@@ -16,12 +16,15 @@ public class PathMapper {
      * (입구 2번 -> 출구 0번),
      */
     public PathMapper(final List<Integer> path) {
-        this.mapper = path.stream().collect(Collectors.toMap(
-                path::get,
-                Function.identity(),
-                (a, b) -> a,
-                HashMap::new
-        ));
+        this.mapper = path.stream()
+                .collect(
+                        Collectors.toMap(
+                                path::get,
+                                Function.identity(),
+                                (a, b) -> a,
+                                HashMap::new
+                        )
+                );
     }
 
     public int findArrival(final int departure) {
