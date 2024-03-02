@@ -22,20 +22,20 @@ public class LadderIndexConnection {
         List<RowLine> lines = ladder.getLines();
 
         for (int position = 0; position < ladder.getWidthSize(); position++) {
-            int endPosition = movePosition(position, lines);
+            int endPosition = findEndPosition(position, lines);
             indexConnections.put(position, endPosition);
         }
         return new LadderIndexConnection(indexConnections);
     }
 
-    private static int movePosition(int position, List<RowLine> lines) {
+    private static int findEndPosition(int position, List<RowLine> lines) {
         for (int height = 0; height < lines.size(); height++) {
-            position = findDirection(lines, height, position);
+            position = movePosition(lines, height, position);
         }
         return position;
     }
 
-    private static int findDirection(List<RowLine> lines, int height, int position) {
+    private static int movePosition(List<RowLine> lines, int height, int position) {
         List<ConnectionStatus> lineStatus = lines.get(height).getConnections();
         if (position < lineStatus.size() && lineStatus.get(position).isConnect()) {
             return position + MOVE;
