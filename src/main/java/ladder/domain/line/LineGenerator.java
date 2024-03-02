@@ -5,6 +5,8 @@ import ladder.domain.direction.DirectionGenerator;
 
 public class LineGenerator {
 
+    private static final int LINE_BORDER = 2;
+
     private final DirectionGenerator directionGenerator;
 
     public LineGenerator(DirectionGenerator directionGenerator) {
@@ -15,7 +17,7 @@ public class LineGenerator {
         Line line = new Line();
         addInitialDirection(line);
 
-        int middleDirectionCount = width - 2;
+        int middleDirectionCount = width - LINE_BORDER;
         addMiddleDirection(middleDirectionCount, line);
 
         addLastDirection(line);
