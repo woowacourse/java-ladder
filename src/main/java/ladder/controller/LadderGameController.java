@@ -1,8 +1,7 @@
 package ladder.controller;
 
-import static ladder.controller.util.RepeatUtil.repeatUntilValid;
-
 import java.util.List;
+import ladder.controller.util.RepeatUtil;
 import ladder.domain.carpenter.Carpenter;
 import ladder.domain.carpenter.Energy;
 import ladder.domain.dto.MadeLadderDto;
@@ -33,11 +32,11 @@ public class LadderGameController {
 
     public void run() {
 
-        Participants participants = repeatUntilValid(this::readyParticipants, outputView);
+        Participants participants = RepeatUtil.repeatUntilValid(this::readyParticipants, outputView);
         int participantCount = participants.size();
 
         MadeLadderDto madeLadder = buildLadder(participantCount);
-        GamePrizes gamePrizes = repeatUntilValid(() -> readyPrizes(participantCount), outputView);
+        GamePrizes gamePrizes = RepeatUtil.repeatUntilValid(() -> readyPrizes(participantCount), outputView);
 
         outputView.printMadeLadder(madeLadder, participants.getNames(), gamePrizes.getPrizes());
 
@@ -58,7 +57,7 @@ public class LadderGameController {
     }
 
     private Carpenter readyCarpenter(int participantsCount) {
-        Height height = repeatUntilValid(this::initHeight, outputView);
+        Height height = RepeatUtil.repeatUntilValid(this::initHeight, outputView);
         Energy energy = new Energy(numberGenerator);
         return new Carpenter(height, participantsCount, energy);
     }
@@ -74,7 +73,7 @@ public class LadderGameController {
     }
 
     private void showResult(Participants participants, GamePrizes gamePrizes, MadeLadderDto madeLadder) {
-        boolean endOrNotChoice = repeatUntilValid(this::isEndOrNot, outputView);
+        boolean endOrNotChoice = RepeatUtil.repeatUntilValid(this::isEndOrNot, outputView);
 
         LadderMapper ladderMapper = new LadderMapper(madeLadder, participants.size());
 

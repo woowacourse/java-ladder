@@ -5,6 +5,9 @@ import ladder.view.OutputView;
 
 public class RepeatUtil {
 
+    private RepeatUtil() {
+    }
+
     public static <T> T repeatUntilValid(Supplier<T> function, OutputView outputView) {
         try {
             return function.get();
