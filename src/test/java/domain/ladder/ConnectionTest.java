@@ -120,4 +120,46 @@ class ConnectionTest {
             );
         }
     }
+
+    @Nested
+    class 커넥션_이동 {
+        @Test
+        void 왼쪽으로_이동한다() {
+            // given
+            Connection connection = Connection.LEFT;
+            int currentIndex = 1;
+
+            // when
+            int movedIndex = connection.move(currentIndex);
+
+            // then
+            assertThat(movedIndex).isEqualTo(0);
+        }
+
+        @Test
+        void 오른쪽으로_이동한다() {
+            // given
+            Connection connection = Connection.RIGHT;
+            int currentIndex = 1;
+
+            // when
+            int movedIndex = connection.move(currentIndex);
+
+            // then
+            assertThat(movedIndex).isEqualTo(2);
+        }
+
+        @Test
+        void 이동하지_않는다() {
+            // given
+            Connection connection = Connection.DISCONNECTED;
+            int currentIndex = 1;
+
+            // when
+            int movedIndex = connection.move(currentIndex);
+
+            // then
+            assertThat(movedIndex).isEqualTo(1);
+        }
+    }
 }
