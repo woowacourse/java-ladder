@@ -87,18 +87,14 @@ public class LadderController {
     private void printLadderGameResult(GameResult gameResult, Name nameSearch) {
         if (isAllResultInputKeyword(nameSearch)) {
             outputView.printAllMatchResult(gameResult.getGameResult());
+            return;
         }
 
-        if (isNotAllResultInputKeyword(nameSearch)) {
-            outputView.printNameMatchResult(gameResult.getGameResult(), nameSearch);
-        }
+        outputView.printNameMatchResult(gameResult.getGameResult(), nameSearch);
     }
 
     private boolean isAllResultInputKeyword(Name nameSearch) {
         return ALL_RESULT_INPUT_KEYWORD.equals(nameSearch.getName());
     }
 
-    private boolean isNotAllResultInputKeyword(Name nameSearch) {
-        return !isAllResultInputKeyword(nameSearch);
-    }
 }
