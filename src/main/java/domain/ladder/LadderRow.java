@@ -31,7 +31,8 @@ public class LadderRow {
 
     private void validateIndexRange(int index) {
         if (index < 0 || index >= connections.size()) {
-            throw new IllegalArgumentException("index가 범위를 벗어났습니다.");
+            throw new IllegalArgumentException(
+                    String.format("[ERROR] rejected value: %d - index가 범위를 벗어났습니다.", index));
         }
     }
 

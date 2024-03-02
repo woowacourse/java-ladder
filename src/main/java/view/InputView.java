@@ -8,8 +8,6 @@ public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final String DEFAULT_DELIMITER = ",";
     private static final String DEFAULT_DELIMITER_NAME = "쉼표";
-    private static final String BLANK_EXCEPTION_MESSAGE = "[ERROR] 빈 값은 입력할 수 없습니다.";
-    private static final String CONTAIN_SPACE_EXCEPTION_MESSAGE = "[ERROR] 공백은 포함될 수 없습니다.";
 
     private InputView() {
     }
@@ -52,10 +50,12 @@ public class InputView {
 
     private static void validate(String input) {
         if (input.isBlank()) {
-            throw new IllegalArgumentException(BLANK_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(
+                    String.format("[ERROR] rejected value: %s - 빈 값은 입력할 수 없습니다.", input));
         }
         if (input.contains(" ")) {
-            throw new IllegalArgumentException(CONTAIN_SPACE_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(
+                    String.format("[ERROR] rejected value: %s - 공백은 포함될 수 없습니다.", input));
         }
     }
 }

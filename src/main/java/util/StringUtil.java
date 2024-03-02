@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class StringUtil {
-    private static final String NUMBER_EXCEPTION_MESSAGE = "[ERROR] rejected value: %s - 숫자만 가능합니다.";
-
     private StringUtil() {
     }
 
@@ -13,7 +11,9 @@ public class StringUtil {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(String.format(NUMBER_EXCEPTION_MESSAGE, number));
+            throw new IllegalArgumentException(
+                    String.format("[ERROR] rejected value: %s - 숫자만 가능합니다.", number)
+            );
         }
     }
 

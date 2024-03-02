@@ -12,9 +12,6 @@ public class Players {
     private static final int MINIMUM_NUMBER_OF_PLAYERS = 2;
     private static final int MAXIMUM_NUMBER_OF_PLAYERS = 50;
     private static final int UNIQUE_COUNT = 1;
-    private static final String DUPLICATE_EXCEPTION_MESSAGE = "[ERROR] rejected value: %s - 중복된 값이 존재합니다.";
-    private static final String INVALID_PLAYER_COUNT_EXCEPTION_MESSAGE = "[ERROR] 참가자는 %d ~ %d명이어야 합니다.";
-    private static final String INDEX_EXCEPTION_MESSAGE = "[ERROR] rejected value: %d - 인덱스 범위를 벗어났습니다.";
 
     private final List<Player> players;
 
@@ -33,8 +30,8 @@ public class Players {
     private static void validateNumberOfPlayers(List<String> playerNames) {
         if (playerNames.size() < MINIMUM_NUMBER_OF_PLAYERS || MAXIMUM_NUMBER_OF_PLAYERS < playerNames.size()) {
             throw new IllegalArgumentException(
-                    String.format(INVALID_PLAYER_COUNT_EXCEPTION_MESSAGE, MINIMUM_NUMBER_OF_PLAYERS,
-                            MAXIMUM_NUMBER_OF_PLAYERS)
+                    String.format("[ERROR] rejected value: %s - 참가자는 %d ~ %d명이어야 합니다.",
+                            playerNames, MINIMUM_NUMBER_OF_PLAYERS, MAXIMUM_NUMBER_OF_PLAYERS)
             );
         }
     }
@@ -46,7 +43,9 @@ public class Players {
                 .filter(entry -> entry.getValue() > UNIQUE_COUNT)
                 .findFirst()
                 .ifPresent(entry -> {
-                    throw new IllegalArgumentException(String.format(DUPLICATE_EXCEPTION_MESSAGE, entry.getKey()));
+                    throw new IllegalArgumentException(
+                            String.format("[ERROR] rejected value: %s - 중복된 참가자명이 존재합니다.", entry.getKey())
+                    );
                 });
     }
 
@@ -64,7 +63,9 @@ public class Players {
 
     public Player findPlayerByIndex(int index) {
         if (isOutOfRange(index)) {
-            throw new IllegalArgumentException(String.format(INDEX_EXCEPTION_MESSAGE, index));
+            throw new IllegalArgumentException(
+                    String.format("[ERROR] rejected value: %d - index가 범위를 벗어났습니다.", index)
+            );
         }
         return players.get(index);
     }

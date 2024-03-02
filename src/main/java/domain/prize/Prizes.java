@@ -7,8 +7,6 @@ import domain.player.Players;
 import java.util.List;
 
 public class Prizes {
-    private static final String PRIZE_COUNT_EXCEPTION_MESSAGE = "[ERROR] 참가자 수 : %d, 상품 수: %d - 참가자 수와 상품 수는 일치해야 합니다.";
-    private static final String INDEX_EXCEPTION_MESSAGE = "[ERROR] rejected value: %d - 인덱스 범위를 벗어났습니다.";
     private final List<Prize> prizes;
 
     private Prizes(List<Prize> prizes) {
@@ -27,7 +25,8 @@ public class Prizes {
         int playerCount = players.count();
         if (prizeCount != playerCount) {
             throw new IllegalArgumentException(
-                    String.format(PRIZE_COUNT_EXCEPTION_MESSAGE, playerCount, prizeCount)
+                    String.format("[ERROR] rejected value: %s - 참가자 수(%d)와 상품 수(%d)는 일치해야 합니다.",
+                            prizeNames, playerCount, prizeCount)
             );
         }
     }
@@ -41,7 +40,8 @@ public class Prizes {
 
     public Prize findPrizeByIndex(int index) {
         if (isOutOfRange(index)) {
-            throw new IllegalArgumentException(String.format(INDEX_EXCEPTION_MESSAGE, index));
+            throw new IllegalArgumentException(
+                    String.format("[ERROR] rejected value: %d - index가 범위를 벗어났습니다.", index));
         }
         return prizes.get(index);
     }
