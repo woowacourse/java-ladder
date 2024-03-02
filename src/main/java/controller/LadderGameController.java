@@ -5,6 +5,7 @@ import domain.Ladder;
 import domain.LadderGameResult;
 import domain.LadderIndexConnection;
 import domain.line.NonContinuousLineGenerator;
+import domain.name.Name;
 import domain.name.Names;
 import domain.prize.Prizes;
 import view.InputView;
@@ -36,7 +37,7 @@ public class LadderGameController {
     private void printResult(LadderGameResult ladderGameResult) {
         String oneNameOrAll = inputView.readOneNameOrAll();
         while (!oneNameOrAll.equalsIgnoreCase("all")) {
-            resultView.printOneResult(ladderGameResult.getOneResult(oneNameOrAll));
+            resultView.printOneResult(ladderGameResult.getOneResult(new Name(oneNameOrAll)));
             oneNameOrAll = inputView.readOneNameOrAll();
         }
         resultView.printAllResult(ladderGameResult.getAllResult());
