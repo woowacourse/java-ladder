@@ -23,9 +23,9 @@ public class OutputView {
 
     public void printLadderGame(final Players players, final Ladder ladder, final Prizes prizes) {
         System.out.println(lineSeparator() + "실행 결과");
-        printPlayers(players.players());
+        printPlayers(players.getMembers());
         printLadder(ladder);
-        printPrizes(prizes.prizes());
+        printPrizes(prizes.items());
     }
 
     private void printPlayers(final List<Player> players) {

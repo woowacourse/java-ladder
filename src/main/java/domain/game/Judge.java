@@ -32,7 +32,7 @@ public class Judge {
     }
 
     private Map<Player, Prize> makeResultAll() {
-        return this.players.players()
+        return this.players.getMembers()
                 .stream()
                 .collect(
                         Collectors.toMap(

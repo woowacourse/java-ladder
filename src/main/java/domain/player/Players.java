@@ -1,51 +1,62 @@
 package domain.player;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
-public record Players(List<Player> players) {
+public record Players(LinkedHashMap<String, Player> members) {
     private static final int PLAYER_LENGTH_MIN = 2;
     private static final int PLAYER_LENGTH_MAX = 10;
 
-    public Players(final List<Player> players) {
-        this.players = players;
-        validatePlayerNumber();
-        validateNamesUniqueness();
+    public Players {
+        validatePlayerNumber(members);
+        validateNamesUniqueness(members);
     }
 
     public Players(final String[] names) {
-        this(Arrays.stream(names).map(Player::new).toList());
+        this(Arrays.stream(names)
+                .collect(
+                        Collectors.toMap(
+                                name -> name,
+                                Player::new,
+                                (a, b) -> a,
+                                LinkedHashMap::new
+                        )
+                ));
     }
 
-    private void validatePlayerNumber() {
-        if (PLAYER_LENGTH_MIN > this.players.size() || this.players.size() > PLAYER_LENGTH_MAX) {
+    private void validatePlayerNumber(Map<String, Player> members) {
+        if (PLAYER_LENGTH_MIN > members.size() || members.size() > PLAYER_LENGTH_MAX) {
             final String errorMessage = String.format("%d명 이상 %d명 이하의 플레이어를 입력해 주세요.", PLAYER_LENGTH_MIN, PLAYER_LENGTH_MAX);
             throw new IllegalArgumentException(errorMessage);
         }
     }
 
-    private void validateNamesUniqueness() {
-        if (this.players.size() != this.players.stream().distinct().count()) {
+    private void validateNamesUniqueness(Map<String, Player> members) {
+        if (members.size() != members.keySet().stream().distinct().count()) {
             throw new IllegalArgumentException("중복된 이름은 허용하지 않습니다.");
         }
     }
 
     public int getSequence(final Player player) {
-        final int sequence = this.players.indexOf(player);
-        if (sequence == -1) {
-            throw new IllegalArgumentException("사용자를 찾을 수 없습니다.");
+        int sequence = 0;
+        for (Player member : members.values()) {
+            if (member.equals(player)) {
+                return sequence;
+            }
+            sequence++;
         }
-        return sequence;
+        throw new IllegalArgumentException("사용자를 찾을 수 없습니다.");
     }
 
     public int size() {
-        return this.players.size();
+        return this.members.size();
     }
 
     public Optional<Player> findByName(final String name) {
-        return this.players.stream()
-                .filter(player -> player.name().equals(name))
-                .findFirst();
+        return Optional.ofNullable(this.members.get(name));
+    }
+
+    public List<Player> getMembers() {
+        return new ArrayList<>(this.members.values());
     }
 }

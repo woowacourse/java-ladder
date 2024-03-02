@@ -17,7 +17,7 @@ class JudgeTest {
     private static final Player MANG = new Player("mang");
     private static final Player RORO = new Player("roro");
     private static final Player POBI = new Player("pobi");
-    private static final Players PLAYERS = new Players(List.of(MANG, RORO, POBI));
+    private static final Players PLAYERS = new Players(new String[]{"mang", "roro", "pobi"});
     private static final Prize PRIZE_1000 = new Prize("1000");
     private static final Prize PRIZE_500 = new Prize("500");
     private static final Prize PRIZE_30000 = new Prize("30000");
