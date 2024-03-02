@@ -7,13 +7,19 @@ import java.util.Map;
 
 public class Ladder {
 
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
 
-    public Ladder(int playerCount, Height height, BooleanGenerator booleanGenerator) {
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
+    public static Ladder of(int playerCount, Height height, BooleanGenerator booleanGenerator){
+        List<Line> lines = new ArrayList<>();
         while (height.isRemain()) {
             lines.add(new Line(playerCount, booleanGenerator));
             height.decrease();
         }
+        return new Ladder(lines);
     }
 
     public Map<Integer, List<Boolean>> getLinesInformation() {

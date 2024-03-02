@@ -48,7 +48,7 @@ public class LadderGameController {
     }
 
     private Ladder initLadder(int playerCount, Height height) {
-        return new Ladder(playerCount, height, booleanGenerator);
+        return Ladder.of(playerCount, height, booleanGenerator);
     }
 
     private PrizeResults initPrizeResults(Players players, Prizes prizes, Ladder ladder) {

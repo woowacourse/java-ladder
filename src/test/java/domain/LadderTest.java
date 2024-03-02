@@ -15,14 +15,14 @@ public class LadderTest {
     @Test
     public void create() {
         assertThatCode(() ->
-                new Ladder(2, new Height(5), new FixedBooleanGenerator(true)))
+                Ladder.of(2, new Height(5), new FixedBooleanGenerator(true)))
                 .doesNotThrowAnyException();
     }
 
     @DisplayName("사다리 정보를 원시값으로 생성한다..")
     @Test
     public void createInformation() {
-        Ladder ladder = new Ladder(4, new Height(5), new FixedBooleanGenerator(true));
+        Ladder ladder = Ladder.of(4, new Height(5), new FixedBooleanGenerator(true));
 
         Map<Integer, List<Boolean>> actual = ladder.getLinesInformation();
         Map<Integer, List<Boolean>> expected = new LinkedHashMap<>();
@@ -45,7 +45,7 @@ public class LadderTest {
         |---|   |---|
                     e
          */
-        Ladder ladder = new Ladder(4, new Height(5), new FixedBooleanGenerator(true));
+        Ladder ladder = Ladder.of(4, new Height(5), new FixedBooleanGenerator(true));
 
         int actual = ladder.getDestinationIndex(2);
         int expected = 3;

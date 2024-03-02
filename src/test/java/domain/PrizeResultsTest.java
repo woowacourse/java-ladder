@@ -22,7 +22,7 @@ class PrizeResultsTest {
         return PrizeResults.of(
                 new Players(List.of("wiib", "pobi", "haha")),
                 Prizes.of(List.of("꽝", "당첨", "꽝"), 3),
-                new Ladder(3, new Height(3), new FixedBooleanGenerator(true)));
+                Ladder.of(3, new Height(3), new FixedBooleanGenerator(true)));
     }
 
     @Test
