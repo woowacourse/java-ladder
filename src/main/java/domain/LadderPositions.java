@@ -31,7 +31,7 @@ public class LadderPositions {
     public int count() {
         return positions.size();
     }
-    
+
     public LadderPositions calculatePosition(Row row) {
         List<Bridge> bridges = row.getBridges();
         List<Integer> calculatedPosition = swapPosition(bridges);
@@ -45,18 +45,18 @@ public class LadderPositions {
         return calculatedPosition;
     }
 
-    private void validatePosition(List<Integer> positions) {
-        if (positions.size() < MIN_LADDER_POSITIONS_LENGTH || positions.size() > MAX_LADDER_POSITIONS_LENGTH) {
-            throw new LadderGameException(ExceptionType.INVALID_LADDER_POSITIONS_RANGE);
-        }
-    }
-
     private void validatePositionsLength(int length) {
         if (length < MIN_LADDER_POSITIONS_LENGTH || length > MAX_LADDER_POSITIONS_LENGTH) {
             throw new LadderGameException(ExceptionType.INVALID_LADDER_POSITIONS_RANGE);
         }
     }
 
+    private void validatePosition(List<Integer> positions) {
+        if (positions.size() < MIN_LADDER_POSITIONS_LENGTH || positions.size() > MAX_LADDER_POSITIONS_LENGTH) {
+            throw new LadderGameException(ExceptionType.INVALID_LADDER_POSITIONS_RANGE);
+        }
+    }
+    
     private void swapIfBridgeExist(int index, Bridge bridge, List<Integer> calculatedPosition) {
         if (bridge == Bridge.EXIST) {
             Collections.swap(calculatedPosition, index, index - 1);
