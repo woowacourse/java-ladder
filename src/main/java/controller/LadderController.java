@@ -29,9 +29,7 @@ public class LadderController {
     }
 
     private void resultPhase(LadderResult ladderResult, int tryCount) {
-        if (tryCount == 0) {
-            throw new IllegalArgumentException("입력 허용횟수 5회를 초과했습니다.");
-        }
+        validateTryCount(tryCount);
         try {
             String resultPlayer = InputView.readResultPlayer(consoleReader);
             OutputView.printResult(
@@ -43,9 +41,7 @@ public class LadderController {
     }
 
     private Players nameInput(int tryCount) {
-        if (tryCount == 0) {
-            throw new IllegalArgumentException("입력 허용횟수 5회를 초과했습니다.");
-        }
+        validateTryCount(tryCount);
         try {
             return new Players(InputView.readNames(consoleReader));
         } catch (IllegalArgumentException e) {
@@ -55,9 +51,7 @@ public class LadderController {
     }
 
     private Winnings winningsInput(int tryCount, int personCount) {
-        if (tryCount == 0) {
-            throw new IllegalArgumentException("입력 허용횟수 5회를 초과했습니다.");
-        }
+        validateTryCount(tryCount);
         try {
             return new Winnings(InputView.readWinnings(consoleReader), personCount);
         } catch (IllegalArgumentException e) {
@@ -67,14 +61,18 @@ public class LadderController {
     }
 
     private Height heightInput(int tryCount) {
-        if (tryCount == 0) {
-            throw new IllegalArgumentException("입력 허용횟수 5회를 초과했습니다.");
-        }
+        validateTryCount(tryCount);
         try {
             return InputView.readHeight(consoleReader);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return heightInput(tryCount - 1);
+        }
+    }
+
+    private void validateTryCount(int tryCount) {
+        if (tryCount == 0) {
+            throw new IllegalArgumentException("입력 허용횟수 5회를 초과했습니다");
         }
     }
 }
