@@ -35,7 +35,7 @@ public class LadderGame {
     }
 
     private static boolean playerAndLadderDoesNotMatch(Players players, Ladder ladder) {
-        return players.getSize() != ladder.getLadder().get(0).size();
+        return players.getSize() != ladder.getWidth();
     }
 
     private static boolean playerAndRewardDoesNotMatch(Players players, List<String> rewards) {

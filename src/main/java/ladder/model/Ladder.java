@@ -70,4 +70,8 @@ public class Ladder {
     public List<Line> getLadder() {
         return Collections.unmodifiableList(ladder);
     }
+
+    public int getWidth() {
+        return ladder.get(0).size();
+    }
 }
