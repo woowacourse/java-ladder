@@ -13,9 +13,9 @@ public enum Line {
         this.value = value;
     }
 
-    public static Line valueOf(boolean value) {
+    public static Line valueOf(boolean isConnected) {
         return Arrays.stream(values())
-                .filter(liine -> liine.isConnected() == value)
+                .filter(line -> line.value == isConnected)
                 .findAny()
                 .orElseThrow(() -> new IllegalStateException("존재하지 않는 값입니다."));
     }
