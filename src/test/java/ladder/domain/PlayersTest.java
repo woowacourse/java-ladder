@@ -41,6 +41,6 @@ class PlayersTest {
 
         List<Player> climbedPlayers = players.climbAllPlayers(ladder).stream().toList();
 
-        assertThat(climbedPlayers).allMatch(player -> player.location().equals(new Location(1)));
+        assertThat(climbedPlayers).extracting(Player::location).containsOnly(new Location(1));
     }
 }

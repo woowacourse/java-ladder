@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Players {
@@ -14,9 +15,9 @@ public class Players {
     }
 
     public Players climbAllPlayers(Ladder ladder) {
-        List<Player> climbAllPlayers = new ArrayList<>();
-        players.forEach(player -> climbAllPlayers.add(player.climb(ladder)));
-        return new Players(climbAllPlayers);
+        return players.stream()
+                .map(player -> player.climb(ladder))
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Players::new));
     }
 
     public int count() {

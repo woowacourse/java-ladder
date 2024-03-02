@@ -12,6 +12,11 @@ public class ResultsOfPlayers {
         initialize(players, results);
     }
 
+    private void initialize(Players players, Results results) {
+        players.stream()
+                .forEach(player -> resultsOfPlayers.put(player, results.getResult(player.location())));
+    }
+
     public Result getResultByName(String name) {
         Result result = resultsOfPlayers.get(new Player(new Name(name)));
         if (result == null) {
@@ -22,10 +27,5 @@ public class ResultsOfPlayers {
 
     public Map<Player, Result> getResultsOfPlayers() {
         return Collections.unmodifiableMap(resultsOfPlayers);
-    }
-
-    private void initialize(Players players, Results results) {
-        players.stream()
-                .forEach(player -> resultsOfPlayers.put(player, results.getResult(player.location())));
     }
 }
