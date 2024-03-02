@@ -26,7 +26,7 @@ public class OutputView {
         System.out.println(LADDER_RESULT);
         printPlayers(playerNames.getPlayerNames());
         printLines(playerNames, ladder);
-        printRewards(playerNames, rewards.getRewards());
+        printRewards(rewards.getRewards());
     }
 
     private static void printPlayers(List<PlayerName> players) {
@@ -65,7 +65,7 @@ public class OutputView {
         return " ".repeat(5);
     }
 
-    private static void printRewards(PlayerNames playerNames, List<Reward> rewards) {
+    private static void printRewards(List<Reward> rewards) {
         System.out.print(rewards.get(0).getReward() + " ");
         rewards.stream().skip(1).forEach((reward) -> {
             System.out.printf(FORMAT_REWARD, reward.getReward());
