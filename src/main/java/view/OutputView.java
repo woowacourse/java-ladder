@@ -28,9 +28,7 @@ public class OutputView {
     }
 
     private static void printNames(final List<Name> names) {
-        for (Name name : names) {
-            System.out.printf("%6s", name.name());
-        }
+        names.forEach(name -> System.out.printf("%6s", name.name()));
         System.out.println();
     }
 
@@ -42,8 +40,10 @@ public class OutputView {
     }
 
     private static String rowToMessage(Row row) {
+        final int outputSize = row.getRow().size() - 1;
         return LADDER_LEFT_MARGIN + row.getRow().stream()
                 .map(OutputView::directionToMessage)
+                .limit(outputSize)
                 .collect(Collectors.joining(RUNG_SEPARATOR)).concat(RUNG_SEPARATOR);
     }
 
