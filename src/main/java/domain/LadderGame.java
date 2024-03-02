@@ -35,6 +35,18 @@ public class LadderGame {
                 .toList());
     }
 
+    public Ladder getLadder() {
+        return ladder;
+    }
+
+    public Players getPlayers() {
+        return players;
+    }
+
+    public Prizes getPrizes() {
+        return prizes;
+    }
+
     private void validateCountEqual(Ladder ladder, Players players, Prizes prizes) {
         if (ladder.getColumnCount() != prizes.getPrizeCount()) {
             throw new IllegalArgumentException("[ERROR] 사다리 열과 결과의 개수가 일치하지 않습니다");
