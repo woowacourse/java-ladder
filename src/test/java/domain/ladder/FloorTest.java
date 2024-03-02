@@ -14,27 +14,27 @@ import support.FixedBooleanGenerator;
 import support.TrueOnlyGenerator;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class LadderRowTest {
+public class FloorTest {
     @Test
     void 주어진_너비만큼_커넥션을_생성한다() {
         // given
         int width = 5;
 
         // when
-        LadderRow ladderRow = LadderRow.create(width, new TrueOnlyGenerator());
+        Floor floor = Floor.create(width, new TrueOnlyGenerator());
 
         // then
-        assertThat(ladderRow.getConnections()).hasSize(width);
+        assertThat(floor.getConnections()).hasSize(width);
     }
 
     @ParameterizedTest
     @MethodSource("provideConnections")
     void 주어진_커넥션대로_사다리_층을_생성한다(List<Boolean> connections, List<Connection> expected) {
         // when
-        LadderRow ladderRow = LadderRow.create(connections.size(), new FixedBooleanGenerator(connections));
+        Floor floor = Floor.create(connections.size(), new FixedBooleanGenerator(connections));
 
         // then
-        List<Connection> result = ladderRow.getConnections();
+        List<Connection> result = floor.getConnections();
         assertThat(result).isEqualTo(expected);
     }
 
@@ -60,16 +60,16 @@ public class LadderRowTest {
         List<Boolean> connections = List.of(false, true, true, true, true, false);
 
         // when
-        LadderRow ladderRow = LadderRow.create(connections.size(), new FixedBooleanGenerator(connections));
+        Floor floor = Floor.create(connections.size(), new FixedBooleanGenerator(connections));
 
         // then
         assertAll(
-                () -> assertThat(ladderRow.move(0)).isEqualTo(0),
-                () -> assertThat(ladderRow.move(1)).isEqualTo(2),
-                () -> assertThat(ladderRow.move(2)).isEqualTo(1),
-                () -> assertThat(ladderRow.move(3)).isEqualTo(4),
-                () -> assertThat(ladderRow.move(4)).isEqualTo(3),
-                () -> assertThat(ladderRow.move(5)).isEqualTo(5)
+                () -> assertThat(floor.moveNextConnection(0)).isEqualTo(0),
+                () -> assertThat(floor.moveNextConnection(1)).isEqualTo(2),
+                () -> assertThat(floor.moveNextConnection(2)).isEqualTo(1),
+                () -> assertThat(floor.moveNextConnection(3)).isEqualTo(4),
+                () -> assertThat(floor.moveNextConnection(4)).isEqualTo(3),
+                () -> assertThat(floor.moveNextConnection(5)).isEqualTo(5)
         );
     }
 }

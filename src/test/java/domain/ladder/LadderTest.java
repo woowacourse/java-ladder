@@ -5,7 +5,6 @@ import static fixture.PrizesFixture.상품들;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import domain.height.Height;
 import domain.player.Players;
 import domain.prize.Prizes;
 import java.util.List;
@@ -24,7 +23,7 @@ public class LadderTest {
         Ladder ladder = Ladder.create(height, 참가자들(3), new TrueOnlyGenerator());
 
         // then
-        assertThat(ladder.getRows()).hasSize(height.getValue());
+        assertThat(ladder.getFloors()).hasSize(height.getValue());
     }
 
     @Test

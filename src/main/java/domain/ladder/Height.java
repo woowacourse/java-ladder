@@ -1,4 +1,4 @@
-package domain.height;
+package domain.ladder;
 
 public class Height {
     private static final int MINIMUM_HEIGHT = 1;

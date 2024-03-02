@@ -1,6 +1,6 @@
 package controller;
 
-import domain.height.Height;
+import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.ladder.LadderResult;
 import domain.player.Players;

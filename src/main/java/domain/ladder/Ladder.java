@@ -1,6 +1,5 @@
 package domain.ladder;
 
-import domain.height.Height;
 import domain.player.Player;
 import domain.player.Players;
 import domain.prize.Prize;
@@ -13,38 +12,38 @@ import java.util.List;
 import java.util.Map;
 
 public class Ladder {
-    private final List<LadderRow> rows;
+    private final List<Floor> floors;
 
-    private Ladder(List<LadderRow> rows) {
-        this.rows = rows;
+    private Ladder(List<Floor> floors) {
+        this.floors = floors;
     }
 
     public static Ladder create(Height height, Players players, BooleanGenerator booleanGenerator) {
-        List<LadderRow> ladderRows = new ArrayList<>();
+        List<Floor> floors = new ArrayList<>();
         for (int count = 0; count < height.getValue(); count++) {
-            LadderRow ladderRow = LadderRow.create(players.count(), booleanGenerator);
-            ladderRows.add(ladderRow);
+            Floor floor = Floor.create(players.count(), booleanGenerator);
+            floors.add(floor);
         }
-        return new Ladder(ladderRows);
+        return new Ladder(floors);
     }
 
     public LadderResult climb(Players players, Prizes prizes) {
         Map<Player, Prize> result = new LinkedHashMap<>();
         for (int start = 0; start < players.count(); start++) {
-            int end = crossRow(start);
+            int end = moveDown(start);
             result.put(players.findPlayerByIndex(start), prizes.findPrizeByIndex(end));
         }
         return new LadderResult(result);
     }
 
-    private int crossRow(int index) {
-        for (LadderRow row : rows) {
-            index = row.move(index);
+    private int moveDown(int index) {
+        for (Floor floor : floors) {
+            index = floor.moveNextConnection(index);
         }
         return index;
     }
 
-    public List<LadderRow> getRows() {
-        return Collections.unmodifiableList(rows);
+    public List<Floor> getFloors() {
+        return Collections.unmodifiableList(floors);
     }
 }

@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class LadderRow {
+public class Floor {
     private final List<Connection> connections;
 
-    private LadderRow(List<Connection> connections) {
+    private Floor(List<Connection> connections) {
         this.connections = connections;
     }
 
-    static LadderRow create(int width, BooleanGenerator booleanGenerator) {
+    static Floor create(int width, BooleanGenerator booleanGenerator) {
         List<Connection> connections = new ArrayList<>();
         Connection currentConnection = Connection.first(booleanGenerator.generate());
         for (int i = 0; i < width - 1; i++) {
@@ -20,20 +20,24 @@ public class LadderRow {
             currentConnection = currentConnection.next(booleanGenerator.generate());
         }
         connections.add(currentConnection.makeLastConnection());
-        return new LadderRow(connections);
+        return new Floor(connections);
     }
 
-    int move(int index) {
+    int moveNextConnection(int index) {
         validateIndexRange(index);
         Connection connection = connections.get(index);
         return connection.move(index);
     }
 
     private void validateIndexRange(int index) {
-        if (index < 0 || index >= connections.size()) {
+        if (isOutOfRange(index)) {
             throw new IllegalArgumentException(
                     String.format("[ERROR] rejected value: %d - index가 범위를 벗어났습니다.", index));
         }
+    }
+
+    private boolean isOutOfRange(int index) {
+        return index < 0 || index >= connections.size();
     }
 
     public List<Connection> getConnections() {

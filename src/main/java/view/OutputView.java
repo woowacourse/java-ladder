@@ -1,8 +1,8 @@
 package view;
 
 import domain.ladder.Connection;
+import domain.ladder.Floor;
 import domain.ladder.Ladder;
-import domain.ladder.LadderRow;
 import domain.player.Players;
 import domain.prize.Prizes;
 import java.util.List;
@@ -42,9 +42,9 @@ public class OutputView {
     }
 
     private static void printLadder(Ladder ladder, int maxLength) {
-        ladder.getRows()
+        ladder.getFloors()
                 .stream()
-                .map(LadderRow::getConnections)
+                .map(Floor::getConnections)
                 .forEach(connections ->
                         System.out.printf("%s%s%n", joinConnections(connections, maxLength), LADDER_SIDE_CHARACTER)
                 );
