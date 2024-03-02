@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private final Map<Integer, Line> lines;
+    private final Map<Level, Line> lines;
     private final Result result;
 
     public Ladder(Players players, Height height, BridgeGenerator bridgeGenerator) {
@@ -18,11 +18,11 @@ public class Ladder {
         this.result = new Result(calculate(players));
     }
 
-    private Map<Integer, Line> createLines(Players players, Height height, BridgeGenerator bridgeGenerator) {
+    private Map<Level, Line> createLines(Players players, Height height, BridgeGenerator bridgeGenerator) {
         return IntStream.range(0, height.getHeight())
                 .boxed()
                 .collect(Collectors.toMap(
-                        index -> index,
+                        Level::new,
                         index -> new Line(players.getTotalPlayerSize(), bridgeGenerator),
                         (line, line2) -> line2,
                         LinkedHashMap::new
@@ -42,7 +42,7 @@ public class Ladder {
         return position;
     }
 
-    public Map<Integer, Line> getLines() {
+    public Map<Level, Line> getLines() {
         return Collections.unmodifiableMap(lines);
     }
 

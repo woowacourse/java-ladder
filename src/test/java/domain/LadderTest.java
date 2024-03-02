@@ -27,7 +27,7 @@ public class LadderTest {
         Height height = new Height(5);
         Ladder ladder = new Ladder(players, height, new FixedBridgeGenerator());
 
-        Map<Integer, Line> lines = ladder.getLines();
+        Map<Level, Line> lines = ladder.getLines();
 
         assertThat(lines.size()).isEqualTo(5);
     }

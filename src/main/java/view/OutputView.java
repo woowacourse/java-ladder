@@ -3,6 +3,7 @@ package view;
 
 import domain.Bridge;
 import domain.Ladder;
+import domain.Level;
 import domain.Line;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +31,7 @@ public class OutputView {
     }
 
     private void printLadder(Ladder ladder) {
-        Map<Integer, Line> lines = ladder.getLines();
+        Map<Level, Line> lines = ladder.getLines();
         lines.values().forEach(this::printLine);
     }
 
