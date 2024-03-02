@@ -71,7 +71,7 @@ public class RandomLineGeneratorTest {
 
     @DisplayName("라인에서 두번째 값 부터는 이전 값이 '왼쪽'이라면 다음 값은 '오른쪽' 또는 '중립'이 되어야 한다.")
     @Test
-    void insertDirectionIntoLine_afterLeftDirection_expectedRightOrNeutral() {//수정 필요
+    void insertDirectionIntoLine_afterLeftDirection_expectedRightOrNeutral() {
         //given
         int firstIndex = 0;
         int secondIndex = 1;
