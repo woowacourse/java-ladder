@@ -5,27 +5,20 @@ import java.util.List;
 import model.people.PersonCount;
 
 public class Items {
-
     private final List<Item> items;
+    private final ItemCount itemCount;
 
-    private Items(final List<Item> items) {
+    private Items(final List<Item> items, final ItemCount itemCount) {
         this.items = Collections.unmodifiableList(items);
+        this.itemCount = itemCount;
     }
 
     public static Items of(final List<String> itemNames, final PersonCount personCount) {
-        int itemsCount = itemNames.size();
-        validateItemsCount(itemsCount, personCount);
-
+        ItemCount itemsCount = ItemCount.of(itemNames.size(), personCount);
         List<Item> items = itemNames.stream()
                 .map(Item::new)
                 .toList();
-        return new Items(items);
-    }
-
-    private static void validateItemsCount(final int itemsCount, final PersonCount personCount) {
-        if (personCount.isNotEqual(itemsCount)) {
-            throw new IllegalArgumentException("참여 인원 수와 결과 목록의 수가 동일하지 않습니다.");
-        }
+        return new Items(items, itemsCount);
     }
 
     public Item findBy(int index) {
