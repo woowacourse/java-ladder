@@ -1,13 +1,15 @@
-import domain.Ladder;
-import domain.Name;
+package ladder;
+
+import ladder.domain.ladder.Ladder;
+import ladder.domain.Name;
+import ladder.view.InputView;
+import ladder.view.OutputView;
+
 import java.util.Map;
-import view.InputView;
-import view.OutputView;
-
-import java.io.IOException;
 import java.util.List;
+import java.io.IOException;
 
-public class LadderController {
+public class Game {
 
     static final String NAME_SEPARATOR = ",";
 

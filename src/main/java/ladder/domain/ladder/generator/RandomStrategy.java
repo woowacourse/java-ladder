@@ -1,8 +1,8 @@
-package domain;
+package ladder.domain.ladder.generator;
 
 import java.util.Random;
 
-public class RandomLadderStrategy implements LadderStrategy {
+public class RandomStrategy implements GenerateDirectionStrategy {
 
     private static final Random random = new Random();
 

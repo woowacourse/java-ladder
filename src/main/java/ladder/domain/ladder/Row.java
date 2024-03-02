@@ -1,5 +1,7 @@
-package domain;
+package ladder.domain.ladder;
 
+import ladder.domain.ladder.generator.GenerateDirectionStrategy;
+import ladder.domain.ladder.generator.RandomStrategy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -7,7 +9,7 @@ import java.util.stream.IntStream;
 public class Row {
 
     private static final int MIN_SIZE = 2;
-    private static final LadderStrategy strategy = new RandomLadderStrategy();
+    private static final GenerateDirectionStrategy randomGenerator = new RandomStrategy();
     private final List<Direction> row;
 
 
@@ -42,7 +44,7 @@ public class Row {
         if (isPreviousDirectionRight()) {
             return Direction.LEFT;
         }
-        if (strategy.creatable() && size() < size - 1) {
+        if (randomGenerator.creatable() && size() < size - 1) {
             return Direction.RIGHT;
         }
         return Direction.INPLACE;

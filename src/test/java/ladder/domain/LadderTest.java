@@ -1,5 +1,6 @@
-package domain;
+package ladder.domain;
 
+import ladder.domain.ladder.Ladder;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

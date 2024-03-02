@@ -1,10 +1,10 @@
-package view;
+package ladder.view;
 
-import domain.Direction;
-import domain.Ladder;
-import domain.Name;
+import ladder.domain.ladder.Direction;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.Name;
 
-import domain.Row;
+import ladder.domain.ladder.Row;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;

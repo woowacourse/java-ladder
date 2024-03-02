@@ -1,7 +1,8 @@
-package domain;
+package ladder.domain;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import ladder.domain.ladder.Direction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
