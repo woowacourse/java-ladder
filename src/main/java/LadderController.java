@@ -1,5 +1,6 @@
 import domain.Ladder;
 import domain.Name;
+import java.util.Map;
 import view.InputView;
 import view.OutputView;
 
@@ -22,6 +23,11 @@ public class LadderController {
         final Ladder ladder = new Ladder(playerNames.size(), height);
 
         OutputView.printResult(playerNames, resultNames, ladder);
+
+        Map<Integer, Integer> allPlayerMatchResult = ladder.getAllMatch();
+
+        playerMatchResult(playerNames, resultNames, allPlayerMatchResult);
+
     }
 
     private static void validationResultsSize(final int nameSize, final int resultSize) {
@@ -36,5 +42,26 @@ public class LadderController {
         return names.stream()
                 .map(Name::new)
                 .toList();
+    }
+
+    private static void playerMatchResult(List<Name> playerNames, List<Name> resultNames,
+            Map<Integer, Integer> allPlayerMatchResult) throws IOException {
+        while (true) {
+            OutputView.printf("\n결과를 보고 싶은 사람은?\n");
+            String rawNameForResult = InputView.readNameForResult();
+            OutputView.printf("\n실행 결과\n");
+            if ("all".equals(rawNameForResult)) {
+                OutputView.printAllPlayerResult(playerNames, resultNames, allPlayerMatchResult);
+                break;
+            }
+            Name nameForResult = new Name(rawNameForResult);
+            if (playerNames.contains(nameForResult)) {
+                final int resultIndex = allPlayerMatchResult.get(playerNames.indexOf(nameForResult));
+                final Name result = resultNames.get(resultIndex);
+                OutputView.printf("%s\n", result.name());
+                continue;
+            }
+            throw new IllegalArgumentException("존재하지 않는 이름입니다.");
+        }
     }
 }

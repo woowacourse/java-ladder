@@ -6,6 +6,7 @@ import domain.Name;
 
 import domain.Row;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -25,6 +26,18 @@ public class OutputView {
         printNames(names);
         printLadder(ladder.getRows());
         printNames(results);
+    }
+
+    public static void printAllPlayerResult(final List<Name> players, final List<Name> results,
+            final Map<Integer, Integer> playerMatchResult) {
+        final int width = players.size();
+
+        for (int i = 0; i < width; ++i) {
+            int resultIndex = playerMatchResult.get(i);
+            final Name player = players.get(i);
+            final Name result = results.get(resultIndex);
+            System.out.printf("%s : %s\n", player.name(), result.name());
+        }
     }
 
     private static void printNames(final List<Name> names) {

@@ -23,6 +23,6 @@ public class InputView {
     }
 
     public static String readNameForResult() throws IOException {
-        return br.readLine();
+        return br.readLine().trim();
     }
 }
