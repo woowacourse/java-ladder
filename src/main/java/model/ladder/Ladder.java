@@ -18,11 +18,12 @@ public class Ladder {
         this.layers = layers;
     }
 
-    public Ladder(Height height, int numberOfParticipants) {
-        this.layers = generateLayers(height, numberOfParticipants);
+    public static Ladder of(Height height, int numberOfParticipants) {
+        List<Layer> layers = generateLayers(height, numberOfParticipants);
+        return new Ladder(layers);
     }
 
-    private List<Layer> generateLayers(Height height, int numberOfParticipants) {
+    private static List<Layer> generateLayers(Height height, int numberOfParticipants) {
         List<Layer> layers = new ArrayList<>();
         for (int i = 0; i < height.value(); i++) {
             layers.add(new Layer(StepExistenceGenerator.generate(numberOfParticipants)));

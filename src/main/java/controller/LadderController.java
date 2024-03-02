@@ -48,7 +48,7 @@ public class LadderController {
     private Ladder prepareLadder(Participants participants) {
         Height ladderHeight = new Height(inputView.requestLadderHeight());
         int numberOfParticipants = participants.size();
-        return new Ladder(ladderHeight, numberOfParticipants);
+        return Ladder.of(ladderHeight, numberOfParticipants);
     }
 
     private void printLadder(Participants participants, Ladder ladder, Prizes prizes) {
