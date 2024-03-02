@@ -4,7 +4,7 @@ import dto.LayerSteps;
 import dto.ParticipantName;
 import dto.PrizeName;
 import java.util.List;
-import model.Step;
+import model.ladder.Step;
 import utils.Constant;
 
 public class OutputView {

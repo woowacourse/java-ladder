@@ -1,10 +1,12 @@
-package model;
+package model.result;
 
 import dto.GameResultsDto;
 import dto.ParticipantName;
 import dto.PrizeName;
 import java.util.HashMap;
 import java.util.Map;
+import model.participant.Participant;
+import model.prize.Prize;
 
 public class GameResults {
     private final Map<Participant, Prize> gameResults;

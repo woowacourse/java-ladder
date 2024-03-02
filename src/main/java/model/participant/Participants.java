@@ -1,4 +1,4 @@
-package model;
+package model.participant;
 
 import dto.ParticipantName;
 import java.util.HashSet;

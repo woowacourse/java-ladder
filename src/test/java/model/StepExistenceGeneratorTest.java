@@ -2,6 +2,7 @@ package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import model.generator.StepExistenceGenerator;
 import org.junit.jupiter.api.Test;
 
 public class StepExistenceGeneratorTest {

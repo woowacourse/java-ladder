@@ -1,7 +1,7 @@
 package dto;
 
 import java.util.Map;
-import model.GameResults;
+import model.result.GameResults;
 
 public record GameResultsDto(Map<ParticipantName, PrizeName> gameResults) {
     public GameResultsDto(GameResults gameResults) {

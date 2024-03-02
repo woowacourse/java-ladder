@@ -1,6 +1,6 @@
 package dto;
 
-import model.Participant;
+import model.participant.Participant;
 
 public record ParticipantName(String name) {
     public ParticipantName(Participant participant) {

@@ -3,6 +3,7 @@ package model;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import model.ladder.Height;
 import org.junit.jupiter.api.Test;
 
 public class HeightTest {

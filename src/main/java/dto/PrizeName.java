@@ -1,6 +1,6 @@
 package dto;
 
-import model.Prize;
+import model.prize.Prize;
 
 public record PrizeName(String prizeName) {
     public PrizeName(Prize prize) {

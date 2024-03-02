@@ -1,10 +1,15 @@
-package model;
+package model.ladder;
 
 import dto.LayerSteps;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import model.generator.StepExistenceGenerator;
+import model.participant.Participant;
+import model.participant.Participants;
+import model.prize.Prize;
+import model.prize.Prizes;
 
 public class Ladder {
     private final List<Layer> layers;

@@ -1,4 +1,4 @@
-package model;
+package model.prize;
 
 import dto.PrizeName;
 import utils.Constant;
