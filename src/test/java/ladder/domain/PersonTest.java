@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -55,5 +57,17 @@ public class PersonTest {
         assertThat(person)
                 .extracting("name")
                 .isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("지정된 명령어가 입력될 경우 예외가 발생한다.")
+    void validateNonCommand() {
+        // given
+        List<String> namesWithCommand = List.of("pobi", "all");
+
+        // when & then
+        assertThatThrownBy(() -> People.from(namesWithCommand))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("지정된 명령어는 이름으로 사용할 수 없습니다.");
     }
 }

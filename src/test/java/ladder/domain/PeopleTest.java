@@ -35,4 +35,27 @@ public class PeopleTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("사다리 게임에 참여하는 사람의 수는 2명 이상 이여야 합니다.");
     }
+
+    @Test
+    @DisplayName("사람 이름이 중복 될 경우 예외가 발생한다.")
+    void validateDuplicated() {
+        assertThatThrownBy(() -> People.from(List.of("pobi", "pobi")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("이름은 중복될 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("몇명인지 반환한다.")
+    void getCount() {
+        // given
+        List<String> names = List.of("pobi", "nak", "seya", "jay");
+
+        int count = 4;
+
+        // when
+        People people = People.from(names);
+
+        // then
+        assertThat(people.getCount()).isEqualTo(count);
+    }
 }

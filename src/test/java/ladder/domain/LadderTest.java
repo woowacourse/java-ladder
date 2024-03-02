@@ -31,4 +31,17 @@ public class LadderTest {
                 .usingRecursiveComparison()
                 .isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("비어있을 경우 가로 길이가 0이다.")
+    void widthZero() {
+        // given
+        List<Line> lines = List.of();
+
+        // when
+        Ladder ladder = new Ladder(lines);
+
+        // then
+        assertThat(ladder.width()).isEqualTo(0);
+    }
 }
