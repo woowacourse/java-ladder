@@ -17,6 +17,16 @@ class GameTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("사다리의 가로 길이가 사용자의 수와 다르다면 사다리 게임을 생성할 수 없다.")
+    @Test
+    void checkPlayersSize() {
+        int invalidPlayerSize = 3;
+        Ladder ladder = new Ladder(new Height(3), invalidPlayerSize, createStickGenerator());
+
+        assertThatThrownBy(() -> createGame(List.of("pobi", "atom"), List.of("3000", "2000"), ladder))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("사용자의 위치를 입력하면, 게임 결과를 받아올 수 있다.")
     @Test
     void showResult() {
@@ -51,7 +61,17 @@ class GameTest {
         return new Game(players, ladder, gameResults.stream().map(GameResult::new).toList());
     }
 
+    private Game createGame(List<String> playerNames, List<String> gameResults, Ladder ladder) {
+        Players players = new Players(playerNames);
+
+        return new Game(players, ladder, gameResults.stream().map(GameResult::new).toList());
+    }
+
     private Ladder createLadder() {
+        return new Ladder(new Height(2), 4, createStickGenerator());
+    }
+
+    private SimpleStickGenerator createStickGenerator() {
         List<Stick> sticks = List.of(
                 Stick.NOT_FILLED,
                 Stick.FILLED,
@@ -61,7 +81,6 @@ class GameTest {
                 Stick.FILLED
         );
 
-        Height height = new Height(2);
-        return new Ladder(height, 4, new SimpleStickGenerator(sticks));
+        return new SimpleStickGenerator(sticks);
     }
 }

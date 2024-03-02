@@ -12,6 +12,7 @@ public class Game {
 
     public Game(Players players, Ladder ladder, List<GameResult> gameResults) {
         validateSameSize(players, gameResults);
+        validateSameWidth(players, ladder);
 
         this.players = players;
         this.ladder = ladder;
@@ -21,6 +22,12 @@ public class Game {
     private void validateSameSize(Players players, List<GameResult> gameResults) {
         if (players.size() != gameResults.size()) {
             throw new IllegalArgumentException("사용자의 수와 실행 결과의 수가 일치하지 않습니다.");
+        }
+    }
+
+    private void validateSameWidth(Players players, Ladder ladder) {
+        if (players.size() != ladder.widthSize()) {
+            throw new IllegalArgumentException("사용자의 수와 사다리의 가로 길이가 일치하지 않습니다.");
         }
     }
 

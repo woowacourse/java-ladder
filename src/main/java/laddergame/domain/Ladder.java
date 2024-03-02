@@ -6,11 +6,14 @@ import java.util.List;
 public class Ladder {
 
     private final List<Line> lines = new ArrayList<>();
+    private final int width;
 
     public Ladder(Height height, int playerSize, StickGenerator stickGenerator) {
         for (int i = 0; i < height.getValue(); i++) {
             lines.add(new Line(stickGenerator, playerSize));
         }
+
+        this.width = playerSize;
     }
 
     public Column climb(Column playerColumn) {
@@ -21,6 +24,10 @@ public class Ladder {
         }
 
         return column;
+    }
+
+    public int widthSize() {
+        return width;
     }
 
     public List<Line> getLines() {
