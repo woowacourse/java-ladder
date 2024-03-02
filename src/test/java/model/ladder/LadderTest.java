@@ -20,12 +20,13 @@ class LadderTest {
     Players players = Players.of(List.of("pobi", "lala", "jojo", "gamja"));
     Prizes prizes = Prizes.from(List.of("꽝", "식권", "꽝", "커피"), players);
     LadderHeight ladderHeight = new LadderHeight(5);
+    LadderWidth ladderWidth = LadderWidth.from(players);
 
     @DisplayName("사다리는 사다리 높이만큼의 라인을 가짐")
     @Test
     void testSizeOfLadderLines() {
         LineGenerator lineGenerator = new RandomLineGenerator();
-        Ladder ladder = Ladder.of(ladderHeight, players, lineGenerator);
+        Ladder ladder = Ladder.of(ladderHeight, ladderWidth, lineGenerator);
         assertThat(ladder.getLines().size())
             .isEqualTo(5);
     }
@@ -34,7 +35,7 @@ class LadderTest {
     @Test
     void testSimulateLadder() {
         LineGenerator lineGenerator = new CustomLineGenerator();
-        Ladder ladder = Ladder.of(ladderHeight, players, lineGenerator);
+        Ladder ladder = Ladder.of(ladderHeight, ladderWidth, lineGenerator);
         GameResult gameResult = ladder.simulate(players, prizes);
         assertAll(
             () -> assertEquals(gameResult.findPrizeByPlayerName("pobi").getName(), "커피"),

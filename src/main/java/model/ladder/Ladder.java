@@ -14,18 +14,16 @@ import model.prize.Prizes;
 
 public class Ladder {
 
-    private static final int LINE_WIDTH_OFFSET = 1;
-
     private final List<Line> lines;
 
     private Ladder(List<Line> lines) {
         this.lines = Collections.unmodifiableList(lines);
     }
 
-    public static Ladder of(LadderHeight height, Players players, LineGenerator LineGenerator) {
-        int lineWidth = players.getSize() - LINE_WIDTH_OFFSET;
+    public static Ladder of(LadderHeight height, LadderWidth ladderWidth,
+        LineGenerator lineGenerator) {
         return IntStream.range(0, height.getValue())
-            .mapToObj(i -> LineGenerator.generateLine(lineWidth))
+            .mapToObj(i -> lineGenerator.generateLine(ladderWidth.getValue()))
             .collect(collectingAndThen(toList(), Ladder::new));
     }
 

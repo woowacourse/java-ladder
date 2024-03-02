@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 import model.gameresult.GameResult;
 import model.ladder.Ladder;
 import model.ladder.LadderHeight;
+import model.ladder.LadderWidth;
 import model.line.LineGenerator;
 import model.line.RandomLineGenerator;
 import model.player.Players;
@@ -20,9 +21,10 @@ public class LadderGameController {
         Players players = preparePlayers();
         Prizes prizes = preparePrizes(players);
         LadderHeight ladderHeight = prepareLadderHeight();
+        LadderWidth ladderWidth = LadderWidth.from(players);
 
         LineGenerator randomLineGenerator = new RandomLineGenerator();
-        Ladder ladder = Ladder.of(ladderHeight, players, randomLineGenerator);
+        Ladder ladder = Ladder.of(ladderHeight, ladderWidth, randomLineGenerator);
         OutputView.printLadderResult(players, ladder, prizes);
 
         GameResult gameResult = ladder.simulate(players, prizes);
