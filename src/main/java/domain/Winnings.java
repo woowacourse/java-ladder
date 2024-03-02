@@ -5,11 +5,11 @@ import java.util.List;
 
 public class Winnings {
 
-    private final List<Name> winnings;
+    private final List<Name> names;
 
     public Winnings(List<String> names, int playersNumber) {
         validateNumber(names, playersNumber);
-        this.winnings = names.stream()
+        this.names = names.stream()
                 .map(Name::new)
                 .toList();
     }
@@ -20,7 +20,7 @@ public class Winnings {
         }
     }
 
-    public List<Name> getWinnings() {
-        return Collections.unmodifiableList(this.winnings);
+    public List<Name> getNames() {
+        return Collections.unmodifiableList(this.names);
     }
 }

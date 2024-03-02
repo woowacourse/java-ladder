@@ -19,7 +19,7 @@ public class WinningsTest {
     @Test
     void getNamesFromList() {
         Winnings winnings = new Winnings(List.of("test1", "test2"), 2);
-        Assertions.assertThat(winnings.getWinnings()
+        Assertions.assertThat(winnings.getNames()
                         .stream()
                         .map(Name::getName)
                         .toList())

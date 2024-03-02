@@ -8,18 +8,18 @@ import java.util.List;
 
 public class Ladder{
 
-    private final List<Line> ladder;
+    private final List<Line> lines;
     private final Height height;
 
     public Ladder(Height height) {
         validateHeight(height);
         this.height = height;
-        this.ladder = new ArrayList<>();
+        this.lines = new ArrayList<>();
     }
 
     public void init(int personCount, Generator generator) {
         for (int index = 0; index < height.getHeight(); ++index) {
-            ladder.add(index, new Line(generator.generate(personCount)));
+            lines.add(index, new Line(generator.generate(personCount)));
         }
     }
 
@@ -30,6 +30,6 @@ public class Ladder{
     }
 
     public List<Line> getLines() {
-        return Collections.unmodifiableList(this.ladder);
+        return Collections.unmodifiableList(this.lines);
     }
 }

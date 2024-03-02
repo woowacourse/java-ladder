@@ -5,17 +5,17 @@ import java.util.List;
 
 public class Players{
 
-    private final List<Name> players;
+    private final List<Name> names;
 
     public Players (List<String> names) {
         validateNumber(names);
-        this.players = names.stream()
+        this.names = names.stream()
                 .map(Name::new)
                 .toList();
     }
 
     public int getPersonCount() {
-        return players.size();
+        return names.size();
     }
 
     private void validateNumber(List<String> names) {
@@ -25,6 +25,6 @@ public class Players{
     }
 
     public List<Name> getNames() {
-        return Collections.unmodifiableList(this.players);
+        return Collections.unmodifiableList(this.names);
     }
 }

@@ -17,7 +17,7 @@ public class LadderSequence {
         List<String> results = new ArrayList<>();
         results.add(getNamesWithFormat(players.getNames()));
         results.addAll(LadderSequence.getLadderSequence(ladder));
-        results.add(getNamesWithFormat(winnings.getWinnings()));
+        results.add(getNamesWithFormat(winnings.getNames()));
         return results;
     }
 

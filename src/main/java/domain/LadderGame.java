@@ -50,7 +50,7 @@ public class LadderGame {
         IntStream.range(0, climbers.size())
                 .forEach(index -> result.put(
                         climbers.get(index).getName(),
-                        winnings.getWinnings().get(index).getName()
+                        winnings.getNames().get(index).getName()
                 ));
         return result;
     }

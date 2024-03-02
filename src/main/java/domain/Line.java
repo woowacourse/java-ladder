@@ -10,7 +10,7 @@ import java.util.Objects;
 import static util.Connection.UNCONNECTED;
 
 public class Line{
-    private final List<Connection> line;
+    private final List<Connection> connections;
 
     public Line (List<Integer> numbers) {
         validateRange(numbers.size());
@@ -22,7 +22,7 @@ public class Line{
                     && hasConnection(numbers.get(index))
             ));
         }
-        this.line = line;
+        this.connections = line;
     }
 
     private void validateRange(int height) {
@@ -36,7 +36,7 @@ public class Line{
     }
 
     public List<Connection> getConnections() {
-        return Collections.unmodifiableList(this.line);
+        return Collections.unmodifiableList(this.connections);
     }
 
     @Override
@@ -44,11 +44,11 @@ public class Line{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Line line1 = (Line) o;
-        return Objects.equals(line, line1.line);
+        return Objects.equals(connections, line1.connections);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(line);
+        return Objects.hash(connections);
     }
 }
