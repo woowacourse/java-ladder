@@ -20,7 +20,7 @@ class LineTest {
         line.addDirection(direction);
 
         //then
-        assertThat(line.getDirections()).containsExactly(direction);
+        assertThat(line.getDirectionInfo()).containsExactly(direction);
     }
 
     @DisplayName("index값에 해당하는 방향을 반환한다.")

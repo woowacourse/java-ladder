@@ -1,45 +1,39 @@
 package ladder.domain.resource.line;
 
-import java.util.ArrayList;
 import java.util.List;
 import ladder.domain.resource.direction.Direction;
 
 public class Line {
 
-    private final List<Direction> directionsInfo;
+    private static final int MIN_DIRECTION_SIZE = 2;
+    private static final int MAX_DIRECTION_SIZE = 10;
 
-    Line() {
-        this.directionsInfo = new ArrayList<>();
-    }
+    private final List<Direction> directionInfo;
 
-    void addDirection(Direction direction) {
-        directionsInfo.add(direction);
+    public Line(List<Direction> directionInfo) {
+        validateDirectionSize(directionInfo);
+        this.directionInfo = directionInfo;
     }
 
     public Direction getDirectionByIndex(int index) {
-        return directionsInfo.get(index);
-    }
-
-    public Direction getLastDirection() {
-        validateNotEmpty();
-        return directionsInfo.get(directionsInfo.size() - 1);
+        return directionInfo.get(index);
     }
 
     public int getSize() {
-        return directionsInfo.size();
+        return directionInfo.size();
     }
 
     public boolean isEmpty() {
-        return directionsInfo.isEmpty();
+        return directionInfo.isEmpty();
     }
 
-    private void validateNotEmpty() {
-        if (isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 방향 정보가 없습니다.");
+    private void validateDirectionSize(List<Direction> directions) {
+        if (directions.size() < MIN_DIRECTION_SIZE || directions.size() > MAX_DIRECTION_SIZE) {
+            throw new IllegalArgumentException("[ERROR] 방향은 2~10개 까지만 등록 가능합니다.");
         }
     }
 
-    public List<Direction> getDirections() {
-        return directionsInfo;
+    public List<Direction> getDirectionInfo() {
+        return directionInfo;
     }
 }

@@ -90,7 +90,7 @@ public class Formatter {
     private String formatLine(Line line) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(CONNECTION_NO);
-        for (Direction direction : line.getDirections()) {
+        for (Direction direction : line.getDirectionInfo()) {
             stringBuilder.append(LINE).append(formatDirection(direction));
         }
 
