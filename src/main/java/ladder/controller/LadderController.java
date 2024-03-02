@@ -33,7 +33,7 @@ public class LadderController {
         outputView.printLadder(ladderItems, ladder);
 
         LadderResult ladderResult = ladderGame.findResult(ladder, ladderItems);
-        responseResult(ladderResult);
+        responseResultUntilValid(ladderResult);
     }
 
     private LadderItems requestLadderItemsUntilValid() {
@@ -53,6 +53,10 @@ public class LadderController {
 
     private LadderHeight requestLadderHeight() {
         return new LadderHeight(inputView.readLadderHeight());
+    }
+
+    private void responseResultUntilValid(LadderResult ladderResult) {
+        ExceptionRetryHandler.handle(() -> responseResult(ladderResult));
     }
 
     private void responseResult(LadderResult ladderResult) {

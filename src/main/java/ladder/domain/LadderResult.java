@@ -15,6 +15,10 @@ public class LadderResult {
     }
 
     public WinningItem findWinningItemByPersonName(String personName) {
+        if (!result.containsKey(new Person(personName))) {
+            throw new IllegalArgumentException("존재하지 않는 사람의 이름입니다.");
+        }
+
         return result.get(new Person(personName));
     }
 

@@ -24,4 +24,21 @@ public class ExceptionRetryHandler {
             return Optional.empty();
         }
     }
+
+    public static void handle(Runnable runnable) {
+        boolean isSuccess = false;
+        while (!isSuccess) {
+            isSuccess = tryRun(runnable);
+        }
+    }
+
+    private static boolean tryRun(Runnable runnable) {
+        try {
+            runnable.run();
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            return false;
+        }
+    }
 }
