@@ -26,8 +26,8 @@ public class LadderTest {
 
         // when
         bridgeGeneratorStub.setBridges(bridges);
-        Ladder ladder = Ladder.of(height, new Players(players), bridgeGeneratorStub);
-        List<Floor> floors = ladder.getFloors();
+        Ladder ladder = new  Ladder(height, new Players(players), bridgeGeneratorStub);
+        List<Floor> floors = ladder.createFloors();
 
         // then
         assertAll(

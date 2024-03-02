@@ -6,27 +6,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private final List<Floor> floors;
+    private final LadderHeight ladderHeight;
+    private final Players players;
+    private final BridgeGenerator bridgeGenerator;
 
-    private Ladder(final List<Floor> floors) {
-        this.floors = List.copyOf(floors);
+    public Ladder(final LadderHeight ladderHeight, final Players players, final BridgeGenerator bridgeGenerator) {
+        this.ladderHeight = ladderHeight;
+        this.players = players;
+        this.bridgeGenerator = bridgeGenerator;
     }
 
-    public static Ladder of(final LadderHeight height, final Players players, final BridgeGenerator bridgeGenerator) {
+    public List<Floor> createFloors() {
         List<Floor> floors = new ArrayList<>();
         int bridgeCount = calculateBridgeCount(players);
-        for (int i = 0; i < height.getValue(); i++) {
+        for (int i = 0; i < ladderHeight.getValue(); i++) {
             List<LadderBridge> bridges = bridgeGenerator.generate(bridgeCount);
             floors.add(new Floor(bridges));
         }
-        return new Ladder(floors);
+        return floors;
     }
 
     private static int calculateBridgeCount(final Players players) {
         return players.getPlayerCount() - 1;
-    }
-
-    public List<Floor> getFloors() {
-        return floors;
     }
 }

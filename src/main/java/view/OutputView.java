@@ -37,7 +37,7 @@ public class OutputView {
 
     private void printLadder(final Ladder ladder) {
         StringJoiner ladderJoiner;
-        for (Floor floor : ladder.getFloors()) {
+        for (Floor floor : ladder.createFloors()) {
             ladderJoiner = new StringJoiner(LADDER_FRAME, LADDER_FRAME, LADDER_FRAME);
             printLadderLine(floor, ladderJoiner);
         }
