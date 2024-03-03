@@ -3,6 +3,7 @@ package model.gameresult;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import model.ladder.LadderResult;
 import model.player.Player;
 import model.player.Players;
 import model.prize.Prize;
@@ -18,10 +19,10 @@ public class GameResult {
         this.result = result;
     }
 
-    public static GameResult of(List<Integer> positions, Players players, Prizes prizes) {
+    public static GameResult of(LadderResult ladderResult, Players players, Prizes prizes) {
         Map<Player, Prize> result = new HashMap<>();
-        for (int start = 0; start < positions.size(); start++) {
-            int end = positions.get(start);
+        for (int start = 0; start < ladderResult.getSize(); start++) {
+            int end = ladderResult.getValue(start);
             result.put(players.findPlayer(start), prizes.findPrize(end));
         }
         return new GameResult(result);

@@ -1,7 +1,5 @@
 package model.ladder;
 
-import model.player.Players;
-
 public class LadderWidth {
 
     private static final int LADDER_WIDTH_OFFSET = 1;
@@ -12,8 +10,8 @@ public class LadderWidth {
         this.value = value;
     }
 
-    public static LadderWidth from(Players players) {
-        int width = players.getSize() - LADDER_WIDTH_OFFSET;
+    public static LadderWidth from(int playersSize) {
+        int width = playersSize - LADDER_WIDTH_OFFSET;
         return new LadderWidth(width);
     }
 

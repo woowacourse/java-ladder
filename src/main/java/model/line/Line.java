@@ -72,4 +72,8 @@ public class Line {
     public List<Bridge> getBridges() {
         return bridges;
     }
+
+    public int getSize() {
+        return bridges.size();
+    }
 }
