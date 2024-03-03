@@ -1,11 +1,10 @@
 package domain;
 
 import domain.line.RowLine;
-import domain.line.RowLineGenerator;
+import domain.line.RowLinesGenerator;
 import domain.name.Names;
 import domain.prize.Prizes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
@@ -18,12 +17,9 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder createFrom(RowLineGenerator rowLineGenerator, Names names, Height height, Prizes prizes) {
+    public static Ladder createFrom(RowLinesGenerator rowLinesGenerator, Names names, Height height, Prizes prizes) {
         validatePersonPrizesCount(names, prizes);
-        List<RowLine> lines = new ArrayList<>();
-        for (int i = 0; i < height.getHeight(); i++) {
-            lines.add(rowLineGenerator.generate(names.getNameCount()));
-        }
+        List<RowLine> lines = rowLinesGenerator.generateLines(names.getNameCount(), height.getHeight());
         return new Ladder(lines);
     }
 

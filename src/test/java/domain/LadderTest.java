@@ -1,6 +1,6 @@
 package domain;
 
-import domain.line.NonContinuousLineGenerator;
+import domain.line.RandomLinesGenerator;
 import domain.name.Names;
 import domain.prize.Prizes;
 import org.assertj.core.api.Assertions;
@@ -16,7 +16,7 @@ public class LadderTest {
         Names names = Names.from(List.of("a", "b", "c", "d"));
         Prizes prizes = Prizes.from(List.of("1", "2", "3"));
         Assertions.assertThatThrownBy(() ->
-                        Ladder.createFrom(new NonContinuousLineGenerator(), names, new Height(1), prizes))
+                        Ladder.createFrom(new RandomLinesGenerator(), names, new Height(1), prizes))
                 .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 상품의 수는 참여자 수와 일치해야 합니다.");
     }
 
@@ -26,7 +26,7 @@ public class LadderTest {
         Names names = Names.from(List.of("a", "b", "c"));
         Prizes prizes = Prizes.from(List.of("1", "2", "3"));
         Assertions.assertThatCode(() ->
-                        Ladder.createFrom(new NonContinuousLineGenerator(), names, new Height(1), prizes))
+                        Ladder.createFrom(new RandomLinesGenerator(), names, new Height(1), prizes))
                 .doesNotThrowAnyException();
     }
 }

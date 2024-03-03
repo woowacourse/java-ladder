@@ -4,7 +4,7 @@ import domain.Height;
 import domain.Ladder;
 import domain.LadderGameResult;
 import domain.LadderIndexConnection;
-import domain.line.NonContinuousLineGenerator;
+import domain.line.RandomLinesGenerator;
 import domain.name.Name;
 import domain.name.Names;
 import domain.prize.Prizes;
@@ -26,7 +26,7 @@ public class LadderGameController {
         Prizes prizes = inputView.readPrizes();
         Height height = inputView.readHeight();
 
-        Ladder ladder = Ladder.createFrom(new NonContinuousLineGenerator(), names, height, prizes);
+        Ladder ladder = Ladder.createFrom(new RandomLinesGenerator(), names, height, prizes);
         resultView.printLadder(ladder, names, prizes);
 
         LadderIndexConnection ladderIndexConnection = LadderIndexConnection.of(ladder);
