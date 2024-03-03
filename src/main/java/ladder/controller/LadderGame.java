@@ -13,9 +13,6 @@ public class LadderGame {
     private final OutputView outputView = new OutputView();
     private final RandomPointsGenerator randomPointsGenerator = new RandomPointsGenerator();
 
-    public LadderGame() {
-    }
-
     public void run() {
         People people = createNames();
         Results results = createResults(people.count());
