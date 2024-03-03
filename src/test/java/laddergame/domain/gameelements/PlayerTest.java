@@ -21,8 +21,8 @@ class PlayerTest {
         testPlayer1.moveLeft();
         testPlayer2.moveRight();
 
-        assertEquals(testPlayer1.getPosition(), expectedPosition1);
-        assertEquals(testPlayer2.getPosition(), expectedPosition2);
+        assertEquals(testPlayer1.getPlayerPosition(), expectedPosition1);
+        assertEquals(testPlayer2.getPlayerPosition(), expectedPosition2);
     }
 
     @DisplayName("플레이어 이름은 예약어 all이 될 수 없다")

@@ -11,11 +11,15 @@ public class Prize {
         this.position = position;
     }
 
+    public String toString() {
+        return name.toString();
+    }
+
     public Name getName() {
         return name;
     }
 
-    public Position position() {
+    public Position getPosition() {
         return position;
     }
 }

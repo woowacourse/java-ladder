@@ -70,5 +70,4 @@ class PlayersTest {
             new Players(validNames);
         });
     }
-
 }

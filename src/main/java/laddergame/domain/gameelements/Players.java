@@ -1,5 +1,8 @@
 package laddergame.domain.gameelements;
 
+import laddergame.domain.Position;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Players {
@@ -7,13 +10,22 @@ public class Players {
     private static final int MAX_PLAYER_NUMBER = 100;
 
 
-    private final List<Name> playerNames;
+    private final List<Player> players;
 
-    public Players(List<String> playerNames) {
-        validatePlayerNumber(playerNames);
-        this.playerNames = playerNames.stream()
-                .map(Name::new)
-                .toList();
+    public Players(List<String> players) {
+        validatePlayerNumber(players);
+
+        this.players = new ArrayList<>();
+
+        for (int i = 0; i < players.size(); i++) {
+            Name playerName = new Name(players.get(i));
+            Position position = new Position(i);
+            this.players.add(new Player(playerName, position));
+        }
+    }
+
+    public int count() {
+        return players.size();
     }
 
     private void validatePlayerNumber(List<String> playerNames) {
@@ -22,11 +34,8 @@ public class Players {
         }
     }
 
-    public int count() {
-        return playerNames.size();
-    }
 
-    public List<Name> getNames() {
-        return playerNames;
+    public List<Player> getPlayers() {
+        return players;
     }
 }

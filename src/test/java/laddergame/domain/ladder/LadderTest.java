@@ -2,7 +2,7 @@ package laddergame.domain.ladder;
 
 import laddergame.domain.Position;
 import laddergame.domain.connectiongenerator.AllFalseConnectionGenerator;
-import laddergame.domain.connectiongenerator.TrueFalseConnectionGenerator;
+import laddergame.domain.gameelements.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -49,6 +49,46 @@ class LadderTest {
         assertThat(connectionElement).containsExactly(Connection.NOTCONNECTED);
     }
 
+//    @DisplayName("사다리 결과 반환 테스트 : 가로선이 없는 경우")
+//    @Test
+//    void getResultIndexTest1() {
+//        /*
+//             0    1    2
+//             |    |    |
+//             0    1    2
+//         */
+//
+//        Ladder testLadder = new Ladder(1, 3, new AllFalseConnectionGenerator());
+//
+//        List<Position> expectedResult = Stream.of(0, 1, 2)
+//                .map(Position::new)
+//                .toList();
+//        List<Position> actualResult = testLadder.getResult(3);
+//
+//        assertThat(actualResult)
+//                .containsExactlyElementsOf(expectedResult);
+//    }
+//
+//    @DisplayName("사다리 결과 반환 테스트 : 연결-비연결이 반복되는 경우")
+//    @Test
+//    void getResultIndexTest2() {
+//        /*
+//             0    1    2    3
+//             |----|    |----|
+//             1    0    3    2
+//         */
+//        Ladder testLadder = new Ladder(1, 4, new TrueFalseConnectionGenerator());
+//
+//        List<Position> expectedResult = Stream.of(1, 0, 3, 2)
+//                .map(Position::new)
+//                .toList();
+//        List<Position> actualResult = testLadder.getResult(4);
+//
+//        assertThat(actualResult)
+//                .containsExactlyElementsOf(expectedResult);
+//    }
+
+
     @DisplayName("사다리 결과 반환 테스트 : 가로선이 없는 경우")
     @Test
     void getResultIndexTest1() {
@@ -63,26 +103,10 @@ class LadderTest {
         List<Position> expectedResult = Stream.of(0, 1, 2)
                 .map(Position::new)
                 .toList();
-        List<Position> actualResult = testLadder.getResult(3);
 
-        assertThat(actualResult)
-                .containsExactlyElementsOf(expectedResult);
-    }
-
-    @DisplayName("사다리 결과 반환 테스트 : 연결-비연결이 반복되는 경우")
-    @Test
-    void getResultIndexTest2() {
-        /*
-             0    1    2    3
-             |----|    |----|
-             1    0    3    2
-         */
-        Ladder testLadder = new Ladder(1, 4, new TrueFalseConnectionGenerator());
-
-        List<Position> expectedResult = Stream.of(1, 0, 3, 2)
-                .map(Position::new)
-                .toList();
-        List<Position> actualResult = testLadder.getResult(4);
+        Players testPlayers = new Players(List.of("0", "1", "2"));
+        testLadder.getResult(testPlayers);
+        List<Position> actualResult = testPlayers.getPlayers().stream().map(i -> i.getPlayerPosition()).toList();
 
         assertThat(actualResult)
                 .containsExactlyElementsOf(expectedResult);

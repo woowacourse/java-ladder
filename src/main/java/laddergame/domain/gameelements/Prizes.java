@@ -1,16 +1,25 @@
 package laddergame.domain.gameelements;
 
+import laddergame.domain.Position;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Prizes {
 
-    private final List<Name> prizeNames;
+    private final List<Prize> prizes;
 
     public Prizes(List<String> prizeNames, int playerNumber) {
         validateSameLength(prizeNames.size(), playerNumber);
-        this.prizeNames = prizeNames.stream()
-                .map(Name::new)
-                .toList();
+
+        this.prizes = new ArrayList<>();
+
+        for (int i = 0; i < prizeNames.size(); i++) {
+            Name prizeName = new Name(prizeNames.get(i));
+            Position position = new Position(i);
+
+            this.prizes.add(new Prize(prizeName, position));
+        }
     }
 
     private void validateSameLength(int prizeNumber, int playerNumber) {
@@ -19,7 +28,7 @@ public class Prizes {
         }
     }
 
-    public List<Name> getPrizeNames() {
-        return prizeNames;
+    public List<Prize> getPrizes() {
+        return prizes;
     }
 }

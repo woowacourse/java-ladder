@@ -1,7 +1,8 @@
 package laddergame.view;
 
-import laddergame.domain.gameelements.Name;
+import laddergame.domain.gameelements.Player;
 import laddergame.domain.gameelements.Players;
+import laddergame.domain.gameelements.Prize;
 import laddergame.domain.gameelements.Prizes;
 import laddergame.domain.ladder.Connection;
 import laddergame.domain.ladder.Ladder;
@@ -20,14 +21,14 @@ public class MessageResolver {
     private static final String LINE_SEPERATOR = System.lineSeparator();
 
     public static String resolvePlayerMessage(Players players) {
-        return players.getNames().stream()
-                .map(element -> String.format(ELEMENT_MESSAGE_FORMAT, element.getName()))
+        return players.getPlayers().stream()
+                .map(player -> String.format(ELEMENT_MESSAGE_FORMAT, player.getName()))
                 .collect(Collectors.joining(BLANK));
     }
 
     public static String resolvePrizeMessage(Prizes prizes) {
-        return prizes.getPrizeNames().stream()
-                .map(element -> String.format(ELEMENT_MESSAGE_FORMAT, element.getName()))
+        return prizes.getPrizes().stream()
+                .map(prize -> String.format(ELEMENT_MESSAGE_FORMAT, prize.getName()))
                 .collect(Collectors.joining(BLANK));
     }
 
@@ -38,14 +39,14 @@ public class MessageResolver {
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    public static Name resolvePlayerResultMessage(Name result) {
-        return result;
+    public static Prize resolvePlayerResultMessage(Prize prize) {
+        return prize;
     }
 
-    public static String resolveAllPlayerResultMessage(Map<Name, Name> playerGameResult) {
+    public static String resolveAllPlayerResultMessage(Map<Player, Prize> playerGameResult) {
         return playerGameResult.keySet()
                 .stream()
-                .map(key -> key.toString() + " : " + playerGameResult.get(key).toString())
+                .map(key -> key.getName() + " : " + playerGameResult.get(key))
                 .collect(Collectors.joining(LINE_SEPERATOR));
     }
 

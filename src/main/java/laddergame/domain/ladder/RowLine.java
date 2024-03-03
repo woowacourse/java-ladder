@@ -2,6 +2,7 @@ package laddergame.domain.ladder;
 
 import laddergame.domain.Position;
 import laddergame.domain.connectiongenerator.ConnectionGenerator;
+import laddergame.domain.gameelements.Players;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,9 +22,9 @@ public class RowLine {
         this.connections.addAll(generatedConnection);
     }
 
-    public List<Position> move(List<Position> playerPositions) {
-        playerPositions.forEach(this::moveByConnection);
-        return playerPositions;
+    public void move(Players players) {
+        players.getPlayers()
+                .forEach(p -> moveByConnection(p.getPlayerPosition()));
     }
 
     private void moveByConnection(Position playerPosition) {

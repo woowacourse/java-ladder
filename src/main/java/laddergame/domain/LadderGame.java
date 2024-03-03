@@ -1,42 +1,62 @@
 package laddergame.domain;
 
-import laddergame.domain.gameelements.Name;
-import laddergame.domain.gameelements.Players;
-import laddergame.domain.gameelements.Prizes;
+import laddergame.domain.gameelements.*;
 import laddergame.domain.ladder.Ladder;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class LadderGame {
-    private final Map<Name, Name> playerGameResult;
+    private final Ladder ladder;
+    private final Prizes prizes;
+    private final Map<Player, Prize> playerGameResult;
+    private final Players players;
 
     public LadderGame(Players players, Ladder ladder, Prizes prizes) {
-        List<Name> gameResults = initializeGameResult(ladder, prizes);
+
+        this.players = players;
+        this.ladder = ladder;
+        this.prizes = prizes;
 
         playerGameResult = new LinkedHashMap<>();
-        for (int i = 0; i < players.count(); i++) {
-            playerGameResult.put(players.getNames().get(i), gameResults.get(i));
+    }
+
+    public void playGame() {
+        ladder.getResult(players);
+
+        for (Player player : players.getPlayers()) {
+            Position playerPosition = player.getPlayerPosition();
+            Optional<Prize> prize = findPrizeByPosition(playerPosition);
+
+            playerGameResult.put(player, prize.get());
         }
     }
 
-    public Name findPlayerResult(Name playerName) {
-        if (!(playerGameResult.containsKey(playerName))) {
-            throw new IllegalArgumentException("참여하지 않은 플레이어의 이름을 조회했습니다.");
+    public Prize findPlayerResult(Name playerName) {
+        Optional<Player> targetPlayer = findPlayerByName(playerName);
+
+        if (targetPlayer.isPresent()) {
+            return playerGameResult.get(targetPlayer.get());
         }
 
-        return playerGameResult.get(playerName);
+        throw new IllegalArgumentException("참여하지 않은 플레이어의 이름을 조회했습니다.");
     }
 
-    private List<Name> initializeGameResult(Ladder ladder, Prizes prizes) {
-        List<Position> resultIdx = ladder.getResult(prizes.getPrizeNames().size());
-        return resultIdx.stream()
-                .map(idx -> prizes.getPrizeNames().get(idx.getPosition()))
-                .toList();
+    private Optional<Prize> findPrizeByPosition(Position playerPosition) {
+        return prizes.getPrizes()
+                .stream()
+                .filter(p -> p.getPosition().equals(playerPosition)).findFirst();
     }
 
-    public Map<Name, Name> getPlayerGameResult() {
+    private Optional<Player> findPlayerByName(Name playerName) {
+        return players.getPlayers()
+                .stream()
+                .filter(i -> i.getName() == playerName)
+                .findFirst();
+    }
+
+    public Map<Player, Prize> getPlayerGameResult() {
         return playerGameResult;
     }
 }

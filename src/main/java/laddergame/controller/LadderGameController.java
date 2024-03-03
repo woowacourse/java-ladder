@@ -20,6 +20,7 @@ public class LadderGameController {
         Prizes prizes = retryUntilNoError(() -> new Prizes(InputView.readPrizes(), players.count()));
 
         LadderGame ladderGame = new LadderGame(players, ladder, prizes);
+        ladderGame.playGame();
 
         ResultView.printLadder(players, ladder, prizes);
         retryUntilNoError(() -> printPlayerResults(ladderGame));

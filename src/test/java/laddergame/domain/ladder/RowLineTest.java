@@ -2,13 +2,13 @@ package laddergame.domain.ladder;
 
 import laddergame.domain.Position;
 import laddergame.domain.connectiongenerator.*;
+import laddergame.domain.gameelements.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -48,38 +48,43 @@ class RowLineTest {
 
     @DisplayName("사다리가 연결되어 있지 않으면 position은 이동하지 않는다.")
     @Test
-    void rowLineNonmovingTest() {
+    void rowLineNonmovingTest2() {
         RowLine rowLine = new RowLine(5, new AllFalseConnectionGenerator());
-        List<Position> positions = IntStream.range(0, 5)
-                .mapToObj(Position::new)
-                .toList();
+        Players testPlayers = new Players(List.of("0", "1", "2", "3", "4"));
 
         List<Position> expectedPositions = IntStream.range(0, 5)
                 .mapToObj(Position::new)
                 .toList();
 
-        List<Position> actualPositions = rowLine.move(positions);
+        rowLine.move(testPlayers);
+        List<Position> actualPositions = testPlayers.getPlayers()
+                .stream()
+                .map(i -> i.getPlayerPosition())
+                .toList();
 
         assertThat(expectedPositions)
                 .containsExactlyElementsOf(actualPositions);
     }
+
 
     @DisplayName("사다리 연결상태에 따라 position이 좌우로 이동한다.")
     @Test
     void rowLinemoving2Test() {
         RowLine rowLine = new RowLine(5, new TrueFalseConnectionGenerator());
 
-        List<Position> positions = IntStream.range(0, 5)
-                .mapToObj(Position::new)
-                .collect(Collectors.toList());
 
+        Players testPlayers = new Players(List.of("0", "1", "2", "3", "4"));
         List<Position> expectedPositions = Stream.of(1, 0, 3, 2, 4)
                 .map(Position::new)
                 .toList();
 
-        List<Position> actualPositions = rowLine.move(positions);
+        rowLine.move(testPlayers);
+        List<Position> actualPositions = testPlayers.getPlayers()
+                .stream()
+                .map(i -> i.getPlayerPosition())
+                .toList();
 
-        assertThat(actualPositions)
-                .containsExactlyElementsOf(expectedPositions);
+        assertThat(expectedPositions)
+                .containsExactlyElementsOf(actualPositions);
     }
 }

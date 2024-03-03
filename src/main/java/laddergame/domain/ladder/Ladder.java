@@ -1,11 +1,10 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.Position;
 import laddergame.domain.connectiongenerator.ConnectionGenerator;
 import laddergame.domain.connectiongenerator.RandomConnectionGenerator;
+import laddergame.domain.gameelements.Players;
 
 import java.util.List;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Ladder {
@@ -23,16 +22,13 @@ public class Ladder {
                 .toList();
     }
 
-    public List<Position> getResult(int peopleNumber) {
-        List<Position> playerPositions = IntStream.range(0, peopleNumber)
-                .mapToObj(Position::new)
-                .toList();
+    public void getResult(Players players) {
 
         for (RowLine rowLine : rowLines) {
-            playerPositions = rowLine.move(playerPositions);
+            rowLine.move(players);
         }
 
-        return playerPositions;
+//        return players;
     }
 
     public List<RowLine> getRowLines() {
