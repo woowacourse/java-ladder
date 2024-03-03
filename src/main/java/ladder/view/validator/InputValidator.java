@@ -9,12 +9,6 @@ import java.util.regex.Pattern;
 public class InputValidator {
     private static final Pattern ONLY_DIGIT_PATTERN = Pattern.compile("-?[0-9]+");
 
-    public void validateInputBlank(final String input) {
-        if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException("입력은 비어있을 수 없습니다.");
-        }
-    }
-
     public void validatePlayerNames(final String input) {
         validateInputBlank(input);
 
@@ -31,6 +25,10 @@ public class InputValidator {
                 .anyMatch(Command.EXPRESSION_OF_ALL_PLAYER::isMatch);
     }
 
+    public void validatePrizes(final String input) {
+        validateInputBlank(input);
+    }
+
     public void validateLadderHeight(final String input) {
         validateInputBlank(input);
 
@@ -42,5 +40,15 @@ public class InputValidator {
     private boolean isNotDigit(final String input) {
         return !ONLY_DIGIT_PATTERN.matcher(input)
                 .matches();
+    }
+
+    public void validateNameToSeeResult(final String input) {
+        validateInputBlank(input);
+    }
+
+    private void validateInputBlank(final String input) {
+        if (input == null || input.isBlank()) {
+            throw new IllegalArgumentException("입력은 비어있을 수 없습니다.");
+        }
     }
 }

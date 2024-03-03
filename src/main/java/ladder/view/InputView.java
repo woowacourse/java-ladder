@@ -25,7 +25,7 @@ public class InputView {
         printMessageWithBlankLine("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         final String input = SCANNER.nextLine();
 
-        inputValidator.validateInputBlank(input);
+        inputValidator.validatePrizes(input);
         return input;
     }
 
@@ -41,7 +41,7 @@ public class InputView {
         printMessageWithBlankLine("결과를 보고 싶은 사람은?");
         final String input = SCANNER.nextLine();
 
-        inputValidator.validateInputBlank(input);
+        inputValidator.validateNameToSeeResult(input);
         return input;
     }
 

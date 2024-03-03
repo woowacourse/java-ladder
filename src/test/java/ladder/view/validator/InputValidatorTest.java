@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -15,15 +14,6 @@ class InputValidatorTest {
     @BeforeEach
     void setUp() {
         inputValidator = new InputValidator();
-    }
-
-    @ParameterizedTest
-    @NullAndEmptySource
-    @DisplayName("입력이 비어있으면 예외가 발생한다.")
-    void validateInputBlank(String input) {
-        assertThatThrownBy(() -> inputValidator.validateInputBlank(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("입력은 비어있을 수 없습니다.");
     }
 
     @Test
