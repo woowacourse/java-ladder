@@ -5,6 +5,7 @@ import java.util.List;
 import ladder.domain.direction.RandomDirectionGenerator;
 import ladder.domain.line.Line;
 import ladder.domain.line.LineGenerator;
+import ladder.util.BaseException;
 
 public class Ladder {
 
@@ -28,7 +29,7 @@ public class Ladder {
 
     private void validateLinesSize(int ladderHeight) {
         if (ladderHeight > MAX_LADDER_HEIGHT) {
-            throw new IllegalArgumentException("[ERROR] 사다리의 최대 높이는 50이하만 가능합니다.");
+            throw new BaseException("사다리의 최대 높이는 50이하만 가능합니다.");
         }
     }
 

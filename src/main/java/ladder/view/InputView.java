@@ -3,6 +3,7 @@ package ladder.view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import ladder.util.BaseException;
 
 public class InputView {
 
@@ -23,7 +24,7 @@ public class InputView {
 
     private void validateInput(String input) {
         if (input.isEmpty() || input.endsWith(SEPARATOR)) {
-            throw new IllegalArgumentException("[ERROR] 올바르지 않은 사용자 이름입니다.");
+            throw new BaseException("올바르지 않은 사용자 이름입니다.");
         }
     }
 
@@ -37,7 +38,7 @@ public class InputView {
 
     private void validatePrizeInput(String input) {
         if (input.isEmpty() || input.endsWith(SEPARATOR)) {
-            throw new IllegalArgumentException("[ERROR] 올바르지 않은 실행 결과 이름입니다.");
+            throw new BaseException("올바르지 않은 실행 결과 이름입니다.");
         }
     }
 
@@ -57,13 +58,13 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 최대 사다리 높이는 숫자만 가능합니다.");
+            throw new BaseException("최대 사다리 높이는 숫자만 가능합니다.");
         }
     }
 
     private void validatePositive(int ladderHeight) {
         if (ladderHeight < MIN_LADDER_HEIGHT) {
-            throw new IllegalArgumentException("[ERROR] 최대 사다리 높이는 양의 정수여야 합니다.");
+            throw new BaseException("최대 사다리 높이는 양의 정수여야 합니다.");
         }
     }
 

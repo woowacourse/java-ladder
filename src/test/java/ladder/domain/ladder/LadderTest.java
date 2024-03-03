@@ -2,6 +2,7 @@ package ladder.domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import ladder.util.BaseException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +17,7 @@ class LadderTest {
 
         //when, then
         assertThatThrownBy(() -> new Ladder(lineCount, width))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(BaseException.class)
                 .hasMessage("[ERROR] 사다리의 최대 높이는 50이하만 가능합니다.");
     }
 }

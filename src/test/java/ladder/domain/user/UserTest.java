@@ -2,6 +2,7 @@ package ladder.domain.user;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import ladder.util.BaseException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,7 +16,7 @@ class UserTest {
     void newUserTestByUnderLength(String userName) {
         //when, then
         assertThatThrownBy(() -> new User(userName))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(BaseException.class)
                 .hasMessage("[ERROR] 사용자 이름의 길이는 1~5글자여야 합니다.");
     }
 
@@ -25,7 +26,7 @@ class UserTest {
     void newUserTestByEngFormat(String userName) {
         //when, then
         assertThatThrownBy(() -> new User(userName))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(BaseException.class)
                 .hasMessage("[ERROR] 사용자 이름은 영문 대소문자만 허용합니다.");
     }
 
@@ -35,7 +36,7 @@ class UserTest {
     void newUserTestByContainsBlank(String userName) {
         //when, then
         assertThatThrownBy(() -> new User(userName))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(BaseException.class)
                 .hasMessage("[ERROR] 사용자 이름 내에는 공백을 허용하지 않습니다.");
     }
 
@@ -47,7 +48,7 @@ class UserTest {
 
         //when, then
         assertThatThrownBy(() -> new User(userName))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(BaseException.class)
                 .hasMessage("[ERROR] 사용자의 이름으로 'all'은 허용하지 않습니다.");
     }
 }

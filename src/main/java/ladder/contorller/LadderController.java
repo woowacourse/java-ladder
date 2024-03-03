@@ -11,6 +11,7 @@ import ladder.domain.prize.Prizes;
 import ladder.domain.result.Result;
 import ladder.domain.user.User;
 import ladder.domain.user.Users;
+import ladder.util.BaseException;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -42,7 +43,7 @@ public class LadderController {
             return userNames.stream()
                     .map(User::new)
                     .collect(collectingAndThen(toList(), Users::new));
-        } catch (IllegalArgumentException e) {
+        } catch (BaseException e) {
             outputView.printError(e.getMessage());
             return createUsers();
         }
@@ -54,7 +55,7 @@ public class LadderController {
             return prizeNames.stream()
                     .map(Prize::new)
                     .collect(collectingAndThen(toList(), list -> new Prizes(list, userSize)));
-        } catch (IllegalArgumentException e) {
+        } catch (BaseException e) {
             outputView.printError(e.getMessage());
             return createPrizes(userSize);
         }
@@ -64,7 +65,7 @@ public class LadderController {
         try {
             int ladderHeight = inputView.readLadderHeight();
             return new Ladder(ladderHeight, ladderWidth);
-        } catch (IllegalArgumentException e) {
+        } catch (BaseException e) {
             outputView.printError(e.getMessage());
             return createLadder(ladderWidth);
         }
@@ -84,7 +85,7 @@ public class LadderController {
         try {
             showSingleUserPrizeResult(userName, users, result);
             showAllPrizeResult(userName, users, result);
-        } catch (IllegalArgumentException e) {
+        } catch (BaseException e) {
             outputView.printError(e.getMessage());
             showPrizeByUserName(users, result);
         }

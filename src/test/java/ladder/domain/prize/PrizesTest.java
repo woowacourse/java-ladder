@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import ladder.domain.user.User;
 import ladder.domain.user.Users;
+import ladder.util.BaseException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +31,7 @@ class PrizesTest {
 
         //when, then
         assertThatThrownBy(() -> new Prizes(prizes, userSize))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(BaseException.class)
                 .hasMessage("[ERROR] 실행 결과의 수가 사용자의 수와 동일하지 않습니다.");
     }
 }

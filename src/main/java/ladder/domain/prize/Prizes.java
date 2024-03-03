@@ -2,6 +2,7 @@ package ladder.domain.prize;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import ladder.util.BaseException;
 
 public class Prizes {
 
@@ -14,7 +15,7 @@ public class Prizes {
 
     public void validateSameSize(int size) {
         if (this.prizes.size() != size) {
-            throw new IllegalArgumentException("[ERROR] 실행 결과의 수가 사용자의 수와 동일하지 않습니다.");
+            throw new BaseException("실행 결과의 수가 사용자의 수와 동일하지 않습니다.");
         }
     }
 

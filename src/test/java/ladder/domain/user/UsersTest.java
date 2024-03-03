@@ -3,6 +3,7 @@ package ladder.domain.user;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import ladder.util.BaseException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +17,7 @@ class UsersTest {
 
         // when, then
         assertThatThrownBy(() -> new Users(users))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(BaseException.class)
                 .hasMessage("[ERROR] 사용자는 2~10명 까지만 등록 가능합니다.");
     }
 
@@ -38,7 +39,7 @@ class UsersTest {
 
         // when, then
         assertThatThrownBy(() -> new Users(users))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(BaseException.class)
                 .hasMessage("[ERROR] 사용자는 2~10명 까지만 등록 가능합니다.");
     }
 
@@ -52,7 +53,7 @@ class UsersTest {
 
         //when, then
         assertThatThrownBy(() -> new Users(users))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(BaseException.class)
                 .hasMessage("[ERROR] 중복된 사용자명이 존재합니다.");
     }
 
@@ -69,7 +70,7 @@ class UsersTest {
 
         //when, then
         assertThatThrownBy(() -> users.validateExistUserName(userName))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(BaseException.class)
                 .hasMessage("[ERROR] 존재하지 않는 사용자의 이름입니다.");
     }
 }

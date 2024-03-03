@@ -1,6 +1,7 @@
 package ladder.domain.user;
 
 import java.util.regex.Pattern;
+import ladder.util.BaseException;
 
 public class User {
 
@@ -25,25 +26,25 @@ public class User {
 
     private void validateNameLength(String name) {
         if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("[ERROR] 사용자 이름의 길이는 1~5글자여야 합니다.");
+            throw new BaseException("사용자 이름의 길이는 1~5글자여야 합니다.");
         }
     }
 
     private void validateNameEngFormat(String name) {
         if (!Pattern.matches(ALPHABET_FORMAT, name)) {
-            throw new IllegalArgumentException("[ERROR] 사용자 이름은 영문 대소문자만 허용합니다.");
+            throw new BaseException("사용자 이름은 영문 대소문자만 허용합니다.");
         }
     }
 
     private void validateBlankInName(String name) {
         if (name.contains(BLANK)) {
-            throw new IllegalArgumentException("[ERROR] 사용자 이름 내에는 공백을 허용하지 않습니다.");
+            throw new BaseException("사용자 이름 내에는 공백을 허용하지 않습니다.");
         }
     }
 
     private void validateBannedName(String name) {
         if (name.equals(BANNED_USERNAME)) {
-            throw new IllegalArgumentException("[ERROR] 사용자의 이름으로 'all'은 허용하지 않습니다.");
+            throw new BaseException("사용자의 이름으로 'all'은 허용하지 않습니다.");
         }
     }
 
