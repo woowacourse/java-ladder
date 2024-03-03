@@ -27,7 +27,15 @@ public class Prizes {
         return prizes.get(index);
     }
 
+    public int findMaxPrizeLength() {
+        return prizes.stream()
+                .mapToInt(prize -> prize.getValue().length())
+                .max()
+                .orElse(0);
+    }
+
     public List<Prize> getPrizes() {
         return Collections.unmodifiableList(prizes);
     }
+
 }

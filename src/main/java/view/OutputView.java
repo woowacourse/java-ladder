@@ -21,31 +21,31 @@ public class OutputView {
     private static final String CONNECTED_LADDER_POINT = "-";
     private static final String NOT_CONNECTED_LADDER_POINT = " ";
     private static final String LADDER_COLUMN = "|";
-    private static final String SPACE = " ";
+    private static final String EMPTY_SPACE = " ";
 
-    public static void printLadderResult(Players players, Prizes prizes, Ladder ladder, int length) {
+    public static void printLadderResult(Players players, Prizes prizes, Ladder ladder) {
         System.out.println(LINE_SEPARATOR + LADDER_RESULT_MESSAGE + LINE_SEPARATOR);
-        printPlayerNames(players);
-        printLadder(ladder, length);
-        printPrizes(prizes);
+
+        final int maxLength = Math.max(players.findMaxNameLength(), prizes.findMaxPrizeLength());
+        printPlayerNames(players, maxLength);
+        printLadder(ladder, maxLength);
+        printPrizes(prizes, maxLength);
     }
 
-    private static void printPlayerNames(Players players) {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        players.getPlayers()
+    private static void printPlayerNames(Players players, int length) {
+        final String result = players.getPlayers()
                 .stream()
-                .map(player -> alignStringCenter(player.getName()))
-                .forEach(stringBuilder::append);
+                .map(player -> alignStringCenter(player.getName(), length))
+                .collect(Collectors.joining(EMPTY_SPACE));
 
-        System.out.println(stringBuilder);
+        System.out.println(result);
     }
 
-    private static String alignStringCenter(String input) {
-        int spaces = 6 - input.length();
+    private static String alignStringCenter(String input, int length) {
+        int spaces = length - input.length();
         int left = spaces / 2;
         int right = spaces - left;
-        return SPACE.repeat(left) + input + SPACE.repeat(right);
+        return EMPTY_SPACE.repeat(left) + input + EMPTY_SPACE.repeat(right);
     }
 
     private static void printLadder(final Ladder ladder, final int length) {
@@ -56,7 +56,7 @@ public class OutputView {
     }
 
     private static String makeLadderRowText(List<DirectionalPoint> ladderPoints, int length) {
-        return SPACE.repeat(length) +
+        return EMPTY_SPACE.repeat(length - 1) +
                 ladderPoints.stream()
                         .limit(ladderPoints.size() - 1)
                         .map(point -> makeLadderPointText(point, length))
@@ -70,15 +70,13 @@ public class OutputView {
         return NOT_CONNECTED_LADDER_POINT.repeat(length);
     }
 
-    private static void printPrizes(final Prizes prizes) {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        prizes.getPrizes()
+    private static void printPrizes(final Prizes prizes, int length) {
+        String result = prizes.getPrizes()
                 .stream()
-                .map(prize -> alignStringCenter(prize.getValue()))
-                .forEach(stringBuilder::append);
+                .map(prize -> alignStringCenter(prize.getValue(), length))
+                .collect(Collectors.joining(EMPTY_SPACE));
 
-        System.out.println(stringBuilder);
+        System.out.println(result);
     }
 
     public static void printResult(Players players, Prizes prizes, String targetName) {

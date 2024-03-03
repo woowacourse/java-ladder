@@ -35,7 +35,7 @@ public class LadderController {
             final LadderGame ladderGame = new LadderGame(ladder, players);
             ladderGame.play();
 
-            OutputView.printLadderResult(players, prizes, ladder, players.findMaxNameLength());
+            OutputView.printLadderResult(players, prizes, ladder);
 
             takeUserInputAndFindResult(players, prizes);
         } catch (Exception e) {
