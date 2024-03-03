@@ -118,5 +118,5 @@ example feat: 사용자 입력 후 도메인 사용
 - [x] view의 system call을 줄인다.(sout)
 - [x] `ReservedWords` 패키지 변경
 - [x] 높이 빈칸 예외 처리
-- [ ] `Player` name 동등성 메서드 생성
+- [x] `Player` name 동등성 메서드 생성
 - [x] 도메인의 뷰 로직 제거

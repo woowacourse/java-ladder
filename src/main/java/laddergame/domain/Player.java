@@ -30,6 +30,10 @@ public class Player {
         }
     }
 
+    public boolean isNameSame(final String name) {
+        return this.name.equals(name);
+    }
+
     public String getName() {
         return name;
     }

@@ -61,12 +61,12 @@ public class Players {
 
     public boolean isIncluded(final String name) {
         return players.stream()
-                .anyMatch(player -> player.getName().equals(name));
+                .anyMatch(player -> player.isNameSame(name));
     }
 
     public Player getPlayerByName(final String name) {
         return players.stream()
-                .filter(player -> player.getName().equals(name))
+                .filter(player -> player.isNameSame(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(String.format(PLAYER_NOT_FOUND_ERROR, name)));
     }
