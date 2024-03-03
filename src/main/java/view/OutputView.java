@@ -11,7 +11,7 @@ import domain.Result;
 import domain.Results;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -79,13 +79,24 @@ public class OutputView {
     public void printResult(GameResultDto gameResultDto) {
         HashMap<Member, Result> results = gameResultDto.getGameResult();
         if (results.size() == 1) {
-            System.out.println(results.values().stream().map(Result::getValue).toList().get(0));
+            System.out.println(resolveResult(gameResultDto));
             return;
         }
-        for (Entry<Member, Result> memberResult : results.entrySet()) {
-            String memberName = memberResult.getKey().getName();
-            String result = memberResult.getValue().getValue();
-            System.out.println(memberName + " : " + result);
-        }
+        System.out.println(resolveResults(gameResultDto));
+    }
+
+    private String resolveResult(GameResultDto gameResultDto) {
+        HashMap<Member, Result> results = gameResultDto.getGameResult();
+        return results.values().stream()
+                .map(Result::getValue)
+                .toList()
+                .get(0);
+    }
+
+    private String resolveResults(GameResultDto gameResultDto) {
+        HashMap<Member, Result> results = gameResultDto.getGameResult();
+        return results.entrySet().stream()
+                .map(entry -> entry.getKey().getName() + " : " + entry.getValue().getValue())
+                .collect(Collectors.joining("\n"));
     }
 }
