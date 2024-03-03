@@ -13,21 +13,21 @@ public class Line {
     private final List<Bridge> bridges;
 
     public Line(List<Bridge> bridgesSource) {
-        List<Bridge> bridges = getBridges(bridgesSource);
-        this.bridges = Collections.unmodifiableList(bridges);
+        List<Bridge> discontinuousBridges = generateDiscontinuousBridges(bridgesSource);
+        this.bridges = Collections.unmodifiableList(discontinuousBridges);
     }
 
-    private List<Bridge> getBridges(List<Bridge> bridgesSource) {
-        List<Bridge> bridges = new ArrayList<>();
+    private List<Bridge> generateDiscontinuousBridges(List<Bridge> bridgesSource) {
+        List<Bridge> discontinuousBridges = new ArrayList<>();
         for (Bridge bridgeSource : bridgesSource) {
-            Bridge bridge = chooseBridge(bridgeSource, bridges);
-            bridges.add(bridge);
+            Bridge bridge = chooseBridge(bridgeSource, discontinuousBridges);
+            discontinuousBridges.add(bridge);
         }
-        return bridges;
+        return discontinuousBridges;
     }
 
-    private Bridge chooseBridge(Bridge bridge, List<Bridge> bridges) {
-        if (bridges.isEmpty() || getLastBridge(bridges).isUnconnected()) {
+    private Bridge chooseBridge(Bridge bridge, List<Bridge> discontinuousBridges) {
+        if (discontinuousBridges.isEmpty() || getLastBridge(discontinuousBridges).isUnconnected()) {
             return bridge;
         }
         return Bridge.UNCONNECTED;
