@@ -51,7 +51,7 @@ class GameResourceTest {
         //when, then
         assertThatThrownBy(() -> gameResource.add(nullUsers, prizes, ladder))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 게임 리소스에 추가할 사용자가(이) 존재하지 않습니다.");
+                .hasMessage("[ERROR] 게임 리소스에 추가할 사용자가 존재하지 않습니다.");
     }
 
     @DisplayName("게임 리소스 추가 시, 당첨품이 null일 경우 에외를 발생시킨다.")
@@ -65,7 +65,7 @@ class GameResourceTest {
         //when, then
         assertThatThrownBy(() -> gameResource.add(users, nullPrizes, ladder))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 게임 리소스에 추가할 당첨품가(이) 존재하지 않습니다.");
+                .hasMessage("[ERROR] 게임 리소스에 추가할 당첨품이 존재하지 않습니다.");
     }
 
     @DisplayName("게임 리소스 추가 시, 사다리가 null일 경우 에외를 발생시킨다.")
@@ -79,7 +79,7 @@ class GameResourceTest {
         //when, then
         assertThatThrownBy(() -> gameResource.add(users, prizes, nullLadder))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 게임 리소스에 추가할 사다리가(이) 존재하지 않습니다.");
+                .hasMessage("[ERROR] 게임 리소스에 추가할 사다리가 존재하지 않습니다.");
     }
 
     @DisplayName("게임 리소스 추가 시, 이미 값이 존재하는 경우 에외를 발생시킨다.")

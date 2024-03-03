@@ -6,20 +6,13 @@ import ladder.domain.user.Users;
 
 public class GameResource {
 
-    public static final String RESOURCE_NAME_USERS = "사용자";
-    public static final String RESOURCE_NAME_PRIZES = "당첨품";
-    public static final String RESOURCE_NAME_LADDER = "사다리";
-
     private Users users;
     private Prizes prizes;
     private Ladder ladder;
 
     public void add(Users users, Prizes prizes, Ladder ladder) {
         validateResourceAlreadyExist();
-        validateResourceNotNull(users, RESOURCE_NAME_USERS);
-        validateResourceNotNull(prizes, RESOURCE_NAME_PRIZES);
-        validateResourceNotNull(ladder, RESOURCE_NAME_LADDER);
-
+        validateResourceNotNull(users, prizes, ladder);
         this.users = users;
         this.prizes = prizes;
         this.ladder = ladder;
@@ -39,10 +32,15 @@ public class GameResource {
         }
     }
 
-    private void validateResourceNotNull(Object valueToAdd, String resourceName) {
-        if (valueToAdd == null) {
-            String errorMessage = String.format("[ERROR] 게임 리소스에 추가할 %s가(이) 존재하지 않습니다.", resourceName);
-            throw new IllegalArgumentException(errorMessage);
+    private void validateResourceNotNull(Users usersToAdd, Prizes prizesToAdd, Ladder ladderToAdd) {
+        if (usersToAdd == null) {
+            throw new IllegalArgumentException("[ERROR] 게임 리소스에 추가할 사용자가 존재하지 않습니다.");
+        }
+        if (prizesToAdd == null) {
+            throw new IllegalArgumentException("[ERROR] 게임 리소스에 추가할 당첨품이 존재하지 않습니다.");
+        }
+        if (ladderToAdd == null) {
+            throw new IllegalArgumentException("[ERROR] 게임 리소스에 추가할 사다리가 존재하지 않습니다.");
         }
     }
 

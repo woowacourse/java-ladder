@@ -14,8 +14,7 @@ public class GameResult {
     }
 
     public void save(User user, Prize prize) {
-        validateResourceNotNull(user, GameResource.RESOURCE_NAME_USERS);
-        validateResourceNotNull(prize, GameResource.RESOURCE_NAME_PRIZES);
+        validateResourceNotNull(user, prize);
         validatePrizeAlreadyExistsToOtherUser(prize);
         result.put(user, prize);
     }
@@ -30,10 +29,12 @@ public class GameResult {
         return result;
     }
 
-    private void validateResourceNotNull(Object valueToAdd, String resourceName) {
-        if (valueToAdd == null) {
-            String errorMessage = String.format("[ERROR] 게임 결과에 저장할 %s가(이) 존재하지 않습니다.", resourceName);
-            throw new IllegalArgumentException(errorMessage);
+    private void validateResourceNotNull(User user, Prize prize) {
+        if (user == null) {
+            throw new IllegalArgumentException("[ERROR] 게임 결과에 저장할 사용자가 존재하지 않습니다.");
+        }
+        if (prize == null) {
+            throw new IllegalArgumentException("[ERROR] 게임 결과에 저장할 당첨품이 존재하지 않습니다.");
         }
     }
 

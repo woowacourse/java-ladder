@@ -38,7 +38,7 @@ class GameResultTest {
         //when, then
         assertThatThrownBy(() -> gameResult.save(user, prize))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 게임 결과에 저장할 사용자가(이) 존재하지 않습니다.");
+                .hasMessage("[ERROR] 게임 결과에 저장할 사용자가 존재하지 않습니다.");
     }
 
     @DisplayName("사용자의 사다리게임 결과 저장 시, 당첨품이 없을 경우 예외를 발생시킨다.")
@@ -51,7 +51,7 @@ class GameResultTest {
         //when, then
         assertThatThrownBy(() -> gameResult.save(user, prize))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 게임 결과에 저장할 당첨품가(이) 존재하지 않습니다.");
+                .hasMessage("[ERROR] 게임 결과에 저장할 당첨품이 존재하지 않습니다.");
     }
 
     @DisplayName("사용자의 사다리게임 결과 저장 시, 게임의 결과로 이미 저장된 당첨품을 저장하는 경우 예외를 발생시킨다.")
