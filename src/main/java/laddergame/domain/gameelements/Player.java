@@ -2,12 +2,10 @@ package laddergame.domain.gameelements;
 
 import laddergame.domain.Position;
 
-import java.util.Objects;
-
 public class Player {
     private static final Name RESERVED_NAME = new Name("all");
 
-    final private Name name;
+    private final Name name;
     private final Position position;
 
     public Player(Name name, Position position) {
@@ -30,16 +28,11 @@ public class Player {
         }
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
-
     public Position getPlayerPosition() {
         return position;
     }
 
-    public Name getName() {
-        return name;
+    public String getName() {
+        return name.getName();
     }
 }

@@ -9,7 +9,6 @@ public class Players {
     private static final int MIN_PLAYER_NUMBER = 1;
     private static final int MAX_PLAYER_NUMBER = 100;
 
-
     private final List<Player> players;
 
     public Players(List<String> players) {
@@ -33,7 +32,6 @@ public class Players {
             throw new IllegalArgumentException("게임 참여자의 수는 1이상 100이하만 가능합니다.");
         }
     }
-
 
     public List<Player> getPlayers() {
         return players;
