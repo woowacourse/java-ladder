@@ -3,14 +3,11 @@ package domain;
 import domain.exception.ExceptionType;
 import domain.exception.LadderGameException;
 import domain.ladder.Ladder;
-import domain.ladder.LadderPositions;
 import domain.name.Name;
 import domain.name.Names;
 import domain.result.Result;
 import domain.result.Results;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LadderGameResult {
     private final Map<Name, Result> ladderGameResult;
@@ -18,12 +15,12 @@ public class LadderGameResult {
     private final Results results;
     private final Ladder ladder;
 
-    public LadderGameResult(Names names, Results results, Ladder ladder, LadderPositions ladderPositions) {
-        validateNamesLadderResultLength(names, results, ladderPositions);
+    public LadderGameResult(Names names, Results results, Ladder ladder, Map<Name, Result> ladderGameResult) {
+        validateNamesLadderResultLength(names, results, ladderGameResult);
         this.names = names;
         this.results = results;
         this.ladder = ladder;
-        ladderGameResult = mapNamesLadderResults(names, results, ladderPositions);
+        this.ladderGameResult = ladderGameResult;
     }
 
     public Ladder getLadder() {
@@ -46,23 +43,13 @@ public class LadderGameResult {
         return result;
     }
 
-    private Map<Name, Result> mapNamesLadderResults(Names names, Results results,
-                                                    LadderPositions ladderPositions) {
-        return IntStream.range(0, names.count())
-                .boxed()
-                .collect(Collectors.toMap(
-                        index -> names.getNames().get(ladderPositions.getPosition(index)),
-                        index -> results.getLadderResults().get(index)));
-
-    }
-
     private void validateNamesLadderResultLength(Names names, Results results,
-                                                 LadderPositions ladderPositions) {
+                                                 Map<Name, Result> ladderGameResult) {
         if (names.count() != results.count()) {
             throw new LadderGameException(ExceptionType.NOT_ALLOW_DIFFERENT_NAMES_LADDER_RESULTS_LENGTH);
         }
 
-        if (names.count() != ladderPositions.count()) {
+        if (names.count() != ladderGameResult.size()) {
             throw new LadderGameException(ExceptionType.NOT_ALLOW_DIFFERENT_NAMES_LADDER_RESULTS_LENGTH);
         }
     }
