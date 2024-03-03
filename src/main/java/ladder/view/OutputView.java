@@ -14,6 +14,7 @@ public class OutputView {
     private static final String EXIST_STICK = "-----|";
     private static final String BLANK_STICK = "     |";
     private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String LINE_SEPARATOR = System.lineSeparator();
 
     public void printResult(LadderDto ladderDto, PlayerNamesDto playerNamesDto, PriceDto priceDto) {
         printResultTitle();
@@ -30,30 +31,34 @@ public class OutputView {
     }
 
     public void printOneReward(String playerName, Price price) {
-        System.out.println();
-        System.out.println("실행결과");
-        System.out.println(price.getPrice());
-        System.out.println();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(LINE_SEPARATOR).append("실행결과").append(LINE_SEPARATOR);
+        stringBuilder.append(price.getPrice()).append(LINE_SEPARATOR);
+        System.out.println(stringBuilder);
     }
 
     private void printResultTitle() {
-        System.out.print(System.lineSeparator());
-        System.out.println("실행결과");
-        System.out.print(System.lineSeparator());
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(LINE_SEPARATOR).append("실행결과").append(LINE_SEPARATOR);
+        System.out.println(stringBuilder);
     }
 
     private void printPlayerNames(PlayerNamesDto playerNames) {
+        StringBuilder stringBuilder = new StringBuilder();
         for (String playerName : playerNames.playerNames()) {
-            System.out.printf("%5s ", playerName);
+            String formattedPlayerName = String.format("%5s ", playerName);
+            stringBuilder.append(formattedPlayerName);
         }
-        System.out.println();
+        System.out.println(stringBuilder);
     }
 
     private void PrintPrice(PriceDto priceDto) {
+        StringBuilder stringBuilder = new StringBuilder();
         for (String priceName : priceDto.priceNames()) {
-            System.out.printf("%5s ", priceName);
+            String formattedPriceName = String.format("%5s ", priceName);
+            stringBuilder.append(formattedPriceName);
         }
-        System.out.println();
+        System.out.println(stringBuilder);
     }
 
     private void printLadder(LadderDto ladder) {
