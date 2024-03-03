@@ -81,7 +81,7 @@ public class OutputView {
         printGameResult(playerName, gameResult);
     }
 
-    public static void printGameResultAll(GameResult gameResult) {
+    private static void printGameResultAll(GameResult gameResult) {
         gameResult.getPlayers()
             .forEach(player -> printPlayerAndPrize(gameResult, player));
     }
