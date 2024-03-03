@@ -23,14 +23,8 @@ public class GameResult {
         return getResultOfMember(target.getValue());
     }
 
-    private GameResultDto getResultOfAllMembers() { // TODO: stream
-        HashMap<Member, Result> resolvedResult = new LinkedHashMap<>();
-        for (Entry<Member, Result> memberResult : gameResult.entrySet()) {
-            Member member = memberResult.getKey();
-            Result result = memberResult.getValue();
-            resolvedResult.put(member, result);
-        }
-        return new GameResultDto(resolvedResult);
+    private GameResultDto getResultOfAllMembers() {
+        return new GameResultDto(gameResult);
     }
 
     private GameResultDto getResultOfMember(String memberName) {
