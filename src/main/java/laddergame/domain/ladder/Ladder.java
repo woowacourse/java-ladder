@@ -23,12 +23,9 @@ public class Ladder {
     }
 
     public void getResult(Players players) {
-
         for (RowLine rowLine : rowLines) {
             rowLine.move(players);
         }
-
-//        return players;
     }
 
     public List<RowLine> getRowLines() {
