@@ -1,21 +1,22 @@
 package ladder.domain;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import ladder.domain.prize.Prize;
 import ladder.domain.user.User;
 
 public class GameResult {
 
-    private final HashMap<User, Prize> result;
+    private final Map<User, Prize> result;
 
     public GameResult() {
         this.result = new LinkedHashMap<>();
     }
 
     public void save(User user, Prize prize) {
-        validateUserToSave(user);
-        validatePrizeToSave(prize);
+        validateResourceNotNull(user, GameResource.RESOURCE_NAME_USERS);
+        validateResourceNotNull(prize, GameResource.RESOURCE_NAME_PRIZES);
+        validatePrizeAlreadyExistsToOtherUser(prize);
         result.put(user, prize);
     }
 
@@ -24,23 +25,14 @@ public class GameResult {
         return result.get(user);
     }
 
-    public HashMap<User, Prize> getAllResult() {
+    public Map<User, Prize> getAllResult() {
         validateResultNotNull();
         return result;
     }
 
-    private void validateUserToSave(User userToSave) {
-        validateResourceNotNull(userToSave, GameResource.RESOURCE_NAME_USERS);
-    }
-
-    private void validatePrizeToSave(Prize prizeToSave) {
-        validateResourceNotNull(prizeToSave, GameResource.RESOURCE_NAME_PRIZES);
-        validatePrizeAlreadyExistsToOtherUser(prizeToSave);
-    }
-
     private void validateResourceNotNull(Object valueToAdd, String resourceName) {
         if (valueToAdd == null) {
-            String errorMessage = String.format("[ERROR] 게임 결과에에 저장할 %s가(이) 존재하지 않습니다.", resourceName);
+            String errorMessage = String.format("[ERROR] 게임 결과에 저장할 %s가(이) 존재하지 않습니다.", resourceName);
             throw new IllegalArgumentException(errorMessage);
         }
     }
