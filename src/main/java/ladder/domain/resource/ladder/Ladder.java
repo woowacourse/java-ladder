@@ -23,16 +23,16 @@ public class Ladder {
         return lines.get(0).getSize();
     }
 
-    private void validateLineSize(List<Line> validationLines) {
-        if (validationLines.isEmpty() || validationLines.size() > MAX_LINE_SIZE) {
+    private void validateLineSize(List<Line> linesToAdd) {
+        if (linesToAdd.isEmpty() || linesToAdd.size() > MAX_LINE_SIZE) {
             throw new IllegalArgumentException("[ERROR] 라인은 1~50개 까지만 등록 가능합니다.");
         }
     }
 
-    private void validateConsistentLineSize(List<Line> validationLines) {
-        int expectedLineCount = validationLines.get(0).getSize();
+    private void validateConsistentLineSize(List<Line> linesToAdd) {
+        int expectedLineCount = linesToAdd.get(0).getSize();
 
-        if (!validationLines.stream().allMatch(line -> line.getSize() == expectedLineCount)) {
+        if (!linesToAdd.stream().allMatch(line -> line.getSize() == expectedLineCount)) {
             throw new IllegalArgumentException("[ERROR] 사다리의 모든 라인의 너비는 동일해야 합니다.");
         }
     }

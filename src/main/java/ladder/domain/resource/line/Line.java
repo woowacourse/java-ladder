@@ -24,22 +24,22 @@ public class Line {
         return directionInfo.size();
     }
 
-    private void validateDirectionSize(List<Direction> validationDirections) {
-        if (validationDirections.size() < MIN_DIRECTION_SIZE || validationDirections.size() > MAX_DIRECTION_SIZE) {
+    private void validateDirectionSize(List<Direction> directionsToAdd) {
+        if (directionsToAdd.size() < MIN_DIRECTION_SIZE || directionsToAdd.size() > MAX_DIRECTION_SIZE) {
             throw new IllegalArgumentException("[ERROR] 방향은 2~10개 까지만 등록 가능합니다.");
         }
     }
 
-    private void validateDirectionSequence(List<Direction> validationDirections) {
-        int lastIndex = validationDirections.size() - 1;
-        for (int i = 0; i < validationDirections.size(); i++) {
-            validateDirections(validationDirections, i, lastIndex);
+    private void validateDirectionSequence(List<Direction> directionsToAdd) {
+        int lastIndex = directionsToAdd.size() - 1;
+        for (int i = 0; i < directionsToAdd.size(); i++) {
+            validateDirections(directionsToAdd, i, lastIndex);
         }
     }
 
-    private void validateDirections(List<Direction> validationDirections, int currentIndex, int lastIndex) {
-        Direction priorDirection = getPriorDirection(validationDirections, currentIndex);
-        Direction currentDirection = validationDirections.get(currentIndex);
+    private void validateDirections(List<Direction> directionsToAdd, int currentIndex, int lastIndex) {
+        Direction priorDirection = getPriorDirection(directionsToAdd, currentIndex);
+        Direction currentDirection = directionsToAdd.get(currentIndex);
 
         if (currentIndex == 0) {
             validateInitialDirection(currentDirection);
@@ -52,9 +52,9 @@ public class Line {
         }
     }
 
-    private Direction getPriorDirection(List<Direction> validationDirections, int currentIndex) {
+    private Direction getPriorDirection(List<Direction> directionsToAdd, int currentIndex) {
         if (currentIndex > 0) {
-            return validationDirections.get(currentIndex - 1);
+            return directionsToAdd.get(currentIndex - 1);
         }
         return null;
     }

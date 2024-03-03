@@ -22,8 +22,8 @@ public class Prizes {
         return prizes.get(index);
     }
 
-    private void validatePrizeSize(List<Prize> validationPrizes) {
-        if (validationPrizes.size() < MIN_PRIZE_SIZE || validationPrizes.size() > MAX_PRIZE_SIZE) {
+    private void validatePrizeSize(List<Prize> prizesToAdd) {
+        if (prizesToAdd.size() < MIN_PRIZE_SIZE || prizesToAdd.size() > MAX_PRIZE_SIZE) {
             throw new IllegalArgumentException("[ERROR] 당첨품은 2~10개 까지만 등록 가능합니다.");
         }
     }
