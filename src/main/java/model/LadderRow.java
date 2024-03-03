@@ -37,14 +37,22 @@ public class LadderRow {
         }
     }
 
-    public Position move(Position position) {
-        if (position.value() > 0 && isLines.get(position.value() - 1).isConnected()) {
+    public Position moveLinkedPosition(Position position) {
+        if (isLeftConnected(position)) {
             return position.decrement();
         }
-        if (position.value() < isLines.size() && isLines.get(position.value()).isConnected()) {
+        if (isRightConnected(position)) {
             return position.increment();
         }
         return position;
+    }
+
+    private boolean isRightConnected(Position position) {
+        return position.value() < isLines.size() && isLines.get(position.value()).isConnected();
+    }
+
+    private boolean isLeftConnected(Position position) {
+        return position.value() > 0 && isLines.get(position.value() - 1).isConnected();
     }
 
     public List<Line> getIsLines() {

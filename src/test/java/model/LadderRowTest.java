@@ -26,11 +26,11 @@ public class LadderRowTest {
     void moveParticipant() {
         LadderRow ladderRow = new LadderRow(List.of(true, false, false, true));
 
-        assertAll(() -> assertThat(ladderRow.move(new Position(0))).isEqualTo(new Position(1)),
-                () -> assertThat(ladderRow.move(new Position(1))).isEqualTo(new Position(0)),
-                () -> assertThat(ladderRow.move(new Position(2))).isEqualTo(new Position(2)),
-                () -> assertThat(ladderRow.move(new Position(3))).isEqualTo(new Position(4)),
-                () -> assertThat(ladderRow.move(new Position(4))).isEqualTo(new Position(3)));
+        assertAll(() -> assertThat(ladderRow.moveLinkedPosition(new Position(0))).isEqualTo(new Position(1)),
+                () -> assertThat(ladderRow.moveLinkedPosition(new Position(1))).isEqualTo(new Position(0)),
+                () -> assertThat(ladderRow.moveLinkedPosition(new Position(2))).isEqualTo(new Position(2)),
+                () -> assertThat(ladderRow.moveLinkedPosition(new Position(3))).isEqualTo(new Position(4)),
+                () -> assertThat(ladderRow.moveLinkedPosition(new Position(4))).isEqualTo(new Position(3)));
     }
 
     @DisplayName("연속된 true 값이 나올 수 없다.")
