@@ -1,7 +1,6 @@
 package model;
 
 import java.util.List;
-import java.util.stream.IntStream;
 import model.path.Path;
 
 public class Line {
@@ -42,16 +41,20 @@ public class Line {
                 .toList();
     }
 
-    public boolean hasLeftPath(final int column) {
-        if (column <= 0) {
+    private boolean hasLeftPath(final Position position) {
+        checkPositionWithinLine(position);
+        final int column = position.column();
+        if (column == 0) {
             return false;
         }
         final Path leftPath = paths.get(column - 1);
         return leftPath.isExist();
     }
 
-    public boolean hasRightPath(final int column) {
-        if (column >= paths.size()) {
+    private boolean hasRightPath(final Position position) {
+        checkPositionWithinLine(position);
+        final int column = position.column();
+        if (column == paths.size()) {
             return false;
         }
         final Path rightPath = paths.get(column);
@@ -60,5 +63,23 @@ public class Line {
 
     public int size() {
         return paths.size();
+    }
+
+    public Position getNextHorizontalPosition(Position position) {
+        if (hasLeftPath(position)) {
+            return position.getLeftPosition();
+        }
+        if (hasRightPath(position)) {
+            return position.getRightPosition();
+        }
+        return position;
+    }
+
+    private void checkPositionWithinLine(final Position position) {
+        final int column = position.column();
+        final int maxPersonPosition = paths.size() + 1;
+        if (column < 0 || column > maxPersonPosition) {
+            throw new IllegalStateException("올바르지 않은 위치입니다.");
+        }
     }
 }

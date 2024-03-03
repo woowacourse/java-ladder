@@ -33,16 +33,6 @@ class PersonTest {
                 .hasMessage("이름은 최소 1글자 최대 5글자여야 합니다. " + name + "은(는) 적절한 길이가 아닙니다.");
     }
 
-    @ParameterizedTest(name = "사람은 경로대로 좌우로 음직인다.")
-    @CsvSource({"0, 1", "1, 0", "2, 2", "3, 4", "4, 3"})
-    void moveHorizontally(int before, int expected) {
-        Line line = new Line(List.of(Path.EXIST, Path.NOT_EXIST, Path.NOT_EXIST, Path.EXIST));
-        Person person = Person.from("loky", before);
-        person.moveHorizontally(line);
-        int after = person.getColumn();
-        assertThat(after).isEqualTo(expected);
-    }
-
     @ParameterizedTest(name = "사다리를 타고 올바른 경로로 내려가야 합니다.")
     @CsvSource({"0, 2", "1, 1", "2, 0", "3, 3", "4, 4"})
     void climbDown(int before, int expected) {

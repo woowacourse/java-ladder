@@ -16,23 +16,17 @@ public class Person {
 
     public void climbDown(final Ladder ladder) {
         while (ladder.isWithinLadderRange(position)) {
-            final Line line = ladder.get(position.depth());
+            final Line line = ladder.get(position);
             moveHorizontally(line);
             moveBelow();
         }
     }
 
-    public void moveHorizontally(Line line) {
-        if (line.hasLeftPath(getColumn())) {
-            position = position.getLeftPosition();
-            return;
-        }
-        if (line.hasRightPath(getColumn())) {
-            position = position.getRightPosition();
-        }
+    private void moveHorizontally(Line line) {
+        position = line.getNextHorizontalPosition(position);
     }
 
-    public void moveBelow() {
+    private void moveBelow() {
         position = position.getBelowPosition();
     }
 

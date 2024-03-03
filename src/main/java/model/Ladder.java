@@ -29,7 +29,8 @@ public class Ladder {
         }
     }
 
-    public Line get(final int depth) {
+    public Line get(final Position position) {
+        final int depth = position.depth();
         return lines.get(depth);
     }
 
