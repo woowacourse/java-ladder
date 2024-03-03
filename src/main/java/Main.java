@@ -22,8 +22,7 @@ public class Main {
     public static void main(String[] args) {
         Members members = errorHandler.readUntilNoError(Main::makeMembers);
         Height height = errorHandler.readUntilNoError(Main::makeHeight);
-        Rewards rewards = errorHandler.readUntilNoError(Main::makeRewards);
-        Game game = Game.of(members, height, rewards, CONNECT_STRATEGY);
+        Game game = errorHandler.readUntilNoError(() -> makeGame(members, height));
 
         outputView.printGame(game);
         readAndPrintGameResult(game.findRewardMap());
@@ -39,9 +38,10 @@ public class Main {
         return Height.from(height);
     }
 
-    private static Rewards makeRewards() {
+    private static Game makeGame(Members members, Height height) {
         List<String> names = StringParser.parseToStringList(inputView.readRewards());
-        return Rewards.from(names);
+        Rewards rewards = Rewards.from(names);
+        return Game.of(members, height, rewards, CONNECT_STRATEGY);
     }
 
     private static void readAndPrintGameResult(Map<String, String> rewardMap) {
