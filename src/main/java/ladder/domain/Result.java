@@ -3,6 +3,7 @@ package ladder.domain;
 public class Result {
 
     private static final int RESULT_LENGTH_MAX = 5;
+    
     private final String value;
 
     public Result(String value) {
