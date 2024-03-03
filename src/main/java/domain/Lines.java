@@ -18,7 +18,7 @@ public class Lines {
         Map<Name, Integer> gameResult = initializeResultMap(names);
 
         for (Name name : names.getNames()) {
-            movePlayer(gameResult,name);
+            movePlayer(gameResult, name);
         }
 
         return gameResult;
