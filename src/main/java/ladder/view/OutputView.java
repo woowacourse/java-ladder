@@ -15,7 +15,13 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public void printPeople(People people) {
+    public void printGame(People people, Ladder ladder, Results results) {
+        printPeople(people);
+        printLadder(ladder);
+        printResults(results);
+    }
+
+    private void printPeople(People people) {
         System.out.println();
         System.out.println("사다리 결과");
         System.out.println();
@@ -27,7 +33,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printLadder(Ladder ladder) {
+    private void printLadder(Ladder ladder) {
         ladder.getLadder()
                 .forEach(this::printLine);
     }
@@ -43,7 +49,7 @@ public class OutputView {
         System.out.println(formattedLadder);
     }
 
-    public void printResults(Results results) {
+    private void printResults(Results results) {
         for (Result result : results.getResults()) {
             String formattedResult = String.format(FORMAT, result);
             System.out.print(formattedResult);

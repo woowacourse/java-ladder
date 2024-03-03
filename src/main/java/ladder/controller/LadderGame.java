@@ -21,9 +21,7 @@ public class LadderGame {
         List<Line> lines = createLines(people, height);
         Ladder ladder = new Ladder(lines);
 
-        outputView.printPeople(people);
-        outputView.printLadder(ladder);
-        outputView.printResults(results);
+        outputView.printGame(people, ladder, results);
 
         Game game = new Game(people, results, ladder);
         play(game);
