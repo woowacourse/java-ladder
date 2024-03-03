@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import strategy.ConnectionStrategy;
 
@@ -25,6 +26,6 @@ public class Line {
     }
 
     public List<Connection> getConnections() {
-        return connections;
+        return Collections.unmodifiableList(connections);
     }
 }
