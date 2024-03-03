@@ -10,6 +10,10 @@ public class Height {
         this.height = height;
     }
 
+    public int getHeight() {
+        return height;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -27,10 +31,6 @@ public class Height {
         if (height < 1 || height > 50) {
             throw new IllegalArgumentException("사다리의 높이는 1 이상 50 이하여야 합니다.");
         }
-    }
-
-    public int getHeight() {
-        return height;
     }
 }
 

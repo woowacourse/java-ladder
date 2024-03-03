@@ -1,7 +1,9 @@
 package domain;
 
+import java.util.Objects;
+
 public class Name {
-    private static final String NAME_STYLE = "^[a-zA-Z0-9_-]+$";
+    private static final String NAME_STYLE = "^[가-힣a-zA-Z0-9_-]+$";
 
     private final String name;
 
@@ -19,11 +21,28 @@ public class Name {
 
     private void validateStyle(String inputName) {
         if (!inputName.matches(NAME_STYLE)){
-            throw new IllegalArgumentException("이름은 영어, 숫자, '_', '-'로만 이루어져야 합니다.");
+            throw new IllegalArgumentException("이름은 한글, 영어, 숫자, '_', '-'로만 이루어져야 합니다.");
         }
     }
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Name name1 = (Name) o;
+        return Objects.equals(name, name1.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

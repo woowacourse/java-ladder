@@ -1,14 +1,21 @@
 package controller;
 
 import domain.Height;
+import domain.Ladder;
 import domain.LadderGame;
-import domain.Players;
+import domain.LadderResult;
+import domain.Line;
+import domain.PlayerNames;
+import domain.WinningNames;
+import java.util.ArrayList;
+import java.util.List;
 import util.ConsoleReader;
+import util.RandomGenerator;
 import view.InputView;
 import view.OutputView;
 
 public class LadderController {
-    private static final int MAX_DEPTH = 5;
+    private static final int MAX_TRY_COUNT = 5;
     private final ConsoleReader consoleReader;
 
     public LadderController() {
@@ -16,31 +23,71 @@ public class LadderController {
     }
 
     public void run() {
-        Players players = nameInput(MAX_DEPTH);
-        Height height = heightInput(MAX_DEPTH);
-        LadderGame ladderGame = new LadderGame(players, height);
-        OutputView.printResult(ladderGame.getResult());
+        PlayerNames playerNames = nameInput(MAX_TRY_COUNT);
+        WinningNames winningNames = winningsInput(MAX_TRY_COUNT, playerNames.getPersonCount());
+        Height height = heightInput(MAX_TRY_COUNT);
+        List<Line> lines = makeLines(playerNames.getPersonCount(), height);
+        LadderGame ladderGame = new LadderGame(playerNames, winningNames, new Ladder(lines));
+        OutputView.printLadder(ladderGame.getLadderSequence());
+
+        LadderResult ladderResult = new LadderResult(ladderGame.getResult());
+        resultPhase(ladderResult, MAX_TRY_COUNT);
     }
 
-    private Players nameInput(int depth) {
-        if (depth == 0) {
-            throw new IllegalArgumentException("입력 허용횟수 5회를 초과했습니다.");
-        }
+    private void resultPhase(LadderResult ladderResult, int tryCount) {
+        validateTryCount(tryCount);
         try {
-            return new Players(InputView.readNames(consoleReader));
+            String resultPlayer = InputView.readResultPlayer(consoleReader);
+            OutputView.printResult(
+                    ladderResult.getWinning(resultPlayer));
         } catch (IllegalArgumentException e) {
-            return nameInput(depth - 1);
+            OutputView.printError(e.getMessage());
+            resultPhase(ladderResult, tryCount - 1);
         }
     }
 
-    private Height heightInput(int depth) {
-        if (depth == 0) {
-            throw new IllegalArgumentException("입력 허용횟수 5회를 초과했습니다.");
+    private PlayerNames nameInput(int tryCount) {
+        validateTryCount(tryCount);
+        try {
+            return new PlayerNames(InputView.readNames(consoleReader));
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return nameInput(tryCount - 1);
         }
+    }
+
+    private WinningNames winningsInput(int tryCount, int personCount) {
+        validateTryCount(tryCount);
+        try {
+            return new WinningNames(InputView.readWinnings(consoleReader), personCount);
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return winningsInput(tryCount - 1, personCount);
+        }
+    }
+
+    private Height heightInput(int tryCount) {
+        validateTryCount(tryCount);
         try {
             return InputView.readHeight(consoleReader);
         } catch (IllegalArgumentException e) {
-            return heightInput(depth - 1);
+            OutputView.printError(e.getMessage());
+            return heightInput(tryCount - 1);
+        }
+    }
+
+    private List<Line> makeLines(int personCount, Height height) {
+        List<Line> lines = new ArrayList<>();
+        RandomGenerator randomGenerator = new RandomGenerator();
+        for (int i = 0; i < height.getHeight(); ++i) {
+            lines.add(new Line(randomGenerator.generate(personCount)));
+        }
+        return lines;
+    }
+
+    private void validateTryCount(int tryCount) {
+        if (tryCount == 0) {
+            throw new IllegalArgumentException("입력 허용횟수 5회를 초과했습니다");
         }
     }
 }

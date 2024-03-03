@@ -1,31 +1,30 @@
 package domain;
 
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
 
-public class Players implements Iterable<Name> {
+public class PlayerNames {
 
-    private final List<Name> players;
+    private final List<Name> names;
 
-    public Players (List<String> names) {
+    public PlayerNames(List<String> names) {
         validateNumber(names);
-        this.players = names.stream()
+        this.names = names.stream()
                 .map(Name::new)
                 .toList();
     }
 
-    @Override
-    public Iterator<Name> iterator() {
-        return players.iterator();
-    }
-
     public int getPersonCount() {
-        return players.size();
+        return names.size();
     }
 
     private void validateNumber(List<String> names) {
         if (names.size() < 2 || names.size() > 10){
             throw new IllegalArgumentException("이름의 수는 2이상 10이하여야 합니다.");
         }
+    }
+
+    public List<Name> getNames() {
+        return Collections.unmodifiableList(this.names);
     }
 }

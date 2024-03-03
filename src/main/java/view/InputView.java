@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 public class InputView {
 
     public static List<String> readNames(Supplier<String> input) {
+        System.out.println();
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String inputString = input.get();
         validateEmpty(inputString);
@@ -31,7 +32,20 @@ public class InputView {
         }
     }
 
+    public static List<String> readWinnings(Supplier<String> input) {
+        System.out.println();
+        System.out.println("실행 결과를 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        String inputString = input.get();
+        validateEmpty(inputString);
+        validateEndedWithComma(inputString);
+        return Arrays.stream(inputString.split(","))
+                .peek(InputView::validateEmpty)
+                .map(String::trim)
+                .toList();
+    }
+
     public static Height readHeight(Supplier<String> input) {
+        System.out.println();
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         String inputString = input.get();
         validateEmpty(inputString);
@@ -45,5 +59,13 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("정수를 입력해야 합니다.");
         }
+    }
+
+    public static String readResultPlayer(Supplier<String> input) {
+        System.out.println();
+        System.out.println("결과를 보고 싶은 사람은?");
+        String inputString = input.get();
+        validateEmpty(inputString);
+        return inputString;
     }
 }
