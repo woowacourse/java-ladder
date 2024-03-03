@@ -2,30 +2,39 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.strategy.BuildStrategy;
 import model.strategy.RandomBuildStrategy;
 
 public class Ladder {
     private static final String ALL_RESULT_CMD = "all";
 
     private final List<Line> lines;
+    private final Players players;
+    private final Prizes prizes;
 
-    protected Ladder(final List<Line> lines) {
+
+    protected Ladder(final List<Line> lines, final Players players, final Prizes prizes) {
         this.lines = lines;
+        this.players = players;
+        this.prizes = prizes;
     }
 
-    public static Ladder of(final Height height, final int width) {
+    public static Ladder of(final Height height, final Players players, final Prizes prizes) {
         List<Line> lines = new ArrayList<>();
+        final int width = players.size() - 1;
+        final BuildStrategy<LadderStatus> buildStrategy = new RandomBuildStrategy();
         for (int i = 0; i < height.value(); i++) {
-            lines.add(new Line(width, new RandomBuildStrategy()));
+            lines.add(new Line(width, buildStrategy));
         }
-        return new Ladder(lines);
+        return new Ladder(lines, players, prizes);
     }
 
+    //TODO: 테스트에서만 사용되는 메서드는 지우기
     public int size() {
         return lines.size();
     }
 
-    public LadderResult findResult(final Players players, final Prizes prizes) {
+    public LadderResult findResult() {
         final int ladderSize = players.size() - 1;
         List<String> prizeResult = new ArrayList<>();
         List<Prize> result = prizes.getPrizeValues();

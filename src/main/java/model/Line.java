@@ -7,8 +7,8 @@ public class Line {
 
     private final List<LadderStatus> points;
 
-    public Line(final int personCount, final BuildStrategy<LadderStatus> buildStrategy) {
-        this.points = buildStrategy.generate(personCount - 1);
+    public Line(final int width, final BuildStrategy<LadderStatus> buildStrategy) {
+        this.points = buildStrategy.generate(width);
     }
 
     public int size() {

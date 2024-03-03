@@ -13,10 +13,14 @@ class LadderTest {
     void createLadderWithHeight() {
         // given
         Height height = new Height(5);
-        int personCount = 7;
+        List<String> playerNames = List.of("reddy", "anna", "brown");
+        Players players = new Players(playerNames);
+
+        List<String> prizeNames = List.of("당첨", "꽝", "꽝");
+        Prizes prizes = Prizes.of(prizeNames, players.size());
 
         // when
-        Ladder ladder = Ladder.of(height, personCount);
+        Ladder ladder = Ladder.of(height, players, prizes);
 
         // when
         Assertions.assertThat(ladder.size()).isEqualTo(height.value());
@@ -27,21 +31,20 @@ class LadderTest {
     void findPrizesInEmptyLadder() {
         //given
         Height height = new Height(5);
-        int personCount = 3;
-        Ladder ladder = createNothingBuildLadder(height, personCount);
 
-        List<String> names = List.of("reddy", "anna", "brown");
-        Players players = new Players(names);
+        List<String> playerNames = List.of("reddy", "anna", "brown");
+        Players players = new Players(playerNames);
 
-        List<String> prizes = List.of("당첨", "꽝", "꽝");
+        List<String> prizeNames = List.of("당첨", "꽝", "꽝");
+        Prizes prizes = Prizes.of(prizeNames, players.size());
 
-        Prizes result = Prizes.of(prizes, personCount);
+        Ladder ladder = createNothingBuildLadder(height, players, prizes);
 
         //when
         Prize expected = new Prize("당첨");
         Player target = new Player("reddy");
 
-        LadderResult ladderResult = ladder.findResult(players, result);
+        LadderResult ladderResult = ladder.findResult();
 
         //then
         Assertions.assertThat(ladderResult.getPrize(target.name())).isEqualTo(expected.value());
@@ -53,18 +56,17 @@ class LadderTest {
     void findPrizesInZigZagLadder() {
         //given
         Height height = new Height(5);
-        int personCount = 4;
-        Ladder ladder = createZigZagBuildLadder(height, personCount);
 
         List<String> names = List.of("reddy", "anna", "brown", "teba");
         Players players = new Players(names);
 
-        List<String> prizes = List.of("당첨", "꽝1", "꽝2", "꽝3");
+        List<String> prizeNames = List.of("당첨", "꽝1", "꽝2", "꽝3");
+        Prizes prizes = Prizes.of(prizeNames, players.size());
 
-        Prizes result = Prizes.of(prizes, personCount);
+        Ladder ladder = createZigZagBuildLadder(height, players, prizes);
 
         //when
-        LadderResult target = ladder.findResult(players, result);
+        LadderResult target = ladder.findResult();
         LadderResult expected = LadderResult.of(names, List.of("꽝2", "꽝3", "당첨", "꽝1"));
 
         //then
@@ -72,33 +74,33 @@ class LadderTest {
 
     }
 
-    static Ladder createNothingBuildLadder(Height height, int personCount) {
+    static Ladder createNothingBuildLadder(Height height, Players players, Prizes prizes) {
         BuildStrategy<LadderStatus> buildStrategy = new NothingBuildStrategy();
 
         List<Line> lines = new ArrayList<>();
-
+        int width = players.size() - 1;
         for (int i = 0; i < height.value(); i++) {
-            lines.add(new Line(personCount, buildStrategy));
+            lines.add(new Line(width, buildStrategy));
         }
 
-        return new Ladder(lines);
+        return new Ladder(lines, players, prizes);
     }
 
-    static Ladder createZigZagBuildLadder(Height height, int personCount) {
+    static Ladder createZigZagBuildLadder(Height height, Players players, Prizes prizes) {
         BuildStrategy<LadderStatus> evenBuildStrategy = new ZigZagStartTrueBuildStrategy();
         BuildStrategy<LadderStatus> oddBuildStrategy = new ZigZagStartFalseBuildStrategy();
 
         List<Line> lines = new ArrayList<>();
-
+        int width = players.size() - 1;
         for (int i = 0; i < height.value(); i++) {
             if (i % 2 == 0) {
-                lines.add(new Line(personCount, evenBuildStrategy));
+                lines.add(new Line(width, evenBuildStrategy));
                 continue;
             }
-            lines.add(new Line(personCount, oddBuildStrategy));
+            lines.add(new Line(width, oddBuildStrategy));
         }
 
-        return new Ladder(lines);
+        return new Ladder(lines, players, prizes);
     }
 
     @Test
@@ -106,8 +108,13 @@ class LadderTest {
     void createAllPlayerResultRequest() {
         //given
         Height height = new Height(5);
-        int personCount = 3;
-        Ladder ladder = createNothingBuildLadder(height, personCount);
+        List<String> names = List.of("reddy", "anna", "brown", "teba");
+        Players players = new Players(names);
+
+        List<String> prizeNames = List.of("당첨", "꽝1", "꽝2", "꽝3");
+        Prizes prizes = Prizes.of(prizeNames, players.size());
+
+        Ladder ladder = createNothingBuildLadder(height, players, prizes);
 
         //when & then
         String allResultRequest = "all";
