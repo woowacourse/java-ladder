@@ -14,8 +14,8 @@ import ladder.domain.user.Users;
 
 public class Formatter {
 
+    private static final String NEW_LINE = System.lineSeparator();
     private static final String SPACE = " ";
-    private static final String NEW_LINE = "\n";
     private static final String RIGHT_ALIGNED_FORMAT = "%5s";
     private static final String LEFT_ALIGNED_FORMAT = "%-5s";
     private static final String RESULT_FORMAT = "%s : %s";
