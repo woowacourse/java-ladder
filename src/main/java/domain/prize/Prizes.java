@@ -27,7 +27,7 @@ public class Prizes {
         return prizes.get(index);
     }
 
-    public Prize findResultByPlayer(final Player player) {
+    public Prize findPrizeByPlayer(final Player player) {
         return findPrizeByIndex(player.getPosition());
     }
 

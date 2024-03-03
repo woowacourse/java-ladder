@@ -5,7 +5,9 @@ import static domain.ladder.DirectionalPoint.RIGHT;
 import domain.ladder.DirectionalPoint;
 import domain.ladder.Ladder;
 import domain.ladder.LadderRow;
+import domain.player.Player;
 import domain.player.Players;
+import domain.prize.Prize;
 import domain.prize.Prizes;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +16,9 @@ public class OutputView {
     private static final String CONNECTED_LADDER_POINT = "-";
     private static final String NOT_CONNECTED_LADDER_POINT = " ";
     private static final String LADDER_COLUMN = "|";
-    public static final String SPACE = " ";
+    private static final String SPACE = " ";
+    private static final String GAME_RESULT_MESSAGE = "실행 결과";
+    private static final String PRIZE_PER_EACH_PLAYER_MESSAGE = "%s : %s";
 
     public static void printPlayerNames(Players players) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -38,9 +42,28 @@ public class OutputView {
         System.out.println(stringBuilder);
     }
 
-    public static void printGamePrize(final String prize) {
-        System.out.println("실행 결과");
+    public static void printResult(String targetName, Players players, Prizes prizes) {
+        if ("all".equals(targetName)) {
+            printTotalGameResult(players.getPlayers(), prizes.getPrizes());
+            return;
+        }
+
+        final Prize resultByPlayer = prizes.findPrizeByPlayer(players.findPlayerByName(targetName));
+        printPrize(resultByPlayer.getValue());
+    }
+
+    private static void printPrize(final String prize) {
+        System.out.println(GAME_RESULT_MESSAGE);
         System.out.println(prize);
+    }
+
+    private static void printTotalGameResult(final List<Player> players, final List<Prize> prizes) {
+        System.out.println(GAME_RESULT_MESSAGE);
+        players.forEach(player -> {
+            final int playerPosition = player.getPosition();
+            final Prize prize = prizes.get(playerPosition);
+            System.out.println(String.format(PRIZE_PER_EACH_PLAYER_MESSAGE, player.getName(), prize.getValue()));
+        });
     }
 
     private static String alignStringCenter(String input) {

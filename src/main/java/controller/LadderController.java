@@ -37,8 +37,7 @@ public class LadderController {
             OutputView.printPrizes(prizes);
 
             final String targetName = InputView.inputPrizeTargetName();
-            final Prize resultByPlayer = prizes.findResultByPlayer(players.findPlayerByName(targetName));
-            OutputView.printGamePrize(resultByPlayer.getValue());
+            OutputView.printResult(targetName, players, prizes);
         } catch (Exception e) {
             OutputView.printErrorMessage(e);
         }
