@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
+import ladder.domain.ladder.LadderRow;
+
 public record Height(int value) {
 
     private static final int MIN_HEIGHT = 1;
@@ -14,7 +16,7 @@ public record Height(int value) {
         }
     }
 
-    public List repeat(final Supplier supplier) {
+    public List<LadderRow> repeat(final Supplier<LadderRow> supplier) {
         return IntStream.range(0, value)
                 .mapToObj(__ -> supplier.get())
                 .toList();

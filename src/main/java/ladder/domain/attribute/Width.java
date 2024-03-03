@@ -5,6 +5,8 @@ import java.util.function.IntConsumer;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
+import ladder.domain.ladder.direction.LadderDirection;
+
 public record Width(int value) {
 
     private static final int MIN_WIDTH = 1;
@@ -15,7 +17,7 @@ public record Width(int value) {
         }
     }
 
-    public List repeat(final Supplier supplier) {
+    public List<LadderDirection> repeat(final Supplier<LadderDirection> supplier) {
         return IntStream.range(0, value)
                 .mapToObj(__ -> supplier.get())
                 .toList();
