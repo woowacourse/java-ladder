@@ -10,9 +10,9 @@ public class Lines {
     private final int height;
     private final LineGenerator lineGenerator;
 
-    public Lines(final int height, final int personCount, BooleanGenerator booleanGenerator) {
+    public Lines(final int height, LineGenerator lineGenerator) {
         this.height = height;
-        this.lineGenerator = new LineGenerator(personCount, booleanGenerator);
+        this.lineGenerator = lineGenerator;
         this.lines = new ArrayList<>();
     }
 

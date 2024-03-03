@@ -12,7 +12,8 @@ public class LadderController {
         Results results = createResults(names);
         Height height = creatHeight();
 
-        Lines lines = new Lines(height.getValue(), names.size(), new RandomBooleanGenerator());
+        LineGenerator lineGenerator = new LineGenerator(names.size(), new RandomBooleanGenerator());
+        Lines lines = new Lines(height.getValue(), lineGenerator);
         Players players = new Players(names);
 
         players.playGame(lines);

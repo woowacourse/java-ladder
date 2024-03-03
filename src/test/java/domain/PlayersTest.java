@@ -23,7 +23,8 @@ public class PlayersTest {
         int testPersonCount = 2;
 
         BooleanGenerator booleanGenerator = new FixedBooleanGenerator(true);
-        Lines lines = new Lines(testHeight, testPersonCount, booleanGenerator);
+        LineGenerator lineGenerator = new LineGenerator(testPersonCount, booleanGenerator);
+        Lines lines = new Lines(testHeight, lineGenerator);
         // 사다리 생성 결과
         // pobi  tebah
         //     |-----|
@@ -48,7 +49,8 @@ public class PlayersTest {
         int testPersonCount = 4;
 
         BooleanGenerator booleanGenerator = new FixedBooleanGenerator(true);
-        Lines lines = new Lines(testHeight, testPersonCount, booleanGenerator);
+        LineGenerator lineGenerator = new LineGenerator(testPersonCount, booleanGenerator);
+        Lines lines = new Lines(testHeight, lineGenerator);
         // 사다리 생성 결과
         // pobi  tebah  honux  crong
         //       |-----|     |-----|
