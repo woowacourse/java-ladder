@@ -25,13 +25,17 @@ public class LadderGame {
     }
 
     private void goDownOneself(Position position) {
-        while(position.getVertical() < ladder.getHeightValue()) {
+        while(isWalkingTightrope(position)) {
             Direction nextHorizontalPath = ladder.findNextHorizontalPath(position.getHorizontal(),
                     position.getVertical());
             position.moveHorizontally(nextHorizontalPath);
             position.moveToDownStair();
             System.out.println();
         }
+    }
+
+    private boolean isWalkingTightrope(Position position) {
+        return position.getVertical() < ladder.getHeightValue();
     }
 
     private Position findInitialPosition(Person person) {

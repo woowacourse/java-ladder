@@ -30,9 +30,13 @@ public class Line {
 
     private void makeHorizontalLine(ThresholdChecker generator, int position) {
         points.add(false);
-        if (generator.isAboveThreshold() && !hasLeftConnectedLine(position)) {
+        if (isPassGenerateRuleByPosition(generator, position)) {
             points.set(position, true);
         }
+    }
+
+    private boolean isPassGenerateRuleByPosition(ThresholdChecker generator, int position) {
+        return generator.isAboveThreshold() && !hasLeftConnectedLine(position);
     }
 
     private boolean hasLeftConnectedLine(int horizontalIndex) {
