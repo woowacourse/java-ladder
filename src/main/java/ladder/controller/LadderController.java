@@ -20,7 +20,7 @@ public class LadderController {
     private final RandomPointsGenerator randomPointsGenerator = new RandomPointsGenerator();
 
     public void run() {
-        Players players = createPeople();
+        Players players = createPlayers();
         Results results = createResults(players.count());
         Height height = createHeight();
 
@@ -34,7 +34,7 @@ public class LadderController {
     }
 
     private void play(LadderGame ladderGame) {
-        Name name = createTarget();
+        Name name = createName();
         try {
             PlayResults playResult = ladderGame.play(name);
             outputView.printPlayResultNotice();
@@ -48,13 +48,13 @@ public class LadderController {
         play(ladderGame);
     }
 
-    private Players createPeople() {
-        return retryWhileException(this::readNames);
+    private Players createPlayers() {
+        return retryWhileException(this::readPlayers);
     }
 
-    private Players readNames() {
-        List<String> rawNames = inputView.readNames();
-        List<Player> players = rawNames.stream()
+    private Players readPlayers() {
+        List<String> rawPlayers = inputView.readPlayers();
+        List<Player> players = rawPlayers.stream()
                 .map(Player::new)
                 .toList();
         return new Players(players);
@@ -85,9 +85,9 @@ public class LadderController {
         }
     }
 
-    private Name createTarget() {
-        String target = retryWhileException(inputView::readTarget);
-        return new Name(target);
+    private Name createName() {
+        String name = retryWhileException(inputView::readName);
+        return new Name(name);
     }
 
     private <T> T retryWhileException(Supplier<T> callback) {

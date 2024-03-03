@@ -23,12 +23,12 @@ public class OutputView {
     }
 
     public void printGame(Players players, Ladder ladder, Results results) {
-        printPeople(players);
+        printPlayers(players);
         printLadder(ladder);
         printResults(results);
     }
 
-    private void printPeople(Players players) {
+    private void printPlayers(Players players) {
         System.out.println();
         System.out.println("사다리 결과");
         System.out.println();
