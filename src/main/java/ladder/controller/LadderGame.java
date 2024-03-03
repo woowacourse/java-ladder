@@ -35,9 +35,13 @@ public class LadderGame {
 
     private void play(Game game) {
         Name name = createTarget();
-        PlayResults playResult = game.play(name);
-        outputView.printPlayResultNotice();
-        outputView.printPlayResult(playResult);
+        try {
+            PlayResults playResult = game.play(name);
+            outputView.printPlayResultNotice();
+            outputView.printPlayResult(playResult);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+        }
         if (name.isAll()) {
             return;
         }

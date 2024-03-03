@@ -29,7 +29,7 @@ public class Game {
         return new PlayResults(Map.of(name, result));
     }
 
-    private Result playOne(Name name) {
+    private Result playOne(Name name) throws IllegalArgumentException {
         int startPosition = players.findPosition(name);
         int resultPosition = ladder.ride(startPosition);
         return results.find(resultPosition);
