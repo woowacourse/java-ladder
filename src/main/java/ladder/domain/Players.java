@@ -11,7 +11,7 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(String... strings) {
+    Players(String... strings) {
         this(Arrays.asList(strings));
     }
 

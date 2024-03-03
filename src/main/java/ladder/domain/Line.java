@@ -9,7 +9,7 @@ public class Line {
 
     private final List<Point> points;
 
-    public Line(int personCount, Direction... directions) {
+    Line(int personCount, Direction... directions) {
         this(personCount, Arrays.asList(directions));
     }
 

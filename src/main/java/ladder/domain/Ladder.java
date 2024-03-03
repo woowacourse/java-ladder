@@ -10,7 +10,7 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(int heightValue, Line... lines) {
+    Ladder(int heightValue, Line... lines) {
         this(heightValue, Arrays.asList(lines));
     }
 

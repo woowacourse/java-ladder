@@ -9,7 +9,7 @@ public class ResultItems {
 
     private final List<ResultItem> resultItems;
 
-    public ResultItems(int personCount, String... strings) {
+    ResultItems(int personCount, String... strings) {
         this(personCount, Arrays.asList(strings));
     }
 
