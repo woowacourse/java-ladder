@@ -26,16 +26,10 @@ public class LadderGame {
 
     public PlayersResult climbLadder() {
         for (Player player : players.getPlayers()) {
-            moveToLadderEnd(player);
+            ladder.moveToLadderEnd(player);
             playersResult.addResult(player, items.get(player.getPosition().getX()));
         }
         return playersResult;
-    }
-
-    private void moveToLadderEnd(Player player) {
-        for(int i = 0; i < ladder.getLines().size(); i++) {
-            player.moveLine(ladder.move(player.getPosition()));
-        }
     }
 
     public Players getPlayers() {

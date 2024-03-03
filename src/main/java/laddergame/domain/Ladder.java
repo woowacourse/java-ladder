@@ -15,12 +15,10 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public Direction move(Position position) {
-        if (position.isSamePositionY(lines.size())) {
-            return Direction.END;
+    public void moveToLadderEnd(Player player) {
+        for(Line line : lines) {
+            player.move(line.findDirection(player.getPosition().getX()));
         }
-        Direction nextDirection = lines.get(position.getY()).findDirection(position.getX());
-        return nextDirection;
     }
 
     public List<Line> getLines() {

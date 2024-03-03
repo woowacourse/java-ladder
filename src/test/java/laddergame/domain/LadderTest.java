@@ -56,7 +56,7 @@ public class LadderTest {
     }
 
     @Test
-    @DisplayName("세번째 플레이어가 두번 이동했을 때 위치가 올바른지 테스트")
+    @DisplayName("세번째 플레이어의 사다리타기 위치가 올바른지 테스트")
     void moveTwoLines() {
         final Height height = new Height("2");
         final List<String> playersName = List.of("name1", "name2", "name3", "name4");
@@ -70,8 +70,7 @@ public class LadderTest {
         };
 
         Ladder ladder = new Ladder(new LineBuilder(expectedRungGenerator, 3), height);
-        players.getPlayers().get(2).moveLine(ladder.move(players.getPlayers().get(2).getPosition()));
-        players.getPlayers().get(2).moveLine(ladder.move(players.getPlayers().get(2).getPosition()));
+        ladder.moveToLadderEnd(players.getPlayers().get(2));
 
         assertTrue(players.getPlayers().get(2).getPosition().equals(new Position(2,2)));
     }

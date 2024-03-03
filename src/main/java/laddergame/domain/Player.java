@@ -14,7 +14,7 @@ public class Player {
         this.position = position;
     }
 
-    public void moveLine(Direction direction) {
+    public void move(Direction direction) {
         position.move(direction);
     }
 

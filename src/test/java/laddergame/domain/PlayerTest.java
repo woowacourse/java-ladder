@@ -50,7 +50,7 @@ public class PlayerTest {
         final Player player = new Player("name1", position);
         final Position expectedPosition = new Position(1, 1);
 
-        player.moveLine(Direction.RIGHT);
+        player.move(Direction.RIGHT);
 
         assertTrue(expectedPosition.equals(player.getPosition()));
     }

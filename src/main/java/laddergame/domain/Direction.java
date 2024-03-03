@@ -3,8 +3,7 @@ package laddergame.domain;
 public enum Direction {
     DOWN(0, 1),
     RIGHT(1, 1),
-    LEFT(-1, 1),
-    END(0, 0);
+    LEFT(-1, 1);
 
     private final int moveX;
     private final int moveY;
