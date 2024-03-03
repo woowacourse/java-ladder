@@ -6,18 +6,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.prize.Prizes;
 import ladder.domain.user.Users;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class GameResourceTest {
 
-    GameResource gameResource;
-
-    @BeforeEach
-    void beforeEach() {
-        gameResource = new GameResource();
-    }
+    GameResource gameResource = new GameResource();
 
     @DisplayName("게임 리소스를 추가한다.")
     @Test

@@ -12,7 +12,6 @@ import ladder.domain.prize.Prize;
 import ladder.domain.prize.Prizes;
 import ladder.domain.user.User;
 import ladder.domain.user.Users;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,12 +19,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class LadderGameTest {
 
-    LadderGame ladderGame;
-
-    @BeforeEach
-    void beforeEach() {
-        ladderGame = new LadderGame(new GameResource(), new GameResult());
-    }
+    LadderGame ladderGame = new LadderGame(new GameResource(), new GameResult());
 
     @DisplayName("게임에 사용될 자원을 등록한다.")
     @Test
