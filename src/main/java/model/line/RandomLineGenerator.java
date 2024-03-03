@@ -15,11 +15,11 @@ public class RandomLineGenerator implements LineGenerator {
     @Override
     public Line generateLine(int width) {
         return IntStream.range(0, width)
-            .mapToObj(i -> getRandomBridge())
+            .mapToObj(i -> generateRandomBridge())
             .collect(collectingAndThen(toList(), Line::new));
     }
 
-    private static Bridge getRandomBridge() {
+    private Bridge generateRandomBridge() {
         int bridge = Randoms.pickNumberInRange(UNCONNECTED, CONNECTED);
         if (bridge == CONNECTED) {
             return Bridge.CONNECTED;
