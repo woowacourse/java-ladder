@@ -1,6 +1,7 @@
 package domain.prize;
 
 import domain.player.Player;
+import java.util.Collections;
 import java.util.List;
 
 public class Prizes {
@@ -32,6 +33,6 @@ public class Prizes {
     }
 
     public List<Prize> getPrizes() {
-        return prizes;
+        return Collections.unmodifiableList(prizes);
     }
 }
