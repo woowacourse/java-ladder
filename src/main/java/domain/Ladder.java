@@ -20,13 +20,13 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public int climb(final int position) {
-        int currentPosition = position;
+    public Position climb(final Position position) {
         for (Line line : lines) {
-            currentPosition += line.findDirection(currentPosition).getValue();
+            Direction direction = line.findDirection(position);
+            position.move(direction);
         }
 
-        return currentPosition;
+        return position;
     }
 
     public List<Line> getLines() {

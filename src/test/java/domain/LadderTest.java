@@ -44,10 +44,10 @@ class LadderTest {
 
         //when & then
         assertAll(
-                () -> assertThat(ladder.climb(0)).isEqualTo(expectedDestinations.get(0)),
-                () -> assertThat(ladder.climb(1)).isEqualTo(expectedDestinations.get(1)),
-                () -> assertThat(ladder.climb(2)).isEqualTo(expectedDestinations.get(2)),
-                () -> assertThat(ladder.climb(3)).isEqualTo(expectedDestinations.get(3))
+                () -> assertThat(ladder.climb(new Position(0)).getValue()).isEqualTo(expectedDestinations.get(0)),
+                () -> assertThat(ladder.climb(new Position(1)).getValue()).isEqualTo(expectedDestinations.get(1)),
+                () -> assertThat(ladder.climb(new Position(2)).getValue()).isEqualTo(expectedDestinations.get(2)),
+                () -> assertThat(ladder.climb(new Position(3)).getValue()).isEqualTo(expectedDestinations.get(3))
         );
 
     }
