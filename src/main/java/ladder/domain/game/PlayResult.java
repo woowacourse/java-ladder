@@ -8,13 +8,21 @@ import java.util.List;
 import java.util.Map;
 
 public class PlayResult {
-    private final Map<String, String> result = new LinkedHashMap<>();
+    private final Map<String, String> result;
 
-    public void recordResult(final List<Player> players, final List<String> prizes) {
+    public PlayResult(final List<Player> players, final List<String> prizes) {
+        this.result = recordResult(players, prizes);
+    }
+
+    private Map<String, String> recordResult(final List<Player> players, final List<String> prizes) {
+        final Map<String, String> result = new LinkedHashMap<>();
+
         for (final Player player : players) {
             final int position = player.getPosition();
             result.put(player.getName(), prizes.get(position));
         }
+
+        return result;
     }
 
     public String findPlayerResultByName(final String name) {

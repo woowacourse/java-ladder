@@ -1,6 +1,11 @@
 package ladder.domain.game;
 
+import ladder.domain.Direction;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Rung;
+import ladder.domain.player.Player;
+
+import java.util.List;
 
 public class LadderGame {
     private final Ladder ladder;
@@ -14,11 +19,24 @@ public class LadderGame {
     }
 
     public PlayResult play() {
-        PlayResult playResult = new PlayResult();
+        final int playerCount = players.count();
+        final int lineCount = ladder.countLine();
 
-        players.climb(ladder);
-        playResult.recordResult(players.getPlayers(), prizes.getPrizes());
+        for (int index = 0; index < playerCount; index++) {
+            final Player player = players.getPlayer(index);
 
-        return playResult;
+            climbLadder(player, lineCount);
+        }
+
+        return new PlayResult(players.getPlayers(), prizes.getPrizes());
+    }
+
+    private void climbLadder(final Player player, final int lineCount) {
+        for (int lineIndex = 0; lineIndex < lineCount; lineIndex++) {
+            final List<Rung> rungs = ladder.getRungsOf(lineIndex);
+
+            final Direction direction = player.findMovableDirection(rungs);
+            player.moveTo(direction);
+        }
     }
 }

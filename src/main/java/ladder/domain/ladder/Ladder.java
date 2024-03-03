@@ -27,6 +27,15 @@ public class Ladder {
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Line::new));
     }
 
+    public int countLine() {
+        return lines.size();
+    }
+
+    public List<Rung> getRungsOf(final int index) {
+        final Line line = lines.get(index);
+        return line.getRungs();
+    }
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }

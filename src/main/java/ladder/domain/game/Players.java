@@ -1,9 +1,5 @@
 package ladder.domain.game;
 
-import ladder.domain.Direction;
-import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Line;
-import ladder.domain.ladder.Rung;
 import ladder.domain.player.Player;
 
 import java.util.Collections;
@@ -56,18 +52,8 @@ public class Players {
         return players.size();
     }
 
-    public void climb(final Ladder ladder) {
-        for (final Line line : ladder.getLines()) {
-            final List<Rung> rungs = line.getRungs();
-            move(rungs);
-        }
-    }
-
-    private void move(final List<Rung> rungs) {
-        for (final Player player : players) {
-            final Direction direction = player.findMovableDirection(rungs);
-            player.moveTo(direction);
-        }
+    public Player getPlayer(final int index) {
+        return players.get(index);
     }
 
     public List<Player> getPlayers() {
