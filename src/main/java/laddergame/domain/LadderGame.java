@@ -46,7 +46,7 @@ public class LadderGame {
     private Optional<Prize> findPrizeByPosition(Position playerPosition) {
         return prizes.getPrizes()
                 .stream()
-                .filter(p -> p.getPosition().equals(playerPosition)).findFirst();
+                .filter(p -> p.getPosition().isSame(playerPosition)).findFirst();
     }
 
     private Optional<Player> findPlayerByName(Name playerName) {
