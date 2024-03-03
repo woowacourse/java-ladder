@@ -1,6 +1,5 @@
 package domain.prize;
 
-import domain.player.Player;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,13 +9,13 @@ public class Prizes {
 
     private final List<Prize> prizes;
 
-    public Prizes(final List<Prize> prizes, final int playerCount) {
-        validateSize(prizes, playerCount);
+    public Prizes(final List<Prize> prizes, final int prizeSize) {
+        validateSize(prizes, prizeSize);
         this.prizes = prizes;
     }
 
-    private void validateSize(final List<Prize> prizes, final int playerCount) {
-        if (prizes.size() != playerCount) {
+    private void validateSize(final List<Prize> prizes, final int prizeSize) {
+        if (prizes.size() != prizeSize) {
             throw new IllegalArgumentException(SIZE_EXCEPTION_MESSAGE);
         }
     }
@@ -26,11 +25,6 @@ public class Prizes {
             throw new IllegalArgumentException(OUT_OF_BOUND_EXCEPTION_MESSAGE);
         }
         return prizes.get(index);
-    }
-
-    // TODO: Prize-Player 결합도 낮추기
-    public Prize findPrizeByPlayer(final Player player) {
-        return findPrizeByIndex(player.getPosition());
     }
 
     public List<Prize> getPrizes() {

@@ -88,8 +88,9 @@ public class OutputView {
             return;
         }
 
-        final Prize resultByPlayer = prizes.findPrizeByPlayer(players.findPlayerByName(targetName));
-        printPrize(resultByPlayer.getValue());
+        final Player targetPlayer = players.findPlayerByName(targetName);
+        final Prize prize = prizes.findPrizeByIndex(targetPlayer.getPosition());
+        printPrize(prize.getValue());
     }
 
     private static void printPrize(final String prize) {

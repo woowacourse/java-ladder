@@ -56,8 +56,8 @@ public class PrizesTest {
                 new Prize("꽝2")
         ), players.size());
 
-        final Prize prize1 = prizes.findPrizeByPlayer(players.get(0));
-        final Prize prize2 = prizes.findPrizeByPlayer(players.get(1));
+        final Prize prize1 = prizes.findPrizeByIndex(players.get(0).getPosition());
+        final Prize prize2 = prizes.findPrizeByIndex(players.get(1).getPosition());
 
         assertThat(prize1.getValue()).isEqualTo("꽝1");
         assertThat(prize2.getValue()).isEqualTo("꽝2");
