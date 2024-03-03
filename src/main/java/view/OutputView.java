@@ -11,7 +11,6 @@ import domain.Result;
 import domain.Results;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -23,7 +22,7 @@ public class OutputView {
     public void printLadder(Game game) {
         System.out.println("사다리 결과");
         System.out.println(resolveMembers(game.getMembers()));
-        System.out.println(resolveLines(game.getLadder()));
+        System.out.println(resolveLadder(game.getLadder()));
         System.out.println(resolveResults(game.getResults()));
     }
 
@@ -35,15 +34,7 @@ public class OutputView {
         return stringBuilder.toString();
     }
 
-    private String resolveResults(Results results) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (String name : results.getValues()) {
-            stringBuilder.append(String.format("%" + MAX_NAME_LENGTH + "s ", name));
-        }
-        return stringBuilder.toString();
-    }
-
-    private String resolveLines(Ladder ladder) {
+    private String resolveLadder(Ladder ladder) {
         StringBuilder stringBuilder = new StringBuilder();
         List<Line> lines = ladder.getLines();
         for (Line line : lines) {
@@ -76,13 +67,21 @@ public class OutputView {
         return character.repeat(times);
     }
 
+    private String resolveResults(Results results) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String name : results.getValues()) {
+            stringBuilder.append(String.format("%" + MAX_NAME_LENGTH + "s ", name));
+        }
+        return stringBuilder.toString();
+    }
+
     public void printResult(GameResultDto gameResultDto) {
         HashMap<Member, Result> results = gameResultDto.getGameResult();
         if (results.size() == 1) {
             System.out.println(resolveResult(gameResultDto));
             return;
         }
-        System.out.println(resolveResults(gameResultDto));
+        System.out.println(resolveAllResults(gameResultDto));
     }
 
     private String resolveResult(GameResultDto gameResultDto) {
@@ -93,10 +92,14 @@ public class OutputView {
                 .get(0);
     }
 
-    private String resolveResults(GameResultDto gameResultDto) {
-        HashMap<Member, Result> results = gameResultDto.getGameResult();
-        return results.entrySet().stream()
-                .map(entry -> entry.getKey().getName() + " : " + entry.getValue().getValue())
-                .collect(Collectors.joining("\n"));
+    private String resolveAllResults(GameResultDto gameResultDto) {
+        StringBuilder stringBuilder = new StringBuilder();
+        gameResultDto.getGameResult().forEach((member, result) -> {
+            stringBuilder.append(member.getName());
+            stringBuilder.append(" : ");
+            stringBuilder.append(result.getValue());
+            stringBuilder.append("\n");
+        });
+        return stringBuilder.toString();
     }
 }
