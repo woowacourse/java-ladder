@@ -14,7 +14,7 @@ public class LadderGame {
     private final RandomPointsGenerator randomPointsGenerator = new RandomPointsGenerator();
 
     public void run() {
-        People people = createNames();
+        People people = createPeople();
         Results results = createResults(people.count());
         Height height = createHeight();
 
@@ -38,7 +38,7 @@ public class LadderGame {
         play(game);
     }
 
-    private People createNames() {
+    private People createPeople() {
         return retryWhileException(this::readNames);
     }
 
