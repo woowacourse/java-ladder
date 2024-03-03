@@ -17,7 +17,7 @@ class PrizesTest {
     @ParameterizedTest
     @MethodSource("provideValidPrizeNamesAndPlayers")
     void testValidPrizesSize(List<String> prizeNames, Players players) {
-        assertThatCode(() -> Prizes.from(prizeNames, players))
+        assertThatCode(() -> Prizes.of(prizeNames, players))
             .doesNotThrowAnyException();
     }
 
@@ -32,7 +32,7 @@ class PrizesTest {
     @ParameterizedTest
     @MethodSource("provideInvalidPrizeNamesAndPlayers")
     void testInvalidPlayersSize(List<String> prizeNames, Players players) {
-        assertThatThrownBy(() -> Prizes.from(prizeNames, players))
+        assertThatThrownBy(() -> Prizes.of(prizeNames, players))
             .isInstanceOf(IllegalArgumentException.class);
     }
 

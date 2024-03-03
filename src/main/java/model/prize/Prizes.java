@@ -16,7 +16,7 @@ public class Prizes {
         this.prizes = prizes;
     }
 
-    public static Prizes from(List<String> prizeNames, Players players) {
+    public static Prizes of(List<String> prizeNames, Players players) {
         validatePrizeNamesSize(prizeNames, players);
         return prizeNames.stream()
             .map(Prize::new)

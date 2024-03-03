@@ -44,7 +44,7 @@ public class InputView {
     public static Prizes preparePrizes(Players players) {
         return retryOnException(() -> {
             List<String> prizeNames = askPrizeNames();
-            return Prizes.from(prizeNames, players);
+            return Prizes.of(prizeNames, players);
         });
     }
 
