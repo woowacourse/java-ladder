@@ -5,7 +5,7 @@ import domain.exception.LadderGameException;
 import java.util.Arrays;
 import java.util.List;
 
-public class LadderResultCreator {
+public class LadderResultsCreator {
     private static final String SEPARATOR = ",";
 
     public LadderResults create(String rawLadderResults) {
