@@ -1,7 +1,5 @@
 package domain.ladder;
 
-import domain.player.PlayerCount;
-import java.util.List;
 import java.util.Objects;
 import java.util.function.BooleanSupplier;
 
@@ -15,17 +13,19 @@ public class Point {
         this.right = right;
     }
 
-    public static Point create(final BooleanSupplier booleanSupplier, final PlayerCount playerCount,
-                               final List<Point> points) {
-        if (isFirstPoint(points) || isPreviousConnected(points)) {
-            return new Point(false, booleanSupplier.getAsBoolean());
-        }
-        if (isConnected(points)) {
-            return new Point(true, false);
-        }
-        if (isLastPoint(points, playerCount)) {
-            return new Point(booleanSupplier.getAsBoolean(), false);
-        }
+    public static Point leftEmpty(final BooleanSupplier booleanSupplier) {
+        return new Point(false, booleanSupplier.getAsBoolean());
+    }
+
+    public static Point rigthEmpty(final BooleanSupplier booleanSupplier) {
+        return new Point(booleanSupplier.getAsBoolean(), false);
+    }
+
+    public static Point leftConncect() {
+        return new Point(true, false);
+    }
+
+    public static Point random(final BooleanSupplier booleanSupplier) {
         boolean left = booleanSupplier.getAsBoolean();
         boolean right = booleanSupplier.getAsBoolean();
 
@@ -33,26 +33,6 @@ public class Point {
             right = false;
         }
         return new Point(left, right);
-    }
-
-    private static boolean isPreviousConnected(final List<Point> points) {
-        return points.get(points.size() - 1).isLeft();
-    }
-
-    private static boolean isFirstPoint(final List<Point> points) {
-        return points.isEmpty();
-    }
-
-    private static boolean isConnected(final List<Point> points) {
-        final int index = points.size();
-        if (index == 0) {
-            return false;
-        }
-        return points.get(index - 1).isRight();
-    }
-
-    private static boolean isLastPoint(final List<Point> points, final PlayerCount playerCount) {
-        return playerCount.isSameWith(points.size() + 1);
     }
 
     private void validate(final boolean left, final boolean right) {
@@ -65,7 +45,7 @@ public class Point {
         return new Point(left, right);
     }
 
-    public int move(final int index) {
+    public int applyMove(final int index) {
         if (right) {
             return index + 1;
         }

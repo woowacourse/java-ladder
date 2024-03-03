@@ -22,14 +22,43 @@ public class Row {
         List<Point> points = new ArrayList<>();
 
         for (int buildCount = 0; playerCount.isBiggerThan(buildCount); buildCount++) {
-            points.add(Point.create(booleanSupplier, playerCount, points));
+            points.add(createPoint(points, booleanSupplier, playerCount));
         }
         return points;
     }
 
+    private static Point createPoint(final List<Point> points, final BooleanSupplier booleanSupplier, final PlayerCount playerCount) {
+        if (points.isEmpty() || isPreviousConnected(points)) {
+            return Point.leftEmpty(booleanSupplier);
+        }
+        if (isLastPoint(points, playerCount)) {
+            return Point.rigthEmpty(booleanSupplier);
+        }
+        if (isConnected(points)) {
+            return Point.leftConncect();
+        }
+        return Point.random(booleanSupplier);
+    }
+
+    private static boolean isLastPoint(final List<Point> points, final PlayerCount playerCount) {
+        return playerCount.isSameWith(points.size() + 1);
+    }
+
+    private static boolean isPreviousConnected(final List<Point> points) {
+        return points.get(points.size() - 1).isLeft();
+    }
+
+    private static boolean isConnected(final List<Point> points) {
+        final int index = points.size();
+        if (index == 0) {
+            return false;
+        }
+        return points.get(index - 1).isRight();
+    }
+
     public int playRow(final int index) {
         final Point targetPoint = points.get(index);
-        return targetPoint.move(index);
+        return targetPoint.applyMove(index);
     }
 
     public List<Point> getPoints() {
