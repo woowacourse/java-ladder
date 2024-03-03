@@ -57,7 +57,7 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("사다리의 가로줄 한 줄(Line)을 내려온 결과는 연결된 두 지점의 자리를 바꾼 것과 같다.")
+    @DisplayName("사다리의 가로줄 한 줄(Line)을 내려온 결과는 각 Path의 direction 값에 따라 원소를 이동시킨 것과 같다.")
     void climbDownTest() {
         ArrayList<Integer> initialPosition = new ArrayList<>(List.of(0, 1, 2, 3, 4, 5, 6));
         List<Integer> expectedPosition = List.of(1, 0, 3, 2, 4, 6, 5);
