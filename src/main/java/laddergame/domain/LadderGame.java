@@ -16,8 +16,8 @@ public class LadderGame {
         List<Name> gameResults = initializeGameResult(ladder, prizes);
 
         playerGameResult = new LinkedHashMap<>();
-        for (int i = 0; i < players.getPlayerNames().size(); i++) {
-            playerGameResult.put(players.getPlayerNames().get(i), gameResults.get(i));
+        for (int i = 0; i < players.getNames().size(); i++) {
+            playerGameResult.put(players.getNames().get(i), gameResults.get(i));
         }
     }
 
@@ -30,7 +30,7 @@ public class LadderGame {
     }
 
     private List<Name> initializeGameResult(Ladder ladder, Prizes prizes) {
-        List<Integer> resultIdx = ladder.getResultIndex(prizes.getPrizeNames().size());
+        List<Integer> resultIdx = ladder.getResult(prizes.getPrizeNames().size());
         return resultIdx.stream()
                 .map(idx -> prizes.getPrizeNames().get(idx))
                 .toList();

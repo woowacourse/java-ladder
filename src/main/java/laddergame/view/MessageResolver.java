@@ -20,7 +20,7 @@ public class MessageResolver {
     private static final String LINE_SEPERATOR = System.lineSeparator();
 
     public static String resolvePlayerMessage(Players players) {
-        return players.getPlayerNames().stream()
+        return players.getNames().stream()
                 .map(element -> String.format(ELEMENT_MESSAGE_FORMAT, element.getName()))
                 .collect(Collectors.joining(BLANK));
     }

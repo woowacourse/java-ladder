@@ -59,7 +59,7 @@ class LadderTest {
         Ladder testLadder = new Ladder(1, 3, new AllFalseConnectionGenerator());
 
         List<Integer> expectedResultIndex = new ArrayList<>(List.of(0, 1, 2));
-        List<Integer> actualResultIndex = testLadder.getResultIndex(3);
+        List<Integer> actualResultIndex = testLadder.getResult(3);
 
         assertThat(actualResultIndex)
                 .containsExactlyElementsOf(expectedResultIndex);
@@ -77,7 +77,7 @@ class LadderTest {
         Ladder testLadder = new Ladder(1, 4, new TrueFalseConnectionGenerator());
 
         List<Integer> expectedResultIndex = new ArrayList<>(List.of(1, 0, 3, 2));
-        List<Integer> actualResultIndex = testLadder.getResultIndex(4);
+        List<Integer> actualResultIndex = testLadder.getResult(4);
 
         assertThat(actualResultIndex)
                 .containsExactlyElementsOf(expectedResultIndex);

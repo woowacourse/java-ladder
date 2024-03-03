@@ -29,8 +29,8 @@ public class Players {
             throw new IllegalArgumentException("예약어 " + RESERVED_NAME + "은 이름으로 지정할 수 없습니다.");
         }
     }
-    // TODO : 중복되는 메서드명 변경고민해보기
-    public List<Name> getPlayerNames() {
+
+    public List<Name> getNames() {
         return playerNames;
     }
 }

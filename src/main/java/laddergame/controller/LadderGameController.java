@@ -18,7 +18,7 @@ public class LadderGameController {
         Players players = retryUntilNoError(() -> new Players(InputView.readNames()));
         Ladder ladder = retryUntilNoError(() -> makeLadder(players));
 
-        int playerNumber = players.getPlayerNames().size();
+        int playerNumber = players.getNames().size();
         Prizes prizes = retryUntilNoError(() -> new Prizes(InputView.readPrizes(), playerNumber));
 
         LadderGame ladderGame = new LadderGame(players, ladder, prizes);
@@ -26,9 +26,9 @@ public class LadderGameController {
         ResultView.printLadder(players, ladder, prizes);
         retryUntilNoError(() -> printPlayerResults(ladderGame));
     }
-    // TODO :매개변수 이름 players로 바꾸기
-    private static Ladder makeLadder(Players people) {
-        int peopleNumber = people.getPlayerNames().size();
+
+    private static Ladder makeLadder(Players players) {
+        int peopleNumber = players.getNames().size();
         return new Ladder(InputView.readHeight(), peopleNumber);
     }
 
