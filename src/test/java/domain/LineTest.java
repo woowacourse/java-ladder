@@ -23,7 +23,7 @@ public class LineTest {
     public void createBridgesCountByPlayersCountMinusOne() {
         Line line = new Line(4, new FixedBridgeGenerator());
 
-        Map<Integer, Bridge> bridges = line.getBridges();
+        Map<BridgeIndex, Bridge> bridges = line.getBridges();
 
         assertThat(bridges.size()).isEqualTo(3);
     }
@@ -32,11 +32,11 @@ public class LineTest {
     @Test
     public void createNotContinuouslyBridge() {
         Line line = new Line(4, new FixedBridgeGenerator());
-        Map<Integer, Bridge> bridges = line.getBridges();
+        Map<BridgeIndex, Bridge> bridges = line.getBridges();
 
-        Bridge bridge1 = bridges.get(0);
-        Bridge bridge2 = bridges.get(1);
-        Bridge bridge3 = bridges.get(2);
+        Bridge bridge1 = bridges.get(new BridgeIndex(0));
+        Bridge bridge2 = bridges.get(new BridgeIndex(1));
+        Bridge bridge3 = bridges.get(new BridgeIndex(2));
 
         assertAll(
                 () -> assertThat(bridge1).isEqualTo(Bridge.EXIST),

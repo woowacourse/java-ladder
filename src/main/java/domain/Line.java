@@ -7,17 +7,17 @@ import java.util.Map;
 
 public class Line {
 
-    private final Map<Integer, Bridge> bridges = new HashMap<>();
+    private final Map<BridgeIndex, Bridge> bridges = new HashMap<>();
 
-    public Line(int playersCount, BridgeGenerator bridgeGenerator) {
+    Line(int playersCount, BridgeGenerator bridgeGenerator) {
         for (int index = 0; index < playersCount - 1; index++) {
             Bridge previous = getBridgeIndexOf(index - 1);
             Bridge generatedBridge = bridgeGenerator.generate(previous);
-            bridges.put(index, generatedBridge);
+            bridges.put(new BridgeIndex(index), generatedBridge);
         }
     }
 
-    public int calculatePosition(int playerIndex) {
+    int calculatePosition(int playerIndex) {
         if (getBridgeIndexOf(playerIndex - 1).isExist()) {
             return playerIndex - 1;
         }
@@ -28,10 +28,10 @@ public class Line {
     }
 
     private Bridge getBridgeIndexOf(int playerIndex) {
-        return bridges.getOrDefault(playerIndex, Bridge.BLANK);
+        return bridges.getOrDefault(new BridgeIndex(playerIndex), Bridge.BLANK);
     }
 
-    public Map<Integer, Bridge> getBridges() {
+    public Map<BridgeIndex, Bridge> getBridges() {
         return Collections.unmodifiableMap(bridges);
     }
 }
