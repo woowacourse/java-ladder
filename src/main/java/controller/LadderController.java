@@ -7,7 +7,7 @@ import model.LadderGame;
 import model.People;
 import model.Prize;
 import model.RewardBoard;
-import utils.ThresholdCheckerImpl;
+import utils.RandomThresholdChecker;
 import view.InputView;
 import view.ResultView;
 
@@ -37,7 +37,7 @@ public class LadderController {
     private void launchGame() {
         People people = handler.handleWithRetry(() -> new People(inputView.askParticipants()));
         Ladder ladder = handler.handleWithRetry(() ->
-                new Ladder(new ThresholdCheckerImpl(),
+                new Ladder(new RandomThresholdChecker(),
                 inputView.askLadderHeight(),
                 people.getParticipantsSize()));
 
