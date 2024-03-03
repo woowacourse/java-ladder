@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.StringJoiner;
 
 public enum Command {
@@ -16,6 +17,14 @@ public enum Command {
     public static boolean contains(String input) {
         return Arrays.stream(Command.values())
                 .anyMatch(e -> e.value.equals(input));
+    }
+
+    public static boolean isAll(String input) {
+        return Objects.equals(input, ALL.getValue());
+    }
+
+    public static boolean isExit(String input) {
+        return Objects.equals(input, EXIT.getValue());
     }
 
     public static String getCommandToString() {

@@ -6,7 +6,6 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.List;
-import java.util.Objects;
 
 public class LadderGame {
 
@@ -76,10 +75,10 @@ public class LadderGame {
     }
 
     private void showResultByCommand(String input) {
-        if (Objects.equals(input, Command.EXIT.getValue())) {
+        if (Command.isExit(input)) {
             System.exit(0);
         }
-        if (Objects.equals(input, Command.ALL.getValue())) {
+        if (Command.isAll(input)) {
             showResultAll();
         }
     }
