@@ -5,17 +5,17 @@ import domain.exception.LadderGameException;
 import java.util.Arrays;
 import java.util.List;
 
-public class LadderResultsCreator {
+public class ResultsCreator {
     private static final String SEPARATOR = ",";
 
-    public LadderResults create(String rawLadderResults) {
+    public Results create(String rawLadderResults) {
         validateSeparator(rawLadderResults);
-        return new LadderResults(splitLadderResult(rawLadderResults));
+        return new Results(splitLadderResult(rawLadderResults));
     }
 
-    private List<LadderResult> splitLadderResult(String rawLadderResults) {
+    private List<Result> splitLadderResult(String rawLadderResults) {
         return Arrays.stream(rawLadderResults.split(SEPARATOR))
-                .map(LadderResult::new)
+                .map(Result::new)
                 .toList();
     }
 

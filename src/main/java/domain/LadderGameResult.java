@@ -6,24 +6,24 @@ import domain.ladder.Ladder;
 import domain.ladder.LadderPositions;
 import domain.name.Name;
 import domain.name.Names;
-import domain.result.LadderResult;
-import domain.result.LadderResults;
+import domain.result.Result;
+import domain.result.Results;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderGameResult {
-    private final Map<Name, LadderResult> ladderGameResult;
+    private final Map<Name, Result> ladderGameResult;
     private final Names names;
-    private final LadderResults ladderResults;
+    private final Results results;
     private final Ladder ladder;
 
-    public LadderGameResult(Names names, LadderResults ladderResults, Ladder ladder, LadderPositions ladderPositions) {
-        validateNamesLadderResultLength(names, ladderResults, ladderPositions);
+    public LadderGameResult(Names names, Results results, Ladder ladder, LadderPositions ladderPositions) {
+        validateNamesLadderResultLength(names, results, ladderPositions);
         this.names = names;
-        this.ladderResults = ladderResults;
+        this.results = results;
         this.ladder = ladder;
-        ladderGameResult = mapNamesLadderResults(names, ladderResults, ladderPositions);
+        ladderGameResult = mapNamesLadderResults(names, results, ladderPositions);
     }
 
     public Ladder getLadder() {
@@ -34,31 +34,31 @@ public class LadderGameResult {
         return names;
     }
 
-    public LadderResults getLadderResults() {
-        return ladderResults;
+    public Results getLadderResults() {
+        return results;
     }
 
-    public LadderResult getLadderResultFromName(Name name) {
-        LadderResult ladderResult = ladderGameResult.get(name);
-        if (ladderResult == null) {
+    public Result getLadderResultFromName(Name name) {
+        Result result = ladderGameResult.get(name);
+        if (result == null) {
             throw new LadderGameException(ExceptionType.INVALID_SEARCH_NAME);
         }
-        return ladderResult;
+        return result;
     }
 
-    private Map<Name, LadderResult> mapNamesLadderResults(Names names, LadderResults ladderResults,
-                                                          LadderPositions ladderPositions) {
+    private Map<Name, Result> mapNamesLadderResults(Names names, Results results,
+                                                    LadderPositions ladderPositions) {
         return IntStream.range(0, names.count())
                 .boxed()
                 .collect(Collectors.toMap(
                         index -> names.getNames().get(ladderPositions.getPosition(index)),
-                        index -> ladderResults.getLadderResults().get(index)));
+                        index -> results.getLadderResults().get(index)));
 
     }
 
-    private void validateNamesLadderResultLength(Names names, LadderResults ladderResults,
+    private void validateNamesLadderResultLength(Names names, Results results,
                                                  LadderPositions ladderPositions) {
-        if (names.count() != ladderResults.count()) {
+        if (names.count() != results.count()) {
             throw new LadderGameException(ExceptionType.NOT_ALLOW_DIFFERENT_NAMES_LADDER_RESULTS_LENGTH);
         }
 

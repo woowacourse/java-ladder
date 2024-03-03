@@ -3,12 +3,12 @@ package domain.result;
 import domain.exception.ExceptionType;
 import domain.exception.LadderGameException;
 
-public class LadderResult {
+public class Result {
     public static final int MAX_LADDER_RESULT_LENGTH = 5;
     private static final int MIN_LADDER_RESULT_LENGTH = 1;
     private final String ladderResult;
 
-    public LadderResult(String ladderResult) {
+    public Result(String ladderResult) {
         validateLadderResultCharacter(ladderResult);
         validateLadderResultLength(ladderResult);
         this.ladderResult = ladderResult;

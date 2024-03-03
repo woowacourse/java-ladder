@@ -3,7 +3,7 @@ package view;
 import domain.LadderGameResult;
 import domain.name.Name;
 import domain.name.Names;
-import domain.result.LadderResult;
+import domain.result.Result;
 import java.util.stream.Collectors;
 
 public class LadderGameResultPrinter {
@@ -17,8 +17,8 @@ public class LadderGameResultPrinter {
 
     public void printFromName(String searchName) {
         Name name = new Name(searchName);
-        LadderResult ladderResult = ladderGameResult.getLadderResultFromName(name);
-        String ladderResultString = ladderResult.getLadderResult();
+        Result result = ladderGameResult.getLadderResultFromName(name);
+        String ladderResultString = result.getLadderResult();
         System.out.println(String.join("\n", LADDER_RESULT_PREFIX, ladderResultString + "\n"));
     }
 
@@ -31,8 +31,8 @@ public class LadderGameResultPrinter {
     private String makeAllNameLadderResultString(Names names) {
         return names.getNames().stream()
                 .map(name -> {
-                    LadderResult ladderResult = ladderGameResult.getLadderResultFromName(name);
-                    return NAME_LADDER_RESULT_FORMAT.formatted(name.getName(), ladderResult.getLadderResult());
+                    Result result = ladderGameResult.getLadderResultFromName(name);
+                    return NAME_LADDER_RESULT_FORMAT.formatted(name.getName(), result.getLadderResult());
                 }).collect(Collectors.joining("\n"));
     }
 }

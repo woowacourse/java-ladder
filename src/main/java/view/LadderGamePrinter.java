@@ -6,8 +6,8 @@ import domain.ladder.Ladder;
 import domain.ladder.Row;
 import domain.name.Name;
 import domain.name.Names;
-import domain.result.LadderResult;
-import domain.result.LadderResults;
+import domain.result.Result;
+import domain.result.Results;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,11 +26,11 @@ public class LadderGamePrinter {
     public void print() {
         Names names = ladderGameResult.getNames();
         Ladder ladder = ladderGameResult.getLadder();
-        LadderResults ladderResults = ladderGameResult.getLadderResults();
+        Results results = ladderGameResult.getLadderResults();
 
         String namesString = makeNamesString(names);
         String ladderString = makeLadderString(ladder);
-        String ladderResultString = makeLadderResultsString(ladderResults);
+        String ladderResultString = makeLadderResultsString(results);
 
         System.out.println(String.join("\n", LADDER_PREFIX, namesString, ladderString, ladderResultString, "\n"));
     }
@@ -63,9 +63,9 @@ public class LadderGamePrinter {
         return NONE_BRIDGE;
     }
 
-    private String makeLadderResultsString(LadderResults ladderResults) {
-        return ladderResults.getLadderResults().stream()
-                .map(LadderResult::getLadderResult)
+    private String makeLadderResultsString(Results results) {
+        return results.getLadderResults().stream()
+                .map(Result::getLadderResult)
                 .map(PADDING_STYLE::formatted)
                 .collect(Collectors.joining(" "));
     }
