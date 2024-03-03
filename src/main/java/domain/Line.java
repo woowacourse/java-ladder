@@ -1,6 +1,5 @@
 package domain;
 
-import domain.booleangenerator.BooleanGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +16,7 @@ public class Line {
 
     private void addBridge(BooleanGenerator booleanGenerator) {
         if (bridges.isEmpty() || checkPreviousBlank()) {
-            bridges.add(Bridge.of(booleanGenerator));
+            bridges.add(Bridge.from(booleanGenerator));
             return;
         }
         bridges.add(Bridge.BLANK);
@@ -32,8 +31,30 @@ public class Line {
     }
 
     public List<Boolean> getBridgesInformation() {
-        return bridges.stream().map(Bridge::toBoolean).toList();
+        return bridges.stream().map(Bridge::isExist).toList();
     }
 
+    public int getNextPosition(int position) {
+        if (isMovableLeft(position)) {
+            return position - 1;
+        }
+        if (isMovableRight(position)) {
+            return position + 1;
+        }
+        return position;
+    }
 
+    private boolean isMovableLeft(int position) {
+        if(position == 0){
+            return false;
+        }
+        return bridges.get(position - 1).isExist();
+    }
+
+    private boolean isMovableRight(int position) {
+        if(position == bridges.size()){
+            return false;
+        }
+        return bridges.get(position).isExist();
+    }
 }

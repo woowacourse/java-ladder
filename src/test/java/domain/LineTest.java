@@ -2,7 +2,6 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import domain.booleangenerator.BooleanGenerator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,17 +22,15 @@ public class LineTest {
         assertThat(line.getBridgesInformation()).isEqualTo(List.of(true, false, true));
     }
 
-    static class FixedBooleanGenerator implements BooleanGenerator {
+    @Test
+    @DisplayName("해당 라인에서 이동한 이후의 index를 반환한다.")
+    void getNextPosition() {
+        Line line = new Line(4, new FixedBooleanGenerator(true));
 
-        private final boolean value;
+        int startIndex = 2;
+        int expected = 3;
 
-        public FixedBooleanGenerator(boolean value) {
-            this.value = value;
-        }
-
-        @Override
-        public boolean generate() {
-            return value;
-        }
+        assertThat(line.getNextPosition(startIndex)).isEqualTo(expected);
     }
 }
+

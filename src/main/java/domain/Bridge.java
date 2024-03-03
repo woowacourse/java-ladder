@@ -1,7 +1,5 @@
 package domain;
 
-import domain.booleangenerator.BooleanGenerator;
-
 public enum Bridge {
     EXIST(true),
     BLANK(false);
@@ -12,14 +10,14 @@ public enum Bridge {
         this.isExist = isExist;
     }
 
-    public static Bridge of(BooleanGenerator booleanGenerator) {
+    public static Bridge from(BooleanGenerator booleanGenerator) {
         if (booleanGenerator.generate()) {
             return EXIST;
         }
         return BLANK;
     }
 
-    public boolean toBoolean() {
+    public boolean isExist() {
         return isExist;
     }
 }
