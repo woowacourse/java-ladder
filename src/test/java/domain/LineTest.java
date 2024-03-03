@@ -33,22 +33,38 @@ public class LineTest {
     @DisplayName("현재 위치를 이용해 이후 위치를 결정한다.")
     void findNextLocationTest1() {
         Line line = new Line(3, new PresentStepGenerator());
+        List<Player> players = List.of(
+                new Player("a", 0),
+                new Player("b", 1),
+                new Player("c", 2),
+                new Player("d", 3));
+        for (Player player : players) {
+            line.findNextLocation(player);
+        }
 
-        assertAll(() -> assertEquals(line.findNextLocation(0), 1),
-                () -> assertEquals(line.findNextLocation(1), 0),
-                () -> assertEquals(line.findNextLocation(2), 3),
-                () -> assertEquals(line.findNextLocation(3), 2));
+        assertAll(() -> assertEquals(players.get(0).getPosition(), new Position(1)),
+                () -> assertEquals(players.get(1).getPosition(), new Position(0)),
+                () -> assertEquals(players.get(2).getPosition(), new Position(3)),
+                () -> assertEquals(players.get(3).getPosition(), new Position(2)));
     }
 
     @Test
     @DisplayName("현재 위치를 이용해 이후 위치를 결정한다.")
     void findNextLocationTest2() {
         Line line = new Line(3, new AbsentStepGenerator());
+        List<Player> players = List.of(
+                new Player("a", 0),
+                new Player("b", 1),
+                new Player("c", 2),
+                new Player("d", 3));
+        for (Player player : players) {
+            line.findNextLocation(player);
+        }
 
-        assertAll(() -> assertEquals(line.findNextLocation(0), 0),
-                () -> assertEquals(line.findNextLocation(1), 1),
-                () -> assertEquals(line.findNextLocation(2), 2),
-                () -> assertEquals(line.findNextLocation(3), 3));
+        assertAll(() -> assertEquals(players.get(0).getPosition(), new Position(0)),
+                () -> assertEquals(players.get(1).getPosition(), new Position(1)),
+                () -> assertEquals(players.get(2).getPosition(), new Position(2)),
+                () -> assertEquals(players.get(3).getPosition(), new Position(3)));
     }
 
 }

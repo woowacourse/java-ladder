@@ -3,19 +3,20 @@ package domain;
 import constant.domain.ParticipantsExceptionMessage;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Participants {
 
     public static final int MIN_OF_PARTICIPANTS_COUNT = 2;
     public static final int MAX_OF_PARTICIPANTS_COUNT = 50;
 
-    private final List<Name> names;
+    private final List<Player> players;
 
     public Participants(List<String> names) {
         validateCount(names);
         validateDuplicate(names);
-        this.names = names.stream()
-                .map(Name::new)
+        this.players = IntStream.range(0, names.size())
+                .mapToObj(i -> new Player(names.get(i), i))
                 .toList();
     }
 
@@ -31,11 +32,11 @@ public class Participants {
         }
     }
 
-    public List<Name> getNames() {
-        return names;
+    public int getCount() {
+        return players.size();
     }
 
-    public int getCount() {
-        return names.size();
+    public List<Player> getPlayers() {
+        return players;
     }
 }

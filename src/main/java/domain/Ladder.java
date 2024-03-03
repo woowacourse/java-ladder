@@ -17,12 +17,10 @@ public class Ladder {
                 .toList();
     }
 
-    public int findLastLocation(int firstLocation) {
-        int presentLocation = firstLocation;
+    public void findLastLocation(Player player) {
         for (Line line : lines) {
-            presentLocation = line.findNextLocation(presentLocation);
+            line.findNextLocation(player);
         }
-        return presentLocation;
     }
 
     public List<Line> getLines() {

@@ -12,13 +12,10 @@ public class MatchResult {
 
     public MatchResult(Participants participants, Result result, Ladder ladder) {
         matchResult = new HashMap<>();
-        List<Name> names = participants.getNames();
-        List<Prize> prizes = result.getPrizes();
-        for (int indexOfName = 0; indexOfName < names.size(); indexOfName++) {
-            Name name = names.get(indexOfName);
-            int lastLocation = ladder.findLastLocation(indexOfName);
-            Prize prize = prizes.get(lastLocation);
-            matchResult.put(name, prize);
+        List<Player> players = participants.getPlayers();
+        for (Player player : players) {
+            ladder.findLastLocation(player);
+            matchResult.put(player.getName(), result.getPrizeOf(player.getPosition()));
         }
     }
 

@@ -19,9 +19,9 @@ public class OutputView {
     }
 
     private void printNames(Participants participants) {
-        List<Name> names = participants.getNames();
-        for (Name name : names) {
-            System.out.printf("%5s ", name.getName());
+        List<Player> players = participants.getPlayers();
+        for (Player player : players) {
+            System.out.printf("%5s ", player.getName().getName());
         }
         System.out.println();
     }

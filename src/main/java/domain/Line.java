@@ -34,21 +34,21 @@ public class Line {
         return stepPoints;
     }
 
-    public int findNextLocation(int presentLocation) {
-        if (canMoveToLeft(presentLocation)) {
-            return presentLocation - 1;
+    public void findNextLocation(Player player) {
+        if (canMoveToLeft(player.getPosition())) {
+            player.moveLeft();
+            return;
         }
-        if (canMoveToRight(presentLocation)) {
-            return presentLocation + 1;
+        if (canMoveToRight(player.getPosition())) {
+            player.moveRight();
         }
-        return presentLocation;
     }
 
-    private boolean canMoveToLeft(int presentLocation) {
-        return presentLocation > 0 && stepPoints.get(presentLocation - 1) == StepPoint.PRESENT;
+    private boolean canMoveToLeft(Position position) {
+        return position.getPosition() > 0 && stepPoints.get(position.getPosition() - 1) == StepPoint.PRESENT;
     }
 
-    private boolean canMoveToRight(int presentLocation) {
-        return presentLocation < stepPoints.size() && stepPoints.get(presentLocation) == StepPoint.PRESENT;
+    private boolean canMoveToRight(Position position) {
+        return position.getPosition() < stepPoints.size() && stepPoints.get(position.getPosition()) == StepPoint.PRESENT;
     }
 }

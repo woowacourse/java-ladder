@@ -24,4 +24,8 @@ public class Result {
     public List<Prize> getPrizes() {
         return prizes;
     }
+
+    public Prize getPrizeOf(Position position) {
+        return prizes.get(position.getPosition());
+    }
 }

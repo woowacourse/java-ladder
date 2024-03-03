@@ -75,11 +75,11 @@ public class LadderGame {
         showResultByName(input);
     }
 
-    private void showResultByCommand(String who) {
-        if (Objects.equals(who, Command.EXIT.getValue())) {
+    private void showResultByCommand(String input) {
+        if (Objects.equals(input, Command.EXIT.getValue())) {
             System.exit(0);
         }
-        if (Objects.equals(who, Command.ALL.getValue())) {
+        if (Objects.equals(input, Command.ALL.getValue())) {
             showResultAll();
         }
     }
