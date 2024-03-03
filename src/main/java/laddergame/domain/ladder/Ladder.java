@@ -22,7 +22,7 @@ public class Ladder {
                 .toList();
     }
 
-    public void getResult(Players players) {
+    public void climb(Players players) {
         for (RowLine rowLine : rowLines) {
             rowLine.move(players);
         }

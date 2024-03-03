@@ -63,7 +63,7 @@ class LadderTest {
 
         Ladder testLadder = new Ladder(1, 3, new AllFalseConnectionGenerator());
         Players testPlayers = new Players(List.of("0", "1", "2"));
-        testLadder.getResult(testPlayers);
+        testLadder.climb(testPlayers);
         List<Player> resultPlayers = testPlayers.getPlayers();
 
         assertAll(
@@ -83,7 +83,7 @@ class LadderTest {
          */
         Ladder testLadder = new Ladder(1, 4, new TrueFalseConnectionGenerator());
         Players testPlayers = new Players(List.of("0", "1", "2", "3"));
-        testLadder.getResult(testPlayers);
+        testLadder.climb(testPlayers);
         List<Player> resultPlayers = testPlayers.getPlayers();
 
         assertAll(
