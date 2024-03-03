@@ -30,9 +30,9 @@ public class LadderGame {
     }
 
     private List<Name> initializeGameResult(Ladder ladder, Prizes prizes) {
-        List<Integer> resultIdx = ladder.getResult(prizes.getPrizeNames().size());
+        List<Position> resultIdx = ladder.getResult(prizes.getPrizeNames().size());
         return resultIdx.stream()
-                .map(idx -> prizes.getPrizeNames().get(idx))
+                .map(idx -> prizes.getPrizeNames().get(idx.getPosition()))
                 .toList();
     }
 

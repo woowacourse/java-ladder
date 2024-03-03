@@ -1,5 +1,6 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.Position;
 import laddergame.domain.connectiongenerator.ConnectionGenerator;
 
 import java.util.ArrayList;
@@ -20,22 +21,20 @@ public class RowLine {
         this.connections.addAll(generatedConnection);
     }
 
-    //TODO player 위치 원시값 감싸기
-    public List<Integer> move(List<Integer> playerPositions) {
-        return playerPositions.stream()
-                .map(this::moveByConnection)
-                .toList();
+    public List<Position> move(List<Position> playerPositions) {
+        playerPositions.forEach(this::moveByConnection);
+        return playerPositions;
     }
 
-    private int moveByConnection(int playerPosition) {
-        if (checkLeftPosition(playerPosition - 1)) {
-            return playerPosition - 1;
-        }
-        if (checkRightPosition(playerPosition)) {
-            return playerPosition + 1;
+    private void moveByConnection(Position playerPosition) {
+        if (checkLeftPosition(playerPosition.left())) {
+            playerPosition.moveLeft();
+            return;
         }
 
-        return playerPosition;
+        if (checkRightPosition(playerPosition.right())) {
+            playerPosition.moveRight();
+        }
     }
 
     private boolean checkLeftPosition(int leftPosition) {
@@ -66,4 +65,5 @@ public class RowLine {
     public List<Connection> getConnections() {
         return Collections.unmodifiableList(connections);
     }
+
 }

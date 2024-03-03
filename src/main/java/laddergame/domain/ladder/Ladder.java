@@ -1,5 +1,6 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.Position;
 import laddergame.domain.connectiongenerator.ConnectionGenerator;
 import laddergame.domain.connectiongenerator.RandomConnectionGenerator;
 
@@ -22,9 +23,9 @@ public class Ladder {
                 .toList();
     }
 
-    public List<Integer> getResult(int peopleNumber) {
-        List<Integer> playerPositions = IntStream.range(0, peopleNumber)
-                .boxed()
+    public List<Position> getResult(int peopleNumber) {
+        List<Position> playerPositions = IntStream.range(0, peopleNumber)
+                .mapToObj(Position::new)
                 .toList();
 
         for (RowLine rowLine : rowLines) {

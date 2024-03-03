@@ -1,5 +1,6 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.Position;
 import laddergame.domain.connectiongenerator.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,12 +8,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RowLineTest {
 
@@ -48,9 +51,15 @@ class RowLineTest {
     @Test
     void rowLineNonmovingTest() {
         RowLine rowLine = new RowLine(5, new AllFalseConnectionGenerator());
-        List<Integer> positions = IntStream.range(0, 5).boxed().toList();
-        List<Integer> expectedPositions = IntStream.range(0, 5).boxed().toList();
-        List<Integer> actualPositions = rowLine.move(positions);
+        List<Position> positions = IntStream.range(0, 5)
+                .mapToObj(Position::new)
+                .toList();
+
+        List<Position> expectedPositions = IntStream.range(0, 5)
+                .mapToObj(Position::new)
+                .toList();
+
+        List<Position> actualPositions = rowLine.move(positions);
 
         assertThat(expectedPositions)
                 .containsExactlyElementsOf(actualPositions);
@@ -58,11 +67,18 @@ class RowLineTest {
 
     @DisplayName("사다리 연결상태에 따라 position이 좌우로 이동한다.")
     @Test
-    void rowLinemovingTest2() {
+    void rowLinemoving2Test(){
         RowLine rowLine = new RowLine(5, new TrueFalseConnectionGenerator());
-        List<Integer> positions = IntStream.range(0, 5).boxed().toList();
-        List<Integer> expectedPositions = Stream.of(1, 0, 3, 2, 4).toList();
-        List<Integer> actualPositions = rowLine.move(positions);
+
+        List<Position> positions = IntStream.range(0, 5)
+                .mapToObj(Position::new)
+                .collect(Collectors.toList());
+
+        List<Position> expectedPositions = Stream.of(1, 0, 3, 2, 4)
+                .map(Position::new)
+                .toList();
+
+        List<Position> actualPositions = rowLine.move(positions);
 
         assertThat(actualPositions)
                 .containsExactlyElementsOf(expectedPositions);

@@ -1,5 +1,6 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.Position;
 import laddergame.domain.connectiongenerator.AllFalseConnectionGenerator;
 import laddergame.domain.connectiongenerator.TrueFalseConnectionGenerator;
 import org.junit.jupiter.api.DisplayName;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -59,11 +61,13 @@ class LadderTest {
 
         Ladder testLadder = new Ladder(1, 3, new AllFalseConnectionGenerator());
 
-        List<Integer> expectedResultIndex = new ArrayList<>(List.of(0, 1, 2));
-        List<Integer> actualResultIndex = testLadder.getResult(3);
+        List<Position> expectedResult = Stream.of(0,1,2)
+                                        .map(Position::new)
+                                        .toList();
+        List<Position> actualResult = testLadder.getResult(3);
 
-        assertThat(actualResultIndex)
-                .containsExactlyElementsOf(expectedResultIndex);
+        assertThat(actualResult)
+                .containsExactlyElementsOf(expectedResult);
     }
 
     @DisplayName("사다리 결과 반환 테스트 : 연결-비연결이 반복되는 경우")
@@ -74,13 +78,14 @@ class LadderTest {
              |----|    |----|
              1    0    3    2
          */
-
         Ladder testLadder = new Ladder(1, 4, new TrueFalseConnectionGenerator());
 
-        List<Integer> expectedResultIndex = new ArrayList<>(List.of(1, 0, 3, 2));
-        List<Integer> actualResultIndex = testLadder.getResult(4);
+        List<Position> expectedResult = Stream.of(1,0,3,2)
+                .map(Position::new)
+                .toList();
+        List<Position> actualResult = testLadder.getResult(4);
 
-        assertThat(actualResultIndex)
-                .containsExactlyElementsOf(expectedResultIndex);
+        assertThat(actualResult)
+                .containsExactlyElementsOf(expectedResult);
     }
 }
