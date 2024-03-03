@@ -15,12 +15,12 @@ public class RightDirectionGenerator implements DirectionGenerator {
     }
 
     @Override
-    public Direction generateInitialValue() {
+    public Direction generateInitialDirection() {
         return Direction.getDirection(true);
     }
 
     @Override
-    public Direction generateMiddleValue(Direction priorDirection) {
+    public Direction generateMiddleDirection(Direction priorDirection) {
         if (priorDirection == Direction.RIGHT) {
             return Direction.LEFT;
         }
@@ -28,7 +28,7 @@ public class RightDirectionGenerator implements DirectionGenerator {
     }
 
     @Override
-    public Direction generateLastValue(Direction priorDirection) {
+    public Direction generateLastDirection(Direction priorDirection) {
         if (priorDirection == Direction.RIGHT) {
             return Direction.LEFT;
         }

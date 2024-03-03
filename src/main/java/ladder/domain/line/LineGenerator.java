@@ -26,18 +26,18 @@ public class LineGenerator {
     }
 
     private void addInitialDirection(Line line) {
-        line.addDirection(directionGenerator.generateInitialValue());
+        line.addDirection(directionGenerator.generateInitialDirection());
     }
 
     private void addMiddleDirection(int count, Line line) {
         for (int i = 0; i < count; i++) {
             Direction lastDirection = line.getLastDirection();
-            line.addDirection(directionGenerator.generateMiddleValue(lastDirection));
+            line.addDirection(directionGenerator.generateMiddleDirection(lastDirection));
         }
     }
 
     private void addLastDirection(Line line) {
         Direction lastDirection = line.getLastDirection();
-        line.addDirection(directionGenerator.generateLastValue(lastDirection));
+        line.addDirection(directionGenerator.generateLastDirection(lastDirection));
     }
 }
