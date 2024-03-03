@@ -17,7 +17,8 @@ class PrizesTest {
     @ParameterizedTest
     @MethodSource("provideValidPrizeNamesAndPlayers")
     void testValidPrizesSize(List<String> prizeNames, Players players) {
-        assertThatCode(() -> Prizes.from(prizeNames, players)).doesNotThrowAnyException();
+        assertThatCode(() -> Prizes.from(prizeNames, players))
+            .doesNotThrowAnyException();
     }
 
     private static Stream<Arguments> provideValidPrizeNamesAndPlayers() {

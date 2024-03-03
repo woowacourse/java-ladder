@@ -1,7 +1,7 @@
 package model.ladder;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,6 +21,7 @@ class LadderHeightTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 10, 100, 1000000})
     void testValidValueOfHeight(int height) {
-        assertDoesNotThrow(() -> new LadderHeight(height));
+        assertThatCode(() -> new LadderHeight(height))
+            .doesNotThrowAnyException();
     }
 }

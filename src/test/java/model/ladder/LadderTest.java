@@ -18,6 +18,6 @@ class LadderTest {
 
         Ladder ladder = Ladder.of(ladderHeight, ladderWidth, lineGenerator);
 
-        assertThat(ladder.getLines().size()).isEqualTo(5);
+        assertThat(ladder.getLines()).hasSize(5);
     }
 }

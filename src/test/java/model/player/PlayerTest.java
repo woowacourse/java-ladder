@@ -1,7 +1,7 @@
 package model.player;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,6 +21,7 @@ class PlayerTest {
     @ParameterizedTest
     @CsvSource({"p", "dora", "joj", "doraa"})
     void testValidLengthOfPlayerName(String name) {
-        assertDoesNotThrow(() -> new Player(name));
+        assertThatCode(() -> new Player(name))
+            .doesNotThrowAnyException();
     }
 }
