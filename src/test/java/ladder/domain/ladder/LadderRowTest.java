@@ -20,7 +20,7 @@ class LadderRowTest {
     @Test
     void ladderRowConstructTest() {
         LadderRow ladderRow = LadderRowBuilder.builder()
-                .width(new Width<>(5))
+                .width(new Width(5))
                 .directionSelector(() -> NONE)
                 .build();
 
@@ -34,7 +34,7 @@ class LadderRowTest {
     @Test
     void ladderRowIntegrityTest() {
         LadderRow ladderRow = LadderRowBuilder.builder()
-                .width(new Width<>(6))
+                .width(new Width(6))
                 .directionSelector(() -> RIGHT)
                 .build();
 

@@ -21,8 +21,8 @@ class LadderTest {
     @Test
     void ladderConstructTest() {
         Ladder ladder = LadderBuilder.builder()
-                .width(new Width<>(5))
-                .height(new Height<>(4))
+                .width(new Width(5))
+                .height(new Height(4))
                 .ladderDirectionSelector(() -> NONE)
                 .build();
 
@@ -39,8 +39,8 @@ class LadderTest {
     @Test
     void climbDownFromTest() {
         Ladder ladder = LadderBuilder.builder()
-                .width(new Width<>(4))
-                .height(new Height<>(5))
+                .width(new Width(4))
+                .height(new Height(5))
                 .ladderDirectionSelector(() -> RIGHT)
                 .build();
 

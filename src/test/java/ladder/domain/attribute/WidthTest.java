@@ -12,7 +12,7 @@ class WidthTest {
     @ValueSource(ints = {0, -1})
     @ParameterizedTest
     void invalidWidthTest(int value) {
-        assertThatThrownBy(() -> new Width<>(value))
+        assertThatThrownBy(() -> new Width(value))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("자연수가 아닙니다");
     }

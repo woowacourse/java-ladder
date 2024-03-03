@@ -12,7 +12,7 @@ class HeightTest {
     @ValueSource(ints = {0, -1})
     @ParameterizedTest
     void invalidHeightTest(int value) {
-        assertThatThrownBy(() -> new Height<>(value))
+        assertThatThrownBy(() -> new Height(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("자연수를 입력해주세요");
     }

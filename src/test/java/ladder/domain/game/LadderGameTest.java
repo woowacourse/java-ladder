@@ -39,14 +39,14 @@ class LadderGameTest {
                         new Reward("아이폰12"),
                         new Reward("아이폰11")
                 ),
-                new Width<>(5)
+                new Width(5)
         );
     }
 
     static Ladder ladder() {
         return LadderBuilder.builder()
-                .height(new Height<>(5))
-                .width(new Width<>(5))
+                .height(new Height(5))
+                .width(new Width(5))
                 .ladderDirectionSelector(() -> LadderDirection.RIGHT)
                 .build();
     }

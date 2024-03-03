@@ -8,9 +8,7 @@ import ladder.domain.game.LadderGame;
 import ladder.domain.game.LadderGameResult;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderBuilder;
-import ladder.domain.ladder.LadderRow;
 import ladder.domain.ladder.direction.DefaultLadderDirectionSelector;
-import ladder.domain.ladder.direction.LadderDirection;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.reward.Rewards;
@@ -29,16 +27,16 @@ public class Controller {
 
     public void run() {
         Players players = inputView.inputNames();
-        Width<LadderDirection> width = new Width<>(players.count());
+        Width width = new Width(players.count());
         Rewards rewards = inputView.inputRewards(width);
-        Height<LadderRow> height = inputView.inputHeight();
+        Height height = inputView.inputHeight();
         Ladder ladder = createLadder(width, height);
         LadderGame ladderGame = LadderGame.of(players, rewards, ladder);
         LadderGameResult result = play(ladderGame);
         printLadderGameResult(result);
     }
 
-    private Ladder createLadder(final Width<LadderDirection> width, final Height<LadderRow> height) {
+    private Ladder createLadder(final Width width, final Height height) {
         return LadderBuilder.builder()
                 .width(width)
                 .height(height)

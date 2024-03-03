@@ -9,8 +9,6 @@ import java.util.Scanner;
 import ladder.domain.attribute.Height;
 import ladder.domain.attribute.Width;
 import ladder.domain.game.LadderGameResult;
-import ladder.domain.ladder.LadderRow;
-import ladder.domain.ladder.direction.LadderDirection;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.reward.Reward;
@@ -44,7 +42,7 @@ public class InputView {
         return input;
     }
 
-    public Rewards inputRewards(final Width<LadderDirection> width) {
+    public Rewards inputRewards(final Width width) {
         return exceptionHandler.run(() -> {
             System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
             List<Reward> rewards = Arrays.stream(readAndSplitByComma())
@@ -54,10 +52,10 @@ public class InputView {
         });
     }
 
-    public Height<LadderRow> inputHeight() {
+    public Height inputHeight() {
         return exceptionHandler.run(() -> {
             System.out.println("\n최대 사다리 높이는 몇 개인가요?");
-            return new Height<>(Integer.parseInt(readLine()));
+            return new Height(Integer.parseInt(readLine()));
         });
     }
 

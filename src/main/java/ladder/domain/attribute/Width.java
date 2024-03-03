@@ -5,7 +5,7 @@ import java.util.function.IntConsumer;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
-public record Width<L>(int value) {
+public record Width(int value) {
 
     private static final int MIN_WIDTH = 1;
 
@@ -15,7 +15,7 @@ public record Width<L>(int value) {
         }
     }
 
-    public List<L> repeat(final Supplier<L> supplier) {
+    public List repeat(final Supplier supplier) {
         return IntStream.range(0, value)
                 .mapToObj(__ -> supplier.get())
                 .toList();

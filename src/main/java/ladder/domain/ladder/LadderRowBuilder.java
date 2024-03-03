@@ -14,7 +14,7 @@ import ladder.domain.ladder.direction.LadderDirectionSelector;
 public class LadderRowBuilder {
 
     private List<LadderDirection> ladderRow;
-    private Width<LadderDirection> width;
+    private Width width;
     private LadderDirectionSelector ladderDirectionSelector;
 
     private LadderRowBuilder() {
@@ -24,7 +24,7 @@ public class LadderRowBuilder {
         return new LadderRowBuilder();
     }
 
-    public LadderRowBuilder width(final Width<LadderDirection> width) {
+    public LadderRowBuilder width(final Width width) {
         this.width = width;
         return this;
     }
