@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LadderGeneratorTest {
-    
+
     @DisplayName("원하는 가로와 세로 길이를 가진 사다리를 생성한다.")
     @Test
     void generateTest() {

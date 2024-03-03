@@ -10,7 +10,7 @@ import ladder.domain.prize.Prizes;
 import ladder.domain.user.User;
 import ladder.domain.user.Users;
 
-public class ResourceGenerator {
+class ResourceGenerator {
 
     public static Users generateUsers(int count) {
         List<User> users = new ArrayList<>();

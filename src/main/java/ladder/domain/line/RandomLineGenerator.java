@@ -8,7 +8,7 @@ import ladder.domain.direction.Direction;
 public class RandomLineGenerator implements LineGenerator {
 
     private final Random random = new Random();
-    
+
     @Override
     public Line generateLine(int numberOfDirections) {
         List<Direction> directionInfo = selectDirections(numberOfDirections);
