@@ -1,15 +1,12 @@
 package laddergame.util;
 
 import laddergame.domain.Rung;
-import laddergame.domain.Line;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class RandomRungGenerator implements RungGenerator {
-
     private final Random random;
 
     public RandomRungGenerator() {

@@ -1,7 +1,6 @@
 package laddergame.domain.strategy;
 
 import laddergame.domain.Direction;
-import laddergame.domain.Line;
 import laddergame.domain.Rung;
 
 public class FirstLineDirection implements FindDirectionStrategy {

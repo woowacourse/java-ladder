@@ -2,8 +2,6 @@ package laddergame.domain;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 import static laddergame.domain.Player.NAME_BLANK_ERROR;
@@ -21,13 +19,6 @@ public class Players {
         this.players = IntStream.range(0, playerNames.size())
                 .mapToObj(i -> new Player(playerNames.get(i), new Position(i, 0)))
                 .toList();
-    }
-
-    public Player findPlayerName(String name) {
-        return players.stream()
-                .filter(player -> player.getName().equals(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(NO_FIND_PLAYER));
     }
 
     private void validate(final List<String> playerNames) {

@@ -1,7 +1,5 @@
 package laddergame.domain;
 
-import javax.print.DocFlavor;
-
 public class Player {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String NAME_LENGTH_ERROR = String.format("이름 길이는 최대 %s자만 허용합니다.", MAX_NAME_LENGTH);

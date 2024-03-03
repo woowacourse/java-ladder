@@ -20,7 +20,6 @@ public class LadderGameController {
 
         LineBuilder lineBuilder = new LineBuilder(new RandomRungGenerator(), players.getPlayersCount() - 1);
         Ladder ladder = new Ladder(lineBuilder, height);
-
         PlayersResult playersResult = executeLadderGame(players, ladder);
 
         while (true) {
