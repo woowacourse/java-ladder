@@ -1,7 +1,6 @@
 package controller;
 
 import domain.*;
-import domain.lines.Lines;
 import view.InputView;
 import view.ResultView;
 

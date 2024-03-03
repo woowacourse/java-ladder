@@ -1,8 +1,5 @@
 package domain;
 
-import domain.line.Line;
-import domain.line.Point;
-import domain.lines.LineGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

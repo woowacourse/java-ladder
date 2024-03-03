@@ -1,6 +1,5 @@
 package domain;
 
-import domain.lines.Lines;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

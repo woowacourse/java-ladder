@@ -1,6 +1,4 @@
-package domain.line;
-
-import domain.Direction;
+package domain;
 
 import java.util.Collections;
 import java.util.List;

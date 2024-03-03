@@ -1,7 +1,4 @@
-package domain.lines;
-
-import domain.BooleanGenerator;
-import domain.line.Point;
+package domain;
 
 import java.util.List;
 import java.util.stream.Stream;

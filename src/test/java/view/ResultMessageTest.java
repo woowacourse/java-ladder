@@ -1,9 +1,9 @@
 package view;
 
 import domain.BooleanGenerator;
+import domain.Line;
+import domain.LineGenerator;
 import domain.Names;
-import domain.line.Line;
-import domain.lines.LineGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

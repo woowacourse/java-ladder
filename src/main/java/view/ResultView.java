@@ -1,11 +1,6 @@
 package view;
 
-import domain.Names;
-import domain.Player;
-import domain.Players;
-import domain.Results;
-import domain.line.Line;
-import domain.lines.Lines;
+import domain.*;
 
 import java.util.Scanner;
 

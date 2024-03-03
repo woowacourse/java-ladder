@@ -1,7 +1,5 @@
 package domain;
 
-import domain.lines.Lines;
-
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.IntStream;

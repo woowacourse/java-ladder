@@ -1,9 +1,4 @@
-package domain.lines;
-
-import domain.BooleanGenerator;
-import domain.Player;
-import domain.line.Line;
-import domain.line.Point;
+package domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
