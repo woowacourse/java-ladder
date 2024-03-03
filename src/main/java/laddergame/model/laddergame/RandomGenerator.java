@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Random;
 import laddergame.model.participants.Participants;
 
-public class RandomDoublyBooleanListGenerator {
+public class RandomGenerator {
     private final Random random = new Random();
 
-    public List<List<Boolean>> generate(LadderHeight ladderHeight, Participants participants) {
+    public List<List<Boolean>> generateBooleans(LadderHeight ladderHeight, Participants participants) {
         List<List<Boolean>> doubleBooleans = new ArrayList<>();
         for (int i = 0; i < ladderHeight.height(); i++) {
             doubleBooleans.add(generateBooleans(participants.getSize()));

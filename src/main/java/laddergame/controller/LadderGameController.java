@@ -5,7 +5,7 @@ import laddergame.model.executionresults.ExecutionResults;
 import laddergame.model.laddergame.LadderGame;
 import laddergame.model.laddergame.LadderGameGenerator;
 import laddergame.model.laddergame.LadderHeight;
-import laddergame.model.laddergame.RandomDoublyBooleanListGenerator;
+import laddergame.model.laddergame.RandomGenerator;
 import laddergame.model.laddergame.ResultProcessor;
 import laddergame.model.participants.InquirySubject;
 import laddergame.model.participants.Participants;
@@ -34,8 +34,8 @@ public class LadderGameController {
     }
 
     private LadderGame getLadderGame(LadderHeight ladderHeight, Participants participants) {
-        RandomDoublyBooleanListGenerator randomGenerator = new RandomDoublyBooleanListGenerator();
-        List<List<Boolean>> doublyBooleans = randomGenerator.generate(ladderHeight, participants);
+        RandomGenerator randomGenerator = new RandomGenerator();
+        List<List<Boolean>> doublyBooleans = randomGenerator.generateBooleans(ladderHeight, participants);
         LadderGameGenerator ladderGameGenerator = new LadderGameGenerator(doublyBooleans);
         return ladderGameGenerator.getLadderGame();
     }
