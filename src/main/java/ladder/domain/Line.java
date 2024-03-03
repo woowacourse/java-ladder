@@ -11,10 +11,6 @@ public class Line {
         this.points = points;
     }
 
-    public List<Point> getPoints() {
-        return Collections.unmodifiableList(points);
-    }
-
     public int ride(int position) {
         if (position > points.size()) {
             throw new IllegalArgumentException("사다리가 존재하지 않는 위치입니다.");
@@ -26,5 +22,9 @@ public class Line {
             return position - 1;
         }
         return position;
+    }
+
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 }
