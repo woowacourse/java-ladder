@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
+import laddergame.exception.BaseException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -20,7 +21,7 @@ class LadderGameGeneratorTest {
     void validateBooleans(List<List<Boolean>> given) {
         //when //then
         assertThatThrownBy(() -> new LadderGameGenerator(given))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(BaseException.class);
     }
 
     @DisplayName("LadderGame을 생성하면 이중리스트 크기와 선의 개수가 동일하다.")

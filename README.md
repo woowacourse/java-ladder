@@ -10,14 +10,14 @@
 
 ## 참여자들
 
-- [x] 다음의 경우 `IllegalArgumentException` 예외를 발생시킨다.
+- [x] 다음의 경우 `BaseException` 예외를 발생시킨다.
     - 참여자 이름이 null이거나 공백인 경우
     - 참여자 이름의 길이가 5자 이상일 경우
     - 참여자들 이름이 중복된 경우
 
 ## 실행 결과
 
-- [x] 다음의 경우 `IllegalArgumentException` 예외를 발생시킨다.
+- [x] 다음의 경우 `BaseException` 예외를 발생시킨다.
     - 실행 결과가 null 또는 공백일 경우
     - 실행 결과 수가 참여자들 인원 수보다 많거나 적게 입력된 경우
 - [x] 실행 결과는 각 인덱스와 결과를 (key, value)로 갖는 인덱싱 정보를 갖는다.
@@ -55,12 +55,12 @@
 ## 사다리 게임
 
 - [x] 사다리 높이와, 참여자들, 랜덤 생성기로 사다리게임을 생성한다.
-- [x] 사다리 높이가 다음의 경우 `IllegalArgumentException`을 발생시킨다.
+- [x] 사다리 높이가 다음의 경우 `BaseException`을 발생시킨다.
     - 사다리 높이가 1보다 작을 경우
 
 ## 결과를 보고 싶은 사람
 
-- [x] 다음의 경우 `IllegalArgumentException` 예외를 발생시킨다.
+- [x] 다음의 경우 `BaseException` 예외를 발생시킨다.
     - null인 경우
     - all 또는 참여자들 이름이 아닌 경우
 - [x] 사다리 결과와 참여자들을 통해 결과를 산출한다.
@@ -71,20 +71,20 @@
 
 ### 참여할 사람 이름을 입력받는다. (이름은 쉼표(,)로 구분한다)
 
-- [x] 다음의 경우 `IllegalArgumentException` 예외를 발생시킨다.
+- [x] 다음의 경우 `BaseException` 예외를 발생시킨다.
     - null일 경우
     - blank일 경우
     - 구분자로 종료될 경우
 
 ### 실행 결과를 입력받는다. (결과는 쉼표(,)로 구분한다.)
 
-- [x] 다음의 경우 `IllegalArgumentException` 예외를 발생시킨다.
+- [x] 다음의 경우 `BaseException` 예외를 발생시킨다.
     - null 또는 공백이 입력된 경우
     - 구분자로 종료된 경우
 
 ### 최대 사다리 높이를 입력받는다.
 
-- [x] 다음의 경우 `IllegalArgumentException` 예외를 발생시킨다.
+- [x] 다음의 경우 `BaseException` 예외를 발생시킨다.
     - NumberFormatException 이 발생한 경우
 
 ### 참여자들의 이름을 출력한다.

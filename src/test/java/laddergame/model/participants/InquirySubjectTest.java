@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
+import laddergame.exception.BaseException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ class InquirySubjectTest {
                 .collect(collectingAndThen(toList(), Participants::new));
         //when //then
         assertThatThrownBy(() -> new InquirySubject(subject, participants, isChecked))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(BaseException.class);
     }
 
     @DisplayName("조회 대상자가 참여자들에 위치한 인덱스를 반환한다.")

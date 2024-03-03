@@ -2,6 +2,7 @@ package laddergame.model.laddergame;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import laddergame.exception.BaseException;
 
 public class LadderGameGenerator {
     private final List<List<Boolean>> doublyBooleans;
@@ -13,7 +14,7 @@ public class LadderGameGenerator {
 
     private void validateBooleans(List<List<Boolean>> doublyBooleans) {
         if (doublyBooleans == null || doublyBooleans.isEmpty() || checkBooleansSameSize(doublyBooleans)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않는 값으로 사다리 게임 생성기를 만들 수 없습니다.");
+            throw new BaseException("유효하지 않는 값으로 사다리 게임 생성기를 만들 수 없습니다.");
         }
     }
 

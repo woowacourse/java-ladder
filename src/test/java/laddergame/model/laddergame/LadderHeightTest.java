@@ -2,6 +2,7 @@ package laddergame.model.laddergame;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import laddergame.exception.BaseException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -13,6 +14,6 @@ class LadderHeightTest {
     void validateLadderHeight(int given) {
         //when //then
         assertThatThrownBy(() -> new LadderHeight(given))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(BaseException.class);
     }
 }

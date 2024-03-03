@@ -3,6 +3,7 @@ package laddergame.model.participants;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import laddergame.exception.BaseException;
 
 public class Participants {
     private static final int MINIMUM_PARTICIPANTS_SIZE = 2;
@@ -17,8 +18,8 @@ public class Participants {
 
     private void validateParticipantsSize(List<Participant> participants) {
         if (participants == null || participants.size() < MINIMUM_PARTICIPANTS_SIZE) {
-            String message = "[ERROR] 참여자는 " + MINIMUM_PARTICIPANTS_SIZE + "명 이상이어야 합니다.";
-            throw new IllegalArgumentException(message);
+            String message = "참여자는 " + MINIMUM_PARTICIPANTS_SIZE + "명 이상이어야 합니다.";
+            throw new BaseException(message);
         }
     }
 
@@ -27,7 +28,7 @@ public class Participants {
                 .map(Participant::name)
                 .collect(Collectors.toUnmodifiableSet());
         if (set.size() != participants.size()) {
-            throw new IllegalArgumentException("[ERROR] 참여자 이름이 중복되었습니다.");
+            throw new BaseException("참여자 이름이 중복되었습니다.");
         }
     }
 

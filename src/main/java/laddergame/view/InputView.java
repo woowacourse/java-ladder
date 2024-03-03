@@ -6,6 +6,7 @@ import static java.util.stream.Collectors.toList;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.function.Supplier;
+import laddergame.exception.BaseException;
 import laddergame.model.executionresults.ExecutionResult;
 import laddergame.model.executionresults.ExecutionResults;
 import laddergame.model.laddergame.LadderHeight;
@@ -65,15 +66,15 @@ public class InputView {
 
     private void validateMultipleInputs(String input) {
         if (input == null || input.isBlank() || input.endsWith(MULTIPLE_INPUTS_DELIMITER)) {
-            String message = "[ERROR] 입력값은 공백이거나 구분자(" + MULTIPLE_INPUTS_DELIMITER
+            String message = "입력값은 공백이거나 구분자(" + MULTIPLE_INPUTS_DELIMITER
                     + ")로 끝날 수 없습니다. 입력값 : " + input;
-            throw new IllegalArgumentException(message);
+            throw new BaseException(message);
         }
     }
 
     private void validateSingleInput(String input) {
         if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 공백일 수 없습니다. 입력값 : " + input);
+            throw new BaseException("입력값은 공백일 수 없습니다. 입력값 : " + input);
         }
     }
 
@@ -81,14 +82,14 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 숫자 형식이어야 합니다. 입력값 : " + input);
+            throw new BaseException("입력값은 숫자 형식이어야 합니다. 입력값 : " + input);
         }
     }
 
     private <T> T repeatUntilSuccess(Supplier<T> supplier) {
         try {
             return supplier.get();
-        } catch (IllegalArgumentException e) {
+        } catch (BaseException e) {
             System.out.println(e.getMessage());
             return repeatUntilSuccess(supplier);
         }

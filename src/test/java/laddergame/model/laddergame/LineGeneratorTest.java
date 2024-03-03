@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import laddergame.exception.BaseException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +25,6 @@ class LineGeneratorTest {
     void validateBooleansSize() {
         //when //then
         assertThatThrownBy(() -> new LineGenerator(List.of(true)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(BaseException.class);
     }
 }

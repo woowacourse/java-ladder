@@ -2,6 +2,7 @@ package laddergame.model.executionresults;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import laddergame.exception.BaseException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -15,6 +16,7 @@ class ExecutionResultTest {
     void validateName(String given) {
         //when //then
         assertThatThrownBy(() -> new ExecutionResult(given))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(BaseException.class)
+                .hasMessageContaining("[ERROR]");
     }
 }

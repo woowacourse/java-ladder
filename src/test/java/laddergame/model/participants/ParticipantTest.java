@@ -3,6 +3,7 @@ package laddergame.model.participants;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import laddergame.exception.BaseException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,7 +17,7 @@ class ParticipantTest {
     void validateNameLength(String given) {
         //when //then
         assertThatThrownBy(() -> new Participant(given))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(BaseException.class);
     }
 
     @DisplayName("참여할 사람의 이름은 null이거나 공백이면 안된다.")
@@ -25,7 +26,7 @@ class ParticipantTest {
     void validateNameNotNullAndNotBlank(String given) {
         //when //then
         assertThatThrownBy(() -> new Participant(given))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(BaseException.class);
     }
 
     @DisplayName("이름이 같은 두 참여자가 동일한 객체인지 판별한다.")

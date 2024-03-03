@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
+import laddergame.exception.BaseException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,7 +21,7 @@ class ParticipantsTest {
     void validateParticipantsSizeWhenNull(List<Participant> given) {
         //when //then
         assertThatThrownBy(() -> new Participants(given))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(BaseException.class);
     }
 
     @DisplayName("참여자 수가 1명이면 예외가 발생한다.")
@@ -30,7 +31,7 @@ class ParticipantsTest {
         List<Participant> given = List.of(new Participant("daon"));
         //when //then
         assertThatThrownBy(() -> new Participants(given))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(BaseException.class);
     }
 
     @DisplayName("참여자 수를 반환한다.")
@@ -58,7 +59,7 @@ class ParticipantsTest {
         );
         //when //then
         assertThatThrownBy(() -> new Participants(given))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(BaseException.class);
     }
 
     @DisplayName("참여자가 포함되어 있는지 판단한다.")

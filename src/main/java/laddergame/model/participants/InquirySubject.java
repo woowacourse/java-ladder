@@ -1,6 +1,7 @@
 package laddergame.model.participants;
 
 import java.util.List;
+import laddergame.exception.BaseException;
 
 public class InquirySubject {
     private final Participant subject;
@@ -16,8 +17,8 @@ public class InquirySubject {
 
     private void validateInquirySubject(Participant subject, Participants participants, boolean isALLCommand) {
         if (isALLCommand && participants.contains(subject) || !isALLCommand && !participants.contains(subject)) {
-            String message = "[ERROR] 조회 대상자는 all이거나 참여자들 중 하나여야 합니다. 입력값: " + subject.name();
-            throw new IllegalArgumentException(message);
+            String message = "조회 대상자는 all이거나 참여자들 중 하나여야 합니다. 입력값: " + subject.name();
+            throw new BaseException(message);
         }
     }
 

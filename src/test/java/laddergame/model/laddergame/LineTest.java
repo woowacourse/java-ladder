@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import java.util.stream.Stream;
+import laddergame.exception.BaseException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -27,7 +28,7 @@ class LineTest {
         );
         //when //then
         assertThatThrownBy(() -> new Line(lineStates))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(BaseException.class);
     }
 
     @DisplayName("START나 END가 연속되면 예외를 발생한다.")
@@ -36,7 +37,7 @@ class LineTest {
     void validateContinuousStartOrEnd(List<LineState> given) {
         //when //then
         assertThatThrownBy(() -> new Line(given))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(BaseException.class);
     }
 
     @DisplayName("START이면 index는 증가하고 END이면 index는 감소한다.")

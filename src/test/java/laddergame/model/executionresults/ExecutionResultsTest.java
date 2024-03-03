@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import java.util.stream.Stream;
+import laddergame.exception.BaseException;
 import laddergame.model.participants.Participant;
 import laddergame.model.participants.Participants;
 import org.junit.jupiter.api.DisplayName;
@@ -29,7 +30,7 @@ class ExecutionResultsTest {
                 .collect(collectingAndThen(toList(), Participants::new));
         //when //then
         assertThatThrownBy(() -> new ExecutionResults(executionResults, participants))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(BaseException.class);
     }
 
     @DisplayName("인덱스에 해당하는 실행 결과를 찾는다.")
@@ -68,7 +69,7 @@ class ExecutionResultsTest {
                     .collect(collectingAndThen(toList(), results -> new ExecutionResults(results, participants)));
             //when //then
             assertThatThrownBy(() -> executionResults.findByIndex(given))
-                    .isInstanceOf(IllegalArgumentException.class);
+                    .isInstanceOf(BaseException.class);
         }
     }
 }
