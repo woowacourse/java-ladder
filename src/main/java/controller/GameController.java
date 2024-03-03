@@ -5,8 +5,8 @@ import domain.GameResult;
 import domain.GameResultDto;
 import domain.Ladder;
 import domain.Members;
-import domain.Results;
 import domain.ResultTarget;
+import domain.Results;
 import error.ErrorHandler;
 import java.util.List;
 import strategy.RandomConnectionStrategy;
@@ -15,7 +15,7 @@ import view.OutputView;
 
 public class GameController {
 
-    public static final int MAX_GAME_COUNT = 50;
+    private static final int MAX_RESULT_COUNT = 50;
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -59,11 +59,11 @@ public class GameController {
     }
 
     private void manageResult(Members members, GameResult gameResult) {
-        ResultTarget resultTarget = showResult(members, gameResult);
-        int count = MAX_GAME_COUNT;
-        while (count-- > 0 && !resultTarget.isAllMembers()) {
+        int count = MAX_RESULT_COUNT;
+        ResultTarget resultTarget;
+        do {
             resultTarget = showResult(members, gameResult);
-        }
+        } while (--count > 0 && !resultTarget.isAllMembers());
     }
 
     private ResultTarget showResult(Members members, GameResult gameResult) {
