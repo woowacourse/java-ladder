@@ -11,18 +11,18 @@ import java.util.Map;
 
 public class LadderClimbingGame {
     private final Players players;
-    private final Ladder ladder;
+    private final LadderGenerator ladderGenerator;
     private final LadderResults ladderResults;
 
-    public LadderClimbingGame(final Players players, final Ladder ladder, final LadderResults ladderResults) {
+    public LadderClimbingGame(final Players players, final LadderGenerator ladderGenerator, final LadderResults ladderResults) {
         this.players = players;
-        this.ladder = ladder;
+        this.ladderGenerator = ladderGenerator;
         this.ladderResults = ladderResults;
     }
 
     public ClimbingResults createClimbingResults() {
         Map<Player, LadderResult> results = new HashMap<>();
-        List<Floor> floors = ladder.createFloors();
+        List<Floor> floors = ladderGenerator.generateLadder();
         for (Floor floor : floors) {
             results.putAll(climbLadder(floor));
         }

@@ -5,18 +5,18 @@ import domain.player.Players;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ladder {
+public class LadderGenerator {
     private final LadderHeight ladderHeight;
     private final Players players;
     private final BridgeGenerator bridgeGenerator;
 
-    public Ladder(final LadderHeight ladderHeight, final Players players, final BridgeGenerator bridgeGenerator) {
+    public LadderGenerator(final LadderHeight ladderHeight, final Players players, final BridgeGenerator bridgeGenerator) {
         this.ladderHeight = ladderHeight;
         this.players = players;
         this.bridgeGenerator = bridgeGenerator;
     }
 
-    public List<Floor> createFloors() {
+    public List<Floor> generateLadder() {
         List<Floor> floors = new ArrayList<>();
         int bridgeCount = calculateBridgeCount(players);
         for (int i = 0; i < ladderHeight.getValue(); i++) {

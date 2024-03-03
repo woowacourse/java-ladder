@@ -1,7 +1,7 @@
 package view;
 
 import domain.ladder.Floor;
-import domain.ladder.Ladder;
+import domain.ladder.LadderGenerator;
 import domain.ladder.LadderBridge;
 import domain.player.Player;
 import domain.player.Players;
@@ -21,10 +21,13 @@ public class OutputView {
         System.out.println(errorMessage);
     }
 
-    public void printInputtedResultsOf(final Players players, final Ladder ladder, final LadderResults ladderResults) {
+    public void printInputtedResultsOf(
+            final Players players,
+            final LadderGenerator ladderGenerator,
+            final LadderResults ladderResults) {
         System.out.println("\n사다리 결과\n");
         printPlayerNames(players);
-        printLadder(ladder);
+        printLadder(ladderGenerator);
         printLadderResult(ladderResults);
     }
 
@@ -37,9 +40,9 @@ public class OutputView {
         System.out.println(playerNamesJoiner);
     }
 
-    private void printLadder(final Ladder ladder) {
+    private void printLadder(final LadderGenerator ladderGenerator) {
         StringJoiner ladderJoiner;
-        for (Floor floor : ladder.createFloors()) {
+        for (Floor floor : ladderGenerator.generateLadder()) {
             ladderJoiner = new StringJoiner(LADDER_FRAME, LADDER_FRAME, LADDER_FRAME);
             printLadderLine(floor, ladderJoiner);
         }

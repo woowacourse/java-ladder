@@ -10,7 +10,7 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class LadderTest {
+public class LadderGeneratorTest {
 
     @Test
     void createLadderSuccessWithHeightAndPointCount() {
@@ -26,8 +26,8 @@ public class LadderTest {
 
         // when
         bridgeGeneratorStub.setBridges(bridges);
-        Ladder ladder = new  Ladder(height, new Players(players), bridgeGeneratorStub);
-        List<Floor> floors = ladder.createFloors();
+        LadderGenerator ladderGenerator = new LadderGenerator(height, new Players(players), bridgeGeneratorStub);
+        List<Floor> floors = ladderGenerator.generateLadder();
 
         // then
         assertAll(

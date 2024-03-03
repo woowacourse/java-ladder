@@ -36,10 +36,10 @@ class LadderClimbingGameTest {
         // when
         Players players = new Players(List.of(player1, player2, player3));
         bridgeGeneratorStub.setBridges(List.of(LadderBridge.BRIDGE, LadderBridge.NONE));
-        Ladder ladder = new  Ladder(ladderHeight, players, bridgeGeneratorStub);
+        LadderGenerator ladderGenerator = new LadderGenerator(ladderHeight, players, bridgeGeneratorStub);
         List<LadderResult> results = List.of(ladderResult1, ladderResult2, ladderResult3);
         LadderResults ladderResults = LadderResults.createMatchesCountOf(players.getPlayerCount(), results);
-        LadderClimbingGame ladderClimbingGame = new LadderClimbingGame(players, ladder, ladderResults);
+        LadderClimbingGame ladderClimbingGame = new LadderClimbingGame(players, ladderGenerator, ladderResults);
         ClimbingResults climbingResults = ladderClimbingGame.createClimbingResults();
 
          /* 사다리 형태
