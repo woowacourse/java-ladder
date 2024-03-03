@@ -42,39 +42,30 @@ public class Line {
         return bridgeCandidate;
     }
 
-    public Direction findDirection(final int position) {
+    public Direction findDirection(final Position position) {
         if (canMoveRight(position)) {
             return Direction.RIGHT;
         }
         if (canMoveLeft(position)) {
             return Direction.LEFT;
         }
-
         return Direction.NONE;
     }
 
-    private boolean canMoveRight(final int position) {
-        if (isLast(position)) {
+    private boolean canMoveRight(final Position position) {
+        if (position.isLast(bridges.size())) {
             return false;
         }
 
-        return bridges.get(position).exists();
+        return bridges.get(position.getValue()).exists();
     }
 
-    private boolean isLast(final int position) {
-        return position == bridges.size();
-    }
-
-    private boolean canMoveLeft(final int position) {
-        if (isFirst(position)) {
+    private boolean canMoveLeft(final Position position) {
+        if (position.isFirst()) {
             return false;
         }
 
-        return bridges.get(position - 1).exists();
-    }
-
-    private boolean isFirst(final int position) {
-        return position == 0;
+        return bridges.get(position.getValue()-1).exists();
     }
 
     public List<Bridge> getBridges() {
