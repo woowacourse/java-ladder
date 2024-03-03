@@ -1,5 +1,7 @@
-package domain;
+package domain.ladder;
 
+import domain.ColumnPosition;
+import domain.line.RowLine;
 import java.util.List;
 
 public class Ladder {
@@ -11,12 +13,22 @@ public class Ladder {
         this.lines = lines;
     }
 
+    public ColumnPosition drive(ColumnPosition columnPosition) {
+        return lines.stream()
+                .reduce(columnPosition, (currentPosition, rowLine) -> rowLine.nextPosition(currentPosition),
+                        (a, b) -> b);
+    }
+
     public RowLine getLineByIndex(int index) {
         return lines.get(index);
     }
 
     public int getRowLineCount() {
         return lines.size();
+    }
+
+    public int getColumnCount() {
+        return lines.get(0).getPointCount();
     }
 
     private void validateLinesSizeEqual(List<RowLine> lines) {
@@ -26,7 +38,8 @@ public class Ladder {
     }
 
     private boolean isAllLineSameSize(List<RowLine> lines) {
+        int pointCount = lines.get(0).getPointCount();
         return lines.stream()
-                .allMatch(rowLine -> rowLine.getConnectionCount() == lines.get(0).getConnectionCount());
+                .allMatch(rowLine -> rowLine.getPointCount() == pointCount);
     }
 }

@@ -1,17 +1,22 @@
-package domain;
+package domain.player;
 
 import java.util.Objects;
 
-public class Name {
+public class PlayerName {
 
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
+    private static final String SPECIAL_NAME_ALL = "all";
 
     private final String name;
 
-    public Name(String name) {
+    public PlayerName(String name) {
         validateLength(name);
         this.name = name;
+    }
+
+    public boolean isNotSpecialKeyWord() {
+        return !name.equals(SPECIAL_NAME_ALL);
     }
 
     public String getName() {
@@ -26,8 +31,8 @@ public class Name {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Name name1 = (Name) o;
-        return Objects.equals(name, name1.name);
+        PlayerName playerName1 = (PlayerName) o;
+        return Objects.equals(name, playerName1.name);
     }
 
     @Override

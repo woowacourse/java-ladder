@@ -1,5 +1,7 @@
-package domain;
+package domain.ladder;
 
+import domain.line.RowLine;
+import domain.line.RowLineGenerator;
 import java.util.List;
 import java.util.stream.IntStream;
 

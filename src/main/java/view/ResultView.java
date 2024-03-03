@@ -1,7 +1,8 @@
 package view;
 
-import domain.Ladder;
-import domain.Names;
+import domain.LadderGame;
+import domain.result.LadderResult;
+import domain.result.LadderResults;
 
 public class ResultView {
 
@@ -13,9 +14,15 @@ public class ResultView {
         this.messageResolver = messageResolver;
     }
 
-    public void printLadder(Ladder ladder, Names names) {
-        System.out.println(LINE_SEPARATOR + "실행결과" + LINE_SEPARATOR);
-        System.out.println(messageResolver.resolveNamesMessage(names));
-        System.out.println(messageResolver.resolveLadderMessage(ladder));
+    public void printLadder(LadderGame ladderGame) {
+        System.out.println(messageResolver.resolveLadderMessage(ladderGame));
+    }
+
+    public void printResult(LadderResult result) {
+        System.out.println(messageResolver.resolveResultMessage(result));
+    }
+
+    public void printResults(LadderResults results) {
+        System.out.println(messageResolver.resolveResultsMessage(results));
     }
 }
