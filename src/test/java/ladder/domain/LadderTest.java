@@ -15,9 +15,7 @@ class LadderTest {
     @Test
     @DisplayName("사다리의 높이를 알 수 있다")
     void getHeightTest() {
-        LineGenerator lineGenerator = new LineGenerator(new RandomBooleanSupplier());
-        lineGenerator.generate(sticks.size());
-        Ladder ladder = Ladder.makeLadder(new Height(3), 3, lineGenerator);
+        Ladder ladder = Ladder.makeLadder(new Height(3), 3, new LineGenerator(new RandomBooleanSupplier()));
 
         int actual = ladder.getHeight();
 
