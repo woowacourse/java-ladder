@@ -8,35 +8,19 @@ public class Height {
     private final int value;
 
     private Height(int value) {
+        validate(value);
         this.value = value;
     }
 
-    public static Height from(String rawValue) {
-        validate(rawValue);
-        return new Height(initialize(rawValue));
+    public static Height from(int height) {
+        return new Height(height);
     }
 
-    private static void validate(String rawValue) {
-        validateNonNumeric(rawValue);
-        validateRange(Integer.parseInt(rawValue));
-    }
-
-    private static void validateNonNumeric(String rawValue) {
-        try {
-            Integer.parseInt(rawValue);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자를 입력해 주세요.");
+    private static void validate(int height) {
+        if (height < MIN_HEIGHT || height > MAX_HEIGHT) {
+            throw new IllegalArgumentException(
+                String.format("%d 이상 %d 이하의 숫자를 입력해 주세요.", MIN_HEIGHT, MAX_HEIGHT));
         }
-    }
-
-    private static void validateRange(int value) {
-        if (value < MIN_HEIGHT || value > MAX_HEIGHT) {
-            throw new IllegalArgumentException(MIN_HEIGHT + " 이상 " + MAX_HEIGHT + " 이하의 숫자를 입력해 주세요.");
-        }
-    }
-
-    private static int initialize(String rawValue) {
-        return Integer.parseInt(rawValue);
     }
 
     public int getValue() {

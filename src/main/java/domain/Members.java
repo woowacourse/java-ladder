@@ -1,9 +1,9 @@
 package domain;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 public class Members {
 
@@ -13,37 +13,33 @@ public class Members {
     private final List<Member> members;
 
     private Members(List<Member> members) {
+        validate(members);
         this.members = members;
     }
 
-    public static Members from(String rawNames) {
-        validate(rawNames);
-        return new Members(initialize(rawNames));
+    public static Members from(List<String> names) {
+        return new Members(initialize(names));
     }
 
-    private static void validate(String rawNames) {
-        validateNull(rawNames);
-        List<String> names = parse(rawNames);
+    private void validate(List<Member> members) {
+        if (members.size() < MIN_MEMBER_COUNT || members.size() > MAX_MEMBER_COUNT) {
+            throw new IllegalArgumentException(
+                String.format("참여자는 %d~%d명만 허용됩니다.", MIN_MEMBER_COUNT, MAX_MEMBER_COUNT));
+        }
+    }
+
+    private static List<Member> initialize(List<String> names) {
+        validateNull(names);
         validateDuplication(names);
-        validateCount(names);
-    }
-
-    private static List<Member> initialize(String rawNames) {
-        return parse(rawNames).stream()
+        return names.stream()
             .map(Member::from)
             .toList();
     }
 
-    private static void validateNull(String rawNames) {
-        if (rawNames == null) {
+    private static void validateNull(List<String> names) {
+        if (names == null) {
             throw new IllegalArgumentException("null을 입력할 수 없습니다.");
         }
-    }
-
-    private static List<String> parse(String rawNames) {
-        return Arrays.stream(rawNames.split(",", -1))
-            .map(String::trim)
-            .toList();
     }
 
     private static void validateDuplication(List<String> names) {
@@ -53,11 +49,11 @@ public class Members {
         }
     }
 
-    private static void validateCount(List<String> names) {
-        if (names.size() < MIN_MEMBER_COUNT || names.size() > MAX_MEMBER_COUNT) {
-            throw new IllegalArgumentException(
-                "참여자는 " + MIN_MEMBER_COUNT + "~" + MAX_MEMBER_COUNT + "명만 허용됩니다.");
-        }
+    public int findIndexByName(String name) {
+        return IntStream.range(0, members.size())
+            .filter(i -> members.get(i).getName().equals(name))
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어입니다."));
     }
 
     public int getCount() {

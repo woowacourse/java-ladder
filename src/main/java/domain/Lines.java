@@ -1,9 +1,9 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import strategy.PointStrategy;
+import java.util.stream.IntStream;
+import strategy.ConnectStrategy;
 
 public class Lines {
 
@@ -13,12 +13,18 @@ public class Lines {
         this.lines = lines;
     }
 
-    public static Lines of(int playerCount, Height height, PointStrategy pointStrategy) {
-        List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height.getValue(); i++) {
-            lines.add(Line.of(pointStrategy, playerCount));
+    public static Lines of(int playerCount, Height height, ConnectStrategy connectStrategy) {
+        return new Lines(IntStream.range(0, height.getValue())
+            .mapToObj(i -> Line.of(connectStrategy, playerCount))
+            .toList());
+    }
+
+    public int findRewardIndex(int memberIndex) {
+        int rewardIndex = memberIndex;
+        for (Line line : lines) {
+            rewardIndex = line.findNextIndex(rewardIndex);
         }
-        return new Lines(lines);
+        return rewardIndex;
     }
 
     public List<Line> getLines() {
