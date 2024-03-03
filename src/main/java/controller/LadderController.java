@@ -33,8 +33,7 @@ public class LadderController {
             ladder.play(players);
             OutputView.printLadderResult(players, prizes, ladder, players.findMaxNameLength());
 
-            final String targetName = InputView.inputPrizeTargetName();
-            OutputView.printResult(players, prizes, targetName);
+            takeUserInputAndFindResult(players, prizes);
         } catch (Exception e) {
             OutputView.printErrorMessage(e);
         }
@@ -64,5 +63,13 @@ public class LadderController {
 
     private Ladder generateLadder(Players players, Height height) {
         return new Ladder(booleanGenerator, height, players.getPlayerCount());
+    }
+
+    private static void takeUserInputAndFindResult(final Players players, final Prizes prizes) {
+        String targetName;
+        do {
+            targetName = InputView.inputPrizeTargetName();
+            OutputView.printResult(players, prizes, targetName);
+        } while (!"all".equals(targetName));
     }
 }
