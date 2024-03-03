@@ -6,18 +6,24 @@ import java.util.Scanner;
 
 public class InputView {
 
-    private final Scanner sc = new Scanner(System.in);
+    private static final String DELIMITER = ",";
+
+    private final Scanner sc;
+
+    public InputView() {
+        sc = new Scanner(System.in);
+    }
 
     public List<String> readNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String rawNames = sc.nextLine();
-        return StringParser.splitByDelimiter(rawNames, ",");
+        return StringParser.splitByDelimiter(rawNames, DELIMITER);
     }
 
     public List<String> readResults() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String rawResults = sc.nextLine();
-        return StringParser.splitByDelimiter(rawResults, ",");
+        return StringParser.splitByDelimiter(rawResults, DELIMITER);
     }
 
     public int readHeight() {
