@@ -17,6 +17,7 @@ public class Ladder {
 
     public void moveToLadderEnd(Player player) {
         for(Line line : lines) {
+
             player.move(line.findDirection(player.getPosition().getX()));
         }
     }
