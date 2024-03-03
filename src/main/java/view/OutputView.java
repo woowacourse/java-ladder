@@ -14,16 +14,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    private static final String LINE_SEPARATOR = System.lineSeparator();
+    public static final String LADDER_RESULT_MESSAGE = "사다리 결과";
     private static final String GAME_RESULT_MESSAGE = "실행 결과";
     private static final String PRIZE_PER_EACH_PLAYER_MESSAGE = "%s : %s";
+    private static final String LINE_SEPARATOR = System.lineSeparator();
     private static final String CONNECTED_LADDER_POINT = "-";
     private static final String NOT_CONNECTED_LADDER_POINT = " ";
     private static final String LADDER_COLUMN = "|";
     private static final String SPACE = " ";
 
     public static void printLadderResult(Players players, Prizes prizes, Ladder ladder, int length) {
-        System.out.println(LINE_SEPARATOR + "사다리 결과" + LINE_SEPARATOR);
+        System.out.println(LINE_SEPARATOR + LADDER_RESULT_MESSAGE + LINE_SEPARATOR);
         printPlayerNames(players);
         printLadder(ladder, length);
         printPrizes(prizes);
