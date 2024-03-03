@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.Arrays;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -27,7 +28,7 @@ public class Line {
         validateWidth(personCount, directions);
         validateStartDirection(directions);
         validateEndDirection(directions);
-        validateNotOnlyDownDirection(directions);
+        validateNotOnlyStayDirection(directions);
         validateNoMismatchedDirections(directions);
     }
 
@@ -49,28 +50,28 @@ public class Line {
         }
     }
 
-    private void validateNotOnlyDownDirection(List<Direction> directions) {
-        boolean onlyDownDirection = directions.stream().allMatch(Direction::isStay);
+    private void validateNotOnlyStayDirection(List<Direction> directions) {
+        boolean onlyStayDirection = directions.stream().allMatch(Direction::isStay);
 
-        if (onlyDownDirection) {
-            throw new IllegalArgumentException("라인의 모든 좌표가 아래 방향입니다.");
+        if (onlyStayDirection) {
+            throw new IllegalArgumentException("라인의 모든 좌표가 그대로 방향입니다.");
         }
     }
 
     private void validateNoMismatchedDirections(List<Direction> directions) {
         for (int i = 1; i < directions.size() - 1; i++) {
-            validateNotRightBeforeLeft(directions.get(i), directions.get(i - 1));
-            validateNotLeftAfterRight(directions.get(i), directions.get(i + 1));
+            validateNotForwardBeforeBackward(directions.get(i), directions.get(i - 1));
+            validateNotBackwardAfterForward(directions.get(i), directions.get(i + 1));
         }
     }
 
-    private void validateNotRightBeforeLeft(Direction current, Direction previous) {
+    private void validateNotForwardBeforeBackward(Direction current, Direction previous) {
         if (current.isBackward() && !previous.isForward()) {
             throw new IllegalArgumentException("라인의 특정 왼쪽 방향 좌표의 이전 좌표가 오른쪽 방향이 아닙니다.");
         }
     }
 
-    private void validateNotLeftAfterRight(Direction current, Direction next) {
+    private void validateNotBackwardAfterForward(Direction current, Direction next) {
         if (current.isForward() && !next.isBackward()) {
             throw new IllegalArgumentException("라인의 특정 오른쪽 방향 좌표의 다음 좌표가 왼쪽 방향이 아닙니다.");
         }
@@ -80,9 +81,7 @@ public class Line {
         return points.get(index.getValue()).move(index);
     }
 
-    List<Direction> getRawLine() {
-        return points.stream()
-                .map(Point::getDirection)
-                .toList();
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 }

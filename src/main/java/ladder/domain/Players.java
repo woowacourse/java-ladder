@@ -64,13 +64,7 @@ public class Players {
         return players.size();
     }
 
-    List<Player> getPlayers() {
+    public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
-    }
-
-    public List<String> getRawPlayers() {
-        return players.stream()
-                .map(Player::getName)
-                .toList();
     }
 }

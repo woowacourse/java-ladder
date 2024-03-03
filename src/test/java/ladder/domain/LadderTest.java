@@ -25,13 +25,7 @@ class LadderTest {
         Ladder ladder = new Ladder(5, line1, line2, line3, line4, line5);
 
         // then
-        assertThat(ladder.getRawLadder()).containsExactly(
-                List.of(Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD),
-                List.of(Direction.STAY, Direction.FORWARD, Direction.BACKWARD, Direction.STAY),
-                List.of(Direction.FORWARD, Direction.BACKWARD, Direction.STAY, Direction.STAY),
-                List.of(Direction.STAY, Direction.FORWARD, Direction.BACKWARD, Direction.STAY),
-                List.of(Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD)
-        );
+        assertThat(ladder.getLines()).containsExactly(line1, line2, line3, line4, line5);
     }
 
     @DisplayName("사다리 높이가 최대 사다리 높이와 같지 않으면 예외가 발생한다.")
@@ -56,7 +50,7 @@ class LadderTest {
         List<Line> lines = List.of(
                 new Line(4, Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD),
                 new Line(4, Direction.STAY, Direction.FORWARD, Direction.BACKWARD, Direction.STAY),
-                new Line(4 ,Direction.FORWARD, Direction.BACKWARD, Direction.STAY, Direction.STAY),
+                new Line(4, Direction.FORWARD, Direction.BACKWARD, Direction.STAY, Direction.STAY),
                 new Line(4, Direction.STAY, Direction.FORWARD, Direction.BACKWARD, Direction.STAY),
                 new Line(4, Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD)
         );
@@ -65,13 +59,7 @@ class LadderTest {
         Ladder ladder = new Ladder(5, lines);
 
         // then
-        assertThat(ladder.getRawLadder()).containsExactly(
-                List.of(Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD),
-                List.of(Direction.STAY, Direction.FORWARD, Direction.BACKWARD, Direction.STAY),
-                List.of(Direction.FORWARD, Direction.BACKWARD, Direction.STAY, Direction.STAY),
-                List.of(Direction.STAY, Direction.FORWARD, Direction.BACKWARD, Direction.STAY),
-                List.of(Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD)
-        );
+        assertThat(ladder.getLines()).isEqualTo(lines);
     }
 
     @DisplayName("특정 참여자의 사다리를 탄다.")

@@ -32,4 +32,17 @@ class IndexTest {
         // then
         assertThat(expected.getValue()).isEqualTo(0);
     }
+
+    @DisplayName("인덱스 값을 유지시킨다.")
+    @Test
+    void maintain() {
+        // given
+        Index index = new Index(1);
+
+        // when
+        Index expected = index.maintain();
+
+        // then
+        assertThat(expected.getValue()).isEqualTo(1);
+    }
 }

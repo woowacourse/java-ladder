@@ -24,7 +24,7 @@ public class RandomLadderGenerator {
 
     private Line generateLine(int size) {
         List<Direction> directions = generateDirections(size);
-        adjustMiddleDirectionsIfAllDown(directions);
+        adjustMiddleDirectionsIfAllStay(directions);
         return new Line(size, directions);
     }
 
@@ -64,9 +64,9 @@ public class RandomLadderGenerator {
         return Direction.STAY;
     }
 
-    private void adjustMiddleDirectionsIfAllDown(List<Direction> directions) {
-        boolean allDown = directions.stream().allMatch(Direction::isStay);
-        if (allDown) {
+    private void adjustMiddleDirectionsIfAllStay(List<Direction> directions) {
+        boolean allStay = directions.stream().allMatch(Direction::isStay);
+        if (allStay) {
             adjustMiddleDirections(directions);
         }
     }

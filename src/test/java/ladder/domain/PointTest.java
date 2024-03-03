@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 
 class PointTest {
 
-    @DisplayName("왼쪽으로 이동한다.")
+    @DisplayName("뒤쪽으로 이동한다.")
     @Test
-    void moveLeft() {
+    void moveBackward() {
         // given
         Point point = new Point(Direction.BACKWARD);
         Index index = new Index(1);
@@ -21,9 +21,9 @@ class PointTest {
         assertThat(expected.getValue()).isEqualTo(0);
     }
 
-    @DisplayName("오른쪽으로 이동한다.")
+    @DisplayName("앞쪽으로 이동한다.")
     @Test
-    void moveRight() {
+    void moveForward() {
         // given
         Point point = new Point(Direction.FORWARD);
         Index index = new Index(0);
@@ -37,7 +37,7 @@ class PointTest {
 
     @DisplayName("그대로 이동한다.")
     @Test
-    void moveDown() {
+    void moveStay() {
         // given
         Point point = new Point(Direction.STAY);
         Index index = new Index(1);

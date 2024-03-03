@@ -9,7 +9,7 @@ class DirectionTest {
 
     @DisplayName("왼쪽으로 이동한다.")
     @Test
-    void moveLeft() {
+    void moveBackward() {
         // given
         Index index = new Index(1);
 
@@ -22,7 +22,7 @@ class DirectionTest {
 
     @DisplayName("오른쪽으로 이동한다.")
     @Test
-    void moveRight() {
+    void moveForward() {
         // given
         Index index = new Index(0);
 
@@ -35,7 +35,7 @@ class DirectionTest {
 
     @DisplayName("그대로 이동한다.")
     @Test
-    void moveDown() {
+    void moveStay() {
         // given
         Index index = new Index(1);
 
@@ -46,23 +46,23 @@ class DirectionTest {
         assertThat(expected.getValue()).isEqualTo(1);
     }
 
-    @DisplayName("방향이 왼쪽이다.")
+    @DisplayName("방향이 뒤쪽이다.")
     @Test
-    void isLeft() {
+    void isBackward() {
         // when & then
         assertThat(Direction.BACKWARD.isBackward()).isTrue();
     }
 
-    @DisplayName("방향이 오른쪽이다.")
+    @DisplayName("방향이 앞쪽이다.")
     @Test
-    void isRight() {
+    void isForward() {
         // when & then
         assertThat(Direction.FORWARD.isForward()).isTrue();
     }
 
     @DisplayName("방향이 그대로이다.")
     @Test
-    void isDown() {
+    void isStay() {
         // when & then
         assertThat(Direction.STAY.isStay()).isTrue();
     }

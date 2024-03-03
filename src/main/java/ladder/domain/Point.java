@@ -12,7 +12,7 @@ public class Point {
         return direction.move(index);
     }
 
-    Direction getDirection() {
+    public Direction getDirection() {
         return direction;
     }
 }

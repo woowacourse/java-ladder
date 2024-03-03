@@ -17,7 +17,12 @@ class PlayersTest {
         Players players = new Players("pobi", "honux", "crong", "jk");
 
         // then
-        assertThat(players.getRawPlayers()).containsExactly("pobi", "honux", "crong", "jk");
+        assertThat(players.getPlayers()).containsExactly(
+                new Player("pobi"),
+                new Player("honux"),
+                new Player("crong"),
+                new Player("jk")
+        );
     }
 
     @DisplayName("참여자가 두 명 미만이면 예외가 발생한다.")
@@ -43,7 +48,12 @@ class PlayersTest {
         Players players = new Players(List.of("pobi", "honux", "crong", "jk"));
 
         // then
-        assertThat(players.getRawPlayers()).containsExactly("pobi", "honux", "crong", "jk");
+        assertThat(players.getPlayers()).containsExactly(
+                new Player("pobi"),
+                new Player("honux"),
+                new Player("crong"),
+                new Player("jk")
+        );
     }
 
     @DisplayName("참여자의 인덱스를 찾는다.")

@@ -3,10 +3,15 @@ package ladder.view;
 import java.util.List;
 import java.util.Map;
 import ladder.domain.Direction;
+import ladder.domain.Ladder;
+import ladder.domain.Line;
 import ladder.domain.Player;
 
 import java.util.stream.Collectors;
+import ladder.domain.Players;
+import ladder.domain.Point;
 import ladder.domain.ResultItem;
+import ladder.domain.ResultItems;
 
 public class OutputView {
 
@@ -15,17 +20,34 @@ public class OutputView {
     private static final String ONE_RESULT_FORMAT = "%s";
     private static final String ALL_RESULT_FORMAT = "%s : %s";
 
-    public void printLadderResult(List<String> players, List<List<Direction>> ladder, List<String> resultItems) {
+    public void printLadderResult(Players players, Ladder ladder, ResultItems resultItems) {
         System.out.println(NEW_LINE + "사다리 결과" + NEW_LINE);
 
-        String formattedPlayers = makeTextsFormatted(players);
+        String formattedPlayers = makePlayersFormatted(players);
         System.out.println(formattedPlayers);
 
         String formattedLadder = makeLadderFormatted(ladder);
         System.out.println(formattedLadder);
 
-        String formattedResultItems = makeTextsFormatted(resultItems);
+        String formattedResultItems = makeResultItemsFormatted(resultItems);
         System.out.println(formattedResultItems);
+    }
+
+    private String makePlayersFormatted(Players players) {
+        List<String> rawPlayers = players.getPlayers().stream()
+                .map(Player::getName)
+                .toList();
+
+        return makeTextsFormatted(rawPlayers);
+    }
+
+    private String makeResultItemsFormatted(ResultItems resultItems) {
+        List<String> rawResultItems = resultItems.getResultItems()
+                .stream()
+                .map(ResultItem::getValue)
+                .toList();
+
+        return makeTextsFormatted(rawResultItems);
     }
 
     private String makeTextsFormatted(List<String> texts) {
@@ -43,19 +65,20 @@ public class OutputView {
         return " ".repeat(leadingSpaces) + text + " ".repeat(trailingSpaces);
     }
 
-    private String makeLadderFormatted(List<List<Direction>> ladder) {
-        return ladder.stream()
+    private String makeLadderFormatted(Ladder ladder) {
+        return ladder.getLines().stream()
                 .map(this::makeLineFormatted)
                 .collect(Collectors.joining("\n"));
     }
 
-    private String makeLineFormatted(List<Direction> line) {
-        return line.stream()
-                .map(this::getSymbol)
+    private String makeLineFormatted(Line line) {
+        return line.getPoints().stream()
+                .map(Point::getDirection)
+                .map(this::makeDirectionFormatted)
                 .collect(Collectors.joining("|", "    |", ""));
     }
 
-    private String getSymbol(Direction direction) {
+    private String makeDirectionFormatted(Direction direction) {
         if (direction.isForward()) {
             return "-".repeat(MAX_NAME_LENGTH);
         }

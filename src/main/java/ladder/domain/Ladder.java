@@ -1,7 +1,9 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -14,7 +16,7 @@ public class Ladder {
 
     public Ladder(int heightValue, List<Line> lines) {
         validate(heightValue, lines);
-        this.lines = lines;
+        this.lines = new ArrayList<>(lines);
     }
 
     private void validate(int heightValue, List<Line> lines) {
@@ -34,9 +36,7 @@ public class Ladder {
         return index;
     }
 
-    public List<List<Direction>> getRawLadder() {
-        return lines.stream()
-                .map(Line::getRawLine)
-                .toList();
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }
