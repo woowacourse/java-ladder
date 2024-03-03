@@ -42,6 +42,10 @@ public class PlayerName {
         }
     }
 
+    public boolean isEqualName(String otherName) {
+        return this.name.equals(otherName);
+    }
+
     public String getName() {
         return name;
     }
