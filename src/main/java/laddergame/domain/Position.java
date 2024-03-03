@@ -1,8 +1,6 @@
 package laddergame.domain;
 
-import java.util.Objects;
-
-public class Position implements Comparable<Position> {
+public class Position {
     private int playerPosition;
 
     public Position(int playerPosition) {
@@ -25,30 +23,11 @@ public class Position implements Comparable<Position> {
         playerPosition++;
     }
 
-    public boolean isSame(Position otherPosition){
-        return playerPosition==otherPosition.getPosition();
+    public boolean isSame(Position otherPosition) {
+        return playerPosition == otherPosition.getPosition();
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Position position = (Position) o;
-        return playerPosition == position.playerPosition;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(playerPosition);
-    }
-
 
     public int getPosition() {
         return playerPosition;
-    }
-
-    @Override
-    public int compareTo(Position o) {
-        return Integer.compare(playerPosition, o.playerPosition);
     }
 }
