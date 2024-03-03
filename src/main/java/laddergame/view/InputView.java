@@ -21,7 +21,7 @@ public class InputView {
 
     public Participants readParticipantNames() {
         return repeatUntilSuccess(() -> {
-            System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+            System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(" + MULTIPLE_INPUTS_DELIMITER + ")로 구분하세요)");
             String input = scanner.nextLine();
             validateMultipleInputs(input);
             return Arrays.stream(input.split(MULTIPLE_INPUTS_DELIMITER))
@@ -33,7 +33,7 @@ public class InputView {
     public ExecutionResults readExecutionResults(Participants participants) {
         return repeatUntilSuccess(() -> {
             System.out.println();
-            System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+            System.out.println("실행 결과를 입력하세요. (결과는 쉼표(" + MULTIPLE_INPUTS_DELIMITER + ")로 구분하세요)");
             String input = scanner.nextLine();
             validateMultipleInputs(input);
             return Arrays.stream(input.split(MULTIPLE_INPUTS_DELIMITER))
@@ -65,7 +65,8 @@ public class InputView {
 
     private void validateMultipleInputs(String input) {
         if (input == null || input.isBlank() || input.endsWith(MULTIPLE_INPUTS_DELIMITER)) {
-            String message = "[ERROR] 입력값은 공백이거나 구분자(,)로 끝날 수 없습니다. 입력값 : " + input;
+            String message = "[ERROR] 입력값은 공백이거나 구분자(" + MULTIPLE_INPUTS_DELIMITER
+                    + ")로 끝날 수 없습니다. 입력값 : " + input;
             throw new IllegalArgumentException(message);
         }
     }
