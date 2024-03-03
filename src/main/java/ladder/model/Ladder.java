@@ -36,35 +36,39 @@ public class Ladder {
     }
 
     private static List<LadderPath> makeRandomRow(int width) {
-        List<LadderPath> randomPath = new ArrayList<>(generatePairableRandomPath(width));
-        fillPathIfNotEnough(randomPath, width);
+        List<LadderPath> randomPaths = new ArrayList<>();
 
-        return randomPath;
-    }
-
-    private static List<LadderPath> generatePairableRandomPath(int maxWidth) {
-        List<LadderPath> randomPathWithPair = new ArrayList<>();
-
-        while (randomPathWithPair.size() < maxWidth - 1) {
-            randomPathWithPair.addAll(generateRandomPath());
+        while (randomPaths.size() < width) {
+            randomPaths.add(generateRandomPath(randomPaths, width));
         }
 
-        return randomPathWithPair;
+        return randomPaths;
     }
 
-    private static List<LadderPath> generateRandomPath() {
+    private static LadderPath generateRandomPath(List<LadderPath> currentPaths, int width) {
+        if (isLastPathConnected(currentPaths)) {
+            return LadderPath.LEFT;
+        }
+
+        boolean isLastElement = currentPaths.size() == width - 1;
+        if (isLastElement) {
+            return LadderPath.STAY;
+        }
+
         boolean isConnectedPath = random.nextBoolean();
-
         if (isConnectedPath) {
-            return List.of(LadderPath.RIGHT, LadderPath.LEFT);
+            return LadderPath.RIGHT;
         }
-        return List.of(LadderPath.STAY);
+        return LadderPath.STAY;
     }
 
-    private static void fillPathIfNotEnough(List<LadderPath> createdPath, int width) {
-        if (createdPath.size() < width) {
-            createdPath.add(LadderPath.STAY);
+    private static boolean isLastPathConnected(List<LadderPath> currentPaths) {
+        if (currentPaths.isEmpty()) {
+            return false;
         }
+
+        LadderPath lastPath = currentPaths.get(currentPaths.size() - 1);
+        return lastPath.equals(LadderPath.RIGHT);
     }
 
     public List<Line> getLadder() {
