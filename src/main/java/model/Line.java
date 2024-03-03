@@ -42,22 +42,20 @@ public class Line {
     }
 
     private boolean hasLeftPath(final Position position) {
-        checkPositionWithinLine(position);
-        final int column = position.column();
-        if (column == 0) {
+        position.checkWithinLine(this);
+        if (position.isFarLeft()) {
             return false;
         }
-        final Path leftPath = paths.get(column - 1);
+        final Path leftPath = paths.get(position.getLeftPathIndex());
         return leftPath.isExist();
     }
 
     private boolean hasRightPath(final Position position) {
-        checkPositionWithinLine(position);
-        final int column = position.column();
-        if (column == paths.size()) {
+        position.checkWithinLine(this);
+        if (position.isFarRight(this)) {
             return false;
         }
-        final Path rightPath = paths.get(column);
+        final Path rightPath = paths.get(position.getRightPathIndex(this));
         return rightPath.isExist();
     }
 
@@ -65,7 +63,7 @@ public class Line {
         return paths.size();
     }
 
-    public Position getNextHorizontalPosition(Position position) {
+    public Position getNextHorizontalPosition(final Position position) {
         if (hasLeftPath(position)) {
             return position.getLeftPosition();
         }
@@ -73,13 +71,5 @@ public class Line {
             return position.getRightPosition();
         }
         return position;
-    }
-
-    private void checkPositionWithinLine(final Position position) {
-        final int column = position.column();
-        final int maxPersonPosition = paths.size() + 1;
-        if (column < 0 || column > maxPersonPosition) {
-            throw new IllegalStateException("올바르지 않은 위치입니다.");
-        }
     }
 }
