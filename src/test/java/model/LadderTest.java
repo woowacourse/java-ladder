@@ -23,25 +23,6 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("사다리 모양의 객체를 반환한다.")
-    void createFormattedLadder() {
-        //given
-        int personCount = 5;
-        Height height = new Height(4);
-
-        List<String> expected = List.of("|     |     |     |     |",
-                "|     |     |     |     |",
-                "|     |     |     |     |",
-                "|     |     |     |     |");
-
-        //when
-        Ladder ladder = createNothingBuildLadder(height, personCount);
-
-        //then
-        Assertions.assertThat(ladder.getFormattedLines()).isEqualTo(expected);
-    }
-
-    @Test
     @DisplayName("원하는 참여자의 결과를 확인한다. 사다리가 빈 경우")
     void findPrizesInEmptyLadder() {
         //given

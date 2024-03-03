@@ -1,5 +1,6 @@
 package controller;
 
+import model.LadderDto;
 import java.util.HashSet;
 import java.util.Set;
 import model.Height;
@@ -26,7 +27,10 @@ public class LadderController {
         Height height = new Height(inputView.readHeight());
         Ladder ladder = Ladder.of(height, players.size());
 
-        outputView.printLadderResult(players.getNames(), ladder.getFormattedLines(), prizes.getPrizeNames());
+        // TODO: 변수 명 수정
+        LadderDto dto = LadderDto.from(ladder.getLines());
+
+        outputView.printLadderResult(players.getNames(), dto.ladder(), prizes.getPrizeNames());
         printResult(ladder.findResult(players, prizes), players);
     }
 

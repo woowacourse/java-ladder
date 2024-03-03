@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+//TODO: result 대신 다른 이름 고민해보기
 public record LadderResult(Map<String, String> playersPrizeResults) {
 
     private static final String CMD_ALL_RESULT = "all";

@@ -23,23 +23,6 @@ public class Ladder {
         return lines.size();
     }
 
-    public List<String> getFormattedLines() {
-        List<String> result = new ArrayList<>();
-        for (Line line : lines) {
-            result.add(formatLine(line));
-        }
-        return result;
-    }
-
-    private String formatLine(final Line line) {
-        StringBuilder lineBuilder = new StringBuilder();
-        lineBuilder.append("|");
-        for (int index = 0; index < line.size(); index++) {
-            lineBuilder.append(line.getLadderStatus(index).getLadderForm());
-        }
-        return lineBuilder.toString();
-    }
-
     public LadderResult findResult(final Players players, final Prizes prizes) {
         final int ladderSize = players.size() - 1;
         List<String> prizeResult = new ArrayList<>();
@@ -73,5 +56,9 @@ public class Ladder {
 
     private boolean canMoveLeft(final int index, final Line line) {
         return 0 < index && line.isConnected(index - 1);
+    }
+
+    public List<Line> getLines() {
+        return lines;
     }
 }

@@ -2,16 +2,14 @@ package model;
 
 public enum LadderStatus {
 
-    CONNECTED(true, "-----|"),
-    UNCONNECTED(false, "     |"),
+    CONNECTED(true),
+    UNCONNECTED(false),
     ;
 
     private final boolean connectionInfo;
-    private final String ladderForm;
 
-    LadderStatus(final boolean connectionInfo, final String ladderForm) {
+    LadderStatus(final boolean connectionInfo) {
         this.connectionInfo = connectionInfo;
-        this.ladderForm = ladderForm;
     }
 
     public static LadderStatus from(final boolean isConnected) {
@@ -23,9 +21,5 @@ public enum LadderStatus {
 
     public boolean isConnected() {
         return this.connectionInfo;
-    }
-
-    public String getLadderForm() {
-        return ladderForm;
     }
 }
