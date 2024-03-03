@@ -17,7 +17,7 @@ public class PlayerTest {
         Player player = new Player(new Name("ddang"), initialPosition);
 
         // when
-        player.move(directionalPoint);
+        player.move(directionalPoint.getDirection());
 
         // then
         int expected = initialPosition + directionalPoint.getDirection();

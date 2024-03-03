@@ -28,6 +28,7 @@ public class Prizes {
         return prizes.get(index);
     }
 
+    // TODO: Prize-Player 결합도 낮추기
     public Prize findPrizeByPlayer(final Player player) {
         return findPrizeByIndex(player.getPosition());
     }

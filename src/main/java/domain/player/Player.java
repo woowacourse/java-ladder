@@ -1,6 +1,5 @@
 package domain.player;
 
-import domain.ladder.DirectionalPoint;
 import java.util.Objects;
 
 public class Player {
@@ -12,8 +11,8 @@ public class Player {
         this.position = position;
     }
 
-    public void move(DirectionalPoint ladderPoint) {
-        position += ladderPoint.getDirection();
+    public void move(int direction) {
+        position += direction;
     }
 
     public String getName() {

@@ -17,6 +17,7 @@ public class Ladder {
         }
     }
 
+    // TODO: Ladder - Players 결합도 낮추기
     public void play(final Players players) {
         ladderRows.forEach(ladderRow -> ladderRow.playRow(players));
     }

@@ -24,10 +24,11 @@ public class LadderRow {
         }
     }
 
+    // TODO: Ladder - Players 결합도 낮추기
     public void playRow(Players players) {
         for (int i = 0; i < ladderPoints.size(); i++) {
             Player player = players.findPlayerByIndex(i);
-            player.move(ladderPoints.get(player.getPosition()));
+            player.move(ladderPoints.get(player.getPosition()).getDirection());
         }
     }
 
