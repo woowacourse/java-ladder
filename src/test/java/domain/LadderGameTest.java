@@ -26,7 +26,7 @@ class LadderGameTest {
         return LadderGameBuilder.builder()
                 .players("robin", "phobi")
                 .gifts("1등", "2등")
-                .ladderMakeStrategy(() -> new Boolean[]{true, false})
+                .lineGenerateStrategy(new TestLineGenerateStrategy())
                 .ladderHeight(5)
                 .build();
     }

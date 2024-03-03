@@ -1,6 +1,7 @@
 import domain.LadderGame;
 import domain.LadderGame.LadderGameBuilder;
-import domain.RandomLineMakeStrategy;
+import domain.LineGenerateStrategy;
+import domain.RandomLineGenerateStrategy;
 import dto.LadderGameResults;
 import java.util.List;
 import util.RetryHelper;
@@ -46,17 +47,17 @@ public class Main {
     }
 
     private static LadderGame makeLadderGame(List<String> playerNames, List<String> giftNames, Integer ladderHeight) {
-        RandomLineMakeStrategy randomLineMakeStrategy = new RandomLineMakeStrategy(playerNames.size());
-        return makeLadderGame(playerNames, giftNames, ladderHeight, randomLineMakeStrategy);
+        LineGenerateStrategy lineGenerateStrategy = new RandomLineGenerateStrategy();
+        return makeLadderGame(playerNames, giftNames, ladderHeight, lineGenerateStrategy);
     }
 
     private static LadderGame makeLadderGame(List<String> playerNames, List<String> giftNames, Integer ladderHeight,
-                                             RandomLineMakeStrategy randomLineMakeStrategy) {
+                                             LineGenerateStrategy randomLineMakeStrategy) {
         return LadderGameBuilder.builder()
                 .players(playerNames.toArray(String[]::new))
                 .gifts(giftNames.toArray(String[]::new))
                 .ladderHeight(ladderHeight)
-                .ladderMakeStrategy(randomLineMakeStrategy::makeLine)
+                .lineGenerateStrategy(randomLineMakeStrategy)
                 .build();
     }
 

@@ -3,37 +3,24 @@ package domain;
 import dto.LadderGameResult;
 import dto.LadderGameResults;
 import java.util.List;
-import java.util.function.Supplier;
-import java.util.stream.IntStream;
-import util.RetryHelper;
 
 public class LadderGame {
     private final Players players;
     private final Gifts gifts;
     private final Ladder ladder;
 
-    private LadderGame(Players players, Gifts gifts, Supplier<Boolean[]> lineMakeStrategy, int ladderHeight) {
+    private LadderGame(Players players, Gifts gifts, LineGenerateStrategy lineMakeStrategy, int ladderHeight) {
         validateRequiredValues(players, gifts, lineMakeStrategy, ladderHeight);
         this.players = players;
         this.gifts = gifts;
-        this.ladder = makeLadder(lineMakeStrategy, ladderHeight);
+        this.ladder = Ladder.of(lineMakeStrategy, ladderHeight, players.getPlayerNames().size());
     }
 
-    private void validateRequiredValues(Players players, Gifts gifts, Supplier<Boolean[]> ladderMakeStrategy,
+    private void validateRequiredValues(Players players, Gifts gifts, LineGenerateStrategy lineGenerateStrategy,
                                         Integer ladderHeight) {
-        if (players == null || gifts == null || ladderMakeStrategy == null || ladderHeight == null) {
+        if (players == null || gifts == null || lineGenerateStrategy == null || ladderHeight == null) {
             throw new IllegalStateException("필수 값이 설정되지 않았습니다.");
         }
-    }
-
-    private static Ladder makeLadder(Supplier<Boolean[]> lineMakeStrategy, int ladderHeight) {
-        RetryHelper retryHelper = new RetryHelper(Integer.MAX_VALUE);
-        return retryHelper.retry(() -> {
-            List<Line> lines = IntStream.range(0, ladderHeight)
-                    .mapToObj(value -> new Line(lineMakeStrategy.get()))
-                    .toList();
-            return new Ladder(lines);
-        });
     }
 
     public LadderGameResults start(String operator) {
@@ -76,7 +63,7 @@ public class LadderGame {
     public static final class LadderGameBuilder {
         private Players players;
         private Gifts gifts;
-        private Supplier<Boolean[]> ladderMakeStrategy;
+        private LineGenerateStrategy lineGenerateStrategy;
         private int ladderHeight;
 
         private LadderGameBuilder() {
@@ -96,8 +83,8 @@ public class LadderGame {
             return this;
         }
 
-        public LadderGameBuilder ladderMakeStrategy(Supplier<Boolean[]> ladderMakeStrategy) {
-            this.ladderMakeStrategy = ladderMakeStrategy;
+        public LadderGameBuilder lineGenerateStrategy(LineGenerateStrategy lineGenerateStrategy) {
+            this.lineGenerateStrategy = lineGenerateStrategy;
             return this;
         }
 
@@ -107,7 +94,7 @@ public class LadderGame {
         }
 
         public LadderGame build() {
-            return new LadderGame(players, gifts, ladderMakeStrategy, ladderHeight);
+            return new LadderGame(players, gifts, lineGenerateStrategy, ladderHeight);
         }
     }
 }

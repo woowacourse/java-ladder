@@ -18,6 +18,11 @@ class Line {
         this.canGoRights = canGoRights;
     }
 
+    public static Line of(LineGenerateStrategy lineGenerateStrategy, int lineSize) {
+        List<Boolean> generate = lineGenerateStrategy.generate(lineSize);
+        return new Line(generate.toArray(Boolean[]::new));
+    }
+
     private void validateLineSize(Boolean[] canGoRights) {
         if (canGoRights.length == 0) {
             throw new IllegalArgumentException();
