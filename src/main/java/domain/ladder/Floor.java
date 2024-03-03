@@ -27,7 +27,7 @@ public class Floor {
         }
     }
 
-    public int getBridgePosition(final int playerPosition) {
+    public int getMovablePosition(final int playerPosition) {
         if (isBridgeOnLeft(playerPosition)) {
             return Direction.LEFT.getValue();
         }

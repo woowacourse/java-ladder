@@ -33,8 +33,8 @@ public class LadderClimbingGame {
         Map<Player, LadderResult> results = new HashMap<>();
         for (int i = 0; i < players.getPlayerCount(); i++) {
             Player player = players.getPlayerOfIndex(i);
-            int bridgeLocation = floor.getBridgePosition(player.getPosition());
-            player.moveTo(bridgeLocation);
+            int nextPosition = floor.getMovablePosition(player.getPosition());
+            player.moveTo(nextPosition);
             results.put(player, ladderResults.getLadderResultOfIndex(player.getPosition()));
         }
         return results;
