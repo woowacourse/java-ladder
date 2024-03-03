@@ -1,6 +1,7 @@
 package controller;
 
 import domain.model.consequence.Consequences;
+import domain.model.ladder.Height;
 import domain.model.ladder.Ladder;
 import domain.model.ladder.LadderGame;
 import domain.model.ladder.Result;
@@ -31,14 +32,8 @@ public class LadderController {
 
     public void execute() {
         resultView.printLadderGame(people, ladder, consequences);
-        Result result = playGame();
+        Result result = LadderGame.play(ladder, people, consequences);
         showResult(result);
-    }
-
-    private Result playGame() {
-        LadderGame ladderGame = new LadderGame(ladder, people, consequences);
-        ladderGame.play();
-        return ladderGame.giveResult();
     }
 
     private void showResult(Result result) {
@@ -62,7 +57,8 @@ public class LadderController {
 
     private Ladder makeLadder() {
         Supplier<Ladder> ladderSupplier = () -> {
-            String height = inputView.askLadderHeight();
+            String inputHeight = inputView.askLadderHeight();
+            Height height = new Height(inputHeight);
             return new Ladder(height, people.getNumberOfParticipants(), new RuleGeneratorImpl());
         };
         return registerWithRetry(ladderSupplier);

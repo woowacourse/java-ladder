@@ -10,8 +10,8 @@ public class Ladder {
     private final List<Line> lines = new ArrayList<>();
     private final Height height;
 
-    public Ladder(String inputHeight, int personCount, RuleGenerator ruleGenerator) {
-        this.height = new Height(inputHeight);
+    public Ladder(Height height, int personCount, RuleGenerator ruleGenerator) {
+        this.height = height;
 
         for (int i = 0; i < height.getHeight(); i++) {
             Line line = new Line(ruleGenerator, personCount);

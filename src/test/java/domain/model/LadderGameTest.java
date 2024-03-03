@@ -1,6 +1,7 @@
 package domain.model;
 
 import domain.model.consequence.Consequences;
+import domain.model.ladder.Height;
 import domain.model.ladder.Ladder;
 import domain.model.ladder.LadderGame;
 import domain.model.ladder.Result;
@@ -20,7 +21,7 @@ public class LadderGameTest {
     @DisplayName("게임을 진행하고 결과를 얻는다")
     void playGameTest() {
         //given
-        Ladder ladder = new Ladder("2", 3, () -> true);
+        Ladder ladder = new Ladder(new Height("2"), 3, () -> true);
         People people = new People(List.of("a", "b", "c"));
         Consequences consequences = new Consequences(List.of("꽝", "100", "200"), 3);
 
