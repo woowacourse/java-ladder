@@ -11,4 +11,8 @@ public class Member {
     public String getName() {
         return name.getName();
     }
+
+    public boolean hasSameNameWith(String value) {
+        return name.getName().equals(value);
+    }
 }
