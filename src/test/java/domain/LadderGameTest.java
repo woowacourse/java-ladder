@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 public class LadderGameTest {
 
-
     /*
     pobi  honux crong   jk
     |-----|     |-----|
@@ -94,6 +93,5 @@ public class LadderGameTest {
                 () -> assertThat(actualResult.get(cron)).isEqualTo(success2.getReward()),
                 () -> assertThat(actualResult.get(jk)).isEqualTo(fail2.getReward())
         );
-
     }
 }

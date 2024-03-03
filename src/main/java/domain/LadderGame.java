@@ -10,13 +10,11 @@ public class LadderGame {
     private final PlayerNames playerNames;
     private final Rewards rewards;
 
-
     public LadderGame(Ladder ladder, PlayerNames playerNames, Rewards rewards) {
         this.ladder = ladder;
         this.playerNames = playerNames;
         this.rewards = rewards;
     }
-
 
     public String getPlayerResult(String name) {
         if (playerNames.isExistPlayer(name)) {

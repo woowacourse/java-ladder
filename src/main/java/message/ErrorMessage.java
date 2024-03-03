@@ -12,7 +12,6 @@ public enum ErrorMessage {
     NO_REWARD_NAME_EXCEPTION("보상을 입력해야 합니다."),
     NOT_EQUAL_REWARD_PLAYER_COUNT_EXCEPTION("보상과 플레리어의 수가 다릅니다.");
 
-
     private final String message;
 
     ErrorMessage(String message) {

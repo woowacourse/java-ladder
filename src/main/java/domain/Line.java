@@ -20,7 +20,6 @@ public class Line {
         return legs;
     }
 
-
     private static void decideLegExist(LegGenerateStrategy legGenerateStrategy, List<Leg> legs, int legIndex) {
         if (legs.get(legIndex - 1).isConnected()) {
             legs.add(Leg.UN_CONNECTED);

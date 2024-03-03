@@ -7,7 +7,6 @@ public class RandomLegGenerateStrategy implements LegGenerateStrategy {
     public Leg generateLeg() {
         if (ThreadLocalRandom.current().nextBoolean()) {
             return Leg.CONNECTED;
-
         }
         return Leg.UN_CONNECTED;
     }
