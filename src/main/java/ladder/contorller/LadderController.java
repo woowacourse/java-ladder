@@ -1,7 +1,6 @@
 package ladder.contorller;
 
 import java.util.List;
-import ladder.domain.game.GameExecutor;
 import ladder.domain.GameResource;
 import ladder.domain.GameResult;
 import ladder.domain.LadderGame;
@@ -39,7 +38,7 @@ public class LadderController {
     }
 
     private void initializeGame() {
-        ladderGame = new LadderGame(new GameResource(), new GameExecutor(), new GameResult());
+        ladderGame = new LadderGame(new GameResource(), new GameResult());
     }
 
     private void registerResource() {

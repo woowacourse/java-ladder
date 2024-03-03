@@ -2,8 +2,6 @@ package ladder.domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderGenerator;
 import ladder.domain.line.RandomLineGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

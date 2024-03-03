@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
 import java.util.List;
-import ladder.domain.ladder.Ladder;
 import ladder.domain.line.Line;
 import ladder.domain.line.LineGenerator;
 import ladder.domain.line.RandomLineGenerator;

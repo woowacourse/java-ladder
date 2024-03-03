@@ -1,8 +1,8 @@
 package ladder.view;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import ladder.domain.GameResult;
 import ladder.domain.direction.Direction;
 import ladder.domain.ladder.Ladder;
@@ -62,7 +62,7 @@ public class Formatter {
     public String formatAllResult(GameResult gameResult) {
         List<String> allResultFormat = new ArrayList<>();
 
-        HashMap<User, Prize> allResult = gameResult.getAllResult();
+        Map<User, Prize> allResult = gameResult.getAllResult();
         for (User user : allResult.keySet()) {
             Prize prize = allResult.get(user);
             allResultFormat.add(formatResult(user.getUserName(), prize.getPrizeName()));
