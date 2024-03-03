@@ -1,6 +1,5 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
-import ladder.domain.ladder.*;
 import ladder.domain.player.Name;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
@@ -60,7 +59,7 @@ class LadderGameTest {
 
     @Test
     @DisplayName("이름으로 실행 결과를 도출한다")
-    void playOnTarget() {
+    void play_GetPlayResults_hasPlayerAndResult() {
         // given
         LadderGame ladderGame = new LadderGame(players, results, ladder);
         Name name = new Name("pobi");
@@ -77,7 +76,7 @@ class LadderGameTest {
 
     @Test
     @DisplayName("모든 이름으로 실행 결과를 도출한다")
-    void playOnAllTarget() {
+    void play_GetAllPlayResults_hasAllPlayerAndResult() {
         // given
         LadderGame ladderGame = new LadderGame(players, results, ladder);
         Name all = new Name("all");

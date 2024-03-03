@@ -1,6 +1,5 @@
-package ladder.domain;
+package ladder.domain.player;
 
-import ladder.domain.player.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,14 +11,14 @@ class PlayerTest {
 
     @Test
     @DisplayName("이름이 5글자를 초과하면 예외가 발생한다.")
-    void createInvalidNames() {
+    void player_LongerThanFiveLength_ExceptionThrown() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Player("pobiii"));
     }
 
     @Test
     @DisplayName("이름에 공백은 포함하지 않는다.")
-    void createValidNames() {
+    void player_WithBlank_DoesNotContainsBlank() {
         // given
         String rawName = "     jk      ";
 
@@ -35,7 +34,7 @@ class PlayerTest {
     @ParameterizedTest
     @EmptySource
     @DisplayName("이름이 공백이라면 예외가 발생한다.")
-    void blankNameTest(String blankName) {
+    void player_hasBlank_ExceptionThrown(String blankName) {
         // when & then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Player(blankName));
@@ -43,7 +42,7 @@ class PlayerTest {
 
     @Test
     @DisplayName("이름이 같다면 두 객체의 값이 같다.")
-    void testEquals() {
+    void player_SameValue_IsEqual() {
         String name = "pobi";
 
         Player pobi1 = new Player(name);
@@ -54,7 +53,7 @@ class PlayerTest {
 
     @Test
     @DisplayName("all이라는 이름을 생성할 수 없다.")
-    void isAll() {
+    void player_All_ExceptionThrown() {
         // given
         String all = "all";
 

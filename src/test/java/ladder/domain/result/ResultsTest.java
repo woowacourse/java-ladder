@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.result;
 
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
@@ -6,8 +6,6 @@ import ladder.domain.ladder.Point;
 import ladder.domain.ladder.RandomPointsGenerator;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
-import ladder.domain.result.Result;
-import ladder.domain.result.Results;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -45,7 +43,7 @@ class ResultsTest {
 
     @Test
     @DisplayName("사다리가 모두 탔을 때 도착한 곳이 실행 결과이다.")
-    void getResult() {
+    void find_ResultPosition_IsResult() {
         // given
         Result result1 = new Result("꽝");
         Result result2 = new Result("3000");
@@ -64,8 +62,8 @@ class ResultsTest {
     }
 
     @Test
-    @DisplayName("이름을 입력하면 실행결과를 알 수 있다.")
-    void findResultByName() {
+    @DisplayName("참여자를 입력하면 실행결과를 알 수 있다.")
+    void find_Player_Result() {
         // given
         Players players = new Players(
                 List.of(
@@ -81,10 +79,9 @@ class ResultsTest {
         Result result4 = new Result("3000");
         Results results = new Results(List.of(result1, result2, result3, result4), 4);
 
+        // when
         int startPosition = players.findPosition(new Player("crong"));
         int resultPosition = ladder.ride(startPosition);
-
-        // when
         Result result = results.find(resultPosition);
 
         // then
@@ -93,7 +90,7 @@ class ResultsTest {
 
     @Test
     @DisplayName("결과의 수와 사람 수가 다르면 예외가 발생한다.")
-    void resultCountExceptionTest() {
+    void results_DifferentPlayersCount_ExceptionThrown() {
         // given
         Players players = new Players(
                 List.of(

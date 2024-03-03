@@ -1,7 +1,5 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
-import ladder.domain.ladder.Point;
-import ladder.domain.ladder.RandomPointsGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +11,7 @@ class RandomPointsGeneratorTest {
 
     @Test
     @DisplayName("사다리 라인은 겹치지 않는다.")
-    void pointsNotSequenceDoubleOnTest() {
+    void generate_RandomCreate_DoesNotContainPointOnSequence() {
         // given
         RandomPointsGenerator randomPointsGenerator = new RandomPointsGenerator();
 
@@ -26,7 +24,7 @@ class RandomPointsGeneratorTest {
 
     @Test
     @DisplayName("사다리는 최소 하나의 ON을 포함한다.")
-    void pointsHasAtLeastOneOn() {
+    void generate_RandomCreate_ContainsPointOn() {
         // given
         RandomPointsGenerator randomPointsGenerator = new RandomPointsGenerator();
 
@@ -34,6 +32,6 @@ class RandomPointsGeneratorTest {
         List<Point> points = randomPointsGenerator.generate(3);
 
         // then
-        assertThat(points).doesNotContainSequence(Point.ON, Point.ON);
+        assertThat(points).contains(Point.ON);
     }
 }

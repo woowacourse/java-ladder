@@ -1,9 +1,7 @@
-package ladder.domain;
+package ladder.domain.result;
 
 import ladder.domain.player.Name;
 import ladder.domain.player.Player;
-import ladder.domain.result.PlayResults;
-import ladder.domain.result.Result;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +14,7 @@ class PlayResultsTest {
 
     @Test
     @DisplayName("게임 실행 결과 개수를 반환한다.")
-    void size() {
+    void size_OneSizePlayResults_isEqualToOne() {
         // given
         PlayResults playResults = new PlayResults(Map.of(
                 new Player("이름"), new Result("결과"))
@@ -31,7 +29,7 @@ class PlayResultsTest {
 
     @Test
     @DisplayName("실행 결과에서 이름만을 모두 가져온다.")
-    void keySet() {
+    void getNames_PlayResults_hasAllPlayers() {
         // given
         PlayResults playResults = new PlayResults(Map.of(
                 new Player("이름1"), new Result("결과1"),
@@ -47,7 +45,7 @@ class PlayResultsTest {
 
     @Test
     @DisplayName("이름과 일치하는 결과를 반환한다.")
-    void findResult() {
+    void find_Player_Result() {
         // given
         Result result2 = new Result("결과2");
         PlayResults playResults = new PlayResults(Map.of(

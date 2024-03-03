@@ -1,9 +1,5 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
-import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Line;
-import ladder.domain.ladder.Point;
-import ladder.domain.ladder.RandomPointsGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -29,17 +25,18 @@ class LadderTest {
 
     @Test
     @DisplayName("사다리를 연속으로 탄다.")
-    void rideLadder() {
+    void ride_StartPosition_ResultPosition() {
         // given
         Line line1 = new Line(pointsGenerator1.generate(4));
         Line line2 = new Line(pointsGenerator2.generate(4));
 
         Ladder ladder = new Ladder(List.of(line1, line2));
+        int startPosition = 1;
 
         // when
-        int ride = ladder.ride(1);
+        int resultPosition = ladder.ride(startPosition);
 
         // then
-        assertThat(ride).isEqualTo(0);
+        assertThat(resultPosition).isEqualTo(0);
     }
 }

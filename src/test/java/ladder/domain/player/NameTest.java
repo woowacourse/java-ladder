@@ -1,6 +1,5 @@
-package ladder.domain;
+package ladder.domain.player;
 
-import ladder.domain.player.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +9,7 @@ class NameTest {
 
     @Test
     @DisplayName("all이라는 이름을 생성할 수 있다")
-    void allTargetCreateTest() {
+    void name_All_isNameInstance() {
         // given
         String all = "all";
 
@@ -24,7 +23,7 @@ class NameTest {
 
     @Test
     @DisplayName("타깃의 이름이 all 이라면 참이다.")
-    void isAll() {
+    void name_IsAll_True() {
         Name name = new Name("all");
 
         assertThat(name.isAll()).isTrue();
@@ -32,7 +31,7 @@ class NameTest {
 
     @Test
     @DisplayName("타깃의 이름이 all 이 아니라면 거짓이다.")
-    void isNotAll() {
+    void name_IsAll_False() {
         Name name = new Name("pobi");
 
         assertThat(name.isAll()).isFalse();

@@ -1,8 +1,5 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
-import ladder.domain.ladder.Line;
-import ladder.domain.ladder.Point;
-import ladder.domain.ladder.RandomPointsGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +19,7 @@ public class LineTest {
 
     @Test
     @DisplayName("입력 받은 만큼 좌표를 생성한다.")
-    void createLine() {
+    void line_InputNumber_hasEqualSize() {
         // when
         List<Point> points = new RandomPointsGenerator().generate(4);
         Line line = new Line(points);
@@ -33,7 +30,7 @@ public class LineTest {
 
     @Test
     @DisplayName("사다리가 오른쪽으로 연결되어 있다면 오른쪽으로 내려온다.")
-    public void rideRight() {
+    public void ride_HasRightPoint_PositionPlusOne() {
         // given
         List<Point> points = testPointsGenerator.generate(4);
         Line line = new Line(points);
@@ -47,7 +44,7 @@ public class LineTest {
 
     @Test
     @DisplayName("사다리가 왼쪽으로 연결되어 있다면 왼쪽으로 내려온다.")
-    public void rideLeft() {
+    public void ride_HasLeftPoint_PositionMinusOne() {
         // given
         List<Point> points = testPointsGenerator.generate(4);
         Line line = new Line(points);
@@ -61,7 +58,7 @@ public class LineTest {
 
     @Test
     @DisplayName("사다리가 없는 위치라면 예외가 발생한다.")
-    public void NoneLineExceptionTest() {
+    public void ride_HasNoneLine_ExceptionThrown() {
         // given
         List<Point> points = testPointsGenerator.generate(4);
         Line line = new Line(points);
