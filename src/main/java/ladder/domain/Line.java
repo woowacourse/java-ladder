@@ -38,19 +38,19 @@ public class Line {
     }
 
     private void validateStartDirection(List<Direction> directions) {
-        if (directions.get(0).isLeft()) {
+        if (directions.get(0).isBackward()) {
             throw new IllegalArgumentException("라인의 시작 좌표가 왼쪽 방향입니다.");
         }
     }
 
     private void validateEndDirection(List<Direction> directions) {
-        if (directions.get(directions.size() - 1).isRight()) {
+        if (directions.get(directions.size() - 1).isForward()) {
             throw new IllegalArgumentException("라인의 끝 좌표가 오른쪽 방향입니다.");
         }
     }
 
     private void validateNotOnlyDownDirection(List<Direction> directions) {
-        boolean onlyDownDirection = directions.stream().allMatch(Direction::isDown);
+        boolean onlyDownDirection = directions.stream().allMatch(Direction::isStay);
 
         if (onlyDownDirection) {
             throw new IllegalArgumentException("라인의 모든 좌표가 아래 방향입니다.");
@@ -65,13 +65,13 @@ public class Line {
     }
 
     private void validateNotRightBeforeLeft(Direction current, Direction previous) {
-        if (current.isLeft() && !previous.isRight()) {
+        if (current.isBackward() && !previous.isForward()) {
             throw new IllegalArgumentException("라인의 특정 왼쪽 방향 좌표의 이전 좌표가 오른쪽 방향이 아닙니다.");
         }
     }
 
     private void validateNotLeftAfterRight(Direction current, Direction next) {
-        if (current.isRight() && !next.isLeft()) {
+        if (current.isForward() && !next.isBackward()) {
             throw new IllegalArgumentException("라인의 특정 오른쪽 방향 좌표의 다음 좌표가 왼쪽 방향이 아닙니다.");
         }
     }

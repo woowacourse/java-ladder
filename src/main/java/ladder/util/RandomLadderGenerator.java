@@ -46,26 +46,26 @@ public class RandomLadderGenerator {
     }
 
     private Direction randomMiddleDirection(Direction previous) {
-        if (previous.isRight()) {
-            return Direction.LEFT;
+        if (previous.isForward()) {
+            return Direction.BACKWARD;
         }
         return randomDirection();
     }
 
     private Direction randomDirection() {
-        Direction[] directions = {Direction.RIGHT, Direction.DOWN};
+        Direction[] directions = {Direction.FORWARD, Direction.STAY};
         return directions[random.nextInt(directions.length)];
     }
 
     private Direction generateEndDirection(Direction previous) {
-        if (previous.isRight()) {
-            return Direction.LEFT;
+        if (previous.isForward()) {
+            return Direction.BACKWARD;
         }
-        return Direction.DOWN;
+        return Direction.STAY;
     }
 
     private void adjustMiddleDirectionsIfAllDown(List<Direction> directions) {
-        boolean allDown = directions.stream().allMatch(Direction::isDown);
+        boolean allDown = directions.stream().allMatch(Direction::isStay);
         if (allDown) {
             adjustMiddleDirections(directions);
         }
@@ -73,8 +73,8 @@ public class RandomLadderGenerator {
 
     private void adjustMiddleDirections(List<Direction> directions) {
         int index = randomMiddleIndex(directions.size());
-        directions.set(index, Direction.RIGHT);
-        directions.set(index + 1, Direction.LEFT);
+        directions.set(index, Direction.FORWARD);
+        directions.set(index + 1, Direction.BACKWARD);
     }
 
     private int randomMiddleIndex(int size) {

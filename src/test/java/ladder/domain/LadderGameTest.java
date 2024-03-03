@@ -29,11 +29,11 @@ class LadderGameTest {
          */
         Ladder ladder = new Ladder(
                 5,
-                new Line(4, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT),
-                new Line(4, Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN),
-                new Line(4, Direction.RIGHT, Direction.LEFT, Direction.DOWN, Direction.DOWN),
-                new Line(4, Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN),
-                new Line(4, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT)
+                new Line(4, Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD),
+                new Line(4, Direction.STAY, Direction.FORWARD, Direction.BACKWARD, Direction.STAY),
+                new Line(4, Direction.FORWARD, Direction.BACKWARD, Direction.STAY, Direction.STAY),
+                new Line(4, Direction.STAY, Direction.FORWARD, Direction.BACKWARD, Direction.STAY),
+                new Line(4, Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD)
         );
 
         ladderGame = new LadderGame(players, resultItems, ladder);

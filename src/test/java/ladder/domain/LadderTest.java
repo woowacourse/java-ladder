@@ -15,22 +15,22 @@ class LadderTest {
     @Test
     void createLadderWithVarargs() {
         // given
-        Line line1 = new Line(4, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT);
-        Line line2 = new Line(4, Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN);
-        Line line3 = new Line(4, Direction.RIGHT, Direction.LEFT, Direction.DOWN, Direction.DOWN);
-        Line line4 = new Line(4, Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN);
-        Line line5 = new Line(4, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT);
+        Line line1 = new Line(4, Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD);
+        Line line2 = new Line(4, Direction.STAY, Direction.FORWARD, Direction.BACKWARD, Direction.STAY);
+        Line line3 = new Line(4, Direction.FORWARD, Direction.BACKWARD, Direction.STAY, Direction.STAY);
+        Line line4 = new Line(4, Direction.STAY, Direction.FORWARD, Direction.BACKWARD, Direction.STAY);
+        Line line5 = new Line(4, Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD);
 
         // when
         Ladder ladder = new Ladder(5, line1, line2, line3, line4, line5);
 
         // then
         assertThat(ladder.getRawLadder()).containsExactly(
-                List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT),
-                List.of(Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN),
-                List.of(Direction.RIGHT, Direction.LEFT, Direction.DOWN, Direction.DOWN),
-                List.of(Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN),
-                List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT)
+                List.of(Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD),
+                List.of(Direction.STAY, Direction.FORWARD, Direction.BACKWARD, Direction.STAY),
+                List.of(Direction.FORWARD, Direction.BACKWARD, Direction.STAY, Direction.STAY),
+                List.of(Direction.STAY, Direction.FORWARD, Direction.BACKWARD, Direction.STAY),
+                List.of(Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD)
         );
     }
 
@@ -38,11 +38,11 @@ class LadderTest {
     @Test
     void validateHeight() {
         // given
-        Line line1 = new Line(4, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT);
-        Line line2 = new Line(4, Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN);
-        Line line3 = new Line(4, Direction.RIGHT, Direction.LEFT, Direction.DOWN, Direction.DOWN);
-        Line line4 = new Line(4, Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN);
-        Line line5 = new Line(4, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT);
+        Line line1 = new Line(4, Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD);
+        Line line2 = new Line(4, Direction.STAY, Direction.FORWARD, Direction.BACKWARD, Direction.STAY);
+        Line line3 = new Line(4, Direction.FORWARD, Direction.BACKWARD, Direction.STAY, Direction.STAY);
+        Line line4 = new Line(4, Direction.STAY, Direction.FORWARD, Direction.BACKWARD, Direction.STAY);
+        Line line5 = new Line(4, Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD);
 
         // when & then
         assertThatThrownBy(() -> new Ladder(4, line1, line2, line3, line4, line5))
@@ -54,11 +54,11 @@ class LadderTest {
     void createLadder() {
         // given
         List<Line> lines = List.of(
-                new Line(4, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT),
-                new Line(4, Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN),
-                new Line(4 ,Direction.RIGHT, Direction.LEFT, Direction.DOWN, Direction.DOWN),
-                new Line(4, Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN),
-                new Line(4, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT)
+                new Line(4, Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD),
+                new Line(4, Direction.STAY, Direction.FORWARD, Direction.BACKWARD, Direction.STAY),
+                new Line(4 ,Direction.FORWARD, Direction.BACKWARD, Direction.STAY, Direction.STAY),
+                new Line(4, Direction.STAY, Direction.FORWARD, Direction.BACKWARD, Direction.STAY),
+                new Line(4, Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD)
         );
 
         // when
@@ -66,11 +66,11 @@ class LadderTest {
 
         // then
         assertThat(ladder.getRawLadder()).containsExactly(
-                List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT),
-                List.of(Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN),
-                List.of(Direction.RIGHT, Direction.LEFT, Direction.DOWN, Direction.DOWN),
-                List.of(Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN),
-                List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT)
+                List.of(Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD),
+                List.of(Direction.STAY, Direction.FORWARD, Direction.BACKWARD, Direction.STAY),
+                List.of(Direction.FORWARD, Direction.BACKWARD, Direction.STAY, Direction.STAY),
+                List.of(Direction.STAY, Direction.FORWARD, Direction.BACKWARD, Direction.STAY),
+                List.of(Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD)
         );
     }
 
@@ -88,11 +88,11 @@ class LadderTest {
          */
         Ladder ladder = new Ladder(
                 5,
-                new Line(4, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT),
-                new Line(4, Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN),
-                new Line(4, Direction.RIGHT, Direction.LEFT, Direction.DOWN, Direction.DOWN),
-                new Line(4, Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.DOWN),
-                new Line(4, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT)
+                new Line(4, Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD),
+                new Line(4, Direction.STAY, Direction.FORWARD, Direction.BACKWARD, Direction.STAY),
+                new Line(4, Direction.FORWARD, Direction.BACKWARD, Direction.STAY, Direction.STAY),
+                new Line(4, Direction.STAY, Direction.FORWARD, Direction.BACKWARD, Direction.STAY),
+                new Line(4, Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD)
         );
 
         Index index = new Index(indexValue);

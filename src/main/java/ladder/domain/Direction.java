@@ -4,9 +4,9 @@ import java.util.function.Function;
 
 public enum Direction {
 
-    LEFT(Index::decrease),
-    RIGHT(Index::increase),
-    DOWN(index -> index);
+    BACKWARD(Index::decrease),
+    FORWARD(Index::increase),
+    STAY(Index::maintain);
 
     private final Function<Index, Index> movement;
 
@@ -18,15 +18,15 @@ public enum Direction {
         return movement.apply(index);
     }
 
-    public boolean isLeft() {
-        return this == LEFT;
+    public boolean isBackward() {
+        return this == BACKWARD;
     }
 
-    public boolean isRight() {
-        return this == RIGHT;
+    public boolean isForward() {
+        return this == FORWARD;
     }
 
-    public boolean isDown() {
-        return this == DOWN;
+    public boolean isStay() {
+        return this == STAY;
     }
 }

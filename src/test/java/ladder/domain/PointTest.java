@@ -11,7 +11,7 @@ class PointTest {
     @Test
     void moveLeft() {
         // given
-        Point point = new Point(Direction.LEFT);
+        Point point = new Point(Direction.BACKWARD);
         Index index = new Index(1);
 
         // when
@@ -25,7 +25,7 @@ class PointTest {
     @Test
     void moveRight() {
         // given
-        Point point = new Point(Direction.RIGHT);
+        Point point = new Point(Direction.FORWARD);
         Index index = new Index(0);
 
         // when
@@ -39,7 +39,7 @@ class PointTest {
     @Test
     void moveDown() {
         // given
-        Point point = new Point(Direction.DOWN);
+        Point point = new Point(Direction.STAY);
         Index index = new Index(1);
 
         // when

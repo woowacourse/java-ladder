@@ -56,7 +56,7 @@ public class OutputView {
     }
 
     private String getSymbol(Direction direction) {
-        if (direction.isRight()) {
+        if (direction.isForward()) {
             return "-".repeat(MAX_NAME_LENGTH);
         }
         return " ".repeat(MAX_NAME_LENGTH);

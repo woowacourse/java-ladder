@@ -16,17 +16,17 @@ public class LineTest {
     @Test
     void createLineWithVarargs() {
         // when
-        Line line = new Line(4, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT);
+        Line line = new Line(4, Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD);
 
         // then
-        assertThat(line.getRawLine()).containsExactly(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT);
+        assertThat(line.getRawLine()).containsExactly(Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD);
     }
 
     @DisplayName("사다리 너비가 참여자 수와 같지 않으면 예외가 발생한다.")
     @Test
     void validateWidth() {
         // when & then
-        assertThatThrownBy(() -> new Line(5, Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT))
+        assertThatThrownBy(() -> new Line(5, Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -34,7 +34,7 @@ public class LineTest {
     @Test
     void validateStartDirection() {
         // when & then
-        assertThatThrownBy(() -> new Line(4, Direction.LEFT, Direction.DOWN, Direction.RIGHT, Direction.LEFT))
+        assertThatThrownBy(() -> new Line(4, Direction.BACKWARD, Direction.STAY, Direction.FORWARD, Direction.BACKWARD))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -42,7 +42,7 @@ public class LineTest {
     @Test
     void validateEndDirection() {
         // when & then
-        assertThatThrownBy(() -> new Line(4, Direction.RIGHT, Direction.LEFT, Direction.DOWN, Direction.RIGHT))
+        assertThatThrownBy(() -> new Line(4, Direction.FORWARD, Direction.BACKWARD, Direction.STAY, Direction.FORWARD))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -50,7 +50,7 @@ public class LineTest {
     @Test
     void validateNotOnlyDownDirection() {
         // when & then
-        assertThatThrownBy(() -> new Line(4, Direction.DOWN, Direction.DOWN, Direction.DOWN, Direction.DOWN))
+        assertThatThrownBy(() -> new Line(4, Direction.STAY, Direction.STAY, Direction.STAY, Direction.STAY))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -59,11 +59,11 @@ public class LineTest {
     void validateNoMismatchedDirections() {
         // when & then
         assertAll(
-                () -> assertThatThrownBy(() -> new Line(4, Direction.DOWN, Direction.RIGHT, Direction.RIGHT, Direction.DOWN))
+                () -> assertThatThrownBy(() -> new Line(4, Direction.STAY, Direction.FORWARD, Direction.FORWARD, Direction.STAY))
                         .isInstanceOf(IllegalArgumentException.class),
-                () -> assertThatThrownBy(() -> new Line(4, Direction.DOWN, Direction.LEFT, Direction.LEFT, Direction.DOWN))
+                () -> assertThatThrownBy(() -> new Line(4, Direction.STAY, Direction.BACKWARD, Direction.BACKWARD, Direction.STAY))
                         .isInstanceOf(IllegalArgumentException.class),
-                () -> assertThatThrownBy(() -> new Line(4, Direction.DOWN, Direction.LEFT, Direction.RIGHT, Direction.LEFT))
+                () -> assertThatThrownBy(() -> new Line(4, Direction.STAY, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
@@ -72,13 +72,13 @@ public class LineTest {
     @Test
     void createLine() {
         // given
-        List<Direction> rawLine = List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT);
+        List<Direction> rawLine = List.of(Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD);
 
         // when
         Line line = new Line(4, rawLine);
 
         // then
-        assertThat(line.getRawLine()).containsExactly(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT);
+        assertThat(line.getRawLine()).containsExactly(Direction.FORWARD, Direction.BACKWARD, Direction.FORWARD, Direction.BACKWARD);
     }
 
     @DisplayName("방향에 따라 이동한다.")
@@ -86,7 +86,7 @@ public class LineTest {
     @CsvSource(value = {"0, 1", "1, 0", "2, 2"})
     void move(int indexValue, int actual) {
         // given
-        Line line = new Line(4, Direction.RIGHT, Direction.LEFT, Direction.DOWN, Direction.DOWN);
+        Line line = new Line(4, Direction.FORWARD, Direction.BACKWARD, Direction.STAY, Direction.STAY);
         Index index = new Index(indexValue);
 
         // when

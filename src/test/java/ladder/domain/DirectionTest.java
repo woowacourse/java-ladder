@@ -14,7 +14,7 @@ class DirectionTest {
         Index index = new Index(1);
 
         // when
-        Index expected = Direction.LEFT.move(index);
+        Index expected = Direction.BACKWARD.move(index);
 
         // then
         assertThat(expected.getValue()).isEqualTo(0);
@@ -27,7 +27,7 @@ class DirectionTest {
         Index index = new Index(0);
 
         // when
-        Index expected = Direction.RIGHT.move(index);
+        Index expected = Direction.FORWARD.move(index);
 
         // then
         assertThat(expected.getValue()).isEqualTo(1);
@@ -40,7 +40,7 @@ class DirectionTest {
         Index index = new Index(1);
 
         // when
-        Index expected = Direction.DOWN.move(index);
+        Index expected = Direction.STAY.move(index);
 
         // then
         assertThat(expected.getValue()).isEqualTo(1);
@@ -50,20 +50,20 @@ class DirectionTest {
     @Test
     void isLeft() {
         // when & then
-        assertThat(Direction.LEFT.isLeft()).isTrue();
+        assertThat(Direction.BACKWARD.isBackward()).isTrue();
     }
 
     @DisplayName("방향이 오른쪽이다.")
     @Test
     void isRight() {
         // when & then
-        assertThat(Direction.RIGHT.isRight()).isTrue();
+        assertThat(Direction.FORWARD.isForward()).isTrue();
     }
 
     @DisplayName("방향이 그대로이다.")
     @Test
     void isDown() {
         // when & then
-        assertThat(Direction.DOWN.isDown()).isTrue();
+        assertThat(Direction.STAY.isStay()).isTrue();
     }
 }

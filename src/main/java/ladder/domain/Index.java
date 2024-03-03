@@ -16,6 +16,10 @@ public class Index {
         return new Index(value - 1);
     }
 
+    public Index maintain() {
+        return this;
+    }
+
     public int getValue() {
         return value;
     }
