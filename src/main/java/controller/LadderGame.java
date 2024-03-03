@@ -1,7 +1,7 @@
 package controller;
 
 import domain.LadderGameRecord;
-import domain.ResultViewPlayer;
+import domain.player.ResultViewPlayer;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
 import domain.ladder.sticks.SticksGenerator;

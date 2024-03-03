@@ -1,6 +1,5 @@
-package domain;
+package domain.player;
 
-import domain.player.Players;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
-import static domain.ResultViewPlayer.EXISTING_PLAYER_OR_COMMEND_MESSAGE;
+import static domain.player.ResultViewPlayer.EXISTING_PLAYER_OR_COMMEND_MESSAGE;
 
 class ResultViewPlayerTest {
 

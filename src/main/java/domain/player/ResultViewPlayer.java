@@ -1,8 +1,6 @@
-package domain;
+package domain.player;
 
-import domain.player.Players;
-
-public class ResultViewPlayer {
+public class ResultViewPlayer extends Player {
 
     protected static final String ALL_COMMEND = "all";
     protected static final String EXISTING_PLAYER_OR_COMMEND_MESSAGE = String.format("%s이나 기존 사용자 이름을 입력해야 합니다.", ALL_COMMEND);
@@ -10,6 +8,7 @@ public class ResultViewPlayer {
     private final String name;
 
     public ResultViewPlayer(String name, Players players) {
+        super(name);
         validateExistingPlayerOrCommend(name, players);
 
         this.name = name;
@@ -23,9 +22,5 @@ public class ResultViewPlayer {
 
     public boolean isAll() {
         return name.equals(ALL_COMMEND);
-    }
-
-    public String getName() {
-        return this.name;
     }
 }
