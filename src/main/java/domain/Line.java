@@ -17,7 +17,7 @@ public class Line {
     public static Line of(ConnectStrategy connectStrategy, int playerCount) {
         List<Connection> connections = Stream.iterate(
                 connectStrategy.generate(),
-                previous -> previous.findNextConnection(connectStrategy))
+                previousConnection -> previousConnection.findNextConnection(connectStrategy))
             .limit(playerCount - 1)
             .toList();
         return new Line(connections);
@@ -27,13 +27,21 @@ public class Line {
         if (previousIndex < 0 || previousIndex > connections.size()) {
             throw new IllegalStateException("비정상적인 index입니다.");
         }
-        if (previousIndex < connections.size() && connections.get(previousIndex) == CONNECTED) {
-            return previousIndex + 1;
-        }
-        if (previousIndex > 0 && connections.get(previousIndex - 1) == CONNECTED) {
+        if (isLeftConnected(previousIndex)) {
             return previousIndex - 1;
         }
+        if (isRightConnected(previousIndex)) {
+            return previousIndex + 1;
+        }
         return previousIndex;
+    }
+
+    private boolean isLeftConnected(int previousIndex) {
+        return previousIndex > 0 && connections.get(previousIndex - 1) == CONNECTED;
+    }
+
+    private boolean isRightConnected(int previousIndex) {
+        return previousIndex < connections.size() && connections.get(previousIndex) == CONNECTED;
     }
 
     public List<Connection> getConnections() {
