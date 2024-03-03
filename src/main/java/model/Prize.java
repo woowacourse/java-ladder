@@ -8,20 +8,20 @@ public class Prize {
 
     private final String prizeName;
 
-    public Prize(String inputText) {
-        validateBlankNames(inputText);
-        validateNameLength(inputText);
-        prizeName = inputText;
+    public Prize(String inputPrizeText) {
+        validateBlankNames(inputPrizeText);
+        validateNameLength(inputPrizeText);
+        prizeName = inputPrizeText;
     }
 
-    private void validateBlankNames(String prizeNames) {
-        if (prizeNames.isBlank()) {
+    private void validateBlankNames(String inputPrizeText) {
+        if (inputPrizeText.isBlank()) {
             throw new IllegalArgumentException("상품의 이름은 공백일 수 없습니다.");
         }
     }
 
-    private void validateNameLength(String prizeNames) {
-        if (isOutOfRange(prizeNames.length())) {
+    private void validateNameLength(String inputPrizeText) {
+        if (isOutOfRange(inputPrizeText.length())) {
             String outOfRangeMessage = "상품의 이름은 %d~%d 까지만 허용합니다.".formatted(MIN_RANGE_LIMIT,MAX_RANGE_LIMIT);
             throw new IllegalArgumentException(outOfRangeMessage);
         }
