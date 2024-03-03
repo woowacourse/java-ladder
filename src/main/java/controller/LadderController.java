@@ -4,10 +4,10 @@ import static common.ReservedKeywords.ALL;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
-import domain.LadderGame;
 import domain.booleanGenerator.BooleanGenerator;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
+import domain.ladderGame.LadderGame;
 import domain.player.Name;
 import domain.player.Player;
 import domain.player.Players;
@@ -36,7 +36,6 @@ public class LadderController {
             ladderGame.play();
 
             OutputView.printLadderResult(players, prizes, ladder);
-
             takeUserInputAndFindResult(players, prizes);
         } catch (Exception e) {
             OutputView.printErrorMessage(e);

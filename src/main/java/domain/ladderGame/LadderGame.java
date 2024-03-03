@@ -1,4 +1,4 @@
-package domain;
+package domain.ladderGame;
 
 import domain.ladder.DirectionalPoint;
 import domain.ladder.Ladder;
