@@ -4,7 +4,8 @@ import java.util.Random;
 
 public class RandomBridgeGenerator implements BridgeGenerator {
 
-    private final static RandomBridgeGenerator instance = new RandomBridgeGenerator();
+    private static final RandomBridgeGenerator instance = new RandomBridgeGenerator();
+    private static final Random RANDOM = new Random();
 
     private RandomBridgeGenerator() {
     }
@@ -15,7 +16,6 @@ public class RandomBridgeGenerator implements BridgeGenerator {
 
     @Override
     public Bridge generate() {
-        final Random random = new Random();
-        return Bridge.from(random.nextBoolean());
+        return Bridge.from(RANDOM.nextBoolean());
     }
 }

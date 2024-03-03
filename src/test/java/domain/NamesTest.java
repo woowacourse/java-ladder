@@ -1,12 +1,15 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NamesTest {
 
@@ -19,10 +22,12 @@ class NamesTest {
         for (int i = 0; i < playerCount; i++) {
             names.add(String.valueOf(i));
         }
+
         //when
         final Names players = new Names(names);
+
         //then
-        Assertions.assertThat(players.count()).isEqualTo(playerCount);
+        assertThat(players.count()).isEqualTo(playerCount);
     }
 
     @DisplayName("참가자 수가 2명 미만, 10명 초과이면 예외를 발생시킨다.")
@@ -34,8 +39,23 @@ class NamesTest {
         for (int i = 0; i < playerCount; i++) {
             names.add(String.valueOf(i));
         }
+
         //when & then
-        Assertions.assertThatThrownBy(() -> new Names(names)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Names(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Names.INVALID_NAMES_COUNT);
+    }
+
+    @DisplayName("중복된 참가자 이름이 존재하면 예외를 던진다.")
+    @Test
+    void duplicatedNames() {
+        //given
+        final List<String> names = List.of("pobi", "honux", "crong", "crong", "jk");
+
+        //when & then
+        assertThatThrownBy(() -> new Names(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Names.DUPLICATED_NAMES);
     }
 
     @DisplayName("참가자의 수를 반환한다.")
@@ -43,22 +63,41 @@ class NamesTest {
     void getPlayersCount() {
         //given
         final List<String> names = List.of("pobi", "honux", "crong", "jk");
+
         //when
         final Names players = new Names(names);
         int playersCount = players.count();
         //then
-        Assertions.assertThat(playersCount).isEqualTo(names.size());
+        assertThat(playersCount).isEqualTo(names.size());
     }
 
     @DisplayName("참가자들의 이름 목록을 반환한다.")
     @Test
     void getPlayerNames() {
         //given
-        final List<String> names = List.of("pobi", "honux", "crong", "jk");
-        final Names players = new Names(names);
+        final List<String> rawNames = List.of("pobi", "honux", "crong", "jk");
+        final Names names = new Names(rawNames);
+
         //when
-        List<String> returnedNames = players.getValues();
+        List<Name> returnedNames = names.getValues();
+
         //then
-        Assertions.assertThat(returnedNames).containsAll(names);
+        assertThat(returnedNames).hasSize(4);
+    }
+
+    @DisplayName("주어진 이름의 위치를 반환한다.")
+    @Test
+    void findIndexBy() {
+        //given
+        final List<String> rawNames = List.of("pobi", "honux", "crong", "jk");
+        final Names names = new Names(rawNames);
+        final String target = "crong";
+        final int expectedIndex = 2;
+
+        //when
+        int result = names.findIndexBy(new Name(target));
+
+        //then
+        assertThat(result).isEqualTo(expectedIndex);
     }
 }

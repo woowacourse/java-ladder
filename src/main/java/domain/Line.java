@@ -29,19 +29,44 @@ public class Line {
     }
 
     private static Bridge findPreviousBridge(List<Bridge> bridges) {
-        if (bridges.size() == 0) {
+        if (bridges.isEmpty()) {
             return Bridge.NO_BRIDGE;
         }
         return bridges.get(bridges.size() - 1);
     }
 
     private static Bridge createBridge(final Bridge bridgeCandidate, final Bridge previousBridge) {
-        if (bridgeCandidate == Bridge.BRIDGE && previousBridge == Bridge.NO_BRIDGE) {
-            return bridgeCandidate;
+        if (previousBridge.exists()) {
+            return Bridge.NO_BRIDGE;
         }
-        return Bridge.NO_BRIDGE;
+        return bridgeCandidate;
     }
 
+    public Direction findDirection(final Position position) {
+        if (canMoveRight(position)) {
+            return Direction.RIGHT;
+        }
+        if (canMoveLeft(position)) {
+            return Direction.LEFT;
+        }
+        return Direction.NONE;
+    }
+
+    private boolean canMoveRight(final Position position) {
+        if (position.isLast(bridges.size())) {
+            return false;
+        }
+
+        return bridges.get(position.getValue()).exists();
+    }
+
+    private boolean canMoveLeft(final Position position) {
+        if (position.isFirst()) {
+            return false;
+        }
+
+        return bridges.get(position.getValue() - 1).exists();
+    }
 
     public List<Bridge> getBridges() {
         return Collections.unmodifiableList(bridges);
