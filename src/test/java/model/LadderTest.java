@@ -26,10 +26,10 @@ class LadderTest {
         Prize expected = new Prize("당첨");
         Player target = new Player("reddy");
 
-        LadderResult ladderResult = ladder.findResult();
+        LadderGameResult ladderGameResult = ladder.findResult();
 
         //then
-        Assertions.assertThat(ladderResult.getPrize(target.name())).isEqualTo(expected.value());
+        Assertions.assertThat(ladderGameResult.getPrize(target.name())).isEqualTo(expected.value());
     }
 
 
@@ -48,8 +48,8 @@ class LadderTest {
         Ladder ladder = createZigZagBuildLadder(height, players, prizes);
 
         //when
-        LadderResult target = ladder.findResult();
-        LadderResult expected = LadderResult.of(names, List.of("꽝2", "꽝3", "당첨", "꽝1"));
+        LadderGameResult target = ladder.findResult();
+        LadderGameResult expected = LadderGameResult.of(names, List.of("꽝2", "꽝3", "당첨", "꽝1"));
 
         //then
         Assertions.assertThat(target).isEqualTo(expected);

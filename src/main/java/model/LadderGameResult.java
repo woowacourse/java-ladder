@@ -5,16 +5,15 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-//TODO: result 대신 다른 이름 고민해보기
-public record LadderResult(Map<String, String> playersPrizeResults) {
+public record LadderGameResult(Map<String, String> playersPrizeResults) {
 
-    public static LadderResult of(final List<String> playerNames, final List<String> prizes) {
+    public static LadderGameResult of(final List<String> playerNames, final List<String> prizes) {
         validate(playerNames, prizes);
         Map<String, String> result = new LinkedHashMap<>();
         for (int i = 0; i < playerNames.size(); i++) {
             result.put(playerNames.get(i), prizes.get(i));
         }
-        return new LadderResult(result);
+        return new LadderGameResult(result);
     }
 
     private static void validate(final List<String> playerNames, final List<String> prizes) {

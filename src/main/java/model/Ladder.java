@@ -29,7 +29,7 @@ public class Ladder {
         return new Ladder(lines, players, prizes);
     }
 
-    public LadderResult findResult() {
+    public LadderGameResult findResult() {
         final int ladderSize = players.size() - 1;
         List<String> prizeResult = new ArrayList<>();
         List<Prize> result = prizes.getPrizeValues();
@@ -37,7 +37,7 @@ public class Ladder {
         for (int index = 0; index < players.size(); index++) {
             prizeResult.add(result.get(findLadderBottomIndex(index, ladderSize)).value());
         }
-        return LadderResult.of(players.getNames(), prizeResult);
+        return LadderGameResult.of(players.getNames(), prizeResult);
     }
 
     private int findLadderBottomIndex(int index, final int ladderWidthSize) {

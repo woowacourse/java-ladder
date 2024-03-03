@@ -5,7 +5,7 @@ import java.util.Set;
 import model.Height;
 import model.Ladder;
 import model.LadderDto;
-import model.LadderResult;
+import model.LadderGameResult;
 import model.Player;
 import model.Players;
 import model.Prizes;
@@ -35,21 +35,21 @@ public class LadderController {
 
     private void printResult(final Ladder ladder, final Players players) {
         Set<Player> playerNames = new HashSet<>(players.getPlayerNames());
-        final LadderResult ladderResult = ladder.findResult();
+        final LadderGameResult ladderGameResult = ladder.findResult();
         while (!playerNames.isEmpty()) {
-            readNameAndPrintResult(ladder, ladderResult, playerNames);
+            readNameAndPrintResult(ladder, ladderGameResult, playerNames);
         }
     }
 
-    private void readNameAndPrintResult(final Ladder ladder, final LadderResult ladderResult,
+    private void readNameAndPrintResult(final Ladder ladder, final LadderGameResult ladderGameResult,
                                         final Set<Player> playerNames) {
         String name = inputView.readPlayerNameToCheckPrize();
         if (ladder.isAllResultRequest(name)) {
-            outputView.printAllPlayerResult(ladderResult.playersPrizeResults());
+            outputView.printAllPlayerResult(ladderGameResult.playersPrizeResults());
             playerNames.clear();
             return;
         }
-        outputView.printOnePlayerPrize(name, ladderResult.getPrize(name));
+        outputView.printOnePlayerPrize(name, ladderGameResult.getPrize(name));
         playerNames.remove(new Player(name));
     }
 }

@@ -11,10 +11,10 @@ class LadderPrizesTest {
     @DisplayName("존재하지 않는 참여자의 결과를 요청하면 예외가 발생한다.")
     void createInvalidNameRequest() {
         //given
-        LadderResult ladderResult = LadderResult.of(List.of("reddy", "anna"), List.of("당첨", "꽝"));
+        LadderGameResult ladderGameResult = LadderGameResult.of(List.of("reddy", "anna"), List.of("당첨", "꽝"));
 
         //when & then
-        Assertions.assertThatThrownBy(() -> ladderResult.getPrize("brown"))
+        Assertions.assertThatThrownBy(() -> ladderGameResult.getPrize("brown"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
