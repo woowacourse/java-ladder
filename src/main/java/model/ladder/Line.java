@@ -1,6 +1,5 @@
 package model.ladder;
 
-import static model.ladder.StepStatus.CONNECTED;
 import static model.laddergame.Direction.LEFT;
 import static model.laddergame.Direction.RIGHT;
 import static model.laddergame.Direction.STRAIGHT;
@@ -41,7 +40,7 @@ public class Line {
     }
 
     private boolean isRightConnected(Position position) {
-        return getRightStep(position).isStatus(CONNECTED);
+        return getRightStep(position).isConnected();
     }
 
     private Step getRightStep(final Position position) {
@@ -49,7 +48,7 @@ public class Line {
     }
 
     private boolean isLeftConnected(Position position) {
-        return getLeftStep(position).isStatus(CONNECTED);
+        return getLeftStep(position).isConnected();
     }
 
     private Step getLeftStep(final Position position) {
@@ -69,7 +68,7 @@ public class Line {
     }
 
     public boolean isConnected(final int index) {
-        return steps.get(index).isStatus(CONNECTED);
+        return steps.get(index).isConnected();
     }
 
     @Override
