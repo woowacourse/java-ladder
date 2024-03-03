@@ -1,7 +1,5 @@
 package laddergame.domain.gameelements;
 
-import laddergame.domain.Position;
-
 import java.util.ArrayList;
 import java.util.List;
 

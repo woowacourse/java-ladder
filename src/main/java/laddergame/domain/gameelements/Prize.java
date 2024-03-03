@@ -1,7 +1,5 @@
 package laddergame.domain.gameelements;
 
-import laddergame.domain.Position;
-
 public class Prize {
     private final Name name;
     private final Position position;

@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.gameelements;
 
 public class Position {
     private int playerPosition;

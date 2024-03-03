@@ -1,6 +1,6 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.Position;
+import laddergame.domain.gameelements.Position;
 import laddergame.domain.connectiongenerator.AllTrueConnectionGenerator;
 import laddergame.domain.connectiongenerator.ConnectionGenerator;
 import laddergame.domain.connectiongenerator.RandomConnectionGenerator;

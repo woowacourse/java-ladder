@@ -1,5 +1,5 @@
 package laddergame.domain;
-
+// TODO LadderGameTest 손보기
 class LadderGameTest {
 //    static Stream<Arguments> ladderGameResultTest() {
 //

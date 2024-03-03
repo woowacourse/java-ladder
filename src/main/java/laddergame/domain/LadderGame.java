@@ -1,9 +1,6 @@
 package laddergame.domain;
 
-import laddergame.domain.gameelements.Player;
-import laddergame.domain.gameelements.Players;
-import laddergame.domain.gameelements.Prize;
-import laddergame.domain.gameelements.Prizes;
+import laddergame.domain.gameelements.*;
 import laddergame.domain.ladder.Ladder;
 
 import java.util.LinkedHashMap;

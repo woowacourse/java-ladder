@@ -1,7 +1,8 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.Position;
+import laddergame.domain.gameelements.Position;
 import laddergame.domain.connectiongenerator.AllFalseConnectionGenerator;
+import laddergame.domain.gameelements.Player;
 import laddergame.domain.gameelements.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
+// TODO LadderTest 손보기
 class LadderTest {
 
     @Test
@@ -106,7 +107,10 @@ class LadderTest {
 
         Players testPlayers = new Players(List.of("0", "1", "2"));
         testLadder.getResult(testPlayers);
-        List<Position> actualResult = testPlayers.getPlayers().stream().map(i -> i.getPlayerPosition()).toList();
+        List<Position> actualResult = testPlayers.getPlayers()
+                .stream()
+                .map(Player::getPlayerPosition)
+                .toList();
 
         assertThat(actualResult)
                 .containsExactlyElementsOf(expectedResult);

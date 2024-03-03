@@ -1,7 +1,5 @@
 package laddergame.domain.gameelements;
 
-import laddergame.domain.Position;
-
 public class Player {
     private static final Name RESERVED_NAME = new Name("all");
 
