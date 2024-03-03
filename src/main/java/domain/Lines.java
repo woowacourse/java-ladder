@@ -1,8 +1,6 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class Lines {
@@ -16,11 +14,32 @@ public class Lines {
         this.lines = new ArrayList<>();
     }
 
-    public void moveDown(Player player) {
-        getLines().forEach(line -> {
-            int currPosition = player.getPosition();
-            player.move(line.nextPosition(currPosition));
-        });
+    public Map<Name, Integer> playGame(Names names) {
+        Map<Name, Integer> gameResult = new HashMap<>();
+
+        for (int i = 0; i < names.size(); i++) {
+            gameResult.put(names.getNames().get(i), i);
+        }
+
+        for (Name name : names.getNames()) {
+            getLines().forEach(line -> {
+                Integer currentIndex = gameResult.get(name);
+                Direction direction = line.nextPosition(currentIndex);
+                gameResult.put(name, move(currentIndex, direction));
+            });
+        }
+
+        return gameResult;
+    }
+
+    private int move(int index, Direction direction) {
+        if (direction == Direction.LEFT) {
+            return --index;
+        }
+        if (direction == Direction.RIGHT) {
+            return ++index;
+        }
+        return index;
     }
 
     private void createLines() {
