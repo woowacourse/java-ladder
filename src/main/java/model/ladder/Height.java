@@ -34,7 +34,7 @@ public class Height {
         return value;
     }
 
-    private class Validator {
+    private static class Validator {
         private static void validate(int value) {
             if (isOutOfRange(value)) {
                 throw new IllegalArgumentException(Message.INVALID_HEIGHT_ERROR.getMessage());

@@ -52,7 +52,7 @@ public class Players {
         return players.size();
     }
 
-    private class Validator {
+    private static class Validator {
         public static void validate(List<String> players) {
             validateSize(players);
             validateDuplicates(players);
