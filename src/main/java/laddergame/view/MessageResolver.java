@@ -39,14 +39,14 @@ public class MessageResolver {
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    public static Prize resolvePlayerResultMessage(Prize prize) {
-        return prize;
+    public static String resolvePlayerResultMessage(Prize prize) {
+        return prize.getName();
     }
 
     public static String resolveAllPlayerResultMessage(Map<Player, Prize> playerGameResult) {
         return playerGameResult.keySet()
                 .stream()
-                .map(key -> key.getName() + " : " + playerGameResult.get(key))
+                .map(key -> key.getName() + " : " + playerGameResult.get(key).getName())
                 .collect(Collectors.joining(LINE_SEPERATOR));
     }
 
