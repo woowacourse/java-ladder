@@ -65,7 +65,7 @@ public class Line {
             return false;
         }
 
-        return bridges.get(position.getValue()-1).exists();
+        return bridges.get(position.getValue() - 1).exists();
     }
 
     public List<Bridge> getBridges() {

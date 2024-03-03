@@ -24,11 +24,11 @@ public class Results {
         }
     }
 
-    public List<Result> getValues() {
-        return values;
-    }
-
     public Result findAtIndex(final int index) {
         return values.get(index);
+    }
+
+    public List<Result> getValues() {
+        return values;
     }
 }
