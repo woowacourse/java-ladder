@@ -90,7 +90,7 @@ resultPositions   1    0    3    2    4
 - [x] 사다리 게임 실행결과를 출력한다
     - [x] all을 입력하면 전체 참여자의 실행결과를 출력한다
         - 예시
-            - ```
+        ```
       실행 결과
       pobi : 꽝
       honux : 3000
@@ -154,29 +154,26 @@ resultPositions   1    0    3    2    4
     - test/LadderTest : List<RowLine> 단위 이동 책임 테스트
     - test/LadderGameTest : Player- Prize 매핑 결과 책임 테스트
 
-## 고민하고 있는 점
-
-1. `인덱스에 의존하는 코드의 한계가 있지 않을까?`
-    - Ladder에서 반환하는 ResutIndex는 [0, playerNumber) 연속 index가 사다리를 타고 내려온 index값들이다.
-    - LadderGame에는 이 index를 기준으로 Player들의 이름과 Prize를 매칭시킨다.
-    - 객체의 고유한 식별자가 아닌 index에 의존한 코드가 좋은 코드일까?
-
-
-2. `index 원시값 포장`
-    - index를 int로 활용함으로써 그 의미가 코드 내에서 잘 드러나지 않는 부분들이 있는 것 같다.
-    - Position을 통해 Position.moveLeft()와 같은 메서드로 더 뚜렷한 의의를 나타낼 수 있지 않을까?
-    - 그러나, Wrapping을 해도 index 이상의 의미를 지니기 힘든데, 장점이 더 많은 리팩터링일까?
+### 2단계 - 2차 리팩터링 개선사안
+- gameelements
+  - Position : player index 원시값 포장
+  - Player
+    - 사다리를 타는 책임을 가진 Player 객체 생성
+    - 예약어 검증 책임을 Players로부터 이전
+  - Prize : 사다리 게임에서 위치와 이름 정보를 가진 Prize 객체 생성
+  - Players : List<Player> 일급컬렉션으로 리팩터링
+  - Prizes : List<Prize> 일급컬렉션으로 리팩터링
 
 
-3. `LadderGame은 멤버변수로 Ladder, Players, Prizes를 지녀야 할까?`
-    - LadderGame은 생성자에서 결과값 Mapping을 초기화한다.
-    - 게임 결과인 Map이외에는 멤버변수를 가지지 않기에 반복되는 매개변수를 지닌 메서드를 선언해주어야 했다.
-    - 그렇다보니 코드가 복잡해지는 듯한 느낌을 받았다.
-    - 그러나, LadderGame에 결과값만을 넣은 이유는 다음과 같다.
-        - LadderGame의 책임은 Player-Prize 매핑의 사다리 게임의 결과산출이다.
-        - Map 안에 Player와 Prize 정보가 이미 내포되어 있다.
-        - 불필요한 멤버변수는 의존관계를 늘릴 우려가 있다.
+- Ladder : 메소드명 변경(getReusltIndex > climb) 
+  - Players가 사다리 연결을 따라 Position을 변경
 
 
-크루들 중에는 LadderGame이 Game이기 위해서는 Players, Ladder, Prizes를 멤버변수로 지니고 메서드를 통해 결과를 반환하는 식의 설계가 더 어울린다는 의견이 있었는데 이에 대한
-썬의 의견이 궁금합니다!
+- LadderGame 
+  - Ladder / Players / Prizes 멤버변수 추가
+  - 생성자에 복잡한 로직 playGame() 메서드로 분리
+  - index 의존 로직을 객체 간 메시지 전달로 리팩터링
+  - Player Position과 일치하는 Position을 가진 Prize 매핑
+- 불필요한 toString() 삭제
+- test 코드 최적화
+
