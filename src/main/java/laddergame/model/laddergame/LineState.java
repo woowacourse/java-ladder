@@ -25,4 +25,12 @@ public enum LineState {
         }
         return decideLineState(decision);
     }
+
+    public boolean isStart() {
+        return START.equals(this);
+    }
+
+    public boolean isEnd() {
+        return END.equals(this);
+    }
 }

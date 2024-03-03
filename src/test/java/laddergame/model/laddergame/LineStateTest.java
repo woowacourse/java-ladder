@@ -36,4 +36,24 @@ class LineStateTest {
         //then
         assertThat(actual).isEqualTo(expected);
     }
+
+    @DisplayName("START인지 판별한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"START,true", "END,false", "NONE,false"})
+    void isStart(LineState given, boolean expected) {
+        //when
+        boolean result = given.isStart();
+        //then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @DisplayName("END인지 판별한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"END,true", "START,false", "NONE,false"})
+    void isEnd(LineState given, boolean expected) {
+        //when
+        boolean result = given.isEnd();
+        //then
+        assertThat(result).isEqualTo(expected);
+    }
 }
