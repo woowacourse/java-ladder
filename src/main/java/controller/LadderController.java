@@ -5,6 +5,7 @@ import view.InputView;
 import view.ResultView;
 
 import java.util.List;
+import java.util.Map;
 
 public class LadderController {
     public void start() {
@@ -14,16 +15,15 @@ public class LadderController {
 
         LineGenerator lineGenerator = new LineGenerator(names.size(), new RandomBooleanGenerator());
         Lines lines = new Lines(height.getValue(), lineGenerator);
-        Players players = new Players(names);
 
-        players.playGame(lines);
+        Map<Name, Integer> gameResult = lines.playGame(names);
 
-        printResult(names, lines, results, players);
+        printResult(names, lines, results, gameResult);
     }
 
-    private static void printResult(Names names, Lines lines, Results results, Players players) {
+    private static void printResult(Names names, Lines lines, Results results, Map<Name, Integer> gameResult) {
         ResultView.printLadder(names, lines, results);
-        ResultView.printGameResult(results, players);
+        ResultView.printGameResult(results, gameResult);
     }
 
     private static Height creatHeight() {

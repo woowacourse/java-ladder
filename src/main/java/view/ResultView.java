@@ -2,6 +2,7 @@ package view;
 
 import domain.*;
 
+import java.util.Map;
 import java.util.Scanner;
 
 public class ResultView {
@@ -49,7 +50,7 @@ public class ResultView {
         System.out.println(resultLine);
     }
 
-    public static void printGameResult(Results results, Players players) {
+    public static void printGameResult(Results results, Map<Name, Integer> gameResult) {
         String input = "";
 
         while (!input.equals(ALL_RESULT_COMMAND)) {
@@ -58,33 +59,29 @@ public class ResultView {
             System.out.println();
             System.out.println("실행 결과");
 
-            StringBuilder searchResult = searchResult(results, players, input);
+            StringBuilder searchResult = searchResult(results, gameResult, input);
             System.out.println(searchResult);
         }
     }
 
-    private static StringBuilder searchResult(Results results, Players players, String input) {
+    private static StringBuilder searchResult(Results results, Map<Name, Integer> gameResult, String input) {
         StringBuilder resultLine = new StringBuilder();
 
         if (input.equals("all")) {
-            return allResultBuilder(results, players, resultLine);
+            return allResultBuilder(results, gameResult, resultLine);
         }
 
-        return singleResultBuilder(results, players, input, resultLine);
+        return singleResultBuilder(results, gameResult, input, resultLine);
     }
 
-    private static StringBuilder singleResultBuilder(Results results, Players players, String input, StringBuilder resultLine) {
-        Player player = players.findByName(input);
-        int position = player.getPosition();
-        resultLine.append(results.findByPosition(position));
+    private static StringBuilder singleResultBuilder(Results results, Map<Name, Integer> gameResult, String input, StringBuilder resultLine) {
+        Integer index = gameResult.get(new Name(input));
+        resultLine.append(results.findByIndex(index));
         return resultLine;
     }
 
-    private static StringBuilder allResultBuilder(Results results, Players players, StringBuilder resultLine) {
-        for (Player player : players.getPlayers()) {
-            int currPosition = player.getPosition();
-            resultLine.append(player.getName() + " : " + results.findByPosition(currPosition) + "\n");
-        }
+    private static StringBuilder allResultBuilder(Results results, Map<Name, Integer> gameResult, StringBuilder resultLine) {
+        gameResult.forEach((key, value) -> resultLine.append(key.getValue() + " : " + results.findByIndex(value) + "\n"));
         return resultLine;
     }
 

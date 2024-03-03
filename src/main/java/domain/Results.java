@@ -24,7 +24,7 @@ public class Results {
         return results.size();
     }
 
-    public String findByPosition(int position) {
+    public String findByIndex(int position) {
         return results.get(position).getData();
     }
 
