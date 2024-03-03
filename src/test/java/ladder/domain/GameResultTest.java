@@ -3,8 +3,7 @@ package ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.HashMap;
-import ladder.domain.GameResult;
+import java.util.Map;
 import ladder.domain.prize.Prize;
 import ladder.domain.user.User;
 import org.junit.jupiter.api.DisplayName;
@@ -39,7 +38,7 @@ class GameResultTest {
         //when, then
         assertThatThrownBy(() -> gameResult.save(user, prize))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 저장하려는 사용자가 존재하지 않습니다.");
+                .hasMessage("[ERROR] 게임 결과에 저장할 사용자가(이) 존재하지 않습니다.");
     }
 
     @DisplayName("사용자의 사다리게임 결과 저장 시, 당첨품이 없을 경우 예외를 발생시킨다.")
@@ -52,7 +51,7 @@ class GameResultTest {
         //when, then
         assertThatThrownBy(() -> gameResult.save(user, prize))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 저장하려는 당첨품이 존재하지 않습니다.");
+                .hasMessage("[ERROR] 게임 결과에 저장할 당첨품가(이) 존재하지 않습니다.");
     }
 
     @DisplayName("사용자의 사다리게임 결과 저장 시, 게임의 결과로 이미 저장된 당첨품을 저장하는 경우 예외를 발생시킨다.")
@@ -103,7 +102,7 @@ class GameResultTest {
         //when
         gameResult.save(userA, prizeA);
         gameResult.save(userB, prizeB);
-        HashMap<User, Prize> result = gameResult.getAllResult();
+        Map<User, Prize> result = gameResult.getAllResult();
 
         //then
         assertThat(result).hasSize(2);
