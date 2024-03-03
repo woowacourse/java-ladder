@@ -19,12 +19,10 @@ public class ClimbingResults {
     }
 
     private Player getParticipatedPlayer(final String playerName) {
-        for (Player player : playerResults.keySet()) {
-            if (playerName.equals(Command.FINISH.getValue()) || player.getName().equals(playerName)) {
-                return player;
-            }
-        }
-        throw new IllegalArgumentException(NOT_PARTICIPATION_PLAYER);
+        return playerResults.keySet().stream()
+                .filter(player -> player.getName().equals(playerName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(NOT_PARTICIPATION_PLAYER));
     }
 
     public Map<Player, LadderResult> getAllResults() {
