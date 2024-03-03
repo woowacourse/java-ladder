@@ -1,10 +1,11 @@
 package model.ladder;
 
+import static model.bridge.Bridge.CONNECTED;
+import static model.bridge.Bridge.UNCONNECTED;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
-import model.bridge.Bridge;
 import model.line.Line;
 import model.line.LineGenerator;
 import org.junit.jupiter.api.DisplayName;
@@ -33,11 +34,11 @@ class LadderResultTest {
     private static class CustomLineGenerator implements LineGenerator {
 
         private final List<Line> lines = List.of(
-            new Line(List.of(Bridge.UNCONNECTED, Bridge.CONNECTED, Bridge.UNCONNECTED)),
-            new Line(List.of(Bridge.CONNECTED, Bridge.UNCONNECTED, Bridge.UNCONNECTED)),
-            new Line(List.of(Bridge.UNCONNECTED, Bridge.CONNECTED, Bridge.UNCONNECTED)),
-            new Line(List.of(Bridge.CONNECTED, Bridge.UNCONNECTED, Bridge.CONNECTED)),
-            new Line(List.of(Bridge.UNCONNECTED, Bridge.UNCONNECTED, Bridge.UNCONNECTED))
+            new Line(List.of(UNCONNECTED, CONNECTED, UNCONNECTED)),
+            new Line(List.of(CONNECTED, UNCONNECTED, UNCONNECTED)),
+            new Line(List.of(UNCONNECTED, CONNECTED, UNCONNECTED)),
+            new Line(List.of(CONNECTED, UNCONNECTED, CONNECTED)),
+            new Line(List.of(UNCONNECTED, UNCONNECTED, UNCONNECTED))
         );
 
         private int count = 0;

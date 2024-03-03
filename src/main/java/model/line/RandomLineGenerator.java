@@ -9,6 +9,9 @@ import model.bridge.Bridge;
 
 public class RandomLineGenerator implements LineGenerator {
 
+    private static final int UNCONNECTED = 0;
+    private static final int CONNECTED = 1;
+
     @Override
     public Line generateLine(int width) {
         return IntStream.range(0, width)
