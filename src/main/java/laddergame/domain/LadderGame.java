@@ -16,7 +16,7 @@ public class LadderGame {
         List<Name> gameResults = initializeGameResult(ladder, prizes);
 
         playerGameResult = new LinkedHashMap<>();
-        for (int i = 0; i < players.getNames().size(); i++) {
+        for (int i = 0; i < players.count(); i++) {
             playerGameResult.put(players.getNames().get(i), gameResults.get(i));
         }
     }
