@@ -57,7 +57,7 @@ public class PlayerNamesTest {
         Assertions.assertTrue(playerNames.isExistPlayer(checkName));
     }
 
-    @DisplayName("플레이어가 존재한다면 true를 반환합니다..")
+    @DisplayName("플레이어가 존재하지 않으면 false를 반환합니다.")
     @Test
     void isExistPlayerWithNotExist() {
         PlayerName player1 = new PlayerName("dodo");
