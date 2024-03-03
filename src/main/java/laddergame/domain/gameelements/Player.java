@@ -5,8 +5,8 @@ import laddergame.domain.Position;
 public class Player {
     private static final Name RESERVED_NAME = new Name("all");
 
-    Name name;
-    Position position;
+    final private Name name;
+    private final Position position;
 
     public Player(Name name, Position position) {
         validateReservedName(name);
