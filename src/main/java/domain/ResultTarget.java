@@ -7,19 +7,14 @@ public class ResultTarget {
     private static final String ALL_RESULT_TARGET = "all";
 
     private final String value;
-    private final Boolean isAll;
 
-    private ResultTarget(String value, Boolean isAll) {
+    private ResultTarget(String value) {
         this.value = value;
-        this.isAll = isAll;
     }
 
     public static ResultTarget of(String value, List<Member> members) {
         validate(value, members);
-        if (value.equals(ALL_RESULT_TARGET)) {
-            return new ResultTarget(value, true);
-        }
-        return new ResultTarget(value, false);
+        return new ResultTarget(value);
     }
 
     private static void validate(String value, List<Member> members) {
@@ -31,7 +26,7 @@ public class ResultTarget {
     }
 
     public boolean isAllMembers() {
-        return isAll;
+        return value.equals(ALL_RESULT_TARGET);
     }
 
     public String getValue() {
