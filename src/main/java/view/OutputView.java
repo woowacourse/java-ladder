@@ -3,8 +3,8 @@ package view;
 import domain.Connection;
 import domain.Game;
 import domain.GameResultDto;
-import domain.Line;
 import domain.Ladder;
+import domain.Line;
 import domain.Member;
 import domain.Members;
 import domain.Result;
@@ -23,7 +23,7 @@ public class OutputView {
     public void printLadder(Game game) {
         System.out.println("사다리 결과");
         System.out.println(resolveMembers(game.getMembers()));
-        System.out.println(resolveLines(game.getLines()));
+        System.out.println(resolveLines(game.getLadder()));
         System.out.println(resolveResults(game.getResults()));
     }
 

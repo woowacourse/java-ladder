@@ -64,7 +64,7 @@ public class Game {
         return members;
     }
 
-    public Ladder getLines() {
+    public Ladder getLadder() {
         return ladder;
     }
 
