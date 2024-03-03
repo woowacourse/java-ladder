@@ -22,7 +22,7 @@ public class RewardBoard {
         return board.get(new Person(name));
     }
 
-    public List<Prize> findAll() {
+    public List<Prize> findAllPrizes() {
         return board.values()
                 .stream()
                 .toList();

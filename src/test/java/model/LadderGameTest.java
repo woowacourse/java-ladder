@@ -19,7 +19,7 @@ class LadderGameTest {
 
         //when
         LadderGame ladderGame = new LadderGame(people, ladder, "꽝,당첨,다음");
-        List<Prize> actual = ladderGame.getRewardBoard().findAll();
+        List<Prize> actual = ladderGame.getRewardBoard().findAllPrizes();
 
         //then
         assertThat(actual).isEqualTo(expect);

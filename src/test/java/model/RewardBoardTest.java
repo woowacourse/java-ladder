@@ -48,7 +48,7 @@ class RewardBoardTest {
         board.addReward(new Person("도비"), new Prize("피자"));
         board.addReward(new Person("조이썬"), new Prize("족발"));
 
-        List<Prize> actual = board.findAll();
+        List<Prize> actual = board.findAllPrizes();
         //then
         assertThat(actual)
                 .isEqualTo(expect);
