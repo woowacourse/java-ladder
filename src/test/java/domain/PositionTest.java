@@ -5,10 +5,26 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class PositionTest {
+
+    @DisplayName("해당 위치에서 오른쪽으로 이동할 수 있다.")
+    @Test
+    void canMoveRight(){
+        //given
+        Position position = new Position(0);
+        Line line = Line.createByStrategy(new PickedBridgeGenerator(List.of(true,false)),3);
+
+        //when
+        boolean result = position.canMoveRight(line);
+
+        //then
+        assertThat(result).isTrue();
+    }
 
     @DisplayName("해당 위치는 첫번째 위치이다.")
     @Test

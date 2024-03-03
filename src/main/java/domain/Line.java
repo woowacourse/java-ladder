@@ -77,6 +77,14 @@ public class Line {
         return position == 0;
     }
 
+    public int hasSize() {
+        return bridges.size();
+    }
+
+    public boolean hasBridgeAt(final int position) {
+        return bridges.get(position).exists();
+    }
+
     public List<Bridge> getBridges() {
         return Collections.unmodifiableList(bridges);
     }
