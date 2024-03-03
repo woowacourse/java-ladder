@@ -33,9 +33,16 @@ public class LadderBuilder {
     }
 
     public Ladder build() {
+        validateNonNull();
         return Ladder.from(height.repeat(() -> LadderRowBuilder.builder()
                 .width(width)
                 .directionSelector(directionSelector)
                 .build()));
+    }
+
+    private void validateNonNull() {
+        if (height == null || width == null || directionSelector == null) {
+            throw new IllegalStateException("사다리를 만들기 위해 필요한 정보를 모두 입력해주세요.");
+        }
     }
 }

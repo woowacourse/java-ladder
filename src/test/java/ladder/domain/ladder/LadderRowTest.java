@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import static ladder.domain.ladder.direction.LadderDirection.LEFT;
 import static ladder.domain.ladder.direction.LadderDirection.NONE;
@@ -42,5 +43,17 @@ class LadderRowTest {
 
         assertThat(ladderDirections).doesNotContain(NONE);
         assertThat(ladderDirections).contains(RIGHT, LEFT);
+    }
+
+    @DisplayName("생성을 위해 필요한 값이 입력되지 않으면 예외를 발생한다.")
+    @Test
+    void npeTest() {
+        assertThatThrownBy(
+                () -> LadderRowBuilder.builder()
+                        .width(null)
+                        .directionSelector(null)
+                        .build())
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("사다리를 만들기 위해 필요한 정보를 모두 입력해주세요");
     }
 }

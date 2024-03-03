@@ -15,7 +15,7 @@ public class LadderRowBuilder {
 
     private List<LadderDirection> ladderRow;
     private Width width;
-    private LadderDirectionSelector ladderDirectionSelector;
+    private LadderDirectionSelector directionSelector;
 
     private LadderRowBuilder() {
     }
@@ -30,14 +30,21 @@ public class LadderRowBuilder {
     }
 
     public LadderRowBuilder directionSelector(final LadderDirectionSelector ladderDirectionSelector) {
-        this.ladderDirectionSelector = ladderDirectionSelector;
+        this.directionSelector = ladderDirectionSelector;
         return this;
     }
 
     public LadderRow build() {
+        validateNonNull();
         ladderRow = new ArrayList<>(width.repeat(() -> LadderDirection.NONE));
         width.repeat(this::selectDirectionIfNotExistsAt);
         return new LadderRow(ladderRow);
+    }
+
+    private void validateNonNull() {
+        if (width == null || directionSelector == null) {
+            throw new IllegalStateException("사다리를 만들기 위해 필요한 정보를 모두 입력해주세요.");
+        }
     }
 
     private void selectDirectionIfNotExistsAt(final int index) {
@@ -51,7 +58,7 @@ public class LadderRowBuilder {
     }
 
     private void selectDirectionAt(final int index) {
-        LadderDirection ladderDirection = ladderDirectionSelector.select();
+        LadderDirection ladderDirection = directionSelector.select();
         if (ladderDirection == RIGHT) {
             ladderRow.set(index, RIGHT);
             ladderRow.set(index + 1, LEFT);

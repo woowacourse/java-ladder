@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import static ladder.domain.ladder.direction.LadderDirection.NONE;
@@ -54,5 +55,18 @@ class LadderTest {
                 () -> assertThat(ladder.climbDownFrom(new LadderPosition(0, 3)))
                         .isEqualTo(new LadderPosition(5, 2))
         );
+    }
+
+    @DisplayName("생성을 위해 필요한 값이 입력되지 않으면 예외를 발생한다.")
+    @Test
+    void npeTest() {
+        assertThatThrownBy(
+                () -> LadderBuilder.builder()
+                        .width(null)
+                        .height(null)
+                        .ladderDirectionSelector(() -> null)
+                        .build())
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("사다리를 만들기 위해 필요한 정보를 모두 입력해주세요");
     }
 }
