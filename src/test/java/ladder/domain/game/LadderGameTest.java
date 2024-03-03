@@ -20,9 +20,9 @@ class LadderGameTest {
         Players players = new Players(List.of("pobi", "honux", "crong", "jk"));
         Prizes prizes = new Prizes(List.of("꽝", "5000", "꽝", "3000"), players.count());
 
-        LadderGame ladderGame = new LadderGame(ladder);
+        LadderGame ladderGame = new LadderGame(ladder, players, prizes);
 
-        PlayResult playResult = ladderGame.play(players, prizes);
+        PlayResult playResult = ladderGame.play();
         Map<String, String> result = playResult.getResult();
 
         assertThat(result).containsExactly(
