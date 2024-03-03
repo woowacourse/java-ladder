@@ -31,7 +31,7 @@ public class PlayerName {
         }
     }
 
-    public String getName() {
+    public String getValue() {
         return name;
     }
 }

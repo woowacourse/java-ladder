@@ -3,9 +3,8 @@ package domain.ladder;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import domain.ladder.strategy.BridgeGeneratorStub;
-import domain.player.Player;
 import domain.player.PlayerName;
-import domain.player.Players;
+import domain.player.PlayerNames;
 import domain.result.ClimbingResults;
 import domain.result.LadderResult;
 import domain.result.LadderResults;
@@ -21,9 +20,9 @@ class LadderClimbingGameTest {
     @DisplayName("사다리타기 결과를 생성한다.")
     void createClimbingResults(String playerName, String expected) {
         // given
-        Player player1 = new Player(new PlayerName("a"), 0);
-        Player player2 = new Player(new PlayerName("b"), 1);
-        Player player3 = new Player(new PlayerName("c"), 2);
+        PlayerName playerName1 = new PlayerName("a");
+        PlayerName playerName2 = new PlayerName("b");
+        PlayerName playerName3 = new PlayerName("c");
 
         BridgeGeneratorStub bridgeGeneratorStub = new BridgeGeneratorStub();
         LadderHeight ladderHeight = new LadderHeight(3);
@@ -32,14 +31,14 @@ class LadderClimbingGameTest {
         LadderResult ladderResult2 = new LadderResult("당첨");
         LadderResult ladderResult3 = new LadderResult("꽝");
 
-
         // when
-        Players players = new Players(List.of(player1, player2, player3));
+        PlayerNames playerNames = new PlayerNames(List.of(playerName1, playerName2, playerName3));
         bridgeGeneratorStub.setBridges(List.of(LadderBridge.BRIDGE, LadderBridge.NONE));
-        LadderGenerator ladderGenerator = new LadderGenerator(ladderHeight, players, bridgeGeneratorStub);
+        LadderGenerator ladderGenerator = new LadderGenerator(ladderHeight, playerNames, bridgeGeneratorStub);
         List<LadderResult> results = List.of(ladderResult1, ladderResult2, ladderResult3);
-        LadderResults ladderResults = LadderResults.createMatchesCountOf(players.getPlayerCount(), results);
-        LadderClimbingGame ladderClimbingGame = new LadderClimbingGame(players, ladderGenerator, ladderResults);
+        LadderResults ladderResults = LadderResults.createMatchesCountOf(playerNames.getPlayerCount(), results);
+        List<Floor> ladder = ladderGenerator.generateLadder();
+        LadderClimbingGame ladderClimbingGame = new LadderClimbingGame(playerNames, ladder, ladderResults);
         ClimbingResults climbingResults = ladderClimbingGame.createClimbingResults();
 
          /* 사다리 형태

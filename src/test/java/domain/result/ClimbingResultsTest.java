@@ -3,7 +3,6 @@ package domain.result;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import domain.player.Player;
 import domain.player.PlayerName;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,18 +17,18 @@ class ClimbingResultsTest {
 
     @BeforeAll
     static void initClimbingResults() {
-        Player player1 = new Player(new PlayerName("a"), 0);
-        Player player2 = new Player(new PlayerName("b"), 1);
-        Player player3 = new Player(new PlayerName("c"), 2);
+        PlayerName playerName1 = new PlayerName("a");
+        PlayerName playerName2 = new PlayerName("b");
+        PlayerName playerName3 = new PlayerName("c");
 
         LadderResult ladderResult1 = new LadderResult("꽝");
         LadderResult ladderResult2 = new LadderResult("당첨");
         LadderResult ladderResult3 = new LadderResult("꽝");
 
-        Map<Player, LadderResult> results = new HashMap<>();
-        results.put(player1, ladderResult1);
-        results.put(player2, ladderResult2);
-        results.put(player3, ladderResult3);
+        Map<PlayerName, LadderResult> results = new HashMap<>();
+        results.put(playerName1, ladderResult1);
+        results.put(playerName2, ladderResult2);
+        results.put(playerName3, ladderResult3);
 
         climbingResults = new ClimbingResults(results);
     }

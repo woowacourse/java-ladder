@@ -29,12 +29,12 @@ public class Floor {
 
     public int getMovablePosition(final int playerPosition) {
         if (isBridgeOnLeft(playerPosition)) {
-            return Direction.LEFT.getValue();
+            return playerPosition + Direction.LEFT.getValue();
         }
         if (isBridgeOnRight(playerPosition)) {
-            return Direction.RIGHT.getValue();
+            return playerPosition + Direction.RIGHT.getValue();
         }
-        return Direction.UNDER.getValue();
+        return playerPosition;
     }
 
     private boolean isBridgeOnLeft(final int playerPosition) {

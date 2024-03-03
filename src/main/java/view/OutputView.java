@@ -1,12 +1,12 @@
 package view;
 
 import domain.ladder.Floor;
-import domain.ladder.LadderGenerator;
 import domain.ladder.LadderBridge;
-import domain.player.Player;
-import domain.player.Players;
+import domain.player.PlayerName;
+import domain.player.PlayerNames;
 import domain.result.LadderResult;
 import domain.result.LadderResults;
+import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
@@ -22,27 +22,27 @@ public class OutputView {
     }
 
     public void printInputtedResultsOf(
-            final Players players,
-            final LadderGenerator ladderGenerator,
+            final PlayerNames playerNames,
+            final List<Floor> ladder,
             final LadderResults ladderResults) {
         System.out.println("\n사다리 결과\n");
-        printPlayerNames(players);
-        printLadder(ladderGenerator);
+        printPlayerNames(playerNames);
+        printLadder(ladder);
         printLadderResult(ladderResults);
     }
 
-    private void printPlayerNames(final Players players) {
+    private void printPlayerNames(final PlayerNames playerNames) {
         StringJoiner playerNamesJoiner = new StringJoiner(JOIN_DELIMITER);
-        for (int i = 0; i < players.getPlayerCount(); i++) {
-            String playerName = String.format(OUTPUT_FORMAT, players.getNameOfIndex(i));
+        for (int i = 0; i < playerNames.getPlayerCount(); i++) {
+            String playerName = String.format(OUTPUT_FORMAT, playerNames.getPlayerNameOfIndex(i).getValue());
             playerNamesJoiner.add(playerName);
         }
         System.out.println(playerNamesJoiner);
     }
 
-    private void printLadder(final LadderGenerator ladderGenerator) {
+    private void printLadder(final List<Floor> ladder) {
         StringJoiner ladderJoiner;
-        for (Floor floor : ladderGenerator.generateLadder()) {
+        for (Floor floor : ladder) {
             ladderJoiner = new StringJoiner(LADDER_FRAME, LADDER_FRAME, LADDER_FRAME);
             printLadderLine(floor, ladderJoiner);
         }
@@ -78,11 +78,13 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public void printAllClimbingLadderResults(final Map<Player, LadderResult> results) {
+    public void printAllClimbingLadderResults(final Map<PlayerName, LadderResult> results) {
         System.out.println("\n실행 결과");
         StringBuilder builder = new StringBuilder();
-        for (Map.Entry<Player, LadderResult> result : results.entrySet()) {
-            builder.append(String.format("%s : %s", result.getKey().getName(), result.getValue().getValue()))
+        for (Map.Entry<PlayerName, LadderResult> result : results.entrySet()) {
+            PlayerName playerName = result.getKey();
+            LadderResult ladderResult = result.getValue();
+            builder.append(String.format("%s : %s", playerName.getValue(), ladderResult.getValue()))
                     .append("\n");
         }
         System.out.println(builder);

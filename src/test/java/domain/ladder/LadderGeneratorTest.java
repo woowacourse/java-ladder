@@ -3,9 +3,8 @@ package domain.ladder;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import domain.ladder.strategy.BridgeGeneratorStub;
-import domain.player.Player;
 import domain.player.PlayerName;
-import domain.player.Players;
+import domain.player.PlayerNames;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,18 +14,18 @@ public class LadderGeneratorTest {
     @Test
     void createLadderSuccessWithHeightAndPointCount() {
         // given
-        Player player1 = new Player(new PlayerName("kaki"), 0);
-        Player player2 = new Player(new PlayerName("solar"), 0);
-        Player player3 = new Player(new PlayerName("eden"), 0);
+        PlayerName playerName1 = new PlayerName("kaki");
+        PlayerName playerName2 = new PlayerName("solar");
+        PlayerName playerName3 = new PlayerName("eden");
 
         LadderHeight height = new LadderHeight(3);
         List<LadderBridge> bridges = List.of(LadderBridge.BRIDGE, LadderBridge.NONE, LadderBridge.NONE);
         BridgeGeneratorStub bridgeGeneratorStub = new BridgeGeneratorStub();
-        List<Player> players = List.of(player1, player2, player3);
+        PlayerNames playerNames = new PlayerNames(List.of(playerName1, playerName2, playerName3));
 
         // when
         bridgeGeneratorStub.setBridges(bridges);
-        LadderGenerator ladderGenerator = new LadderGenerator(height, new Players(players), bridgeGeneratorStub);
+        LadderGenerator ladderGenerator = new LadderGenerator(height, playerNames, bridgeGeneratorStub);
         List<Floor> floors = ladderGenerator.generateLadder();
 
         // then
