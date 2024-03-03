@@ -24,7 +24,7 @@ class LineTest {
     @DisplayName("다음 이동 방향을 결정한다.")
     void nextPosition(Direction direction, int position) {
         int personCount = 5;
-        BooleanGenerator generator = new FixedBooleanGenerator(true);
+        BooleanGenerator generator = new TogleBooleanGenerator(true);
         LineGenerator lineGenerator = new LineGenerator(personCount, generator);
         Line line = new Line(lineGenerator.createPoints());
         // 라인 생성 결과
@@ -44,10 +44,10 @@ class LineTest {
     }
 }
 
-class FixedBooleanGenerator implements BooleanGenerator {
+class TogleBooleanGenerator implements BooleanGenerator {
     private boolean value;
 
-    public FixedBooleanGenerator(boolean value) {
+    public TogleBooleanGenerator(boolean value) {
         this.value = value;
     }
 

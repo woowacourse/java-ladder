@@ -27,7 +27,7 @@ class LinesTest {
         int testHeight = 3;
         int testPersonCount = 2;
 
-        BooleanGenerator booleanGenerator = new PlayersTest.FixedBooleanGenerator(true);
+        BooleanGenerator booleanGenerator = new FixedBooleanGenerator(true);
         LineGenerator lineGenerator = new LineGenerator(testPersonCount, booleanGenerator);
         Lines lines = new Lines(testHeight, lineGenerator);
         // 사다리 생성 결과
@@ -51,7 +51,7 @@ class LinesTest {
         int testHeight = 3;
         int testPersonCount = 4;
 
-        BooleanGenerator booleanGenerator = new PlayersTest.FixedBooleanGenerator(true);
+        BooleanGenerator booleanGenerator = new FixedBooleanGenerator(true);
         LineGenerator lineGenerator = new LineGenerator(testPersonCount, booleanGenerator);
         Lines lines = new Lines(testHeight, lineGenerator);
         // 사다리 생성 결과
@@ -69,5 +69,18 @@ class LinesTest {
                 () -> Assertions.assertEquals(3, gameResult.get(new Name("honux"))),
                 () -> Assertions.assertEquals(2, gameResult.get(new Name("crong")))
         );
+    }
+}
+
+class FixedBooleanGenerator implements BooleanGenerator {
+    private final boolean value;
+
+    public FixedBooleanGenerator(boolean value) {
+        this.value = value;
+    }
+
+    @Override
+    public Boolean generate() {
+        return value;
     }
 }
