@@ -1,8 +1,10 @@
 package view;
 
 import java.util.List;
+import java.util.Map.Entry;
 import model.ExecutionResult;
 import model.ResultInterestedPeople;
+import model.dto.GamePrize;
 import model.dto.LayerSteps;
 import model.dto.ParticipantName;
 
@@ -51,21 +53,17 @@ public class OutputView {
         System.out.println(joinedExecutionResult);
     }
 
-    public void printExecutionResult(ResultInterestedPeople resultInterestedPeople) {
+    public void printExecutionResult(ResultInterestedPeople resultInterestedPeople, GamePrize gamePrize) {
         System.out.println("실행 결과");
-        int peopleCount = resultInterestedPeople.getResultInterestedName().size();
-        if (peopleCount > 1) {
-            printExecutionEachPerson(resultInterestedPeople);
+        List<Entry<String, String>> result = gamePrize.prize().entrySet().stream()
+                .filter(prize -> resultInterestedPeople.getResultInterestedName().contains(prize.getKey()))
+                .toList();
+        if (result.size() == 1) {
+            System.out.println(result.get(0).getValue());
         }
-        if (peopleCount == 1) {
-            System.out.println(resultInterestedPeople.getExecutionResult().get(0));
-        }
-    }
-
-    private void printExecutionEachPerson(ResultInterestedPeople resultInterestedPeople) {
-        for (int i = 0; i < resultInterestedPeople.getResultInterestedName().size(); i++) {
-            System.out.println(resultInterestedPeople.getResultInterestedName().get(i) + " : "
-                    + resultInterestedPeople.getExecutionResult().get(i));
+        if (result.size() > 1) {
+            result.stream().map(entry -> String.format("%s : %s", entry.getKey(),
+                    entry.getValue())).forEach(System.out::println);
         }
     }
 }
