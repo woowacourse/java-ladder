@@ -31,7 +31,8 @@ class LadderTest {
     @ValueSource(ints = {-1, 0, 101})
     void ladderExceedHeightTest(int height) {
         assertThatThrownBy(() -> new Ladder(height, 10))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사다리의 높이는 1이상 100이하여야 합니다");
     }
 
     @DisplayName("사다리 생성 테스트 : 가로선이 없는 경우")

@@ -11,8 +11,8 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RowLineTest {
 
@@ -20,8 +20,11 @@ class RowLineTest {
     @Test
     void successiveRowLineTest() {
         ConnectionGenerator successiveConnectionGenerator = new AllTrueConnectionGenerator();
-        assertThrows(IllegalArgumentException.class
-                , () -> new RowLine(5, successiveConnectionGenerator));
+
+        assertThatThrownBy(() -> new RowLine(5, successiveConnectionGenerator))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사다리 가로선이 연속되었습니다.");
+
     }
 
     @DisplayName("연속된 가로선이 없는 domain.RowLine 객체는 생성할 수 있다")

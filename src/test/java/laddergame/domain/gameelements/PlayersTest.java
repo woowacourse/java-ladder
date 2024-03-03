@@ -3,33 +3,28 @@ package laddergame.domain.gameelements;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayersTest {
 
     @DisplayName("게임 요소 이름에 예외적인 입력값이 들어왔을 때, Elements 객체를 생성할 수 없다.")
     @ParameterizedTest
+    @NullAndEmptySource
     @ValueSource(strings = {"abcdef", "a@", ""})
     void elementNamesInvalidInput(String invalidElementName) {
-        List<String> elementNames = List.of(invalidElementName);
+        List<String> elementNames = Collections.singletonList(invalidElementName);
         assertThrows(IllegalArgumentException.class
                 , () -> new Players(elementNames));
-    }
-
-    @DisplayName("Null이 들어왔을 때, Elements 객체를 생성할 수 없다.")
-    @ParameterizedTest
-    @NullSource
-    void elementsNamesNullInput(String nullName) {
-        List<String> elementNames = Collections.singletonList(nullName);
-        assertThrows(IllegalArgumentException.class
-                , () -> new Players(elementNames));
+        assertThatThrownBy(() -> new Players(elementNames)).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("게임 요소의 이름은 5자 이내의 영숫자로 구성되어야 합니다.");
     }
 
     @DisplayName("게임 요소 이름에 정상적인 입력값이 들어왔을 때, Elements 객체를 생성할 수 있다.")
@@ -52,10 +47,13 @@ class PlayersTest {
         }
 
         assertAll(
-                () -> assertThrows(IllegalArgumentException.class,
-                        () -> new Players(zeroNames)),
-                () -> assertThrows(IllegalArgumentException.class,
-                        () -> new Players(exceedNames))
+                () -> assertThatThrownBy(() -> new Players(zeroNames))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage("게임 참여자의 수는 1이상 100이하만 가능합니다."),
+
+                () -> assertThatThrownBy(() -> new Players(exceedNames))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage("게임 참여자의 수는 1이상 100이하만 가능합니다.")
         );
 
     }
