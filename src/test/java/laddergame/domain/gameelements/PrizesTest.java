@@ -20,7 +20,7 @@ class PrizesTest {
         assertThatThrownBy(() -> new Prizes(prizeNames, playerNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
+    // TODO 검증에서 hasMessage를 통한 정확한 오류 발생 테스트하기
     @DisplayName("보상의 수가 참여자의 수와 같다면 Prizes가 생성된다.")
     @ParameterizedTest
     @ValueSource(ints = {4})

@@ -21,7 +21,7 @@ public class Ladder {
                 .limit(this.height.getHeight())
                 .toList();
     }
-
+    // TODO 메서드명 getResult
     public List<Integer> getResultIndex(int peopleNumber) {
         List<Integer> playerPositions = IntStream.range(0, peopleNumber)
                 .boxed()

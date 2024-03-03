@@ -1,6 +1,7 @@
 package laddergame.domain.gameelements;
 
 import java.util.List;
+// TODO player 사이즈를 반환하는 메서드 만들기
 
 public class Players {
     private static final int MIN_PLAYER_NUMBER = 1;
@@ -28,7 +29,7 @@ public class Players {
             throw new IllegalArgumentException("예약어 " + RESERVED_NAME + "은 이름으로 지정할 수 없습니다.");
         }
     }
-
+    // TODO : 중복되는 메서드명 변경고민해보기
     public List<Name> getPlayerNames() {
         return playerNames;
     }

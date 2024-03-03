@@ -26,7 +26,7 @@ public class LadderGameController {
         ResultView.printLadder(players, ladder, prizes);
         retryUntilNoError(() -> printPlayerResults(ladderGame));
     }
-
+    // TODO :매개변수 이름 players로 바꾸기
     private static Ladder makeLadder(Players people) {
         int peopleNumber = people.getPlayerNames().size();
         return new Ladder(InputView.readHeight(), peopleNumber);
