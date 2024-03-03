@@ -28,10 +28,9 @@ public class LadderGame {
         final Presents presents = initPresent(people);
         final Ladder ladder = initLadder(people);
 
-        people.climbDown(ladder);
+        PresentMatches presentMatches = people.climbDown(ladder, presents);
         final LadderInfo ladderInfo = LadderInfo.from(people, ladder, presents);
         outputView.printLadderInfo(ladderInfo);
-        final PresentMatches presentMatches = PresentMatches.from(people, presents);
         while (true) {
             showMatches(presentMatches, people);
         }

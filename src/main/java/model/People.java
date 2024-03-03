@@ -1,7 +1,10 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class People {
     private static final int MIN_PERSON_COUNT = 2;
@@ -39,8 +42,13 @@ public class People {
         return new People(personGroup);
     }
 
-    public void climbDown(final Ladder ladder) {
+    public PresentMatches climbDown(final Ladder ladder, final Presents presents) {
         personGroup.forEach(person -> person.climbDown(ladder));
+        Map<PersonName, Present> personNamePresent = personGroup.stream()
+                .collect(Collectors.toMap(
+                        Person::getPersonName,
+                        person -> presents.getPresent(person.getColumn())));
+        return new PresentMatches(personNamePresent);
     }
 
     public boolean contains(final PersonName personName) {
@@ -64,9 +72,5 @@ public class People {
 
     public int getPersonCount() {
         return personGroup.size();
-    }
-
-    public List<Person> getPersonGroup() {
-        return personGroup;
     }
 }
