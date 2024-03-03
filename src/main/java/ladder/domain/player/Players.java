@@ -30,7 +30,7 @@ public record Players(List<Player> players) {
         });
     }
 
-    public void forEach(Consumer<Player> consumer) {
+    public void forEach(final Consumer<Player> consumer) {
         players.forEach(consumer);
     }
 
