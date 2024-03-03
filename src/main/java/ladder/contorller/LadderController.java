@@ -5,7 +5,6 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.List;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.line.Line;
 import ladder.domain.position.Positions;
 import ladder.domain.prize.Prize;
 import ladder.domain.prize.Prizes;
@@ -73,12 +72,7 @@ public class LadderController {
 
     private Positions createPositions(int width, Ladder ladder) {
         Positions defaultPositions = new Positions(width);
-        List<Line> lines = ladder.getLines();
-        Positions nowPositions = defaultPositions;
-        for (Line line : lines) {
-            nowPositions = nowPositions.calculatePosition(line);
-        }
-        return nowPositions;
+        return defaultPositions.calculateFinalPositions(ladder, defaultPositions);
     }
 
     private Result createResult(Users users, Prizes prizes, Positions positions) {

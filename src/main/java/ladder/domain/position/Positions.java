@@ -3,6 +3,7 @@ package ladder.domain.position;
 import java.util.ArrayList;
 import java.util.List;
 import ladder.domain.direction.Direction;
+import ladder.domain.ladder.Ladder;
 import ladder.domain.line.Line;
 
 public class Positions {
@@ -23,6 +24,15 @@ public class Positions {
             positions.add(new Position(i));
         }
         return positions;
+    }
+
+    public Positions calculateFinalPositions(Ladder ladder, Positions defaultPositions) {
+        List<Line> lines = ladder.getLines();
+        Positions nowPositions = defaultPositions;
+        for (Line line : lines) {
+            nowPositions = nowPositions.calculatePosition(line);
+        }
+        return nowPositions;
     }
 
     public Positions calculatePosition(Line line) {
