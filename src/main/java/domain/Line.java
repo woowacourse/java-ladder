@@ -29,20 +29,20 @@ public class Line {
     }
 
     public int moveToNextLeg(int index) {
-        if (notFarRightIndex(index) && legs.get(index).isConnected()) {
+        if (notFarRightPosition(index) && legs.get(index).isConnected()) {
             return index + 1;
         }
-        if (notFarLeftIndex(index) && legs.get(index - 1).isConnected()) {
+        if (notFarLeftPosition(index) && legs.get(index - 1).isConnected()) {
             return index - 1;
         }
         return index;
     }
 
-    private boolean notFarRightIndex(int index) {
+    private boolean notFarRightPosition(int index) {
         return index < legs.size();
     }
 
-    private boolean notFarLeftIndex(int index) {
+    private boolean notFarLeftPosition(int index) {
         return index > 0;
     }
 
