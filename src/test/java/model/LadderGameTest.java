@@ -1,6 +1,7 @@
 package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -23,5 +24,14 @@ class LadderGameTest {
 
         //then
         assertThat(actual).isEqualTo(expect);
+    }
+
+    @Test
+    @DisplayName("참가자의 수와 다른 수의 경품을 입력하면 예외를 발생시킨다.")
+    void IllegalLengthPrizesTest() {
+        People people = new People("hello,world");
+        Ladder ladder = new Ladder(() -> true, "5", 2);
+        assertThatThrownBy(() -> new LadderGame(people, ladder, "aa"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

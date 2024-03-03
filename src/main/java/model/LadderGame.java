@@ -1,5 +1,8 @@
 package model;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class LadderGame {
     private final People people;
     private final Ladder ladder;
@@ -9,7 +12,15 @@ public class LadderGame {
         this.people = people;
         this.ladder = ladder;
         this.rewardBoard = new RewardBoard();
+        List<String> parsedInputPrizes = Arrays.stream(originPrizeInput.split(",")).toList();
+        validateLegalLength(parsedInputPrizes);
         calculatePrizes(new Prizes(originPrizeInput, people.getParticipantsSize()));
+    }
+
+    private void validateLegalLength(List<String> parsedInputPrizesText) {
+        if (parsedInputPrizesText.size() != people.getParticipantsSize()) {
+            throw new IllegalArgumentException("참가자의 인원 수와 맞게 경품도 입력해주세요.");
+        }
     }
 
     private void calculatePrizes(Prizes inputOrderedPrizes) {
