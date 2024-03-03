@@ -24,6 +24,15 @@ public class Formatter {
     private static final String CONNECTION_YES = "-----";
     private static final int MAX_LENGTH = 5;
 
+    private static final Formatter instance = new Formatter();
+
+    private Formatter() {
+    }
+
+    public static Formatter getInstance() {
+        return instance;
+    }
+
     public String formatUserNames(Users users) {
         List<String> userNames = users.getUsers().stream()
                 .map(User::getUserName)
