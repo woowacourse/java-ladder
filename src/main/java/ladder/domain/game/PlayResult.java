@@ -8,15 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class PlayResult {
-    private final Map<String, String> result;
-
-    PlayResult(final Map<String, String> result) {
-        this.result = new LinkedHashMap<>(result);
-    }
-
-    public PlayResult() {
-        this(Collections.emptyMap());
-    }
+    private final Map<String, String> result = new LinkedHashMap<>();
 
     public void recordResult(final List<Player> players, final List<String> prizes) {
         for (final Player player : players) {
