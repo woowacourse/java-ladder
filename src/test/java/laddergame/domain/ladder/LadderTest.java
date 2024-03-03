@@ -1,9 +1,10 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.gameelements.Position;
 import laddergame.domain.connectiongenerator.AllFalseConnectionGenerator;
+import laddergame.domain.connectiongenerator.TrueFalseConnectionGenerator;
 import laddergame.domain.gameelements.Player;
 import laddergame.domain.gameelements.Players;
+import laddergame.domain.gameelements.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,11 +13,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-// TODO LadderTest 손보기
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 class LadderTest {
 
     @Test
@@ -50,46 +52,6 @@ class LadderTest {
         assertThat(connectionElement).containsExactly(Connection.NOTCONNECTED);
     }
 
-//    @DisplayName("사다리 결과 반환 테스트 : 가로선이 없는 경우")
-//    @Test
-//    void getResultIndexTest1() {
-//        /*
-//             0    1    2
-//             |    |    |
-//             0    1    2
-//         */
-//
-//        Ladder testLadder = new Ladder(1, 3, new AllFalseConnectionGenerator());
-//
-//        List<Position> expectedResult = Stream.of(0, 1, 2)
-//                .map(Position::new)
-//                .toList();
-//        List<Position> actualResult = testLadder.getResult(3);
-//
-//        assertThat(actualResult)
-//                .containsExactlyElementsOf(expectedResult);
-//    }
-//
-//    @DisplayName("사다리 결과 반환 테스트 : 연결-비연결이 반복되는 경우")
-//    @Test
-//    void getResultIndexTest2() {
-//        /*
-//             0    1    2    3
-//             |----|    |----|
-//             1    0    3    2
-//         */
-//        Ladder testLadder = new Ladder(1, 4, new TrueFalseConnectionGenerator());
-//
-//        List<Position> expectedResult = Stream.of(1, 0, 3, 2)
-//                .map(Position::new)
-//                .toList();
-//        List<Position> actualResult = testLadder.getResult(4);
-//
-//        assertThat(actualResult)
-//                .containsExactlyElementsOf(expectedResult);
-//    }
-
-
     @DisplayName("사다리 결과 반환 테스트 : 가로선이 없는 경우")
     @Test
     void getResultIndexTest1() {
@@ -100,19 +62,35 @@ class LadderTest {
          */
 
         Ladder testLadder = new Ladder(1, 3, new AllFalseConnectionGenerator());
-
-        List<Position> expectedResult = Stream.of(0, 1, 2)
-                .map(Position::new)
-                .toList();
-
         Players testPlayers = new Players(List.of("0", "1", "2"));
         testLadder.getResult(testPlayers);
-        List<Position> actualResult = testPlayers.getPlayers()
-                .stream()
-                .map(Player::getPlayerPosition)
-                .toList();
+        List<Player> resultPlayers = testPlayers.getPlayers();
 
-        assertThat(actualResult)
-                .containsExactlyElementsOf(expectedResult);
+        assertAll(
+                () -> assertTrue(() -> resultPlayers.get(0).getPlayerPosition().isSame(new Position(0))),
+                () -> assertTrue(() -> resultPlayers.get(1).getPlayerPosition().isSame(new Position(1))),
+                () -> assertTrue(() -> resultPlayers.get(2).getPlayerPosition().isSame(new Position(2)))
+        );
+    }
+
+    @DisplayName("사다리 결과 반환 테스트 : 연결-비연결이 반복되는 경우")
+    @Test
+    void getResultIndexTest2() {
+        /*
+             0    1    2    3
+             |----|    |----|
+             1    0    3    2
+         */
+        Ladder testLadder = new Ladder(1, 4, new TrueFalseConnectionGenerator());
+        Players testPlayers = new Players(List.of("0", "1", "2", "3"));
+        testLadder.getResult(testPlayers);
+        List<Player> resultPlayers = testPlayers.getPlayers();
+
+        assertAll(
+                () -> assertTrue(() -> resultPlayers.get(0).getPlayerPosition().isSame(new Position(1))),
+                () -> assertTrue(() -> resultPlayers.get(1).getPlayerPosition().isSame(new Position(0))),
+                () -> assertTrue(() -> resultPlayers.get(2).getPlayerPosition().isSame(new Position(3))),
+                () -> assertTrue(() -> resultPlayers.get(3).getPlayerPosition().isSame(new Position(2)))
+        );
     }
 }

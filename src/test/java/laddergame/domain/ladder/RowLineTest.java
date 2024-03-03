@@ -1,12 +1,12 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.gameelements.Position;
 import laddergame.domain.connectiongenerator.AllTrueConnectionGenerator;
 import laddergame.domain.connectiongenerator.ConnectionGenerator;
 import laddergame.domain.connectiongenerator.RandomConnectionGenerator;
 import laddergame.domain.connectiongenerator.TrueFalseConnectionGenerator;
 import laddergame.domain.gameelements.Player;
 import laddergame.domain.gameelements.Players;
+import laddergame.domain.gameelements.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
