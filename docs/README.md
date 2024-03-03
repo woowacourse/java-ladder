@@ -72,6 +72,6 @@
 ## 리팩터링 목록
 
 - [x] players의 있는 view 로직을 dto로 분리하기
-- [ ] outputView.printLadderResult 메서드 파라미터 수 줄이기
+- [x] outputView.printLadderResult 메서드 파라미터 수 줄이기
 - [x] LadderResult 의 all 인지 검증하는 책임을 다른 곳으로 이동하기
 - [x] Ladder 가 players 와 prizes 를 가지고 있는 형태로 변경해보기

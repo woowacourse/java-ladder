@@ -10,11 +10,18 @@ public class OutputView {
     private static final String PRIZE_RESULT_MESSAGE = "실행 결과";
     private static final String RESULT_FORM = "%s : %s";
 
-    public void printLadderResult(final List<String> names, final List<String> lines, final List<String> prizes) {
+    public void printPlayerNamesAndLadder(final List<String> names, final List<String> lines) {
         System.out.println(FINAL_RESULT_MESSAGE);
         printPlayers(names);
         printLadder(names.get(0).length(), lines);
-        printPrizes(prizes);
+    }
+
+    public void printPrizes(final List<String> prizes) {
+        for (String name : prizes) {
+            System.out.printf(String.format("%-6s", name));
+        }
+        System.out.println();
+        System.out.println();
     }
 
     public void printAllPlayerResult(final Map<String, String> ladderResult) {
@@ -40,14 +47,6 @@ public class OutputView {
         for (String line : lines) {
             System.out.println(" ".repeat(paddingSize) + line);
         }
-    }
-
-    private void printPrizes(final List<String> prizes) {
-        for (String name : prizes) {
-            System.out.printf(String.format("%-6s", name));
-        }
-        System.out.println();
-        System.out.println();
     }
 
     private String formatNames(final List<String> names) {
