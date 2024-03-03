@@ -22,6 +22,16 @@ public class LadderPositions {
         this.positions = positions;
     }
 
+    public LadderPositions calculatePosition(Row row) {
+        List<Bridge> bridges = row.getBridges();
+        List<Integer> calculatedPosition = swapPosition(bridges);
+        return new LadderPositions(Collections.unmodifiableList(calculatedPosition));
+    }
+
+    public int count() {
+        return positions.size();
+    }
+
     public List<Integer> getPositions() {
         return positions;
     }
@@ -29,17 +39,7 @@ public class LadderPositions {
     public Integer getPosition(int index) {
         return positions.get(index);
     }
-
-    public int count() {
-        return positions.size();
-    }
-
-    public LadderPositions calculatePosition(Row row) {
-        List<Bridge> bridges = row.getBridges();
-        List<Integer> calculatedPosition = swapPosition(bridges);
-        return new LadderPositions(Collections.unmodifiableList(calculatedPosition));
-    }
-
+    
     private void validatePositionsLength(int length) {
         if (length < MIN_LADDER_POSITIONS_LENGTH || length > MAX_LADDER_POSITIONS_LENGTH) {
             throw new LadderGameException(ExceptionType.INVALID_LADDER_POSITIONS_RANGE);
