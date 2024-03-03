@@ -33,10 +33,10 @@ public class LadderTest {
                 new LadderRow(List.of(true, false, false, true)),
                 new LadderRow(List.of(true, false, true, false))));
 
-        assertAll(() -> Assertions.assertThat(ladder.moveAll(new Position(0))).isEqualTo(new Position(0)),
-                () -> Assertions.assertThat(ladder.moveAll(new Position(1))).isEqualTo(new Position(1)),
-                () -> Assertions.assertThat(ladder.moveAll(new Position(2))).isEqualTo(new Position(3)),
-                () -> Assertions.assertThat(ladder.moveAll(new Position(3))).isEqualTo(new Position(4)),
-                () -> Assertions.assertThat(ladder.moveAll(new Position(4))).isEqualTo(new Position(2)));
+        assertAll(() -> Assertions.assertThat(ladder.findLinkedPosition(new Position(0))).isEqualTo(new Position(0)),
+                () -> Assertions.assertThat(ladder.findLinkedPosition(new Position(1))).isEqualTo(new Position(1)),
+                () -> Assertions.assertThat(ladder.findLinkedPosition(new Position(2))).isEqualTo(new Position(3)),
+                () -> Assertions.assertThat(ladder.findLinkedPosition(new Position(3))).isEqualTo(new Position(4)),
+                () -> Assertions.assertThat(ladder.findLinkedPosition(new Position(4))).isEqualTo(new Position(2)));
     }
 }

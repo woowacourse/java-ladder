@@ -37,7 +37,7 @@ public class LadderRow {
         }
     }
 
-    public Position moveLinkedPosition(Position position) {
+    public Position findLinkedPosition(Position position) {
         if (isLeftConnected(position)) {
             return position.decrement();
         }

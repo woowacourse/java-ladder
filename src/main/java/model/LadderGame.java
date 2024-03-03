@@ -20,7 +20,7 @@ public class LadderGame {
 
     public Result findParticipantResult(Participant participant) {
         Position participantsPosition = participants.findPosition(participant);
-        Position resultPosition = ladder.moveAll(participantsPosition);
+        Position resultPosition = ladder.findLinkedPosition(participantsPosition);
         return results.findResult(resultPosition);
     }
 

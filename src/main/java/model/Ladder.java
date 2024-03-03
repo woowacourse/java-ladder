@@ -28,10 +28,10 @@ public class Ladder {
         return ladderRows.get(0).size();
     }
 
-    public Position moveAll(Position participantPosition) {
-        Position currentPosition = ladderRows.get(0).moveLinkedPosition(participantPosition);
+    public Position findLinkedPosition(Position position) {
+        Position currentPosition = ladderRows.get(0).findLinkedPosition(position);
         for (int i = 1; i < ladderRows.size(); i++) {
-            currentPosition = ladderRows.get(i).moveLinkedPosition(currentPosition);
+            currentPosition = ladderRows.get(i).findLinkedPosition(currentPosition);
         }
         return currentPosition;
     }
