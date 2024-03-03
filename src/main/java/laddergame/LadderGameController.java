@@ -42,7 +42,7 @@ public class LadderGameController {
             outputView.writeAllResultItems(playersResult.getAllResult());
             return;
         }
-        ResultItem item = playersResult.findItemByPlayerName(name);
+        ResultItem item = playersResult.findItemByName(name);
         outputView.writeResultItem(item);
     }
 

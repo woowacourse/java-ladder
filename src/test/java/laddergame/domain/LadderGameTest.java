@@ -55,9 +55,9 @@ public class LadderGameTest {
         final LadderGame ladderGame = new LadderGame(players, ladder, List.of("1","2","3","4"));
         final PlayersResult playersResult = ladderGame.climbLadder();
 
-        assertEquals(playersResult.findItemByPlayerName("name1"), ladderGame.getItems().get(0));
-        assertEquals(playersResult.findItemByPlayerName("name2"), ladderGame.getItems().get(1));
-        assertEquals(playersResult.findItemByPlayerName("name3"), ladderGame.getItems().get(2));
-        assertEquals(playersResult.findItemByPlayerName("name4"), ladderGame.getItems().get(3));
+        assertEquals(playersResult.findItemByName("name1"), ladderGame.getItems().get(0));
+        assertEquals(playersResult.findItemByName("name2"), ladderGame.getItems().get(1));
+        assertEquals(playersResult.findItemByName("name3"), ladderGame.getItems().get(2));
+        assertEquals(playersResult.findItemByName("name4"), ladderGame.getItems().get(3));
     }
 }
