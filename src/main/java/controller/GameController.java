@@ -63,11 +63,6 @@ public class GameController {
         return Ladder.of(height, members.getCount(), new RandomConnectionStrategy());
     }
 
-    private ResultTarget makeResultTarget(Members members) {
-        String rawTargetName = inputView.readTarget();
-        return ResultTarget.of(rawTargetName, members.getMembers());
-    }
-
     private void manageResult(Members members, GameResult gameResult) {
         ResultTarget resultTarget = showResult(members, gameResult);
         int count = MAX_GAME_COUNT;
@@ -81,5 +76,10 @@ public class GameController {
         Map<String, Result> result = gameResult.getResultByTarget(resultTarget);
         outputView.printResult(result);
         return resultTarget;
+    }
+
+    private ResultTarget makeResultTarget(Members members) {
+        String rawTargetName = inputView.readTarget();
+        return ResultTarget.of(rawTargetName, members.getMembers());
     }
 }
