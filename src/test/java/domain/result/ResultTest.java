@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static domain.result.Result.VALUE_LENGTH_RANGE_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -24,6 +25,6 @@ public class ResultTest {
     void checkValueLengthWithException(String value) {
         assertThatThrownBy(() -> new Result(value))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("실행 결과는 1~5자 사이여야 합니다.");
+                .hasMessage(VALUE_LENGTH_RANGE_MESSAGE);
     }
 }

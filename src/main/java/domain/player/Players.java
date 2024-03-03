@@ -4,7 +4,9 @@ import java.util.List;
 
 public class Players {
 
-    private static final int MIN_PLAYER_SIZE = 2;
+    protected static final int MIN_PLAYER_SIZE = 2;
+    protected static final String PLAYER_DUPLICATED_MESSAGE = "사용자는 중복될 수 없습니다.";
+    protected static final String MIN_PLAYER_SIZE_MESSAGE = String.format("사용자는 최소 %d명이어야 합니다.", MIN_PLAYER_SIZE);
 
     private final List<Player> players;
 
@@ -17,13 +19,13 @@ public class Players {
 
     private void validateDuplicated(List<String> names) {
         if (getUniqueSize(names) != names.size()) {
-            throw new IllegalArgumentException("사용자는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(PLAYER_DUPLICATED_MESSAGE);
         }
     }
 
     private void validatePlayerSize(List<String> names) {
         if (names.size() < MIN_PLAYER_SIZE) {
-            throw new IllegalArgumentException(String.format("사용자는 최소 %d명이어야 합니다.", MIN_PLAYER_SIZE));
+            throw new IllegalArgumentException(MIN_PLAYER_SIZE_MESSAGE);
         }
     }
 

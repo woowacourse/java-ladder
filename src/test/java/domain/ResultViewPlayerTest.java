@@ -9,11 +9,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+import static domain.ResultViewPlayer.EXISTING_PLAYER_OR_COMMEND_MESSAGE;
+
 class ResultViewPlayerTest {
 
     @DisplayName("결과를 볼 사용자는 all 또는 기존 사용자들의 이름만 허용한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"산초", "all"})
+    @ValueSource(strings = {"산초", "아톰", "all"})
     void create(String name) {
         List<String> names = List.of("산초", "아톰");
         Players players = new Players(names);
@@ -31,6 +33,6 @@ class ResultViewPlayerTest {
 
         Assertions.assertThatThrownBy(() -> new ResultViewPlayer(name, players))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("all이나 기존 사용자 이름을 입력해야 합니다.");
+                .hasMessage(EXISTING_PLAYER_OR_COMMEND_MESSAGE);
     }
 }

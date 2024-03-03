@@ -4,7 +4,8 @@ import domain.player.Players;
 
 public class ResultViewPlayer {
 
-    private static final String ALL_COMMEND = "all";
+    protected static final String ALL_COMMEND = "all";
+    protected static final String EXISTING_PLAYER_OR_COMMEND_MESSAGE = String.format("%s이나 기존 사용자 이름을 입력해야 합니다.", ALL_COMMEND);
 
     private final String name;
 
@@ -16,8 +17,7 @@ public class ResultViewPlayer {
 
     private static void validateExistingPlayerOrCommend(String name, Players players) {
         if (!players.isPlayerExistByName(name) && !name.equals(ALL_COMMEND)) {
-            String message = String.format("%s이나 기존 사용자 이름을 입력해야 합니다.", ALL_COMMEND);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException(EXISTING_PLAYER_OR_COMMEND_MESSAGE);
         }
     }
 

@@ -4,8 +4,10 @@ import java.util.Objects;
 
 public class Result {
 
-    private static final int MIN_VALUE_LENGTH = 1;
-    private static final int MAX_VALUE_LENGTH = 5;
+    protected static final int MIN_VALUE_LENGTH = 1;
+    protected static final int MAX_VALUE_LENGTH = 5;
+    protected static final String VALUE_LENGTH_RANGE_MESSAGE
+            = String.format("실행 결과는 %d~%d자 사이여야 합니다.", MIN_VALUE_LENGTH, MAX_VALUE_LENGTH);
 
     private final String value;
 
@@ -16,8 +18,7 @@ public class Result {
 
     private void validateLength(String value) {
         if (value.length() < MIN_VALUE_LENGTH || MAX_VALUE_LENGTH < value.length()) {
-            String message = String.format("실행 결과는 %d~%d자 사이여야 합니다.", MIN_VALUE_LENGTH, MAX_VALUE_LENGTH);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException(VALUE_LENGTH_RANGE_MESSAGE);
         }
     }
 

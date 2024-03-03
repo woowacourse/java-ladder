@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static domain.result.Results.RESULT_SIZE_EQUAL_TO_PLAYER_SIZE_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -28,6 +29,6 @@ class ResultsTest {
 
         assertThatThrownBy(() -> new Results(resultValues, playerCount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("실행 결과의 수는 사용자들의 수와 동일해야 합니다.");
+                .hasMessage(RESULT_SIZE_EQUAL_TO_PLAYER_SIZE_MESSAGE);
     }
 }
