@@ -20,12 +20,12 @@ public class LadderController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private LadderGame ladderGame;
+    private final LadderGame ladderGame;
 
     public LadderController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        initializeGame();
+        this.ladderGame = new LadderGame(new GameResource(), new GameResult());
     }
 
     public void run() {
@@ -35,10 +35,6 @@ public class LadderController {
         showGameResult();
 
         inputView.closeScanner();
-    }
-
-    private void initializeGame() {
-        this.ladderGame = new LadderGame(new GameResource(), new GameResult());
     }
 
     private void registerResource() {
