@@ -25,9 +25,9 @@ public class LadderGame {
         List<Line> lines = ladder.getLines();
         Line line = lines.get(height);
 
-        Line line1 = line.addGap();
+        Line lineAddGap = line.addGap();
         for (int i = 0; i < line.getSticks().size(); i++) {
-            int movePosition = line1.move(i);
+            int movePosition = lineAddGap.move(i);
             Collections.swap(playerNames, i, movePosition);
         }
         return playerNames;
