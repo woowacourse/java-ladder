@@ -9,7 +9,10 @@ import domain.player.Player;
 import domain.player.Players;
 import domain.result.Result;
 import domain.result.Results;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -49,8 +52,8 @@ class LadderGameRecordTest {
             Map<Player, Result> playerResult = ladderGameRecord.getAllPlayerResults();
 
             assertAll(
-                () -> assertThat(playerResult).containsEntry(new Player("산초"), new Result("꽝")),
-                () -> assertThat(playerResult).containsEntry(new Player("아톰"), new Result("당첨"))
+                    () -> assertThat(playerResult).containsEntry(new Player("산초"), new Result("꽝")),
+                    () -> assertThat(playerResult).containsEntry(new Player("아톰"), new Result("당첨"))
             );
         }
 
