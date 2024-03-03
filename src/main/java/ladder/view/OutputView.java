@@ -15,18 +15,18 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public void printGame(People people, Ladder ladder, Results results) {
-        printPeople(people);
+    public void printGame(Players players, Ladder ladder, Results results) {
+        printPeople(players);
         printLadder(ladder);
         printResults(results);
     }
 
-    private void printPeople(People people) {
+    private void printPeople(Players players) {
         System.out.println();
         System.out.println("사다리 결과");
         System.out.println();
 
-        for (Target name : people.getNames()) {
+        for (Name name : players.getNames()) {
             String formattedName = String.format(FORMAT, name);
             System.out.print(formattedName);
         }
@@ -63,18 +63,18 @@ public class OutputView {
     }
 
     public void printPlayResult(PlayResults playResults) {
-        for (Target name : playResults.getNames()) {
+        for (Name name : playResults.getNames()) {
             String formattedResult = getFormattedResult(playResults, name);
             System.out.println(formattedResult);
         }
     }
 
-    private String getFormattedResult(PlayResults playResults, Target target) {
+    private String getFormattedResult(PlayResults playResults, Name name) {
         StringJoiner stringJoiner = new StringJoiner(" : ");
         if (playResults.size() > 1) {
-            stringJoiner.add(target.toString());
+            stringJoiner.add(name.toString());
         }
-        Result result = playResults.find(target);
+        Result result = playResults.find(name);
         return stringJoiner.add(result.toString()).toString();
     }
 }

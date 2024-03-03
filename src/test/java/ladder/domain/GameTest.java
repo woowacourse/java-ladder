@@ -26,7 +26,7 @@ class GameTest {
         }
     };
 
-    private People people;
+    private Players players;
     private Results results;
     private Ladder ladder;
     private final Result result1 = new Result("꽝");
@@ -36,11 +36,11 @@ class GameTest {
 
     @BeforeEach
     void setUp() {
-        Name pobi = new Name("pobi");
-        Name honux = new Name("honux");
-        Name crong = new Name("crong");
-        Name jk = new Name("jk");
-        people = new People(List.of(pobi, honux, crong, jk));
+        Player pobi = new Player("pobi");
+        Player honux = new Player("honux");
+        Player crong = new Player("crong");
+        Player jk = new Player("jk");
+        players = new Players(List.of(pobi, honux, crong, jk));
 
         results = new Results(List.of(
                 result1, result2, result3, result4
@@ -55,25 +55,25 @@ class GameTest {
     @DisplayName("이름으로 실행 결과를 도출한다")
     void playOnTarget() {
         // given
-        Game game = new Game(people, results, ladder);
-        Target target = new Target("pobi");
+        Game game = new Game(players, results, ladder);
+        Name name = new Name("pobi");
 
         // when
-        PlayResults playResults = game.play(target);
+        PlayResults playResults = game.play(name);
 
         // then
         assertThat(playResults)
                 .extracting("value")
-                .asInstanceOf(InstanceOfAssertFactories.map(Name.class, Result.class))
-                .containsEntry(new Name("pobi"), result3);
+                .asInstanceOf(InstanceOfAssertFactories.map(Player.class, Result.class))
+                .containsEntry(new Player("pobi"), result3);
     }
 
     @Test
     @DisplayName("모든 이름으로 실행 결과를 도출한다")
     void playOnAllTarget() {
         // given
-        Game game = new Game(people, results, ladder);
-        Target all = new Target("all");
+        Game game = new Game(players, results, ladder);
+        Name all = new Name("all");
 
         // when
         PlayResults playResults = game.play(all);
@@ -81,12 +81,12 @@ class GameTest {
         // then
         assertThat(playResults)
                 .extracting("value")
-                .asInstanceOf(InstanceOfAssertFactories.map(Name.class, Result.class))
+                .asInstanceOf(InstanceOfAssertFactories.map(Player.class, Result.class))
                 .containsAllEntriesOf(Map.of(
-                        new Name("pobi"), result3,
-                        new Name("honux"), result1,
-                        new Name("crong"), result4,
-                        new Name("jk"), result2
+                        new Player("pobi"), result3,
+                        new Player("honux"), result1,
+                        new Player("crong"), result4,
+                        new Player("jk"), result2
                 ));
     }
 }

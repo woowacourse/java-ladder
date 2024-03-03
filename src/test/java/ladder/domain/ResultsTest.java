@@ -59,12 +59,12 @@ class ResultsTest {
     @DisplayName("이름을 입력하면 실행결과를 알 수 있다.")
     void findResultByName() {
         // given
-        People people = new People(
+        Players players = new Players(
                 List.of(
-                        new Name("pobi"),
-                        new Name("honux"),
-                        new Name("crong"),
-                        new Name("jk")
+                        new Player("pobi"),
+                        new Player("honux"),
+                        new Player("crong"),
+                        new Player("jk")
                 )
         );
         Result result1 = new Result("꽝");
@@ -73,7 +73,7 @@ class ResultsTest {
         Result result4 = new Result("3000");
         Results results = new Results(List.of(result1, result2, result3, result4), 4);
 
-        int startPosition = people.findPosition(new Name("crong"));
+        int startPosition = players.findPosition(new Player("crong"));
         int resultPosition = ladder.ride(startPosition);
 
         // when
@@ -87,17 +87,17 @@ class ResultsTest {
     @DisplayName("결과의 수와 사람 수가 다르면 예외가 발생한다.")
     void resultCountExceptionTest() {
         // given
-        People people = new People(
+        Players players = new Players(
                 List.of(
-                        new Name("pobi"),
-                        new Name("honux"),
-                        new Name("crong")
+                        new Player("pobi"),
+                        new Player("honux"),
+                        new Player("crong")
                 )
         );
 
         // when & then
         assertThatThrownBy(
-                () -> new Results(List.of(new Result("꽝"), new Result("5000")), people.count())
+                () -> new Results(List.of(new Result("꽝"), new Result("5000")), players.count())
         ).isInstanceOf(IllegalArgumentException.class);
     }
 }

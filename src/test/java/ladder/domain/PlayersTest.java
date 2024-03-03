@@ -9,43 +9,43 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-class PeopleTest {
+class PlayersTest {
 
-    private List<Name> names;
+    private List<Player> players;
 
     @BeforeEach
     void setUp() {
-        Name pobi = new Name("pobi");
-        Name honux = new Name("honux");
-        Name crong = new Name("crong");
-        Name jk = new Name("jk");
-        names = new ArrayList<>(List.of(pobi, honux, crong, jk));
+        Player pobi = new Player("pobi");
+        Player honux = new Player("honux");
+        Player crong = new Player("crong");
+        Player jk = new Player("jk");
+        players = new ArrayList<>(List.of(pobi, honux, crong, jk));
     }
 
     @Test
     @DisplayName("사람 이름이 중복이라면 예외가 발생한다.")
     void createDuplicatedNames() {
-        names.add(new Name("pobi"));
+        players.add(new Player("pobi"));
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new People(names));
+                .isThrownBy(() -> new Players(players));
     }
 
     @Test
     @DisplayName("이름이 2개 이하라면 예외가 발생한다.")
     void nameLengthExceptionTest() {
-        List<Name> towNames = names.subList(0, 2);
+        List<Player> towPlayers = players.subList(0, 2);
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new People(towNames));
+                .isThrownBy(() -> new Players(towPlayers));
     }
 
     @Test
     @DisplayName("가장 긴 이름의 길이를 찾을 수 있다.")
     void findMaxNameLength() {
         // given
-        People people = new People(names);
+        Players players = new Players(this.players);
 
         // when
-        int maxNameLength = people.findMaxNameLength();
+        int maxNameLength = players.findMaxNameLength();
 
         // then
         assertThat(maxNameLength).isEqualTo(5);
@@ -55,11 +55,11 @@ class PeopleTest {
     @DisplayName("이름으로 사다리 타기 전 위치를 알 수 있다.")
     void find() {
         // given
-        People people = new People(names);
-        Name crong = new Name("crong");
+        Players players = new Players(this.players);
+        Player crong = new Player("crong");
 
         // when
-        int position = people.findPosition(crong);
+        int position = players.findPosition(crong);
 
         // then
         assertThat(position).isEqualTo(2);
@@ -69,10 +69,10 @@ class PeopleTest {
     @DisplayName("존재하지 않는 참여자의 위치를 찾으면 예외가 발생한다")
     void TargetNotFoundExceptionTest() {
         // given
-        People people = new People(names);
+        Players players = new Players(this.players);
 
         // when && then
-        assertThatThrownBy(() -> people.findPosition(new Target("any")))
+        assertThatThrownBy(() -> players.findPosition(new Name("any")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

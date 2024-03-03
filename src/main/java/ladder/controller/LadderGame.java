@@ -14,40 +14,40 @@ public class LadderGame {
     private final RandomPointsGenerator randomPointsGenerator = new RandomPointsGenerator();
 
     public void run() {
-        People people = createPeople();
-        Results results = createResults(people.count());
+        Players players = createPeople();
+        Results results = createResults(players.count());
         Height height = createHeight();
 
-        List<Line> lines = createLines(people, height);
+        List<Line> lines = createLines(players, height);
         Ladder ladder = new Ladder(lines);
 
-        outputView.printGame(people, ladder, results);
+        outputView.printGame(players, ladder, results);
 
-        Game game = new Game(people, results, ladder);
+        Game game = new Game(players, results, ladder);
         play(game);
     }
 
     private void play(Game game) {
-        Target target = createTarget();
-        PlayResults playResult = game.play(target);
+        Name name = createTarget();
+        PlayResults playResult = game.play(name);
         outputView.printPlayResultNotice();
         outputView.printPlayResult(playResult);
-        if (target.isAll()) {
+        if (name.isAll()) {
             return;
         }
         play(game);
     }
 
-    private People createPeople() {
+    private Players createPeople() {
         return retryWhileException(this::readNames);
     }
 
-    private People readNames() {
+    private Players readNames() {
         List<String> rawNames = inputView.readNames();
-        List<Name> names = rawNames.stream()
-                .map(Name::new)
+        List<Player> players = rawNames.stream()
+                .map(Player::new)
                 .toList();
-        return new People(names);
+        return new Players(players);
     }
 
     private Results createResults(int countStandard) {
@@ -75,9 +75,9 @@ public class LadderGame {
         }
     }
 
-    private Target createTarget() {
+    private Name createTarget() {
         String target = retryWhileException(inputView::readTarget);
-        return new Target(target);
+        return new Name(target);
     }
 
     private <T> T retryWhileException(Supplier<T> callback) {
@@ -89,9 +89,9 @@ public class LadderGame {
         }
     }
 
-    private List<Line> createLines(People people, Height height) {
+    private List<Line> createLines(Players players, Height height) {
         List<Line> lines = new ArrayList<>();
-        int size = people.count();
+        int size = players.count();
         while (!height.equals(lines.size())) {
             List<Point> points = randomPointsGenerator.generate(size);
             lines.add(new Line(points));

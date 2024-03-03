@@ -5,35 +5,35 @@ import java.util.Map;
 
 public class Game {
 
-    private final People people;
+    private final Players players;
     private final Results results;
     private final Ladder ladder;
 
-    public Game(People people, Results results, Ladder ladder) {
-        this.people = people;
+    public Game(Players players, Results results, Ladder ladder) {
+        this.players = players;
         this.results = results;
         this.ladder = ladder;
     }
 
-    public PlayResults play(Target target) {
-        if (target.isAll()) {
+    public PlayResults play(Name name) {
+        if (name.isAll()) {
             return playAll();
         }
-        Result result = playOne(target);
-        return new PlayResults(Map.of(target, result));
+        Result result = playOne(name);
+        return new PlayResults(Map.of(name, result));
     }
 
-    private Result playOne(Target target) {
-        int startPosition = people.findPosition(target);
+    private Result playOne(Name name) {
+        int startPosition = players.findPosition(name);
         int resultPosition = ladder.ride(startPosition);
         return results.find(resultPosition);
     }
 
     private PlayResults playAll() {
-        Map<Target, Result> results = new LinkedHashMap<>();
-        for (Target target : people.getNames()) {
-            Result result = playOne(target);
-            results.put(target, result);
+        Map<Name, Result> results = new LinkedHashMap<>();
+        for (Name name : players.getNames()) {
+            Result result = playOne(name);
+            results.put(name, result);
         }
         return new PlayResults(results);
     }

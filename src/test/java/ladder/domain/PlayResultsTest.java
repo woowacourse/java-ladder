@@ -15,7 +15,7 @@ class PlayResultsTest {
     void size() {
         // given
         PlayResults playResults = new PlayResults(Map.of(
-                new Name("이름"), new Result("결과"))
+                new Player("이름"), new Result("결과"))
         );
 
         // when
@@ -30,15 +30,15 @@ class PlayResultsTest {
     void keySet() {
         // given
         PlayResults playResults = new PlayResults(Map.of(
-                new Name("이름1"), new Result("결과1"),
-                new Name("이름2"), new Result("결과2")
+                new Player("이름1"), new Result("결과1"),
+                new Player("이름2"), new Result("결과2")
         ));
 
         // when
-        Set<Target> names = playResults.getNames();
+        Set<Name> names = playResults.getNames();
 
         // then
-        assertThat(names).contains(new Name("이름1"), new Name("이름2"));
+        assertThat(names).contains(new Player("이름1"), new Player("이름2"));
     }
 
     @Test
@@ -47,12 +47,12 @@ class PlayResultsTest {
         // given
         Result result2 = new Result("결과2");
         PlayResults playResults = new PlayResults(Map.of(
-                new Name("이름1"), new Result("결과1"),
-                new Name("이름2"), result2
+                new Player("이름1"), new Result("결과1"),
+                new Player("이름2"), result2
         ));
 
         // when
-        Result result = playResults.find(new Name("이름2"));
+        Result result = playResults.find(new Player("이름2"));
 
         // then
         assertThat(result).isEqualTo(result2);

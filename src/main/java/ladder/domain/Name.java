@@ -1,26 +1,39 @@
 package ladder.domain;
 
-public class Name extends Target {
+import java.util.Objects;
 
-    private static final int MIN_NAME_LENGTH = 1;
-    private static final int MAX_NAME_LENGTH = 5;
+public class Name {
+
+    static final String ALL = "all";
+
+    final String value;
 
     public Name(String value) {
-        super(value);
-        validateLength();
-        if (ALL.equals(value)) {
-            throw new IllegalArgumentException("이름은 all일 수 없습니다");
-        }
+        this.value = value.trim();
     }
 
-    private void validateLength() {
-        int nameLength = value.length();
-        if (nameLength > MAX_NAME_LENGTH || nameLength < MIN_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름은 공백을 제외한 최소 1글자 최대 5글자까지 부여할 수 있습니다.");
-        }
+    public boolean isAll() {
+        return ALL.equals(value);
     }
 
-    public int getLength() {
-        return value.length();
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that instanceof Name name) {
+            return Objects.equals(this.value, name.value);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(value);
+    }
+
+    @Override
+    public String toString() {
+        return value;
     }
 }
