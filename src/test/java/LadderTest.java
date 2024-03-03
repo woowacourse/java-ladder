@@ -1,9 +1,13 @@
-import domain.*;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import domain.RandomBooleanSupplier;
+import domain.ladder.Height;
+import domain.ladder.Ladder;
+import domain.player.PlayerCount;
+import domain.player.Players;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
 
@@ -12,11 +16,9 @@ public class LadderTest {
     void makeLadder() {
         // given
         final Ladder ladder = Ladder.create(new Height(4), PlayerCount.fromPlayers(Players.from(List.of("a", "b", "c"))),
-                new RandomStepGenerator());
+                new RandomBooleanSupplier());
 
         // when & then
-        assertThat(ladder).extracting("lines")
-                .asList()
-                .hasSize(4);
+        assertThat(ladder.getRows()).hasSize(4);
     }
 }

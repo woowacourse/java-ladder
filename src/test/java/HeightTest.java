@@ -1,4 +1,4 @@
-import domain.Height;
+import domain.ladder.Height;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

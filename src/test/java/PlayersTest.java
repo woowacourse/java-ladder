@@ -2,7 +2,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import domain.Players;
+import domain.player.Players;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,9 +24,29 @@ public class PlayersTest {
     @DisplayName("참가자들의 인원수를 반환한다.")
     void getCount() {
         // given
-        Players players = Players.from(List.of("kirby", "bito", "ready"));
+        final Players players = Players.from(List.of("kirby", "bito", "ready"));
 
         // when & then
         assertThat(players.getCount()).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("존재하지 않는 사용자가 입력되면 예외를 발생한다.")
+    void validateNotExistPlayer() {
+        // given
+        final Players players = Players.from(List.of("pobi", "kirby"));
+
+        // when & then
+        assertThatIllegalArgumentException().isThrownBy(() -> players.validateExistPlayer("hi"));
+    }
+
+    @Test
+    @DisplayName("존재하는 사용자가 입력되면 예외를 발생하지 않는다.")
+    void validateExistPlayer() {
+        // given
+        final Players players = Players.from(List.of("pobi", "kirby"));
+
+        // when & then
+        assertThatCode(() -> players.validateExistPlayer("pobi")).doesNotThrowAnyException();
     }
 }
