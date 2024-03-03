@@ -38,7 +38,7 @@ public class LadderController {
     }
 
     private void initializeGame() {
-        ladderGame = new LadderGame(new GameResource(), new GameResult());
+        this.ladderGame = new LadderGame(new GameResource(), new GameResult());
     }
 
     private void registerResource() {
