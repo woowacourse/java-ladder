@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class OutputView {
     protected static final String NEWLINE = System.lineSeparator();
+    private static final String EXECUTION_RESULT_MESSAGE = "실행 결과";
     private static final String ERROR_PREFIX = "[ERROR]";
 
     private final MessageGenerator messageGenerator;
@@ -40,10 +41,16 @@ public class OutputView {
         System.out.println(prizesMessage);
     }
 
-    public void printResult(final Map<String, String> result, final String name) {
-        printMessageWithBlankLine("실행 결과");
+    public void printPlayerResult(final String resultMessage) {
+        printMessageWithBlankLine(EXECUTION_RESULT_MESSAGE);
 
-        final String resultMessage = messageGenerator.generateResultMessage(result, name);
+        System.out.println(resultMessage);
+    }
+
+    public void printAllPlayerResult(final Map<String, String> result) {
+        printMessageWithBlankLine(EXECUTION_RESULT_MESSAGE);
+
+        final String resultMessage = messageGenerator.generateAllPlayerResultMessage(result);
         System.out.println(resultMessage);
     }
 

@@ -1,7 +1,6 @@
 package ladder.domain.game;
 
 import ladder.domain.player.Player;
-import ladder.utils.Command;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -10,11 +9,9 @@ import java.util.Map;
 
 public class PlayResult {
     private final Map<String, String> result;
-    private Status status;
 
     PlayResult(final Map<String, String> result) {
         this.result = new LinkedHashMap<>(result);
-        this.status = Status.EXECUTABLE;
     }
 
     public PlayResult() {
@@ -28,36 +25,14 @@ public class PlayResult {
         }
     }
 
-    public boolean canAskResult() {
-        return status.isExecutable();
-    }
-
-    public boolean hasResultOf(final String name) {
-        return isExpressionOfAllPlayer(name) || result.containsKey(name);
-    }
-
-    public Map<String, String> checkPlayerResultByName(final String name) {
-        if (isExpressionOfAllPlayer(name)) {
-            status = Status.NON_EXECUTABLE;
-            return result;
+    public String findPlayerResultByName(final String name) {
+        if (result.containsKey(name)) {
+            return result.get(name);
         }
-        return Map.of(name, result.get(name));
-    }
-
-    private boolean isExpressionOfAllPlayer(final String name) {
-        return Command.EXPRESSION_OF_ALL_PLAYER.isMatch(name);
+        throw new IllegalArgumentException("존재하지 않는 참여자의 이름입니다. (입력된 이름 : " + name + ")");
     }
 
     public Map<String, String> getResult() {
         return Collections.unmodifiableMap(result);
-    }
-
-    private enum Status {
-        EXECUTABLE,
-        NON_EXECUTABLE;
-
-        public boolean isExecutable() {
-            return this == EXECUTABLE;
-        }
     }
 }

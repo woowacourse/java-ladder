@@ -1,7 +1,6 @@
 package ladder.view;
 
 import ladder.dto.LineDto;
-import ladder.utils.Command;
 
 import java.util.List;
 import java.util.Map;
@@ -44,14 +43,7 @@ public class MessageGenerator {
         return LADDER_RUNG_EMPTY;
     }
 
-    public String generateResultMessage(final Map<String, String> result, final String name) {
-        if (Command.EXPRESSION_OF_ALL_PLAYER.isMatch(name)) {
-            return generateAllResultMessage(result);
-        }
-        return result.get(name);
-    }
-
-    private String generateAllResultMessage(final Map<String, String> result) {
+    public String generateAllPlayerResultMessage(final Map<String, String> result) {
         return result.keySet()
                 .stream()
                 .map(name -> generateResultMessageOf(name, result.get(name)))

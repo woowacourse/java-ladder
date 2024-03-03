@@ -1,6 +1,7 @@
 package ladder.domain.game;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -10,14 +11,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class PlayResultTest {
 
-    @ParameterizedTest
-    @CsvSource(value = {"pobi, true", "all, true", "nono, false"})
+    @Test
     @DisplayName("참여자 이름에 해당하는 결과가 존재하는지 판별할 수 있다.")
-    void hasResultOf(String name, boolean expected) {
+    void findPlayerResultByName() {
         PlayResult playResult = new PlayResult(Map.of("pobi", "5000"));
-        boolean actual = playResult.hasResultOf(name);
+        String result = playResult.findPlayerResultByName("pobi");
 
-        assertThat(actual).isEqualTo(expected);
+        assertThat(result).isEqualTo("5000");
     }
 
     @ParameterizedTest
@@ -29,8 +29,7 @@ class PlayResultTest {
                 "crong", "꽝",
                 "honux", "3000",
                 "jk", "꽝"));
-        Map<String, String> result = playResult.checkPlayerResultByName(name);
-        String actual = result.get(name);
+        String actual = playResult.findPlayerResultByName(name);
 
         assertThat(actual).isEqualTo(expected);
     }

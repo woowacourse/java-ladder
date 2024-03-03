@@ -9,12 +9,12 @@ import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
 import ladder.dto.LadderDto;
 import ladder.dto.PlayersDto;
+import ladder.utils.Command;
 import ladder.utils.Converter;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
 import java.util.List;
-import java.util.Map;
 import java.util.function.Supplier;
 
 public class LadderController {
@@ -35,7 +35,7 @@ public class LadderController {
 
         final LadderGame ladderGame = new LadderGame(ladder, players, prizes);
         final PlayResult playResult = ladderGame.play();
-        showResult(playResult);
+        retryOnException(() -> showResult(playResult));
     }
 
     public Players readPlayers() {
@@ -66,21 +66,16 @@ public class LadderController {
     }
 
     private void showResult(final PlayResult playResult) {
-        while (playResult.canAskResult()) {
-            final String name = retryOnException(() -> readNameToSeeResult(playResult));
-            final Map<String, String> result = playResult.checkPlayerResultByName(name);
+        String name = inputView.readNameToSeeResult();
 
-            outputView.printResult(result, name);
+        while (!Command.EXPRESSION_OF_ALL_PLAYER.isMatch(name)) {
+            final String result = playResult.findPlayerResultByName(name);
+
+            outputView.printPlayerResult(result);
+            name = inputView.readNameToSeeResult();
         }
-    }
 
-    private String readNameToSeeResult(final PlayResult playResult) {
-        final String name = inputView.readNameToSeeResult();
-
-        if (playResult.hasResultOf(name)) {
-            return name;
-        }
-        throw new IllegalArgumentException("존재하지 않는 참여자의 이름입니다. (입력된 이름 : " + name + ")");
+        outputView.printAllPlayerResult(playResult.getResult());
     }
 
     private <T> T retryOnException(final Supplier<T> supplier) {
@@ -89,6 +84,15 @@ public class LadderController {
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return retryOnException(supplier);
+        }
+    }
+
+    private void retryOnException(final Runnable runnable) {
+        try {
+            runnable.run();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            retryOnException(runnable);
         }
     }
 }
