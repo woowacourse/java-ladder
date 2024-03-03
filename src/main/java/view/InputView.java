@@ -3,6 +3,11 @@ package view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
+import model.gameresult.GameResult;
+import model.ladder.LadderHeight;
+import model.player.Players;
+import model.prize.Prizes;
 
 public class InputView {
 
@@ -12,18 +17,20 @@ public class InputView {
     private static final String ASK_LADDER_HEIGHT = "\n최대 사다리 높이는 몇 개인가요?";
     private static final String ASK_PLAYER_NAME = "\n결과를 보고 싶은 사람은?";
     private static final String LADDER_HEIGHT_NOT_INTEGER = "최대 사다리 높이는 숫자로 입력 해야 합니다";
+    private static final String SEARCHING_END_CONDITION = "all";
 
     private InputView() {
     }
 
-    public static List<String> askPlayerNames() {
-        System.out.println(ASK_PLAYER_NAMES);
-        String input = Console.readLine();
-        return splitInputByDelimiter(input);
+    public static Players preparePlayers() {
+        return retryOnException(() -> {
+            List<String> playerNames = askPlayerNames();
+            return Players.of(playerNames);
+        });
     }
 
-    public static List<String> askPrizeNames() {
-        System.out.println(ASK_PRIZE_NAMES);
+    private static List<String> askPlayerNames() {
+        System.out.println(ASK_PLAYER_NAMES);
         String input = Console.readLine();
         return splitInputByDelimiter(input);
     }
@@ -34,7 +41,27 @@ public class InputView {
             .toList();
     }
 
-    public static int askLadderHeight() {
+    public static Prizes preparePrizes(Players players) {
+        return retryOnException(() -> {
+            List<String> prizeNames = askPrizeNames();
+            return Prizes.from(prizeNames, players);
+        });
+    }
+
+    private static List<String> askPrizeNames() {
+        System.out.println(ASK_PRIZE_NAMES);
+        String input = Console.readLine();
+        return splitInputByDelimiter(input);
+    }
+
+    public static LadderHeight prepareLadderHeight() {
+        return retryOnException(() -> {
+            int ladderHeight = askLadderHeight();
+            return new LadderHeight(ladderHeight);
+        });
+    }
+
+    private static int askLadderHeight() {
         System.out.println(ASK_LADDER_HEIGHT);
         String input = Console.readLine();
         return parseLadderHeight(input);
@@ -48,8 +75,25 @@ public class InputView {
         }
     }
 
-    public static String askPlayerNameForSearching() {
+    public static boolean preparePlayerNameAndPrintGameResult(GameResult gameResult) {
+        return retryOnException(() -> {
+            String playerName = askPlayerNameForSearching();
+            OutputView.printSearchingResult(playerName, gameResult);
+            return !playerName.equals(SEARCHING_END_CONDITION);
+        });
+    }
+
+    private static String askPlayerNameForSearching() {
         System.out.println(ASK_PLAYER_NAME);
         return Console.readLine().strip();
+    }
+
+    private static <T> T retryOnException(Supplier<T> retryOperation) {
+        try {
+            return retryOperation.get();
+        } catch (IllegalArgumentException e) {
+            OutputView.printExceptionMessage(e.getMessage());
+            return retryOnException(retryOperation);
+        }
     }
 }
