@@ -32,28 +32,6 @@ public class LadderGameController {
         printResult(ladderGame.playGame(), prices);
     }
 
-    private void printLadder(List<PlayerName> playerNames, Ladder ladder, List<Price> prices) {
-        PlayerNamesDto playerNamesDto = toDto(playerNames);
-        LadderDto ladderDto = toDto(ladder);
-        PriceDto priceDto = toPriceDto(prices);
-        outputView.printResult(ladderDto, playerNamesDto, priceDto);
-    }
-
-    private void printResult(List<String> result, List<Price> prices) {
-        String selectName = inputView.inputSelectName();
-        if (result.contains(selectName)) {
-            int index = result.indexOf(selectName);
-            outputView.printOneReward(selectName, prices.get(index));
-            printResult(result, prices);
-            return;
-        }
-        if (selectName.equals("all")) {
-            outputView.printReward(result, prices);
-            return;
-        }
-        printResult(result, prices);
-    }
-
     private List<PlayerName> inputPlayerNames() {
         try {
             return inputView.inputPlayerNames().stream()
@@ -85,6 +63,13 @@ public class LadderGameController {
         }
     }
 
+    private void printLadder(List<PlayerName> playerNames, Ladder ladder, List<Price> prices) {
+        PlayerNamesDto playerNamesDto = toDto(playerNames);
+        LadderDto ladderDto = toDto(ladder);
+        PriceDto priceDto = toPriceDto(prices);
+        outputView.printResult(ladderDto, playerNamesDto, priceDto);
+    }
+
     private PlayerNamesDto toDto(List<PlayerName> playerNames) {
         List<String> resultPlayerNames = playerNames.stream()
                 .map(PlayerName::getName)
@@ -111,5 +96,20 @@ public class LadderGameController {
                 .mapToObj(width -> ladder.isExist(height, width))
                 .toList();
         return new LineDto(sticks);
+    }
+
+    private void printResult(List<String> result, List<Price> prices) {
+        String selectName = inputView.inputSelectName();
+        if (result.contains(selectName)) {
+            int index = result.indexOf(selectName);
+            outputView.printOneReward(selectName, prices.get(index));
+            printResult(result, prices);
+            return;
+        }
+        if (selectName.equals("all")) {
+            outputView.printReward(result, prices);
+            return;
+        }
+        printResult(result, prices);
     }
 }
