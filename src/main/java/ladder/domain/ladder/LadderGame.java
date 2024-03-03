@@ -9,13 +9,13 @@ import ladder.domain.result.Results;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class Game {
+public class LadderGame {
 
     private final Players players;
     private final Results results;
     private final Ladder ladder;
 
-    public Game(Players players, Results results, Ladder ladder) {
+    public LadderGame(Players players, Results results, Ladder ladder) {
         this.players = players;
         this.results = results;
         this.ladder = ladder;

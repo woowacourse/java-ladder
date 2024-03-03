@@ -17,7 +17,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class GameTest {
+class LadderGameTest {
 
     private final RandomPointsGenerator pointsGenerator1 = new RandomPointsGenerator() {
         @Override
@@ -62,11 +62,11 @@ class GameTest {
     @DisplayName("이름으로 실행 결과를 도출한다")
     void playOnTarget() {
         // given
-        Game game = new Game(players, results, ladder);
+        LadderGame ladderGame = new LadderGame(players, results, ladder);
         Name name = new Name("pobi");
 
         // when
-        PlayResults playResults = game.play(name);
+        PlayResults playResults = ladderGame.play(name);
 
         // then
         assertThat(playResults)
@@ -79,11 +79,11 @@ class GameTest {
     @DisplayName("모든 이름으로 실행 결과를 도출한다")
     void playOnAllTarget() {
         // given
-        Game game = new Game(players, results, ladder);
+        LadderGame ladderGame = new LadderGame(players, results, ladder);
         Name all = new Name("all");
 
         // when
-        PlayResults playResults = game.play(all);
+        PlayResults playResults = ladderGame.play(all);
 
         // then
         assertThat(playResults)

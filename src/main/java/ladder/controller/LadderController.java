@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class LadderGame {
+public class LadderController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final RandomPointsGenerator randomPointsGenerator = new RandomPointsGenerator();
@@ -29,14 +29,14 @@ public class LadderGame {
 
         outputView.printGame(players, ladder, results);
 
-        Game game = new Game(players, results, ladder);
-        play(game);
+        LadderGame ladderGame = new LadderGame(players, results, ladder);
+        play(ladderGame);
     }
 
-    private void play(Game game) {
+    private void play(LadderGame ladderGame) {
         Name name = createTarget();
         try {
-            PlayResults playResult = game.play(name);
+            PlayResults playResult = ladderGame.play(name);
             outputView.printPlayResultNotice();
             outputView.printPlayResult(playResult);
         } catch (IllegalArgumentException e) {
@@ -45,7 +45,7 @@ public class LadderGame {
         if (name.isAll()) {
             return;
         }
-        play(game);
+        play(ladderGame);
     }
 
     private Players createPeople() {
