@@ -68,7 +68,7 @@ public class InputView {
     }
 
     private Player playerOrAll(final LadderGameResult result, final Player player) {
-        if (player == ALL) {
+        if (player.equals(ALL)) {
             return ALL;
         }
         if (!result.contains(player)) {
