@@ -4,6 +4,7 @@ import static common.ReservedKeywords.ALL;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
+import domain.LadderGame;
 import domain.booleanGenerator.BooleanGenerator;
 import domain.ladder.Height;
 import domain.ladder.Ladder;
@@ -31,7 +32,9 @@ public class LadderController {
             final Height height = generateHeight();
             final Ladder ladder = generateLadder(players, height);
 
-            ladder.play(players);
+            final LadderGame ladderGame = new LadderGame(ladder, players);
+            ladderGame.play();
+
             OutputView.printLadderResult(players, prizes, ladder, players.findMaxNameLength());
 
             takeUserInputAndFindResult(players, prizes);

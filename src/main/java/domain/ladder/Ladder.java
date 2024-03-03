@@ -1,7 +1,6 @@
 package domain.ladder;
 
 import domain.booleanGenerator.BooleanGenerator;
-import domain.player.Players;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,11 +14,6 @@ public class Ladder {
             final LadderRow ladderRow = new LadderRow(booleanGenerator, playerCount);
             ladderRows.add(ladderRow);
         }
-    }
-
-    // TODO: Ladder - Players 결합도 낮추기
-    public void play(final Players players) {
-        ladderRows.forEach(ladderRow -> ladderRow.playRow(players));
     }
 
     public List<LadderRow> getLadderRows() {
