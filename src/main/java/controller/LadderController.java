@@ -74,7 +74,7 @@ public class LadderController {
         try {
             LadderResult result = climbingResults.findResultByPlayerName(playerName);
             outputView.printSingleClimbingLadderResult(result.getValue());
-        } catch (IllegalArgumentException exception) {
+        } catch (Exception exception) {
             outputView.printErrorMessage(exception.getMessage());
         }
     }
