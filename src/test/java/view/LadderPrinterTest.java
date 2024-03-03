@@ -19,11 +19,11 @@ class LadderPrinterTest {
 
     private static List<List<Boolean>> makeRawLadder() {
         return List.of(
-                List.of(false, true),
-                List.of(false, true),
-                List.of(false, true),
-                List.of(false, true),
-                List.of(false, true)
+                List.of(false, true, false),
+                List.of(false, true, false),
+                List.of(false, true, false),
+                List.of(false, true, false),
+                List.of(false, true, false)
         );
     }
 }

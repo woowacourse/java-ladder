@@ -9,38 +9,52 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class LadderTest {
+public class LadderTest {
 
-    static Stream<Arguments> climbParameters() {
-        return Stream.of(
-                Arguments.of(0, 1),
-                Arguments.of(1, 0),
-                Arguments.of(2, 2)
-        );
+    @Test
+    @DisplayName("정상적인 사다리가 생성되는지 검증")
+    void validLadder() {
+        Assertions.assertThatNoException()
+                .isThrownBy(() -> new Ladder(
+                        List.of(Line.from(false, true, false), Line.from(true, false, false),
+                                Line.from(false, true, false), Line.from(false, true, false),
+                                Line.from(false, true, false), Line.from(false, true, false))));
     }
 
     @Test
-    @DisplayName("사다리 전체 폭 검증")
-    void validateRowCount() {
-        Ladder ladder = new Ladder(5, 5, new BridgeRandomGenerator());
-        Assertions.assertThat(ladder.getRawLadder().size())
-                .isEqualTo(5);
+    @DisplayName("두 지점 사이에 연결이 없는 사다리가 생성되지 않는지 검증")
+    void noConnectedLadder() {
+        Assertions.assertThatThrownBy(() -> new Ladder(
+                        List.of(Line.from(false, true, false), Line.from(false, true, false), Line.from(false, true, false),
+                                Line.from(false, true, false), Line.from(false, true, false), Line.from(false, true, false))))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("두 지점 사이에는 반드시 한개 이상의 발판이 있어야 합니다.");
     }
 
     @ParameterizedTest
-    @MethodSource("climbParameters")
-    @DisplayName("사다리 타기")
-    void climb(int startPosition, int endPosition) {
-        int rawWidth = 3;
-        Ladder ladder = new Ladder(5, rawWidth, width -> List.of(true, false));
+    @MethodSource("climbParameter")
+    @DisplayName("사다리 타기 결과가 잘 나오는지 검증")
+    void climb(int startIndex, int endIndex) {
         /*
-         * |-----|    |
-         * |-----|    |
-         * |-----|    |
-         * |-----|    |
-         * |-----|    | */
-        Position actual = ladder.climb(Position.getCachedPosition(startPosition, rawWidth - 1));
+         * |     |-----|
+         * |-----|     |
+         * |     |-----|
+         * |     |-----|
+         * |     |-----|
+         * |     |-----|
+         * */
+        Ladder ladder = new Ladder(
+                List.of(Line.from(false, true, false), Line.from(true, false, false),
+                        Line.from(false, true, false), Line.from(false, true, false),
+                        Line.from(false, true, false), Line.from(false, true, false)));
+        int actual = ladder.climb(startIndex);
         Assertions.assertThat(actual)
-                .isEqualTo(Position.getCachedPosition(endPosition, rawWidth - 1));
+                .isEqualTo(endIndex);
+    }
+
+    static Stream<Arguments> climbParameter() {
+        return Stream.of(Arguments.of(0, 1),
+                Arguments.of(1, 2),
+                Arguments.of(2, 0));
     }
 }

@@ -1,99 +1,86 @@
 import domain.LadderGame;
+import domain.LadderGame.LadderGameBuilder;
+import domain.LineGenerateStrategy;
+import domain.RandomLineGenerateStrategy;
+import dto.LadderGameResults;
 import java.util.List;
-import java.util.function.Supplier;
-import view.ClimbResultPrinter;
+import util.RetryHelper;
+import view.GiftsInputView;
 import view.InputView;
 import view.LadderGameOperatorInputView;
-import view.LadderPrinter;
-import view.NameInputView;
-import view.NamesPrinter;
+import view.LadderHeightInputView;
 import view.OutputView;
-import view.ResultInputView;
+import view.PlayersInputView;
 
 public class Main {
     public static void main(String[] args) {
-        LadderGame ladderGame = generateLadderGame();
+        RetryHelper retryHelper = new RetryHelper(10);
+        List<String> playerNames = getPlayerNames(retryHelper);
+        List<String> giftNames = getGiftNames(retryHelper, playerNames);
+        Integer ladderHeight = getLadderHeight(retryHelper);
 
-        printName(ladderGame);
-        printLadder(ladderGame);
-        printResults(ladderGame);
+        LadderGame ladderGame = makeLadderGame(playerNames, giftNames, ladderHeight);
+        printLadderGame(playerNames, giftNames, ladderGame);
 
-        List<String> rawNames = ladderGame.getRawNames();
-        printClimbResult(ladderGame, rawNames);
+        printLadderGameResults(playerNames, ladderGame);
     }
 
-    private static LadderGame generateLadderGame() {
-        return RetryHelper.retry(() -> {
+    private static List<String> getPlayerNames(RetryHelper retryHelper) {
+        return retryHelper.retry(() -> {
             OutputView.print("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-            List<String> names = NameInputView.getNames(InputView::getInput);
-            OutputView.print("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-            List<String> rawResults = ResultInputView.getResults(InputView::getInput, names.size());
-            OutputView.print("최대 사다리 높이는 몇 개인가요?");
-            int ladderHeight = Integer.parseInt(InputView.getInput());
-            return new LadderGame(names, ladderHeight, rawResults);
+            return PlayersInputView.getPlayerNames(InputView.getInput());
         });
     }
 
-    private static void printName(LadderGame ladderGame) {
-        OutputView.print(NamesPrinter.from(ladderGame.getRawNames()));
+    private static List<String> getGiftNames(RetryHelper retryHelper, List<String> playerNames) {
+        return retryHelper.retry(() -> {
+            OutputView.print("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+            return GiftsInputView.getGiftNames(InputView.getInput(), playerNames.size());
+        });
     }
 
-    private static void printLadder(LadderGame ladderGame) {
-        OutputView.print(LadderPrinter.from(ladderGame.getRawLadder()));
+    private static Integer getLadderHeight(RetryHelper retryHelper) {
+        return retryHelper.retry(() -> {
+            OutputView.print("최대 사다리 높이는 몇 개인가요?");
+            return LadderHeightInputView.getLadderHeight(InputView.getInput());
+        });
     }
 
-    private static void printResults(LadderGame ladderGame) {
-        OutputView.print(NamesPrinter.from(ladderGame.getRawResults()));
+    private static LadderGame makeLadderGame(List<String> playerNames, List<String> giftNames, Integer ladderHeight) {
+        LineGenerateStrategy lineGenerateStrategy = new RandomLineGenerateStrategy();
+        return makeLadderGame(playerNames, giftNames, ladderHeight, lineGenerateStrategy);
     }
 
-    private static void printClimbResult(LadderGame ladderGame, List<String> rawNames) {
-        String gameOperator = getGameOperator(ladderGame);
-
-        gameOperator = printClimbResultsUntilOperatorIsAll(ladderGame, gameOperator);
-
-        List<String> climbResults = ClimbResultPrinter.of(rawNames, ladderGame.getClimbResults(gameOperator));
-        climbResults.forEach(OutputView::print);
+    private static LadderGame makeLadderGame(List<String> playerNames, List<String> giftNames, Integer ladderHeight,
+                                             LineGenerateStrategy randomLineMakeStrategy) {
+        return LadderGameBuilder.builder()
+                .players(playerNames)
+                .gifts(giftNames)
+                .ladderHeight(ladderHeight)
+                .lineGenerateStrategy(randomLineMakeStrategy)
+                .build();
     }
 
-    private static String getGameOperator(LadderGame ladderGame) {
-        OutputView.print("결과를 보고 싶은 사람은?");
-        String gameOperator = RetryHelper.retry(
-                () -> LadderGameOperatorInputView.getOperator(InputView::getInput, ladderGame.getRawNames())
-        );
-        OutputView.print("실행 결과");
-        return gameOperator;
+    private static void printLadderGame(List<String> playerNames, List<String> giftNames, LadderGame ladderGame) {
+        OutputView.printPlayers(playerNames);
+        OutputView.printLadder(ladderGame.rawLadder());
+        OutputView.printGifts(giftNames);
     }
 
-    private static String printClimbResultsUntilOperatorIsAll(LadderGame ladderGame, String gameOperator) {
-        while (!gameOperator.equals("all")) {
-            List<String> climbResults = ClimbResultPrinter.of(
-                    List.of(gameOperator),
-                    ladderGame.getClimbResults(gameOperator)
-            );
-            climbResults.forEach(OutputView::print);
-
-            gameOperator = getGameOperator(ladderGame);
+    private static void printLadderGameResults(List<String> playerNames, LadderGame ladderGame) {
+        String ladderGameResultOwner = showLadderGameResult(playerNames, ladderGame);
+        while (!ladderGameResultOwner.equals("all")) {
+            ladderGameResultOwner = showLadderGameResult(playerNames, ladderGame);
         }
-        return gameOperator;
     }
 
-    static final class RetryHelper {
-
-        public static <E> E retry(Supplier<E> supplier) {
-            E result = null;
-            while (result == null) {
-                result = useSupplier(supplier);
-            }
-            return result;
-        }
-
-        private static <E> E useSupplier(Supplier<E> supplier) {
-            try {
-                return supplier.get();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                return null;
-            }
-        }
+    private static String showLadderGameResult(List<String> playerNames, LadderGame ladderGame) {
+        RetryHelper retryHelper = new RetryHelper(10);
+        return retryHelper.retry(() -> {
+            String operator = LadderGameOperatorInputView.getOperator(InputView.getInput(), playerNames);
+            LadderGameResults ladderGameResults = ladderGame.start(operator);
+            OutputView.printLadderGameResults(ladderGameResults);
+            return operator;
+        });
     }
 }

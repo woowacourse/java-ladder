@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class LadderPrinter {
     public static String from(List<List<Boolean>> rawLadder) {
         return rawLadder.stream()
-                .map(RowPrinter::from)
+                .map(LinePrinter::from)
                 .collect(Collectors.joining("\n"));
     }
 }

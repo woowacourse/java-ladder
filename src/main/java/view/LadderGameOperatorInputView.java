@@ -1,22 +1,16 @@
 package view;
 
-import domain.ExceptionType;
-import domain.LadderGameException;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.function.Supplier;
 
 public class LadderGameOperatorInputView {
-    public static String getOperator(Supplier<String> supplier, List<String> names) {
-        String operator = supplier.get();
-        validateOperator(new HashSet<>(names), operator);
-        return operator;
+    public static String getOperator(String rawString, List<String> playerNames) {
+        validateOperator(rawString, playerNames);
+        return rawString;
     }
 
-    private static void validateOperator(Set<String> names, String operator) {
-        if (!names.contains(operator) && !operator.equals("all")) {
-            throw new LadderGameException(ExceptionType.NAME_NOT_FOUND);
+    private static void validateOperator(String rawString, List<String> playerNames) {
+        if (!playerNames.contains(rawString) && !rawString.equals("all")) {
+            throw new IllegalArgumentException("없는 참가자 입니다.");
         }
     }
 }
