@@ -18,9 +18,10 @@ public class ResultTarget {
     }
 
     private static void validate(String value, List<Member> members) {
-        boolean isExist = members.stream()
-                .anyMatch(member -> member.hasSameNameWith(value));
-        if (!isExist && !value.equals(ALL_RESULT_TARGET)) {
+        boolean isNotExist = members.stream()
+                .noneMatch(member -> member.hasSameNameWith(value));
+        boolean isNotAllMembers = !value.equals(ALL_RESULT_TARGET);
+        if (isNotExist && isNotAllMembers) {
             throw new IllegalArgumentException("해당 이름을 가진 참여자가 없습니다.");
         }
     }
