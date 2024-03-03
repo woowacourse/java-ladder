@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class People {
@@ -24,12 +27,16 @@ public class People {
     }
 
     private void validateDuplicatedPersonNames(final List<Person> personGroup) {
-        final long personCount = personGroup.stream()
+        Map<String, Long> nameCounts = personGroup.stream()
                 .map(Person::getPersonName)
-                .distinct()
-                .count();
-        if (personCount != personGroup.size()) {
-            throw new IllegalArgumentException("중복된 사람이름은 존재할 수 없습니다.");
+                .collect(Collectors.groupingBy(PersonName::name, Collectors.counting()));
+        String duplicatedName = nameCounts.entrySet().stream()
+                .filter(entry -> entry.getValue() > 1)
+                .map(Entry::getKey)
+                .findFirst()
+                .orElse(null);
+        if (duplicatedName != null) {
+            throw new IllegalArgumentException("중복된 사람이름은 존재할 수 없습니다. " + duplicatedName + " 라는 이름이 중복되었습니다.");
         }
     }
 

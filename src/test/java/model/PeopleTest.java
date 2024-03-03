@@ -31,6 +31,6 @@ class PeopleTest {
         List<String> names = List.of("loky", "loky", "moly");
         assertThatThrownBy(() -> People.from(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("중복된 사람이름은 존재할 수 없습니다.");
+                .hasMessage("중복된 사람이름은 존재할 수 없습니다. loky 라는 이름이 중복되었습니다.");
     }
 }
