@@ -18,9 +18,9 @@ public class Game {
 
     public GameResult matchResult() {
         for (Member member : members.getMembers()) {
-            int index = members.findPositionOfMember(member);
-            index = tryMoveAll(index);
-            Result result = results.findResultByPosition(index);
+            int firstPosition = members.findPositionOfMember(member);
+            int finalPosition = tryMoveAll(firstPosition);
+            Result result = results.findResultByPosition(finalPosition);
             gameResult.addGameResult(member, result);
         }
         return gameResult;
