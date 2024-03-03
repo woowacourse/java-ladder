@@ -1,7 +1,9 @@
-package domain;
+package domain.name;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import domain.exception.ExceptionType;
+import domain.exception.LadderGameException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -48,5 +50,13 @@ class NameTest {
         Name name = new Name(expected);
         String actual = name.getName();
         Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("프로그램 예약어로 생성하면 예외 발생")
+    void validateNameReservedWord() {
+        assertThatThrownBy(() -> new Name("all"))
+                .isInstanceOf(LadderGameException.class)
+                .hasMessage(ExceptionType.NOT_ALLOW_RESERVED_WORD.getMessage());
     }
 }

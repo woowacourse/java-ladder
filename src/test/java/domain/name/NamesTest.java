@@ -1,5 +1,7 @@
-package domain;
+package domain.name;
 
+import domain.exception.ExceptionType;
+import domain.exception.LadderGameException;
 import java.util.Arrays;
 import java.util.List;
 import org.assertj.core.api.Assertions;
@@ -25,7 +27,6 @@ class NamesTest {
     @Test
     @DisplayName("참여자 이름이 중복되면 예외 발생")
     void validateDuplicateName() {
-        var nameCreator = new NamesCreator();
         Assertions.assertThatThrownBy(() -> new Names(List.of(new Name("a"), new Name("a"))))
                 .isInstanceOf(LadderGameException.class)
                 .hasMessage(ExceptionType.NOT_ALLOW_DUPLICATE_NAME.getMessage());
@@ -44,11 +45,11 @@ class NamesTest {
 
     @Test
     @DisplayName("참여자 이름 개수가 적절하면 해당 사람 개수를 반환할 수 있음")
-    void testGetNameCount() {
+    void testCount() {
         List<Name> givenNames = List.of(new Name("a"), new Name("b"));
         Names names = new Names(givenNames);
 
-        int actual = names.getNameCount();
+        int actual = names.count();
         int expected = 2;
 
         Assertions.assertThat(actual).isEqualTo(expected);

@@ -1,12 +1,14 @@
-package domain;
+package domain.ladder;
 
-class Height {
+import domain.exception.ExceptionType;
+import domain.exception.LadderGameException;
+
+public class Height {
     private static final int MIN = 5;
     private static final int MAX = 10;
-
     private final int length;
 
-    Height(int length) {
+    public Height(int length) {
         validate(length);
         this.length = length;
     }
@@ -20,6 +22,4 @@ class Height {
             throw new LadderGameException(ExceptionType.INVALID_HEIGHT_RANGE);
         }
     }
-
-
 }

@@ -1,42 +1,59 @@
+import domain.ladder.BridgeRandomGenerator;
 import domain.LadderGame;
+import domain.LadderGameResult;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.function.Supplier;
 import view.InputView;
-import view.OutPutView;
+import view.OutputView;
 
 public class Main {
+    private static final String SEARCH_ALL = "all";
+
     public static void main(String[] args) throws IOException {
-        var outputView = new OutPutView();
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
-            LadderGame ladderGame = RetryHelper.retry(() -> {
-                return createLadderGame(bufferedReader, outputView);
-            });
-            outputView.printLadderResult(ladderGame.getNames(), ladderGame.getLadder());
+            var inputView = new InputView(bufferedReader);
+            LadderGame ladderGame = RetryHelper.retryWithReturn(() -> createLadderGame(inputView));
+            LadderGameResult ladderGameResult = ladderGame.play();
+            var outputView = new OutputView(ladderGameResult);
+            outputView.printLadderResult();
+            RetryHelper.retryWithoutReturn(() -> searchLadderResultFromName(inputView, outputView));
         }
     }
 
-    private static LadderGame createLadderGame(BufferedReader bufferedReader, OutPutView outputView) {
-        var inputView = new InputView(bufferedReader);
-
-        outputView.printNamesInput();
-        String nameInput = inputView.getInput();
-
-        outputView.printHeightInput();
-        int ladderHeight = Integer.parseInt(inputView.getInput());
-        
-        return new LadderGame(nameInput, ladderHeight);
+    private static LadderGame createLadderGame(InputView inputView) {
+        String nameInput = inputView.getNamesInputFromConsole();
+        String rawLadderResult = inputView.getLadderResultsFromConsole();
+        int ladderHeight = inputView.getHeightInputFromConsole();
+        return new LadderGame(nameInput, rawLadderResult, ladderHeight, new BridgeRandomGenerator());
     }
+
+    private static void searchLadderResultFromName(InputView inputView, OutputView outputView) {
+        String searchName = inputView.getSearchNameFromConsole();
+        while (!searchName.equals(SEARCH_ALL)) {
+            outputView.printSearchNameLadderResult(searchName);
+            searchName = inputView.getSearchNameFromConsole();
+        }
+        outputView.printAllNameLadderResult();
+    }
+
 
     static final class RetryHelper {
 
-        public static <E> E retry(Supplier<E> supplier) {
+        public static <E> E retryWithReturn(Supplier<E> supplier) {
             E result = null;
             while (result == null) {
                 result = useSupplier(supplier);
             }
             return result;
+        }
+
+        public static void retryWithoutReturn(Runnable runnable) {
+            boolean isContinue = true;
+            while (isContinue) {
+                isContinue = useRunnable(runnable);
+            }
         }
 
         private static <E> E useSupplier(Supplier<E> supplier) {
@@ -45,6 +62,16 @@ public class Main {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 return null;
+            }
+        }
+
+        private static boolean useRunnable(Runnable runnable) {
+            try {
+                runnable.run();
+                return false;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                return true;
             }
         }
     }

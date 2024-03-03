@@ -1,5 +1,7 @@
-package domain;
+package domain.name;
 
+import domain.exception.ExceptionType;
+import domain.exception.LadderGameException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class NamesCreator {
         boolean startsWith = names.startsWith(SEPARATOR);
         boolean endsWith = names.endsWith(SEPARATOR);
         if (startsWith || endsWith) {
-            throw new LadderGameException(ExceptionType.INVALID_NAMES_SEPARATOR);
+            throw new LadderGameException(ExceptionType.INVALID_SEPARATOR_POSITION);
         }
     }
 

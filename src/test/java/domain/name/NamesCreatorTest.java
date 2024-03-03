@@ -1,5 +1,7 @@
-package domain;
+package domain.name;
 
+import domain.exception.ExceptionType;
+import domain.exception.LadderGameException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,8 +22,6 @@ class NamesCreatorTest {
         var nameCreator = new NamesCreator();
         Assertions.assertThatThrownBy(() -> nameCreator.create(names))
                 .isInstanceOf(LadderGameException.class)
-                .hasMessage(ExceptionType.INVALID_NAMES_SEPARATOR.getMessage());
+                .hasMessage(ExceptionType.INVALID_SEPARATOR_POSITION.getMessage());
     }
-
-
 }

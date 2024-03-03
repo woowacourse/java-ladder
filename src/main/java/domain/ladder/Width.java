@@ -1,12 +1,14 @@
-package domain;
+package domain.ladder;
 
-class Width {
+import domain.exception.ExceptionType;
+import domain.exception.LadderGameException;
+
+public class Width {
     private static final int MIN = 2;
     private static final int MAX = 10;
-
     private final int length;
 
-    Width(int length) {
+    public Width(int length) {
         validate(length);
         this.length = length;
     }
@@ -20,6 +22,4 @@ class Width {
             throw new LadderGameException(ExceptionType.INVALID_WIDTH_RANGE);
         }
     }
-
-
 }
