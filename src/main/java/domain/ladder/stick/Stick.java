@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder.stick;
 
 public enum Stick {
 
@@ -12,6 +12,17 @@ public enum Stick {
 
     public boolean isFilled() {
         return this == FILLED;
+    }
+
+    public boolean isSameType(Stick target) {
+        return this == target;
+    }
+
+    public Stick getOpposite() {
+        if (this.isSameType(Stick.FILLED)) {
+            return Stick.NOT_FILLED;
+        }
+        return Stick.FILLED;
     }
 
     public String getShape() {

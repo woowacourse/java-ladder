@@ -1,10 +1,10 @@
-package domain;
+package domain.ladder.stick;
 
 import java.util.Random;
 
 public class RandomStickGenerator implements StickGenerator {
 
-    private static final int RANDOM_BOUND = 2;
+    protected static final int RANDOM_BOUND = 2;
 
     private final Random randomGenerator = new Random();
 

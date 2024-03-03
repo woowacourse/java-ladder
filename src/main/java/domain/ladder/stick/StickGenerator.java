@@ -1,4 +1,4 @@
-package domain;
+package domain.ladder.stick;
 
 public interface StickGenerator {
 

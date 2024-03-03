@@ -1,9 +1,10 @@
-package domain;
+package domain.player;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static domain.player.Player.NAME_LENGTH_RANGE_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -24,6 +25,6 @@ class PlayerTest {
     void checkNameLengthFail(String name) {
         assertThatThrownBy(() -> new Player(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 1~5자 사이여야 합니다.");
+                .hasMessage(NAME_LENGTH_RANGE_MESSAGE);
     }
 }

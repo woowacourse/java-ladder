@@ -1,10 +1,12 @@
-package domain;
+package domain.player;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static domain.player.Players.MIN_PLAYER_SIZE_MESSAGE;
+import static domain.player.Players.PLAYER_DUPLICATED_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -29,7 +31,7 @@ class PlayersTest {
 
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사용자는 최소 2명이어야 합니다.");
+                .hasMessage(MIN_PLAYER_SIZE_MESSAGE);
     }
 
     @DisplayName("중복된 사용자는 허용하지 않는다.")
@@ -39,6 +41,6 @@ class PlayersTest {
 
         assertThatThrownBy(() -> new Players(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사용자는 중복될 수 없습니다.");
+                .hasMessage(PLAYER_DUPLICATED_MESSAGE);
     }
 }
