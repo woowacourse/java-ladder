@@ -15,14 +15,14 @@ public class Names {
         this.names = names;
     }
 
-    public List<Name> getNames() {
-        return names;
-    }
-
     public int count() {
         return names.size();
     }
 
+    public List<Name> getNames() {
+        return names;
+    }
+    
     private void validateNameCount(List<Name> names) {
         if (names.size() < MIN_NAMES_COUNT || names.size() > MAX_NAMES_COUNT) {
             throw new LadderGameException(ExceptionType.INVALID_NAMES_RANGE);
