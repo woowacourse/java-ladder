@@ -23,14 +23,17 @@ public class Line {
     }
 
     private void validateContinuousPaths(final List<Path> paths) {
-        IntStream.range(0, paths.size() - 1)
-                .forEach(i -> {
-                    final Path left = paths.get(i);
-                    final Path right = paths.get(i + 1);
-                    if (left.isExist() && right.isExist()) {
-                        throw new IllegalArgumentException("사다리의 경로는 연달아 있을 수 없습니다.");
-                    }
-                });
+        int leftPathIndex = 0;
+        int rightPathIndex = leftPathIndex + 1;
+        while (rightPathIndex < paths.size()) {
+            final Path left = paths.get(leftPathIndex);
+            final Path right = paths.get(rightPathIndex);
+            if (left.isExist() && right.isExist()) {
+                throw new IllegalArgumentException("사다리의 경로는 연달아 있을 수 없습니다.");
+            }
+            leftPathIndex++;
+            rightPathIndex++;
+        }
     }
 
     public List<Boolean> getExistFlags() {
