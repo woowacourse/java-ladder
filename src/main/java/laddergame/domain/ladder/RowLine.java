@@ -1,8 +1,8 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.gameelements.Position;
 import laddergame.domain.connectiongenerator.ConnectionGenerator;
 import laddergame.domain.gameelements.Players;
+import laddergame.domain.gameelements.Position;
 
 import java.util.ArrayList;
 import java.util.Collections;
