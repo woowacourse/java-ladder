@@ -1,5 +1,6 @@
 package view;
 
+import static common.ReservedKeywords.ALL;
 import static domain.ladder.DirectionalPoint.RIGHT;
 
 import domain.ladder.DirectionalPoint;
@@ -81,7 +82,7 @@ public class OutputView {
 
     public static void printResult(Players players, Prizes prizes, String targetName) {
         System.out.println(LINE_SEPARATOR + GAME_RESULT_MESSAGE);
-        if ("all".equals(targetName)) {
+        if (ALL.equals(targetName)) {
             printTotalGameResult(players.getPlayers(), prizes.getPrizes());
             return;
         }

@@ -1,5 +1,6 @@
 package controller;
 
+import static common.ReservedKeywords.ALL;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
@@ -70,6 +71,6 @@ public class LadderController {
         do {
             targetName = InputView.inputPrizeTargetName();
             OutputView.printResult(players, prizes, targetName);
-        } while (!"all".equals(targetName));
+        } while (!ALL.equals(targetName));
     }
 }
