@@ -6,11 +6,11 @@ import java.util.function.BooleanSupplier;
 import ladder.domain.Line;
 import ladder.domain.Stick;
 
-public class LinePatternGenerator {
+public class LineGenerator {
     private static final int MIN_LINE_SIZE = 2;
     private final BooleanSupplier supplier;
 
-    public LinePatternGenerator(BooleanSupplier supplier) {
+    public LineGenerator(BooleanSupplier supplier) {
         this.supplier = supplier;
     }
 

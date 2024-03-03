@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BooleanSupplier;
-import ladder.domain.linegenerator.LinePatternGenerator;
+import ladder.domain.linegenerator.LineGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ class LadderGameTest {
         playerNames.add(new PlayerName("jazz"));
         playerNames.add(new PlayerName("pola"));
 
-        ladder = Ladder.makeLadder(new Height(3), 3, new LinePatternGenerator(new AlwaysTrueSupplier()));
+        ladder = Ladder.makeLadder(new Height(3), 3, new LineGenerator(new AlwaysTrueSupplier()));
 
         LadderGame ladderGame = new LadderGame(playerNames, ladder);
         List<String> result = ladderGame.playGame();

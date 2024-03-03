@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class LinePatternGeneratorTest {
+class LineGeneratorTest {
 
     private static final int PERSON_SIZE = 4;
     private static final int WIDTH_SIZE = 3;
@@ -23,9 +23,9 @@ class LinePatternGeneratorTest {
     @Test
     void generateTest() {
         MockBooleanSupplier supplier = new MockBooleanSupplier(List.of(STICK_NON_EXIST, STICK_EXIST));
-        LinePatternGenerator linePatternGenerator = new LinePatternGenerator(supplier);
+        LineGenerator lineGenerator = new LineGenerator(supplier);
 
-        Line line = linePatternGenerator.generate(PERSON_SIZE);
+        Line line = lineGenerator.generate(PERSON_SIZE);
 
         assertThat(line.getWidth()).isEqualTo(WIDTH_SIZE);
     }
@@ -34,9 +34,9 @@ class LinePatternGeneratorTest {
     @Test
     void generateTest_whenReturnOne() {
         BooleanSupplier supplier = () -> true;
-        LinePatternGenerator linePatternGenerator = new LinePatternGenerator(supplier);
+        LineGenerator lineGenerator = new LineGenerator(supplier);
 
-        Line line = linePatternGenerator.generate(3);
+        Line line = lineGenerator.generate(3);
 
         assertThat(line.getSticks()).containsExactly(Stick.EXISTENCE, Stick.NON_EXISTENCE);
     }
@@ -45,9 +45,9 @@ class LinePatternGeneratorTest {
     @Test
     void generateTest_whenReturnZero() {
         BooleanSupplier supplier = () -> false;
-        LinePatternGenerator linePatternGenerator = new LinePatternGenerator(supplier);
+        LineGenerator lineGenerator = new LineGenerator(supplier);
 
-        Line line = linePatternGenerator.generate(2);
+        Line line = lineGenerator.generate(2);
 
         assertThat(line.getSticks()).containsExactly(Stick.NON_EXISTENCE);
     }
@@ -57,9 +57,9 @@ class LinePatternGeneratorTest {
     @CsvSource({"1", "0", "-1"})
     void generateTest_whenSizeIsUnder2(int size) {
         BooleanSupplier supplier = () -> false;
-        LinePatternGenerator linePatternGenerator = new LinePatternGenerator(supplier);
+        LineGenerator lineGenerator = new LineGenerator(supplier);
 
-        assertThatThrownBy(() -> linePatternGenerator.generate(size))
+        assertThatThrownBy(() -> lineGenerator.generate(size))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리의 크기는 2 이상입니다");
     }
