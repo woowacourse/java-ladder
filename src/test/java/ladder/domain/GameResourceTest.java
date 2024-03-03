@@ -21,126 +21,129 @@ class GameResourceTest {
 
     @DisplayName("게임 리소스를 추가한다.")
     @Test
-    void addUsersTest() {
+    void add() {
         //given
-        Users users = ResourceGenerator.generateUsersWithCount(2);
+        Users users = ResourceGenerator.generateUsers(2);
+        Prizes prizes = ResourceGenerator.generatePrizes(2);
+        Ladder ladder = ResourceGenerator.generateLadderWithHeightAndWidth(2, 2);
 
-
-
-
-
-        gameResource.addUsers(users);
+        gameResource.add(users, prizes, ladder);
 
         //when
-        Users savedUsers = gameResource.getUsers();
+        Users addedUsers = gameResource.getUsers();
+        Prizes addedPrizes = gameResource.getPrizes();
+        Ladder addedLadder = gameResource.getLadder();
 
         //then
-        assertThat(savedUsers).isEqualTo(users);
+        assertThat(addedUsers).isEqualTo(users);
+        assertThat(addedPrizes).isEqualTo(prizes);
+        assertThat(addedLadder).isEqualTo(ladder);
     }
 
-    @DisplayName("게임 리소스에 사용자 추가 시, 값이 null일 경우 에외를 발생시킨다.")
+    @DisplayName("게임 리소스 추가 시, 사용자가 null일 경우 에외를 발생시킨다.")
     @Test
-    void addUsersTestByNull() {
+    void addByNullUsers() {
         //given
         Users nullUsers = null;
+        Prizes prizes = ResourceGenerator.generatePrizes(2);
+        Ladder ladder = ResourceGenerator.generateLadderWithHeightAndWidth(2, 2);
 
         //when, then
-        assertThatThrownBy(() -> gameResource.addUsers(nullUsers))
+        assertThatThrownBy(() -> gameResource.add(nullUsers, prizes, ladder))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 게임 리소스에 추가할 사용자가(이) 존재하지 않습니다.");
     }
 
-    @DisplayName("게임 리소스에 사용자 추가 시, 이미 값이 존재하는 경우 에외를 발생시킨다.")
+    @DisplayName("게임 리소스 추가 시, 당첨품이 null일 경우 에외를 발생시킨다.")
     @Test
-    void addUsersTestByAlreadyExist() {
+    void addByNullPrizes() {
         //given
-        Users usersA = ResourceGenerator.generateUsersWithCount(2);
-        Users usersB = ResourceGenerator.generateUsersWithCount(2);
-        gameResource.addUsers(usersA);
-
-        //when, then
-        assertThatThrownBy(() -> gameResource.addUsers(usersB))
-                .isInstanceOf(IllegalStateException.class)
-                .hasMessage("[ERROR] 게임 리소스에 사용자가(이) 이미 존재하는 경우 변경할 수 없습니다.");
-    }
-
-    @DisplayName("게임 리소스에 사다리를 추가한다.")
-    @Test
-    void addLadderTest() {
-        //given
-        Ladder ladder = ResourceGenerator.generateLadderWithWidth(2);
-        gameResource.addLadder(ladder);
-
-        //when
-        Ladder savedLadder = gameResource.getLadder();
-
-        //then
-        assertThat(savedLadder).isEqualTo(ladder);
-    }
-
-    @DisplayName("게임 리소스에 사다리 추가 시, 값이 null일 경우 에외를 발생시킨다.")
-    @Test
-    void addLadderTestByNull() {
-        //given
-        Ladder nullLadder = null;
-
-        //when, then
-        assertThatThrownBy(() -> gameResource.addLadder(nullLadder))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 게임 리소스에 추가할 사다리가(이) 존재하지 않습니다.");
-    }
-
-    @DisplayName("게임 리소스에 사다리 추가 시, 이미 값이 존재하는 경우 에외를 발생시킨다.")
-    @Test
-    void addLadderTestByAlreadyExist() {
-        //given
-        Ladder ladderA = ResourceGenerator.generateLadderWithWidth(2);
-        Ladder ladderB = ResourceGenerator.generateLadderWithWidth(2);
-        gameResource.addLadder(ladderA);
-
-        //when, then
-        assertThatThrownBy(() -> gameResource.addLadder(ladderB))
-                .isInstanceOf(IllegalStateException.class)
-                .hasMessage("[ERROR] 게임 리소스에 사다리가(이) 이미 존재하는 경우 변경할 수 없습니다.");
-    }
-
-    @DisplayName("게임 리소스에 당첨품을 추가한다.")
-    @Test
-    void addPrizesTest() {
-        //given
-        Prizes prizes = ResourceGenerator.generatePrizesWithCount(2);
-        gameResource.addPrizes(prizes);
-
-        //when
-        Prizes savedPrizes = gameResource.getPrizes();
-
-        //then
-        assertThat(savedPrizes).isEqualTo(prizes);
-    }
-
-    @DisplayName("게임 리소스에 당첨품 추가 시, 값이 null일 경우 에외를 발생시킨다.")
-    @Test
-    void addPrizesTestByNull() {
-        //given
+        Users users = ResourceGenerator.generateUsers(2);
         Prizes nullPrizes = null;
+        Ladder ladder = ResourceGenerator.generateLadderWithHeightAndWidth(2, 2);
 
         //when, then
-        assertThatThrownBy(() -> gameResource.addPrizes(nullPrizes))
+        assertThatThrownBy(() -> gameResource.add(users, nullPrizes, ladder))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 게임 리소스에 추가할 당첨품가(이) 존재하지 않습니다.");
     }
 
-    @DisplayName("게임 리소스에 당첨품 추가 시, 이미 값이 존재하는 경우 에외를 발생시킨다.")
+    @DisplayName("게임 리소스 추가 시, 사다리가 null일 경우 에외를 발생시킨다.")
     @Test
-    void addPrizesTestByAlreadyExist() {
+    void addByNullLadder() {
         //given
-        Prizes prizesA = ResourceGenerator.generatePrizesWithCount(2);
-        Prizes prizesB = ResourceGenerator.generatePrizesWithCount(2);
-        gameResource.addPrizes(prizesA);
+        Users users = ResourceGenerator.generateUsers(2);
+        Prizes prizes = ResourceGenerator.generatePrizes(2);
+        Ladder nullLadder = null;
 
         //when, then
-        assertThatThrownBy(() -> gameResource.addPrizes(prizesB))
+        assertThatThrownBy(() -> gameResource.add(users, prizes, nullLadder))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 게임 리소스에 추가할 사다리가(이) 존재하지 않습니다.");
+    }
+
+    @DisplayName("게임 리소스 추가 시, 이미 값이 존재하는 경우 에외를 발생시킨다.")
+    @Test
+    void addByAlreadyExist() {
+        //given
+        Users users = ResourceGenerator.generateUsers(2);
+        Prizes prizes = ResourceGenerator.generatePrizes(2);
+        Ladder ladder = ResourceGenerator.generateLadderWithHeightAndWidth(2, 2);
+
+        gameResource.add(users, prizes, ladder);
+
+        //when, then
+        assertThatThrownBy(() -> gameResource.add(users, prizes, ladder))
                 .isInstanceOf(IllegalStateException.class)
-                .hasMessage("[ERROR] 게임 리소스에 당첨품가(이) 이미 존재하는 경우 변경할 수 없습니다.");
+                .hasMessage("[ERROR] 게임 리소스가 이미 존재하는 경우 변경할 수 없습니다.");
+    }
+
+    @DisplayName("모든 리소스가 존재할 경우 True를 반환한다.")
+    @Test
+    void allFieldNotNull_true() {
+        //given
+        Users users = ResourceGenerator.generateUsers(2);
+        Prizes prizes = ResourceGenerator.generatePrizes(2);
+        Ladder ladder = ResourceGenerator.generateLadderWithHeightAndWidth(2, 2);
+
+        gameResource.add(users, prizes, ladder);
+
+        //when, then
+        assertThat(gameResource.allFieldsNotNull()).isTrue();
+    }
+
+    @DisplayName("리소스가 없을 경우 False를 반환한다.")
+    @Test
+    void allFieldNotNull_false() {
+        //given, when, then
+        assertThat(gameResource.allFieldsNotNull()).isFalse();
+    }
+
+    @DisplayName("모든 리소스가 동일한 크기일 경우 True를 반환한다.")
+    @Test
+    void allFieldConsistentSize_true() {
+        //given
+        Users users = ResourceGenerator.generateUsers(10);
+        Prizes prizes = ResourceGenerator.generatePrizes(10);
+        Ladder ladder = ResourceGenerator.generateLadderWithHeightAndWidth(50, 10);
+
+        gameResource.add(users, prizes, ladder);
+
+        //when, then
+        assertThat(gameResource.allFieldConsistentSize()).isTrue();
+    }
+
+    @DisplayName("리소스의 크기가 다를 경우 False를 반환한다.")
+    @Test
+    void allFieldConsistentSize_false() {
+        //given
+        Users users = ResourceGenerator.generateUsers(2);
+        Prizes prizes = ResourceGenerator.generatePrizes(3);
+        Ladder ladder = ResourceGenerator.generateLadderWithHeightAndWidth(2, 2);
+
+        gameResource.add(users, prizes, ladder);
+
+        //when, then
+        assertThat(gameResource.allFieldConsistentSize()).isFalse();
     }
 }
