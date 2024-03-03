@@ -8,7 +8,7 @@ public class Prize {
 
     private final String prize;
 
-    public Prize(String prize) {
+    Prize(String prize) {
         validate(prize);
         this.prize = prize;
     }

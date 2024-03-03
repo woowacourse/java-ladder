@@ -9,7 +9,7 @@ public class Player {
 
     private final String name;
 
-    public Player(String name) {
+    Player(String name) {
         validate(name);
         this.name = name;
     }

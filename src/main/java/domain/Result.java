@@ -7,7 +7,7 @@ public class Result {
 
     private final Map<Player, Prize> result;
 
-    public Result(Map<Player, Prize> result) {
+    Result(Map<Player, Prize> result) {
         this.result = result;
     }
 
