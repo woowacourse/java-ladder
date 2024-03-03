@@ -77,7 +77,7 @@ public class LadderGame {
     }
 
     private void validateResourceConsistentSize() {
-        if (gameResource.allFieldConsistentSize()) {
+        if (!gameResource.allFieldConsistentSize()) {
             throw new IllegalArgumentException("[ERROR] 사용자 수, 당첨품 수, 사다리 너비는 모두 일치해야 합니다.");
         }
     }
