@@ -1,6 +1,12 @@
 package ladder.controller;
 
-import ladder.domain.*;
+import ladder.domain.ladder.*;
+import ladder.domain.player.Name;
+import ladder.domain.player.Player;
+import ladder.domain.player.Players;
+import ladder.domain.result.PlayResults;
+import ladder.domain.result.Result;
+import ladder.domain.result.Results;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 

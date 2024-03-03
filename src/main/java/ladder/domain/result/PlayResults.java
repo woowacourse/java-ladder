@@ -1,4 +1,6 @@
-package ladder.domain;
+package ladder.domain.result;
+
+import ladder.domain.player.Name;
 
 import java.util.Map;
 import java.util.Set;
