@@ -18,13 +18,13 @@ public class LadderTest {
     void 주어진_높이에_맞게_사다리가_생성된다() {
         // given
         Height height = new Height(5);
-        int playerSize = 5;
+        int playerCount = 5;
 
         // when
-        Ladder ladder = new Ladder(trueGenerator, height, playerSize);
+        Ladder ladder = new Ladder(trueGenerator, height, playerCount);
 
         // then
-        assertThat(ladder.getHeight()).isEqualTo(height.getValue());
+        assertThat(ladder.getLadderRows().size()).isEqualTo(height.getValue());
     }
 
     @Test

@@ -31,9 +31,9 @@ public class OutputView {
     private static void printPlayerNames(Players players) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        players.getNames()
+        players.getPlayers()
                 .stream()
-                .map(OutputView::alignStringCenter)
+                .map(player -> alignStringCenter(player.getName()))
                 .forEach(stringBuilder::append);
 
         System.out.println(stringBuilder);

@@ -42,20 +42,14 @@ public class Players {
     }
 
     public int findMaxNameLength() {
-        return getNames().stream()
-                .mapToInt(String::length)
+        return players.stream()
+                .mapToInt(player -> player.getName().length())
                 .max()
                 .orElse(0);
     }
 
     public int getPlayerCount() {
         return players.size();
-    }
-
-    public List<String> getNames() {
-        return players.stream()
-                .map(Player::getName)
-                .toList();
     }
 
     public List<Player> getPlayers() {
