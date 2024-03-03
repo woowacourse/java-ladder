@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -42,8 +41,8 @@ class Players {
         return players.stream().map(Player::name).toList();
     }
 
-    static Players of(String... playerNames) {
-        List<Player> players = Arrays.stream(playerNames).map(Player::new).toList();
+    static Players of(List<String> playerNames) {
+        List<Player> players = playerNames.stream().map(Player::new).toList();
         return new Players(players);
     }
 }

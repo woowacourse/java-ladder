@@ -7,7 +7,7 @@ import util.RetryHelper;
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(List<Line> lines) {
+    Ladder(List<Line> lines) {
         validateConnectedLadder(lines);
         this.lines = lines;
     }

@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.List;
 import java.util.stream.IntStream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -11,10 +12,9 @@ class GiftsTest {
     @ValueSource(ints = {1, 11})
     @DisplayName("상품 수가 너무 적거나 너무 많은지 확인")
     void validateGiftsCount(int giftsCount) {
-        String[] giftNames = IntStream.rangeClosed(1, giftsCount)
+        List<String> giftNames = IntStream.rangeClosed(1, giftsCount)
                 .mapToObj("a%d"::formatted)
-                .toList()
-                .toArray(new String[giftsCount]);
+                .toList();
 
         Assertions.assertThatThrownBy(() -> Gifts.of(giftNames))
                 .isInstanceOf(IllegalStateException.class)

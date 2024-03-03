@@ -54,8 +54,8 @@ public class Main {
     private static LadderGame makeLadderGame(List<String> playerNames, List<String> giftNames, Integer ladderHeight,
                                              LineGenerateStrategy randomLineMakeStrategy) {
         return LadderGameBuilder.builder()
-                .players(playerNames.toArray(String[]::new))
-                .gifts(giftNames.toArray(String[]::new))
+                .players(playerNames)
+                .gifts(giftNames)
                 .ladderHeight(ladderHeight)
                 .lineGenerateStrategy(randomLineMakeStrategy)
                 .build();

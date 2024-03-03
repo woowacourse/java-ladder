@@ -9,12 +9,12 @@ class LineTest {
     @DisplayName("올바른 Point로 Line이 잘 생성되는지 확인")
     void normal() {
         // |-----|     |     |-----|
-        Line line = new Line(true, false, false, true, false);
+        Line line = Line.from(true, false, false, true, false);
         int length = line.length();
         Assertions.assertThat(length)
                 .isEqualTo(5);
         // |     |     |     |-----|
-        Line line2 = new Line(false, false, false, true, false);
+        Line line2 = Line.from(false, false, false, true, false);
         int length2 = line2.length();
         Assertions.assertThat(length2)
                 .isEqualTo(5);
@@ -24,7 +24,7 @@ class LineTest {
     @DisplayName("|-----|-----| 인 Point로 Line이 생성되지 않는지 확인")
     void leftContinueOrRightContinue() {
         Assertions.assertThatThrownBy(
-                        () -> new Line(true, true, false))
+                        () -> Line.from(true, true, false))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("|-----|-----| 연결 감지!");
     }
@@ -33,7 +33,7 @@ class LineTest {
     @DisplayName("|-----|----- 인 Point로 Line이 생성되지 않는지 확인")
     void rightAfterEnd() {
         Assertions.assertThatThrownBy(
-                        () -> new Line(true, false, true))
+                        () -> Line.from(true, false, true))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("오른쪽 끝에선 오른쪽으로 갈 수 없습니다.");
     }

@@ -24,8 +24,8 @@ class LadderGameTest {
 
     private LadderGame makeTestLadderGame() {
         return LadderGameBuilder.builder()
-                .players("robin", "phobi")
-                .gifts("1등", "2등")
+                .players(List.of("robin", "phobi"))
+                .gifts(List.of("1등", "2등"))
                 .lineGenerateStrategy(new TestLineGenerateStrategy())
                 .ladderHeight(5)
                 .build();

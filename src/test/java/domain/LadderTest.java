@@ -16,17 +16,17 @@ public class LadderTest {
     void validLadder() {
         Assertions.assertThatNoException()
                 .isThrownBy(() -> new Ladder(
-                        List.of(new Line(false, true, false), new Line(true, false, false),
-                                new Line(false, true, false), new Line(false, true, false),
-                                new Line(false, true, false), new Line(false, true, false))));
+                        List.of(Line.from(false, true, false), Line.from(true, false, false),
+                                Line.from(false, true, false), Line.from(false, true, false),
+                                Line.from(false, true, false), Line.from(false, true, false))));
     }
 
     @Test
     @DisplayName("두 지점 사이에 연결이 없는 사다리가 생성되지 않는지 검증")
     void noConnectedLadder() {
         Assertions.assertThatThrownBy(() -> new Ladder(
-                        List.of(new Line(false, true, false), new Line(false, true, false), new Line(false, true, false),
-                                new Line(false, true, false), new Line(false, true, false), new Line(false, true, false))))
+                        List.of(Line.from(false, true, false), Line.from(false, true, false), Line.from(false, true, false),
+                                Line.from(false, true, false), Line.from(false, true, false), Line.from(false, true, false))))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage("두 지점 사이에는 반드시 한개 이상의 발판이 있어야 합니다.");
     }
@@ -44,9 +44,9 @@ public class LadderTest {
          * |     |-----|
          * */
         Ladder ladder = new Ladder(
-                List.of(new Line(false, true, false), new Line(true, false, false),
-                        new Line(false, true, false), new Line(false, true, false),
-                        new Line(false, true, false), new Line(false, true, false)));
+                List.of(Line.from(false, true, false), Line.from(true, false, false),
+                        Line.from(false, true, false), Line.from(false, true, false),
+                        Line.from(false, true, false), Line.from(false, true, false)));
         int actual = ladder.climb(startIndex);
         Assertions.assertThat(actual)
                 .isEqualTo(endIndex);

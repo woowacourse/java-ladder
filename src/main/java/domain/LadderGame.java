@@ -73,12 +73,12 @@ public class LadderGame {
             return new LadderGameBuilder();
         }
 
-        public LadderGameBuilder players(String... playerNames) {
+        public LadderGameBuilder players(List<String> playerNames) {
             this.players = Players.of(playerNames);
             return this;
         }
 
-        public LadderGameBuilder gifts(String... giftNames) {
+        public LadderGameBuilder gifts(List<String> giftNames) {
             this.gifts = Gifts.of(giftNames);
             return this;
         }

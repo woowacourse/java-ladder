@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.Arrays;
 import java.util.List;
 
 class Gifts {
@@ -22,8 +21,8 @@ class Gifts {
         return gift.name();
     }
 
-    static Gifts of(String... giftsName) {
-        List<Gift> gifts = Arrays.stream(giftsName).map(Gift::new).toList();
+    static Gifts of(List<String> giftsName) {
+        List<Gift> gifts = giftsName.stream().map(Gift::new).toList();
         return new Gifts(gifts);
     }
 }
