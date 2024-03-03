@@ -69,6 +69,9 @@
     * a,b,all 입력하면 종료된다.
 
 
-## 예외시 재입력 받는 기능
+## 리팩터링 목록
 
-* 커스텀 어노테이션 만들어서 재입력 기능 구현
+- [ ] players의 있는 view 로직을 dto로 분리하기
+- [ ] outputView.printLadderResult 메서드 파라미터 수 줄이기
+- [ ] LadderResult 의 all 인지 검증하는 책임을 다른 곳으로 이동하기
+- [ ] Ladder 가 players 와 prizes 를 가지고 있는 형태로 변경해보기
