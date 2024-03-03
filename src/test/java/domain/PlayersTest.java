@@ -1,6 +1,9 @@
 package domain;
 
+import static java.util.Collections.nCopies;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -11,41 +14,50 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 public class PlayersTest {
+
+    static Stream<Arguments> createSuccessArguments() {
+        return Stream.of(
+                Arguments.arguments(
+                        List.of("pobi", "tommy"),
+                        List.of(nCopies(10, "pobi"))
+                ));
+    }
+
     static Stream<Arguments> createFailArguments() {
         return Stream.of(
                 Arguments.arguments(
-                        List.of(new Player("pobi")),
-                        List.of(
-                                new Player("asd"),
-                                new Player("asd"),
-                                new Player("asd"),
-                                new Player("asd"),
-                                new Player("asd"),
-                                new Player("asd"),
-                                new Player("asd"),
-                                new Player("asd"),
-                                new Player("asd"),
-                                new Player("asd"),
-                                new Player("asd")
-                        ))
-        );
+                        List.of("pobi"),
+                        List.of(nCopies(10, "pobi"))
+                ));
     }
 
     @DisplayName("2명 이상 10명 이하인 경우 예외가 발생하지않는다,")
-    @Test
-    public void createSuccess() {
-        assertThatCode(() -> new Players(List.of(
-                new Player("pobi"),
-                new Player("abc"),
-                new Player("wiib"))))
+    @ParameterizedTest
+    @MethodSource("createSuccessArguments")
+    public void createSuccess(List<String> names) {
+        assertThatCode(() -> new Players(names))
                 .doesNotThrowAnyException();
     }
 
     @DisplayName("2명 미만, 10명 초과하면 예외를 발생시킨다.")
     @ParameterizedTest
     @MethodSource("createFailArguments")
-    public void createFail(List<Player> players) {
-        assertThatCode(() -> new Players(players))
-                .isInstanceOf(IllegalArgumentException.class);
+    public void createFail(List<String> names) {
+        assertThatCode(() -> new Players(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(String.format("2명 이상, 10명 이하인 인원만 입력해주세요. 입력한 인원 : %d", names.size()));
+    }
+
+    @DisplayName("플레이어의 이름으로 인덱스를 반환한다")
+    @Test
+    public void getPositionOf() {
+        Players players = new Players(List.of("pobi", "honux", "crong", "jk"));
+
+        assertAll(
+                () -> assertThat(players.getPositionOf(new Player("pobi"))).isEqualTo(0),
+                () -> assertThat(players.getPositionOf(new Player("honux"))).isEqualTo(1),
+                () -> assertThat(players.getPositionOf(new Player("crong"))).isEqualTo(2),
+                () -> assertThat(players.getPositionOf(new Player("jk"))).isEqualTo(3)
+        );
     }
 }

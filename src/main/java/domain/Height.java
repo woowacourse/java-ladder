@@ -5,7 +5,7 @@ public class Height {
     private static final int MINIMUM_HEIGHT = 2;
     private static final int MAXIMUM_HEIGHT = 10;
 
-    private int height;
+    private final int height;
 
     public Height(int height) {
         validateRange(height);
@@ -18,11 +18,7 @@ public class Height {
         }
     }
 
-    public boolean isRemain() {
-        return this.height != 0;
-    }
-
-    public void decrease() {
-        this.height--;
+    public int getHeight() {
+        return height;
     }
 }

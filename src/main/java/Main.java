@@ -1,14 +1,13 @@
-import controller.LadderGameController;
-import domain.booleangenerator.RandomBooleanGenerator;
+import domain.generator.RandomBridgeGenerator;
 import view.InputView;
 import view.OutputView;
 
 public class Main {
 
     public static void main(String[] args) {
-        LadderGameController ladderGameController = new LadderGameController(new InputView(), new OutputView(),
-                new RandomBooleanGenerator());
+        LadderGame ladderGame = new LadderGame(new InputView(), new OutputView(),
+                new RandomBridgeGenerator());
 
-        ladderGameController.run();
+        ladderGame.run();
     }
 }

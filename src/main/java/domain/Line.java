@@ -1,49 +1,37 @@
 package domain;
 
-import domain.booleangenerator.BooleanGenerator;
-import java.util.ArrayList;
-import java.util.List;
+import domain.generator.BridgeGenerator;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Line {
 
-    private final List<Bridge> bridges;
+    private final Map<BridgeIndex, Bridge> bridges = new HashMap<>();
 
-    public Line(int playerCount, BooleanGenerator booleanGenerator) {
-        bridges = new ArrayList<>();
-        generate(playerCount, booleanGenerator);
-    }
-
-    private void generate(int playerCount, BooleanGenerator booleanGenerator) {
-        for (int position = 0; position < playerCount - 1; position++) {
-            makePoint(booleanGenerator);
+    Line(int playersCount, BridgeGenerator bridgeGenerator) {
+        for (int index = 0; index < playersCount - 1; index++) {
+            Bridge previous = getBridgeIndexOf(index - 1);
+            Bridge generatedBridge = bridgeGenerator.generate(previous);
+            bridges.put(new BridgeIndex(index), generatedBridge);
         }
     }
 
-    private void makePoint(BooleanGenerator booleanGenerator) {
-        if (bridges.isEmpty() || checkPreviousBlank()) {
-            makeBridge(booleanGenerator);
-            return;
+    int calculatePosition(int playerIndex) {
+        if (getBridgeIndexOf(playerIndex - 1).isExist()) {
+            return playerIndex - 1;
         }
-        bridges.add(Bridge.BLANK);
-    }
-
-    private boolean checkPreviousBlank() {
-        return bridges.get(bridges.size() - 1) == Bridge.BLANK;
-    }
-
-    private void makeBridge(BooleanGenerator booleanGenerator) {
-        if (booleanGenerator.generate()) {
-            bridges.add(Bridge.EXIST);
-            return;
+        if (getBridgeIndexOf(playerIndex).isExist()) {
+            return playerIndex + 1;
         }
-        bridges.add(Bridge.BLANK);
+        return playerIndex;
     }
 
-    public int getBridgeCount() {
-        return bridges.size();
+    private Bridge getBridgeIndexOf(int playerIndex) {
+        return bridges.getOrDefault(new BridgeIndex(playerIndex), Bridge.BLANK);
     }
 
-    public List<Bridge> getBridges() {
-        return bridges;
+    public Map<BridgeIndex, Bridge> getBridges() {
+        return Collections.unmodifiableMap(bridges);
     }
 }
