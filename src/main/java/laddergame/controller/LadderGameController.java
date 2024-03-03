@@ -1,6 +1,7 @@
 package laddergame.controller;
 
 import laddergame.model.executionresults.ExecutionResults;
+import laddergame.model.generator.BooleansGenerator;
 import laddergame.model.generator.RandomBooleansGenerator;
 import laddergame.model.laddergame.LadderGame;
 import laddergame.model.laddergame.LadderGameGenerator;
@@ -33,7 +34,7 @@ public class LadderGameController {
     }
 
     private LadderGame getLadderGame(LadderHeight ladderHeight, Participants participants) {
-        RandomBooleansGenerator randomGenerator = new RandomBooleansGenerator();
+        BooleansGenerator randomGenerator = new RandomBooleansGenerator();
         LadderGameGenerator ladderGameGenerator
                 = new LadderGameGenerator(ladderHeight, participants, randomGenerator);
         return ladderGameGenerator.getLadderGame();
