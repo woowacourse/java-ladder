@@ -7,8 +7,7 @@ import model.ladder.Ladder;
 import model.ladder.LadderHeight;
 import model.ladder.LadderResult;
 import model.ladder.LadderWidth;
-import model.line.LineGenerator;
-import model.line.RandomLineGenerator;
+import model.ladder.RandomLadderGenerator;
 import model.player.Players;
 import model.prize.Prizes;
 import view.InputView;
@@ -24,8 +23,7 @@ public class LadderGameController {
         LadderHeight ladderHeight = prepareLadderHeight();
         LadderWidth ladderWidth = LadderWidth.from(players.getSize());
 
-        LineGenerator randomLineGenerator = new RandomLineGenerator();
-        Ladder ladder = Ladder.of(ladderHeight, ladderWidth, randomLineGenerator);
+        Ladder ladder = RandomLadderGenerator.generateLadder(ladderHeight, ladderWidth);
         OutputView.printLadderResult(players, ladder, prizes);
 
         LadderResult ladderResult = LadderResult.from(ladder);
