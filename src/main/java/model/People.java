@@ -44,11 +44,14 @@ public class People {
 
     public PresentMatches climbDown(final Ladder ladder, final Presents presents) {
         personGroup.forEach(person -> person.climbDown(ladder));
-        Map<PersonName, Present> personNamePresent = personGroup.stream()
-                .collect(Collectors.toMap(
-                        Person::getPersonName,
-                        person -> presents.getPresent(person.getColumn())));
-        return new PresentMatches(personNamePresent);
+        return personGroup.stream()
+                .collect(Collectors.collectingAndThen(
+                        Collectors.toMap(
+                                Person::getPersonName,
+                                person -> presents.getPresent(person.getColumn())
+                        ),
+                        PresentMatches::new)
+                );
     }
 
     public boolean contains(final PersonName personName) {
