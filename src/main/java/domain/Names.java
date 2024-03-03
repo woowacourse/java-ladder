@@ -36,8 +36,8 @@ public class Names {
         return values.size();
     }
 
-    public Name findAtIndex(int index) {
-        return values.get(index);
+    public int findIndexBy(final Name name) {
+        return values.indexOf(name);
     }
 
     public List<Name> getValues() {

@@ -85,19 +85,19 @@ class NamesTest {
         assertThat(returnedNames).hasSize(4);
     }
 
-    @DisplayName("주어진 위치에 있는 이름을 반환한다.")
+    @DisplayName("주어진 이름의 위치를 반환한다.")
     @Test
-    void findNameAtIndex() {
+    void findIndexBy() {
         //given
         final List<String> rawNames = List.of("pobi", "honux", "crong", "jk");
         final Names names = new Names(rawNames);
-        final int index = 2;
-        final String expectedName = "crong";
+        final String target = "crong";
+        final int expectedIndex = 2;
 
         //when
-        Name name = names.findAtIndex(index);
+        int result = names.findIndexBy(new Name(target));
 
         //then
-        assertThat(name.getValue()).isEqualTo(expectedName);
+        assertThat(result).isEqualTo(expectedIndex);
     }
 }
