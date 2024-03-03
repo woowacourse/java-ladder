@@ -1,5 +1,6 @@
 package ladder.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -53,18 +54,16 @@ public class Line {
                 .allMatch(idx -> row.get(idx).equals(RIGHT));
     }
 
-    public <T> List<T> climbDown(List<T> initialPosition) {
-        List<Boolean> isConnected = this.getConnected();
-        List<Integer> connectedIndices = IntStream.range(0, isConnected.size())
-                .filter(isConnected::get)
-                .boxed()
-                .toList();
+    public List<Integer> climbDown(List<Integer> initialPosition) {
+        List<Integer> positionAfterClimb = new ArrayList<>(IntStream.range(0, size()).boxed().toList());
 
-        for (int connectedIndex : connectedIndices) {
-            Collections.swap(initialPosition, connectedIndex, connectedIndex + 1);
+        for (int i = 0; i < initialPosition.size(); i++) {
+            int nextIndex = i+row.get(i).direction;
+            int value = initialPosition.get(i);
+            positionAfterClimb.set(nextIndex, value);
         }
 
-        return initialPosition;
+        return positionAfterClimb;
     }
 
     public List<Boolean> getConnected() {
