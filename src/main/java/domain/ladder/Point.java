@@ -7,10 +7,14 @@ public class Point {
     private final boolean left;
     private final boolean right;
 
-    public Point(final boolean left, final boolean right) {
+    private Point(final boolean left, final boolean right) {
         validate(left, right);
         this.left = left;
         this.right = right;
+    }
+
+    public static Point of(final boolean left, final boolean right) {
+        return new Point(left, right);
     }
 
     public static Point leftEmpty(final BooleanSupplier booleanSupplier) {
@@ -39,10 +43,6 @@ public class Point {
         if (left && right) {
             throw new IllegalArgumentException("양쪽에 모두 다리가 있을 수 없습니다.");
         }
-    }
-
-    public static Point of(final boolean left, final boolean right) {
-        return new Point(left, right);
     }
 
     public int applyMove(final int index) {

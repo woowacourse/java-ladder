@@ -11,9 +11,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class RowTest {
-    public static final Point RIGHT_MOVE_POINT = new Point(false, true);
-    public static final Point LEFT_MOVE_POINT = new Point(true, false);
-    public static final Point STAY_POINT = new Point(false, false);
+    public static final Point RIGHT_MOVE_POINT = Point.of(false, true);
+    public static final Point LEFT_MOVE_POINT = Point.of(true, false);
+    public static final Point STAY_POINT = Point.of(false, false);
 
     /*
     a     b     c     d
