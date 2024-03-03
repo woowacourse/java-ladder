@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class MemberName {
 
     public static final int MIN_NAME_LENGTH = 1;
@@ -43,5 +45,22 @@ public class MemberName {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        MemberName that = (MemberName) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

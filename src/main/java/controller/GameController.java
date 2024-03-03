@@ -2,15 +2,14 @@ package controller;
 
 import domain.Game;
 import domain.GameResult;
+import domain.GameResultDto;
 import domain.Ladder;
 import domain.Members;
-import domain.Result;
 import domain.Results;
 import domain.StringParser;
 import domain.ResultTarget;
 import error.ErrorHandler;
 import java.util.List;
-import java.util.Map;
 import strategy.RandomConnectionStrategy;
 import view.InputView;
 import view.OutputView;
@@ -73,7 +72,7 @@ public class GameController {
 
     private ResultTarget showResult(Members members, GameResult gameResult) {
         ResultTarget resultTarget = errorHandler.readUntilNoError(() -> makeResultTarget(members));
-        Map<String, Result> result = gameResult.getResultByTarget(resultTarget);
+        GameResultDto result = gameResult.getResultByTarget(resultTarget);
         outputView.printResult(result);
         return resultTarget;
     }

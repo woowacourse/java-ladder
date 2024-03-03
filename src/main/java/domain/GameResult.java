@@ -2,7 +2,6 @@ package domain;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Map.Entry;
 
 public class GameResult {
@@ -17,32 +16,30 @@ public class GameResult {
         gameResult.put(member, result);
     }
 
-    public Map<String, Result> getResultByTarget(ResultTarget target) {
+    public GameResultDto getResultByTarget(ResultTarget target) {
         if (target.isAllMembers()) {
-            return getResultOfAllMember();
+            return getResultOfAllMembers();
         }
-        String memberName = target.getValue();
-        Result result = getResultByMemberName(target.getValue());
-        return new LinkedHashMap<>() {{
-            put(memberName, result);
-        }};
+        return getResultOfMember(target.getValue());
     }
 
-    private Result getResultByMemberName(String name) {
-        return gameResult.entrySet().stream()
-                .filter(memberResult -> memberResult.getKey().getName().equals(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("해당 이름을 가진 참여자가 없습니다."))
-                .getValue();
-    }
-
-    private Map<String, Result> getResultOfAllMember() {
-        Map<String, Result> resolvedResult = new LinkedHashMap<>();
+    private GameResultDto getResultOfAllMembers() { // TODO: stream
+        HashMap<Member, Result> resolvedResult = new LinkedHashMap<>();
         for (Entry<Member, Result> memberResult : gameResult.entrySet()) {
-            String memberName = memberResult.getKey().getName();
+            Member member = memberResult.getKey();
             Result result = memberResult.getValue();
-            resolvedResult.put(memberName, result);
+            resolvedResult.put(member, result);
         }
-        return resolvedResult;
+        return new GameResultDto(resolvedResult);
+    }
+
+    private GameResultDto getResultOfMember(String memberName) {
+        HashMap<Member, Result> resolvedResult = new LinkedHashMap<>();
+        Entry<Member, Result> memberResult = gameResult.entrySet().stream()
+                .filter(entry -> entry.getKey().hasSameNameWith(memberName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 이름을 가진 참여자가 없습니다."));
+        resolvedResult.put(memberResult.getKey(), memberResult.getValue());
+        return new GameResultDto(resolvedResult);
     }
 }

@@ -2,13 +2,15 @@ package view;
 
 import domain.Connection;
 import domain.Game;
+import domain.GameResultDto;
 import domain.Line;
 import domain.Ladder;
+import domain.Member;
 import domain.Members;
 import domain.Result;
 import domain.Results;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 public class OutputView {
@@ -74,13 +76,14 @@ public class OutputView {
         return character.repeat(times);
     }
 
-    public void printResult(Map<String, Result> results) {
+    public void printResult(GameResultDto gameResultDto) {
+        HashMap<Member, Result> results = gameResultDto.getGameResult();
         if (results.size() == 1) {
             System.out.println(results.values().stream().map(Result::getValue).toList().get(0));
             return;
         }
-        for (Entry<String, Result> memberResult : results.entrySet()) {
-            String memberName = memberResult.getKey();
+        for (Entry<Member, Result> memberResult : results.entrySet()) {
+            String memberName = memberResult.getKey().getName();
             String result = memberResult.getValue().getValue();
             System.out.println(memberName + " : " + result);
         }
