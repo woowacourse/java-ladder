@@ -14,14 +14,14 @@ public class Line {
         this.points = points;
     }
 
-    public Direction nextPosition(int position) {
-        if (position < points.size() && points.get(position).isConnected()) {
-            return Direction.RIGHT;
+    public int nextIndex(int index) {
+        if (index < points.size() && points.get(index).isConnected()) {
+            return ++index;
         }
-        if (position > 0 && points.get(position - 1).isConnected()) {
-            return Direction.LEFT;
+        if (index > 0 && points.get(index - 1).isConnected()) {
+            return --index;
         }
-        return Direction.DOWN;
+        return index;
     }
 
     private void validateNoDuplicatePoints(List<Point> points) {

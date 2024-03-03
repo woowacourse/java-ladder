@@ -20,9 +20,9 @@ class LineTest {
     }
 
     @ParameterizedTest
-    @MethodSource("directionPersonProvider")
+    @MethodSource("argumentsStreamProvider")
     @DisplayName("다음 이동 방향을 결정한다.")
-    void nextPosition(Direction direction, int position) {
+    void nextPosition(int nextIndex, int index) {
         int personCount = 5;
         BooleanGenerator generator = new TogleBooleanGenerator(true);
         LineGenerator lineGenerator = new LineGenerator(personCount, generator);
@@ -30,16 +30,16 @@ class LineTest {
         // 라인 생성 결과
         // [CONNECTED, DISCONNECTED, DISCONNECTED, CONNECTED]
 
-        assertEquals(direction, line.nextPosition(position));
+        assertEquals(nextIndex, line.nextIndex(index));
     }
 
-    static Stream<Arguments> directionPersonProvider() {
+    static Stream<Arguments> argumentsStreamProvider() {
         return Stream.of(
-                Arguments.of(Direction.RIGHT, 0),
-                Arguments.of(Direction.LEFT, 1),
-                Arguments.of(Direction.DOWN, 2),
-                Arguments.of(Direction.RIGHT, 3),
-                Arguments.of(Direction.LEFT, 4)
+                Arguments.of(1, 0),
+                Arguments.of(0, 1),
+                Arguments.of(2, 2),
+                Arguments.of(4, 3),
+                Arguments.of(3, 4)
         );
     }
 }

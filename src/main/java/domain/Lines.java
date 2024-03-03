@@ -15,31 +15,30 @@ public class Lines {
     }
 
     public Map<Name, Integer> playGame(Names names) {
-        Map<Name, Integer> gameResult = new LinkedHashMap<>();
-
-        for (int i = 0; i < names.size(); i++) {
-            gameResult.put(names.getNames().get(i), i);
-        }
+        Map<Name, Integer> gameResult = initializeResultMap(names);
 
         for (Name name : names.getNames()) {
-            getLines().forEach(line -> {
-                Integer currentIndex = gameResult.get(name);
-                Direction direction = line.nextPosition(currentIndex);
-                gameResult.put(name, move(currentIndex, direction));
-            });
+            movePlayer(gameResult,name);
         }
 
         return gameResult;
     }
 
-    private int move(int index, Direction direction) {
-        if (direction == Direction.LEFT) {
-            return --index;
+    private void movePlayer(Map<Name, Integer> gameResult, Name playerName) {
+        for (Line line : getLines()) {
+            Integer currentIndex = gameResult.get(playerName);
+            gameResult.put(playerName, line.nextIndex(currentIndex));
         }
-        if (direction == Direction.RIGHT) {
-            return ++index;
+    }
+
+    private Map<Name, Integer> initializeResultMap(Names names) {
+        Map<Name, Integer> playerPositions = new LinkedHashMap<>();
+
+        for (int i = 0; i < names.size(); i++) {
+            playerPositions.put(names.getNames().get(i), i);
         }
-        return index;
+
+        return playerPositions;
     }
 
     private void createLines() {
