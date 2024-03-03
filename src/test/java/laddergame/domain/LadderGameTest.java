@@ -63,6 +63,4 @@ class LadderGameTest {
 
         assertThat(actualGameResult).containsExactlyEntriesOf(expectedResults);
     }
-
-
 }

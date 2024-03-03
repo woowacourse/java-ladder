@@ -40,7 +40,6 @@ public class LadderGame {
         return playerGameResult.get(findPlayerByName(playerName));
     }
 
-
     private Prize findPrizeByPosition(Position playerPosition) {
         return prizes.getPrizes()
                 .stream()

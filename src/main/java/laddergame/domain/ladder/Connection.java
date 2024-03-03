@@ -1,7 +1,6 @@
 package laddergame.domain.ladder;
 
 public enum Connection {
-
     CONNECTED(true),
     NOTCONNECTED(false);
 

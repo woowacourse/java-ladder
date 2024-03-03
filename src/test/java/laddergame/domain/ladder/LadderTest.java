@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LadderTest {
-
     @Test
     @DisplayName("사용자가 입력한 높이만큼의 사다리가 생성된다")
     void ladderHeightTest() {

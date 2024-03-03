@@ -11,12 +11,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class PrizesTest {
-
     @DisplayName("보상의 수가 참여자의 수와 같지 않으면 Prizes가 생성되지 않는다.")
     @ParameterizedTest
     @ValueSource(ints = {2, 1, 5})
     void notSameLengthBetweenPrizesAndPlayersTest(int playerNumber) {
         List<String> prizeNames = new ArrayList<>(List.of("꽝", "5000", "꽝", "3000"));
+
         assertThatThrownBy(() -> new Prizes(prizeNames, playerNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("보상의 개수는 참여자의 수와 같아야 합니다.");

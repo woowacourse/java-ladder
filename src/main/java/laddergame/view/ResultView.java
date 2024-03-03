@@ -35,5 +35,4 @@ public class ResultView {
 
         System.out.println(resolvePlayerResultMessage(ladderGame.findPrizeByPlayerName(playerName)));
     }
-
 }

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static laddergame.view.MessageResolver.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MessageResolverTest {
@@ -18,7 +19,7 @@ class MessageResolverTest {
         Players testPeople = new Players(List.of("a", "b", "c"));
         String expectedPeopleMessage = "a     b     c    ";
         assertEquals(expectedPeopleMessage
-                , MessageResolver.resolvePlayerMessage(testPeople));
+                , resolvePlayerMessage(testPeople));
     }
 
     @Test
@@ -30,9 +31,7 @@ class MessageResolverTest {
         String expectedLadder1 = "    |     |     |";
         String expectedLadder2 = "    |-----|     |-----|";
 
-        assertEquals(expectedLadder1
-                , MessageResolver.resolveLadderMessage(testLadder1));
-        assertEquals(expectedLadder2
-                , MessageResolver.resolveLadderMessage(testLadder2));
+        assertEquals(expectedLadder1, resolveLadderMessage(testLadder1));
+        assertEquals(expectedLadder2, resolveLadderMessage(testLadder2));
     }
 }

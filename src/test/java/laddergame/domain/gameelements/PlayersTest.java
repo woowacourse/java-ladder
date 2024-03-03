@@ -21,8 +21,7 @@ class PlayersTest {
     @ValueSource(strings = {"abcdef", "a@", ""})
     void elementNamesInvalidInput(String invalidElementName) {
         List<String> elementNames = Collections.singletonList(invalidElementName);
-        assertThrows(IllegalArgumentException.class
-                , () -> new Players(elementNames));
+
         assertThatThrownBy(() -> new Players(elementNames)).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("게임 요소의 이름은 5자 이내의 영숫자로 구성되어야 합니다.");
     }
@@ -31,9 +30,7 @@ class PlayersTest {
     @Test
     void elementsNamesValidInput() {
         List<String> elementsNames = List.of("abcde", "a1234", "12345", "a");
-        assertDoesNotThrow(() -> {
-            new Players(elementsNames);
-        });
+        assertDoesNotThrow(() -> new Players(elementsNames));
     }
 
     @DisplayName("게임 요소의 수가 1이상 100이하가 아닐 때, Elements 객체를 생성할 수 없다.")
@@ -66,8 +63,6 @@ class PlayersTest {
         for (int i = 0; i < 100; i++) {
             validNames.add(String.valueOf(i));
         }
-        assertDoesNotThrow(() -> {
-            new Players(validNames);
-        });
+        assertDoesNotThrow(() -> new Players(validNames));
     }
 }

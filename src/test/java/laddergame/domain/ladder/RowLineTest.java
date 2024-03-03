@@ -64,7 +64,6 @@ class RowLineTest {
         );
     }
 
-
     @DisplayName("사다리 연결상태에 따라 position이 좌우로 이동한다.")
     @Test
     void rowLineMovingTest() {
@@ -79,6 +78,5 @@ class RowLineTest {
                 () -> assertTrue(() -> players.get(1).getPlayerPosition().isSame(new Position(0))),
                 () -> assertTrue(() -> players.get(2).getPlayerPosition().isSame(new Position(2)))
         );
-
     }
 }

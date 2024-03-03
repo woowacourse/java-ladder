@@ -24,5 +24,4 @@ public class ExceptionHandledReader {
         }
         return null;
     }
-
 }

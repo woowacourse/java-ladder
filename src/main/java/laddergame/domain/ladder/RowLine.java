@@ -66,5 +66,4 @@ public class RowLine {
     public List<Connection> getConnections() {
         return Collections.unmodifiableList(connections);
     }
-
 }
