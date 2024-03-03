@@ -15,10 +15,11 @@ import java.util.List;
 public class LadderRow {
     private final List<DirectionalPoint> ladderPoints;
 
-    public LadderRow(BooleanGenerator booleanGenerator, int maximumSize) {
+    public LadderRow(BooleanGenerator booleanGenerator, int rowSize) {
         ladderPoints = new ArrayList<>();
-        for (int i = 0; i < maximumSize; i++) {
-            DirectionalPoint ladderPoint = determineNextPoint(booleanGenerator, getLastPoint(), i, maximumSize);
+        for (int currentIndex = 0; currentIndex < rowSize; currentIndex++) {
+            boolean isTheLastPoint = currentIndex == rowSize - 1;
+            DirectionalPoint ladderPoint = determineNextPoint(booleanGenerator, getLastPoint(), isTheLastPoint);
             ladderPoints.add(ladderPoint);
         }
     }
@@ -32,11 +33,11 @@ public class LadderRow {
 
     private DirectionalPoint determineNextPoint(final BooleanGenerator booleanGenerator,
                                                 final DirectionalPoint lastPoint,
-                                                final int currentIndex, final int maximumSize) {
+                                                final boolean isTheLastPoint) {
         if (lastPoint == RIGHT) {
             return LEFT;
         }
-        if (currentIndex == maximumSize - 1) {
+        if (isTheLastPoint) {
             return STRAIGHT;
         }
         return findDirectionalPoint(booleanGenerator.generate());
