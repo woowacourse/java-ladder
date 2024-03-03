@@ -18,11 +18,17 @@ class LadderTest {
         Ladder ladder = new Ladder(new Height("2"), 3, () -> true);
         List<Integer> expected = List.of(0, 1, 2);
         List<Integer> actual = new ArrayList<>();
+
         //when
-        for (int index = 0; index < 3; index++) {
-            int indexOfConsequence = ladder.goToConsequence(index, 0);
-            actual.add(indexOfConsequence);
-        }
+        int consequenceForPosition0 = ladder.goToConsequence(0, 0);
+        actual.add(consequenceForPosition0);
+
+        int consequenceForPosition1 = ladder.goToConsequence(1, 0);
+        actual.add(consequenceForPosition1);
+
+        int consequenceForPosition2 = ladder.goToConsequence(2, 0);
+        actual.add(consequenceForPosition2);
+
         //then
         assertThat(expected).isEqualTo(actual);
     }
