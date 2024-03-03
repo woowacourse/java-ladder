@@ -10,9 +10,9 @@ import ladder.domain.user.Users;
 public class OutputView {
 
     private static final String RUN_RESULT_MESSAGE = "실행 결과";
-    private static final String NEW_LINE = "\n";
+    private static final String NEW_LINE = System.lineSeparator();
 
-    private final Formatter formatter = new Formatter();
+    private final Formatter formatter = Formatter.getInstance();
 
     public void printError(String message) {
         System.out.println(message);
