@@ -33,6 +33,10 @@ public class LadderGame {
     }
 
     public Prize findPrizeByPlayerName(String playerName) {
+        if(playerGameResult.isEmpty()){
+            throw new IllegalStateException("아직 사다리 게임이 실행되지 않았습니다.");
+        }
+
         return playerGameResult.get(findPlayerByName(playerName));
     }
 
