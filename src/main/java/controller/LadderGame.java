@@ -59,7 +59,7 @@ public class LadderGame {
     private Ladder makeLadder() {
         try {
             int height = inputView.readHeight();
-            return new Ladder(height, participants.getCount());
+            return new Ladder(height, participants.getCount(), new RandomStepGenerator());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return makeLadder();

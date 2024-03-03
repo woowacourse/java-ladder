@@ -8,10 +8,9 @@ public class Ladder {
     private final Height height;
     private final List<Line> lines;
 
-    public Ladder(int floor, int participantsCount) {
+    public Ladder(int floor, int participantsCount, StepGenerator stepGenerator) {
         height = new Height(floor);
         int stepPointCount = participantsCount - 1;
-        StepGenerator stepGenerator = new RandomStepGenerator();
         lines = Stream.generate(() -> new Line(stepPointCount, stepGenerator))
                 .limit(floor)
                 .toList();
