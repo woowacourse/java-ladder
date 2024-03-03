@@ -21,13 +21,8 @@ public class LadderGameController {
         Players players = preparePlayers();
         Prizes prizes = preparePrizes(players);
         LadderHeight ladderHeight = prepareLadderHeight();
-        LadderWidth ladderWidth = LadderWidth.from(players.getSize());
 
-        Ladder ladder = RandomLadderGenerator.generateLadder(ladderHeight, ladderWidth);
-        OutputView.printLadderResult(players, ladder, prizes);
-
-        LadderResult ladderResult = LadderResult.from(ladder);
-        GameResult gameResult = GameResult.of(ladderResult, players, prizes);
+        GameResult gameResult = executeGame(players, ladderHeight, prizes);
         searchGameResult(gameResult);
     }
 
@@ -50,6 +45,16 @@ public class LadderGameController {
             int ladderHeight = InputView.askLadderHeight();
             return new LadderHeight(ladderHeight);
         });
+    }
+
+    private GameResult executeGame(Players players, LadderHeight ladderHeight, Prizes prizes) {
+        LadderWidth ladderWidth = LadderWidth.from(players.getSize());
+        Ladder ladder = RandomLadderGenerator.generateLadder(ladderHeight, ladderWidth);
+
+        OutputView.printLadderResult(players, ladder, prizes);
+
+        LadderResult ladderResult = LadderResult.from(ladder);
+        return GameResult.of(ladderResult, players, prizes);
     }
 
     private void searchGameResult(GameResult gameResult) {
