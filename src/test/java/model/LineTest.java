@@ -20,7 +20,7 @@ public class LineTest {
         line.draw(() -> true, 4);
 
         //when
-        List<Integer> expect=List.of(0,2);
+        List<Integer> expect=List.of(0, 2);
         List<Integer> actual = line.findHorizontalPosition();
 
         //then

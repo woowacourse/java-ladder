@@ -24,7 +24,7 @@ class LadderTest {
     @DisplayName("특정 위치에서 가로로 이동 가능한 위치가 오른쪽인 경우")
     void findRightNextPathTest(int verticalPosition, int horizontalPosition) {
         //when
-        Direction direction = ladder.findNextHorizontalPath(horizontalPosition,verticalPosition);
+        Direction direction = ladder.findNextHorizontalPath(horizontalPosition, verticalPosition);
 
         //then
         assertThat(direction)
@@ -39,7 +39,7 @@ class LadderTest {
     @DisplayName("특정 위치에서 가로로 이동 가능한 위치가 왼쪽인 경우")
     void findLeftNextPathTest(int verticalPosition, int horizontalPosition) {
         //when
-        Direction direction = ladder.findNextHorizontalPath(horizontalPosition,verticalPosition);
+        Direction direction = ladder.findNextHorizontalPath(horizontalPosition, verticalPosition);
 
         //then
         assertThat(direction)
@@ -57,7 +57,7 @@ class LadderTest {
         Ladder emptyLadder = new Ladder(() -> false, "3", 5);
 
         //when
-        Direction direction = emptyLadder.findNextHorizontalPath(horizontalPosition,verticalPosition);
+        Direction direction = emptyLadder.findNextHorizontalPath(horizontalPosition, verticalPosition);
 
         //then
         assertThat(direction)

@@ -47,13 +47,13 @@ public class LadderController {
     }
 
     private String makeLadder(People people, Ladder ladder) {
-        String prizesText = inputView.askPrizes();
+        String prizesText = inputView.askPrizeNames();
         ladderGame = new LadderGame(people, ladder, prizesText);
         return prizesText;
     }
 
     private void insertAndProceedCommand(People people) {
-        String command = inputView.askGameResult();
+        String command = inputView.askForParticipantName();
         if (isAll(command)) {
             getAllPrize(people);
             return;

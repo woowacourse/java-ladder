@@ -34,4 +34,3 @@ class PersonTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
-

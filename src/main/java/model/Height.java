@@ -26,7 +26,7 @@ public class Height {
     private void validateMinimumLimit(int parsedHeight) {
         if (parsedHeight < MINIMUM_HEIGHT_LIMIT) {
             throw new IllegalArgumentException(String
-                    .format("사다리의 길이는 최소 %s 이상이어야합니다.",MINIMUM_HEIGHT_LIMIT));
+                    .format("사다리의 길이는 최소 %s 이상이어야합니다.", MINIMUM_HEIGHT_LIMIT));
         }
     }
 }

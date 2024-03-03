@@ -22,7 +22,7 @@ public class Prize {
 
     private void validateNameLength(String inputPrizeText) {
         if (isOutOfRange(inputPrizeText.length())) {
-            String outOfRangeMessage = "상품의 이름은 %d~%d 까지만 허용합니다.".formatted(MIN_RANGE_LIMIT,MAX_RANGE_LIMIT);
+            String outOfRangeMessage = "상품의 이름은 %d~%d 까지만 허용합니다.".formatted(MIN_RANGE_LIMIT, MAX_RANGE_LIMIT);
             throw new IllegalArgumentException(outOfRangeMessage);
         }
     }

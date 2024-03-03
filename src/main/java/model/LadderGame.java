@@ -9,7 +9,7 @@ public class LadderGame {
         this.people = people;
         this.ladder = ladder;
         this.rewardBoard = new RewardBoard();
-        calculatePrizes(new Prizes(originPrizeInput,people.getParticipantsSize()));
+        calculatePrizes(new Prizes(originPrizeInput, people.getParticipantsSize()));
     }
 
     private void calculatePrizes(Prizes inputOrderedPrizes) {

@@ -13,7 +13,7 @@ class PositionTest {
     @DisplayName("정해진 뱡향에 따라 가로로 이동한다.")
     void moveHorizontallyTest(Direction direction) {
         //given
-        Position position = new Position(3,5);
+        Position position = new Position(3, 5);
 
         //when
         position.moveHorizontally(direction);
@@ -27,14 +27,14 @@ class PositionTest {
     @DisplayName("가로 이동하면 아래로 1만큼 이동한다.")
     void moveToDownStairTest() {
         //given
-        Position position = new Position(1,2);
+        Position position = new Position(1, 2);
 
         //when
         position.moveToDownStair();
 
         //then
         Assertions.assertThat(position)
-                .isEqualTo(new Position(1,3));
+                .isEqualTo(new Position(1, 3));
     }
 
 }
