@@ -44,7 +44,7 @@ class LadderTest {
         assertThat(actual).isTrue();
     }
 
-    class AlwaysTrueSupplier implements BooleanSupplier {
+    static class AlwaysTrueSupplier implements BooleanSupplier {
         @Override
         public boolean getAsBoolean() {
             return true;
