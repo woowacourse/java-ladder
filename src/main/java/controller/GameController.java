@@ -6,7 +6,6 @@ import domain.GameResultDto;
 import domain.Ladder;
 import domain.Members;
 import domain.Results;
-import domain.StringParser;
 import domain.ResultTarget;
 import error.ErrorHandler;
 import java.util.List;
@@ -45,20 +44,17 @@ public class GameController {
     }
 
     private Members makeMembers() {
-        String rawNames = inputView.readNames();
-        List<String> names = StringParser.splitByDelimiter(rawNames, ",");
+        List<String> names = inputView.readNames();
         return Members.from(names);
     }
 
     private Results makeResults(Members members) {
-        String rawResults = inputView.readResults();
-        List<String> results = StringParser.splitByDelimiter(rawResults, ",");
+        List<String> results = inputView.readResults();
         return Results.of(results, members.getCount());
     }
 
     private Ladder makeLadder(Members members) {
-        String rawHeight = inputView.readHeight();
-        int height = StringParser.stringToInt(rawHeight);
+        int height = inputView.readHeight();
         return Ladder.of(height, members.getCount(), new RandomConnectionStrategy());
     }
 
