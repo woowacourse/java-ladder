@@ -24,18 +24,19 @@ public class LadderGameController {
         List<PlayerName> playerNames = inputPlayerNames();
         List<Price> prices = inputPriceNames();
         Height height = inputHeight();
-
         LinePatternGenerator lineGenerator = new LinePatternGenerator(new RandomBooleanSupplier());
         Ladder ladder = Ladder.makeLadder(height, playerNames.size(), lineGenerator);
-
         LadderGame ladderGame = new LadderGame(playerNames, ladder);
 
+        printLadder(playerNames, ladder, prices);
+        printResult(ladderGame.playGame(), prices);
+    }
+
+    private void printLadder(List<PlayerName> playerNames, Ladder ladder, List<Price> prices) {
         PlayerNamesDto playerNamesDto = toDto(playerNames);
         LadderDto ladderDto = toDto(ladder);
         PriceDto priceDto = toPriceDto(prices);
         outputView.printResult(ladderDto, playerNamesDto, priceDto);
-
-        printResult(ladderGame.playGame(), prices);
     }
 
     private void printResult(List<String> result, List<Price> prices) {
