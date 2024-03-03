@@ -73,7 +73,6 @@ public class OutputView {
     }
 
     public static void printSearchingResult(String playerName, GameResult gameResult) {
-        System.out.println(GAME_RESULT_INTRO);
         if (playerName.equals(SEARCH_ALL)) {
             printGameResultAll(gameResult);
             return;
@@ -82,6 +81,7 @@ public class OutputView {
     }
 
     private static void printGameResultAll(GameResult gameResult) {
+        System.out.println(GAME_RESULT_INTRO);
         gameResult.getPlayers()
             .forEach(player -> printPlayerAndPrize(gameResult, player));
     }
@@ -93,6 +93,7 @@ public class OutputView {
 
     private static void printGameResult(String playerName, GameResult gameResult) {
         Prize prize = gameResult.findPrizeByPlayerName(playerName);
+        System.out.println(GAME_RESULT_INTRO);
         System.out.println(prize.getName());
     }
 
