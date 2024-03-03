@@ -15,7 +15,7 @@ public class Lines {
     }
 
     public Map<Name, Integer> playGame(Names names) {
-        Map<Name, Integer> gameResult = new HashMap<>();
+        Map<Name, Integer> gameResult = new LinkedHashMap<>();
 
         for (int i = 0; i < names.size(); i++) {
             gameResult.put(names.getNames().get(i), i);
