@@ -31,7 +31,7 @@ public class LadderGame {
         Ladder ladder = new Ladder(players, height, bridgeGenerator);
 
         outputView.printLadderGame(ladder, players.getNames(), prizes.getPrizes());
-        repeat(getResultRunnable(ladder.getResult(), prizes));
+        repeat(getResultRunnable(ladder.calculate(players, prizes)));
     }
 
     private Players getPlayers() {
@@ -49,21 +49,18 @@ public class LadderGame {
         return new Height(inputHeight);
     }
 
-    private Runnable getResultRunnable(Result result, Prizes prizes) {
-        return () -> printResult(result, prizes);
+    private Runnable getResultRunnable(Result result) {
+        return () -> printResult(result);
     }
 
-    private void printResult(Result result, Prizes prizes) {
+    private void printResult(Result result) {
         String nameForResult = inputView.readPlayerResult();
         if (ALL.equals(nameForResult)) {
-            outputView.printResult(result.matchAll(prizes));
+            outputView.printLadderResult(result.matchAll());
             return;
         }
-        if (!result.isContain(nameForResult)) {
-            throw new IllegalArgumentException("존재하지 않는 플레이어입니다.");
-        }
-        outputView.printResult(result.match(nameForResult, prizes));
-        repeat(getResultRunnable(result, prizes));
+        outputView.printLadderResult(result.match(nameForResult));
+        repeat(getResultRunnable(result));
     }
 
     private <T> T repeat(Supplier<T> supplier) {
