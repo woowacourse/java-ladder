@@ -1,12 +1,10 @@
 package ladder.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import ladder.model.Ladder;
-import ladder.model.Line;
 import ladder.model.Players;
 
 public class LadderGame {
@@ -43,12 +41,12 @@ public class LadderGame {
     }
 
     public Map<String, String> play() {
-        List<String> position = new ArrayList<>(players.getPlayerNames());
+        List<Integer> positionAfterClimb = ladder.climb();
+        List<String> playersPositionAfterClimb = positionAfterClimb.stream()
+                .map(players.getPlayerNames()::get)
+                .toList();
 
-        for (Line line : ladder.getLadder()) {
-            position = line.climbDown(position);
-        }
-        return createGameResult(position);
+        return createGameResult(playersPositionAfterClimb);
     }
 
     private Map<String, String> createGameResult(List<String> finalPosition) {

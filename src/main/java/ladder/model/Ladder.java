@@ -71,6 +71,18 @@ public class Ladder {
         return lastPath.equals(LadderPath.RIGHT);
     }
 
+    public List<Integer> climb() {
+        List<Integer> positions = new ArrayList<>(IntStream.range(0, getWidth())
+                .boxed()
+                .toList());
+
+        for (Line line : ladder) {
+            positions = line.climbDown(positions);
+        }
+
+        return positions;
+    }
+
     public List<Line> getLadder() {
         return Collections.unmodifiableList(ladder);
     }
