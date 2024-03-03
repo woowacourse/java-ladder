@@ -20,11 +20,11 @@ public class Results {
         }
     }
 
-    public List<Result> getLadderResults() {
-        return results;
-    }
-
     public int count() {
         return results.size();
+    }
+
+    public List<Result> getLadderResults() {
+        return results;
     }
 }
