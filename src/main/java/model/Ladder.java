@@ -29,11 +29,6 @@ public class Ladder {
         return new Ladder(lines, players, prizes);
     }
 
-    //TODO: 테스트에서만 사용되는 메서드는 지우기
-    public int size() {
-        return lines.size();
-    }
-
     public LadderResult findResult() {
         final int ladderSize = players.size() - 1;
         List<String> prizeResult = new ArrayList<>();

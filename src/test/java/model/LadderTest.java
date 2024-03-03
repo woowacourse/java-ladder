@@ -9,24 +9,6 @@ import org.junit.jupiter.api.Test;
 
 class LadderTest {
     @Test
-    @DisplayName("사다리 높이가 사다리 객체의 크기가 된다.")
-    void createLadderWithHeight() {
-        // given
-        Height height = new Height(5);
-        List<String> playerNames = List.of("reddy", "anna", "brown");
-        Players players = new Players(playerNames);
-
-        List<String> prizeNames = List.of("당첨", "꽝", "꽝");
-        Prizes prizes = Prizes.of(prizeNames, players.size());
-
-        // when
-        Ladder ladder = Ladder.of(height, players, prizes);
-
-        // when
-        Assertions.assertThat(ladder.size()).isEqualTo(height.value());
-    }
-
-    @Test
     @DisplayName("원하는 참여자의 결과를 확인한다. 사다리가 빈 경우")
     void findPrizesInEmptyLadder() {
         //given
