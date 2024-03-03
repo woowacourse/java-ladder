@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 public class LadderPositions {
     private static final int MIN_LADDER_POSITIONS_LENGTH = 2;
     private static final int MAX_LADDER_POSITIONS_LENGTH = 10;
-    public final List<Integer> positions;
+    private final List<Integer> positions;
 
     public LadderPositions(int length) {
         validatePositionsLength(length);
