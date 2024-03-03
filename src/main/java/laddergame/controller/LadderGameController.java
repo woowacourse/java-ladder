@@ -1,11 +1,10 @@
 package laddergame.controller;
 
-import java.util.List;
 import laddergame.model.executionresults.ExecutionResults;
+import laddergame.model.generator.RandomBooleansGenerator;
 import laddergame.model.laddergame.LadderGame;
 import laddergame.model.laddergame.LadderGameGenerator;
 import laddergame.model.laddergame.LadderHeight;
-import laddergame.model.laddergame.RandomGenerator;
 import laddergame.model.laddergame.ResultProcessor;
 import laddergame.model.participants.InquirySubject;
 import laddergame.model.participants.Participants;
@@ -34,9 +33,9 @@ public class LadderGameController {
     }
 
     private LadderGame getLadderGame(LadderHeight ladderHeight, Participants participants) {
-        RandomGenerator randomGenerator = new RandomGenerator();
-        List<List<Boolean>> doublyBooleans = randomGenerator.generateBooleans(ladderHeight, participants);
-        LadderGameGenerator ladderGameGenerator = new LadderGameGenerator(doublyBooleans);
+        RandomBooleansGenerator randomGenerator = new RandomBooleansGenerator();
+        LadderGameGenerator ladderGameGenerator
+                = new LadderGameGenerator(ladderHeight, participants, randomGenerator);
         return ladderGameGenerator.getLadderGame();
     }
 

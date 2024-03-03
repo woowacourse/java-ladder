@@ -3,11 +3,14 @@ package laddergame.model.laddergame;
 import java.util.List;
 import java.util.stream.Collectors;
 import laddergame.exception.BaseException;
+import laddergame.model.generator.BooleansGenerator;
+import laddergame.model.participants.Participants;
 
 public class LadderGameGenerator {
     private final List<List<Boolean>> doublyBooleans;
 
-    public LadderGameGenerator(List<List<Boolean>> doublyBooleans) {
+    public LadderGameGenerator(LadderHeight ladderHeight, Participants participants, BooleansGenerator generator) {
+        List<List<Boolean>> doublyBooleans = generator.generate(ladderHeight, participants);
         validateBooleans(doublyBooleans);
         this.doublyBooleans = doublyBooleans;
     }

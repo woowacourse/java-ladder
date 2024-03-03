@@ -1,14 +1,16 @@
-package laddergame.model.laddergame;
+package laddergame.model.generator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import laddergame.model.laddergame.LadderHeight;
 import laddergame.model.participants.Participants;
 
-public class RandomGenerator {
+public class RandomBooleansGenerator implements BooleansGenerator {
     private final Random random = new Random();
 
-    public List<List<Boolean>> generateBooleans(LadderHeight ladderHeight, Participants participants) {
+    @Override
+    public List<List<Boolean>> generate(LadderHeight ladderHeight, Participants participants) {
         List<List<Boolean>> doubleBooleans = new ArrayList<>();
         for (int i = 0; i < ladderHeight.height(); i++) {
             doubleBooleans.add(generateBooleans(participants.getSize()));
