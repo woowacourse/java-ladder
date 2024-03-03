@@ -60,9 +60,9 @@ class LadderTest {
 
         Ladder testLadder = new Ladder(1, 3, new AllFalseConnectionGenerator());
 
-        List<Position> expectedResult = Stream.of(0,1,2)
-                                        .map(Position::new)
-                                        .toList();
+        List<Position> expectedResult = Stream.of(0, 1, 2)
+                .map(Position::new)
+                .toList();
         List<Position> actualResult = testLadder.getResult(3);
 
         assertThat(actualResult)
@@ -79,7 +79,7 @@ class LadderTest {
          */
         Ladder testLadder = new Ladder(1, 4, new TrueFalseConnectionGenerator());
 
-        List<Position> expectedResult = Stream.of(1,0,3,2)
+        List<Position> expectedResult = Stream.of(1, 0, 3, 2)
                 .map(Position::new)
                 .toList();
         List<Position> actualResult = testLadder.getResult(4);

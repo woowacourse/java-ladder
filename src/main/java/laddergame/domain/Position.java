@@ -2,7 +2,7 @@ package laddergame.domain;
 
 import java.util.Objects;
 
-public class Position implements Comparable<Position>{
+public class Position implements Comparable<Position> {
     private int playerPosition;
 
     public Position(int playerPosition) {
@@ -45,6 +45,6 @@ public class Position implements Comparable<Position>{
 
     @Override
     public int compareTo(Position o) {
-        return Integer.compare(playerPosition,o.playerPosition);
+        return Integer.compare(playerPosition, o.playerPosition);
     }
 }

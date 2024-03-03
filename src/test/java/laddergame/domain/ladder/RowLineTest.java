@@ -66,7 +66,7 @@ class RowLineTest {
 
     @DisplayName("사다리 연결상태에 따라 position이 좌우로 이동한다.")
     @Test
-    void rowLinemoving2Test(){
+    void rowLinemoving2Test() {
         RowLine rowLine = new RowLine(5, new TrueFalseConnectionGenerator());
 
         List<Position> positions = IntStream.range(0, 5)
