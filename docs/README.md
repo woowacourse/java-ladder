@@ -30,6 +30,10 @@
     - 이전 Bridge가 존재하면 다리를 연결하지 않는다.
     - 이전 Bridge가 존재하지 않으면 50% 확률로 다리를 연결한다.
 
+9. BridgeIndex
+    - 다리의 인덱스를 표현한다.
+    - 다리 인덱스의 최대값은 전체 플레이어 수 - 2 값 까지 생성 가능하다.
+
 9. Line
     - Bridge를 가지는 일급 컬렉션.
     - 이전 Bridge를 BridgeGenerator에게 넘겨 다음 Bridge를 생성한다.
