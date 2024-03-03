@@ -20,7 +20,7 @@ public class OutputView {
         printResultTitle();
         printPlayerNames(playerNamesDto);
         printLadder(ladderDto);
-        PrintPrice(priceDto);
+        printPrice(priceDto);
     }
 
     public void printReward(List<String> result, List<Price> prices) {
@@ -52,7 +52,7 @@ public class OutputView {
         System.out.println(stringBuilder);
     }
 
-    private void PrintPrice(PriceDto priceDto) {
+    private void printPrice(PriceDto priceDto) {
         StringBuilder stringBuilder = new StringBuilder();
         for (String priceName : priceDto.priceNames()) {
             String formattedPriceName = String.format("%5s ", priceName);
