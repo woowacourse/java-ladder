@@ -12,7 +12,7 @@ import ladder.domain.user.Users;
 
 public class ResourceGenerator {
 
-    public static Users generateUsersWithCount(int count) {
+    public static Users generateUsers(int count) {
         List<User> users = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             users.add(new User("u" + i));
@@ -21,17 +21,17 @@ public class ResourceGenerator {
         return new Users(users);
     }
 
-    public static Ladder generateLadderWithWidth(int width) {
-        LadderGenerator ladderGenerator = new LadderGenerator(new RandomLineGenerator());
-        return ladderGenerator.generate(2, width);
-    }
-
-    public static Prizes generatePrizesWithCount(int count) {
+    public static Prizes generatePrizes(int count) {
         List<Prize> prizes = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             prizes.add(new Prize("p" + i));
         }
 
         return new Prizes(prizes);
+    }
+
+    public static Ladder generateLadderWithHeightAndWidth(int height, int width) {
+        LadderGenerator ladderGenerator = new LadderGenerator(new RandomLineGenerator());
+        return ladderGenerator.generate(height, width);
     }
 }
