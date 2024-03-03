@@ -15,9 +15,10 @@ public class PlayerResults {
 
     public static PlayerResults of(Names names, Ladder ladder, Results results) {
         Map<Name, Result> playerResults = new LinkedHashMap<>();
-        for (int from = 0; from < names.count(); from++) {
-            int to = ladder.climb(from);
-            playerResults.put(names.findAtIndex(from), results.findAtIndex(to));
+        for (final Name name : names.getValues()) {
+            Position from = new Position(names.findIndexBy(name));
+            Position to = ladder.climb(from);
+            playerResults.put(name, results.findAtIndex(to.getValue()));
         }
 
         return new PlayerResults(playerResults);
