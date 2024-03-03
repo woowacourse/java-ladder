@@ -2,24 +2,25 @@ package domain;
 
 public class Position {
 
-    public final int position;
+    public int value;
 
-    public Position(final int position) {
-        this.position = position;
-    }
-
-    public boolean canMoveRight(final Line line) {
-        if(isLast(line.hasSize())){
-            return false;
-        }
-        return line.hasBridgeAt(position);
-    }
-
-    public boolean isLast(int lineSize) {
-        return position == lineSize;
+    public Position(final int value) {
+        this.value = value;
     }
 
     public boolean isFirst() {
-        return position == 0;
+        return value == 0;
+    }
+
+    public boolean isLast(int lineSize) {
+        return value == lineSize;
+    }
+
+    public int findLeft() {
+        return --value;
+    }
+
+    public int findRight() {
+        return ++value;
     }
 }
