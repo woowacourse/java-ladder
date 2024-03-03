@@ -1,10 +1,10 @@
 package controller;
 
-import model.LadderDto;
 import java.util.HashSet;
 import java.util.Set;
 import model.Height;
 import model.Ladder;
+import model.LadderDto;
 import model.LadderResult;
 import model.Player;
 import model.Players;
@@ -31,19 +31,21 @@ public class LadderController {
         LadderDto dto = LadderDto.from(ladder.getLines());
 
         outputView.printLadderResult(players.getNames(), dto.ladder(), prizes.getPrizeNames());
-        printResult(ladder.findResult(players, prizes), players);
+        printResult(ladder, ladder.findResult(players, prizes), players);
     }
 
-    private void printResult(final LadderResult ladderResult, final Players players) {
+    private void printResult(final Ladder ladder, final LadderResult ladderResult, final Players players) {
         Set<Player> playerNames = new HashSet<>(players.getPlayerNames());
         while (!playerNames.isEmpty()) {
-            readNameAndPrintResult(ladderResult, playerNames);
+            readNameAndPrintResult(ladder, ladderResult, playerNames);
         }
     }
 
-    private void readNameAndPrintResult(final LadderResult ladderResult, final Set<Player> playerNames) {
+    //TODO: 파라미터를 줄이던지 ladderResult를 없애던지
+    private void readNameAndPrintResult(final Ladder ladder, final LadderResult ladderResult,
+                                        final Set<Player> playerNames) {
         String name = inputView.readPlayerNameToCheckPrize();
-        if (ladderResult.isCmdAllResult(name)) {
+        if (ladder.isAllResultRequest(name)) {
             outputView.printAllPlayerResult(ladderResult.playersPrizeResults());
             playerNames.clear();
             return;

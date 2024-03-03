@@ -100,4 +100,17 @@ class LadderTest {
 
         return new Ladder(lines);
     }
+
+    @Test
+    @DisplayName("사다리 결과 요청이 참가자의 전체 결과 요청인지 확인한다.")
+    void createAllPlayerResultRequest() {
+        //given
+        Height height = new Height(5);
+        int personCount = 3;
+        Ladder ladder = createNothingBuildLadder(height, personCount);
+
+        //when & then
+        String allResultRequest = "all";
+        Assertions.assertThat(ladder.isAllResultRequest(allResultRequest)).isTrue();
+    }
 }

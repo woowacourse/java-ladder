@@ -5,6 +5,8 @@ import java.util.List;
 import model.strategy.RandomBuildStrategy;
 
 public class Ladder {
+    private static final String ALL_RESULT_CMD = "all";
+
     private final List<Line> lines;
 
     protected Ladder(final List<Line> lines) {
@@ -56,6 +58,10 @@ public class Ladder {
 
     private boolean canMoveLeft(final int index, final Line line) {
         return 0 < index && line.isConnected(index - 1);
+    }
+
+    public boolean isAllResultRequest(final String resultRequestCmd) {
+        return ALL_RESULT_CMD.equals(resultRequestCmd);
     }
 
     public List<Line> getLines() {
