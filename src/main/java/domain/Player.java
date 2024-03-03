@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Player {
 
     public static final String ALL = "all";
@@ -51,5 +53,21 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Player player)) {
+            return false;
+        }
+        return Objects.equals(name, player.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

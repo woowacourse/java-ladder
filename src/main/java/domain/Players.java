@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,13 +33,11 @@ public class Players {
         return players.size();
     }
 
-    public int getPositionOf(String name) {
-        return getNames().indexOf(name);
+    public int getPositionOf(Player player) {
+        return players.indexOf(player);
     }
 
-    public List<String> getNames() {
-        return players.stream()
-                .map(Player::getName)
-                .collect(Collectors.toList());
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
     }
 }

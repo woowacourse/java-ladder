@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Prize {
 
     private static final int MAXIMUM_LENGTH = 5;
@@ -49,5 +51,21 @@ public class Prize {
 
     public String getPrize() {
         return prize;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Prize prize1)) {
+            return false;
+        }
+        return Objects.equals(prize, prize1.prize);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(prize);
     }
 }

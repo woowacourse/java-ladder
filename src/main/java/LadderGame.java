@@ -30,7 +30,7 @@ public class LadderGame {
 
         Ladder ladder = new Ladder(players, height, bridgeGenerator);
 
-        outputView.printLadderGame(ladder, players.getNames(), prizes.getPrizes());
+        outputView.printLadderGame(ladder, players.getPlayers(), prizes.getPrizes());
         repeat(getResultRunnable(ladder.calculate(players, prizes)));
     }
 

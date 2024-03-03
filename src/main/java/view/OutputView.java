@@ -20,15 +20,15 @@ public class OutputView {
     private static final String ALL_RESULT_DELIMITER = " : ";
     private static final int OFFSET_COUNT = 5;
 
-    public void printLadderGame(Ladder ladder, List<String> names, List<Prize> prizes) {
+    public void printLadderGame(Ladder ladder, List<Player> players, List<Prize> prizes) {
         System.out.println("실행 결과");
-        printPlayer(names);
+        printPlayer(players);
         printLadder(ladder);
         printInputPrizes(prizes);
     }
 
-    private void printPlayer(List<String> names) {
-        names.forEach(name -> System.out.print(String.format(NAME_FORMAT, name)));
+    private void printPlayer(List<Player> players) {
+        players.forEach(player -> System.out.print(String.format(NAME_FORMAT, player.getName())));
         System.out.println();
     }
 

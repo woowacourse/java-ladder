@@ -54,10 +54,10 @@ public class PlayersTest {
         Players players = new Players(List.of("pobi", "honux", "crong", "jk"));
 
         assertAll(
-                () -> assertThat(players.getPositionOf("pobi")).isEqualTo(0),
-                () -> assertThat(players.getPositionOf("honux")).isEqualTo(1),
-                () -> assertThat(players.getPositionOf("crong")).isEqualTo(2),
-                () -> assertThat(players.getPositionOf("jk")).isEqualTo(3)
+                () -> assertThat(players.getPositionOf(new Player("pobi"))).isEqualTo(0),
+                () -> assertThat(players.getPositionOf(new Player("honux"))).isEqualTo(1),
+                () -> assertThat(players.getPositionOf(new Player("crong"))).isEqualTo(2),
+                () -> assertThat(players.getPositionOf(new Player("jk"))).isEqualTo(3)
         );
     }
 }
