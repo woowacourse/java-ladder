@@ -27,6 +27,6 @@ class LadderDtoTest {
         LadderDto ladderDto = LadderDto.from(ladder.getLines());
 
         //then
-        Assertions.assertThat(ladderDto.ladder()).isEqualTo(expected);
+        Assertions.assertThat(ladderDto.formattedLadder()).isEqualTo(expected);
     }
 }

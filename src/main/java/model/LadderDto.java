@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public record LadderDto(List<String> ladder) {
+public record LadderDto(List<String> formattedLadder) {
 
     private static final String CONNECTED_FORM = "-----";
     private static final String UNCONNECTED_FORM = "     ";

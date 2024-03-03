@@ -26,11 +26,10 @@ public class LadderController {
         Prizes prizes = Prizes.of(inputView.readPrizes(), players.size());
         Height height = new Height(inputView.readHeight());
         Ladder ladder = Ladder.of(height, players, prizes);
+        LadderDto ladderDto = LadderDto.from(ladder.getLines());
 
-        // TODO: 변수 명 수정
-        LadderDto dto = LadderDto.from(ladder.getLines());
-
-        outputView.printLadderResult(players.getNames(), dto.ladder(), prizes.getPrizeNames());
+        outputView.printPlayerNamesAndLadder(players.getNames(), ladderDto.formattedLadder());
+        outputView.printPrizes(prizes.getPrizeNames());
         printResult(ladder, players);
     }
 
