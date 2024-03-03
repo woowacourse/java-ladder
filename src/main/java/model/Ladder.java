@@ -29,10 +29,9 @@ public class Ladder {
     }
 
     public Position findLinkedPosition(Position position) {
-        Position currentPosition = ladderRows.get(0).findLinkedPosition(position);
-        for (int i = 1; i < ladderRows.size(); i++) {
-            currentPosition = ladderRows.get(i).findLinkedPosition(currentPosition);
-        }
-        return currentPosition;
+        return ladderRows.stream()
+                .reduce(position,
+                        (currentPosition, ladderRow) -> ladderRow.findLinkedPosition(currentPosition),
+                        (a, b) -> b);
     }
 }
