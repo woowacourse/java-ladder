@@ -7,11 +7,7 @@ import ladder.domain.user.User;
 
 public class GameResult {
 
-    private final Map<User, Prize> result;
-
-    public GameResult() {
-        this.result = new LinkedHashMap<>();
-    }
+    private final Map<User, Prize> result = new LinkedHashMap<>();
 
     public void save(User user, Prize prize) {
         validateResourceNotNull(user, prize);
