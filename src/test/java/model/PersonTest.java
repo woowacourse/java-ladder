@@ -29,7 +29,8 @@ class PersonTest {
     @ValueSource(strings = {"", "mollly"})
     void createPersonThrowExceptionWhenInvalidNameLength(String name) {
         assertThatThrownBy(() -> Person.from(name, 0))
-                .isExactlyInstanceOf(IllegalArgumentException.class);
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름은 최소 1글자 최대 5글자여야 합니다. " + name + "은(는) 적절한 길이가 아닙니다.");
     }
 
     @ParameterizedTest(name = "사람은 경로대로 좌우로 음직인다.")

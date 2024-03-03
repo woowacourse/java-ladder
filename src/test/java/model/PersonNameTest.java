@@ -22,6 +22,7 @@ class PersonNameTest {
     @ValueSource(strings = {"", "mollly"})
     void createPersonNameThrowExceptionWhenInvalidNameLength(String name) {
         assertThatThrownBy(() -> new PersonName(name))
-                .isExactlyInstanceOf(IllegalArgumentException.class);
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름은 최소 1글자 최대 5글자여야 합니다. " + name + "은(는) 적절한 길이가 아닙니다.");
     }
 }
