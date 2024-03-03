@@ -1,11 +1,11 @@
 package ladder.view;
 
-import ladder.domain.game.GameResource;
-import ladder.domain.game.GameResult;
-import ladder.domain.resource.ladder.Ladder;
-import ladder.domain.resource.prize.Prize;
-import ladder.domain.resource.prize.Prizes;
-import ladder.domain.resource.user.Users;
+import ladder.domain.GameResource;
+import ladder.domain.GameResult;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.prize.Prize;
+import ladder.domain.prize.Prizes;
+import ladder.domain.user.Users;
 
 public class OutputView {
 

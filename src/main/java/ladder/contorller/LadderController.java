@@ -2,16 +2,16 @@ package ladder.contorller;
 
 import java.util.List;
 import ladder.domain.game.GameExecutor;
-import ladder.domain.game.GameResource;
-import ladder.domain.game.GameResult;
-import ladder.domain.game.LadderGame;
-import ladder.domain.resource.ladder.Ladder;
-import ladder.domain.resource.ladder.LadderGenerator;
-import ladder.domain.resource.line.RandomLineGenerator;
-import ladder.domain.resource.prize.Prize;
-import ladder.domain.resource.prize.Prizes;
-import ladder.domain.resource.user.User;
-import ladder.domain.resource.user.Users;
+import ladder.domain.GameResource;
+import ladder.domain.GameResult;
+import ladder.domain.LadderGame;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderGenerator;
+import ladder.domain.line.RandomLineGenerator;
+import ladder.domain.prize.Prize;
+import ladder.domain.prize.Prizes;
+import ladder.domain.user.User;
+import ladder.domain.user.Users;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 

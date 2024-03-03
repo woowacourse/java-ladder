@@ -3,14 +3,14 @@ package ladder.view;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import ladder.domain.game.GameResult;
-import ladder.domain.resource.direction.Direction;
-import ladder.domain.resource.ladder.Ladder;
-import ladder.domain.resource.line.Line;
-import ladder.domain.resource.prize.Prize;
-import ladder.domain.resource.prize.Prizes;
-import ladder.domain.resource.user.User;
-import ladder.domain.resource.user.Users;
+import ladder.domain.GameResult;
+import ladder.domain.direction.Direction;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.line.Line;
+import ladder.domain.prize.Prize;
+import ladder.domain.prize.Prizes;
+import ladder.domain.user.User;
+import ladder.domain.user.Users;
 
 public class Formatter {
 
