@@ -13,7 +13,7 @@ import laddergame.view.OutputView;
 import laddergame.view.ReservedWords;
 
 public class LadderGameController {
-    private final LadderGameService gameService = new LadderGameService();
+    private final LadderGameBuilder ladderBuilder = new LadderGameBuilder();
     private final InputView inputView = InputView.getInstance();
     private final OutputView outputView = OutputView.getInstance();
 
@@ -21,26 +21,26 @@ public class LadderGameController {
         final Players players = requestUntilValidated(this::getPlayers);
         final Results results = requestUntilValidated(() -> getResults(players));
         final Height height = requestUntilValidated(this::getHeight);
-        final Ladder ladder = gameService.getLadder(players, height, results);
+        final Ladder ladder = ladderBuilder.getLadder(players, height, results);
         outputView.writeLadderResult(players, ladder, results);
         repeatUntil(() -> runCommand(
                 requestUntilValidated(() -> inputView.readDesiredPlayerName(players)),
-                gameService.getPlayersResults(ladder)));
+                ladderBuilder.getPlayersResults(ladder)));
     }
 
     private Players getPlayers() {
         final List<String> playersNamesInput = inputView.readPlayersName();
-        return gameService.getPlayers(playersNamesInput);
+        return ladderBuilder.getPlayers(playersNamesInput);
     }
 
     private Height getHeight() {
         final String heightInput = inputView.readLadderHeight();
-        return gameService.getHeight(heightInput);
+        return ladderBuilder.getHeight(heightInput);
     }
 
     private Results getResults(final Players players) {
         final List<String> resultNamesInput = inputView.readResultNames();
-        return gameService.getResults(resultNamesInput, players.getPlayersSize());
+        return ladderBuilder.getResults(resultNamesInput, players.getPlayersSize());
     }
 
 

@@ -9,7 +9,7 @@ import laddergame.domain.Results;
 import laddergame.domain.strategy.BuildStrategy;
 import laddergame.domain.strategy.PointBuildStrategy;
 
-public class LadderGameService {
+public class LadderGameBuilder {
     public Players getPlayers(final List<String> playerNames) {
         return Players.from(playerNames);
     }
