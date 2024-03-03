@@ -10,12 +10,12 @@ public class Member {
         this.name = new MemberName(rawName);
     }
 
-    public String getName() {
-        return name.getName();
+    public boolean hasSameNameWith(String value) {
+        return getName().equals(value);
     }
 
-    public boolean hasSameNameWith(String value) {
-        return name.getName().equals(value);
+    public String getName() {
+        return name.getName();
     }
 
     @Override
