@@ -1,5 +1,6 @@
 package domain.model;
 
+import domain.model.participant.Person;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,6 +29,13 @@ class PersonTest {
     @DisplayName("사람의 이름은 공백만 입력되면 예외를 발생시킨다.")
     void personNonBlankTest() {
         Assertions.assertThatThrownBy(() -> new Person(" "))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("이름에 all은 허용하지 않는다")
+    void doesNotAllowNamedAll() {
+        Assertions.assertThatThrownBy(() -> new Person("all"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

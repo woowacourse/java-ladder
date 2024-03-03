@@ -1,13 +1,15 @@
 package domain.model;
 
 
+import domain.model.ladder.Direction;
+import domain.model.ladder.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static domain.model.Direction.*;
+import static domain.model.ladder.Direction.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 

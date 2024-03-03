@@ -1,9 +1,10 @@
-package domain.model;
+package domain.model.participant;
 
 import java.util.List;
 
 public class People {
-    private static final int SIZE_LIMIT=2;
+    private static final int SIZE_LIMIT = 2;
+    private static final String EXCEPTION_NAME = "all";
     private final List<Person> participants;
 
     public People(List<String> names) {
@@ -42,6 +43,17 @@ public class People {
         if (numberOfOrigin != numberOfDistinct) {
             throw new IllegalStateException("중복된 이름은 허용하지 않습니다.");
         }
+    }
+
+    public Person getNameByOrder(int order) {
+        return participants.get(order);
+    }
+
+    public String findProperParticipant(String name) {
+        if (name.equals(EXCEPTION_NAME) || participants.contains(new Person(name))) {
+            return name;
+        }
+        throw new IllegalArgumentException("존재하지 않는 참가자 입니다.");
     }
 
 }
