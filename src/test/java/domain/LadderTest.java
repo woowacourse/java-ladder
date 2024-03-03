@@ -32,24 +32,24 @@ public class LadderTest {
         assertThat(lines.size()).isEqualTo(5);
     }
 
-    @DisplayName("생성된 사다리의 결과를 반환한다")
+    @DisplayName("플레이어를 받아 사다리 결과를 반환한다")
     @Test
-    public void getResult() {
+    public void calculate() {
         Players players = new Players(List.of("pobi", "honux", "crong", "jk"));
         Prizes prizes = new Prizes(players, List.of("꽝", "5000", "꽝", "3000"));
         Height height = new Height(5);
         Ladder ladder = new Ladder(players, height, new FixedBridgeGenerator());
 
-        Result result = ladder.getResult();
+        Result result = ladder.calculate(players, prizes);
 
-        String pobiResult = result.match("pobi", prizes);
-        assertThat(pobiResult).isEqualTo("5000");
+        Prize pobiResult = result.match("pobi");
+        assertThat(pobiResult).isEqualTo(new Prize("5000"));
 
-        Map<String, String> allResult = result.matchAll(prizes);
+        Map<Player, Prize> allResult = result.matchAll();
         assertThat(allResult).isEqualTo(Map.of(
-                "pobi", "5000",
-                "honux", "꽝",
-                "crong", "3000",
-                "jk", "꽝"));
+                new Player("pobi"), new Prize("5000"),
+                new Player("honux"), new Prize("꽝"),
+                new Player("crong"), new Prize("3000"),
+                new Player("jk"), new Prize("꽝")));
     }
 }
