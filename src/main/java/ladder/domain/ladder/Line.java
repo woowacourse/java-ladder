@@ -15,10 +15,10 @@ public class Line {
         if (position > points.size()) {
             throw new IllegalArgumentException("사다리가 존재하지 않는 위치입니다.");
         }
-        if (position < points.size() && Point.ON.equals(points.get(position))) {
+        if (position < points.size() && points.get(position) == Point.ON) {
             return position + 1;
         }
-        if (position > 0 && Point.ON.equals(points.get(position - 1))) {
+        if (position > 0 && points.get(position - 1) == Point.ON) {
             return position - 1;
         }
         return position;
