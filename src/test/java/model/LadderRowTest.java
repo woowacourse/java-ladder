@@ -40,12 +40,4 @@ public class LadderRowTest {
         Assertions.assertThat(ladderRow.getIsLines())
                 .isEqualTo(List.of(CONNECTED, NOT_CONNECTED, CONNECTED, NOT_CONNECTED, CONNECTED));
     }
-
-    /*
-    0     1     2     3     4
-    |-----|     |     |-----|
-
-    0 -> 1
-
-     */
 }

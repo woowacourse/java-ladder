@@ -80,12 +80,4 @@ public class LadderGameTest {
                 new Result(new Position(3), "3000"),
                 new Result(new Position(4), "꽝")));
     }
-
-        /*
-    0      1     2     3      4
-    |------|     |     |------|
-    |------|     |-----|      |
-    0      1     2     3      4
-    꽝    5000   꽝    3000    꽝
-     */
 }

@@ -17,14 +17,6 @@ public class Participant {
         this.position = position;
     }
 
-    public void moveRight() {
-        this.position = position.increment();
-    } //TODO 사용 안함
-
-    public void moveLeft() {
-        this.position = position.decrement();
-    } //TODO 사용 안함
-
     public boolean isSameName(Name name) {
         return this.name.equals(name);
     }

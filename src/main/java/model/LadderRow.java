@@ -9,18 +9,18 @@ public class LadderRow {
     private final List<Line> isLines;
 
     public LadderRow(BooleanGenerator generator, int size) {
-        List<Boolean> row = new ArrayList<>(); //TODO 더 좋은 방법
+        List<Boolean> row = new ArrayList<>();
         row.add(generator.generate());
         IntStream.range(1, size).forEach(index -> row.add(generateNext(row.get(index - 1), generator)));
         this.isLines = row.stream().map(Line::valueOf).toList();
     }
 
     LadderRow(List<Boolean> row) {
-        validateLadderRow(row); // TODO 위의 LadderRow와 중복 문제 해결
+        validateLadderRow(row);
         this.isLines = row.stream().map(Line::valueOf).toList();
     }
 
-    private void validateLadderRow(List<Boolean> isLines) {//TODO reduce(), atomicInteger
+    private void validateLadderRow(List<Boolean> isLines) {
         IntStream.range(1, isLines.size()).forEach(index -> isConsecutiveTrue(isLines, index));
     }
 

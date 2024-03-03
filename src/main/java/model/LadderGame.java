@@ -29,7 +29,7 @@ public class LadderGame {
     }
 
     public Map<Participant, Result> findAllParticipantResults() {
-        return participants.getParticipants()//TODO participants 안에 있는 방법 생각
+        return participants.getParticipants()
                 .stream()
                 .collect(Collectors.toMap(
                         participant -> participant,

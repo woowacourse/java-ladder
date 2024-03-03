@@ -39,8 +39,7 @@ public class LadderController {
 
     private void printResults() {
         String name = inputView.inputParticipantNameForResult();
-        if (!name.equals("all")) {
-            //TODO 아래 두 함수 붙이기
+        if (!"all".equals(name)) {
             Participant participant = ladderGame.findParticipant(new Name(name));
             Result result = ladderGame.findParticipantResult(participant);
             outputView.printParticipantResult(result);

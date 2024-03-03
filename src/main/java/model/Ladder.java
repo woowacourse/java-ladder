@@ -8,7 +8,6 @@ public class Ladder {
     private final List<LadderRow> ladderRows;
 
     public Ladder(Height height, BooleanGenerator generator, int participantSize) {
-        //TODO: height.repeat()
         this.ladderRows = Stream.generate(() -> new LadderRow(generator, participantSize - 1))
                 .limit(height.value()).toList();
     }
