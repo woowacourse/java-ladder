@@ -31,17 +31,17 @@ public class LadderController {
         LadderDto dto = LadderDto.from(ladder.getLines());
 
         outputView.printLadderResult(players.getNames(), dto.ladder(), prizes.getPrizeNames());
-        printResult(ladder, ladder.findResult(), players);
+        printResult(ladder, players);
     }
 
-    private void printResult(final Ladder ladder, final LadderResult ladderResult, final Players players) {
+    private void printResult(final Ladder ladder, final Players players) {
         Set<Player> playerNames = new HashSet<>(players.getPlayerNames());
+        final LadderResult ladderResult = ladder.findResult();
         while (!playerNames.isEmpty()) {
             readNameAndPrintResult(ladder, ladderResult, playerNames);
         }
     }
 
-    //TODO: 파라미터를 줄이던지 ladderResult를 없애던지
     private void readNameAndPrintResult(final Ladder ladder, final LadderResult ladderResult,
                                         final Set<Player> playerNames) {
         String name = inputView.readPlayerNameToCheckPrize();
