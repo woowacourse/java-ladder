@@ -35,7 +35,7 @@ public class Game {
     public Map<String, String> findRewardMap() {
         return members.getNames()
             .stream()
-            .collect(Collectors.toMap(name -> name, this::findRewardName));
+            .collect(Collectors.toMap(memberName -> memberName, this::findRewardName));
     }
 
     private String findRewardName(String memberName) {

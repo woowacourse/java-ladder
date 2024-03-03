@@ -3,7 +3,6 @@ package domain;
 import static domain.Connection.CONNECTED;
 import static domain.Connection.DISCONNECTED;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
