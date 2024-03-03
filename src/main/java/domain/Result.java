@@ -2,8 +2,8 @@ package domain;
 
 public class Result {
 
-    public static final int MIN_RESULT_LENGTH = 1;
-    public static final int MAX_RESULT_LENGTH = 5;
+    private static final int MIN_RESULT_LENGTH = 1;
+    private static final int MAX_RESULT_LENGTH = 5;
 
     private final String value;
 

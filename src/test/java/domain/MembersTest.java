@@ -1,7 +1,5 @@
 package domain;
 
-import static domain.Members.MAX_MEMBER_COUNT;
-import static domain.Members.MIN_MEMBER_COUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -31,11 +29,12 @@ public class MembersTest {
     void test_exception_memberCount() {
         assertThatThrownBy(() -> Members.from(List.of("a")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참여자는 " + MIN_MEMBER_COUNT + "~" + MAX_MEMBER_COUNT + "명만 허용됩니다.");
+                .hasMessage("참여자는 2~15명만 허용됩니다.");
 
-        assertThatThrownBy(() -> Members.from(List.of("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p")))
+        assertThatThrownBy(() -> Members.from(
+                List.of("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참여자는 " + MIN_MEMBER_COUNT + "~" + MAX_MEMBER_COUNT + "명만 허용됩니다.");
+                .hasMessage("참여자는 2~15명만 허용됩니다.");
     }
 
     @Test
@@ -43,10 +42,10 @@ public class MembersTest {
     void test_ok_memberCount() {
         assertThat(Members.from(List.of("a", "b"))
                 .getCount())
-                    .isEqualTo(2);
+                .isEqualTo(2);
         assertThat(Members.from(List.of("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o"))
                 .getCount())
-                    .isEqualTo(15);
+                .isEqualTo(15);
     }
 
     @Test

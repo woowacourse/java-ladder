@@ -1,8 +1,7 @@
 package domain;
 
-import static domain.Result.MAX_RESULT_LENGTH;
-import static domain.Result.MIN_RESULT_LENGTH;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +23,7 @@ public class ResultTest {
     void test_exception_moreThanFiveLetters() {
         assertThatThrownBy(() -> new Result("123456"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(MIN_RESULT_LENGTH + "~" + MAX_RESULT_LENGTH + "자의 결과만 허용합니다.");
+                .hasMessage("1~5자의 결과만 허용합니다.");
     }
 
     @Test
@@ -32,7 +31,7 @@ public class ResultTest {
     void test_exception_empty() {
         assertThatThrownBy(() -> new Result(""))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(MIN_RESULT_LENGTH + "~" + MAX_RESULT_LENGTH + "자의 결과만 허용합니다.");
+                .hasMessage("1~5자의 결과만 허용합니다.");
     }
 
     @Test

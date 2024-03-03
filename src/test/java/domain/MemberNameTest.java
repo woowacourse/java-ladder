@@ -1,8 +1,7 @@
 package domain;
 
-import static domain.MemberName.MAX_NAME_LENGTH;
-import static domain.MemberName.MIN_NAME_LENGTH;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +23,7 @@ public class MemberNameTest {
     void test_exception_moreThanFiveLetters(String name) {
         assertThatThrownBy(() -> new MemberName(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(MIN_NAME_LENGTH + "~" + MAX_NAME_LENGTH + "자의 이름만 허용합니다.");
+                .hasMessage("1~5자의 이름만 허용합니다.");
     }
 
     @Test
@@ -40,7 +39,7 @@ public class MemberNameTest {
     void test_exception_empty() {
         assertThatThrownBy(() -> new MemberName(""))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(MIN_NAME_LENGTH + "~" + MAX_NAME_LENGTH + "자의 이름만 허용합니다.");
+                .hasMessage("1~5자의 이름만 허용합니다.");
     }
 
     @ParameterizedTest
