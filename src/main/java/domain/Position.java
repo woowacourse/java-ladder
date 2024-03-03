@@ -16,11 +16,11 @@ public class Position {
         return value == lineSize;
     }
 
-    public int findLeft() {
-        return --value;
+    public void move(final Direction direction) {
+        value = value + direction.getValue();
     }
 
-    public int findRight() {
-        return ++value;
+    public int getValue() {
+        return value;
     }
 }

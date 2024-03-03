@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -52,31 +54,19 @@ public class PositionTest {
         );
     }
 
-    @DisplayName("주어진 위치의 왼쪽 위치 값을 반환한다.")
-    @Test
-    void findLeft() {
+    @DisplayName("주어진 방향으로 위치를 이동한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"LEFT,0", "RIGHT,2", "NONE,1"})
+    void move(String inputs) {
         //given
-        Position position = new Position(2);
-        int expectedPosition = 1;
+        Direction direction = Direction.valueOf(List.of(inputs.split(",")).get(0));
+        Position position = new Position(1);
+        int expectedPosition = Integer.parseInt(List.of(inputs.split(",")).get(1));
 
         //when
-        int result = position.findLeft();
+        position.move(direction);
 
         //then
-        assertThat(result).isEqualTo(expectedPosition);
-    }
-
-    @DisplayName("주어진 위치의 오른쪽 위치 값을 반환한다.")
-    @Test
-    void findRight() {
-        //given
-        Position position = new Position(2);
-        int expectedPosition = 3;
-
-        //when
-        int result = position.findRight();
-
-        //then
-        assertThat(result).isEqualTo(expectedPosition);
+        assertThat(position.getValue()).isEqualTo(expectedPosition);
     }
 }
