@@ -1,13 +1,13 @@
 package controller;
 
 import common.Command;
+import domain.ladder.Floor;
 import domain.ladder.LadderGenerator;
 import domain.ladder.LadderClimbingGame;
 import domain.ladder.LadderHeight;
 import domain.ladder.strategy.RandomBridgeGenerator;
-import domain.player.Player;
 import domain.player.PlayerName;
-import domain.player.Players;
+import domain.player.PlayerNames;
 import domain.result.ClimbingResults;
 import domain.result.LadderResult;
 import domain.result.LadderResults;
@@ -28,37 +28,41 @@ public class LadderController {
     }
 
     public void start() {
-        Players players = readPlayerNames();
-        List<LadderResult> inputtedResults = createLadderResults();
+        PlayerNames playerNames = readPlayerNames();
         LadderHeight ladderHeight = readLadderHeight();
-        LadderGenerator ladderGenerator = new LadderGenerator(ladderHeight, players, new RandomBridgeGenerator());
-        LadderResults ladderResults = LadderResults.createMatchesCountOf(players.getPlayerCount(), inputtedResults);
-        outputView.printInputtedResultsOf(players, ladderGenerator, ladderResults);
-        LadderClimbingGame ladderClimbingGame = new LadderClimbingGame(players, ladderGenerator, ladderResults);
+        LadderGenerator ladderGenerator = new LadderGenerator(ladderHeight, playerNames, new RandomBridgeGenerator());
+        List<Floor> ladder = ladderGenerator.generateLadder();
+        LadderResults ladderResults = readLadderResultCountOf(playerNames.getPlayerCount());
+        outputView.printInputtedResultsOf(playerNames, ladder, ladderResults);
+        LadderClimbingGame ladderClimbingGame = new LadderClimbingGame(playerNames, ladder, ladderResults);
         ClimbingResults climbingResults = ladderClimbingGame.createClimbingResults();
         findResultBy(climbingResults);
     }
 
-    private Players readPlayerNames() {
+    private PlayerNames readPlayerNames() {
         return retryHandler.retry(() -> createPlayers(inputView.readPlayerNames()));
     }
 
-    private Players createPlayers(final List<String> playerNames) {
-        List<Player> players = IntStream.range(0, playerNames.size())
-                .mapToObj(name -> new Player(new PlayerName(playerNames.get(name)), name))
+    private PlayerNames createPlayers(final List<String> playerNames) {
+        List<PlayerName> players = IntStream.range(0, playerNames.size())
+                .mapToObj(name -> new PlayerName(playerNames.get(name)))
                 .toList();
-        return new Players(players);
+        return new PlayerNames(players);
     }
 
     private LadderHeight readLadderHeight() {
         return retryHandler.retry(() -> new LadderHeight(inputView.readLadderHeight()));
     }
 
-    private List<LadderResult> createLadderResults() {
-        List<String> ladderResults = retryHandler.retry(() -> inputView.readLadderResults());
-        return ladderResults.stream()
-                .map(LadderResult::new)
+    private LadderResults readLadderResultCountOf(int playerCount) {
+        return retryHandler.retry(() -> createLadderResultCountOf(playerCount, inputView.readLadderResults()));
+    }
+
+    private LadderResults createLadderResultCountOf(int playerCount, final List<String> ladderResults) {
+        List<LadderResult> results = IntStream.range(0, ladderResults.size())
+                .mapToObj(result -> new LadderResult(ladderResults.get(result)))
                 .toList();
+        return LadderResults.createMatchesCountOf(playerCount, results);
     }
 
     private void findResultBy(final ClimbingResults climbingResults) {
