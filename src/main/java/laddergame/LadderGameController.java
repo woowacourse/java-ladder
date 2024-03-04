@@ -32,7 +32,7 @@ public class LadderGameController {
                 new LadderGame(players, ladder, inputView.readLadderResult()));
 
         outputView.writeLadderResult(ladderGame);
-        return ladderGame.climbLadder();
+        return ladderGame.climbLadder(new PlayersResult());
     }
 
     private void showItemByInputName(PlayersResult playersResult) {

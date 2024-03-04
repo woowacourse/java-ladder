@@ -36,7 +36,7 @@ public class LadderGameTest {
                 List.of("O", "X", "O", "O")
         );
 
-        ladderGame.climbLadder();
+        ladderGame.climbLadder(new PlayersResult());
 
         assertEquals(players.getPlayers().get(3).getPosition().getY(), 4);
     }
@@ -53,7 +53,7 @@ public class LadderGameTest {
         };
         final Ladder ladder = new Ladder(new LineBuilder(expectedRungGenerator, 3),new Height("3"));
         final LadderGame ladderGame = new LadderGame(players, ladder, List.of("1","2","3","4"));
-        final PlayersResult playersResult = ladderGame.climbLadder();
+        final PlayersResult playersResult = ladderGame.climbLadder(new PlayersResult());
 
         assertEquals(playersResult.findItemByName("name1"), ladderGame.getItems().get(0));
         assertEquals(playersResult.findItemByName("name2"), ladderGame.getItems().get(1));
