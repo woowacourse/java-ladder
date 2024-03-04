@@ -1,7 +1,6 @@
 package laddergame.domain.gameelements;
 
 public class Prize {
-    // TODO 같은 포지션에 있는 객체인지 판단 메서드 만들기
     private final Name name;
     private final Position position;
 
