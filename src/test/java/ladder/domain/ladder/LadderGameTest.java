@@ -21,14 +21,14 @@ class LadderGameTest {
     private final RandomPointsGenerator pointsGenerator1 = new RandomPointsGenerator() {
         @Override
         public List<Point> generate(int size) {
-            return List.of(Point.ON, Point.OFF, Point.ON);
+            return List.of(Point.ON, Point.OFF, Point.ON, Point.OFF);
         }
     };
 
     private final RandomPointsGenerator pointsGenerator2 = new RandomPointsGenerator() {
         @Override
         public List<Point> generate(int size) {
-            return List.of(Point.OFF, Point.ON, Point.OFF);
+            return List.of(Point.OFF, Point.ON, Point.OFF, Point.OFF);
         }
     };
 
@@ -42,11 +42,7 @@ class LadderGameTest {
 
     @BeforeEach
     void setUp() {
-        Player pobi = new Player("pobi");
-        Player honux = new Player("honux");
-        Player crong = new Player("crong");
-        Player jk = new Player("jk");
-        players = new Players(List.of(pobi, honux, crong, jk));
+        players = new Players(List.of("pobi", "honux", "crong", "jk"));
 
         results = new Results(List.of(
                 result1, result2, result3, result4

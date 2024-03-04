@@ -2,7 +2,6 @@ package ladder.controller;
 
 import ladder.domain.ladder.*;
 import ladder.domain.player.Name;
-import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.result.PlayResults;
 import ladder.domain.result.Result;
@@ -53,10 +52,7 @@ public class LadderController {
     }
 
     private Players readPlayers() {
-        List<String> rawPlayers = inputView.readPlayers();
-        List<Player> players = rawPlayers.stream()
-                .map(Player::new)
-                .toList();
+        List<String> players = inputView.readPlayers();
         return new Players(players);
     }
 

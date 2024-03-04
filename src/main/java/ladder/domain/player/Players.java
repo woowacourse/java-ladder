@@ -9,7 +9,10 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(List<Player> players) {
+    public Players(List<String> rawPlayers) {
+        List<Player> players = rawPlayers.stream()
+                .map(Player::new)
+                .toList();
         validate(players);
         this.players = players;
     }
