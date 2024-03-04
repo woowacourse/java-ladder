@@ -1,9 +1,6 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.connectiongenerator.AllTrueConnectionGenerator;
-import laddergame.domain.connectiongenerator.ConnectionGenerator;
-import laddergame.domain.connectiongenerator.RandomConnectionGenerator;
-import laddergame.domain.connectiongenerator.TrueFalseConnectionGenerator;
+import laddergame.domain.connectiongenerator.*;
 import laddergame.domain.gameelements.Player;
 import laddergame.domain.gameelements.Players;
 import laddergame.domain.gameelements.Position;
@@ -28,7 +25,6 @@ class RowLineTest {
         assertThatThrownBy(() -> new RowLine(5, successiveConnectionGenerator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리 가로선이 연속되었습니다.");
-
     }
 
     @DisplayName("연속된 가로선이 없는 domain.RowLine 객체는 생성할 수 있다")
@@ -51,7 +47,7 @@ class RowLineTest {
     @DisplayName("사다리가 연결되어 있지 않으면 position은 이동하지 않는다.")
     @Test
     void rowLineNonMovingTest() {
-        RowLine rowLine = new RowLine(3, new TrueFalseConnectionGenerator());
+        RowLine rowLine = new RowLine(3, new AllFalseConnectionGenerator());
         Players testPlayers = new Players(List.of("0", "1", "2"));
         List<Player> players = testPlayers.getPlayers();
 
