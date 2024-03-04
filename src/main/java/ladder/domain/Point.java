@@ -1,29 +1,18 @@
 package ladder.domain;
 
-import java.util.Arrays;
+public class Point {
 
-public enum Point {
+    private final Direction direction;
 
-    USED("-"),
-    UNUSED(" ");
-
-    private final String symbol;
-
-    Point(String symbol) {
-        this.symbol = symbol;
+    public Point(Direction direction) {
+        this.direction = direction;
     }
 
-    public static Point getByIndex(int index) {
-        return Arrays.stream(Point.values())
-                .toList()
-                .get(index);
+    public Index move(Index index) {
+        return direction.move(index);
     }
 
-    public boolean isUsed() {
-        return this == Point.USED;
-    }
-
-    public String repeatSymbol(int count) {
-        return symbol.repeat(count);
+    public Direction getDirection() {
+        return direction;
     }
 }

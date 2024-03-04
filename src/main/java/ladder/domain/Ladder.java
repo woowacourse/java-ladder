@@ -1,25 +1,42 @@
 package ladder.domain;
 
-import ladder.util.RandomPointsGenerator;
-
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
 
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
 
-    public Ladder(People people, Height height) {
-        RandomPointsGenerator randomPointsGenerator = new RandomPointsGenerator();
+    Ladder(int heightValue, Line... lines) {
+        this(heightValue, Arrays.asList(lines));
+    }
 
-        while (!height.isSame(lines.size())) {
-            Line line = new Line(people.count(), randomPointsGenerator);
-            lines.add(line);
+    public Ladder(int heightValue, List<Line> lines) {
+        validate(heightValue, lines);
+        this.lines = new ArrayList<>(lines);
+    }
+
+    private void validate(int heightValue, List<Line> lines) {
+        validateHeight(heightValue, lines);
+    }
+
+    private void validateHeight(int height, List<Line> lines) {
+        if (height != lines.size()) {
+            throw new IllegalArgumentException("사다리 높이가 최대 사다리 높이와 같아야 합니다.");
         }
     }
 
-    public List<Line> getLadder() {
+    public Index climb(Index index) {
+        for (Line line : lines) {
+            index = line.move(index);
+        }
+        return index;
+    }
+
+    public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
 }

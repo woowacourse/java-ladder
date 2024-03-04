@@ -1,7 +1,6 @@
 package ladder.domain;
 
-import java.util.stream.IntStream;
-import ladder.util.PointsGenerator;
+import java.util.Arrays;
 
 import java.util.Collections;
 import java.util.List;
@@ -10,32 +9,76 @@ public class Line {
 
     private final List<Point> points;
 
-    public Line(int personCount, PointsGenerator pointsGenerator) {
-        List<Point> points = pointsGenerator.generate(personCount - 1);
-        validate(points);
-        this.points = points;
+    Line(int personCount, Direction... directions) {
+        this(personCount, Arrays.asList(directions));
     }
 
-    private void validate(List<Point> points) {
-        validateAtLeastOnePointIsUsed(points);
-        validateNonConsecutiveUsage(points);
+    public Line(int personCount, List<Direction> directions) {
+        validate(personCount, directions);
+        this.points = createPoints(directions);
     }
 
-    private void validateAtLeastOnePointIsUsed(List<Point> points) {
-        boolean allPointsAreUnused = points.stream().noneMatch(Point::isUsed);
+    private List<Point> createPoints(List<Direction> directions) {
+        return directions.stream()
+                .map(Point::new)
+                .toList();
+    }
 
-        if (allPointsAreUnused) {
-            throw new IllegalArgumentException("모든 좌표가 사용되지 않아 최대 사다리 높이를 만족할 수 없습니다.");
+    private void validate(int personCount, List<Direction> directions) {
+        validateWidth(personCount, directions);
+        validateStartDirection(directions);
+        validateEndDirection(directions);
+        validateNotOnlyStayDirection(directions);
+        validateNoMismatchedDirections(directions);
+    }
+
+    private void validateWidth(int personCount, List<Direction> directions) {
+        if (personCount != directions.size()) {
+            throw new IllegalArgumentException("사다리 너비가 참여자 수와 같아야 합니다.");
         }
     }
 
-    private void validateNonConsecutiveUsage(List<Point> points) {
-        boolean hasConsecutiveUsage = IntStream.range(1, points.size())
-                .anyMatch(index -> points.get(index).isUsed() && points.get(index - 1).isUsed());
-
-        if (hasConsecutiveUsage) {
-            throw new IllegalArgumentException("사다리 타기가 정상적으로 동작하려면 좌표가 연속적으로 사용되어서는 안 됩니다.");
+    private void validateStartDirection(List<Direction> directions) {
+        if (directions.get(0).isBackward()) {
+            throw new IllegalArgumentException("라인의 시작 좌표가 왼쪽 방향입니다.");
         }
+    }
+
+    private void validateEndDirection(List<Direction> directions) {
+        if (directions.get(directions.size() - 1).isForward()) {
+            throw new IllegalArgumentException("라인의 끝 좌표가 오른쪽 방향입니다.");
+        }
+    }
+
+    private void validateNotOnlyStayDirection(List<Direction> directions) {
+        boolean onlyStayDirection = directions.stream().allMatch(Direction::isStay);
+
+        if (onlyStayDirection) {
+            throw new IllegalArgumentException("라인의 모든 좌표가 그대로 방향입니다.");
+        }
+    }
+
+    private void validateNoMismatchedDirections(List<Direction> directions) {
+        for (int i = 1; i < directions.size() - 1; i++) {
+            validateNotForwardBeforeBackward(directions.get(i), directions.get(i - 1));
+            validateNotBackwardAfterForward(directions.get(i), directions.get(i + 1));
+        }
+    }
+
+    private void validateNotForwardBeforeBackward(Direction current, Direction previous) {
+        if (current.isBackward() && !previous.isForward()) {
+            throw new IllegalArgumentException("라인의 특정 왼쪽 방향 좌표의 이전 좌표가 오른쪽 방향이 아닙니다.");
+        }
+    }
+
+    private void validateNotBackwardAfterForward(Direction current, Direction next) {
+        if (current.isForward() && !next.isBackward()) {
+            throw new IllegalArgumentException("라인의 특정 오른쪽 방향 좌표의 다음 좌표가 왼쪽 방향이 아닙니다.");
+        }
+    }
+
+    public Index move(Index index) {
+        return points.get(index.getValue()).move(index);
     }
 
     public List<Point> getPoints() {
