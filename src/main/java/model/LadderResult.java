@@ -13,13 +13,13 @@ public class LadderResult {
 
     private Map<Participant, Prize> generateResult(Participants participants, Prizes prizes, Ladder ladder) {
         result = new HashMap<>();
-        int index = 0;
-        for (Participant participant : participants.getParticipants()) {
-            int destination = ladder.climbLadder(index);
-            result.put(participant, prizes.getPrizes().get(destination));
-            index++;
-        }
+        List<Participant> entireParticipant = participants.getParticipants();
+        List<Prize> entirePrize = prizes.getPrizes();
 
+        for (int startIndex = 0; startIndex < participants.getSize(); startIndex++) {
+            int destination = ladder.climbLadder(startIndex);
+            result.put(entireParticipant.get(startIndex), entirePrize.get(destination));
+        }
         return result;
     }
 
