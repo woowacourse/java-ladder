@@ -1,23 +1,31 @@
-package ladder.domain.player;
+package ladder.domain.game;
+
+import ladder.domain.player.Player;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Players {
-    private static final int MAXIMUM_PLAYER_SIZE = 10;
     private static final int MINIMUM_PLAYER_SIZE = 2;
+    private static final int MAXIMUM_PLAYER_SIZE = 10;
+
     private final List<Player> players;
 
     public Players(final List<String> playerNames) {
         validatePlayers(playerNames);
-        this.players = createPlayers(playerNames);
+        this.players = mapPlayer(playerNames);
     }
 
-    private List<Player> createPlayers(final List<String> playerNames) {
-        return playerNames.stream()
-                .map(Player::new)
+    private List<Player> mapPlayer(final List<String> playerNames) {
+        return IntStream.range(0, playerNames.size())
+                .mapToObj(index -> generatePlayer(playerNames, index))
                 .toList();
+    }
+
+    private Player generatePlayer(final List<String> playerNames, final Integer index) {
+        return new Player(playerNames.get(index), index);
     }
 
     private void validatePlayers(final List<String> playerNames) {
@@ -40,9 +48,12 @@ public class Players {
         }
     }
 
-
     public int count() {
         return players.size();
+    }
+
+    public Player findPlayerByIndex(final int index) {
+        return players.get(index);
     }
 
     public List<Player> getPlayers() {

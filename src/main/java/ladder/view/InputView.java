@@ -1,39 +1,51 @@
 package ladder.view;
 
+import ladder.view.validator.InputValidator;
+
 import java.util.Scanner;
 
 public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
 
+    private final InputValidator inputValidator;
+
+    public InputView(final InputValidator inputValidator) {
+        this.inputValidator = inputValidator;
+    }
+
     public String readPlayerNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         final String input = SCANNER.nextLine();
 
-        validateInputBlank(input);
+        inputValidator.validatePlayerNames(input);
+        return input;
+    }
+
+    public String readPrizes() {
+        printMessageWithBlankLine("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        final String input = SCANNER.nextLine();
+
+        inputValidator.validatePrizes(input);
         return input;
     }
 
     public int readLadderHeight() {
-        System.out.println();
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        printMessageWithBlankLine("최대 사다리 높이는 몇 개인가요?");
         final String input = SCANNER.nextLine();
 
-        return parseToInt(input);
+        inputValidator.validateLadderHeight(input);
+        return Integer.parseInt(input);
     }
 
-    private void validateInputBlank(final String input) {
-        if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException("입력은 비어있을 수 없습니다.");
-        }
+    public String readNameToSeeResult() {
+        printMessageWithBlankLine("결과를 보고 싶은 사람은?");
+        final String input = SCANNER.nextLine();
+
+        inputValidator.validateNameToSeeResult(input);
+        return input;
     }
 
-    private int parseToInt(final String input) {
-        validateInputBlank(input);
-
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("입력은 숫자여야 합니다.");
-        }
+    private void printMessageWithBlankLine(final String message) {
+        System.out.println(OutputView.NEWLINE + message);
     }
 }

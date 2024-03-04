@@ -1,32 +1,33 @@
 package ladder;
 
 import ladder.controller.LadderController;
-import ladder.domain.generator.BooleanGenerator;
-import ladder.domain.generator.RandomBooleanGenerator;
 import ladder.view.InputView;
+import ladder.view.MessageGenerator;
 import ladder.view.OutputView;
+import ladder.view.validator.InputValidator;
 
 public class AppConfig {
+
     private AppConfig() {
     }
 
     public static InputView inputView() {
-        return new InputView();
+        return new InputView(inputValidator());
+    }
+
+    private static InputValidator inputValidator() {
+        return new InputValidator();
     }
 
     public static OutputView outputView() {
-        return new OutputView();
+        return new OutputView(messageGenerator());
     }
 
-    public static BooleanGenerator randomBooleanGenerator() {
-        return new RandomBooleanGenerator();
+    private static MessageGenerator messageGenerator() {
+        return new MessageGenerator();
     }
 
     public static LadderController ladderController() {
-        return new LadderController(
-                inputView(),
-                outputView(),
-                randomBooleanGenerator()
-        );
+        return new LadderController(inputView(), outputView());
     }
 }

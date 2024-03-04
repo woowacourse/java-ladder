@@ -1,7 +1,7 @@
 package ladder.dto;
 
 import ladder.domain.player.Player;
-import ladder.domain.player.Players;
+import ladder.domain.game.Players;
 
 import java.util.List;
 import java.util.stream.Collectors;

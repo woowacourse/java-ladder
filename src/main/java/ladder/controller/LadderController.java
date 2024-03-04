@@ -1,12 +1,15 @@
 package ladder.controller;
 
-import ladder.domain.generator.BooleanGenerator;
+import ladder.domain.game.LadderGame;
+import ladder.domain.game.PlayResult;
+import ladder.domain.game.Players;
+import ladder.domain.game.Prizes;
+import ladder.domain.generator.RandomBooleanGenerator;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderGenerator;
-import ladder.domain.player.Players;
 import ladder.dto.LadderDto;
 import ladder.dto.PlayersDto;
+import ladder.utils.Command;
 import ladder.utils.Converter;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -17,22 +20,22 @@ import java.util.function.Supplier;
 public class LadderController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final LadderGenerator ladderGenerator;
 
-    public LadderController(final InputView inputView,
-                            final OutputView outputView,
-                            final BooleanGenerator booleanGenerator) {
+    public LadderController(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.ladderGenerator = new LadderGenerator(booleanGenerator);
     }
 
     public void run() {
         final Players players = retryOnException(this::readPlayers);
+        final Prizes prizes = retryOnException(() -> readPrizes(players.count()));
         final Height height = retryOnException(this::readLadderHeight);
+        final Ladder ladder = new Ladder(players.count(), height.getValue(), new RandomBooleanGenerator());
+        showInformationForLadderGame(players, ladder, prizes);
 
-        final Ladder ladder = ladderGenerator.generate(players, height);
-        printLadder(players, ladder);
+        final LadderGame ladderGame = new LadderGame(ladder, players, prizes);
+        final PlayResult playResult = ladderGame.play();
+        retryOnException(() -> showResult(playResult));
     }
 
     public Players readPlayers() {
@@ -42,16 +45,50 @@ public class LadderController {
         return new Players(playerNames);
     }
 
+    private Prizes readPrizes(final int playerCount) {
+        final String readPrizes = inputView.readPrizes();
+        final List<String> prizes = Converter.stringToList(readPrizes);
+
+        return new Prizes(prizes, playerCount);
+    }
+
     public Height readLadderHeight() {
         final int height = inputView.readLadderHeight();
 
         return new Height(height);
     }
 
-    private void printLadder(final Players players, final Ladder ladder) {
+    private void showInformationForLadderGame(final Players players, final Ladder ladder, final Prizes prizes) {
         outputView.printLadderResultMessage();
+
+        showPlayerNames(players);
+        showLadder(ladder);
+        showPrizes(prizes);
+    }
+
+    private void showPlayerNames(final Players players) {
         outputView.printPlayerNames(PlayersDto.from(players));
+    }
+
+    private void showLadder(final Ladder ladder) {
         outputView.printLadder(LadderDto.from(ladder));
+    }
+
+    private void showPrizes(final Prizes prizes) {
+        outputView.printPrizes(prizes.getPrizes());
+    }
+
+    private void showResult(final PlayResult playResult) {
+        String name = inputView.readNameToSeeResult();
+
+        while (!Command.EXPRESSION_OF_ALL_PLAYER.isMatch(name)) {
+            final String result = playResult.findPlayerResultByName(name);
+
+            outputView.printPlayerResult(result);
+            name = inputView.readNameToSeeResult();
+        }
+
+        outputView.printAllPlayerResult(playResult.getResult());
     }
 
     private <T> T retryOnException(final Supplier<T> supplier) {
@@ -60,6 +97,15 @@ public class LadderController {
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return retryOnException(supplier);
+        }
+    }
+
+    private void retryOnException(final Runnable runnable) {
+        try {
+            runnable.run();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            retryOnException(runnable);
         }
     }
 }

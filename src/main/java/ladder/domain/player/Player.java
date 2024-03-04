@@ -1,41 +1,32 @@
 package ladder.domain.player;
 
-import java.util.regex.Pattern;
+import ladder.domain.Direction;
+import ladder.domain.ladder.Rung;
+
+import java.util.List;
 
 public class Player {
-    private static final int MAXIMUM_NAME_RANGE = 5;
-    private static final Pattern NAME_VALID_FORMAT = Pattern.compile("[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]+");
-    private final String name;
+    private final Name name;
+    private final Position position;
 
-    public Player(final String name) {
-        validateName(name);
-        this.name = name;
+    public Player(final String name, final int position) {
+        this.name = new Name(name);
+        this.position = new Position(position);
     }
 
-    private void validateName(final String name) {
-        validateRange(name);
-        validateFormat(name);
+    public Direction findMovableDirection(final List<Rung> rungs) {
+        return position.findMovableDirection(rungs);
     }
 
-    private void validateFormat(final String name) {
-        if (isInvalidFormat(name)) {
-            throw new IllegalArgumentException("참가자들의 이름은 영어, 숫자여야 합니다.");
-        }
-    }
-
-    private void validateRange(final String name) {
-        if (name.isBlank() || name.length() > MAXIMUM_NAME_RANGE) {
-            throw new IllegalArgumentException(
-                    String.format("참가자들의 이름은 %d글자를 초과할 수 없습니다.", MAXIMUM_NAME_RANGE));
-        }
-    }
-
-    private boolean isInvalidFormat(final String name) {
-        return !NAME_VALID_FORMAT.matcher(name)
-                .matches();
+    public void moveTo(final Direction direction) {
+        position.add(direction.getValue());
     }
 
     public String getName() {
-        return name;
+        return name.getValue();
+    }
+
+    public int getPosition() {
+        return position.getValue();
     }
 }
