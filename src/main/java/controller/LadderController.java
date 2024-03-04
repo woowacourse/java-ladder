@@ -33,7 +33,7 @@ public class LadderController {
         Height height = new Height(inputView.inputLadderHeight());
         Ladder ladder = new Ladder(height, new RandomBooleanGenerator(), participants.size());
         ladderGame = new LadderGame(participants, ladder, results);
-        outputView.printRandomLadderResult(participants, ladder, results);
+        outputView.printLadderResult(participants, ladder, results);
         printResults();
     }
 

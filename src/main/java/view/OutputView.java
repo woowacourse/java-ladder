@@ -18,7 +18,7 @@ public class OutputView {
     private static final String NAME_FORMAT = "%5s ";
     private static final String PARTICIPANTS_RESULT_FORMAT = "%s : %s ";
 
-    public void printRandomLadderResult(Participants participants, Ladder ladder, Results results) {
+    public void printLadderResult(Participants participants, Ladder ladder, Results results) {
         System.out.println(RESULT_MESSAGE);
         printParticipantsName(participants);
         printLadder(ladder);
