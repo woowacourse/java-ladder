@@ -19,7 +19,7 @@ public class Prizes {
             this.prizes.add(new Prize(prizeName, position));
         }
     }
-
+    // TODO 포지션 비교검증도 Prize에게 맞기기
     public Prize findSamePositionPrize(Position playerPosition) {
         return prizes.stream()
                 .filter(prize -> prize.getPosition().isSame(playerPosition))

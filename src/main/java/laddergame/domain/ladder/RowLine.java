@@ -37,7 +37,7 @@ public class RowLine {
             playerPosition.moveRight();
         }
     }
-
+    // TODO rename - 의도를 더 잘나타내는 메서드명 생각해보기
     private boolean checkLeftPosition(int leftPosition) {
         return leftPosition >= 0
                 && connections.get(leftPosition).isConnected();

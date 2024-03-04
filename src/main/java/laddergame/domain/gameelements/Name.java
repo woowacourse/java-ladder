@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Name {
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
-    private static final String ELEMENT_NAME_RULE = "[ㄱ-ㅎ가-힣a-zA-Z0-9]";
+    private static final String ELEMENT_NAME_RULE = "^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$";
     private static final String RESERVED_NAME = "all";
 
     private final String name;
@@ -21,16 +21,18 @@ public class Name {
     }
 
     private void validateNameLength(String name) {
-        if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
+        if (name == null || name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("게임 요소의 이름은 " + MIN_NAME_LENGTH + "이상 "
                     + MAX_NAME_LENGTH + "이하의 길이로 구성되어야 합니다.");
         }
     }
 
     private void validateNameRule(String name) {
-        if (name == null || !name.matches(ELEMENT_NAME_RULE)) {
-            throw new IllegalArgumentException("게임 요소의 이름은 5자 이내의 영숫자로 구성되어야 합니다.");
+        if (name.matches(ELEMENT_NAME_RULE)) {
+            return;
         }
+
+        throw new IllegalArgumentException("게임 요소의 이름은 영숫자로 구성되어야 합니다.");
     }
 
     @Override

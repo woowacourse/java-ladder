@@ -29,7 +29,7 @@ public class LadderGameController {
     private static Ladder makeLadder(Players players) {
         return new Ladder(InputView.readHeight(), players.count());
     }
-
+    // TODO 반환값이 boolean인지 다시한번 생각해보기
     private static boolean printPlayerResults(LadderGame ladderGame) {
         ResultView.printPlayerResult(InputView.readPlayerName(), ladderGame);
         return true;

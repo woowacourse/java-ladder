@@ -9,7 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static laddergame.view.MessageResolver.*;
+import static laddergame.view.MessageResolver.resolveLadderMessage;
+import static laddergame.view.MessageResolver.resolvePlayerMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MessageResolverTest {

@@ -1,6 +1,7 @@
 package laddergame.domain.gameelements;
 
 public class Player {
+    // TODO 이름 비교에 대한 책임 메서드
     private final Name name;
     private final Position position;
 
