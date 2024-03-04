@@ -23,7 +23,7 @@ public class Players {
     // TODO findFirst와 findAny의 차이점 알아보기
     public Player findPlayerByName(String playerName) {
         return players.stream()
-                .filter(player -> player.getName().equals(playerName))
+                .filter(player -> player.isSameName(playerName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("참여하지 않은 플레이어의 이름을 조회했습니다."));
     }

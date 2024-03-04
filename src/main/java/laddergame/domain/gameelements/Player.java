@@ -1,7 +1,6 @@
 package laddergame.domain.gameelements;
 
 public class Player {
-    // TODO 이름 비교에 대한 책임 메서드
     private final Name name;
     private final Position position;
 
@@ -9,6 +8,10 @@ public class Player {
         validateReservedName(name);
         this.name = name;
         this.position = position;
+    }
+
+    public boolean isSameName(String otherName){
+        return name.getName().equals(otherName);
     }
 
     public void moveLeft() {
@@ -23,7 +26,8 @@ public class Player {
         Name reservedName = Name.reservedName();
 
         if (playerName.equals(reservedName)) {
-            throw new IllegalArgumentException("예약어 " + reservedName.getName() + "은 이름으로 지정할 수 없습니다.");
+            throw new IllegalArgumentException("예약어 " + reservedName.getName()
+                    + "은 이름으로 지정할 수 없습니다.");
         }
     }
 
