@@ -22,10 +22,7 @@ public class Ladder {
 
         final int rowWidth = rows.get(0).size();
         IntStream.range(0, rowWidth)
-                .forEach(index -> {
-                    int result = match(index);
-                    playerResult.put(index, result);
-                });
+                .forEach(index -> playerResult.put(index, match(index)));
         return playerResult;
     }
 

@@ -8,10 +8,10 @@ import java.util.List;
 
 public class InputView {
 
-    private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    private static final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    public static List<String> readNames(String SEPARATOR) throws IOException {
-        String[] splitInput = br.readLine().split(SEPARATOR);
+    public static List<String> readNames(String separator) throws IOException {
+        String[] splitInput = reader.readLine().split(separator);
 
         return Arrays.stream(splitInput)
                 .map(String::trim)
@@ -19,10 +19,10 @@ public class InputView {
     }
 
     public static int readHeight() throws IOException {
-        return Integer.parseInt(br.readLine());
+        return Integer.parseInt(reader.readLine());
     }
 
     public static String readNameForResult() throws IOException {
-        return br.readLine().trim();
+        return reader.readLine().trim();
     }
 }

@@ -36,7 +36,7 @@ public class Row {
 
     private void validationSize(final int size) {
         if (size < MIN_SIZE) {
-            throw new IllegalArgumentException("사람은 2명 이상이어야 한다.");
+            throw new IllegalArgumentException("사람은 %d명 이상이어야 한다.".formatted(MIN_SIZE));
         }
     }
 
