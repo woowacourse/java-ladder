@@ -17,7 +17,7 @@ class PrizesTest {
         Players players = 참가자들(3);
 
         // when & then
-        assertThatThrownBy(() -> Prizes.of(prizeNames, players))
+        assertThatThrownBy(() -> Prizes.of(prizeNames, players.count()))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
@@ -28,7 +28,7 @@ class PrizesTest {
         Players players = 참가자들(3);
 
         // when & then
-        assertThatCode(() -> Prizes.of(prizeNames, players))
+        assertThatCode(() -> Prizes.of(prizeNames, players.count()))
                 .doesNotThrowAnyException();
     }
 
@@ -36,7 +36,7 @@ class PrizesTest {
     void 상품명_중_가장_긴_상품명의_길이를_반환한다() {
         // given
         String maxLengthName = "10000";
-        Prizes prizes = Prizes.of(List.of("꽝", "500", maxLengthName), 참가자들(3));
+        Prizes prizes = Prizes.of(List.of("꽝", "500", maxLengthName), 3);
 
         // when
         int result = prizes.findMaxPrizeNameLength();
@@ -49,7 +49,7 @@ class PrizesTest {
     void 범위를_벗어난_인덱스로_상품을_찾으면_예외가_발생한다() {
         // given
         List<String> prizeNames = List.of("1000", "꽝", "500");
-        Prizes prizes = Prizes.of(prizeNames, 참가자들(3));
+        Prizes prizes = Prizes.of(prizeNames, 3);
 
         // when & then
         assertThatThrownBy(() -> prizes.findPrizeByIndex(3))
@@ -60,7 +60,7 @@ class PrizesTest {
     void 인덱스로_상품을_찾는다() {
         // given
         String targetPrizeName = "꽝";
-        Prizes prizes = Prizes.of(List.of("1000", targetPrizeName, "500"), 참가자들(3));
+        Prizes prizes = Prizes.of(List.of("1000", targetPrizeName, "500"), 3);
 
         // when
         Prize prize = prizes.findPrizeByIndex(1);

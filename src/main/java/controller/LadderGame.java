@@ -22,7 +22,7 @@ public class LadderGame {
 
     public void run() {
         Players players = repeatUntilSuccess(() -> Players.from(InputView.inputPlayerNames()));
-        Prizes prizes = repeatUntilSuccess(() -> Prizes.of(InputView.inputPrizeNames(), players));
+        Prizes prizes = repeatUntilSuccess(() -> Prizes.of(InputView.inputPrizeNames(), players.count()));
         Height height = repeatUntilSuccess(() -> new Height(InputView.inputHeight()));
         Ladder ladder = createLadder(players, prizes, height);
         LadderResult result = ladder.climb(players, prizes);

@@ -3,7 +3,6 @@ package domain.prize;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
-import domain.player.Players;
 import java.util.List;
 
 public class Prizes {
@@ -13,20 +12,19 @@ public class Prizes {
         this.prizes = prizes;
     }
 
-    public static Prizes of(List<String> prizeNames, Players players) {
-        validateSameAsPlayersCount(prizeNames, players);
+    public static Prizes of(List<String> prizeNames, int validCount) {
+        validateSameAsPlayersCount(prizeNames, validCount);
         return prizeNames.stream()
                 .map(Prize::new)
                 .collect(collectingAndThen(toList(), Prizes::new));
     }
 
-    private static void validateSameAsPlayersCount(List<String> prizeNames, Players players) {
+    private static void validateSameAsPlayersCount(List<String> prizeNames, int validCount) {
         int prizeCount = prizeNames.size();
-        int playerCount = players.count();
-        if (prizeCount != playerCount) {
+        if (prizeCount != validCount) {
             throw new IllegalArgumentException(
-                    String.format("[ERROR] rejected value: %s - 참가자 수(%d)와 상품 수(%d)는 일치해야 합니다.",
-                            prizeNames, playerCount, prizeCount)
+                    String.format("[ERROR] rejected value: %s - 현재 상품 개수는 %d개 입니다. %d개와 일치해야 합니다.",
+                            prizeNames, prizeCount, validCount)
             );
         }
     }
