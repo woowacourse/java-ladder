@@ -1,21 +1,27 @@
 package ladder.domain.ladder;
 
+import static java.util.stream.Collectors.toMap;
 import static ladder.domain.ladder.Direction.NONE;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.IntStream;
 import ladder.domain.DirectionGenerator;
 import ladder.domain.player.Location;
 
 public class LadderLevel {
-    private final List<Direction> ladderLevel;
+    private final Map<Location, Direction> ladderLevel;
     private Direction latest;
 
     public LadderLevel(Width width, DirectionGenerator directionGenerator) {
         latest = NONE;
-        ladderLevel = new ArrayList<>(width.repeat(() -> nextDirection(directionGenerator)));
-        changeInvalidLast();
+        LinkedList<Direction> directions = new LinkedList<>(width.repeat(() -> nextDirection(directionGenerator)));
+        changeInvalidLast(directions);
+        ladderLevel = new LinkedHashMap<>(IntStream.range(0, directions.size())
+                .boxed()
+                .collect(toMap(Location::new, directions::get)));
     }
 
     public Location move(Location location) {
@@ -23,11 +29,11 @@ public class LadderLevel {
     }
 
     private Direction getDirection(Location location) {
-        return ladderLevel.get(location.value());
+        return ladderLevel.get(location);
     }
 
     public List<Direction> getDirections() {
-        return Collections.unmodifiableList(ladderLevel);
+        return ladderLevel.values().stream().toList();
     }
 
     private Direction nextDirection(DirectionGenerator directionGenerator) {
@@ -35,10 +41,10 @@ public class LadderLevel {
         return latest;
     }
 
-    private void changeInvalidLast() {
+    private void changeInvalidLast(LinkedList<Direction> directions) {
         if (latest.isInvalidLast()) {
-            ladderLevel.remove(ladderLevel.lastIndexOf(latest));
-            ladderLevel.add(NONE);
+            directions.removeLast();
+            directions.add(NONE);
         }
     }
 }
