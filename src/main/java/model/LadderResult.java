@@ -27,9 +27,7 @@ public class LadderResult {
         return result.get(target);
     }
 
-    public List<Prize> searchAll(List<Participant> participants) {
-        return participants.stream()
-                .map(result::get)
-                .toList();
+    public Map<Participant, Prize> getEntireResult() {
+        return result;
     }
 }

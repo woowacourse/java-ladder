@@ -29,7 +29,7 @@ class LadderResultTest {
 
     @DisplayName("특정 Participant를 조회했을 때 Prize 값이 반환된다.")
     @Test
-    void searchOnePerson() {
+    void shouldReturnOnePrize_WhenSearchOneTarget() {
         Participant ash = new Participant("ash");
         Participant daon = new Participant("daon");
         Participants participants = new Participants(List.of(ash, daon));
@@ -46,9 +46,9 @@ class LadderResultTest {
         Assertions.assertThat(ladderResult.searchOne(ash)).isInstanceOf(Prize.class);
     }
 
-    @DisplayName("all을 조회했을 때 Prizes와 크기가 똑같은 List<Prize>가 반환된다.")
+    @DisplayName("participants와 크기가 똑같은 게임 결과가 반환된다.")
     @Test
-    void searchAll() {
+    void shouldReturnExactSizeOfGameParticipants_WhenSearchAll() {
         List<Participant> participants = List.of(
                 new Participant("daon"),
                 new Participant("ash")
@@ -62,8 +62,7 @@ class LadderResultTest {
         Ladder ladder = new Ladder(new Height("3"), participants.size(), new RandomGenerator());
 
         LadderResult ladderResult = new LadderResult(new Participants(participants), prizes, ladder);
-        List<Prize> results = ladderResult.searchAll(participants);
 
-        Assertions.assertThat(results.size()).isEqualTo(participants.size());
+        Assertions.assertThat(ladderResult.getEntireResult().size()).isEqualTo(participants.size());
     }
 }
