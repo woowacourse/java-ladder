@@ -23,7 +23,7 @@ public class LadderGame {
         final int lineCount = ladder.countLine();
 
         for (int index = 0; index < playerCount; index++) {
-            final Player player = players.getPlayer(index);
+            final Player player = players.findPlayerByIndex(index);
 
             climbLadder(player, lineCount);
         }
@@ -33,7 +33,7 @@ public class LadderGame {
 
     private void climbLadder(final Player player, final int lineCount) {
         for (int lineIndex = 0; lineIndex < lineCount; lineIndex++) {
-            final List<Rung> rungs = ladder.getRungsOf(lineIndex);
+            final List<Rung> rungs = ladder.findRungsByIndex(lineIndex);
 
             final Direction direction = player.findMovableDirection(rungs);
             player.moveTo(direction);

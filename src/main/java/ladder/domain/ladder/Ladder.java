@@ -31,7 +31,7 @@ public class Ladder {
         return lines.size();
     }
 
-    public List<Rung> getRungsOf(final int index) {
+    public List<Rung> findRungsByIndex(final int index) {
         final Line line = lines.get(index);
         return line.getRungs();
     }
