@@ -32,9 +32,9 @@ class GameResultTest {
         Players players = Players.of(List.of("jojo", "woo", "lee", "dora"));
         Prizes prizes = Prizes.of(List.of("꽝", "박수", "칭찬", "박장대소"), players);
         Ladder ladder = new Ladder(List.of(
-            new Line(List.of(CONNECTED, UNCONNECTED, UNCONNECTED)),
-            new Line(List.of(CONNECTED, UNCONNECTED, CONNECTED)),
-            new Line(List.of(UNCONNECTED, CONNECTED, UNCONNECTED))
+            Line.of(List.of(CONNECTED, UNCONNECTED, UNCONNECTED)),
+            Line.of(List.of(CONNECTED, UNCONNECTED, CONNECTED)),
+            Line.of(List.of(UNCONNECTED, CONNECTED, UNCONNECTED))
         ));
         LadderResult ladderResult = LadderResult.from(ladder);
         return GameResult.of(ladderResult, players, prizes);

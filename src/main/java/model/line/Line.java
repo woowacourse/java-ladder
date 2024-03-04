@@ -12,12 +12,16 @@ public class Line {
 
     private final List<Bridge> bridges;
 
-    public Line(List<Bridge> bridgesSource) {
-        List<Bridge> discontinuousBridges = generateDiscontinuousBridges(bridgesSource);
-        this.bridges = Collections.unmodifiableList(discontinuousBridges);
+    private Line(List<Bridge> bridges) {
+        this.bridges = Collections.unmodifiableList(bridges);
     }
 
-    private List<Bridge> generateDiscontinuousBridges(List<Bridge> bridgesSource) {
+    public static Line of(List<Bridge> bridgesSource) {
+        List<Bridge> discontinuousBridges = generateDiscontinuousBridges(bridgesSource);
+        return new Line(discontinuousBridges);
+    }
+
+    private static List<Bridge> generateDiscontinuousBridges(List<Bridge> bridgesSource) {
         List<Bridge> discontinuousBridges = new ArrayList<>();
         for (Bridge bridgeSource : bridgesSource) {
             Bridge bridge = chooseBridge(bridgeSource, discontinuousBridges);
@@ -26,14 +30,14 @@ public class Line {
         return discontinuousBridges;
     }
 
-    private Bridge chooseBridge(Bridge bridge, List<Bridge> discontinuousBridges) {
+    private static Bridge chooseBridge(Bridge bridge, List<Bridge> discontinuousBridges) {
         if (discontinuousBridges.isEmpty() || getLastBridge(discontinuousBridges).isUnconnected()) {
             return bridge;
         }
         return Bridge.UNCONNECTED;
     }
 
-    private Bridge getLastBridge(List<Bridge> bridges) {
+    private static Bridge getLastBridge(List<Bridge> bridges) {
         return bridges.get(bridges.size() - LAST_BRIDGE_OFFSET);
     }
 

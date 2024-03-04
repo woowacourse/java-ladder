@@ -22,7 +22,7 @@ public class RandomLadderGenerator {
     private static Line generateLine(LadderWidth width) {
         return IntStream.range(0, width.getValue())
             .mapToObj(i -> generateBridge())
-            .collect(collectingAndThen(toList(), Line::new));
+            .collect(collectingAndThen(toList(), Line::of));
     }
 
     private static Bridge generateBridge() {

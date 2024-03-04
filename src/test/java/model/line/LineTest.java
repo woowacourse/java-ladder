@@ -18,7 +18,7 @@ class LineTest {
     @ParameterizedTest
     @MethodSource("provideDuplicatedBridges")
     void testInvalidLine(List<Bridge> beforeBridges, List<Bridge> afterBridges) {
-        assertThat(new Line(beforeBridges).getBridges())
+        assertThat(Line.of(beforeBridges).getBridges())
             .isEqualTo(afterBridges);
     }
 
@@ -37,7 +37,7 @@ class LineTest {
     @ParameterizedTest
     @MethodSource("provideUniqueBridges")
     void testValidLine(List<Bridge> beforeBridges, List<Bridge> afterBridges) {
-        assertThat(new Line(beforeBridges).getBridges())
+        assertThat(Line.of(beforeBridges).getBridges())
             .isEqualTo(afterBridges);
     }
 

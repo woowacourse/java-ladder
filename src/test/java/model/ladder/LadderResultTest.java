@@ -28,11 +28,11 @@ class LadderResultTest {
 
     private Ladder prepareLadder() {
         return new Ladder(List.of(
-            new Line(List.of(UNCONNECTED, CONNECTED, UNCONNECTED)),
-            new Line(List.of(CONNECTED, UNCONNECTED, UNCONNECTED)),
-            new Line(List.of(UNCONNECTED, CONNECTED, UNCONNECTED)),
-            new Line(List.of(CONNECTED, UNCONNECTED, CONNECTED)),
-            new Line(List.of(UNCONNECTED, UNCONNECTED, UNCONNECTED))
+            Line.of(List.of(UNCONNECTED, CONNECTED, UNCONNECTED)),
+            Line.of(List.of(CONNECTED, UNCONNECTED, UNCONNECTED)),
+            Line.of(List.of(UNCONNECTED, CONNECTED, UNCONNECTED)),
+            Line.of(List.of(CONNECTED, UNCONNECTED, CONNECTED)),
+            Line.of(List.of(UNCONNECTED, UNCONNECTED, UNCONNECTED))
         ));
     }
 }
