@@ -1,9 +1,11 @@
 package controller;
 
+import java.util.List;
 import java.util.Map;
 import model.Height;
 import model.Ladder;
 import model.LadderGame;
+import model.Line;
 import model.Name;
 import model.Participant;
 import model.Participants;
@@ -15,6 +17,7 @@ import view.OutputView;
 
 public class LadderController {
 
+    private static final List<String> reservedNames = List.of("all");
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -39,15 +42,14 @@ public class LadderController {
 
     private void printResults() {
         String name = inputView.inputParticipantNameForResult();
-        if (!"all".equals(name)) {
-            Participant participant = ladderGame.findParticipant(new Name(name));
-            Result result = ladderGame.findParticipantResult(participant);
-            outputView.printParticipantResult(result);
-            printResults();
+        if (reservedNames.contains(name)) {
+            Map<Participant, Result> allResults = ladderGame.findAllParticipantResults();
+            outputView.printParticipantResults(allResults);
             return;
         }
-
-        Map<Participant, Result> allResults = ladderGame.findAllParticipantResults();
-        outputView.printParticipantResults(allResults);
+        Participant participant = ladderGame.findParticipant(new Name(name));
+        Result result = ladderGame.findParticipantResult(participant);
+        outputView.printParticipantResult(result);
+        printResults();
     }
 }
