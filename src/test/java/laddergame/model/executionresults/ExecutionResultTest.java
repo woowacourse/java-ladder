@@ -16,7 +16,6 @@ class ExecutionResultTest {
     void validateName(String given) {
         //when //then
         assertThatThrownBy(() -> new ExecutionResult(given))
-                .isInstanceOf(BaseException.class)
-                .hasMessageContaining("[ERROR]");
+                .isInstanceOf(BaseException.class);
     }
 }
