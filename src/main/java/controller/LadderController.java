@@ -13,8 +13,6 @@ import view.ResultView;
 
 public class LadderController {
     private static final String DELIMITER = ",";
-    private static final String ALL_COMMAND = "all";
-    private static final String EXIT_COMMAND = "exit";
 
     private final ResultView resultView;
     private final InputView inputView;
@@ -37,11 +35,11 @@ public class LadderController {
     private void insertAndProceedCommand(People people) {
         String commandInputText = inputView.askForParticipantName();
         Command command = Command.inputTextToCommand(commandInputText);
-        if (command.equals(Command.EXIT)) {
+        if (command == Command.EXIT) {
             terminateGame();
             return;
         }
-        if (command.equals(Command.ALL)) {
+        if (command == Command.ALL) {
             getAllPrize(people);
             return;
         }
