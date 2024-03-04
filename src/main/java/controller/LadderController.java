@@ -39,12 +39,6 @@ public class LadderController {
         outputView.printExecutionResult(resultInterestedPeople, new GamePrize(ladderGame));
     }
 
-    private void printCreatedLadderGame(Participants participants, Ladder ladder, ExecutionResult executionResult) {
-        outputView.printParticipantsName(captureParticipantsName(participants));
-        outputView.printLadder(captureLayerSteps(ladder));
-        outputView.printExecutionResultBottomLadder(executionResult);
-    }
-
     private Participants prepareParticipants() {
         List<String> names = inputView.requestParticipantsName();
         return new Participants(names);
@@ -60,6 +54,12 @@ public class LadderController {
         Height height = new Height(inputView.requestLadderHeight());
         int numberOfParticipants = participants.getParticipantsSize();
         return new Ladder(height.getValue(), numberOfParticipants);
+    }
+
+    private void printCreatedLadderGame(Participants participants, Ladder ladder, ExecutionResult executionResult) {
+        outputView.printParticipantsName(captureParticipantsName(participants));
+        outputView.printLadder(captureLayerSteps(ladder));
+        outputView.printExecutionResultBottomLadder(executionResult);
     }
 
     private ResultInterestedPeople prepareResultInterestedPeople(List<ParticipantName> participantsNames) {

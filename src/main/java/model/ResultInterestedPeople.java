@@ -13,6 +13,12 @@ public class ResultInterestedPeople {
         this.names = Objects.requireNonNull(names);
     }
 
+    private void validateNameValue(List<String> names) {
+        if (names.isEmpty() || names.contains("\\s+")) {
+            throw new IllegalArgumentException("결과를 보고 싶은 사람은 한 명 이상이어야 한다");
+        }
+    }
+
     private void validatePersonName(List<String> names, List<String> participantNames) {
         long matchCount = names.stream()
                 .filter(name -> participantNames.stream().anyMatch(Predicate.isEqual(name)))
@@ -20,12 +26,6 @@ public class ResultInterestedPeople {
 
         if (matchCount < 1) {
             throw new IllegalArgumentException("결과를 보고 싶은 사람은 참여한 사람이어야 한다");
-        }
-    }
-
-    private void validateNameValue(List<String> names) {
-        if (names.isEmpty() || names.contains("\\s+")) {
-            throw new IllegalArgumentException("결과를 보고 싶은 사람은 한 명 이상이어야 한다");
         }
     }
 

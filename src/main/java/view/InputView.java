@@ -22,10 +22,6 @@ public class InputView {
         return removeBlank(splitName(input));
     }
 
-    private List<String> splitName(String input) {
-        return List.of(input.split(","));
-    }
-
     public int requestLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         String input = scanner.nextLine();
@@ -47,6 +43,10 @@ public class InputView {
             return participantNames.stream().map(ParticipantName::name).toList();
         }
         return removeBlank(splitName(input));
+    }
+
+    private List<String> splitName(String input) {
+        return List.of(input.split(","));
     }
 
     private List<String> removeBlank(List<String> input) {
