@@ -26,7 +26,7 @@ public class Floor {
     int crossConnection(int index) {
         validateIndexRange(index);
         Connection connection = connections.get(index);
-        return connection.move(index);
+        return connection.moveToNextIndex(index);
     }
 
     private void validateIndexRange(int index) {

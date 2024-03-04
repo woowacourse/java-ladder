@@ -48,7 +48,7 @@ public enum Connection {
         return this;
     }
 
-    public int move(int currentIndex) {
+    public int moveToNextIndex(int currentIndex) {
         return moveFunction.applyAsInt(currentIndex);
     }
 

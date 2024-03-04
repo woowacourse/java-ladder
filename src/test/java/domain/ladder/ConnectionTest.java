@@ -130,7 +130,7 @@ class ConnectionTest {
             int currentIndex = 1;
 
             // when
-            int movedIndex = connection.move(currentIndex);
+            int movedIndex = connection.moveToNextIndex(currentIndex);
 
             // then
             assertThat(movedIndex).isEqualTo(0);
@@ -143,7 +143,7 @@ class ConnectionTest {
             int currentIndex = 1;
 
             // when
-            int movedIndex = connection.move(currentIndex);
+            int movedIndex = connection.moveToNextIndex(currentIndex);
 
             // then
             assertThat(movedIndex).isEqualTo(2);
@@ -156,7 +156,7 @@ class ConnectionTest {
             int currentIndex = 1;
 
             // when
-            int movedIndex = connection.move(currentIndex);
+            int movedIndex = connection.moveToNextIndex(currentIndex);
 
             // then
             assertThat(movedIndex).isEqualTo(1);
