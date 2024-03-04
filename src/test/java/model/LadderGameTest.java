@@ -44,20 +44,6 @@ public class LadderGameTest {
                 () -> assertThat(forthResult).isEqualTo(new Result(new Position(2), "꽝")));
     }
 
-//    @DisplayName("모든 참가자의 게임 결과를 얻는다.")
-//    @Test
-//    void findAllResults() {
-//        LadderGame ladderGame = createLadderGame();
-//        Map<Name, Result> results = ladderGame.findAllParticipantResults();
-//        Assertions.assertThat(results).isEqualTo(
-//                Map.of(new Name("0"), new Result("꽝"),
-//                        new Name("1"), new Result("5000"),
-//                        new Name("2"), new Result("꽝"),
-//                        new Name("3"), new Result("3000"),
-//                        new Name("4"), new Result("꽝")));
-//    }
-
-
     private static LadderGame createLadderGame() {
         Ladder ladder = new Ladder(List.of(
                 new LadderRow(List.of(true, false, false, true)),

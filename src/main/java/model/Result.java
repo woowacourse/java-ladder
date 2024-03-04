@@ -32,8 +32,8 @@ public class Result {
             return false;
         }
         Result result = (Result) o;
-        return Objects.equals(position, result.position) && Objects.equals(getValue(),
-                result.getValue());
+        return Objects.equals(position, result.position)
+                && Objects.equals(getValue(), result.getValue());
     }
 
     @Override

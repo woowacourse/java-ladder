@@ -9,7 +9,8 @@ public class Ladder {
 
     public Ladder(Height height, BooleanGenerator generator, int participantSize) {
         this.ladderRows = Stream.generate(() -> new LadderRow(generator, participantSize - 1))
-                .limit(height.value()).toList();
+                .limit(height.value())
+                .toList();
     }
 
     Ladder(List<LadderRow> ladderRows) {

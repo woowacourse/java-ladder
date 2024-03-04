@@ -34,7 +34,8 @@ public class OutputView {
     }
 
     private void printLadder(Ladder ladder) {
-        IntStream.range(0, ladder.getHeight()).forEach(index -> printRow(ladder.getRow(index)));
+        IntStream.range(0, ladder.getHeight())
+                .forEach(index -> printRow(ladder.getRow(index)));
     }
 
     private void printRow(LadderRow ladderRow) {
@@ -48,7 +49,8 @@ public class OutputView {
     }
 
     public void printResults(Results results) {
-        results.getResults().forEach(result -> System.out.print(NAME_FORMAT.formatted(result.getValue())));
+        results.getResults()
+                .forEach(result -> System.out.print(NAME_FORMAT.formatted(result.getValue())));
         System.out.println();
     }
 
