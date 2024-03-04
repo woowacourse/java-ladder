@@ -43,7 +43,7 @@ public class OutputView {
         ladderRow.getIsLines()
                 .forEach(isLine -> {
                     System.out.print(LadderComponent.DIVISION);
-                    System.out.print(LadderComponent.match(isLine == CONNECTED).toString());
+                    System.out.print(LadderComponent.match(isLine == CONNECTED).getOutput());
                 });
         System.out.print(LadderComponent.DIVISION + "\n");
     }

@@ -18,8 +18,7 @@ public enum LadderComponent {
         return EMPTY_LINE;
     }
 
-    @Override
-    public String toString() {
+    public String getOutput() {
         return output;
     }
 }
