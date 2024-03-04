@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
-import model.dto.ParticipantName;
 
 public class Participants {
     private static final int MIN_PARTICIPANT_COUNT = 2;

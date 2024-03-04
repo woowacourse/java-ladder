@@ -1,7 +1,10 @@
 package view;
 
 import java.util.List;
-import model.Step;
+import java.util.Map.Entry;
+import model.ExecutionResult;
+import model.ResultInterestedPeople;
+import model.dto.GamePrize;
 import model.dto.LayerSteps;
 import model.dto.ParticipantName;
 
@@ -40,5 +43,27 @@ public class OutputView {
             return STEP_EXIST_BASE.repeat(STEP_BASE_LENGTH);
         }
         return " ".repeat(STEP_BASE_LENGTH);
+    }
+
+    public void printExecutionResultBottomLadder(ExecutionResult executionResult) {
+        List<String> formattedExecutionResult = executionResult.getExecutionResult().stream()
+                .map(result -> String.format(NAME_FORMAT, result))
+                .toList();
+        String joinedExecutionResult = String.join(" ", formattedExecutionResult);
+        System.out.println(joinedExecutionResult);
+    }
+
+    public void printExecutionResult(ResultInterestedPeople resultInterestedPeople, GamePrize gamePrize) {
+        System.out.println("실행 결과");
+        List<Entry<String, String>> result = gamePrize.prize().entrySet().stream()
+                .filter(prize -> resultInterestedPeople.getResultInterestedName().contains(prize.getKey()))
+                .toList();
+        if (result.size() == 1) {
+            System.out.println(result.get(0).getValue());
+        }
+        if (result.size() > 1) {
+            result.stream().map(entry -> String.format("%s : %s", entry.getKey(),
+                    entry.getValue())).forEach(System.out::println);
+        }
     }
 }

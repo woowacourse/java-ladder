@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import model.ExecutionResult;
 import model.Ladder;
+import model.LadderGame;
 import model.Participants;
+import model.ResultInterestedPeople;
+import model.dto.GamePrize;
 import model.dto.LayerSteps;
 import model.dto.ParticipantName;
 import model.vo.Height;
@@ -23,9 +27,16 @@ public class LadderController {
 
     public void run() {
         Participants participants = repeatUntilSuccess(this::prepareParticipants);
+        ExecutionResult executionResult = repeatUntilSuccess(this::prepareExecutionResult, participants);
         Ladder ladder = repeatUntilSuccess(this::prepareLadder, participants);
-        outputView.printParticipantsName(captureParticipantsName(participants));
-        outputView.printLadder(captureLayerSteps(ladder));
+        printCreatedLadderGame(participants, ladder, executionResult);
+
+        ResultInterestedPeople resultInterestedPeople =
+                repeatUntilSuccess(this::prepareResultInterestedPeople, captureParticipantsName(participants));
+
+        LadderGame ladderGame = new LadderGame(ladder, executionResult);
+        ladderGame.gameStart(captureParticipantsName(participants));
+        outputView.printExecutionResult(resultInterestedPeople, new GamePrize(ladderGame));
     }
 
     private Participants prepareParticipants() {
@@ -33,10 +44,30 @@ public class LadderController {
         return new Participants(names);
     }
 
-    private Ladder prepareLadder(Participants participants) {
-        int height = new Height(inputView.requestLadderHeight()).getValue();
+    private ExecutionResult prepareExecutionResult(Participants participants) {
+        List<String> executionResult = inputView.requestExecutionResult();
         int numberOfParticipants = participants.getParticipantsSize();
-        return new Ladder(height, numberOfParticipants);
+        return new ExecutionResult(executionResult, numberOfParticipants);
+    }
+
+    private Ladder prepareLadder(Participants participants) {
+        Height height = new Height(inputView.requestLadderHeight());
+        int numberOfParticipants = participants.getParticipantsSize();
+        return new Ladder(height.getValue(), numberOfParticipants);
+    }
+
+    private void printCreatedLadderGame(Participants participants, Ladder ladder, ExecutionResult executionResult) {
+        outputView.printParticipantsName(captureParticipantsName(participants));
+        outputView.printLadder(captureLayerSteps(ladder));
+        outputView.printExecutionResultBottomLadder(executionResult);
+    }
+
+    private ResultInterestedPeople prepareResultInterestedPeople(List<ParticipantName> participantsNames) {
+        List<String> formattedParticipantsName = participantsNames.stream()
+                .map(ParticipantName::name)
+                .toList();
+        List<String> resultInterestedPeople = inputView.requestResultInterestedPeople(participantsNames);
+        return new ResultInterestedPeople(resultInterestedPeople, formattedParticipantsName);
     }
 
     private <T> T repeatUntilSuccess(Supplier<T> supplier) {
