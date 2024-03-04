@@ -17,8 +17,16 @@ public class Ladder {
     public static Ladder from(final Height height, final PersonCount personCount, final LinesGenerator linesGenerator) {
         int pathCount = personCount.getCount() - 1;
         final List<Line> lines = linesGenerator.generate(height, pathCount);
+        validateLineSize(lines.size(), height);
         return new Ladder(lines);
     }
+
+    private static void validateLineSize(final int lineSize, final Height height) {
+        if (height.isNotEquals(lineSize)) {
+            throw new IllegalArgumentException("높이에 맞지 않는 라인의 수가 생성되었습니다.");
+        }
+    }
+
 
     public Index climb(final Index startIndex) {
         Index currentIndex = startIndex;

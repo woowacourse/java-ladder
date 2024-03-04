@@ -16,6 +16,10 @@ public class Height {
         }
     }
 
+    public boolean isNotEquals(final int lineSize) {
+        return lineSize != value;
+    }
+
     public int getHeight() {
         return value;
     }
