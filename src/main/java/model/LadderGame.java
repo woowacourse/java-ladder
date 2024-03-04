@@ -50,7 +50,7 @@ public class LadderGame {
     }
 
     private Position findInitialPosition(Person person) {
-        int initialHorizontalIndex = people.findInitialIndex(person);
+        int initialHorizontalIndex = people.findIndex(person);
         int initialVerticalIndex = 0;
         return new Position(initialHorizontalIndex, initialVerticalIndex);
     }

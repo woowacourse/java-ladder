@@ -23,7 +23,7 @@ public class People {
         return participants.size();
     }
 
-    public int findInitialIndex(Person person) {
+    public int findIndex(Person person) {
         return this.participants.indexOf(person);
     }
 

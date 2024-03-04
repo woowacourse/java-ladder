@@ -41,7 +41,7 @@ public class PeopleTest {
         People people = new People("프람,초롱,호티");
 
         //when
-        int indexOfPerson = people.findInitialIndex(new Person("프람"));
+        int indexOfPerson = people.findIndex(new Person("프람"));
 
         //then
         assertThat(indexOfPerson)
