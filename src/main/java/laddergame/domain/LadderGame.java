@@ -13,7 +13,6 @@ public class LadderGame {
     private final Map<Player, Prize> playerGameResult;
 
     public LadderGame(Players players, Ladder ladder, Prizes prizes) {
-        // TODO style - 줄바꿈 조정
         this.players = players;
         this.ladder = ladder;
         this.prizes = prizes;
