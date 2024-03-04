@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Players {
+
     private static final int MIN_PLAYERS_SIZE = 2;
     private static final String INVALID_PLAYERS_SIZE = "참여자 수는 최소 2명입니다.";
     private static final String INVALID_PLAYER_NAMES_UNIQUE = "참여자 이름은 중복될 수 없습니다.";
@@ -16,7 +17,7 @@ public class Players {
 
     private Players(List<Player> players) {
         validate(players);
-        this.players = players;
+        this.players = List.copyOf(players);
     }
 
     private void validate(List<Player> players) {
@@ -39,17 +40,21 @@ public class Players {
 
     public static Players of(List<String> names) {
         return names.stream()
-                .map(Player::new)
-                .collect(collectingAndThen(toList(), Players::new));
+            .map(Player::new)
+            .collect(collectingAndThen(toList(), Players::new));
+    }
+
+    public Player findPlayer(int index) {
+        return players.get(index);
+    }
+
+    public int size() {
+        return players.size();
     }
 
     public List<String> getNames() {
         return players.stream()
-                .map(Player::name)
-                .toList();
-    }
-
-    public int getSize() {
-        return players.size();
+            .map(Player::name)
+            .toList();
     }
 }

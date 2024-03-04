@@ -1,12 +1,15 @@
-package model.player;
+package model.prize;
 
-public record Player(String name) {
+public class Prize {
 
     private static final int MAX_NAME_LENGTH = 5;
-    private static final String INVALID_NAME_LENGTH = "참여자 이름은 최대 5글자입니다.";
+    private static final String INVALID_NAME_LENGTH = "실행 결과는 최대 5글자입니다.";
 
-    public Player {
+    private final String name;
+
+    public Prize(String name) {
         validateNameLength(name);
+        this.name = name;
     }
 
     private void validateNameLength(String name) {
@@ -15,7 +18,7 @@ public record Player(String name) {
         }
     }
 
-    public boolean isNameEqual(String name) {
-        return name.equals(this.name);
+    public String getName() {
+        return name;
     }
 }

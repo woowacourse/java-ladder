@@ -1,22 +1,21 @@
 package model.bridge;
 
-import java.util.Arrays;
-import java.util.Optional;
-
 public enum Bridge {
     CONNECTED(1),
     UNCONNECTED(0);
 
-    private final int code;
+    private final int movement;
 
-    Bridge(int code) {
-        this.code = code;
+    Bridge(int movement) {
+        this.movement = movement;
     }
 
-    public static Optional<Bridge> findBridgeByCode(int code) {
-        return Arrays.stream(Bridge.values())
-                .filter(bridge -> code == bridge.code)
-                .findFirst();
+    public int moveRight(int position) {
+        return position + movement;
+    }
+
+    public int moveLeft(int position) {
+        return position - movement;
     }
 
     public boolean isConnected() {
