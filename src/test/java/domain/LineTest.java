@@ -15,7 +15,7 @@ public class LineTest {
     @DisplayName("라인 객체를 정상적으로 생성한다.")
     @Test
     void createLine() {
-        assertThatCode(() -> new Line(new RandomLegGenerateStrategy(), 1))
+        assertThatCode(() -> new Line(new TestConnectedLegGenerateStrategy(), 1))
                 .doesNotThrowAnyException();
     }
 
@@ -23,7 +23,7 @@ public class LineTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 3})
     void makeLeg(int validLegCount) {
-        Line line = new Line(new RandomLegGenerateStrategy(), validLegCount);
+        Line line = new Line(new TestConnectedLegGenerateStrategy(), validLegCount);
 
         int expectedLegCount = line.getLegs().size();
 
@@ -33,12 +33,7 @@ public class LineTest {
     @DisplayName("라인을 이루는 다리는 겹치지 않는다")
     @Test
     void makeLegWithUnOverlap() {
-        Line line = new Line(new RandomLegGenerateStrategy() {
-            @Override
-            public Leg generateLeg() {
-                return Leg.CONNECTED;
-            }
-        }, 3);
+        Line line = new Line(new TestConnectedLegGenerateStrategy(), 3);
 
         List<Leg> legs = line.getLegs();
 
@@ -50,12 +45,7 @@ public class LineTest {
     @DisplayName("현재위치(Index)를 받으면 움직인 후 다음 라인의 다리 위치를 반환한다.")
     @Test
     void findNextIndex() {
-        Line line = new Line(new RandomLegGenerateStrategy() {
-            @Override
-            public Leg generateLeg() {
-                return Leg.CONNECTED;
-            }
-        }, 3);
+        Line line = new Line(new TestConnectedLegGenerateStrategy(), 3);
         Assertions.assertAll(
                 () -> assertThat(line.moveToNextLeg(0)).isEqualTo(1),
                 () -> assertThat(line.moveToNextLeg(3)).isEqualTo(2)

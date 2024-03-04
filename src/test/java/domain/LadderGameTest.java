@@ -19,12 +19,7 @@ public class LadderGameTest {
     @Test
     void findPlayerReward() {
         //given
-        Ladder ladder = new Ladder(new RandomLegGenerateStrategy() {
-            @Override
-            public Leg generateLeg() {
-                return Leg.CONNECTED;
-            }
-        }, new Height(1), 3);
+        Ladder ladder = new Ladder(new TestConnectedLegGenerateStrategy(), new Height(1), 3);
         PlayerNames playerNames = new PlayerNames(
                 List.of(new PlayerName("pobi"),
                         new PlayerName("honux"),
@@ -61,12 +56,7 @@ public class LadderGameTest {
     @Test
     void findAllPlayerReward() {
         //given
-        Ladder ladder = new Ladder(new RandomLegGenerateStrategy() {
-            @Override
-            public Leg generateLeg() {
-                return Leg.CONNECTED;
-            }
-        }, new Height(1), 3);
+        Ladder ladder = new Ladder(new TestConnectedLegGenerateStrategy(), new Height(1), 3);
 
         PlayerName pobi = new PlayerName("pobi");
         PlayerName honux = new PlayerName("honux");
@@ -93,5 +83,6 @@ public class LadderGameTest {
                 () -> assertThat(actualResult.get(cron)).isEqualTo(success2.getReward()),
                 () -> assertThat(actualResult.get(jk)).isEqualTo(fail2.getReward())
         );
+
     }
 }
