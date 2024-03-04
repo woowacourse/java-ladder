@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class InputView {
 
-    private static final String COMMA = ",";
+    private static final String SEPARATOR = ",";
 
     private final Scanner scanner = new Scanner(System.in);
 
@@ -14,7 +14,15 @@ public class InputView {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String input = scanner.nextLine();
         validateInput(input);
-        return Arrays.stream(input.split(COMMA))
+        return Arrays.stream(input.split(SEPARATOR))
+                .toList();
+    }
+
+    public List<String> readPrizeNames() {
+        System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String input = scanner.nextLine();
+        validateInput(input);
+        return Arrays.stream(input.split(SEPARATOR))
                 .toList();
     }
 
@@ -25,13 +33,18 @@ public class InputView {
 
     }
 
+    public String readGameResultForUser() {
+        System.out.println("\n결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
+    }
+
     public void closeScanner() {
         scanner.close();
     }
 
     private void validateInput(String input) {
-        if (input.isEmpty() || input.endsWith(COMMA)) {
-            throw new IllegalArgumentException("[ERROR] 올바르지 않은 사용자 이름입니다.");
+        if (input.isEmpty() || input.endsWith(SEPARATOR)) {
+            throw new IllegalArgumentException("[ERROR] 올바르지 않은 입력 입니다.");
         }
     }
 
