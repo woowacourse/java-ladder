@@ -1,7 +1,7 @@
 package view;
 
-import dto.LineInfo;
-import dto.LadderInfo;
+import dto.LineDto;
+import dto.LadderDto;
 import java.util.Map;
 import view.formatter.ItemsFormatter;
 import view.formatter.LineFormatter;
@@ -11,14 +11,14 @@ import view.formatter.ResultFormatter;
 
 public class OutputView {
 
-    public void printLadderInfo(final LadderInfo ladderInfo) {
+    public void printLadderInfo(final LadderDto ladderDto) {
         System.out.println();
         System.out.println("사다리 결과");
         System.out.println();
-        final List<String> peopleNames = ladderInfo.peopleNames();
-        final List<String> itemNames = ladderInfo.itemNames();
+        final List<String> peopleNames = ladderDto.peopleNames();
+        final List<String> itemNames = ladderDto.itemNames();
         printPeopleNames(peopleNames);
-        printLines(ladderInfo.lines());
+        printLines(ladderDto.lines());
         printItemNames(itemNames);
     }
 
@@ -26,7 +26,7 @@ public class OutputView {
         System.out.println(NamesFormatter.format(peopleNames));
     }
 
-    private void printLines(final List<LineInfo> lines) {
+    private void printLines(final List<LineDto> lines) {
         lines.forEach(this::printLine);
     }
 
@@ -34,7 +34,7 @@ public class OutputView {
         System.out.println(ItemsFormatter.format(itemNames));
     }
 
-    private void printLine(final LineInfo line) {
+    private void printLine(final LineDto line) {
         final List<Boolean> paths = line.lineInfo();
         System.out.println(LineFormatter.format(paths));
     }

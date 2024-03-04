@@ -6,12 +6,12 @@ import model.items.Item;
 import model.people.Person;
 import model.Result;
 
-public record ResultInfo(Map<String, String> personAndItemName) {
-    public static ResultInfo from(final Result result) {
+public record ResultDto(Map<String, String> personAndItemName) {
+    public static ResultDto from(final Result result) {
         Map<Person, Item> matchedResult = result.getMatchedResult();
         Map<String, String> matchedPersonAndItemNames = new HashMap<>();
         matchedResult.forEach((person, item) -> matchedPersonAndItemNames.put(person.getName(), item.getName()));
-        return new ResultInfo(matchedPersonAndItemNames);
+        return new ResultDto(matchedPersonAndItemNames);
     }
 
     public String getItemNameByPersonName(final String personName) {

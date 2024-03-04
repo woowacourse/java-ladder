@@ -1,7 +1,7 @@
 package controller;
 
-import dto.LadderInfo;
-import dto.ResultInfo;
+import dto.LadderDto;
+import dto.ResultDto;
 import java.util.List;
 import model.Index;
 import model.ladder.Height;
@@ -30,12 +30,12 @@ public class LadderGame {
         final Items items = initItems(people.getPersonCount());
         final Ladder ladder = initLadder(people.getPersonCount());
 
-        final LadderInfo ladderInfo = LadderInfo.from(people, ladder, items);
-        outputView.printLadderInfo(ladderInfo);
+        final LadderDto ladderDto = LadderDto.from(people, ladder, items);
+        outputView.printLadderInfo(ladderDto);
 
         final Result result = findResult(people, ladder, items);
-        final ResultInfo resultInfo = ResultInfo.from(result);
-        searchResult(resultInfo);
+        final ResultDto resultDto = ResultDto.from(result);
+        searchResult(resultDto);
     }
 
     private People initPeople() {
@@ -58,14 +58,14 @@ public class LadderGame {
         return Result.of(people, resultIndexes, items);
     }
 
-    private void searchResult(final ResultInfo resultInfo) {
+    private void searchResult(final ResultDto resultDto) {
         String personName = inputView.inputPersonName();
         while (!personName.equals(ALL)) {
-            String itemName = resultInfo.getItemNameByPersonName(personName);
+            String itemName = resultDto.getItemNameByPersonName(personName);
             outputView.printResultByPerson(itemName);
             personName = inputView.inputPersonName();
         }
 
-        outputView.printAllResult(resultInfo.personAndItemName());
+        outputView.printAllResult(resultDto.personAndItemName());
     }
 }
