@@ -10,7 +10,7 @@ import model.ladder.Ladder;
 import model.people.People;
 import model.people.PersonCount;
 import model.Result;
-import model.line.RandomLinesGenerator;
+import model.ladder.line.RandomLinesGenerator;
 import view.InputView;
 import view.OutputView;
 

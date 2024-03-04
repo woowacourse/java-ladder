@@ -1,4 +1,4 @@
-package model.line;
+package model.ladder.line;
 
 public enum Path {
     EXIST(true),

@@ -1,7 +1,7 @@
 package dto;
 
 import java.util.List;
-import model.line.Line;
+import model.ladder.line.Line;
 
 public record LineDto(List<Boolean> lineInfo) {
     public static LineDto from(final Line line) {
