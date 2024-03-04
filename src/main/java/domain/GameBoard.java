@@ -50,11 +50,7 @@ public class GameBoard {
     }
 
     public String searchOnePlayerResult(PlayerName targetPlayerName) {
-        try {
-            return searchFromGameResultByPlayerName(targetPlayerName);
-        } catch (Exception e) {
-            return e.getMessage();
-        }
+        return searchFromGameResultByPlayerName(targetPlayerName);
     }
 
     private String searchFromGameResultByPlayerName(PlayerName targetPlayerName) {

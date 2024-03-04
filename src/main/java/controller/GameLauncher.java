@@ -48,24 +48,27 @@ public class GameLauncher {
     }
 
     private void showGeneratedResult(GameBoard gameBoard) {
-        boolean repeatFlag = true;
-        while (repeatFlag) {
+        boolean requestInputFlag = true;
+        while (requestInputFlag) {
             OutputView.printNewLine();
-            PlayerName targetPlayerName = inputRetryHelper(() -> new PlayerName(input(SEARCH_PLAYER_PROMPT)));
-            repeatFlag = showResultAndDetermineRepeat(gameBoard, targetPlayerName);
+            requestInputFlag = inputRetryHelper(() -> runResultSearchAndDetermineRepeat(gameBoard));
         }
     }
 
-    private boolean showResultAndDetermineRepeat(GameBoard gameBoard, PlayerName targetPlayerName) {
+    private boolean runResultSearchAndDetermineRepeat(GameBoard gameBoard) {
+        String searchTargetInput = input(SEARCH_PLAYER_PROMPT);
+        boolean isRequestAll = searchTargetInput.equals("all");
+        showInputRequestResult(gameBoard, searchTargetInput, isRequestAll);
+        return !isRequestAll;
+    }
+
+    private void showInputRequestResult(GameBoard gameBoard, String targetNameInput, boolean isShowAll) {
         OutputView.print(GAME_RESULT_HEADER);
-        if (targetPlayerName.getValue()
-                .equals("all")) {
+        if (isShowAll) {
             gameBoard.searchAllPlayerResult()
-                    .forEach(
-                            (name, prizeName) -> OutputView.printAllResults(name.getValue(), prizeName.getValue()));
-            return false;
+                    .forEach((name, prizeName) -> OutputView.printAllResults(name.getValue(), prizeName.getValue()));
+            return;
         }
-        OutputView.print(gameBoard.searchOnePlayerResult(targetPlayerName));
-        return true;
+        OutputView.print(gameBoard.searchOnePlayerResult(new PlayerName(targetNameInput)));
     }
 }
