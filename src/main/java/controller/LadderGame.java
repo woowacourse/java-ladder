@@ -24,12 +24,12 @@ public class LadderGame {
         Players players = repeatUntilSuccess(() -> Players.from(InputView.inputPlayerNames()));
         Prizes prizes = repeatUntilSuccess(() -> Prizes.of(InputView.inputPrizeNames(), players));
         Height height = repeatUntilSuccess(() -> new Height(InputView.inputHeight()));
-        Ladder ladder = getLadder(players, prizes, height);
+        Ladder ladder = createLadder(players, prizes, height);
         LadderResult result = ladder.climb(players, prizes);
         searchPlayerResult(result);
     }
 
-    private Ladder getLadder(Players players, Prizes prizes, Height height) {
+    private Ladder createLadder(Players players, Prizes prizes, Height height) {
         Ladder ladder = Ladder.create(height, players, booleanGenerator);
         OutputView.printLadder(ladder, players, prizes);
         return ladder;
