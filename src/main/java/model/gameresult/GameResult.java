@@ -16,7 +16,7 @@ public class GameResult {
     private final Map<Player, Prize> result;
 
     public GameResult(Map<Player, Prize> result) {
-        this.result = result;
+        this.result = Map.copyOf(result);
     }
 
     public static GameResult of(LadderResult ladderResult, Players players, Prizes prizes) {

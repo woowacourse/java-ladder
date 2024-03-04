@@ -2,7 +2,6 @@ package model.ladder;
 
 import static java.util.stream.Collectors.toList;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 import model.line.Line;
@@ -13,7 +12,7 @@ public class LadderResult {
     private final List<Integer> values;
 
     private LadderResult(List<Integer> values) {
-        this.values = Collections.unmodifiableList(values);
+        this.values = List.copyOf(values);
     }
 
     public static LadderResult from(Ladder ladder) {

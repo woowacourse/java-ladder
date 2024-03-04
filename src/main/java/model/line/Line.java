@@ -1,7 +1,6 @@
 package model.line;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import model.bridge.Bridge;
 
@@ -13,7 +12,7 @@ public class Line {
     private final List<Bridge> bridges;
 
     private Line(List<Bridge> bridges) {
-        this.bridges = Collections.unmodifiableList(bridges);
+        this.bridges = List.copyOf(bridges);
     }
 
     public static Line of(List<Bridge> bridgesSource) {

@@ -13,7 +13,7 @@ public class Prizes {
     private final List<Prize> prizes;
 
     private Prizes(List<Prize> prizes) {
-        this.prizes = prizes;
+        this.prizes = List.copyOf(prizes);
     }
 
     public static Prizes of(List<String> prizeNames, Players players) {
