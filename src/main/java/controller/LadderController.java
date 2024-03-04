@@ -28,11 +28,11 @@ public class LadderController {
     public void proceedGame() {
         launchGame();
         while (true) {
-            handler.handleWithRetry(() -> insertAndProceedCommand(ladderGame.getPeople()));
+            handler.handleWithRetry(() -> processInputAndGetPrize(ladderGame.getPeople()));
         }
     }
 
-    private void insertAndProceedCommand(People people) {
+    private void processInputAndGetPrize(People people) {
         String commandInputText = inputView.askForParticipantName();
         Command command = Command.inputTextToCommand(commandInputText);
         if (command == Command.EXIT) {
