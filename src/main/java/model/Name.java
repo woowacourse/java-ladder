@@ -1,18 +1,16 @@
 package model;
 
-public class Name {
+public record Name(String value) {
 
     private static final String NULL_EMPTY_NAME = "참가자의 이름은 null 이거나 공백일 수 없습니다.";
+    private static final String NOT_ALL_NAME = "참가자의 이름은 all일 수 없습니다.";
     private static final int MAX_NAME_LENGTH = 5;
-    private static final String OVER_LENGTH_NAME = "참여자의 이름은 최대 %d글자입니다.".formatted(MAX_NAME_LENGTH);
+    private static final String OVER_LENGTH_NAME = "참가자의 이름은 최대 %d글자입니다.".formatted(MAX_NAME_LENGTH);
 
-    private final String value;
-
-
-    public Name(String value) {
+    public Name {
         validateNameNullAndBlank(value);
         validateNameLength(value);
-        this.value = value;
+        validateIsAll(value);
     }
 
     private static void validateNameNullAndBlank(String name) {
@@ -27,8 +25,9 @@ public class Name {
         }
     }
 
-    @Override
-    public String toString() {
-        return value;
+    private void validateIsAll(String name) {
+        if (name.equals("all")) {
+            throw new IllegalArgumentException(NOT_ALL_NAME);
+        }
     }
 }

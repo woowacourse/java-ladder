@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class NameTest {
 
-    @DisplayName("참여자의 이름이 5글자 이하일 시 생성에 성공한다.")
+    @DisplayName("참가자의 이름이 5글자 이하일 시 생성에 성공한다.")
     @Test
     void participantName() {
         Assertions.assertThatCode(() -> new Name("pobi"))
@@ -36,7 +36,13 @@ class NameTest {
     @DisplayName("참가자의 이름은 최대 5글자까지 부여할 수 있다.")
     @Test
     void participantNameOverFiveThrowException() {
-        assertConstructorThrowIllegalArgumentException("sdfsfs", "참여자의 이름은 최대 5글자입니다.");
+        assertConstructorThrowIllegalArgumentException("sdfsfs", "참가자의 이름은 최대 5글자입니다.");
+    }
+
+    @DisplayName("참가자의 이름은 all일 수 없다.")
+    @Test
+    void NameAllThrowException() {
+        assertConstructorThrowIllegalArgumentException("all", "참가자의 이름은 all일 수 없습니다.");
     }
 
     private void assertConstructorThrowExceptionWithMessage(String name) {
@@ -48,5 +54,4 @@ class NameTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(message);
     }
-
 }

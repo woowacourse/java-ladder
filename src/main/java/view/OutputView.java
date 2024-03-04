@@ -1,64 +1,69 @@
 package view;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import static model.Line.CONNECTED;
+
+import java.util.Map;
+import java.util.stream.IntStream;
 import model.Ladder;
 import model.LadderRow;
-import model.Name;
 import model.Participant;
 import model.Participants;
+import model.Result;
+import model.Results;
 
-import java.util.List;
+public class OutputView {
 
-public class OutputView implements AutoCloseable {
-
-    private static final String RESULT_MESSAGE = "실행결과\n";
+    private static final String RESULT_MESSAGE = "\n사다리 결과\n";
+    private static final String PARTICIPANT_RESULT = "\n실행결과";
     private static final String NAME_FORMAT = "%5s ";
-    private static final String NEWLINE = "\n";
+    private static final String PARTICIPANTS_RESULT_FORMAT = "%s : %s ";
 
-    private final BufferedWriter writer;
-
-    public OutputView() {
-        this.writer = new BufferedWriter(new OutputStreamWriter(System.out));
+    public void printLadderResult(Participants participants, Ladder ladder, Results results) {
+        System.out.println(RESULT_MESSAGE);
+        printParticipantsName(participants);
+        printLadder(ladder);
+        printResults(results);
     }
 
-    public void printResult() throws IOException {
-        writer.write(RESULT_MESSAGE);
-    }
-
-    public void printParticipantsName(Participants participants) throws IOException {
-        List<Name> participantsName = participants.getParticipants().stream()
+    private void printParticipantsName(Participants participants) {
+        participants.getParticipants().stream()
                 .map(Participant::getName)
-                .toList();
-        participantsName.forEach(name -> {
-            try {
-                writer.write(NAME_FORMAT.formatted(name));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
-        writer.write(NEWLINE);
+                .toList()
+                .forEach(name -> System.out.print(NAME_FORMAT.formatted(name.value())));
+        System.out.println();
     }
 
-    public void printLadder(Ladder ladder) throws IOException {
-        for (int i = 0; i < ladder.getHeight(); i++) {
-            printRow(ladder.getRow(i));
-            writer.write(NEWLINE);
-        }
+    private void printLadder(Ladder ladder) {
+        IntStream.range(0, ladder.getHeight())
+                .forEach(index -> printRow(ladder.getRow(index)));
     }
 
-    private void printRow(LadderRow ladderRow) throws IOException {
-        writer.write(LadderComponent.EMPTY_LINE.toString());
-        for (boolean isLine : ladderRow.isLines()) {
-            writer.write(LadderComponent.DIVISION.toString());
-            writer.write(LadderComponent.match(isLine).toString());
-        }
-        writer.write(LadderComponent.DIVISION.toString());
+    private void printRow(LadderRow ladderRow) {
+        System.out.print(LadderComponent.EMPTY_LINE.getOutput());
+        ladderRow.getIsLines()
+                .forEach(isLine -> {
+                    System.out.print(LadderComponent.DIVISION.getOutput());
+                    System.out.print(LadderComponent.match(isLine == CONNECTED).getOutput());
+                });
+        System.out.print(LadderComponent.DIVISION.getOutput() + "\n");
     }
 
-    @Override
-    public void close() throws Exception {
-        writer.close();
+    public void printResults(Results results) {
+        results.getResults()
+                .forEach(result -> System.out.print(NAME_FORMAT.formatted(result.getValue())));
+        System.out.println();
     }
+
+    public void printParticipantResult(Result result) {
+        System.out.println(PARTICIPANT_RESULT);
+        System.out.println(result.getValue());
+    }
+
+    public void printParticipantResults(Map<Participant, Result> results) {
+        System.out.println(PARTICIPANT_RESULT);
+        results.keySet()
+                .forEach(participant -> System.out.println(PARTICIPANTS_RESULT_FORMAT
+                        .formatted(participant.getName().value(), results.get(participant).getValue())));
+    }
+
 }
