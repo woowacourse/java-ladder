@@ -1,7 +1,9 @@
-package model.line;
+package model.ladder.line;
 
 import java.util.List;
 import model.ladder.Height;
+import model.ladder.line.Line;
+import model.ladder.line.LinesGenerator;
 
 public class FixedLinesGenerator implements LinesGenerator {
     private final List<Line> lines;

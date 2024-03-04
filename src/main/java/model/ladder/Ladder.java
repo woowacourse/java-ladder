@@ -3,8 +3,8 @@ package model.ladder;
 import java.util.List;
 import java.util.stream.IntStream;
 import model.Index;
-import model.line.Line;
-import model.line.LinesGenerator;
+import model.ladder.line.Line;
+import model.ladder.line.LinesGenerator;
 import model.people.PersonCount;
 
 public class Ladder {

@@ -1,4 +1,4 @@
-package model.line;
+package model.ladder.line;
 
 import java.util.List;
 import model.ladder.Height;

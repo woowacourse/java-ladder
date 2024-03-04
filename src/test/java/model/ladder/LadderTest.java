@@ -1,14 +1,14 @@
 package model.ladder;
 
-import static model.line.Path.EXIST;
-import static model.line.Path.NOT_EXIST;
+import static model.ladder.line.Path.EXIST;
+import static model.ladder.line.Path.NOT_EXIST;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import model.Index;
-import model.line.Line;
-import model.line.FixedLinesGenerator;
+import model.ladder.line.Line;
+import model.ladder.line.FixedLinesGenerator;
 import model.people.PersonCount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

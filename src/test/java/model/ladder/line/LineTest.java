@@ -1,8 +1,10 @@
-package model.line;
+package model.ladder.line;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import model.ladder.line.Line;
+import model.ladder.line.Path;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
