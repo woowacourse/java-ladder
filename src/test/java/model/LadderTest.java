@@ -30,13 +30,21 @@ public class LadderTest {
     @Test
     void moveAll() {
         Ladder ladder = new Ladder(List.of(
-                new LadderRow(List.of(true, false, false, true)),
-                new LadderRow(List.of(true, false, true, false))));
+                new LadderRow(() -> true, 4),
+                new LadderRow(() -> true, 4)));
 
         assertAll(() -> Assertions.assertThat(ladder.findLinkedPosition(new Position(0))).isEqualTo(new Position(0)),
                 () -> Assertions.assertThat(ladder.findLinkedPosition(new Position(1))).isEqualTo(new Position(1)),
-                () -> Assertions.assertThat(ladder.findLinkedPosition(new Position(2))).isEqualTo(new Position(3)),
-                () -> Assertions.assertThat(ladder.findLinkedPosition(new Position(3))).isEqualTo(new Position(4)),
-                () -> Assertions.assertThat(ladder.findLinkedPosition(new Position(4))).isEqualTo(new Position(2)));
+                () -> Assertions.assertThat(ladder.findLinkedPosition(new Position(2))).isEqualTo(new Position(2)),
+                () -> Assertions.assertThat(ladder.findLinkedPosition(new Position(3))).isEqualTo(new Position(3)),
+                () -> Assertions.assertThat(ladder.findLinkedPosition(new Position(4))).isEqualTo(new Position(4)));
     }
+
+        /*
+     0     1     2      3      4
+     |-----|     |------|      |
+     |-----|     |------|      |
+     0     1     2      3      4
+ */
+
 }

@@ -21,8 +21,8 @@ public class LadderGameTest {
                 new Participant(new Name("4"), new Position(4))));
         Results results = new Results(List.of(new Result(new Position(0), "꽝")));
         Ladder ladder = new Ladder(List.of(
-                new LadderRow(List.of(true, false, false, true)),
-                new LadderRow(List.of(true, false, true, false))));
+                new LadderRow(() -> true, 4),
+                new LadderRow(() -> true, 4)));
         Assertions.assertThatThrownBy(() -> new LadderGame(participants, ladder, results))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -39,15 +39,15 @@ public class LadderGameTest {
 
         assertAll(() -> assertThat(zeroResult).isEqualTo(new Result(new Position(0), "꽝")),
                 () -> assertThat(oneResult).isEqualTo(new Result(new Position(1), "5000")),
-                () -> assertThat(secondResult).isEqualTo(new Result(new Position(3), "3000")),
-                () -> assertThat(thirdResult).isEqualTo(new Result(new Position(4), "꽝")),
-                () -> assertThat(forthResult).isEqualTo(new Result(new Position(2), "꽝")));
+                () -> assertThat(secondResult).isEqualTo(new Result(new Position(2), "꽝")),
+                () -> assertThat(thirdResult).isEqualTo(new Result(new Position(3), "3000")),
+                () -> assertThat(forthResult).isEqualTo(new Result(new Position(4), "꽝")));
     }
 
     private static LadderGame createLadderGame() {
         Ladder ladder = new Ladder(List.of(
-                new LadderRow(List.of(true, false, false, true)),
-                new LadderRow(List.of(true, false, true, false))));
+                new LadderRow(() -> true, 4),
+                new LadderRow(() -> true, 4)));
         Participants participants = new Participants(List.of(
                 new Participant(new Name("0"), new Position(0)),
                 new Participant(new Name("1"), new Position(1)),

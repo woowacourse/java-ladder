@@ -18,29 +18,11 @@ public class LadderRow {
                 .toList();
     }
 
-    LadderRow(List<Boolean> row) {
-        validateLadderRow(row);
-        this.isLines = row.stream()
-                .map(Line::valueOf)
-                .toList();
-    }
-
-    private void validateLadderRow(List<Boolean> isLines) {
-        IntStream.range(1, isLines.size())
-                .forEach(index -> isConsecutiveTrue(isLines, index));
-    }
-
     private boolean generateNext(boolean isTrue, BooleanGenerator generator) {
         if (isTrue) {
             return false;
         }
         return generator.generate();
-    }
-
-    private void isConsecutiveTrue(List<Boolean> isLines, int index) {
-        if (isLines.get(index - 1) && isLines.get(index)) {
-            throw new IllegalStateException("연속된 true 값이 존재하면 안됩니다");
-        }
     }
 
     public Position findLinkedPosition(Position position) {
