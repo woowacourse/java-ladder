@@ -39,13 +39,13 @@ public class OutputView {
     }
 
     private void printRow(LadderRow ladderRow) {
-        System.out.print(LadderComponent.EMPTY_LINE);
+        System.out.print(LadderComponent.EMPTY_LINE.getOutput());
         ladderRow.getIsLines()
                 .forEach(isLine -> {
-                    System.out.print(LadderComponent.DIVISION);
+                    System.out.print(LadderComponent.DIVISION.getOutput());
                     System.out.print(LadderComponent.match(isLine == CONNECTED).getOutput());
                 });
-        System.out.print(LadderComponent.DIVISION + "\n");
+        System.out.print(LadderComponent.DIVISION.getOutput() + "\n");
     }
 
     public void printResults(Results results) {
