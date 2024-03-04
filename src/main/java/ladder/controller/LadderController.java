@@ -31,7 +31,7 @@ public class LadderController {
         final Prizes prizes = retryOnException(() -> readPrizes(players.count()));
         final Height height = retryOnException(this::readLadderHeight);
         final Ladder ladder = new Ladder(players.count(), height.getValue(), new RandomBooleanGenerator());
-        showLadder(players, ladder, prizes);
+        showInformationForLadderGame(players, ladder, prizes);
 
         final LadderGame ladderGame = new LadderGame(ladder, players, prizes);
         final PlayResult playResult = ladderGame.play();
@@ -58,10 +58,23 @@ public class LadderController {
         return new Height(height);
     }
 
-    private void showLadder(final Players players, final Ladder ladder, final Prizes prizes) {
+    private void showInformationForLadderGame(final Players players, final Ladder ladder, final Prizes prizes) {
         outputView.printLadderResultMessage();
+
+        showPlayerNames(players);
+        showLadder(ladder);
+        showPrizes(prizes);
+    }
+
+    private void showPlayerNames(final Players players) {
         outputView.printPlayerNames(PlayersDto.from(players));
+    }
+
+    private void showLadder(final Ladder ladder) {
         outputView.printLadder(LadderDto.from(ladder));
+    }
+
+    private void showPrizes(final Prizes prizes) {
         outputView.printPrizes(prizes.getPrizes());
     }
 
