@@ -1,7 +1,5 @@
 package view;
 
-import constant.view.InputViewExceptionMessage;
-
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -10,6 +8,9 @@ public class InputView {
 
     private static final String DELIMITER = ",";
     private static final Pattern FINISH_WITH_DELIMITER_REGEX = Pattern.compile(".*,$");
+    public static final String NO_LAST_NAME = "[ERROR] 마지막 이름이 존재하지 않습니다.";
+    public static final String NOT_INTEGER = "[ERROR] 최대 사다리 높이는 정수여야 합니다.";
+    public static final String NO_LAST_PRIZE = "[ERROR] 마지막 결과가 존재하지 않습니다.";
 
     private final Scanner scanner = new Scanner(System.in);
 
@@ -22,7 +23,7 @@ public class InputView {
 
     private void validateNames(String names) {
         if (FINISH_WITH_DELIMITER_REGEX.matcher(names).matches()) {
-            throw new IllegalArgumentException(InputViewExceptionMessage.NO_LAST_NAME.getExceptionMessage());
+            throw new IllegalArgumentException(NO_LAST_NAME);
         }
     }
 
@@ -32,7 +33,7 @@ public class InputView {
         try {
             return Integer.parseInt(height);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(InputViewExceptionMessage.NOT_INTEGER.getExceptionMessage());
+            throw new IllegalArgumentException(NOT_INTEGER);
         }
     }
 
@@ -45,7 +46,7 @@ public class InputView {
 
     private void validatePrizes(String prizes) {
         if (FINISH_WITH_DELIMITER_REGEX.matcher(prizes).matches()) {
-            throw new IllegalArgumentException(InputViewExceptionMessage.NO_LAST_PRIZE.getExceptionMessage());
+            throw new IllegalArgumentException(NO_LAST_PRIZE);
         }
     }
 

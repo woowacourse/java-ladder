@@ -1,6 +1,5 @@
 package domain;
 
-import constant.domain.HeightExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +12,7 @@ public class HeightTest {
     void lessThanOneExceptionTest() {
         assertThatThrownBy(() -> new Height(0))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(HeightExceptionMessage.OUT_OF_RANGE_HEIGHT.getExceptionMessage());
+                .hasMessage(Height.OUT_OF_RANGE_HEIGHT);
     }
 
     @Test
@@ -21,7 +20,7 @@ public class HeightTest {
     void moreThanHundredExceptionTest() {
         assertThatThrownBy(() -> new Height(101))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(HeightExceptionMessage.OUT_OF_RANGE_HEIGHT.getExceptionMessage());
+                .hasMessage(Height.OUT_OF_RANGE_HEIGHT);
     }
 
 }

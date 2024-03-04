@@ -1,10 +1,10 @@
 package domain;
 
-import constant.domain.PrizeExceptionMessage;
-
 import java.util.Objects;
 
 public class Prize {
+
+    public static final String NO_PRIZE = "[ERROR] 결과가 없습니다.";
 
     private final String prize;
 
@@ -15,7 +15,7 @@ public class Prize {
 
     private void validateNoPrize(String prize) {
         if (prize == null || prize.isBlank()) {
-            throw new IllegalArgumentException(PrizeExceptionMessage.NO_PRIZE.getExceptionMessage());
+            throw new IllegalArgumentException(NO_PRIZE);
         }
     }
 

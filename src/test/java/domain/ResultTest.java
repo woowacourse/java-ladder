@@ -1,6 +1,5 @@
 package domain;
 
-import constant.domain.ResultExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +16,7 @@ public class ResultTest {
 
         assertThatThrownBy(() -> new Result(prizes, 4))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ResultExceptionMessage.NOT_SAME_COUNT.getExceptionMessage());
+                .hasMessage(Result.NOT_SAME_COUNT);
     }
 
 }

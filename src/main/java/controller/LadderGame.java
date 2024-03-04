@@ -1,6 +1,5 @@
 package controller;
 
-import constant.controller.LadderGameExceptionMessage;
 import domain.*;
 import view.InputView;
 import view.OutputView;
@@ -8,6 +7,8 @@ import view.OutputView;
 import java.util.List;
 
 public class LadderGame {
+
+    public static final String EXIT ="[ERROR] 잘못된 입력의 반복으로 프로그램을 종료합니다.";
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
@@ -20,7 +21,7 @@ public class LadderGame {
         try {
             run();
         } catch (StackOverflowError e) {
-            System.out.println(LadderGameExceptionMessage.EXIT.getExceptionMessage());
+            System.out.println(EXIT);
         }
     }
 

@@ -1,10 +1,10 @@
 package domain;
 
-import constant.domain.ResultExceptionMessage;
-
 import java.util.List;
 
 public class Result {
+
+    public static final String NOT_SAME_COUNT = "[ERROR] 결과의 개수가 참여자의 인원수와 다릅니다.";
 
     private final List<Prize> prizes;
 
@@ -17,7 +17,7 @@ public class Result {
 
     void validateNumberOfPrize(List<String> prizes, int numberOfPrize) {
         if (prizes.size() != numberOfPrize) {
-            throw new IllegalArgumentException(ResultExceptionMessage.NOT_SAME_COUNT.getExceptionMessage());
+            throw new IllegalArgumentException(NOT_SAME_COUNT);
         }
     }
 
