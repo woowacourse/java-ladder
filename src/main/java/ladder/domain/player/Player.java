@@ -1,6 +1,7 @@
-package ladder.domain;
+package ladder.domain.player;
 
 import java.util.Objects;
+import ladder.domain.ladder.Ladder;
 
 public record Player(Name name, Location location) {
     private static final Location DEFAULT_LOCATION = new Location(0);

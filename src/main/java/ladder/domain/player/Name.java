@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.player;
 
 import static ladder.view.InputView.ALL_RESULT_COMMAND;
 import static ladder.view.InputView.QUIT_RESULT_COMMAND;

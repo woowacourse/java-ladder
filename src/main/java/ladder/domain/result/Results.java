@@ -1,7 +1,8 @@
-package ladder.domain;
+package ladder.domain.result;
 
 import java.util.Collections;
 import java.util.List;
+import ladder.domain.player.Location;
 
 public class Results {
     private final List<Result> results;

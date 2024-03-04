@@ -1,9 +1,10 @@
-package ladder.domain;
+package ladder.domain.player;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import ladder.domain.ladder.Ladder;
 
 public class Players {
     private static final int MIN_PLAYERS_COUNT = 2;

@@ -1,16 +1,16 @@
 package ladder.view;
 
-import static ladder.domain.Direction.RIGHT;
+import static ladder.domain.ladder.Direction.RIGHT;
 
 import java.util.Map;
 import java.util.StringJoiner;
-import ladder.domain.Direction;
-import ladder.domain.Ladder;
-import ladder.domain.LadderLevel;
-import ladder.domain.Player;
-import ladder.domain.Players;
-import ladder.domain.Result;
-import ladder.domain.Results;
+import ladder.domain.ladder.Direction;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderLevel;
+import ladder.domain.player.Player;
+import ladder.domain.player.Players;
+import ladder.domain.result.Result;
+import ladder.domain.result.Results;
 
 public class OutputView {
     private static final String DELIMITER = " ";

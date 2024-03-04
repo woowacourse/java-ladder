@@ -3,6 +3,11 @@ package ladder.domain;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import ladder.domain.player.Name;
+import ladder.domain.player.Player;
+import ladder.domain.player.Players;
+import ladder.domain.result.Result;
+import ladder.domain.result.Results;
 
 public class ResultsOfPlayers {
     private final Map<Player, Result> resultsOfPlayers;

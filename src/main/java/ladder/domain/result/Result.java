@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.result;
 
 public record Result(String value) {
 }

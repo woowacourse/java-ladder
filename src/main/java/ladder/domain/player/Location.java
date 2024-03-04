@@ -1,10 +1,11 @@
-package ladder.domain;
+package ladder.domain.player;
 
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toMap;
 
 import java.util.Map;
 import java.util.stream.IntStream;
+import ladder.domain.ladder.Direction;
 
 public record Location(int value) {
     private static final int MIN_LOCATION = 0;

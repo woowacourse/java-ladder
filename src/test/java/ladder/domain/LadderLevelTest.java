@@ -1,11 +1,14 @@
 package ladder.domain;
 
-import static ladder.domain.Direction.LEFT;
-import static ladder.domain.Direction.NONE;
-import static ladder.domain.Direction.RIGHT;
+import static ladder.domain.ladder.Direction.LEFT;
+import static ladder.domain.ladder.Direction.NONE;
+import static ladder.domain.ladder.Direction.RIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import ladder.domain.ladder.LadderLevel;
+import ladder.domain.ladder.Width;
+import ladder.domain.player.Location;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

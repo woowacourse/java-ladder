@@ -1,7 +1,9 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.List;
 import java.util.stream.Stream;
+import ladder.domain.DirectionGenerator;
+import ladder.domain.player.Location;
 
 public class Ladder {
     private final List<LadderLevel> ladderLevels;

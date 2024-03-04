@@ -5,12 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.IntStream;
-import ladder.domain.Height;
-import ladder.domain.Location;
-import ladder.domain.Name;
-import ladder.domain.Player;
-import ladder.domain.Players;
-import ladder.domain.Result;
+import ladder.domain.ladder.Height;
+import ladder.domain.player.Location;
+import ladder.domain.player.Name;
+import ladder.domain.player.Player;
+import ladder.domain.player.Players;
+import ladder.domain.result.Result;
 
 public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);

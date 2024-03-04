@@ -1,10 +1,12 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
-import static ladder.domain.Direction.NONE;
+import static ladder.domain.ladder.Direction.NONE;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import ladder.domain.DirectionGenerator;
+import ladder.domain.player.Location;
 
 public class LadderLevel {
     private final List<Direction> ladderLevel;
