@@ -9,7 +9,6 @@ import static laddergame.domain.Player.NAME_BLANK_ERROR;
 public class Players {
     private static final String NAME_DUPLICATED_ERROR = "이름의 중복은 허용하지 않습니다.";
     private static final String NAMES_COUNT_ERROR = "이름을 두명 이상 적어주세요.";
-    private static final String NO_FIND_PLAYER = "존재하지 않는 이름입니다.";
     private static final int MIN_NAMES_COUNT = 2;
 
     private final List<Player> players;

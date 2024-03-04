@@ -6,7 +6,7 @@ import java.util.List;
 public class Line {
     private final List<Rung> rungs;
 
-    public Line(List<Rung> rungs) {
+    public Line(final List<Rung> rungs) {
         this.rungs = rungs;
     }
 
