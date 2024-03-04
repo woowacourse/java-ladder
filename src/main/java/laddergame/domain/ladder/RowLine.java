@@ -28,12 +28,12 @@ public class RowLine {
     }
 
     private void moveByConnection(Position playerPosition) {
-        if (checkLeftPosition(playerPosition.left())) {
+        if (checkLeftPosition(playerPosition.leftPosition())) {
             playerPosition.moveLeft();
             return;
         }
 
-        if (checkRightPosition(playerPosition.right())) {
+        if (checkRightPosition(playerPosition.rightPosition())) {
             playerPosition.moveRight();
         }
     }
