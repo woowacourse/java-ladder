@@ -35,8 +35,6 @@ public class LadderTest {
     public void buildLadderBridge() {
         //given
         final Height height = new Height("1");
-        final List<String> playersName = List.of("name1", "name2", "name3", "name4");
-        final Players players = new Players(playersName);
         final List<Rung> expected = List.of(Rung.EMPTY, Rung.EMPTY, Rung.EMPTY);
 
         RungGenerator expectedRungGenerator = new RungGenerator() {
@@ -61,7 +59,7 @@ public class LadderTest {
         final Height height = new Height("2");
         final List<String> playersName = List.of("name1", "name2", "name3", "name4");
         final Players players = new Players(playersName);
-        final List<Rung> expected = List.of(Rung.EMPTY, Rung.BRIDGE, Rung.EMPTY);
+
         RungGenerator expectedRungGenerator = new RungGenerator() {
             @Override
             public Rung generate() {
