@@ -3,6 +3,7 @@ package model.ladder;
 import static model.line.Path.EXIST;
 import static model.line.Path.NOT_EXIST;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import model.Index;
@@ -25,6 +26,22 @@ class LadderTest {
 
         Ladder ladder = Ladder.from(height, personCount, pathGenerator);
         assertThat(ladder.getLines()).isEqualTo(expectedLines);
+    }
+
+    @Test
+    @DisplayName("높이에 맞지 않는 라인의 수가 생성되면 안된다.")
+    void createLadderThrowException() {
+        Line line1 = new Line(List.of(EXIST, NOT_EXIST));
+        Line line2 = new Line(List.of(NOT_EXIST, NOT_EXIST));
+        List<Line> expectedLines = List.of(line1, line2);
+        FixedLinesGenerator pathGenerator = new FixedLinesGenerator(expectedLines);
+
+        Height height = new Height(1);
+        PersonCount personCount = new PersonCount(2);
+
+        assertThatThrownBy(() -> Ladder.from(height, personCount, pathGenerator))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("높이에 맞지 않는 라인의 수가 생성되었습니다.");
     }
 
     @Test
