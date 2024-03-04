@@ -15,8 +15,8 @@ public class LineTest {
     @Test
     void initializeLineStateWhenBeforeStateIsStart() {
         LineState expected = LineState.END;
-        List<Boolean> makeLadderOrNot = List.of(true, false, false);
-        Line line = new Line(makeLadderOrNot);
+        List<Boolean> determineLungExists = List.of(true, false, false);
+        Line line = new Line(determineLungExists);
 
         List<LineState> lineStates = line.getLineStates();
         LineState lineState = lineStates.get(1);
@@ -28,8 +28,8 @@ public class LineTest {
     @ParameterizedTest
     @CsvSource(value = {"true,START", "false,NONE"})
     void initializeLineStateWhenBeforeStateNotStart(boolean given, LineState expected) {
-        List<Boolean> makeLadderOrNot = List.of(false, given, false);
-        Line line = new Line(makeLadderOrNot);
+        List<Boolean> determineLungExists = List.of(false, given, false);
+        Line line = new Line(determineLungExists);
 
         List<LineState> lineStates = line.getLineStates();
         LineState lineState = lineStates.get(1);
@@ -40,8 +40,8 @@ public class LineTest {
     @DisplayName("라인의 state가 START이면 위치를 오른쪽으로 1칸 이동한다.")
     @Test
     void moveRight() {
-        List<Boolean> makeLadderOrNot = List.of(true, false);
-        Line line = new Line(makeLadderOrNot);
+        List<Boolean> determineLungExists = List.of(true, false);
+        Line line = new Line(determineLungExists);
 
         int index = 0;
         index = line.move(index);
@@ -52,8 +52,8 @@ public class LineTest {
     @DisplayName("라인의 state가 END면 위치를 왼쪽으로 1칸 이동한다.")
     @Test
     void moveLeft() {
-        List<Boolean> makeLadderOrNot = List.of(true, false);
-        Line line = new Line(makeLadderOrNot);
+        List<Boolean> determineLungExists = List.of(true, false);
+        Line line = new Line(determineLungExists);
 
         int index = 1;
         index = line.move(index);
@@ -64,8 +64,8 @@ public class LineTest {
     @DisplayName("라인의 state가 NONE이면 위치를 변경하지 않는다.")
     @Test
     void moveNowhere() {
-        List<Boolean> makeLadderOrNot = List.of(false, false);
-        Line line = new Line(makeLadderOrNot);
+        List<Boolean> determineLungExists = List.of(false, false);
+        Line line = new Line(determineLungExists);
 
         int index = 0;
         index = line.move(index);

@@ -14,8 +14,8 @@ public class Ladder {
     public void generateLadder(Height height, int totalStateAmount, RandomGenerator randomGenerator) {
         int count = 0;
         while (!height.isDesignatedHeight(count)) {
-            List<Boolean> makeLadderOrNot = randomGenerator.generate(totalStateAmount - 1);
-            lines.add(new Line(makeLadderOrNot));
+            List<Boolean> determineLungExists = randomGenerator.generate(totalStateAmount - 1);
+            lines.add(new Line(determineLungExists));
             count++;
         }
     }
