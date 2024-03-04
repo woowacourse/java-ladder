@@ -1,7 +1,5 @@
 package ladder.domain.game;
 
-import static ladder.domain.ladder.LadderPosition.START_ROW;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -31,7 +29,7 @@ public class LadderGame {
     public LadderGameResult play() {
         Map<Player, Reward> result = new LinkedHashMap<>();
         players.players().forEach(player -> {
-            LadderPosition start = new LadderPosition(START_ROW, players.orderOf(player));
+            LadderPosition start = new LadderPosition(players.orderOf(player));
             LadderPosition end = ladder.climbDownFrom(start);
             result.put(player, rewards.get(end.column()));
         });

@@ -22,9 +22,7 @@ public class Ladder {
             return ladderPosition;
         }
         LadderDirection direction = getLadderDirection(ladderPosition.row(), ladderPosition.column());
-        LadderPosition nextLadderPosition = new LadderPosition(
-                ladderPosition.row() + 1,
-                ladderPosition.column() + direction.getValue());
+        LadderPosition nextLadderPosition = ladderPosition.next(direction);
         return climbDownFrom(nextLadderPosition);
     }
 
