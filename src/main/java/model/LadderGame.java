@@ -3,7 +3,6 @@ package model;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.IntStream;
 import model.dto.ParticipantName;
 
 public class LadderGame {
@@ -18,11 +17,11 @@ public class LadderGame {
     }
 
     public void gameStart(List<ParticipantName> participantNames) {
-        IntStream.range(0, participantNames.size()).forEach(position -> {
-            int positionResult = ladder.move(position);
+        for (int i = 0; i < participantNames.size(); i++) {
+            int positionResult = ladder.move(i);
             String result = executionResult.getExecutionResult().get(positionResult);
-            prize.put(participantNames.get(position).name(), result);
-        });
+            prize.put(participantNames.get(i).name(), result);
+        }
     }
 
     public Map<String, String> getPrize() {
