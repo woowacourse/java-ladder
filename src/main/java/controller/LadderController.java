@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.Arrays;
+import model.Command;
 import model.Ladder;
 import model.LadderGame;
 import model.People;
@@ -33,6 +34,35 @@ public class LadderController {
         }
     }
 
+    private void insertAndProceedCommand(People people) {
+        String commandInputText = inputView.askForParticipantName();
+        Command command = Command.inputTextToCommand(commandInputText);
+        if (command.equals(Command.EXIT)) {
+            terminateGame();
+            return;
+        }
+        if (command.equals(Command.ALL)) {
+            getAllPrize(people);
+            return;
+        }
+        getPrize(commandInputText);
+    }
+
+    private void getPrize(String participantName) {
+        RewardBoard rewardBoard = ladderGame.getRewardBoard();
+        Prize findPrize = rewardBoard.findPrizeByName(participantName);
+        resultView.printProceedResult(findPrize);
+    }
+
+    private void getAllPrize(People people) {
+        RewardBoard rewardBoard = ladderGame.getRewardBoard();
+        resultView.printAllProceedResult(rewardBoard, people);
+    }
+
+    private void terminateGame() {
+        System.exit(0);
+    }
+
     private void launchGame() {
         People people = handler.handleWithRetry(() -> new People(inputView.askParticipants()));
         Ladder ladder = handler.handleWithRetry(() ->
@@ -51,39 +81,4 @@ public class LadderController {
         return prizesText;
     }
 
-    private void insertAndProceedCommand(People people) {
-        String command = inputView.askForParticipantName();
-        if (isAll(command)) {
-            getAllPrize(people);
-            return;
-        }
-        if (isExit(command)) {
-            terminateGame();
-            return;
-        }
-        getPrize(command);
-    }
-
-    private void getPrize(String participantName) {
-        RewardBoard rewardBoard = ladderGame.getRewardBoard();
-        Prize findPrize = rewardBoard.findPrizeByName(participantName);
-        resultView.printProceedResult(findPrize);
-    }
-
-    private void getAllPrize(People people) {
-        RewardBoard rewardBoard = ladderGame.getRewardBoard();
-        resultView.printAllProceedResult(rewardBoard, people);
-    }
-
-    private void terminateGame() {
-        System.exit(0);
-    }
-
-    private boolean isAll(String command) {
-        return command.equals(ALL_COMMAND);
-    }
-
-    private boolean isExit(String command) {
-        return command.equals(EXIT_COMMAND);
-    }
 }
