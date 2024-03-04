@@ -58,7 +58,8 @@ class LadderTest {
         );
         Ladder ladder = Ladder.from(height, personCount, pathGenerator);
         Index startIndex = new Index(0);
-        assertThat(ladder.climb(startIndex)).isEqualTo(startIndex);
+        List<Index> climbedResult = ladder.climbAll();
+        assertThat(climbedResult.get(0)).isEqualTo(startIndex);
     }
 
     @Test

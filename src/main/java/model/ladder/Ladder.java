@@ -28,7 +28,7 @@ public class Ladder {
     }
 
 
-    public Index climb(final Index startIndex) {
+    private Index climb(final Index startIndex) {
         Index currentIndex = startIndex;
         for (Line line : lines) {
             currentIndex = line.move(currentIndex);
