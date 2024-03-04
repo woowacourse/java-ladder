@@ -15,11 +15,10 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-    public int ride(final int position) {
-        int value = position;
+    public int ride(int position) {
         for (Line line : lines) {
-            value = line.ride(value);
+            position = line.ride(position);
         }
-        return value;
+        return position;
     }
 }
