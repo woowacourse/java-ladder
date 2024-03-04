@@ -5,7 +5,7 @@ import view.OutputView;
 public class Main {
     public static void main(String[] args) throws Exception {
         try (InputView inputView = new InputView()) {
-            new LadderController(inputView, new OutputView()).play();
+            new LadderController(inputView, new OutputView()).run();
         }
     }
 }

@@ -1,9 +1,9 @@
-package model;
+package model.ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static model.Height.NOT_POSITIVE_HEIGHT;
+import static model.ladder.Height.NOT_ALLOWED_NEGATIVE_HEIGHT;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -21,6 +21,6 @@ class HeightTest {
     void validateHeightIsPositive() {
         assertThatThrownBy(() -> new Height(-1))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NOT_POSITIVE_HEIGHT);
+                .hasMessage(NOT_ALLOWED_NEGATIVE_HEIGHT);
     }
 }

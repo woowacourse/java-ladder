@@ -1,5 +1,6 @@
-package model;
+package model.ladder;
 
+import model.position.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -27,5 +28,17 @@ public class LadderRowTest {
 
     }
 
+
+    @DisplayName("사다리의 행 내에서 라인에 따라 이동할 수 있다.")
+    @Test
+    void climb() {
+        LadderRow ladderRow = new LadderRow(List.of(true, false, true));
+        assertAll(
+                () -> assertThat(ladderRow.climb(Position.valueOf(0))).isEqualTo(Position.valueOf(1)),
+                () -> assertThat(ladderRow.climb(Position.valueOf(1))).isEqualTo(Position.valueOf(0)),
+                () -> assertThat(ladderRow.climb(Position.valueOf(2))).isEqualTo(Position.valueOf(3)),
+                () -> assertThat(ladderRow.climb(Position.valueOf(3))).isEqualTo(Position.valueOf(2))
+        );
+    }
 
 }

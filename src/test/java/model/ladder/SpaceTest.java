@@ -1,4 +1,4 @@
-package model;
+package model.ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
