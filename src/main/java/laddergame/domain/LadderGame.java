@@ -23,7 +23,8 @@ public class LadderGame {
         }
     }
 
-    public PlayersResult climbLadder(PlayersResult playersResult) {
+    public PlayersResult climbLadder() {
+        PlayersResult playersResult = new PlayersResult();
         for (Player player : players.getPlayers()) {
             ladder.moveToLadderEnd(player);
             playersResult.addResult(player, items.get(player.getPosition().getX()));
