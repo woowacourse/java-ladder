@@ -44,12 +44,12 @@ public class LadderGameController {
     }
 
 
-    private boolean runCommand(final String name, final PlayersResults playersResults) {
-        if (ReservedWords.isReserved(name)) {
+    private boolean runCommand(final String userInput, final PlayersResults playersResults) {
+        if (ReservedWords.isReserved(userInput)) {
             outputView.writeAllResults(playersResults);
             return true;
         }
-        outputView.writeDesiredResult(playersResults.find(name));
+        outputView.writeDesiredResult(playersResults.find(userInput));
         return false;
     }
 
