@@ -1,7 +1,9 @@
 package ladder.domain;
 
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.toMap;
+
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import ladder.domain.player.Name;
 import ladder.domain.player.Player;
@@ -13,13 +15,8 @@ public class ResultsOfPlayers {
     private final Map<Player, Result> resultsOfPlayers;
 
     public ResultsOfPlayers(Players players, Results results) {
-        resultsOfPlayers = new HashMap<>();
-        initialize(players, results);
-    }
-
-    private void initialize(Players players, Results results) {
-        players.stream()
-                .forEach(player -> resultsOfPlayers.put(player, results.getResult(player.location())));
+        resultsOfPlayers = players.stream()
+                .collect(toMap(identity(), player -> results.getResult(player.location())));
     }
 
     public Result getResultByName(String name) {
