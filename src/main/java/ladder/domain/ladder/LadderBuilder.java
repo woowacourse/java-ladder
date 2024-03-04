@@ -41,8 +41,14 @@ public class LadderBuilder {
     }
 
     private void validateNonNull() {
-        if (height == null || width == null || directionSelector == null) {
-            throw new IllegalStateException("사다리를 만들기 위해 필요한 정보를 모두 입력해주세요.");
+        if (height == null) {
+            throw new IllegalStateException("height가 입력되지 않았습니다");
+        }
+        if (width == null) {
+            throw new IllegalStateException("width가 입력되지 않았습니다");
+        }
+        if (directionSelector == null) {
+            throw new IllegalStateException("directionSelector가 입력되지 않았습니다");
         }
     }
 }
