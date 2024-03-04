@@ -12,13 +12,20 @@ public class OutputView {
     private static final String LADDER_LINE_WIDTH_TRUE = "-----";
     private static final String LADDER_LINE_WIDTH_FALSE = "     ";
 
-    public void printLadderHeader() {
+    public void printGame(Participants participants, Prizes prizes, Ladder ladder) {
+        printLadderHeader();
+        printParticipantsNames(participants);
+        printLadder(ladder);
+        printPrizesNames(prizes);
+    }
+
+    private void printLadderHeader() {
         System.out.println();
         System.out.println("사다리 결과");
         System.out.println();
     }
 
-    public void printParticipantsNames(Participants participants) {
+    private void printParticipantsNames(Participants participants) {
         String result = participants.getParticipants()
                 .stream()
                 .map(Participant::getName)
@@ -27,7 +34,7 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public void printLadder(Ladder ladder) {
+    private void printLadder(Ladder ladder) {
         List<Line> lines = ladder.getLines();
         for (Line line : lines) {
             List<LineState> lineStates = line.getLineStates();
@@ -36,7 +43,7 @@ public class OutputView {
         }
     }
 
-    public void printPrizesNames(Prizes prizes) {
+    private void printPrizesNames(Prizes prizes) {
         String result = prizes.getPrizes()
                 .stream()
                 .map(Prize::getName)
