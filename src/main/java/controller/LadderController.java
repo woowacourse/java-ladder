@@ -57,7 +57,7 @@ public class LadderController {
 
     private Results readResults(int playerCount) {
         try {
-            return new Results(InputView.readResults(), playerCount);
+            return Results.of(InputView.readResults(), playerCount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readResults(playerCount);

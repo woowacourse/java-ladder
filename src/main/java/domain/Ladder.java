@@ -5,7 +5,6 @@ import util.generator.LineGenerator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Ladder {
@@ -33,7 +32,8 @@ public class Ladder {
     public LadderGameResult makeLadderGameResult(Players players, Results results) {
         Map<Player, Result> ladderGameResult = players.getPlayers().stream()
                 .collect(Collectors.toMap(player -> player,
-                        player -> results.getResults().get(climb(player.getPosition()).getIndex())));
+                        player -> results.findResult(climb(player.getPosition()))));
+
         return new LadderGameResult(ladderGameResult);
     }
 
