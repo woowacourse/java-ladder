@@ -54,6 +54,6 @@ class LadderRowTest {
                         .directionSelector(null)
                         .build())
                 .isInstanceOf(IllegalStateException.class)
-                .hasMessageContaining("사다리를 만들기 위해 필요한 정보를 모두 입력해주세요");
+                .hasMessageContaining("입력되지 않았습니다");
     }
 }
