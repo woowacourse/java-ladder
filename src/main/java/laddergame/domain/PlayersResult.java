@@ -6,7 +6,7 @@ import java.util.Map;
 public class PlayersResult {
     private static final String NO_FIND_PLAYER = "존재하지 않는 플레이어입니다.";
 
-    private final LinkedHashMap<Player, ResultItem> allResult = new LinkedHashMap<>();
+    private final Map<Player, ResultItem> allResult = new LinkedHashMap<>();
 
     public void addResult(Player player, ResultItem item) {
         allResult.put(player, item);
