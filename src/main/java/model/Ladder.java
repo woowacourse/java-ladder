@@ -32,6 +32,6 @@ public class Ladder {
         return ladderRows.stream()
                 .reduce(position,
                         (currentPosition, ladderRow) -> ladderRow.findLinkedPosition(currentPosition),
-                        (a, b) -> b);
+                        (oldPosition, newPosition) -> newPosition);
     }
 }
