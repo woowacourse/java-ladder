@@ -18,9 +18,9 @@ public class LadderGameController {
     private final OutputView outputView = OutputView.getInstance();
 
     public void run() {
-        final Players players = requestUntilValidated(this::getPlayers);
-        final Results results = requestUntilValidated(() -> getResults(players));
-        final Height height = requestUntilValidated(this::getHeight);
+        final Players players = requestUntilValidated(this::createPlayers);
+        final Results results = requestUntilValidated(() -> createResults(players));
+        final Height height = requestUntilValidated(this::createHeight);
         final Ladder ladder = ladderBuilder.createLadder(players, height, results);
         outputView.writeLadderResult(players, ladder, results);
         repeatUntil(() -> runCommand(
@@ -28,17 +28,17 @@ public class LadderGameController {
                 ladderBuilder.createPlayersResults(ladder)));
     }
 
-    private Players getPlayers() {
+    private Players createPlayers() {
         final List<String> playersNamesInput = inputView.readPlayersName();
         return ladderBuilder.createPlayers(playersNamesInput);
     }
 
-    private Height getHeight() {
+    private Height createHeight() {
         final String heightInput = inputView.readLadderHeight();
         return ladderBuilder.createHeight(heightInput);
     }
 
-    private Results getResults(final Players players) {
+    private Results createResults(final Players players) {
         final List<String> resultNamesInput = inputView.readResultNames();
         return ladderBuilder.createResults(resultNamesInput, players.getPlayersSize());
     }
