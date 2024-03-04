@@ -48,7 +48,7 @@ class LadderTest {
                 .flatMap(List::stream)
                 .collect(Collectors.toSet());
 
-        assertThat(connectionElement).containsExactly(Connection.NOTCONNECTED);
+        assertThat(connectionElement).containsExactly(Connection.NOT_CONNECTED);
     }
 
     @DisplayName("사다리 결과 반환 테스트 : 가로선이 없는 경우")

@@ -7,7 +7,7 @@ import java.util.Random;
 import java.util.stream.Stream;
 
 import static laddergame.domain.ladder.Connection.CONNECTED;
-import static laddergame.domain.ladder.Connection.NOTCONNECTED;
+import static laddergame.domain.ladder.Connection.NOT_CONNECTED;
 
 public class RandomConnectionGenerator implements ConnectionGenerator {
     private static final Random random = new Random();
@@ -23,7 +23,7 @@ public class RandomConnectionGenerator implements ConnectionGenerator {
 
     private Connection addConnection(Connection beforeConnection) {
         if (beforeConnection == CONNECTED) {
-            beforeConnection = NOTCONNECTED;
+            beforeConnection = NOT_CONNECTED;
             return beforeConnection;
         }
 
@@ -35,6 +35,6 @@ public class RandomConnectionGenerator implements ConnectionGenerator {
         if (random.nextBoolean()) {
             return CONNECTED;
         }
-        return NOTCONNECTED;
+        return NOT_CONNECTED;
     }
 }

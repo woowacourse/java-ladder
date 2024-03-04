@@ -9,7 +9,7 @@ public class AllFalseConnectionGenerator implements ConnectionGenerator {
 
     @Override
     public List<Connection> generate(int number) {
-        return Stream.iterate(Connection.NOTCONNECTED, connection -> connection)
+        return Stream.iterate(Connection.NOT_CONNECTED, connection -> connection)
                 .limit(number)
                 .toList();
     }

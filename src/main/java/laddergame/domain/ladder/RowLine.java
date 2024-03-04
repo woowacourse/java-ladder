@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static laddergame.domain.ladder.Connection.CONNECTED;
-import static laddergame.domain.ladder.Connection.NOTCONNECTED;
+import static laddergame.domain.ladder.Connection.NOT_CONNECTED;
 
 public class RowLine {
     private final List<Connection> connections;
@@ -49,7 +49,7 @@ public class RowLine {
     }
 
     private void validateConnection(List<Connection> connections) {
-        Connection beforeConnection = NOTCONNECTED;
+        Connection beforeConnection = NOT_CONNECTED;
 
         for (Connection currentConnection : connections) {
             validateSuccessive(currentConnection, beforeConnection);

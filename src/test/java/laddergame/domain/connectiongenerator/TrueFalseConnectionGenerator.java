@@ -15,7 +15,7 @@ public class TrueFalseConnectionGenerator implements ConnectionGenerator {
 
     private Connection generateContraryConnection(Connection connection) {
         if (connection == Connection.CONNECTED) {
-            return Connection.NOTCONNECTED;
+            return Connection.NOT_CONNECTED;
         }
         return Connection.CONNECTED;
     }
