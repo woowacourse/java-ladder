@@ -9,6 +9,10 @@ public class Prize {
         this.position = position;
     }
 
+    public boolean isSamePosition(Position otherPosition) {
+        return position.isSame(otherPosition);
+    }
+
     public String getName() {
         return name.getName();
     }
