@@ -1,15 +1,15 @@
 package controller;
 
 import dto.LadderDto;
-import dto.ResultDto;
+import dto.ResultsDto;
 import java.util.List;
 import model.Index;
+import model.items.Item;
 import model.ladder.Height;
 import model.items.Items;
 import model.ladder.Ladder;
 import model.people.People;
 import model.people.PersonCount;
-import model.result.Result;
 import model.ladder.line.RandomLinesGenerator;
 import model.result.Results;
 import view.InputView;
@@ -34,9 +34,8 @@ public class LadderGame {
         final LadderDto ladderDto = LadderDto.from(people, ladder, items);
         outputView.printLadderInfo(ladderDto);
 
-        final Result result = findResults(people, ladder, items);
-        final ResultDto resultDto = ResultDto.from(result);
-        searchResult(resultDto);
+        final Results results = findResults(people, ladder, items);
+        searchResult(results);
     }
 
     private People initPeople() {
@@ -59,14 +58,16 @@ public class LadderGame {
         return Results.of(people, resultIndexes, items);
     }
 
-    private void searchResult(final ResultDto resultDto) {
+    private void searchResult(final Results results) {
         String personName = inputView.inputPersonName();
+
         while (!personName.equals(ALL)) {
-            String itemName = resultDto.getItemNameByPersonName(personName);
-            outputView.printResultByPerson(itemName);
+            final Item item = results.findItemByPerson(personName);
+            outputView.printResultByPerson(item.getName());
             personName = inputView.inputPersonName();
         }
 
-        outputView.printAllResult(resultDto.personAndItemName());
+        final ResultsDto resultsDto = ResultsDto.from(results);
+        outputView.printAllResult(resultsDto);
     }
 }

@@ -1,14 +1,15 @@
 package view.formatter;
 
-import java.util.Map;
+import dto.ResultDto;
+import java.util.List;
 
 public class ResultFormatter {
 
-    public static String format(final Map<String, String> result) {
+    public static String format(final List<ResultDto> resultDtos) {
         StringBuilder formattedResult = new StringBuilder();
-        result.forEach((personName, itemName) -> formattedResult.append(personName)
+        resultDtos.forEach(resultDto -> formattedResult.append(resultDto.personName())
                 .append(" : ")
-                .append(itemName)
+                .append(resultDto.itemName())
                 .append("\n")
         );
         return formattedResult.toString();

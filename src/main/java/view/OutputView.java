@@ -2,7 +2,8 @@ package view;
 
 import dto.LineDto;
 import dto.LadderDto;
-import java.util.Map;
+import dto.ResultDto;
+import dto.ResultsDto;
 import view.formatter.ItemsFormatter;
 import view.formatter.LineFormatter;
 import view.formatter.NamesFormatter;
@@ -45,9 +46,10 @@ public class OutputView {
         System.out.println(item);
     }
 
-    public void printAllResult(final Map<String, String> personAndItemName) {
+    public void printAllResult(final ResultsDto resultsDto) {
         System.out.println();
         System.out.println("실행 결과");
-        System.out.println(ResultFormatter.format(personAndItemName));
+        List<ResultDto> resultDtos = resultsDto.personAndItemName();
+        System.out.println(ResultFormatter.format(resultDtos));
     }
 }
