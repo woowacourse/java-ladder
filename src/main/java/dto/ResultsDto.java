@@ -8,7 +8,7 @@ import model.result.Result;
 
 public record ResultDto(Map<String, String> personAndItemName) {
     public static ResultDto from(final Result result) {
-        Map<Person, Item> matchedResult = result.getMatchedResult();
+        Result = result.getMatchedResult();
         Map<String, String> matchedPersonAndItemNames = new HashMap<>();
         matchedResult.forEach((person, item) -> matchedPersonAndItemNames.put(person.getName(), item.getName()));
         return new ResultDto(matchedPersonAndItemNames);

@@ -30,6 +30,6 @@ class ResultsTest {
         Item item = new Item("꽝");
 
         Results results = new Results(List.of(new Result(chali, item), new Result(moly, item)));
-        assertThat(results.findItemByPerson(moly)).isEqualTo(item);
+        assertThat(results.findItemByPerson("몰리")).isEqualTo(item);
     }
 }

@@ -27,11 +27,15 @@ public class Results {
         return new Results(results);
     }
 
-    public Item findItemByPerson(final Person person) {
+    public Item findItemByPerson(final String personName) {
         Result findResult = results.stream()
-                .filter(result -> result.isSamePerson(person))
+                .filter(result -> result.isSamePerson(personName))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("해당 사람의 결과가 존재하지 않습니다."));
         return findResult.getItem();
+    }
+
+    public List<Result> getResults() {
+        return results;
     }
 }

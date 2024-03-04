@@ -1,5 +1,6 @@
 package model.result;
 
+import java.util.Objects;
 import model.items.Item;
 import model.people.Person;
 
@@ -12,11 +13,15 @@ public class Result {
         this.item = item;
     }
 
-    public boolean isSamePerson(Person person) {
-        return this.person.equals(person);
+    public boolean isSamePerson(String personName) {
+        return Objects.equals(person.getName(), personName);
     }
 
     public Item getItem() {
         return this.item;
+    }
+
+    public Person getPerson() {
+        return this.person;
     }
 }
