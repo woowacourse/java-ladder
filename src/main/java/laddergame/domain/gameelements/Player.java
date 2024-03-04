@@ -10,7 +10,7 @@ public class Player {
         this.position = position;
     }
 
-    public boolean isSameName(String otherName){
+    public boolean isSameName(String otherName) {
         return name.getName().equals(otherName);
     }
 

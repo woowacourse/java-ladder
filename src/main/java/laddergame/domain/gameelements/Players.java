@@ -25,7 +25,7 @@ public class Players {
         return players.stream()
                 .filter(player -> player.isSameName(playerName))
                 .findAny()
-                .orElseThrow(() -> new IllegalStateException("참여하지 않은 플레이어의 이름을 조회했습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("참여하지 않은 플레이어의 이름을 조회했습니다."));
     }
 
     public int count() {
