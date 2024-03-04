@@ -1,9 +1,6 @@
 package laddergame.domain.gameelements;
 
 public class Player {
-    // TODO 정적 팩터리 메서드
-    private static final Name RESERVED_NAME = new Name("all");
-
     private final Name name;
     private final Position position;
 
@@ -22,8 +19,10 @@ public class Player {
     }
 
     private void validateReservedName(Name playerName) {
-        if (playerName.equals(RESERVED_NAME)) {
-            throw new IllegalArgumentException("예약어 " + RESERVED_NAME + "은 이름으로 지정할 수 없습니다.");
+        Name reservedName = Name.reservedName();
+
+        if (playerName.equals(reservedName)) {
+            throw new IllegalArgumentException("예약어 " + reservedName + "은 이름으로 지정할 수 없습니다.");
         }
     }
 

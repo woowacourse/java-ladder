@@ -1,6 +1,7 @@
 package laddergame.domain.gameelements;
 
 public class Position {
+    // TODO 범위 안에 있는지 판단하는 메서드
     private int playerPosition;
 
     public Position(int playerPosition) {

@@ -5,11 +5,17 @@ import java.util.Objects;
 public class Name {
     // TODO  text 상수로 추출해보기
     private static final String ELEMENT_NAME_RULE = "[ㄱ-ㅎ가-힣a-zA-Z0-9]{1,5}";
+    private static final String RESERVED_NAME = "all";
+
     private final String name;
 
     public Name(String name) {
         validateNameRule(name);
         this.name = name;
+    }
+
+    public static Name reservedName() {
+        return new Name(RESERVED_NAME);
     }
 
     private void validateNameRule(String name) {
