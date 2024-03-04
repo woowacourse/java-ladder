@@ -32,7 +32,7 @@ public class InputView {
         return Prizes.from(prizes);
     }
 
-    public String readOneNameOrAll() {
+    public String readResultName() {
         System.out.println(LINE_SEPARATOR + "결과를 보고 싶은 사람은?");
         return scanner.nextLine();
     }

@@ -13,6 +13,8 @@ import view.ResultView;
 
 public class LadderGameController {
 
+    private static final String EXIT = "all";
+
     private final InputView inputView;
     private final ResultView resultView;
 
@@ -35,10 +37,10 @@ public class LadderGameController {
     }
 
     private void printResult(LadderGameResult ladderGameResult) {
-        String oneNameOrAll = inputView.readOneNameOrAll();
-        while (!oneNameOrAll.equalsIgnoreCase("all")) {
-            resultView.printOneResult(ladderGameResult.getOneResult(new Name(oneNameOrAll)));
-            oneNameOrAll = inputView.readOneNameOrAll();
+        String resultName = inputView.readResultName();
+        while (!resultName.equalsIgnoreCase(EXIT)) {
+            resultView.printOneResult(ladderGameResult.getOneResult(new Name(resultName)));
+            resultName = inputView.readResultName();
         }
         resultView.printAllResult(ladderGameResult.getAllResult());
     }
