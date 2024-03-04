@@ -5,21 +5,25 @@ import model.strategy.BuildStrategy;
 
 public class Line {
 
-    private final List<Step> points;
+    private final List<LadderStatus> points;
 
-    public Line(int personCount, BuildStrategy<Step> buildStrategy) {
-        this.points = buildStrategy.generate(personCount - 1);
+    public Line(final int width, final BuildStrategy<LadderStatus> buildStrategy) {
+        this.points = buildStrategy.generate(width);
     }
 
     public int size() {
         return points.size();
     }
 
-    public boolean hasStep(int index) {
-        return points.get(index).hasStep();
+    public boolean isConnected(final int index) {
+        return points.get(index).isConnected();
     }
 
-    public List<Step> getPoints() {
+    public LadderStatus getLadderStatus(final int index) {
+        return points.get(index);
+    }
+
+    public List<LadderStatus> getPoints() {
         return points;
     }
 }

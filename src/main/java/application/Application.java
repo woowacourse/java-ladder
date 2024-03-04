@@ -1,3 +1,5 @@
+package application;
+
 import controller.LadderController;
 import java.util.Scanner;
 import view.InputView;
