@@ -1,5 +1,5 @@
 package domain;
 
 public interface LegGenerateStrategy {
-    boolean generateLeg();
+    Leg generateLeg();
 }

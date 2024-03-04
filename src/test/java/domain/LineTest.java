@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,7 +15,7 @@ public class LineTest {
     @DisplayName("라인 객체를 정상적으로 생성한다.")
     @Test
     void createLine() {
-        assertThatCode(() -> Line.createLineWithLegs(new RandomLegGenerateStrategy(), 1))
+        assertThatCode(() -> new Line(new TestConnectedLegGenerateStrategy(), 1))
                 .doesNotThrowAnyException();
     }
 
@@ -22,7 +23,7 @@ public class LineTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 3})
     void makeLeg(int validLegCount) {
-        Line line = Line.createLineWithLegs(new RandomLegGenerateStrategy(), validLegCount);
+        Line line = new Line(new TestConnectedLegGenerateStrategy(), validLegCount);
 
         int expectedLegCount = line.getLegs().size();
 
@@ -32,17 +33,23 @@ public class LineTest {
     @DisplayName("라인을 이루는 다리는 겹치지 않는다")
     @Test
     void makeLegWithUnOverlap() {
-        Line line = Line.createLineWithLegs(new RandomLegGenerateStrategy() {
-            @Override
-            public boolean generateLeg() {
-                return true;
-            }
-        }, 3);
+        Line line = new Line(new TestConnectedLegGenerateStrategy(), 3);
 
         List<Leg> legs = line.getLegs();
 
         for (int i = 1; i < legs.size(); i++) {
-            assertThat(legs.get(i).isExistLeg()).isNotEqualTo(legs.get(i - 1).isExistLeg());
+            assertThat(legs.get(i).isConnected()).isNotEqualTo(legs.get(i - 1).isConnected());
         }
+    }
+
+    @DisplayName("현재위치(Index)를 받으면 움직인 후 다음 라인의 다리 위치를 반환한다.")
+    @Test
+    void findNextIndex() {
+        Line line = new Line(new TestConnectedLegGenerateStrategy(), 3);
+        Assertions.assertAll(
+                () -> assertThat(line.moveToNextLeg(0)).isEqualTo(1),
+                () -> assertThat(line.moveToNextLeg(3)).isEqualTo(2)
+        );
+
     }
 }

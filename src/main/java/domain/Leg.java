@@ -1,14 +1,16 @@
 package domain;
 
-public class Leg {
-    private final boolean leg;
+public enum Leg {
+    CONNECTED(true),
+    UN_CONNECTED(false);
 
+    private final boolean isConnected;
 
-    public Leg(boolean leg) {
-        this.leg = leg;
+    Leg(boolean isConnected) {
+        this.isConnected = isConnected;
     }
 
-    public boolean isExistLeg() {
-        return leg;
+    public boolean isConnected() {
+        return isConnected;
     }
 }

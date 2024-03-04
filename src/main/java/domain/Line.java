@@ -7,26 +7,43 @@ public class Line {
 
     private final List<Leg> legs;
 
-    private Line(List<Leg> legs) {
-        this.legs = legs;
+    public Line(LegGenerateStrategy legGenerateStrategy, int legCount) {
+        this.legs = makeLegs(legGenerateStrategy, legCount);
     }
 
-    public static Line createLineWithLegs(LegGenerateStrategy legGenerateStrategy, int legCount) {
+    private List<Leg> makeLegs(LegGenerateStrategy legGenerateStrategy, int legCount) {
         List<Leg> legs = new ArrayList<>();
-        legs.add(new Leg(legGenerateStrategy.generateLeg()));
+        legs.add(legGenerateStrategy.generateLeg());
         for (int i = 1; i < legCount; i++) {
             decideLegExist(legGenerateStrategy, legs, i);
         }
-        return new Line(legs);
+        return legs;
     }
 
-
     private static void decideLegExist(LegGenerateStrategy legGenerateStrategy, List<Leg> legs, int legIndex) {
-        if (legs.get(legIndex - 1).isExistLeg()) {
-            legs.add(new Leg(false));
+        if (legs.get(legIndex - 1).isConnected()) {
+            legs.add(Leg.UN_CONNECTED);
             return;
         }
-        legs.add(new Leg(legGenerateStrategy.generateLeg()));
+        legs.add(legGenerateStrategy.generateLeg());
+    }
+
+    public int moveToNextLeg(int index) {
+        if (notFarRightPosition(index) && legs.get(index).isConnected()) {
+            return index + 1;
+        }
+        if (notFarLeftPosition(index) && legs.get(index - 1).isConnected()) {
+            return index - 1;
+        }
+        return index;
+    }
+
+    private boolean notFarRightPosition(int index) {
+        return index < legs.size();
+    }
+
+    private boolean notFarLeftPosition(int index) {
+        return index > 0;
     }
 
     public List<Leg> getLegs() {

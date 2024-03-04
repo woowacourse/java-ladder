@@ -10,7 +10,7 @@ public class LadderTest {
     @DisplayName("사다리 객체를 정상적으로 생성한다.")
     @Test
     void createLadder() {
-        assertThatCode(() -> Ladder.createLadderWithLines(new RandomLegGenerateStrategy(), new Height(1), 1))
+        assertThatCode(() -> new Ladder(new RandomLegGenerateStrategy(), new Height(1), 1))
                 .doesNotThrowAnyException();
     }
 }
