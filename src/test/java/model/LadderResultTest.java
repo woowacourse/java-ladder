@@ -10,7 +10,6 @@ class LadderResultTest {
     @DisplayName("ladderResult를 생성하는 과정에서 오류가 발생하지 않는다.")
     @Test
     void generateLadderResult() {
-
         Height height = new Height("3");
         Participants participants = new Participants(List.of(
                 new Participant("daon"),
@@ -31,7 +30,6 @@ class LadderResultTest {
     @DisplayName("특정 Participant를 조회했을 때 Prize 값이 반환된다.")
     @Test
     void searchOnePerson() {
-
         Participant ash = new Participant("ash");
         Participant daon = new Participant("daon");
         Participants participants = new Participants(List.of(ash, daon));
@@ -68,6 +66,4 @@ class LadderResultTest {
 
         Assertions.assertThat(results.size()).isEqualTo(participants.size());
     }
-
-
 }

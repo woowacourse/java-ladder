@@ -11,6 +11,7 @@ import model.*;
 
 public class InputView {
     private static final String DELIMITER = ",";
+
     private final Scanner scanner = new Scanner(System.in);
 
     public Participants readParticipantNames() {
