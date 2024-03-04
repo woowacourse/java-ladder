@@ -1,12 +1,13 @@
 package domain;
 
-import exception.domain.ParticipantsExceptionMessage;
+import static domain.participant.Participants.MAX_OF_PARTICIPANTS_COUNT;
+import static domain.participant.Participants.MIN_OF_PARTICIPANTS_COUNT;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import domain.participant.Participants;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ParticipantsTest {
 
@@ -17,7 +18,8 @@ class ParticipantsTest {
 
         assertThatThrownBy(() -> new Participants(oneNames))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ParticipantsExceptionMessage.OUT_OF_RANGE_PARTICIPANTS_COUNT.getExceptionMessage());
+                .hasMessage("[ERROR] 참가자는 " + MIN_OF_PARTICIPANTS_COUNT + "명 이상 "
+                        + MAX_OF_PARTICIPANTS_COUNT + "명 이하여야 합니다.");
     }
 
     @Test
@@ -31,7 +33,8 @@ class ParticipantsTest {
 
         assertThatThrownBy(() -> new Participants(fiftyNames))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ParticipantsExceptionMessage.OUT_OF_RANGE_PARTICIPANTS_COUNT.getExceptionMessage());
+                .hasMessage("[ERROR] 참가자는 " + MIN_OF_PARTICIPANTS_COUNT + "명 이상 "
+                        + MAX_OF_PARTICIPANTS_COUNT + "명 이하여야 합니다.");
     }
 
     @Test
@@ -41,7 +44,15 @@ class ParticipantsTest {
 
         assertThatThrownBy(() -> new Participants(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ParticipantsExceptionMessage.DUPLICATE_PARTICIPANTS.getExceptionMessage());
+                .hasMessage("[ERROR] 참가자 이름은 중복될 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("참가자 수와 들어오는 수가 같은지 확인한다.")
+    void isMatchCountTest() {
+        List<String> names = List.of("siso", "atto");
+        Participants participants = new Participants(names);
+        participants.isMatchCount(2);
     }
 
 }

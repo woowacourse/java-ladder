@@ -1,6 +1,6 @@
 package utils;
 
-import domain.StepPoint;
+import domain.ladder.StepPoint;
 import java.util.Random;
 
 public class RandomStepGenerator implements StepGenerator {
@@ -9,7 +9,7 @@ public class RandomStepGenerator implements StepGenerator {
 
     @Override
     public StepPoint generate() {
-        if(random.nextBoolean()) {
+        if (random.nextBoolean()) {
             return StepPoint.PRESENT;
         }
         return StepPoint.ABSENT;

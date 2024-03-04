@@ -1,12 +1,13 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import domain.ladder.Line;
+import domain.ladder.StepPoint;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.PresentStepGenerator;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
 
@@ -15,7 +16,7 @@ public class LineTest {
     void makeLineTest() {
         Line line = new Line(3, new PresentStepGenerator());
 
-        assertThat(line.getStepPoints()).isEqualTo(List.of(StepPoint.PRESENT, StepPoint.ABSENT, StepPoint.PRESENT));
+        assertThat(line.getStepPointCount()).isEqualTo(List.of(StepPoint.PRESENT, StepPoint.ABSENT, StepPoint.PRESENT));
     }
 
     @Test
@@ -25,5 +26,22 @@ public class LineTest {
 
         assertThat(line.isExistStep(1)).isFalse();
     }
+
+    @Test
+    @DisplayName("해당 위치에서 왼쪽으로 갈 수 있는지 확인한다.")
+    void isExistLeftStepTest() {
+        Line line = new Line(3, new PresentStepGenerator());
+
+        assertThat(line.isExistLeftStep(1)).isTrue();
+    }
+
+    @Test
+    @DisplayName("해당 위치에서 오른쪽으로 갈 수 있는지 확인한다.")
+    void isExistRightStepTest() {
+        Line line = new Line(3, new PresentStepGenerator());
+
+        assertThat(line.isExistRightStep(1)).isFalse();
+    }
+
 
 }

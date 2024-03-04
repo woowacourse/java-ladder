@@ -1,12 +1,13 @@
 package domain;
 
-import exception.domain.NameExceptionMessage;
+import static domain.participant.Name.MAX_OF_NAME_LENGTH;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import domain.participant.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class NameTest {
 
@@ -15,7 +16,15 @@ public class NameTest {
     void longNameExceptionTest() {
         assertThatThrownBy(() -> new Name("zangsu"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NameExceptionMessage.OUT_OF_RANGE_NAME_LENGTH.getExceptionMessage());
+                .hasMessage("[ERROR] 이름의 길이는 " + MAX_OF_NAME_LENGTH + "글자를 초과할 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("이름에 종료 단어를 사용하면 예외가 발생한다.")
+    void unavailableNameExceptionTest() {
+        assertThatThrownBy(() -> new Name("종료"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 이름에는 종료 키워드를 사용할 수 없습니다.");
     }
 
     @ParameterizedTest
@@ -24,7 +33,7 @@ public class NameTest {
     void noNameExceptionTest(String name) {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NameExceptionMessage.NO_NAME.getExceptionMessage());
+                .hasMessage("[ERROR] 이름이 없습니다.");
     }
 
 }
