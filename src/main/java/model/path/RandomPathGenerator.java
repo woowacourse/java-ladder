@@ -18,7 +18,7 @@ public class RandomPathGenerator implements PathGenerator {
     }
 
     private Path getNextPath(final List<Path> paths) {
-        if (!paths.isEmpty() && getLastPath(paths) == Path.EXIST) {
+        if (isLastPathExist(paths)) {
             return Path.NOT_EXIST;
         }
         if (random.nextBoolean()) {
@@ -27,8 +27,15 @@ public class RandomPathGenerator implements PathGenerator {
         return Path.NOT_EXIST;
     }
 
+    private boolean isLastPathExist(List<Path> paths) {
+        if (paths.isEmpty()) {
+            return false;
+        }
+        return getLastPath(paths).isExist();
+    }
+
+
     private Path getLastPath(final List<Path> paths) {
         return paths.get(paths.size() - 1);
     }
-
 }

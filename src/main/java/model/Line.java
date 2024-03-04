@@ -22,12 +22,16 @@ public class Line {
     }
 
     private void validateContinuousPaths(final List<Path> paths) {
-        for (int i = 0; i < paths.size() - 1; i++) {
-            final Path left = paths.get(i);
-            final Path right = paths.get(i + 1);
-            if (left == Path.EXIST && right == Path.EXIST) {
+        int leftPathIndex = 0;
+        int rightPathIndex = leftPathIndex + 1;
+        while (rightPathIndex < paths.size()) {
+            final Path left = paths.get(leftPathIndex);
+            final Path right = paths.get(rightPathIndex);
+            if (left.isExist() && right.isExist()) {
                 throw new IllegalArgumentException("사다리의 경로는 연달아 있을 수 없습니다.");
             }
+            leftPathIndex++;
+            rightPathIndex++;
         }
     }
 
@@ -35,5 +39,37 @@ public class Line {
         return paths.stream()
                 .map(Path::isExist)
                 .toList();
+    }
+
+    private boolean hasLeftPath(final Position position) {
+        position.checkWithinLine(this);
+        if (position.isFarLeft()) {
+            return false;
+        }
+        final Path leftPath = paths.get(position.getLeftPathIndex());
+        return leftPath.isExist();
+    }
+
+    private boolean hasRightPath(final Position position) {
+        position.checkWithinLine(this);
+        if (position.isFarRight(this)) {
+            return false;
+        }
+        final Path rightPath = paths.get(position.getRightPathIndex(this));
+        return rightPath.isExist();
+    }
+
+    public int size() {
+        return paths.size();
+    }
+
+    public Position getNextHorizontalPosition(final Position position) {
+        if (hasLeftPath(position)) {
+            return position.getLeftPosition();
+        }
+        if (hasRightPath(position)) {
+            return position.getRightPosition();
+        }
+        return position;
     }
 }

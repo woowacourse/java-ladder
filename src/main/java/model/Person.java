@@ -1,24 +1,44 @@
 package model;
 
 public class Person {
-    private static final int MIN_NAME_LENGTH = 1;
-    private static final int MAX_NAME_LENGTH = 5;
+    private final PersonName personName;
+    private Position position;
 
-    private final String name;
-
-    public Person(final String name) {
-        validateNameLength(name);
-        this.name = name;
+    private Person(final PersonName personName, final Position position) {
+        this.personName = personName;
+        this.position = position;
     }
 
-    private void validateNameLength(final String name) {
-        final int length = name.length();
-        if (length < MIN_NAME_LENGTH || length > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름은 최소 1글자 최대 5글자여야 합니다.");
+    public static Person from(final String name, int column) {
+        final Position startPosition = new Position(0, column);
+        return new Person(new PersonName(name), startPosition);
+    }
+
+    public void climbDown(final Ladder ladder) {
+        while (ladder.isWithinLadderRange(position)) {
+            final Line line = ladder.get(position);
+            moveHorizontally(line);
+            moveBelow();
         }
     }
 
-    public String getName() {
-        return name;
+    private void moveHorizontally(Line line) {
+        position = line.getNextHorizontalPosition(position);
+    }
+
+    private void moveBelow() {
+        position = position.getBelowPosition();
+    }
+
+    public PersonName getPersonName() {
+        return personName;
+    }
+
+    public int getDepth() {
+        return position.depth();
+    }
+
+    public int getColumn() {
+        return position.column();
     }
 }
