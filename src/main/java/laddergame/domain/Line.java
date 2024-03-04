@@ -16,7 +16,7 @@ public class Line {
 
     public Direction findDirection(int index) {
         if (index == 0) {
-            findFirstIndexDirection(rungs.get(index));
+            return findFirstIndexDirection(rungs.get(index));
         }
         if (index == rungs.size()) {
             return findLastIndexDirection(rungs.get(index - 1));
