@@ -21,26 +21,26 @@ public class LadderGameController {
         final Players players = requestUntilValidated(this::getPlayers);
         final Results results = requestUntilValidated(() -> getResults(players));
         final Height height = requestUntilValidated(this::getHeight);
-        final Ladder ladder = ladderBuilder.getLadder(players, height, results);
+        final Ladder ladder = ladderBuilder.createLadder(players, height, results);
         outputView.writeLadderResult(players, ladder, results);
         repeatUntil(() -> runCommand(
                 requestUntilValidated(() -> inputView.readDesiredPlayerName(players)),
-                ladderBuilder.getPlayersResults(ladder)));
+                ladderBuilder.createPlayersResults(ladder)));
     }
 
     private Players getPlayers() {
         final List<String> playersNamesInput = inputView.readPlayersName();
-        return ladderBuilder.getPlayers(playersNamesInput);
+        return ladderBuilder.createPlayers(playersNamesInput);
     }
 
     private Height getHeight() {
         final String heightInput = inputView.readLadderHeight();
-        return ladderBuilder.getHeight(heightInput);
+        return ladderBuilder.createHeight(heightInput);
     }
 
     private Results getResults(final Players players) {
         final List<String> resultNamesInput = inputView.readResultNames();
-        return ladderBuilder.getResults(resultNamesInput, players.getPlayersSize());
+        return ladderBuilder.createResults(resultNamesInput, players.getPlayersSize());
     }
 
 
