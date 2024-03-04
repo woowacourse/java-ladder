@@ -13,6 +13,7 @@ public class LadderGameController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+    private boolean isRun = true;
 
     public void run() {
         Players players = retryUntilValidated(() -> new Players(inputView.readPlayersName()));
@@ -22,7 +23,7 @@ public class LadderGameController {
         Ladder ladder = new Ladder(lineBuilder, height);
         PlayersResult playersResult = executeLadderGame(players, ladder);
 
-        while (true) {
+        while (isRun) {
             retryUntilValidated(() -> showItemByInputName(playersResult));
         }
     }
@@ -39,6 +40,7 @@ public class LadderGameController {
         String name = inputView.readPlayerNameWantToSeeResult();
         if (name.equals(WANT_TO_SEE_ALL_RESULT)) {
             outputView.writeAllResultItems(playersResult.getAllResult());
+            isRun = false;
             return;
         }
         ResultItem item = playersResult.findItemByName(name);
