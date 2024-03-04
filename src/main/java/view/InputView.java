@@ -1,6 +1,7 @@
 package view;
 
 import domain.participants.Participants;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -17,12 +18,20 @@ public class InputView {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String names = scanner.nextLine();
         validateNames(names);
-        return List.of(names.split(DELIMITER));
+        List<String> participantNames = List.of(names.split(DELIMITER));
+        validateUnavailableName(participantNames);
+        return participantNames;
     }
 
     private void validateNames(String names) {
         if (FINISH_WITH_DELIMITER_REGEX.matcher(names).matches()) {
             throw new IllegalArgumentException("[ERROR] 마지막 이름이 존재하지 않습니다.");
+        }
+    }
+
+    private void validateUnavailableName(List<String> participantNames) {
+        if (participantNames.stream().anyMatch(name -> name.equals(InputView.EXIT))) {
+            throw new IllegalArgumentException("[ERROR] 이름에는 종료 키워드를 사용할 수 없습니다.");
         }
     }
 
