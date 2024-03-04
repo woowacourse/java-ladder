@@ -35,18 +35,12 @@ class LadderGameTest {
     private Players players;
     private Results results;
     private Ladder ladder;
-    private final Result result1 = new Result("꽝");
-    private final Result result2 = new Result("3000");
-    private final Result result3 = new Result("꽝");
-    private final Result result4 = new Result("5000");
 
     @BeforeEach
     void setUp() {
         players = new Players(List.of("pobi", "honux", "crong", "jk"));
 
-        results = new Results(List.of(
-                result1, result2, result3, result4
-        ), 4);
+        results = new Results(List.of("꽝", "3000", "꽝", "5000"), 4);
 
         Line line1 = new Line(pointsGenerator1.generate(3));
         Line line2 = new Line(pointsGenerator2.generate(3));
@@ -67,7 +61,7 @@ class LadderGameTest {
         assertThat(playResults)
                 .extracting("value")
                 .asInstanceOf(InstanceOfAssertFactories.map(Player.class, Result.class))
-                .containsEntry(new Player("pobi"), result3);
+                .containsEntry(new Player("pobi"), new Result("꽝"));
     }
 
     @Test
@@ -85,10 +79,10 @@ class LadderGameTest {
                 .extracting("value")
                 .asInstanceOf(InstanceOfAssertFactories.map(Player.class, Result.class))
                 .containsAllEntriesOf(Map.of(
-                        new Player("pobi"), result3,
-                        new Player("honux"), result1,
-                        new Player("crong"), result4,
-                        new Player("jk"), result2
+                        new Player("pobi"), new Result("꽝"),
+                        new Player("honux"), new Result("꽝"),
+                        new Player("crong"), new Result("5000"),
+                        new Player("jk"), new Result("3000")
                 ));
     }
 }

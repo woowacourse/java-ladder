@@ -6,7 +6,10 @@ import java.util.List;
 public class Results {
     private final List<Result> results;
 
-    public Results(List<Result> results, int countStandard) {
+    public Results(List<String> rawResults, int countStandard) {
+        List<Result> results = rawResults.stream()
+                .map(Result::new)
+                .toList();
         validateCount(results, countStandard);
         this.results = results;
     }

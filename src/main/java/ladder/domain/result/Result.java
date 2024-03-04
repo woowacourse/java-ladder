@@ -1,5 +1,7 @@
 package ladder.domain.result;
 
+import java.util.Objects;
+
 public class Result {
 
     private static final int RESULT_LENGTH_MAX = 5;
@@ -20,5 +22,21 @@ public class Result {
     @Override
     public String toString() {
         return value;
+    }
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that instanceof Result result) {
+            return Objects.equals(this.value, result.value);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(value);
     }
 }

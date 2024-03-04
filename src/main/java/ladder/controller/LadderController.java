@@ -4,7 +4,6 @@ import ladder.domain.ladder.*;
 import ladder.domain.player.Name;
 import ladder.domain.player.Players;
 import ladder.domain.result.PlayResults;
-import ladder.domain.result.Result;
 import ladder.domain.result.Results;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -61,10 +60,7 @@ public class LadderController {
     }
 
     private Results readResults(int countStandard) {
-        List<String> rawResults = inputView.readResults();
-        List<Result> results = rawResults.stream()
-                .map(Result::new)
-                .toList();
+        List<String> results = inputView.readResults();
         return new Results(results, countStandard);
     }
 
