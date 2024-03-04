@@ -29,7 +29,7 @@ public class LineTest {
         Line line = new Line(personCount, buildStrategy);
 
         //then
-        assertEquals(line.getPoints().points().size(), expectedSize);
+        assertEquals(line.getPoints().getPointSize(), expectedSize);
     }
 
     @Test

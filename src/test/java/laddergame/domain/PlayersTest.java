@@ -3,6 +3,7 @@ package laddergame.domain;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ public class PlayersTest {
         final Players players = Players.from(List.of(playerName1, playerName2));
 
         //then
-        assertEquals(players.getPlayers().size(), 2);
+        assertEquals(players.getPlayersSize(), 2);
         assertEquals(players.getPlayers().get(0).getName(), playerName1);
         assertEquals(players.getPlayers().get(1).getName(), playerName2);
     }
@@ -44,5 +45,27 @@ public class PlayersTest {
     public void nameIsNullException(final String name) {
         //given & when & then
         assertThrows(IllegalArgumentException.class, () -> Players.from(List.of(name)));
+    }
+
+    @Test
+    @DisplayName("플레이어의 최대, 최소 수를 제한한다.")
+    public void checkPlayerCount() {
+        //given
+        String playerNamePrefix = "nn";
+        List<String> playerNamesMin = new ArrayList<>();
+        List<String> playerNamesMax = new ArrayList<>();
+        int minCount = 1;
+        int maxCount = 10;
+
+        for (int cnt = 0; cnt < minCount; cnt++) {
+            playerNamesMin.add(playerNamePrefix + cnt);
+        }
+        for (int cnt = 0; cnt < maxCount; cnt++) {
+            playerNamesMax.add(playerNamePrefix + cnt);
+        }
+
+        //when & then
+        assertThrows(IllegalArgumentException.class, () -> Players.from(playerNamesMin));
+        assertThrows(IllegalArgumentException.class, () -> Players.from(playerNamesMax));
     }
 }
