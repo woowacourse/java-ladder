@@ -20,7 +20,8 @@ public class PlayersTest {
 
         // when & then
         assertThatThrownBy(() -> Players.from(playerNames))
-                .isExactlyInstanceOf(IllegalArgumentException.class);
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("중복된 참가자명이 존재합니다.");
     }
 
     @Test
@@ -45,7 +46,8 @@ public class PlayersTest {
 
         // when & then
         assertThatThrownBy(() -> Players.from(playerNames))
-                .isExactlyInstanceOf(IllegalArgumentException.class);
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("참가자는 2 ~ 50명이어야 합니다.");
     }
 
     @ParameterizedTest

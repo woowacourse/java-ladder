@@ -20,7 +20,8 @@ class LadderResultTest {
 
         // when & then
         assertThatThrownBy(() -> ladderResult.findPrizeByPlayerName("토미"))
-                .isExactlyInstanceOf(IllegalArgumentException.class);
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("존재하지 않는 참가자입니다.");
     }
 
     @Test

@@ -12,7 +12,8 @@ public class PlayerTest {
     void 이름의_길이가_범위를_벗어나면_객체를_생성할_때_예외가_발생한다(String name) {
         // when & then
         assertThatThrownBy(() -> new Player(name))
-                .isExactlyInstanceOf(IllegalArgumentException.class);
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("참가자명은 2 ~ 5 글자여야 합니다.");
     }
 
     @ParameterizedTest
@@ -28,7 +29,8 @@ public class PlayerTest {
     void 이름에_한글_영문자_숫자만_포함하고_있지_않으면_객체를_생성할_때_예외가_발생한다(String name) {
         // when & then
         assertThatThrownBy(() -> new Player(name))
-                .isExactlyInstanceOf(IllegalArgumentException.class);
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("참가자명은 한글, 영문자, 숫자만 가능합니다.");
     }
 
     @ParameterizedTest
