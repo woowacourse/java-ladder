@@ -1,16 +1,15 @@
 package controller;
 
-import common.exception.message.ExceptionMessage;
 import java.util.function.Supplier;
 import view.InputView;
 import view.OutputView;
 
 public class RetryHandler {
+    public static final int READ_LIMIT = 10;
+
     private final InputView inputView;
     private final OutputView outputView;
     private int retryCount;
-
-    public static final int READ_LIMIT = 10;
 
     public RetryHandler(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
@@ -32,7 +31,7 @@ public class RetryHandler {
 
     private void validateRetryCountLimit() {
         if (retryCount++ == READ_LIMIT) {
-            throw new IllegalArgumentException(ExceptionMessage.READ_LIMIT_OVER);
+            throw new IllegalArgumentException(InputView.READ_LIMIT_OVER);
         }
     }
 }

@@ -1,26 +1,32 @@
-package domain;
+package domain.ladder;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import domain.bridge.strategy.BridgeGeneratorStub;
+import domain.ladder.strategy.BridgeGeneratorStub;
+import domain.player.PlayerName;
+import domain.player.PlayerNames;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class LadderTest {
+public class LadderGeneratorTest {
 
     @Test
     void createLadderSuccessWithHeightAndPointCount() {
         // given
+        PlayerName playerName1 = new PlayerName("kaki");
+        PlayerName playerName2 = new PlayerName("solar");
+        PlayerName playerName3 = new PlayerName("eden");
+
         LadderHeight height = new LadderHeight(3);
         List<LadderBridge> bridges = List.of(LadderBridge.BRIDGE, LadderBridge.NONE, LadderBridge.NONE);
         BridgeGeneratorStub bridgeGeneratorStub = new BridgeGeneratorStub();
-        List<PlayerName> playerNames = List.of(new PlayerName("kaki"), new PlayerName("eden"), new PlayerName("solar"));
+        PlayerNames playerNames = new PlayerNames(List.of(playerName1, playerName2, playerName3));
 
         // when
         bridgeGeneratorStub.setBridges(bridges);
-        Ladder ladder = Ladder.of(height, new PlayerNames(playerNames), bridgeGeneratorStub);
-        List<Floor> floors = ladder.getFloors();
+        LadderGenerator ladderGenerator = new LadderGenerator(height, playerNames, bridgeGeneratorStub);
+        List<Floor> floors = ladderGenerator.generateLadder();
 
         // then
         assertAll(

@@ -1,7 +1,6 @@
-package domain.bridge.strategy;
+package domain.ladder.strategy;
 
-import domain.LadderBridge;
-import domain.bridge.BridgeGenerator;
+import domain.ladder.LadderBridge;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
