@@ -16,8 +16,4 @@ public class Prize {
     public String getName() {
         return name.getName();
     }
-
-    public Position getPosition() {
-        return position;
-    }
 }
