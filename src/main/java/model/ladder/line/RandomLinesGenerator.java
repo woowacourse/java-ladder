@@ -19,13 +19,12 @@ public class RandomLinesGenerator implements LinesGenerator {
     private Line generateLine(final int pathCount) {
         final List<Path> paths = new ArrayList<>();
         while (paths.size() < pathCount) {
-            Path randomPath = getNextPath(paths);
-            paths.add(randomPath);
+            paths.add(getNextRandomPath(paths));
         }
         return new Line(paths);
     }
 
-    private Path getNextPath(final List<Path> paths) {
+    private Path getNextRandomPath(final List<Path> paths) {
         if (!paths.isEmpty() && existLastPath(paths)) {
             return Path.NOT_EXIST;
         }

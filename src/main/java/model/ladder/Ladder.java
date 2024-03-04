@@ -27,7 +27,6 @@ public class Ladder {
         }
     }
 
-
     private Index climb(final Index startIndex) {
         Index currentIndex = startIndex;
         for (Line line : lines) {
@@ -44,8 +43,8 @@ public class Ladder {
     }
 
     private int findPersonCount() {
-        Line line = lines.get(0);
-        return line.getPathsSize() + 1;
+        return lines.get(0)
+                .getPathsSize() + 1;
     }
 
     public List<Line> getLines() {

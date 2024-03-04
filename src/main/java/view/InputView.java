@@ -13,8 +13,7 @@ public class InputView {
 
     public List<String> inputPeopleNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        final String text = scanner.next();
-        return NameParser.parse(text);
+        return NameParser.parse(scanner.next());
     }
 
     public int inputHeight() {
@@ -26,8 +25,7 @@ public class InputView {
     public List<String> inputItemsNames() {
         System.out.println();
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-        final String text = scanner.next();
-        return NameParser.parse(text);
+        return NameParser.parse(scanner.next());
     }
 
     public String inputPersonName() {

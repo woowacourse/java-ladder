@@ -18,6 +18,7 @@ public class Results {
     public static Results of(final People people, final List<Index> resultIndexes, final Items items) {
         List<Result> results = new ArrayList<>();
         Index personIndex = new Index(0);
+
         for (Index itemIndex : resultIndexes) {
             Person person = people.findBy(personIndex);
             Item item = items.findBy(itemIndex);
