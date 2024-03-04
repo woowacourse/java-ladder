@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 public class LadderTest {
@@ -22,7 +23,7 @@ public class LadderTest {
     }
 
     @DisplayName("사다리를 오르면 결과값이 위치하는 int 인덱스를 반환한다")
-    @Test
+    @RepeatedTest(10)
     void climbLadder() {
         Height height = new Height("1");
         int peopleCount = 3;
