@@ -44,7 +44,7 @@ public class LineTest {
         Line line = new Line(determineLungExists);
 
         int index = 0;
-        index = line.move(index);
+        index = line.determineMovingDirection(index);
 
         assertThat(index).isEqualTo(1);
     }
@@ -56,7 +56,7 @@ public class LineTest {
         Line line = new Line(determineLungExists);
 
         int index = 1;
-        index = line.move(index);
+        index = line.determineMovingDirection(index);
 
         assertThat(index).isEqualTo(0);
     }
@@ -68,7 +68,7 @@ public class LineTest {
         Line line = new Line(determineLungExists);
 
         int index = 0;
-        index = line.move(index);
+        index = line.determineMovingDirection(index);
 
         assertThat(index).isEqualTo(0);
     }

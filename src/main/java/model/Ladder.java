@@ -22,7 +22,7 @@ public class Ladder {
 
     public int climbLadder(int index) {
         for (Line line : lines) {
-            index = line.move(index);
+            index = line.determineMovingDirection(index);
         }
         return index;
     }
