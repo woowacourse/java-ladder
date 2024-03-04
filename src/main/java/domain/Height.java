@@ -13,7 +13,7 @@ public class Height {
 
     private void validate(int height) {
         if (height <= 0) {
-            throw new IllegalArgumentException(INVALID_LADDER_HEIGHT_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(INVALID_LADDER_HEIGHT_EXCEPTION.getMessageWithCause(height));
         }
     }
 

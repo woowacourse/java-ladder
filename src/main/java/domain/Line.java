@@ -1,37 +1,27 @@
 package domain;
 
-import util.generator.BooleanGenerator;
+import util.generator.LineGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
 
     private final List<Leg> legs;
 
-    private Line() {
-        legs = new ArrayList<>();
+    private Line(int legCount, LineGenerator lineGenerator) {
+        legs = makeLegs(legCount, lineGenerator);
     }
 
-    public static Line of(int legCount, BooleanGenerator booleanGenerator) {
-        Line line = new Line();
-        line.makeLeg(legCount, booleanGenerator);
-        return line;
+    public static Line of(int legCount, LineGenerator lineGenerator) {
+        return new Line(legCount, lineGenerator);
     }
 
-    private void makeLeg(int legCount, BooleanGenerator booleanGenerator) {
-        legs.add(Leg.from(booleanGenerator.generate()));
-        for (int i = 1; i < legCount; i++) {
-            decideLegExist(i, booleanGenerator);
-        }
+    private List<Leg> makeLegs(int legCount, LineGenerator lineGenerator) {
+        return lineGenerator.generate(legCount);
     }
 
-    private void decideLegExist(int legIndex, BooleanGenerator booleanGenerator) {
-        if (legs.get(legIndex - 1).isExist()) {
-            legs.add(Leg.from(false));
-            return;
-        }
-        legs.add(Leg.from(booleanGenerator.generate()));
+    public Position getFarRightPosition() {
+        return new Position(legs.size());
     }
 
     public List<Leg> getLegs() {

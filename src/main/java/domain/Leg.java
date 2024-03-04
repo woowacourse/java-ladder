@@ -2,7 +2,7 @@ package domain;
 
 public class Leg {
 
-    private boolean isExist;
+    private final boolean isExist;
 
     private Leg(boolean leg) {
         this.isExist = leg;
