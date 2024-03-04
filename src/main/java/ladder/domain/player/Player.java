@@ -13,4 +13,8 @@ public record Player(String name) {
                     "이름은 %d~%d글자로 입력해주세요: %s".formatted(MIN_LENGTH, MAX_LENGTH, name));
         }
     }
+
+    public boolean isAll() {
+        return this.equals(ALL);
+    }
 }

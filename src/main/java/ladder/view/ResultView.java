@@ -10,6 +10,7 @@ import ladder.domain.game.LadderGameResult;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderRow;
 import ladder.domain.ladder.direction.LadderDirection;
+import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.reward.Reward;
 import ladder.domain.reward.Rewards;
@@ -45,13 +46,20 @@ public class ResultView {
         System.out.println(stringJoiner);
     }
 
-    public void printReward(final Reward reward) {
+    public void printResult(final LadderGameResult result, final Player player) {
         System.out.println("\n실행 결과");
+        if (player.isAll()) {
+            printAllRewards(result);
+            return;
+        }
+        printReward(result.rewardOf(player));
+    }
+
+    private void printReward(final Reward reward) {
         System.out.println(reward.value());
     }
 
-    public void printResult(final LadderGameResult result) {
-        System.out.println("\n실행 결과");
+    private void printAllRewards(final LadderGameResult result) {
         result.forEach(((player, reward) -> System.out.printf("%s : %s%n", player.name(), reward.value())));
     }
 

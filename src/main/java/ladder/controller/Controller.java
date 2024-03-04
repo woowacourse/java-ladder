@@ -1,7 +1,5 @@
 package ladder.controller;
 
-import static ladder.domain.player.Player.ALL;
-
 import ladder.domain.attribute.Height;
 import ladder.domain.attribute.Width;
 import ladder.domain.game.LadderGame;
@@ -50,12 +48,11 @@ public class Controller {
     }
 
     private void printLadderGameResult(final LadderGameResult result) {
-        Player player = inputView.inputPlayerFrom(result);
-        if (player == ALL) {
-            resultView.printResult(result);
+        Player player = inputView.inputPlayerOrAll(result);
+        resultView.printResult(result, player);
+        if (player.isAll()) {
             return;
         }
-        resultView.printReward(result.rewardOf(player));
         printLadderGameResult(result);
     }
 }

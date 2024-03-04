@@ -1,7 +1,5 @@
 package ladder.view;
 
-import static ladder.domain.player.Player.ALL;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -68,8 +66,8 @@ public class InputView {
     }
 
     private Player playerOrAll(final LadderGameResult result, final Player player) {
-        if (player.equals(ALL)) {
-            return ALL;
+        if (player.isAll()) {
+            return player;
         }
         if (!result.contains(player)) {
             throw new IllegalArgumentException("존재하지 않는 이름입니다: %s".formatted(player.name()));
