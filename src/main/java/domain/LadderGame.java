@@ -15,8 +15,7 @@ public class LadderGame {
     private final Participants participants;
     private final Prizes prizes;
     private final LadderResult ladderResult;
-
-
+    
     public LadderGame(Participants participants, Prizes prizes, Ladder ladder) {
         this.participants = participants;
         this.prizes = prizes;
