@@ -18,7 +18,7 @@ public class LadderGame {
         this.ladder = ladder;
         this.prizes = prizes;
 
-        playerGameResult = new LinkedHashMap<>();
+        this.playerGameResult = new LinkedHashMap<>();
     }
 
     public void playGame() {
@@ -26,7 +26,7 @@ public class LadderGame {
 
         for (Player player : players.getPlayers()) {
             Position playerPosition = player.getPlayerPosition();
-            Prize prize = findPrizeByPosition(playerPosition);
+            Prize prize = prizes.findSamePositionPrize(playerPosition);
 
             this.playerGameResult.put(player, prize);
         }
@@ -37,23 +37,8 @@ public class LadderGame {
             throw new IllegalStateException("아직 사다리 게임이 실행되지 않았습니다.");
         }
 
-        return playerGameResult.get(findPlayerByName(playerName));
-    }
-
-    private Prize findPrizeByPosition(Position playerPosition) {
-        return prizes.getPrizes()
-                .stream()
-                .filter(prize -> prize.getPosition().isSame(playerPosition))
-                .findFirst()
-                .orElseThrow(() -> new IllegalStateException("찾는 위치의 Prize가 존재하지 않습니다."));
-    }
-
-    private Player findPlayerByName(String playerName) {
-        return players.getPlayers()
-                .stream()
-                .filter(player -> player.getName().equals(playerName))
-                .findFirst()
-                .orElseThrow(() -> new IllegalStateException("참여하지 않은 플레이어의 이름을 조회했습니다."));
+        Player targetPlayer = players.findPlayerByName(playerName);
+        return playerGameResult.get(targetPlayer);
     }
 
     public Map<Player, Prize> getPlayerGameResult() {

@@ -20,6 +20,13 @@ public class Prizes {
         }
     }
 
+    public Prize findSamePositionPrize(Position playerPosition) {
+        return prizes.stream()
+                .filter(prize -> prize.getPosition().isSame(playerPosition))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("찾는 위치의 Prize가 존재하지 않습니다."));
+    }
+
     private void validateSameLength(int prizeNumber, int playerNumber) {
         if (prizeNumber != playerNumber) {
             throw new IllegalArgumentException("보상의 개수는 참여자의 수와 같아야 합니다.");
