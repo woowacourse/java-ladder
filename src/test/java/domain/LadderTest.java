@@ -28,7 +28,7 @@ class LadderTest {
         int participantsCount = 5;
         Ladder ladder = new Ladder(new Height(5), participantsCount, new PresentStepGenerator());
         Line firstFloor = ladder.getLines().get(0);
-        Assertions.assertThat(firstFloor.getStepPoints().size())
+        Assertions.assertThat(firstFloor.getStepPointCount().size())
                 .isEqualTo(participantsCount - 1);
     }
 

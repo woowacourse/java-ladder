@@ -8,13 +8,13 @@ public class Line {
 
     public static final int ONE_STEP = 1;
 
-    private final List<StepPoint> stepPoints;
+    private final List<StepPoint> stepPointCount;
 
     public Line(int numberOfCell, StepGenerator stepGenerator) {
-        stepPoints = new ArrayList<>();
-        stepPoints.add(stepGenerator.generate());
+        stepPointCount = new ArrayList<>();
+        stepPointCount.add(stepGenerator.generate());
         for (int cellIndex = 1; cellIndex < numberOfCell; cellIndex++) {
-            stepPoints.add(makeOnePoint(cellIndex, stepGenerator));
+            stepPointCount.add(makeOnePoint(cellIndex, stepGenerator));
         }
     }
 
@@ -34,7 +34,7 @@ public class Line {
     }
 
     private int lineLastStep() {
-        return stepPoints.size();
+        return stepPointCount.size();
     }
 
     private StepPoint makeOnePoint(int cellIndex, StepGenerator stepGenerator) {
@@ -49,11 +49,11 @@ public class Line {
     }
 
     public boolean isExistStep(int index) {
-        return stepPoints.get(index)
+        return stepPointCount.get(index)
                 .isExist();
     }
 
-    public List<StepPoint> getStepPoints() {
-        return stepPoints;
+    public List<StepPoint> getStepPointCount() {
+        return stepPointCount;
     }
 }

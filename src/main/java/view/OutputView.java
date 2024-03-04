@@ -58,7 +58,7 @@ public class OutputView {
     }
 
     private void printOneLine(Line line) {
-        List<StepPoint> stepPoints = line.getStepPoints();
+        List<StepPoint> stepPoints = line.getStepPointCount();
         System.out.print(START_OF_LINE);
         for (StepPoint stepPoint : stepPoints) {
             printOnePoint(stepPoint);

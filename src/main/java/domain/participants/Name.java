@@ -12,7 +12,6 @@ public class Name {
     public Name(String name) {
         validateNoName(name);
         validateNameLength(name);
-        validateUnavailableName(name);
         this.name = name;
     }
 
@@ -25,12 +24,6 @@ public class Name {
     private void validateNameLength(String name) {
         if (name.length() > MAX_OF_NAME_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 이름의 길이는 " + MAX_OF_NAME_LENGTH + "글자를 초과할 수 없습니다.");
-        }
-    }
-
-    private void validateUnavailableName(String name) {
-        if (name.equals(InputView.EXIT)) {
-            throw new IllegalArgumentException("[ERROR] 이름에는 종료 키워드를 사용할 수 없습니다.");
         }
     }
 

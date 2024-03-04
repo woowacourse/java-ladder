@@ -16,7 +16,7 @@ public class LineTest {
     void makeLineTest() {
         Line line = new Line(3, new PresentStepGenerator());
 
-        assertThat(line.getStepPoints()).isEqualTo(List.of(StepPoint.PRESENT, StepPoint.ABSENT, StepPoint.PRESENT));
+        assertThat(line.getStepPointCount()).isEqualTo(List.of(StepPoint.PRESENT, StepPoint.ABSENT, StepPoint.PRESENT));
     }
 
     @Test
