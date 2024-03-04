@@ -7,16 +7,15 @@ public class Height {
     public static final int MIN_OF_HEIGHT = 0;
     public static final int MAX_OF_HEIGHT = 100;
 
-    private int height;
+    private final int height;
 
     public Height(int height) {
         validate(height);
         this.height = height;
     }
 
-    public void moveUp() {
-        validate(height + 1);
-        this.height += 1;
+    public Height moveUp() {
+        return new Height(height + 1);
     }
 
     public boolean isEqualTo(int nowFloor) {

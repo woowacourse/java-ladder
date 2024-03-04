@@ -1,7 +1,6 @@
 package view;
 
-import domain.participants.Participants;
-import java.util.Arrays;
+import domain.participant.Participants;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;

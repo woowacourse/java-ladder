@@ -1,7 +1,6 @@
-package domain.participants;
+package domain.participant;
 
 import java.util.Objects;
-import view.InputView;
 
 public class Name {
 

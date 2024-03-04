@@ -16,7 +16,7 @@ public class HeightTest {
     @DisplayName("높이가 증가한다")
     void moveUpTest() {
         Height height = new Height(0);
-        height.moveUp();
+        height = height.moveUp();
         assertThat(height.equals(new Height(1))).isTrue();
     }
 

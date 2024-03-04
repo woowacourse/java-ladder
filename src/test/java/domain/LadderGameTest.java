@@ -4,7 +4,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import domain.ladder.Height;
 import domain.ladder.Ladder;
-import domain.participants.Participants;
+import domain.participant.Participants;
 import domain.result.Prizes;
 import java.util.List;
 import java.util.Map;

@@ -25,7 +25,7 @@ public class LadderResult {
         Height currentHeight = new Height(0);
         while (ladder.isNotFinish(currentHeight)) {
             moveAllPosition(ladder, currentHeight);
-            currentHeight.moveUp();
+            currentHeight = currentHeight.moveUp();
         }
     }
 
