@@ -73,7 +73,7 @@ public class InputView {
     }
 
     private void checkDesiredPlayerName(final String name, final Players players) {
-        if (ReservedWords.isIncluded(name)) {
+        if (ReservedWords.isReserved(name)) {
             return;
         }
         if (players.isIncluded(name)) {
@@ -83,7 +83,7 @@ public class InputView {
     }
 
     private void checkPlayerNameInCommand(final String name) {
-        if (ReservedWords.isIncluded(name)) {
+        if (ReservedWords.isReserved(name)) {
             throw new IllegalArgumentException(RESERVED_WORD_ERROR);
         }
     }

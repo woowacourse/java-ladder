@@ -45,7 +45,7 @@ public class LadderGameController {
 
 
     private boolean runCommand(final String name, final PlayersResults playersResults) {
-        if (ReservedWords.isIncluded(name)) {
+        if (ReservedWords.isReserved(name)) {
             outputView.writeAllResults(playersResults);
             return true;
         }

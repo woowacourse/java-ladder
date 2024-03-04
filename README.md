@@ -122,4 +122,4 @@ example feat: 사용자 입력 후 도메인 사용
 - [x] 도메인의 뷰 로직 제거
 - [x] Service 클래스명 변경
 - [x] `LadderGameBuilder` 내의 메서드명 변경
-- [ ] `isIncluded` 메서드명 변경
+- [x] `isIncluded` 메서드명 변경

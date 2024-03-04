@@ -11,7 +11,7 @@ public enum ReservedWords {
         this.word = word;
     }
 
-    public static boolean isIncluded(final String name) {
+    public static boolean isReserved(final String name) {
         return Arrays.stream(ReservedWords.values())
                 .anyMatch(reservedWord -> reservedWord.word.equals(name));
     }
