@@ -1,36 +1,47 @@
 package domain.ladder;
 
+import static domain.ladder.DirectionalPoint.LEFT;
+import static domain.ladder.DirectionalPoint.RIGHT;
+import static domain.ladder.DirectionalPoint.STRAIGHT;
+import static domain.ladder.DirectionalPoint.findDirectionalPoint;
+
 import domain.booleanGenerator.BooleanGenerator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class LadderRow {
-    private final List<LadderRung> rungs;
+    private final List<DirectionalPoint> ladderPoints;
 
-    public LadderRow(BooleanGenerator booleanGenerator, int size) {
-        rungs = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            LadderRung ladderRung = findNextRung(booleanGenerator, getLastRung());
-            rungs.add(ladderRung);
+    public LadderRow(BooleanGenerator booleanGenerator, int rowSize) {
+        ladderPoints = new ArrayList<>();
+        for (int currentIndex = 0; currentIndex < rowSize; currentIndex++) {
+            boolean isTheLastPoint = currentIndex == rowSize - 1;
+            DirectionalPoint ladderPoint = determineNextPoint(booleanGenerator, getLastPoint(), isTheLastPoint);
+            ladderPoints.add(ladderPoint);
         }
     }
 
-    private LadderRung findNextRung(final BooleanGenerator booleanGenerator, final LadderRung lastRung) {
-        if (lastRung.isConnected()) {
-            return LadderRung.findRung(LadderRung.NOT_CONNECTED.isConnected());
+    private DirectionalPoint determineNextPoint(final BooleanGenerator booleanGenerator,
+                                                final DirectionalPoint lastPoint,
+                                                final boolean isTheLastPoint) {
+        if (lastPoint == RIGHT) {
+            return LEFT;
         }
-        return LadderRung.findRung(booleanGenerator.generate());
+        if (isTheLastPoint) {
+            return STRAIGHT;
+        }
+        return findDirectionalPoint(booleanGenerator.generate());
     }
 
-    private LadderRung getLastRung() {
-        if (!rungs.isEmpty()) {
-            return rungs.get(rungs.size() - 1);
+    private DirectionalPoint getLastPoint() {
+        if (!ladderPoints.isEmpty()) {
+            return ladderPoints.get(ladderPoints.size() - 1);
         }
-        return LadderRung.NOT_CONNECTED;
+        return STRAIGHT;
     }
 
-    public List<LadderRung> getRungs() {
-        return Collections.unmodifiableList(this.rungs);
+    public List<DirectionalPoint> getLadderPoints() {
+        return Collections.unmodifiableList(this.ladderPoints);
     }
 }

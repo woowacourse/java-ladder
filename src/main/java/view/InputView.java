@@ -11,6 +11,7 @@ public class InputView {
     private static final String INVALID_CHARACTER_EXCEPTION_MESSAGE = "[ERROR] 영어, 한글, 숫자 및 쉼표만 입력 가능합니다.";
     private static final String NUMERIC_EXCEPTION_MESSAGE = "[ERROR] 숫자만 입력할 수 있습니다.";
 
+    private static final String LINE_SEPARATOR = System.lineSeparator();
     private static final String DEFAULT_DELIMITER = ",";
     private static final Pattern VALID_CHARACTER_PATTERN = Pattern.compile("[^a-zA-Z가-힣\\d" + DEFAULT_DELIMITER + "]");
     private static final Scanner scanner = new Scanner(System.in);
@@ -19,13 +20,22 @@ public class InputView {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
         String rawNames = scanner.nextLine();
-        validatePlayerNames(rawNames);
+        validateStringWithDelimiter(rawNames);
 
         return Arrays.asList(rawNames.split(DEFAULT_DELIMITER, -1));
     }
 
+    public static List<String> inputPrizes() {
+        System.out.println(LINE_SEPARATOR + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+
+        String rawPrizes = scanner.nextLine();
+        validateStringWithDelimiter(rawPrizes);
+
+        return Arrays.asList(rawPrizes.split(DEFAULT_DELIMITER, -1));
+    }
+
     public static int inputHeight() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        System.out.println(LINE_SEPARATOR + "최대 사다리 높이는 몇 개인가요?");
 
         String rawHeight = scanner.nextLine();
         validateHeight(rawHeight);
@@ -33,7 +43,17 @@ public class InputView {
         return Integer.parseInt(rawHeight);
     }
 
-    private static void validatePlayerNames(String input) {
+    public static String inputPrizeTargetName() {
+        System.out.println(LINE_SEPARATOR + "결과를 보고 싶은 사람은?");
+
+        String rawTargetName = scanner.nextLine();
+        validateBlank(rawTargetName);
+        validateContainsSpace(rawTargetName);
+
+        return rawTargetName;
+    }
+
+    private static void validateStringWithDelimiter(String input) {
         validateBlank(input);
         validateContainsSpace(input);
         validatePattern(input);
