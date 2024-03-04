@@ -1,4 +1,4 @@
-package model;
+package model.result;
 
 import model.items.Item;
 import model.people.Person;

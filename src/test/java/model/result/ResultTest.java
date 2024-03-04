@@ -1,13 +1,11 @@
-package model;
+package model.result;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.List;
-import java.util.Map;
 import model.items.Item;
-import model.people.People;
 import model.people.Person;
+import model.result.Result;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

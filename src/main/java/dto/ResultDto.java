@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import model.items.Item;
 import model.people.Person;
-import model.Result;
+import model.result.Result;
 
 public record ResultDto(Map<String, String> personAndItemName) {
     public static ResultDto from(final Result result) {
