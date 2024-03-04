@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.List;
 import java.util.function.Supplier;
 
 import model.*;
@@ -8,6 +7,8 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderGameController {
+
+    private final String PRINT_ALL_COMMAND = "all";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -30,27 +31,19 @@ public class LadderGameController {
         printResult(participants, ladderResult);
     }
 
-    private void printGame(Participants participants, Prizes prizes, Ladder ladder) {
-        outputView.printLadderHeader();
-        outputView.printParticipantsNames(participants);
-        outputView.printLadder(ladder);
-        outputView.printPrizesNames(prizes);
-    }
-
     private void printResult(Participants participants, LadderResult ladderResult) {
         String target = inputView.readResultSearch();
         outputView.printResultHeader();
-        if (target.equals("all")) {
-            List<Prize> results = ladderResult.searchAll(participants.getParticipants());
-            outputView.printEntireResult(participants, results);
+        if (target.equals(PRINT_ALL_COMMAND)) {
+            outputView.printEntireResult(ladderResult.getEntireResult());
             return;
         }
-        handlingSoloResult(participants, ladderResult, target);
+        printSoloResult(participants, ladderResult, target);
     }
 
-    private void handlingSoloResult(Participants participants, LadderResult ladderResult, String name) {
+    private void printSoloResult(Participants participants, LadderResult ladderResult, String name) {
         try {
-            Participant target = participants.checkExistence(name);
+            Participant target = participants.findTargetParticipant(name);
             Prize result = ladderResult.searchOne(target);
             outputView.printSoloResult(result);
         } catch (IllegalArgumentException e) {
