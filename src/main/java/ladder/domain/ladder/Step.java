@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 public class Step {
 
@@ -14,9 +14,5 @@ public class Step {
 
     public boolean getBuildStatus() {
         return buildStatus;
-    }
-
-    public String getStatusToSymbol() {
-        return LadderStepSymbol.changeStatusToSymbol(buildStatus);
     }
 }

@@ -1,9 +1,9 @@
-package ladder.domain;
-
-import static org.assertj.core.api.Assertions.assertThat;
+package ladder.domain.carpenter;
 
 import java.util.List;
-import ladder.domain.dto.BuiltLadderDto;
+import ladder.domain.dto.MadeLineDto;
+import ladder.domain.ladder.Height;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,8 +34,8 @@ public class CarpenterTest {
 
         carpenter.buildLadders(personCount);
 
-        BuiltLadderDto builtLadderDto = getLadderOfCarpenter(carpenter);
-        assertThat(builtLadderDto.builtLadder().get(firstLadderIndex)).isEqualTo("-----");
+        MadeLineDto madeLine = getLadderOfCarpenter(carpenter);
+        Assertions.assertThat(madeLine.findPositionStepStatus(firstLadderIndex)).isTrue();
     }
 
     @ParameterizedTest
@@ -46,12 +46,12 @@ public class CarpenterTest {
 
         carpenter.buildLadders(personCount);
 
-        BuiltLadderDto builtLadderDto = getLadderOfCarpenter(carpenter);
-        assertThat(builtLadderDto.builtLadder().get(stepPosition)).isEqualTo("     ");
+        MadeLineDto madeLine = getLadderOfCarpenter(carpenter);
+        Assertions.assertThat(madeLine.findPositionStepStatus(stepPosition)).isFalse();
     }
 
-    private BuiltLadderDto getLadderOfCarpenter(Carpenter carpenter) {
-        List<BuiltLadderDto> ladders = carpenter.getResultLadders().resultLadder();
+    private MadeLineDto getLadderOfCarpenter(Carpenter carpenter) {
+        List<MadeLineDto> ladders = carpenter.getResultLadders().madeLines();
         return ladders.get(secondLadderIndex);
     }
 }

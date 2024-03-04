@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.participant;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -19,11 +19,11 @@ public class NameTest {
 
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름의 길이는 최대 "+MAXIMUM_NAME_LENGTH+"글자 까지 가능합니다.");
+                .hasMessage("이름의 길이는 최대 " + MAXIMUM_NAME_LENGTH + "글자 까지 가능합니다.");
     }
 
-    @Test
     @DisplayName("이름이 공백일 경우 에러를 발생한다.")
+    @Test
     void isNotBlankNameTest() {
 
         assertThatThrownBy(() -> new Name(" "))

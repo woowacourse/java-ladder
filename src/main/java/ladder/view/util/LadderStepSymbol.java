@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.view.util;
 
 import java.util.Arrays;
 

@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.controller.LadderController;
+import ladder.controller.LadderGameController;
 import ladder.domain.randomGenerator.RandomEnergyGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -10,7 +10,9 @@ public class Application {
         InputView inputView = new InputView(System.in);
 
         OutputView outputView = new OutputView();
-        LadderController ladderController = new LadderController(new RandomEnergyGenerator(), inputView, outputView);
-        ladderController.run();
+        LadderGameController ladderGameController = new LadderGameController(new RandomEnergyGenerator(), inputView,
+                outputView);
+
+        ladderGameController.run();
     }
 }

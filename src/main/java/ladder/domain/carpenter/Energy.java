@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.carpenter;
 
 import ladder.domain.randomGenerator.NumberGenerator;
 

@@ -1,5 +1,6 @@
-package ladder.domain;
+package ladder.domain.participant;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class Name {
@@ -31,7 +32,7 @@ public class Name {
 
     private void validateNameLength(String name) {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름의 길이는 최대 "+MAXIMUM_NAME_LENGTH+"글자 까지 가능합니다.");
+            throw new IllegalArgumentException("이름의 길이는 최대 " + MAXIMUM_NAME_LENGTH + "글자 까지 가능합니다.");
         }
     }
 
@@ -43,5 +44,22 @@ public class Name {
 
     private boolean isContainsSpecialCharacters(String name) {
         return specialCharactersFilter.matcher(name).find();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Name objName)) {
+            return false;
+        }
+
+        return Objects.equals(name, objName.name);
     }
 }
