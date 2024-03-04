@@ -11,12 +11,13 @@ import model.people.People;
 import model.people.PersonCount;
 import model.result.Result;
 import model.ladder.line.RandomLinesGenerator;
+import model.result.Results;
 import view.InputView;
 import view.OutputView;
 
 public class LadderGame {
     private static final String ALL = "all";
-  
+
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -33,7 +34,7 @@ public class LadderGame {
         final LadderDto ladderDto = LadderDto.from(people, ladder, items);
         outputView.printLadderInfo(ladderDto);
 
-        final Result result = findResult(people, ladder, items);
+        final Result result = findResults(people, ladder, items);
         final ResultDto resultDto = ResultDto.from(result);
         searchResult(resultDto);
     }
@@ -53,9 +54,9 @@ public class LadderGame {
         return Items.of(itemNames, personCount);
     }
 
-    private Result findResult(final People people, final Ladder ladder, final Items items) {
+    private Results findResults(final People people, final Ladder ladder, final Items items) {
         List<Index> resultIndexes = ladder.climbAll();
-        return Result.of(people, resultIndexes, items);
+        return Results.of(people, resultIndexes, items);
     }
 
     private void searchResult(final ResultDto resultDto) {
