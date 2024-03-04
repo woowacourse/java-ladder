@@ -28,22 +28,22 @@ public class RowLine {
     }
 
     private void moveByConnection(Position playerPosition) {
-        if (checkLeftPosition(playerPosition.leftPosition())) {
+        if (canMoveLeftPosition(playerPosition.leftPosition())) {
             playerPosition.moveLeft();
             return;
         }
 
-        if (checkRightPosition(playerPosition.rightPosition())) {
+        if (canMoveRightPosition(playerPosition.rightPosition())) {
             playerPosition.moveRight();
         }
     }
-    // TODO rename - 의도를 더 잘나타내는 메서드명 생각해보기
-    private boolean checkLeftPosition(int leftPosition) {
+
+    private boolean canMoveLeftPosition(int leftPosition) {
         return leftPosition >= 0
                 && connections.get(leftPosition).isConnected();
     }
 
-    private boolean checkRightPosition(int rightPosition) {
+    private boolean canMoveRightPosition(int rightPosition) {
         return rightPosition < connections.size()
                 && connections.get(rightPosition).isConnected();
     }
