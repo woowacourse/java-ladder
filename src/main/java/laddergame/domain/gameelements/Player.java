@@ -23,7 +23,7 @@ public class Player {
         Name reservedName = Name.reservedName();
 
         if (playerName.equals(reservedName)) {
-            throw new IllegalArgumentException("예약어 " + reservedName + "은 이름으로 지정할 수 없습니다.");
+            throw new IllegalArgumentException("예약어 " + reservedName.getName() + "은 이름으로 지정할 수 없습니다.");
         }
     }
 

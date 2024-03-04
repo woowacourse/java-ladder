@@ -4,7 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PlayerTest {
     // TODO assertThat과 assertEquals 혼용x /
@@ -21,9 +22,10 @@ class PlayerTest {
 
         testPlayer1.moveLeft();
         testPlayer2.moveRight();
-
-        assertEquals(testPlayer1.getPlayerPosition(), expectedPosition1);
-        assertEquals(testPlayer2.getPlayerPosition(), expectedPosition2);
+        assertAll(
+                () -> assertTrue(testPlayer1.getPlayerPosition().isSame(expectedPosition1)),
+                () -> assertTrue(testPlayer2.getPlayerPosition().isSame(expectedPosition2))
+        );
     }
 
     @DisplayName("플레이어 이름은 예약어 all이 될 수 없다")
