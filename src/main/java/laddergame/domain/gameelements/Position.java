@@ -1,6 +1,7 @@
 package laddergame.domain.gameelements;
 
 public class Position {
+    // TODO 메서드에 의미를 더 담기
     private int playerPosition;
 
     public Position(int playerPosition) {

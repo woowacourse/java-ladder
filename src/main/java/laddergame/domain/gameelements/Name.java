@@ -3,6 +3,7 @@ package laddergame.domain.gameelements;
 import java.util.Objects;
 
 public class Name {
+    // TODO  text 상수로 추출해보기
     private static final String ELEMENT_NAME_RULE = "[ㄱ-ㅎ가-힣a-zA-Z0-9]{1,5}";
     private final String name;
 

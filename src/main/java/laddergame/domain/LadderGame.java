@@ -21,6 +21,7 @@ public class LadderGame {
         playerGameResult = new LinkedHashMap<>();
     }
 
+    // TODO 일관성 -> this를 붙이기
     public void playGame() {
         ladder.climb(players);
 
@@ -32,8 +33,9 @@ public class LadderGame {
         }
     }
 
+    // TODO 린트 검사 -> 컨벤션
     public Prize findPrizeByPlayerName(String playerName) {
-        if(playerGameResult.isEmpty()){
+        if (playerGameResult.isEmpty()) {
             throw new IllegalStateException("아직 사다리 게임이 실행되지 않았습니다.");
         }
 

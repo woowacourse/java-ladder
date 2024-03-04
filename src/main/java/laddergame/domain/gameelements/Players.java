@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Players {
+    // TODO 이름 기반으로 객체 반환 메서드
     private static final int MIN_PLAYER_NUMBER = 1;
     private static final int MAX_PLAYER_NUMBER = 100;
 
@@ -25,6 +26,7 @@ public class Players {
         return players.size();
     }
 
+    // TODO : 참여자의 수 상수화
     private void validatePlayerNumber(List<String> playerNames) {
         if (playerNames.size() < MIN_PLAYER_NUMBER || playerNames.size() > MAX_PLAYER_NUMBER) {
             throw new IllegalArgumentException("게임 참여자의 수는 1이상 100이하만 가능합니다.");

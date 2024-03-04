@@ -1,6 +1,7 @@
 package laddergame.domain.gameelements;
 
 public class Player {
+    // TODO 정적 팩터리 메서드
     private static final Name RESERVED_NAME = new Name("all");
 
     private final Name name;
