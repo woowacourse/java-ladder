@@ -1,38 +1,43 @@
 package ladder.domain;
 
-import static ladder.domain.LadderDirection.LEFT;
-import static ladder.domain.LadderDirection.RIGHT;
+import static ladder.domain.ladder.Direction.LEFT;
+import static ladder.domain.ladder.Direction.NONE;
+import static ladder.domain.ladder.Direction.RIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import java.util.stream.IntStream;
+import ladder.domain.ladder.LadderLevel;
+import ladder.domain.ladder.Width;
+import ladder.domain.player.Location;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LadderLevelTest {
-
     @DisplayName("사다리의 한 층은 입력받은 크기로 생성된다.")
     @Test
     void ladderLevelConstructTest() {
-        LadderLevel ladderLevel = new LadderLevel(2);
+        LadderLevel ladderLevel = new LadderLevel(new Width(2), () -> RIGHT);
 
-        int actualSize = (int) ladderLevel.stream().count();
+        int actualSize = ladderLevel.getDirections().size();
 
         assertThat(actualSize).isEqualTo(2);
     }
 
-    @DisplayName("Direction.RIGHT과 Direction.LEFT는 한 쌍으로만 생성된다.")
+    @DisplayName("RIGHT 이후엔 무조건 LEFT가 삽입되며, RIGHT은 마지막에 올 수 없다.")
     @Test
-    void ladderLevelIntegrityTest() {
-        LadderLevel ladderLevel = new LadderLevel(100);
-        List<LadderDirection> ladderDirections = ladderLevel.stream().toList();
+    void ladderLevelConstructTest2() {
+        LadderLevel ladderLevel = new LadderLevel(new Width(3), () -> RIGHT);
 
-        List<Integer> rightIndices = IntStream.range(0, 100)
-                .filter(index -> ladderDirections.get(index) == RIGHT)
-                .boxed().toList();
+        assertThat(ladderLevel.getDirections()).isEqualTo(List.of(RIGHT, LEFT, NONE));
+    }
 
-        assertThat(rightIndices).allSatisfy(index ->
-                assertThat(ladderDirections.get(index + 1)).isEqualTo(LEFT)
-        );
+    @DisplayName("Direction에 따라 location을 바뀐다")
+    @Test
+    void ladderLevelMoveTest() {
+        LadderLevel ladderLevel = new LadderLevel(new Width(2), () -> RIGHT);
+
+        Location actual = ladderLevel.move(new Location(0));
+
+        assertThat(actual).isEqualTo(new Location(1));
     }
 }
