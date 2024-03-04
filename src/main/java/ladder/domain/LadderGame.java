@@ -3,7 +3,6 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderGame {
     private final List<PlayerName> players;
@@ -23,11 +22,9 @@ public class LadderGame {
     }
 
     private List<PlayerName> playOneLine(List<PlayerName> playerNames, int height) {
-        List<Line> lines = ladder.getLines();
-        Line line = lines.get(height);
+        Line lineAddGap = ladder.getAddGapLine(height);
 
-        Line lineAddGap = line.addGap();
-        for (int i = 0; i < line.getSticks().size(); i++) {
+        for (int i = 0; i < lineAddGap.getSticks().size() - 2; i++) {
             int movePosition = lineAddGap.move(i);
             Collections.swap(playerNames, i, movePosition);
         }
@@ -37,6 +34,6 @@ public class LadderGame {
     private List<String> getResult(List<PlayerName> players) {
         return players.stream()
                 .map(PlayerName::getName)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

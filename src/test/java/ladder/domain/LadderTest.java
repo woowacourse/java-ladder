@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import java.util.function.BooleanSupplier;
@@ -42,6 +43,22 @@ class LadderTest {
         boolean actual = ladder.isExist(1, 0);
 
         assertThat(actual).isTrue();
+    }
+
+    @Test
+    @DisplayName("하나의 라인에 양쪽 공백을 추가한후 반환한다.")
+    void addGapTest() {
+        int height = 2;
+        LineGenerator lineGenerator = new LineGenerator(new AlwaysTrueSupplier());
+        Ladder ladder = Ladder.makeLadder(new Height(3), 3, lineGenerator);
+
+        Line lineAddGap = ladder.getAddGapLine(height);
+        List<Stick> sticks = lineAddGap.getSticks();
+
+        assertAll(
+                () -> assertThat(sticks.get(0).isExist()).isFalse(),
+                () -> assertThat(sticks.get(sticks.size() - 1).isExist()).isFalse()
+        );
     }
 
     static class AlwaysTrueSupplier implements BooleanSupplier {

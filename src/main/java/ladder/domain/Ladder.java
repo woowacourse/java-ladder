@@ -20,12 +20,14 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public boolean isExist(int height, int width) {
-        return lines.get(height).isExist(width);
+    public Line getAddGapLine(int height) {
+        Line line = lines.get(height);
+
+        return line.addGap();
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public boolean isExist(int height, int width) {
+        return lines.get(height).isExist(width);
     }
 
     public int getHeight() {
@@ -35,4 +37,6 @@ public class Ladder {
     public int getWidth() {
         return lines.get(0).getWidth();
     }
+
+
 }
