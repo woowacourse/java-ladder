@@ -8,9 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PlayerTest {
-    // TODO assertThat과 assertEquals 혼용x /
-    // TODO assertAll로 감싸기
-    // TODO equals가 재정의되어 있지 않음
     @DisplayName("플레이어는 위치를 좌우로 움직일 수 있다")
     @Test
     void playerMovingTest() {
