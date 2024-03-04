@@ -19,9 +19,12 @@ public class LadderLevel {
         latest = NONE;
         LinkedList<Direction> directions = new LinkedList<>(width.repeat(() -> nextDirection(directionGenerator)));
         changeInvalidLast(directions);
-        ladderLevel = new LinkedHashMap<>(IntStream.range(0, directions.size())
+        ladderLevel = IntStream.range(0, directions.size())
                 .boxed()
-                .collect(toMap(Location::new, directions::get)));
+                .collect(toMap(Location::new,
+                        directions::get,
+                        (oldValue, newValue) -> newValue,
+                        LinkedHashMap::new));
     }
 
     public Location move(Location location) {
