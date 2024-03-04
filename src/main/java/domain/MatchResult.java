@@ -13,7 +13,7 @@ public class MatchResult {
         matchResult = new HashMap<>();
         List<Player> players = participants.getPlayers();
         for (Player player : players) {
-            ladder.findLastLocation(player);
+            ladder.goDown(player);
             matchResult.put(player.getName(), result.getPrizeOf(player.getPosition()));
         }
     }

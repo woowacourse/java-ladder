@@ -30,7 +30,7 @@ public class LineTest {
     }
 
     @Test
-    @DisplayName("현재 위치를 이용해 이후 위치를 결정한다.")
+    @DisplayName("각 층에서 좌우로 움직인다.")
     void findNextLocationTest1() {
         Line line = new Line(3, new PresentStepGenerator());
         List<Player> players = List.of(
@@ -39,7 +39,7 @@ public class LineTest {
                 new Player("c", 2),
                 new Player("d", 3));
         for (Player player : players) {
-            line.findNextLocation(player);
+            line.moveSideways(player);
         }
 
         assertAll(() -> assertEquals(players.get(0).getPosition(), new Position(1)),
@@ -49,7 +49,7 @@ public class LineTest {
     }
 
     @Test
-    @DisplayName("현재 위치를 이용해 이후 위치를 결정한다.")
+    @DisplayName("각 층에서 좌우로 움직인다.")
     void findNextLocationTest2() {
         Line line = new Line(3, new AbsentStepGenerator());
         List<Player> players = List.of(
@@ -58,7 +58,7 @@ public class LineTest {
                 new Player("c", 2),
                 new Player("d", 3));
         for (Player player : players) {
-            line.findNextLocation(player);
+            line.moveSideways(player);
         }
 
         assertAll(() -> assertEquals(players.get(0).getPosition(), new Position(0)),

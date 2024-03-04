@@ -37,7 +37,7 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("마지막 위치를 확인한다.")
+    @DisplayName("사다리를 타고 내려간다.")
     void findLastLocationTest1() {
         List<Player> players = List.of(
                 new Player("a", 0),
@@ -46,7 +46,7 @@ class LadderTest {
                 new Player("d", 3));
         Ladder ladder = new Ladder(3, players.size(), new PresentStepGenerator());
         for (Player player : players) {
-            ladder.findLastLocation(player);
+            ladder.goDown(player);
         }
 
         assertAll(() -> assertEquals(players.get(0).getPosition(), new Position(1)),
@@ -56,7 +56,7 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("마지막 위치를 확인한다.")
+    @DisplayName("사다리를 타고 내려간다.")
     void findLastLocationTest2() {
         List<Player> players = List.of(
                 new Player("a", 0),
@@ -65,7 +65,7 @@ class LadderTest {
                 new Player("d", 3));
         Ladder ladder = new Ladder(3, players.size(), new AbsentStepGenerator());
         for (Player player : players) {
-            ladder.findLastLocation(player);
+            ladder.goDown(player);
         }
 
         assertAll(() -> assertEquals(players.get(0).getPosition(), new Position(0)),

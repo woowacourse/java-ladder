@@ -16,9 +16,9 @@ public class Ladder {
                 .toList();
     }
 
-    public void findLastLocation(Player player) {
+    public void goDown(Player player) {
         for (Line line : lines) {
-            line.findNextLocation(player);
+            line.moveSideways(player);
         }
     }
 

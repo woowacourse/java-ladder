@@ -34,7 +34,7 @@ public class Line {
         return stepPoints;
     }
 
-    public void findNextLocation(Player player) {
+    public void moveSideways(Player player) {
         if (canMoveToLeft(player.getPosition())) {
             player.moveLeft();
             return;
