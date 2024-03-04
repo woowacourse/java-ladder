@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import model.Index;
+import model.MatchedIndex;
 import model.ladder.line.Line;
 import model.ladder.line.FixedLinesGenerator;
 import model.people.PersonCount;
@@ -47,34 +48,35 @@ class LadderTest {
     @Test
     @DisplayName("사다리의 개인별 결과를 확인한다.")
     void climbLadderPersonResult() {
-        Height height = new Height(5);
+        Height height = new Height(2);
         PersonCount personCount = new PersonCount(4);
         FixedLinesGenerator pathGenerator = new FixedLinesGenerator(
                 List.of(new Line(List.of(EXIST, NOT_EXIST, EXIST)),
-                        new Line(List.of(NOT_EXIST, EXIST, NOT_EXIST)),
-                        new Line(List.of(EXIST, NOT_EXIST, NOT_EXIST)),
-                        new Line(List.of(NOT_EXIST, EXIST, NOT_EXIST)),
-                        new Line(List.of(EXIST, NOT_EXIST, EXIST)))
+                        new Line(List.of(NOT_EXIST, EXIST, NOT_EXIST)))
         );
         Ladder ladder = Ladder.from(height, personCount, pathGenerator);
-        Index startIndex = new Index(0);
-        List<Index> climbedResult = ladder.climbAll();
-        assertThat(climbedResult.get(0)).isEqualTo(startIndex);
+
+        MatchedIndex matchedIndex = new MatchedIndex(new Index(0), new Index(2));
+
+        List<MatchedIndex> climbedResult = ladder.climbAll();
+        assertThat(climbedResult).contains(matchedIndex);
     }
 
     @Test
     @DisplayName("사다리의 전체 결과를 확인한다.")
     void climbLadderAllResult() {
-        Height height = new Height(5);
+        Height height = new Height(2);
         PersonCount personCount = new PersonCount(4);
         FixedLinesGenerator pathGenerator = new FixedLinesGenerator(
                 List.of(new Line(List.of(EXIST, NOT_EXIST, EXIST)),
-                        new Line(List.of(NOT_EXIST, EXIST, NOT_EXIST)),
-                        new Line(List.of(EXIST, NOT_EXIST, NOT_EXIST)),
-                        new Line(List.of(NOT_EXIST, EXIST, NOT_EXIST)),
-                        new Line(List.of(EXIST, NOT_EXIST, EXIST)))
+                        new Line(List.of(NOT_EXIST, EXIST, NOT_EXIST)))
         );
         Ladder ladder = Ladder.from(height, personCount, pathGenerator);
-        assertThat(ladder.climbAll()).isEqualTo(List.of(new Index(0), new Index(3), new Index(2), new Index(1)));
+
+        assertThat(ladder.climbAll()).isEqualTo(List.of(
+                new MatchedIndex(new Index(0), new Index(2)),
+                new MatchedIndex(new Index(1), new Index(0)),
+                new MatchedIndex(new Index(2), new Index(3)),
+                new MatchedIndex(new Index(3), new Index(1))));
     }
 }

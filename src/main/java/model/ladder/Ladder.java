@@ -3,6 +3,7 @@ package model.ladder;
 import java.util.List;
 import java.util.stream.IntStream;
 import model.Index;
+import model.MatchedIndex;
 import model.ladder.line.Line;
 import model.ladder.line.LinesGenerator;
 import model.people.PersonCount;
@@ -27,15 +28,15 @@ public class Ladder {
         }
     }
 
-    private Index climb(final Index startIndex) {
+    private MatchedIndex climb(final Index startIndex) {
         Index currentIndex = startIndex;
         for (Line line : lines) {
             currentIndex = line.move(currentIndex);
         }
-        return currentIndex;
+        return new MatchedIndex(startIndex, currentIndex);
     }
 
-    public List<Index> climbAll() {
+    public List<MatchedIndex> climbAll() {
         return IntStream.range(0, findPersonCount())
                 .mapToObj(Index::new)
                 .map(this::climb)

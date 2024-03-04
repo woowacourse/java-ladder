@@ -3,7 +3,7 @@ package controller;
 import dto.LineDto;
 import dto.ResultsDto;
 import java.util.List;
-import model.Index;
+import model.MatchedIndex;
 import model.items.Item;
 import model.ladder.Height;
 import model.items.Items;
@@ -68,7 +68,7 @@ public class LadderGame {
     }
 
     private Results findResults(final People people, final Ladder ladder, final Items items) {
-        List<Index> resultIndexes = ladder.climbAll();
+        List<MatchedIndex> resultIndexes = ladder.climbAll();
         return Results.of(people, resultIndexes, items);
     }
 

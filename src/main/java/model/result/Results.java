@@ -3,6 +3,7 @@ package model.result;
 import java.util.ArrayList;
 import java.util.List;
 import model.Index;
+import model.MatchedIndex;
 import model.items.Item;
 import model.items.Items;
 import model.people.People;
@@ -15,13 +16,13 @@ public class Results {
         this.results = results;
     }
 
-    public static Results of(final People people, final List<Index> resultIndexes, final Items items) {
+    public static Results of(final People people, final List<MatchedIndex> resultIndexes, final Items items) {
         List<Result> results = new ArrayList<>();
         Index personIndex = new Index(0);
 
-        for (Index itemIndex : resultIndexes) {
-            Person person = people.findBy(personIndex);
-            Item item = items.findBy(itemIndex);
+        for (MatchedIndex matchedIndex : resultIndexes) {
+            Person person = people.findBy(matchedIndex.startIndex());
+            Item item = items.findBy(matchedIndex.finalIndex());
             results.add(new Result(person, item));
             personIndex = personIndex.getNext();
         }
