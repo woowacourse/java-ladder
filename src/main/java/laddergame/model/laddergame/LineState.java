@@ -5,8 +5,8 @@ public enum LineState {
     END,
     NONE;
 
-    public static LineState decideLineState(boolean decision) {
-        if (decision) {
+    public static LineState decideLineState(LineConnectionDecision decision) {
+        if (decision.isConnectionTried()) {
             return START;
         }
         return NONE;
@@ -19,7 +19,7 @@ public enum LineState {
         return NONE;
     }
 
-    public static LineState decideLineState(LineState beforeState, boolean decision) {
+    public static LineState decideLineState(LineState beforeState, LineConnectionDecision decision) {
         if (START.equals(beforeState)) {
             return END;
         }

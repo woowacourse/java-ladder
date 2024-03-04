@@ -11,8 +11,10 @@ class LineStateTest {
     @ParameterizedTest
     @CsvSource(value = {"true,START", "false,NONE"})
     void decideLineStateWithBoolean(boolean decision, LineState expected) {
+        //given
+        LineConnectionDecision given = new LineConnectionDecision(decision);
         //when
-        LineState actual = LineState.decideLineState(decision);
+        LineState actual = LineState.decideLineState(given);
         //then
         assertThat(actual).isEqualTo(expected);
     }
@@ -30,7 +32,9 @@ class LineStateTest {
     @DisplayName("이전 LineState와 불린 값으로 LineState를 반환한다.")
     @ParameterizedTest
     @CsvSource(value = {"START,true,END", "START,false,END", "NONE,true,START", "END,false,NONE"})
-    void decideLineStateWithBeforeState(LineState beforeState, boolean given, LineState expected) {
+    void decideLineStateWithBeforeState(LineState beforeState, boolean decision, LineState expected) {
+        //given
+        LineConnectionDecision given = new LineConnectionDecision(decision);
         //when
         LineState actual = LineState.decideLineState(beforeState, given);
         //then

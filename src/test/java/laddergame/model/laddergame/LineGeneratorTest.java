@@ -9,22 +9,29 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LineGeneratorTest {
-    @DisplayName("불린 리스트로 Line 객체를 반환한다.")
+    @DisplayName("선분연결결정들로 Line 객체를 반환한다.")
     @Test
     void generateLineTest() {
         //given
-        List<Boolean> given = List.of(true, false, true, false);
+        List<LineConnectionDecision> given = List.of(
+                new LineConnectionDecision(true),
+                new LineConnectionDecision(false),
+                new LineConnectionDecision(true),
+                new LineConnectionDecision(false)
+        );
         LineGenerator lineGenerator = new LineGenerator(given);
         Line line = lineGenerator.generate();
         //when //then
         assertThat(line.getLineStates()).hasSize(given.size());
     }
 
-    @DisplayName("boolean 리스트 크기가 2보다 작으면 예외가 발생한다.")
+    @DisplayName("선분연결결정들 크기가 2보다 작으면 예외가 발생한다.")
     @Test
     void validateBooleansSize() {
+        List<LineConnectionDecision> given = List.of(
+                new LineConnectionDecision(true)
+        );
         //when //then
-        assertThatThrownBy(() -> new LineGenerator(List.of(true)))
-                .isInstanceOf(BaseException.class);
+        assertThatThrownBy(() -> new LineGenerator(given)).isInstanceOf(BaseException.class);
     }
 }

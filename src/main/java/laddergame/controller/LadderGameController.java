@@ -1,8 +1,8 @@
 package laddergame.controller;
 
 import laddergame.model.executionresults.ExecutionResults;
-import laddergame.model.generator.BooleansGenerator;
-import laddergame.model.generator.RandomBooleansGenerator;
+import laddergame.model.generator.LineConnectionDecisionGenerator;
+import laddergame.model.generator.RandomLineConnectionDecisionGenerator;
 import laddergame.model.laddergame.LadderGame;
 import laddergame.model.laddergame.LadderGameGenerator;
 import laddergame.model.laddergame.LadderHeight;
@@ -34,7 +34,7 @@ public class LadderGameController {
     }
 
     private LadderGame getLadderGame(LadderHeight ladderHeight, Participants participants) {
-        BooleansGenerator randomGenerator = new RandomBooleansGenerator();
+        LineConnectionDecisionGenerator randomGenerator = new RandomLineConnectionDecisionGenerator();
         LadderGameGenerator ladderGameGenerator
                 = new LadderGameGenerator(ladderHeight, participants, randomGenerator);
         return ladderGameGenerator.getLadderGame();

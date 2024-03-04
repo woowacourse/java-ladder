@@ -7,37 +7,37 @@ import laddergame.exception.BaseException;
 public class LineGenerator {
     private static final int MINIMUM_BOOLEANS_SIZE = 2;
 
-    private final List<Boolean> booleans;
+    private final List<LineConnectionDecision> decisions;
     private LineState beforeState;
 
-    public LineGenerator(List<Boolean> booleans) {
-        validateBooleansSize(booleans);
-        this.booleans = booleans;
+    public LineGenerator(List<LineConnectionDecision> decisions) {
+        validateLineConnectionDecisionSize(decisions);
+        this.decisions = decisions;
     }
 
-    private void validateBooleansSize(List<Boolean> booleans) {
-        if (booleans.size() < MINIMUM_BOOLEANS_SIZE) {
-            String message = "크기가 " + MINIMUM_BOOLEANS_SIZE + "보다 작은 불린리스트는 들어올 수 없습니다.";
+    private void validateLineConnectionDecisionSize(List<LineConnectionDecision> decisions) {
+        if (decisions.size() < MINIMUM_BOOLEANS_SIZE) {
+            String message = "크기가 " + MINIMUM_BOOLEANS_SIZE + "보다 작은 선 연결 결정은 허용되지 않습니다.";
             throw new BaseException(message);
         }
     }
 
     public Line generate() {
         List<LineState> lineStates = new ArrayList<>();
-        for (int index = 0; index < booleans.size(); index++) {
-            boolean result = booleans.get(index);
-            LineState lineState = generateLineState(index, result);
+        for (int index = 0; index < decisions.size(); index++) {
+            LineConnectionDecision decision = decisions.get(index);
+            LineState lineState = generateLineState(index, decision);
             lineStates.add(lineState);
             beforeState = lineState;
         }
         return new Line(lineStates);
     }
 
-    private LineState generateLineState(int index, boolean decision) {
+    private LineState generateLineState(int index, LineConnectionDecision decision) {
         if (index == 0) {
             return LineState.decideLineState(decision);
         }
-        if (index == booleans.size() - 1) {
+        if (index == decisions.size() - 1) {
             return LineState.decideLineState(beforeState);
         }
         return LineState.decideLineState(beforeState, decision);
