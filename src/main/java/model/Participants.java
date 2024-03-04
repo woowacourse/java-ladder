@@ -15,10 +15,10 @@ public class Participants {
         this.participants = participants;
     }
 
-    public Participant checkExistence(String target) {
-        Participant find = new Participant(target);
-        if (participants.contains(find)) {
-            return new Participant(target);
+    public Participant findTargetParticipant(String target) {
+        Participant targetParticipant = new Participant(target);
+        if (participants.contains(targetParticipant)) {
+            return targetParticipant;
         }
         throw new IllegalArgumentException("[ERROR] 목록에 없는 참여자입니다.");
     }

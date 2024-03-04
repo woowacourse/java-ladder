@@ -68,7 +68,7 @@ class ParticipantsTest {
         Participant daon = new Participant("daon");
         Participants participants = new Participants(List.of(ash, daon));
 
-        Participant result = participants.checkExistence("ash");
+        Participant result = participants.findTargetParticipant("ash");
         assertThat(result).isEqualTo(ash);
     }
 
@@ -80,7 +80,7 @@ class ParticipantsTest {
         Participants participants = new Participants(List.of(ash, daon));
 
 
-        assertThatThrownBy(() -> participants.checkExistence("ted"))
+        assertThatThrownBy(() -> participants.findTargetParticipant("ted"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
