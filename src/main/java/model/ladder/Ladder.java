@@ -1,6 +1,5 @@
 package model.ladder;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 import model.Index;
@@ -10,17 +9,15 @@ import model.people.PersonCount;
 
 public class Ladder {
     private final List<Line> lines;
-    private final Height height;
 
-    private Ladder(final List<Line> lines, final Height height) {
+    private Ladder(final List<Line> lines) {
         this.lines = lines;
-        this.height = height;
     }
 
     public static Ladder from(final Height height, final PersonCount personCount, final LinesGenerator linesGenerator) {
         int pathCount = personCount.getCount() - 1;
         final List<Line> lines = linesGenerator.generate(height, pathCount);
-        return new Ladder(lines, height);
+        return new Ladder(lines);
     }
 
     public Index climb(final Index startIndex) {
