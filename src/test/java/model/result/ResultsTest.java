@@ -1,5 +1,6 @@
 package model.result;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.List;
@@ -19,5 +20,16 @@ class ResultsTest {
         assertThatCode(() -> new Results(
                 List.of(new Result(chali, item), new Result(moly, item))
         ));
+    }
+
+    @Test
+    @DisplayName("결과 목록에서 사람에 해당하는 결과를 조회한다.")
+    void findItem() {
+        Person chali = new Person("찰리");
+        Person moly = new Person("몰리");
+        Item item = new Item("꽝");
+
+        Results results = new Results(List.of(new Result(chali, item), new Result(moly, item)));
+        assertThat(results.findItemByPerson(moly)).isEqualTo(item);
     }
 }
