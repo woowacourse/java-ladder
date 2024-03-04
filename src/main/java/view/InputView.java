@@ -1,9 +1,13 @@
 package view;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
+import model.dto.ParticipantName;
 
 public class InputView {
+    private final static String ALL_PARTICIPANTS = "all";
+
     private final Scanner scanner = new Scanner(System.in);
 
     public List<String> requestParticipantsName() {
@@ -36,9 +40,12 @@ public class InputView {
         }
     }
 
-    public List<String> requestResultInterestedPeople() {
+    public List<String> requestResultInterestedPeople(List<ParticipantName> participantNames) {
         System.out.println("결과를 보고 싶은 사람은?");
         String input = scanner.nextLine();
+        if (Objects.equals(input, ALL_PARTICIPANTS)) {
+            return participantNames.stream().map(ParticipantName::name).toList();
+        }
         return removeBlank(splitName(input));
     }
 

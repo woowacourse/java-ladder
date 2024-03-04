@@ -2,7 +2,6 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import model.ExecutionResult;
@@ -18,8 +17,6 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderController {
-    private final static String ALL_PARTICIPANTS = "all";
-
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -69,17 +66,8 @@ public class LadderController {
         List<String> formattedParticipantsName = participantsNames.stream()
                 .map(ParticipantName::name)
                 .toList();
-        List<String> resultInterestedPeople = fetchAllParticipants(inputView.requestResultInterestedPeople(),
-                formattedParticipantsName);
+        List<String> resultInterestedPeople = inputView.requestResultInterestedPeople(participantsNames);
         return new ResultInterestedPeople(resultInterestedPeople, formattedParticipantsName);
-    }
-
-    private List<String> fetchAllParticipants(List<String> inputResultInterestedPeople,
-                                              List<String> formattedParticipantsName) {
-        if (Objects.equals(inputResultInterestedPeople.get(0), ALL_PARTICIPANTS)) {
-            inputResultInterestedPeople = formattedParticipantsName;
-        }
-        return inputResultInterestedPeople;
     }
 
     private <T> T repeatUntilSuccess(Supplier<T> supplier) {
