@@ -13,8 +13,8 @@ import model.prize.Prizes;
 
 public class OutputView {
 
-    private static final String LADDER_RESULT_INTRO = "\n사다리 결과\n";
-    private static final String GAME_RESULT_INTRO = "\n실행 결과";
+    private static final String LADDER_RESULT_INTRO = "사다리 결과";
+    private static final String GAME_RESULT_INTRO = "실행 결과";
     private static final int BRIDGE_LENGTH = 5;
     private static final String NAMES_FORMAT = "%" + BRIDGE_LENGTH + "s";
     private static final String NAMES_DELIMITER = " ";
@@ -22,15 +22,16 @@ public class OutputView {
     private static final String IS_UNCONNECTED_BRIDGE = " ";
     private static final String BRIDGE_DELIMITER = "|";
     private static final String BRIDGE_PREFIX = "    |";
-    private static final String GAME_RESULT_FORMAT = "%s : %s\n";
+    private static final String GAME_RESULT_FORMAT = "%s : %s";
     private static final String EXCEPTION_PREFIX = "[ERROR] ";
     private static final String SEARCH_ALL = "all";
+    private static final String NEWLINE = System.lineSeparator();
 
     private OutputView() {
     }
 
     public static void printLadderResult(Players players, Ladder ladder, Prizes prizes) {
-        System.out.println(LADDER_RESULT_INTRO);
+        System.out.println(NEWLINE + LADDER_RESULT_INTRO + NEWLINE);
         printPlayerNames(players);
         printLadder(ladder);
         printPrizeNames(prizes);
@@ -81,20 +82,19 @@ public class OutputView {
     }
 
     private static void printGameResultAll(GameResult gameResult) {
-        System.out.println(GAME_RESULT_INTRO);
+        System.out.println(NEWLINE + GAME_RESULT_INTRO);
         gameResult.getPlayers()
             .forEach(player -> printPlayerAndPrize(gameResult, player));
     }
 
     private static void printPlayerAndPrize(GameResult gameResult, Player player) {
         Prize prize = gameResult.findPrizeByPlayer(player);
-        System.out.printf(GAME_RESULT_FORMAT, player.name(), prize.getName());
+        System.out.printf(GAME_RESULT_FORMAT + NEWLINE, player.name(), prize.getName());
     }
 
     private static void printGameResult(String playerName, GameResult gameResult) {
         Prize prize = gameResult.findPrizeByPlayerName(playerName);
-        System.out.println(GAME_RESULT_INTRO);
-        System.out.println(prize.getName());
+        System.out.println(NEWLINE + GAME_RESULT_INTRO + NEWLINE + prize.getName());
     }
 
     public static void printExceptionMessage(String message) {
