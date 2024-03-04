@@ -13,12 +13,12 @@ import ladder.domain.reward.Rewards;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
-public class Controller {
+public class LadderGameRunner {
 
     private final InputView inputView;
     private final ResultView resultView;
 
-    public Controller(final InputView inputView, final ResultView resultView) {
+    public LadderGameRunner(final InputView inputView, final ResultView resultView) {
         this.inputView = inputView;
         this.resultView = resultView;
     }

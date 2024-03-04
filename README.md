@@ -89,7 +89,7 @@ pobi  honux crong   jk
 - [X] LadderLevel -> LadderRow 이름 변경(readme 또한)
 - [X] Players 검증 로직 병합
 - [X] InputView 로직 개선(들여쓰기, 메서드 줄 길이)
-- [X] controller 메서드 길이 줄이기
+- [X] ladderGameRunner 메서드 길이 줄이기
 - [X] 전체 결과를 저장하는 객체 추가
 - [X] `InputView.inputPlayerFrom() → InputView.inputPlayerOrAll()`
 - [X] `Players.forEach()` 파라미터에 `final` 키워드 추가

@@ -1,16 +1,16 @@
 package ladder;
 
-import ladder.controller.Controller;
+import ladder.controller.LadderGameRunner;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 import ladder.view.exception.ExceptionHandler;
 
 public class Application {
     public static void main(String[] args) {
-        Controller controller = new Controller(
+        LadderGameRunner ladderGameRunner = new LadderGameRunner(
                 new InputView(new ExceptionHandler()),
                 new ResultView()
         );
-        controller.run();
+        ladderGameRunner.run();
     }
 }
