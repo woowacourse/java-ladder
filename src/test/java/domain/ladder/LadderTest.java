@@ -5,7 +5,9 @@ import static fixture.PrizesFixture.상품들;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import domain.player.Player;
 import domain.player.Players;
+import domain.prize.Prize;
 import domain.prize.Prizes;
 import java.util.List;
 import java.util.Map;
@@ -51,13 +53,13 @@ public class LadderTest {
         LadderResult ladderResult = ladder.climb(players, prizes);
 
         // then
-        Map<String, String> results = ladderResult.getAllResults();
+        Map<Player, Prize> results = ladderResult.getAllResults();
         assertAll(
-                () -> assertThat(results.get("프린")).isEqualTo("300"),
-                () -> assertThat(results.get("땡이")).isEqualTo("꽝"),
-                () -> assertThat(results.get("포비")).isEqualTo("1000"),
-                () -> assertThat(results.get("토미")).isEqualTo("100"),
-                () -> assertThat(results.get("네오")).isEqualTo("500")
+                () -> assertThat(results.get(new Player("프린")).getName()).isEqualTo("300"),
+                () -> assertThat(results.get(new Player("땡이")).getName()).isEqualTo("꽝"),
+                () -> assertThat(results.get(new Player("포비")).getName()).isEqualTo("1000"),
+                () -> assertThat(results.get(new Player("토미")).getName()).isEqualTo("100"),
+                () -> assertThat(results.get(new Player("네오")).getName()).isEqualTo("500")
         );
     }
 }

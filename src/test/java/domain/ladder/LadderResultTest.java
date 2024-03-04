@@ -33,9 +33,9 @@ class LadderResultTest {
         LadderResult ladderResult = new LadderResult(results);
 
         // when
-        String prizeName = ladderResult.findPrizeByPlayerName("프린");
+        Prize prize = ladderResult.findPrizeByPlayerName("프린");
 
         // then
-        assertThat(prizeName).isEqualTo("100");
+        assertThat(prize.getName()).isEqualTo("100");
     }
 }

@@ -3,7 +3,9 @@ package view;
 import domain.ladder.Connection;
 import domain.ladder.Floor;
 import domain.ladder.Ladder;
+import domain.player.Player;
 import domain.player.Players;
+import domain.prize.Prize;
 import domain.prize.Prizes;
 import java.util.List;
 import java.util.Map;
@@ -74,14 +76,14 @@ public class OutputView {
         System.out.println(e.getMessage());
     }
 
-    public static void printSinglePlayerResult(String prize) {
+    public static void printSinglePlayerResult(Prize prize) {
         System.out.println("실행 결과");
-        System.out.println(prize);
+        System.out.println(prize.getName());
         System.out.println();
     }
 
-    public static void printAllPlayerResult(Map<String, String> results) {
+    public static void printAllPlayerResult(Map<Player, Prize> results) {
         System.out.println("실행 결과");
-        results.forEach((name, prize) -> System.out.printf("%s : %s%n", name, prize));
+        results.forEach((player, prize) -> System.out.printf("%s : %s%n", player.getName(), prize.getName()));
     }
 }
