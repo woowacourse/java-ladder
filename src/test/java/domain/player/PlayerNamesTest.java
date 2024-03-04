@@ -8,7 +8,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class NamesTest {
+class PlayerNamesTest {
     @Test
     @DisplayName("이름 목록을 포함한 일급 컬렉션을 만든다.")
     void createNames() {
@@ -16,10 +16,10 @@ class NamesTest {
         List<String> value = List.of("도비", "조이썬");
 
         // When
-        Names names = new Names(value);
+        PlayerNames playerNames = new PlayerNames(value);
 
         // Then
-        assertInstanceOf(Names.class, names);
+        assertInstanceOf(PlayerNames.class, playerNames);
     }
 
     @Test
@@ -28,13 +28,13 @@ class NamesTest {
 
         List<String> value = List.of("도비", "도비", "조이썬");
 
-        assertThrows(IllegalArgumentException.class, () -> new Names(value));
+        assertThrows(IllegalArgumentException.class, () -> new PlayerNames(value));
     }
 
     @Test
     @DisplayName("2명 미만의 이름이 포함된 목록은 예외를 발생한다.")
     void throwExceptionWhenNameInputLessThanTwo() {
         List<String> value = List.of("도비");
-        assertThrows(IllegalArgumentException.class, () -> new Names(value));
+        assertThrows(IllegalArgumentException.class, () -> new PlayerNames(value));
     }
 }

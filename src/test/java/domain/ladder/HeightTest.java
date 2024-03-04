@@ -19,7 +19,7 @@ class HeightTest {
 
         Height height = new Height(value);
 
-        assertEquals(height.toInt(), Integer.parseInt(value));
+        assertEquals(height.getValue(), Integer.parseInt(value));
     }
 
     @Test
@@ -29,7 +29,6 @@ class HeightTest {
         String value = "five";
 
         assertThrows(IllegalArgumentException.class, () -> new Height(value));
-
     }
 
     @ParameterizedTest

@@ -1,13 +1,8 @@
 package domain.player;
 
-public class Player {
-    private final Name name;
+public record Player(PlayerName playerName) {
 
-    public Player(final Name name) {
-        this.name = name;
-    }
-
-    public Name getName() {
-        return name;
+    public boolean hasSamePlayerName(PlayerName targetPlayerName) {
+        return this.playerName.equals(targetPlayerName);
     }
 }

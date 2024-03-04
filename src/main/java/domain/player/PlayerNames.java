@@ -1,22 +1,23 @@
 package domain.player;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Names {
+public class PlayerNames {
     private static final Integer MINIMUM_SIZE = 2;
-    private final List<Name> names;
+    private final List<PlayerName> playerNames;
 
-    public Names(List<String> names) {
+    public PlayerNames(List<String> names) {
         validate(names);
-        this.names = fromNameStrings(names);
+        this.playerNames = fromNameStrings(names);
     }
 
-    private List<Name> fromNameStrings(List<String> names) {
+    private List<PlayerName> fromNameStrings(List<String> names) {
         return names.stream()
-                    .map(Name::new)
-                    .toList();
+                .map(PlayerName::new)
+                .toList();
     }
 
     private void validate(List<String> names) {
@@ -37,7 +38,7 @@ public class Names {
         }
     }
 
-    public List<Name> getValue() {
-        return names;
+    public List<PlayerName> getValue() {
+        return Collections.unmodifiableList(playerNames);
     }
 }

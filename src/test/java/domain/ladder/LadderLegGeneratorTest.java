@@ -30,7 +30,7 @@ class LadderLegGeneratorTest {
 
         LadderLeg ladderLeg = ladder.generateDownLadderLeg();
 
-        for (int i = 0; i < height.toInt(); i++) {
+        for (int i = 0; i < height.getValue(); i++) {
             assertEquals(Direction.DOWN, ladderLeg.getDirectionAtIndex(i));
         }
     }

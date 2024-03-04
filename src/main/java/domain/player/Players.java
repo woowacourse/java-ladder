@@ -5,18 +5,31 @@ import java.util.List;
 public class Players {
     private final List<Player> players;
 
-    public Players(Names names) {
-        this.players = names.getValue()
-                            .stream()
-                            .map(Player::new)
-                            .toList();
+    public Players(PlayerNames playerNames) {
+        this.players = playerNames.getValue()
+                .stream()
+                .map(Player::new)
+                .toList();
     }
-    public List<Name> getPlayerNames() {
+
+    public Player searchPlayer(PlayerName targetPlayerPlayerName) {
         return players.stream()
-                      .map(Player::getName)
-                      .toList();
+                .filter(player -> player.hasSamePlayerName(targetPlayerPlayerName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어입니다."));
     }
-    public int getPlayerCount(){
+
+    public PlayerName getPlayerNameAtStartingIndex(int value) {
+        return getPlayerNames().get(value);
+    }
+
+    public List<PlayerName> getPlayerNames() {
+        return players.stream()
+                .map(Player::playerName)
+                .toList();
+    }
+
+    public int getPlayerCount() {
         return players.size();
     }
 

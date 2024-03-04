@@ -2,10 +2,9 @@ package domain.ladder;
 
 import domain.ladder.attirbute.Direction;
 import domain.ladder.attirbute.Height;
-import util.DirectionGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
+import util.DirectionGenerator;
 
 public class Ladder {
     private final int width;
@@ -32,20 +31,56 @@ public class Ladder {
         return generatedLadderLegs;
     }
 
-    public List<Direction> getDirectionAtHorizontalIndex(int index) {
-        validateIndex(index);
-        return ladderLegs.stream()
-                         .map(ladderLeg -> ladderLeg.getDirectionAtIndex(index))
-                         .toList();
+
+    public int moveCoordinateToResultPoint(int x, int y) {
+        if (isReachResultPoint(y)) {
+            return x;
+        }
+        Direction currentDirection = getDirectionOfLadderLegPieceAtSpecificCoordinate(x, y);
+        if (currentDirection.equals(Direction.RIGHT)) {
+            return moveCoordinateToResultPoint(x + 1, y + 1);
+        }
+        if (currentDirection.equals(Direction.LEFT)) {
+            return moveCoordinateToResultPoint(x - 1, y + 1);
+        }
+        return moveCoordinateToResultPoint(x, y + 1);
     }
 
-    private void validateIndex(int index) {
+    private Direction getDirectionOfLadderLegPieceAtSpecificCoordinate(int x, int y) {
+        validateCoordinate(x, y);
+        return ladderLegs.get(x)
+                .getDirectionAtIndex(y);
+    }
+
+    private boolean isReachResultPoint(int y) {
+        return y == height.getValue();
+    }
+
+    public List<Direction> getDirectionsAtHorizontalIndex(int index) {
+        validateVerticalIndex(index);
+        return ladderLegs.stream()
+                .map(ladderLeg -> ladderLeg.getDirectionAtIndex(index))
+                .toList();
+    }
+
+    private void validateCoordinate(int x, int y) {
+        validateHorizontalIndex(x);
+        validateVerticalIndex(y);
+    }
+
+    private void validateHorizontalIndex(int index) {
         if (index < 0 || index >= this.width) {
             throw new IllegalArgumentException("존재하지 않은 LadderLeg를 조회하였습니다.");
         }
     }
 
+    private void validateVerticalIndex(int index) {
+        if (index < 0 || index >= this.height.getValue()) {
+            throw new IllegalArgumentException("존재하지 않은 LadderLegPiece를 조회하였습니다.");
+        }
+    }
+
     public int getHeight() {
-        return height.toInt();
+        return height.getValue();
     }
 }

@@ -9,7 +9,7 @@ public class FixedDirectionGenerator implements DirectionGenerator {
     private final List<Direction> fixedList;
     private int index = 0;
 
-    FixedDirectionGenerator(List<Direction> fixedList) {
+    public FixedDirectionGenerator(List<Direction> fixedList) {
         this.fixedList = fixedList;
     }
 
