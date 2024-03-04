@@ -3,12 +3,10 @@ package view.formatter;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import dto.ResultDto;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import org.junit.jupiter.api.Test;
 
-class ResultsDtoFormatterTest {
+class ResultDtosFormatterTest {
     @Test
     void format() {
         List<ResultDto> resultDtos = List.of(
@@ -18,8 +16,8 @@ class ResultsDtoFormatterTest {
                 new ResultDto("jk", "5000")
         );
 
-        ResultFormatter resultFormatter = new ResultFormatter();
-        assertThat(resultFormatter.format(resultDtos)).isEqualTo(
+        ResultDtosFormatter resultDtosFormatter = new ResultDtosFormatter();
+        assertThat(resultDtosFormatter.format(resultDtos)).isEqualTo(
                 "pobi : 꽝\n"
                         + "honux : 3000\n"
                         + "crong : 꽝\n"

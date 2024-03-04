@@ -3,7 +3,7 @@ package view.formatter;
 import dto.ResultDto;
 import java.util.List;
 
-public class ResultFormatter {
+public class ResultDtosFormatter {
 
     public static String format(final List<ResultDto> resultDtos) {
         StringBuilder formattedResult = new StringBuilder();
