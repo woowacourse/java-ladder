@@ -177,3 +177,10 @@ resultPositions   1    0    3    2    4
 - 불필요한 toString() 삭제
 - test 코드 최적화
 
+### 2단계 - 3차 리팩터링 개선사안
+- RowLine : 예측가능한 메서드명으로 rename(checkRightPosition > canMoveRightPosition)
+- LadderController : printPlayerResult를 예측가능한 메서드 getPlayerName으로 변경
+- Prize : Position을 통한 비교검증 책임 이전 (Prizes > Prize)
+- Player : 이름을 통한 비교검증 책임 이전 (Players > Player)
+- test : 전반적인 오류 fix
+- test : assertAll로 복수검증 감싸기
