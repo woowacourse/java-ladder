@@ -11,4 +11,12 @@ public class Result {
         this.person = person;
         this.item = item;
     }
+
+    public boolean isSamePerson(Person person) {
+        return this.person.equals(person);
+    }
+
+    public Item getItem() {
+        return this.item;
+    }
 }
