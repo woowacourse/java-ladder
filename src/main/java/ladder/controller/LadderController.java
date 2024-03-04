@@ -77,12 +77,8 @@ public class LadderController {
     }
 
     private Height readHeight() {
-        try {
-            int height = inputView.readHeight();
-            return new Height(height);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("사다리 높이는 숫자입니다.");
-        }
+        int height = inputView.readHeight();
+        return new Height(height);
     }
 
     private Name createName() {

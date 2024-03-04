@@ -18,8 +18,12 @@ public class InputView {
     }
 
     public int readHeight() {
-        out.println(lineSeparator() + "최대 사다리 높이는 몇 개인가요?");
-        return Integer.parseInt(scanner.nextLine());
+        try {
+            out.println(lineSeparator() + "최대 사다리 높이는 몇 개인가요?");
+            return Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("사다리 높이는 숫자입니다.");
+        }
     }
 
     public List<String> readResults() {
