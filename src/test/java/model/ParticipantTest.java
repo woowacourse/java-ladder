@@ -13,8 +13,8 @@ class ParticipantTest {
     @DisplayName("참여할 사람의 이름은 5자를 초과할 수 없다.")
     @Test
     void validateNameLength() {
-        String given = "123456";
-        assertThatThrownBy(() -> new Participant(given))
+        String nameOutOfRange = "123456";
+        assertThatThrownBy(() -> new Participant(nameOutOfRange))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -22,8 +22,8 @@ class ParticipantTest {
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {"\t", "\n"})
-    void validateNameNotNullAndNotBlank(String given) {
-        assertThatThrownBy(() -> new Participant(given))
+    void validateNameNotNullAndNotBlank(String emptyOrBlankName) {
+        assertThatThrownBy(() -> new Participant(emptyOrBlankName))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

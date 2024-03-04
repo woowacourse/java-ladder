@@ -12,8 +12,8 @@ class PrizeTest {
     @DisplayName("당첨 프라이즈 이름은 5자를 초과할 수 없다.")
     @Test
     void validateNameLength() {
-        String given = "123456";
-        assertThatThrownBy(() -> new Prize(given))
+        String nameOutOfRange = "123456";
+        assertThatThrownBy(() -> new Prize(nameOutOfRange))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -21,8 +21,8 @@ class PrizeTest {
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {"\t", "\n"})
-    void validateNameNotNullAndNotBlank(String given) {
-        assertThatThrownBy(() -> new Prize(given))
+    void validateNameNotNullAndNotBlank(String emptyOrBlankName) {
+        assertThatThrownBy(() -> new Prize(emptyOrBlankName))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

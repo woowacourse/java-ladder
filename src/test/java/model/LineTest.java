@@ -27,14 +27,14 @@ public class LineTest {
     @DisplayName("이전 상태가 START가 아닐 경우 현재 상태는 true면 START false면 NONE이다.")
     @ParameterizedTest
     @CsvSource(value = {"true,START", "false,NONE"})
-    void initializeLineStateWhenBeforeStateNotStart(boolean given, LineState expected) {
-        List<Boolean> determineLungExists = List.of(false, given, false);
+    void initializeLineStateWhenBeforeStateNotStart(boolean givenDecision, LineState expectedState) {
+        List<Boolean> determineLungExists = List.of(false, givenDecision, false);
         Line line = new Line(determineLungExists);
 
         List<LineState> lineStates = line.getLineStates();
         LineState lineState = lineStates.get(1);
 
-        assertThat(lineState).isEqualTo(expected);
+        assertThat(lineState).isEqualTo(expectedState);
     }
 
     @DisplayName("라인의 state가 START이면 위치를 오른쪽으로 1칸 이동한다.")

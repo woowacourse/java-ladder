@@ -13,51 +13,51 @@ class ParticipantsTest {
     @DisplayName("Participants 객체에 null 값이 입력되면 예외가 발생한다")
     @Test
     void validateParticipantsSizeWhenNull() {
-        List<Participant> given = null;
-        assertThatThrownBy(() -> new Participants(given))
+        List<Participant> emptyInput = null;
+        assertThatThrownBy(() -> new Participants(emptyInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("Participants 객체에 참여자 수가 0명이면 예외가 발생한다")
     @Test
     void validateParticipantsSizeWhenZero() {
-        List<Participant> given = List.of();
-        assertThatThrownBy(() -> new Participants(given))
+        List<Participant> blankInput = List.of();
+        assertThatThrownBy(() -> new Participants(blankInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("Participants 객체에 참여자 수가 1명이면 예외가 발생한다.")
     @Test
     void validateParticipantsSizeWhenOne() {
-        List<Participant> given = List.of(
+        List<Participant> InputOutOfRange = List.of(
                 new Participant("daon")
         );
-        assertThatThrownBy(() -> new Participants(given))
+        assertThatThrownBy(() -> new Participants(InputOutOfRange))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("전체 참여자 수를 반환한다.")
     @Test
     void getParticipantsSize() {
-        List<Participant> given = List.of(
+        List<Participant> entireParticipants = List.of(
                 new Participant("daon"),
                 new Participant("ash")
         );
-        Participants participants = new Participants(given);
+        Participants participants = new Participants(entireParticipants);
         int result = participants.getSize();
 
-        assertThat(result).isEqualTo(given.size());
+        assertThat(result).isEqualTo(entireParticipants.size());
     }
 
     @DisplayName("참여자 중 중복되는 이름이 있다면 예외를 반환한다.")
     @Test
     void validateDuplicatedParticipant() {
-        List<Participant> given = List.of(
+        List<Participant> entireParticipants = List.of(
                 new Participant("daon"),
                 new Participant("daon")
         );
 
-        assertThatThrownBy(() -> new Participants(given))
+        assertThatThrownBy(() -> new Participants(entireParticipants))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
