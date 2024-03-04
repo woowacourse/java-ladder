@@ -1,10 +1,5 @@
 package laddergame.domain;
 
-import laddergame.domain.strategy.FindDirectionStrategy;
-import laddergame.domain.strategy.FirstLineDirection;
-import laddergame.domain.strategy.LastLineDirection;
-import laddergame.domain.strategy.MiddleLineDirection;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -21,15 +16,35 @@ public class Line {
 
     public Direction findDirection(int index) {
         if (index == 0) {
-            return applyStrategy(new FirstLineDirection(), Rung.EMPTY, rungs.get(index));
+            findFirstIndexDirection(rungs.get(index));
         }
         if (index == rungs.size()) {
-            return applyStrategy(new LastLineDirection(), rungs.get(index - 1), Rung.EMPTY);
+            return findLastIndexDirection(rungs.get(index - 1));
         }
-        return applyStrategy(new MiddleLineDirection(), rungs.get(index - 1), rungs.get(index));
+        return findMiddleIndexDirection(rungs.get(index - 1), rungs.get(index));
     }
 
-    private Direction applyStrategy(FindDirectionStrategy findDirectionStrategy, Rung leftRung, Rung rightRung) {
-        return findDirectionStrategy.nextDirection(leftRung, rightRung);
+    private Direction findFirstIndexDirection(Rung rightRung) {
+        if (rightRung.equals(Rung.BRIDGE)) {
+            return Direction.RIGHT;
+        }
+        return Direction.DOWN;
+    }
+
+    private Direction findLastIndexDirection(Rung leftRung) {
+        if (leftRung.equals(Rung.BRIDGE)) {
+            return Direction.LEFT;
+        }
+        return Direction.DOWN;
+    }
+
+    private Direction findMiddleIndexDirection(Rung leftRung, Rung rightRung) {
+        if (leftRung.equals(Rung.BRIDGE)) {
+            return Direction.LEFT;
+        }
+        if (rightRung.equals(Rung.BRIDGE)) {
+            return Direction.RIGHT;
+        }
+        return Direction.DOWN;
     }
 }
