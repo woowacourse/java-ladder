@@ -28,7 +28,7 @@ public class LadderGame {
 
     public LadderGameResult play() {
         Map<Player, Reward> result = new LinkedHashMap<>();
-        players.players().forEach(player -> {
+        players.forEach(player -> {
             LadderPosition start = new LadderPosition(players.orderOf(player));
             LadderPosition end = ladder.climbDownFrom(start);
             result.put(player, rewards.get(end.column()));

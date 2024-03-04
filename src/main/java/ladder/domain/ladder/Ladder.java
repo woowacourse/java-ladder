@@ -27,7 +27,8 @@ public class Ladder {
     }
 
     private LadderDirection getLadderDirection(final int row, final int column) {
-        return ladder.get(row).getLadderDirection(column);
+        LadderRow ladderRow = ladder.get(row);
+        return ladderRow.getLadderDirection(column);
     }
 
     public List<LadderRow> getLadderRows() {
