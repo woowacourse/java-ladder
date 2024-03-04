@@ -2,6 +2,7 @@ package model;
 
 public class Prize {
     private static final int MAX_LIMIT = 5;
+
     private final String prizeName;
 
     public Prize(String prizeName) {

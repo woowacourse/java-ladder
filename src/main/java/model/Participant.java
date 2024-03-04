@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Participant {
     private static final int MAX_LENGTH = 5;
+
     private final String name;
 
     public Participant(final String name) {
