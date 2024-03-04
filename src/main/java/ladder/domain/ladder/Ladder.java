@@ -18,17 +18,21 @@ public class Ladder {
     }
 
     public LadderPosition climbDownFrom(final LadderPosition ladderPosition) {
-        if (ladderPosition.row() == ladder.size()) {
+        if (isLastRow(ladderPosition)) {
             return ladderPosition;
         }
-        LadderDirection direction = getLadderDirection(ladderPosition.row(), ladderPosition.column());
+        LadderDirection direction = getLadderDirectionAt(ladderPosition);
         LadderPosition nextLadderPosition = ladderPosition.next(direction);
         return climbDownFrom(nextLadderPosition);
     }
 
-    private LadderDirection getLadderDirection(final int row, final int column) {
-        LadderRow ladderRow = ladder.get(row);
-        return ladderRow.getLadderDirection(column);
+    private boolean isLastRow(final LadderPosition ladderPosition) {
+        return ladderPosition.row() == ladder.size();
+    }
+
+    private LadderDirection getLadderDirectionAt(final LadderPosition ladderPosition) {
+        LadderRow ladderRow = ladder.get(ladderPosition.row());
+        return ladderRow.getLadderDirection(ladderPosition.column());
     }
 
     public List<LadderRow> getLadderRows() {
