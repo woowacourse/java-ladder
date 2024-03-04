@@ -8,7 +8,7 @@ public class Formatter {
     private Formatter() {
     }
 
-    public static String formatPlayers(List<String> names) {
+    public static String formatNames(List<String> names) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(names.get(0)).append(" ");
         for (String name : names.subList(1, names.size() - 1)) {

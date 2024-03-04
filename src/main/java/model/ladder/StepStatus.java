@@ -11,4 +11,8 @@ public enum StepStatus {
         }
         return DISCONNECTED;
     }
+
+    public boolean isMatched(StepStatus stepStatus) {
+        return equals(stepStatus);
+    }
 }

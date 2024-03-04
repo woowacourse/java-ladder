@@ -1,9 +1,6 @@
-package model;
+package model.ladder;
 
-import model.ladder.Height;
-import model.ladder.Ladder;
-import model.ladder.RandomStatusGenerator;
-import model.ladder.Width;
+import model.ladder.generator.RandomStatusGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

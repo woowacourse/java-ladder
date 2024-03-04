@@ -1,6 +1,10 @@
 package model.ladder;
 
+import static model.ladder.StepStatus.CONNECTED;
+import static model.ladder.StepStatus.DISCONNECTED;
+
 import java.util.Objects;
+import model.ladder.generator.StepStatusGenerator;
 
 public class Step {
     private final StepStatus stepStatus;
@@ -14,11 +18,12 @@ public class Step {
         return new Step(stepStatus);
     }
 
-    private static StepStatus createStepStatus(final Step previous, final StepStatusGenerator stepStatusGenerator) {
+    private static StepStatus createStepStatus(final Step previous,
+                                               final StepStatusGenerator stepStatusGenerator) {
         if (isNotOverlapped(previous)) {
             return stepStatusGenerator.generate();
         }
-        return StepStatus.DISCONNECTED;
+        return DISCONNECTED;
     }
 
     private static boolean isNotOverlapped(final Step previous) {
@@ -30,15 +35,15 @@ public class Step {
     }
 
     public boolean isEmpty() {
-        return stepStatus.equals(StepStatus.EMPTY);
-    }
-
-    public boolean isConnected() {
-        return stepStatus.equals(StepStatus.CONNECTED);
+        return stepStatus.isMatched(StepStatus.EMPTY);
     }
 
     public boolean isDisconnected() {
-        return stepStatus.equals(StepStatus.DISCONNECTED);
+        return stepStatus.isMatched(DISCONNECTED);
+    }
+
+    public boolean isConnected() {
+        return stepStatus.isMatched(CONNECTED);
     }
 
     @Override
@@ -56,5 +61,9 @@ public class Step {
     @Override
     public int hashCode() {
         return Objects.hash(stepStatus);
+    }
+
+    public StepStatus getStatus() {
+        return stepStatus;
     }
 }

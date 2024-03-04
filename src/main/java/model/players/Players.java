@@ -1,9 +1,10 @@
 package model.players;
 
-import exception.Message;
+import static exception.Message.INVALID_PLAYER_ERROR;
+
 import java.util.List;
 import java.util.Set;
-import model.ladder.Width;
+import java.util.stream.IntStream;
 
 public class Players {
 
@@ -12,29 +13,8 @@ public class Players {
     private final List<Player> players;
 
     public Players(List<String> players) {
-        validate(players);
+        Validator.validate(players);
         this.players = convert(players);
-    }
-
-    private void validate(List<String> players) {
-        validateSize(players);
-        validateDuplicates(players);
-    }
-
-    private void validateSize(List<String> players) {
-        if (players.size() < MIN_PLAYERS) {
-            throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
-        }
-    }
-
-    private void validateDuplicates(List<String> players) {
-        if (isDuplicated(players)) {
-            throw new IllegalArgumentException(Message.INVALID_PLAYER_ERROR.getMessage());
-        }
-    }
-
-    private boolean isDuplicated(List<String> players) {
-        return Set.copyOf(players).size() != players.size();
     }
 
     private List<Player> convert(List<String> players) {
@@ -43,17 +23,55 @@ public class Players {
                 .toList();
     }
 
-    public Width getWidth() {
-        return new Width(size());
-    }
-
     public List<String> getNames() {
         return players.stream()
                 .map(Player::getName)
                 .toList();
     }
 
+    public Position findPositionByName(final String name) {
+        return IntStream.range(0, players.size())
+                .filter(index -> isPlayerNameMatch(name, index))
+                .mapToObj(Position::new)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_PLAYER_ERROR.getMessage()));
+    }
+
+    private boolean isPlayerNameMatch(final String name, final int index) {
+        return players.get(index).getName().equals(name);
+    }
+
+    public Player findByName(final String name) {
+        return players.stream()
+                .filter(player -> player.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_PLAYER_ERROR.getMessage()));
+    }
+
     public int size() {
         return players.size();
+    }
+
+    private static class Validator {
+        public static void validate(List<String> players) {
+            validateSize(players);
+            validateDuplicates(players);
+        }
+
+        private static void validateSize(List<String> players) {
+            if (players.size() < MIN_PLAYERS) {
+                throw new IllegalArgumentException(INVALID_PLAYER_ERROR.getMessage());
+            }
+        }
+
+        private static void validateDuplicates(List<String> players) {
+            if (isDuplicated(players)) {
+                throw new IllegalArgumentException(INVALID_PLAYER_ERROR.getMessage());
+            }
+        }
+
+        private static boolean isDuplicated(List<String> players) {
+            return Set.copyOf(players).size() != players.size();
+        }
     }
 }
