@@ -24,17 +24,17 @@ public class LadderResult {
     }
 
     private static List<Integer> initialize(Ladder ladder) {
-        int resultSize = ladder.getWidth() + RESULT_OFFSET;
+        int resultSize = ladder.width() + RESULT_OFFSET;
         return IntStream.range(0, resultSize)
             .boxed()
             .collect(toList());
     }
 
-    public int getSize() {
-        return values.size();
+    public int findValue(int index) {
+        return values.get(index);
     }
 
-    public int getValue(int index) {
-        return values.get(index);
+    public int size() {
+        return values.size();
     }
 }

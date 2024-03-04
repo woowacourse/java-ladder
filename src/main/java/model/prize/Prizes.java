@@ -24,7 +24,7 @@ public class Prizes {
     }
 
     private static void validatePrizeNamesSize(List<String> prizeNames, Players players) {
-        if (prizeNames.size() != players.getSize()) {
+        if (prizeNames.size() != players.size()) {
             throw new IllegalArgumentException(INVALID_PRIZES_SIZE);
         }
     }

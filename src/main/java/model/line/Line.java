@@ -69,11 +69,11 @@ public class Line {
         return position > 0;
     }
 
-    public List<Bridge> getBridges() {
-        return bridges;
+    public int size() {
+        return bridges.size();
     }
 
-    public int getSize() {
-        return bridges.size();
+    public List<Bridge> getBridges() {
+        return bridges;
     }
 }

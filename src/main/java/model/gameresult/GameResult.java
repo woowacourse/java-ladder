@@ -21,8 +21,8 @@ public class GameResult {
 
     public static GameResult of(LadderResult ladderResult, Players players, Prizes prizes) {
         Map<Player, Prize> result = new HashMap<>();
-        for (int start = 0; start < ladderResult.getSize(); start++) {
-            int end = ladderResult.getValue(start);
+        for (int start = 0; start < ladderResult.size(); start++) {
+            int end = ladderResult.findValue(start);
             result.put(players.findPlayer(start), prizes.findPrize(end));
         }
         return new GameResult(result);

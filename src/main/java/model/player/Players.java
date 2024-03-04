@@ -48,13 +48,13 @@ public class Players {
         return players.get(index);
     }
 
+    public int size() {
+        return players.size();
+    }
+
     public List<String> getNames() {
         return players.stream()
             .map(Player::name)
             .toList();
-    }
-
-    public int getSize() {
-        return players.size();
     }
 }

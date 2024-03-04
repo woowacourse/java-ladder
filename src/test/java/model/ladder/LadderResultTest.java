@@ -19,10 +19,10 @@ class LadderResultTest {
         LadderResult ladderResult = LadderResult.from(ladder);
 
         assertAll(
-            () -> assertEquals(ladderResult.getValue(0), 3),
-            () -> assertEquals(ladderResult.getValue(1), 0),
-            () -> assertEquals(ladderResult.getValue(2), 1),
-            () -> assertEquals(ladderResult.getValue(3), 2)
+            () -> assertEquals(ladderResult.findValue(0), 3),
+            () -> assertEquals(ladderResult.findValue(1), 0),
+            () -> assertEquals(ladderResult.findValue(2), 1),
+            () -> assertEquals(ladderResult.findValue(3), 2)
         );
     }
 

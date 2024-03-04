@@ -23,7 +23,7 @@ public class LadderGameController {
     }
 
     private GameResult executeGame(Players players, LadderHeight ladderHeight, Prizes prizes) {
-        LadderWidth ladderWidth = LadderWidth.from(players.getSize());
+        LadderWidth ladderWidth = LadderWidth.from(players.size());
         Ladder ladder = RandomLadderGenerator.generateLadder(ladderHeight, ladderWidth);
 
         OutputView.printLadderResult(players, ladder, prizes);
