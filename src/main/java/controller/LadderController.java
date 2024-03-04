@@ -1,6 +1,5 @@
 package controller;
 
-import handler.ExceptionHandler;
 import java.util.Arrays;
 import model.Ladder;
 import model.LadderGame;
