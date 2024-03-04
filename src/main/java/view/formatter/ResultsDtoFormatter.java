@@ -1,13 +1,12 @@
 package view.formatter;
 
-import dto.ResultDto;
-import java.util.List;
+import dto.ResultsDto;
 
-public class ResultDtosFormatter {
+public class ResultsDtoFormatter {
 
-    public static String format(final List<ResultDto> resultDtos) {
+    public static String format(final ResultsDto resultsDto) {
         StringBuilder formattedResult = new StringBuilder();
-        resultDtos.forEach(resultDto -> formattedResult.append(resultDto.personName())
+        resultsDto.personAndItemName().forEach(resultDto -> formattedResult.append(resultDto.personName())
                 .append(" : ")
                 .append(resultDto.itemName())
                 .append("\n")

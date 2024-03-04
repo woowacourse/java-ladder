@@ -1,13 +1,12 @@
 package view;
 
 import dto.LineDto;
-import dto.ResultDto;
 import dto.ResultsDto;
 import view.formatter.ItemsFormatter;
 import view.formatter.LineDtoFormatter;
 import view.formatter.NamesFormatter;
 import java.util.List;
-import view.formatter.ResultDtosFormatter;
+import view.formatter.ResultsDtoFormatter;
 
 public class OutputView {
     public void printLadderResultDescription() {
@@ -38,7 +37,6 @@ public class OutputView {
     public void printAllResult(final ResultsDto resultsDto) {
         System.out.println();
         System.out.println("실행 결과");
-        List<ResultDto> resultDtos = resultsDto.personAndItemName();
-        System.out.println(ResultDtosFormatter.format(resultDtos));
+        System.out.println(ResultsDtoFormatter.format(resultsDto));
     }
 }
