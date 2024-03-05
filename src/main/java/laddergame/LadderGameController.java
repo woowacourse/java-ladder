@@ -13,7 +13,6 @@ public class LadderGameController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private boolean isRun = true;
 
     public void run() {
         Players players = retryUntilValidated(() -> new Players(inputView.readPlayersName()));
@@ -23,8 +22,9 @@ public class LadderGameController {
         Ladder ladder = new Ladder(lineBuilder, height);
         PlayersResult playersResult = executeLadderGame(players, ladder);
 
+        boolean isRun = true;
         while (isRun) {
-            retryUntilValidated(() -> showItemByInputName(playersResult));
+            isRun = retryUntilValidated(() -> showItemByInputNameAndRun(playersResult));
         }
     }
 
@@ -36,15 +36,15 @@ public class LadderGameController {
         return ladderGame.climbLadder();
     }
 
-    private void showItemByInputName(PlayersResult playersResult) {
+    private boolean showItemByInputNameAndRun(PlayersResult playersResult) {
         String name = inputView.readPlayerNameWantToSeeResult();
         if (name.equals(WANT_TO_SEE_ALL_RESULT)) {
             outputView.writeAllResultItems(playersResult.getAllResult());
-            isRun = false;
-            return;
+            return false;
         }
         ResultItem item = playersResult.findItemByName(name);
         outputView.writeResultItem(item);
+        return true;
     }
 
     private <T> T retryUntilValidated(Supplier<T> supplier) {
@@ -53,15 +53,6 @@ public class LadderGameController {
         } catch (IllegalArgumentException e) {
             OutputView.writeErrorMessage(e.getMessage());
             return retryUntilValidated(supplier);
-        }
-    }
-
-    private void retryUntilValidated(Runnable runnable) {
-        try {
-            runnable.run();
-        } catch (IllegalArgumentException e) {
-            OutputView.writeErrorMessage(e.getMessage());
-            retryUntilValidated(runnable);
         }
     }
 }
