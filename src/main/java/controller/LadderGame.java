@@ -63,7 +63,7 @@ public class LadderGame {
     }
 
     private void showResult(MatchResult matchResult) {
-        String input = inputView.readWhatResult();
+        String input = inputView.readResultChoice();
         if (Command.contains(input)) {
             showResultByCommand(matchResult, input);
             return;
