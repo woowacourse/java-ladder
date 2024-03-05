@@ -1,6 +1,4 @@
-package ladder;
-
-import ladder.controller.LadderGameRunner;
+import ladder.LadderGameRunner;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 import ladder.view.exception.ExceptionHandler;
