@@ -2,10 +2,10 @@ package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import ladder.domain.direction.DirectionGeneratorImpl;
+import ladder.domain.direction.RandomDirectionGenerator;
 import ladder.domain.line.Line;
 import ladder.domain.line.LineGenerator;
+import ladder.util.BaseException;
 
 public class Ladder {
 
@@ -15,12 +15,8 @@ public class Ladder {
 
     public Ladder(int ladderHeight, int ladderWidth) {
         validateLinesSize(ladderHeight);
-        LineGenerator lineGenerator = new LineGenerator(new DirectionGeneratorImpl());
+        LineGenerator lineGenerator = new LineGenerator(new RandomDirectionGenerator());
         this.lines = createLines(ladderHeight, ladderWidth, lineGenerator);
-    }
-
-    public List<Line> getLines() {
-        return lines;
     }
 
     private List<Line> createLines(int ladderHeight, int ladderWidth, LineGenerator lineGenerator) {
@@ -33,7 +29,11 @@ public class Ladder {
 
     private void validateLinesSize(int ladderHeight) {
         if (ladderHeight > MAX_LADDER_HEIGHT) {
-            throw new IllegalArgumentException("[ERROR] 사다리의 최대 높이는 50이하만 가능합니다.");
+            throw new BaseException("사다리의 최대 높이는 50이하만 가능합니다.");
         }
+    }
+
+    public List<Line> getLines() {
+        return lines;
     }
 }

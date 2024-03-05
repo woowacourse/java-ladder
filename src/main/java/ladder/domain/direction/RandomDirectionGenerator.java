@@ -2,21 +2,25 @@ package ladder.domain.direction;
 
 import java.util.Random;
 
-public class DirectionNeutralGeneratorImpl implements DirectionGenerator {
+public class RandomDirectionGenerator implements DirectionGenerator {
 
     private final Random random;
 
-    public DirectionNeutralGeneratorImpl() {
+    public RandomDirectionGenerator() {
         this.random = new Random();
     }
 
-    @Override
-    public Direction generateInitialValue() {
-        return Direction.getDirection(false);
+    private Direction generateRightOrNeutral() {
+        return Direction.getDirection(random.nextBoolean());
     }
 
     @Override
-    public Direction generateMiddleValue(Direction priorDirection) {
+    public Direction generateInitialDirection() {
+        return generateRightOrNeutral();
+    }
+
+    @Override
+    public Direction generateMiddleDirection(Direction priorDirection) {
         if (priorDirection == Direction.RIGHT) {
             return Direction.LEFT;
         }
@@ -24,14 +28,10 @@ public class DirectionNeutralGeneratorImpl implements DirectionGenerator {
     }
 
     @Override
-    public Direction generateLastValue(Direction priorDirection) {
+    public Direction generateLastDirection(Direction priorDirection) {
         if (priorDirection == Direction.RIGHT) {
             return Direction.LEFT;
         }
         return Direction.NEUTRAL;
-    }
-
-    private Direction generateRightOrNeutral() {
-        return Direction.getDirection(random.nextBoolean());
     }
 }

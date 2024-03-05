@@ -4,20 +4,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import ladder.domain.direction.Direction;
-import ladder.domain.direction.DirectionGeneratorImpl;
-import ladder.domain.direction.DirectionNeutralGeneratorImpl;
-import ladder.domain.direction.DirectionRightGeneratorImpl;
+import ladder.domain.direction.NeutralDirectionGenerator;
+import ladder.domain.direction.RightDirectionGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LineGeneratorTest {
+class LineGeneratorTest {
 
     @DisplayName("정해진 수만큼 라인의 너비를 가지는 라인을 생성한다.")
     @Test
     void lineGenerateTest() {
         //given
         int width = 5;
-        LineGenerator lineGenerator = new LineGenerator(new DirectionGeneratorImpl());
+        LineGenerator lineGenerator = new LineGenerator(new NeutralDirectionGenerator());
         Line line = lineGenerator.generate(width);
         List<Direction> directionsInfo = line.getDirectionsInfo();
 
@@ -31,7 +30,7 @@ public class LineGeneratorTest {
         //given
         int width = 1;
         int firstIndex = 0;
-        LineGenerator lineGenerator = new LineGenerator(new DirectionGeneratorImpl());
+        LineGenerator lineGenerator = new LineGenerator(new RightDirectionGenerator());
         Line line = lineGenerator.generate(width);
         List<Direction> directionsInfo = line.getDirectionsInfo();
 
@@ -49,7 +48,7 @@ public class LineGeneratorTest {
         int width = 2;
         int firstIndex = 0;
         int secondIndex = 1;
-        LineGenerator lineGenerator = new LineGenerator(new DirectionRightGeneratorImpl());
+        LineGenerator lineGenerator = new LineGenerator(new RightDirectionGenerator());
         Line line = lineGenerator.generate(width);
         List<Direction> directionsInfo = line.getDirectionsInfo();
 
@@ -69,7 +68,7 @@ public class LineGeneratorTest {
         int width = 3;
         int secondIndex = 1;
         int thirdIndex = 2;
-        LineGenerator lineGenerator = new LineGenerator(new DirectionRightGeneratorImpl());
+        LineGenerator lineGenerator = new LineGenerator(new RightDirectionGenerator());
         Line line = lineGenerator.generate(width);
         List<Direction> directionsInfo = line.getDirectionsInfo();
 
@@ -91,7 +90,7 @@ public class LineGeneratorTest {
         int width = 2;
         int firstIndex = 0;
         int secondIndex = 1;
-        LineGenerator lineGenerator = new LineGenerator(new DirectionNeutralGeneratorImpl());
+        LineGenerator lineGenerator = new LineGenerator(new NeutralDirectionGenerator());
         Line line = lineGenerator.generate(width);
         List<Direction> directionsInfo = line.getDirectionsInfo();
 
@@ -113,7 +112,7 @@ public class LineGeneratorTest {
         int width = 2;
         int firstIndex = 0;
         int secondIndex = 1;
-        LineGenerator lineGenerator = new LineGenerator(new DirectionRightGeneratorImpl());
+        LineGenerator lineGenerator = new LineGenerator(new RightDirectionGenerator());
         Line line = lineGenerator.generate(width);
         List<Direction> directionsInfo = line.getDirectionsInfo();
 
@@ -134,7 +133,7 @@ public class LineGeneratorTest {
         int firstIndex = 0;
         int secondIndex = 1;
         int thirdIndex = 2;
-        LineGenerator lineGenerator = new LineGenerator(new DirectionRightGeneratorImpl());
+        LineGenerator lineGenerator = new LineGenerator(new RightDirectionGenerator());
         Line line = lineGenerator.generate(width);
         List<Direction> directionsInfo = line.getDirectionsInfo();
 
@@ -156,7 +155,7 @@ public class LineGeneratorTest {
         int width = 2;
         int firstIndex = 0;
         int secondIndex = 1;
-        LineGenerator lineGenerator = new LineGenerator(new DirectionNeutralGeneratorImpl());
+        LineGenerator lineGenerator = new LineGenerator(new NeutralDirectionGenerator());
         Line line = lineGenerator.generate(width);
         List<Direction> directionsInfo = line.getDirectionsInfo();
 

@@ -2,9 +2,9 @@ package ladder.domain.direction;
 
 public interface DirectionGenerator {
 
-    Direction generateInitialValue();
+    Direction generateInitialDirection();
 
-    Direction generateMiddleValue(Direction priorDirection);
+    Direction generateMiddleDirection(Direction priorDirection);
 
-    Direction generateLastValue(Direction priorDirection);
+    Direction generateLastDirection(Direction priorDirection);
 }
