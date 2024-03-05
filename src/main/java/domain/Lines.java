@@ -25,10 +25,11 @@ public class Lines {
     }
 
     private void movePlayer(Map<Name, Integer> gameResult, Name playerName) {
+        Integer index = gameResult.get(playerName);
         for (Line line : getLines()) {
-            Integer currentIndex = gameResult.get(playerName);
-            gameResult.put(playerName, line.nextIndex(currentIndex));
+            index = line.nextIndex(index);
         }
+        gameResult.put(playerName, index);
     }
 
     private Map<Name, Integer> initializeResultMap(Names names) {
