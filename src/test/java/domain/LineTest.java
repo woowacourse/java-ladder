@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -41,6 +42,17 @@ class LineTest {
                 Arguments.of(4, 3),
                 Arguments.of(3, 4)
         );
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 5})
+    @DisplayName("음수이거나 포인트의 개수보다 큰 인덱스는 허용하지 않는다.")
+    void invalidIndex(int testIndex) {
+        int personCount = 5;
+        LineGenerator lineGenerator = new LineGenerator(personCount, new RandomBooleanGenerator());
+        Line line = new Line(lineGenerator.createPoints());
+
+        assertThrows(IllegalArgumentException.class, () -> line.nextIndex(testIndex));
     }
 }
 

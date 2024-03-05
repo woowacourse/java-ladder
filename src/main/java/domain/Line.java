@@ -15,13 +15,28 @@ public class Line {
     }
 
     public int nextIndex(int index) {
-        if (index < points.size() && points.get(index).isConnected()) {
+        if (isInValidIndex(index)) {
+            throw new IllegalArgumentException("음수이거나 포인트의 개수보다 큰 인덱스는 허용하지 않습니다.");
+        }
+        if (isConnectedWithNextIndex(index)) {
             return ++index;
         }
-        if (index > 0 && points.get(index - 1).isConnected()) {
+        if (isConnectedWithPrevIndex(index)) {
             return --index;
         }
         return index;
+    }
+
+    private boolean isConnectedWithPrevIndex(int index) {
+        return index > 0 && points.get(index - 1).isConnected();
+    }
+
+    private boolean isConnectedWithNextIndex(int index) {
+        return index < points.size() && points.get(index).isConnected();
+    }
+
+    private boolean isInValidIndex(int index) {
+        return index < 0 || index > points.size();
     }
 
     private void validateNoDuplicatePoints(List<Point> points) {
