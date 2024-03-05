@@ -1,8 +1,7 @@
 package domain;
 
 import java.util.Arrays;
-import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public enum Command {
     ALL("all"),
@@ -20,19 +19,17 @@ public enum Command {
     }
 
     public static boolean isAll(String input) {
-        return Objects.equals(input, ALL.getValue());
+        return ALL.value.equals(input);
     }
 
     public static boolean isExit(String input) {
-        return Objects.equals(input, EXIT.getValue());
+        return EXIT.value.equals(input);
     }
 
     public static String getCommandToString() {
-        StringJoiner result = new StringJoiner(", ");
-        for (Command e : Command.values()) {
-            result.add(e.getValue());
-        }
-        return result.toString();
+        return Arrays.stream(values())
+                .map(Command::getValue)
+                .collect(Collectors.joining(", "));
     }
 
     public String getValue() {
