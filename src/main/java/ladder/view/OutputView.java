@@ -10,7 +10,6 @@ import ladder.domain.user.Users;
 
 public class OutputView {
 
-    public static final String NEW_LINE = System.lineSeparator();
     public static final int BLANK_DEFAULT_COUNT = 4;
     private static final String BLANK = " ";
     private static final String LINE_VERTICAL = "|";
@@ -23,19 +22,19 @@ public class OutputView {
     }
 
     public void printLadderResult(Users users, Ladder ladder, Prizes prizes) {
-        System.out.println(NEW_LINE + "사다리 결과" + NEW_LINE);
+        System.out.println(System.lineSeparator() + "사다리 결과" + System.lineSeparator());
         printUserNames(users);
         printLadder(ladder);
         printPrizes(prizes);
     }
 
     public void printUserPrize(String userName, Result result) {
-        System.out.println(NEW_LINE + "실행결과");
+        System.out.println(System.lineSeparator() + "실행결과");
         System.out.println(result.getPrizeByUser(userName));
     }
 
     public void printAllPrizeResult(List<String> allResult) {
-        System.out.println(NEW_LINE + "실행결과");
+        System.out.println(System.lineSeparator() + "실행결과");
         for (int i = 0; i < allResult.size(); i += 2) {
             System.out.println(allResult.get(i) + DELIMITER + allResult.get(i + 1));
         }
@@ -76,7 +75,7 @@ public class OutputView {
             sb.append(LINE_VERTICAL)
                     .append(printDirections(directionsInfo.get(i)));
         }
-        sb.append(LINE_VERTICAL).append(NEW_LINE);
+        sb.append(LINE_VERTICAL).append(System.lineSeparator());
     }
 
     private String printDirections(Direction direction) {
