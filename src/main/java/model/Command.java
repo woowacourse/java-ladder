@@ -14,9 +14,9 @@ public enum Command {
         this.commandValue = commandValue;
     }
 
-    public static Command inputTextToCommand(String inputText) {
+    public static Command inputTextToCommand(String text) {
         return Arrays.stream(Command.values())
-                .filter(command -> Objects.equals(command.getCommandValue(), inputText))
+                .filter(command -> Objects.equals(command.getCommandValue(), text))
                 .findFirst()
                 .orElse(NAME);
     }

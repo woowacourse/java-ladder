@@ -27,22 +27,22 @@ public class People {
         return this.participants.indexOf(person);
     }
 
-    private void validate(String inputNames) {
-        validateSize(inputNames);
-        validateDuplicateNames(inputNames);
+    private void validate(String names) {
+        validateSize(names);
+        validateDuplicateNames(names);
     }
 
-    private void validateSize(String inputNames) {
-        int size = inputNames.split(",").length;
+    private void validateSize(String names) {
+        int size = names.split(",").length;
         if (size < MINIMUM_PARTICIPANTS_SIZE) {
             throw new IllegalArgumentException(String
                     .format("참가인원은 %s명 이상이어야 합니다.", MINIMUM_PARTICIPANTS_SIZE));
         }
     }
 
-    private void validateDuplicateNames(String inputNames) {
-        int numberOfOrigin = inputNames.split(",").length;
-        int numberOfDistinct = (int) Arrays.stream(inputNames.split(",")).distinct().count();
+    private void validateDuplicateNames(String names) {
+        int numberOfOrigin = names.split(",").length;
+        int numberOfDistinct = (int) Arrays.stream(names.split(",")).distinct().count();
 
         if (numberOfOrigin != numberOfDistinct) {
             throw new IllegalArgumentException("중복된 이름은 허용하지 않습니다.");
