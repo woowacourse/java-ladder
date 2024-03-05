@@ -1,32 +1,42 @@
 package view;
 
-import dto.LineInfo;
-import dto.Result;
-import view.formatter.LineFormatter;
+import dto.LineDto;
+import dto.ResultsDto;
+import view.formatter.ItemsFormatter;
+import view.formatter.LineDtoFormatter;
 import view.formatter.NamesFormatter;
 import java.util.List;
+import view.formatter.ResultsDtoFormatter;
 
 public class OutputView {
-
-    public void printResult(final Result result) {
+    public void printLadderResultDescription() {
         System.out.println();
-        System.out.println("실행결과");
+        System.out.println("사다리 결과");
         System.out.println();
-        final List<String> names = result.names();
-        printNames(names);
-        printLines(result.lines());
     }
 
-    public void printNames(final List<String> names) {
-        System.out.println(NamesFormatter.format(names));
+    public void printPeopleNames(final List<String> peopleNames) {
+        System.out.println(NamesFormatter.format(peopleNames));
     }
 
-    public void printLines(final List<LineInfo> lines) {
-        lines.forEach(this::printLine);
+    public void printLineDtos(final List<LineDto> lineDtos) {
+        lineDtos.forEach(lineInfo ->
+                System.out.println(LineDtoFormatter.format(lineInfo)));
     }
 
-    private void printLine(final LineInfo line) {
-        final List<Boolean> paths = line.lineInfo();
-        System.out.println(LineFormatter.format(paths));
+    public void printItemNames(final List<String> itemNames) {
+        System.out.println(ItemsFormatter.format(itemNames));
+    }
+
+    public void printResultByPerson(String item) {
+        System.out.println();
+        System.out.println("실행 결과");
+        System.out.println(item);
+    }
+
+    public void printAllResult(final ResultsDto resultsDto) {
+        System.out.println();
+        System.out.println("실행 결과");
+        System.out.println(ResultsDtoFormatter.format(resultsDto));
     }
 }

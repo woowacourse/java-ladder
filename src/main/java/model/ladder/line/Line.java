@@ -1,8 +1,7 @@
-package model;
+package model.ladder.line;
 
 import java.util.List;
-import java.util.Objects;
-import model.path.Path;
+import model.Index;
 
 public class Line {
     private static final int MIN_PATH_SIZE = 1;
@@ -41,15 +40,35 @@ public class Line {
                 .toList();
     }
 
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
+    public Index move(final Index currentIndex) {
+        if (canMoveRight(currentIndex)) {
+            return currentIndex.getNext();
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+
+        if (canMoveLeft(currentIndex)) {
+            return currentIndex.getPast();
         }
-        Line line = (Line) o;
-        return Objects.equals(paths, line.paths);
+        return currentIndex;
+    }
+
+    private boolean canMoveRight(final Index currentIndex) {
+        if (currentIndex.isNotLastIndex(paths.size())) {
+            Path right = paths.get(currentIndex.getIndex());
+            return right.isExist();
+        }
+        return false;
+    }
+
+    private boolean canMoveLeft(final Index currentIndex) {
+        if (currentIndex.isNotStartIndex()) {
+            Index leftIndex = currentIndex.getPast();
+            Path left = paths.get(leftIndex.getIndex());
+            return left.isExist();
+        }
+        return false;
+    }
+
+    public int getPathsSize() {
+        return paths.size();
     }
 }
