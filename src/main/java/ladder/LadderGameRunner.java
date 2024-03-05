@@ -1,4 +1,4 @@
-package ladder.controller;
+package ladder;
 
 import ladder.domain.attribute.Height;
 import ladder.domain.attribute.Width;
@@ -31,7 +31,7 @@ public class LadderGameRunner {
         Ladder ladder = createLadder(width, height);
         LadderGame ladderGame = LadderGame.of(players, rewards, ladder);
         LadderGameResult result = play(ladderGame);
-        printLadderGameResult(result);
+        askPlayerAndPrintLadderGameResult(result);
     }
 
     private Ladder createLadder(final Width width, final Height height) {
@@ -47,12 +47,12 @@ public class LadderGameRunner {
         return ladderGame.play();
     }
 
-    private void printLadderGameResult(final LadderGameResult result) {
+    private void askPlayerAndPrintLadderGameResult(final LadderGameResult result) {
         Player player = inputView.inputPlayerOrAll(result);
         resultView.printResult(result, player);
         if (player.isAll()) {
             return;
         }
-        printLadderGameResult(result);
+        askPlayerAndPrintLadderGameResult(result);
     }
 }
