@@ -8,7 +8,7 @@ public class Prizes {
 
     private final List<Prize> prizes;
 
-    public Prizes(String inputPrizesText, int personCount) {
+    public Prizes(String inputPrizesText) {
         prizes =  Arrays.stream(inputPrizesText.split(INPUT_PARSE_DELIMITER))
                 .map(Prize::new)
                 .toList();

@@ -14,7 +14,7 @@ public class LadderGame {
         this.rewardBoard = new RewardBoard();
         List<String> parsedInputPrizes = Arrays.stream(originPrizeInput.split(",")).toList();
         validateLegalLength(parsedInputPrizes);
-        calculatePrizes(new Prizes(originPrizeInput, people.getParticipantsSize()));
+        calculatePrizes(new Prizes(originPrizeInput));
     }
 
     private void validateLegalLength(List<String> parsedInputPrizesText) {
