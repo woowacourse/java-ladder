@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import ladder.domain.attribute.Height;
 import ladder.domain.attribute.Width;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderBuilder;
 import ladder.domain.ladder.direction.LadderDirection;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
@@ -44,11 +43,11 @@ class LadderGameTest {
     }
 
     static Ladder ladder() {
-        return LadderBuilder.builder()
-                .height(new Height(5))
-                .width(new Width(5))
-                .ladderDirectionSelector(() -> LadderDirection.RIGHT)
-                .build();
+        return Ladder.of(
+                new Height(5),
+                new Width(5),
+                () -> LadderDirection.RIGHT
+        );
     }
 
     @DisplayName("사다리 게임 실행 결과에서 사용자에 맞는 결과를 반환한다.")

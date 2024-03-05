@@ -5,8 +5,6 @@ import ladder.domain.attribute.Width;
 import ladder.domain.game.LadderGame;
 import ladder.domain.game.LadderGameResult;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderBuilder;
-import ladder.domain.ladder.direction.DefaultLadderDirectionSelector;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.reward.Rewards;
@@ -28,18 +26,10 @@ public class LadderGameRunner {
         Width width = new Width(players.count());
         Rewards rewards = inputView.inputRewards(width);
         Height height = inputView.inputHeight();
-        Ladder ladder = createLadder(width, height);
+        Ladder ladder = Ladder.of(height, width);
         LadderGame ladderGame = LadderGame.of(players, rewards, ladder);
         LadderGameResult result = play(ladderGame);
         askPlayerAndPrintLadderGameResult(result);
-    }
-
-    private Ladder createLadder(final Width width, final Height height) {
-        return LadderBuilder.builder()
-                .width(width)
-                .height(height)
-                .ladderDirectionSelector(new DefaultLadderDirectionSelector())
-                .build();
     }
 
     private LadderGameResult play(final LadderGame ladderGame) {
