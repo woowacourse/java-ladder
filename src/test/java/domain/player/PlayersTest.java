@@ -1,6 +1,6 @@
 package domain.player;
 
-import static fixture.NameFixture.이름;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -14,50 +14,87 @@ public class PlayersTest {
     @Test
     void 중복된_이름이_존재하면_예외가_발생한다() {
         // given
-        final Name duplicateName1 = new Name("prin");
-        final Name duplicateName2 = new Name("prin");
-        final Name uniqueName = new Name("ddang");
-        final List<Name> names = List.of(duplicateName1, duplicateName2, uniqueName);
+        String duplicateName = "prin";
+        String name = "ddang";
+        List<String> playerNames = List.of(duplicateName, duplicateName, name);
 
         // when & then
-        assertThatThrownBy(() -> new Players(names))
-                .isExactlyInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Players.from(playerNames))
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("중복된 참가자명이 존재합니다.");
     }
 
     @Test
     void 중복된_이름이_없으면_예외가_발생하지_않는다() {
         // given
-        final Name uniqueName1 = new Name("prin");
-        final Name uniqueName2 = new Name("ddang");
-        final Name uniqueName3 = new Name("pobi");
-        final List<Name> names = List.of(uniqueName1, uniqueName2, uniqueName3);
+        String uniqueName1 = "prin";
+        String uniqueName2 = "ddang";
+        String uniqueName3 = "pobi";
+        List<String> playerNames = List.of(uniqueName1, uniqueName2, uniqueName3);
 
         // when & then
-        assertDoesNotThrow(() -> new Players(names));
+        assertDoesNotThrow(() -> Players.from(playerNames));
     }
 
     @ParameterizedTest
     @ValueSource(ints = {1, 51})
     void 참가자_수가_범위를_벗어나면_예외가_발생한다(int playerCount) {
         // given
-        List<Name> names = IntStream.range(0, playerCount)
-                .mapToObj(i -> 이름("프린" + i))
+        List<String> playerNames = IntStream.range(0, playerCount)
+                .mapToObj(i -> "프린" + i)
                 .toList();
 
         // when & then
-        assertThatThrownBy(() -> new Players(names))
-                .isExactlyInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Players.from(playerNames))
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("참가자는 2 ~ 50명이어야 합니다.");
     }
 
     @ParameterizedTest
     @ValueSource(ints = {2, 50})
     void 참가자_수가_범위_이내이면_예외가_발생하지_않는다(int playerCount) {
         // given
-        List<Name> names = IntStream.range(0, playerCount)
-                .mapToObj(i -> 이름("프린" + i))
+        List<String> playerNames = IntStream.range(0, playerCount)
+                .mapToObj(i -> "프린" + i)
                 .toList();
 
         // when & then
-        assertDoesNotThrow(() -> new Players(names));
+        assertDoesNotThrow(() -> Players.from(playerNames));
+    }
+
+    @Test
+    void 참가자의_이름_중_가장_긴_이름의_길이를_반환한다() {
+        // given
+        String maxLengthName = "crong";
+        Players players = Players.from(List.of("jk", "pobi", maxLengthName));
+
+        // when
+        int result = players.findMaxPlayerNameLength();
+
+        // then
+        assertThat(result).isEqualTo(maxLengthName.length());
+    }
+
+    @Test
+    void 범위를_벗어난_인덱스로_참가자를_찾으면_예외가_발생한다() {
+        // given
+        Players players = Players.from(List.of("prin", "pobi", "crong"));
+
+        // when & then
+        assertThatThrownBy(() -> players.findPlayerByIndex(3))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 인덱스로_참가자를_찾는다() {
+        // given
+        String targetPlayerName = "pobi";
+        Players players = Players.from(List.of("prin", "crong", targetPlayerName));
+
+        // when
+        Player result = players.findPlayerByIndex(2);
+
+        // then
+        assertThat(result.getName()).isEqualTo(targetPlayerName);
     }
 }

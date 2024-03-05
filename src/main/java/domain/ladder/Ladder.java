@@ -1,28 +1,49 @@
 package domain.ladder;
 
-import domain.height.Height;
+import domain.player.Player;
 import domain.player.Players;
+import domain.prize.Prize;
+import domain.prize.Prizes;
+import generator.BooleanGenerator;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Ladder {
-    private final List<LadderRow> rows;
+    private final List<Floor> floors;
 
-    private Ladder(List<LadderRow> rows) {
-        this.rows = rows;
+    private Ladder(List<Floor> floors) {
+        this.floors = floors;
     }
 
-    public static Ladder create(Height height, Players players, LadderRungGenerator ladderRungGenerator) {
-        List<LadderRow> rows = new ArrayList<>();
-        for (int i = 0; i < height.getValue(); i++) {
-            final LadderRow ladderRow = LadderRow.create(players.getPlayerCount() - 1, ladderRungGenerator);
-            rows.add(ladderRow);
+    public static Ladder create(Height height, Players players, BooleanGenerator booleanGenerator) {
+        List<Floor> floors = new ArrayList<>();
+        for (int count = 0; count < height.getValue(); count++) {
+            Floor floor = Floor.create(players.count(), booleanGenerator);
+            floors.add(floor);
         }
-        return new Ladder(rows);
+        return new Ladder(floors);
     }
 
-    public List<LadderRow> getRows() {
-        return Collections.unmodifiableList(rows);
+    public LadderResult climb(Players players, Prizes prizes) {
+        Map<Player, Prize> result = new LinkedHashMap<>();
+        for (int start = 0; start < players.count(); start++) {
+            int end = climbFloors(start);
+            result.put(players.findPlayerByIndex(start), prizes.findPrizeByIndex(end));
+        }
+        return new LadderResult(result);
+    }
+
+    private int climbFloors(int index) {
+        for (Floor floor : floors) {
+            index = floor.crossConnection(index);
+        }
+        return index;
+    }
+
+    public List<Floor> getFloors() {
+        return Collections.unmodifiableList(floors);
     }
 }

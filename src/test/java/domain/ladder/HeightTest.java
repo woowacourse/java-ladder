@@ -1,4 +1,4 @@
-package domain.height;
+package domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -12,7 +12,8 @@ class HeightTest {
     void 사다리의_높이가_최소_높이보다_작거나_최대_높이보다_큰_경우_예외가_발생한다(int height) {
         // when & then
         assertThatThrownBy(() -> new Height(height))
-                .isExactlyInstanceOf(IllegalArgumentException.class);
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("1이상 50이하의 높이만 가능합니다.");
     }
 
     @ParameterizedTest

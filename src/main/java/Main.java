@@ -1,9 +1,9 @@
 import controller.LadderGame;
-import domain.ladder.RandomLadderRungGenerator;
+import generator.RandomBooleanGenerator;
 
 public class Main {
     public static void main(String[] args) {
-        LadderGame ladderGame = new LadderGame(new RandomLadderRungGenerator());
+        LadderGame ladderGame = new LadderGame(new RandomBooleanGenerator());
         ladderGame.run();
     }
 }

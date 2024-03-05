@@ -1,46 +1,63 @@
 package controller;
 
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
-
-import domain.height.Height;
+import domain.ladder.Height;
 import domain.ladder.Ladder;
-import domain.ladder.LadderRungGenerator;
-import domain.player.Name;
+import domain.ladder.LadderResult;
 import domain.player.Players;
-import java.util.List;
+import domain.prize.Prizes;
+import generator.BooleanGenerator;
+import java.util.Optional;
+import java.util.function.Supplier;
 import view.InputView;
 import view.OutputView;
 
 public class LadderGame {
-    private final LadderRungGenerator ladderRungGenerator;
+    private static final String GAME_OVER_NAME = "all";
 
-    public LadderGame(LadderRungGenerator ladderRungGenerator) {
-        this.ladderRungGenerator = ladderRungGenerator;
+    private final BooleanGenerator booleanGenerator;
+
+    public LadderGame(BooleanGenerator booleanGenerator) {
+        this.booleanGenerator = booleanGenerator;
     }
 
     public void run() {
+        Players players = repeatUntilSuccess(() -> Players.from(InputView.inputPlayerNames()));
+        Prizes prizes = repeatUntilSuccess(() -> Prizes.of(InputView.inputPrizeNames(), players.count()));
+        Height height = repeatUntilSuccess(() -> new Height(InputView.inputHeight()));
+        Ladder ladder = createLadder(players, prizes, height);
+        LadderResult result = ladder.climb(players, prizes);
+        searchPlayerResult(result);
+    }
+
+    private Ladder createLadder(Players players, Prizes prizes, Height height) {
+        Ladder ladder = Ladder.create(height, players, booleanGenerator);
+        OutputView.printLadder(ladder, players, prizes);
+        return ladder;
+    }
+
+    private <T> T repeatUntilSuccess(Supplier<T> supplier) {
+        Optional<T> result;
+        do {
+            result = request(supplier);
+        } while (result.isEmpty());
+        return result.get();
+    }
+
+    private <T> Optional<T> request(Supplier<T> supplier) {
         try {
-            Players players = generatePlayers();
-            Height height = generateHeight();
-            Ladder ladder = Ladder.create(height, players, ladderRungGenerator);
-            OutputView.printResultMessage();
-            OutputView.printPlayerNames(players);
-            OutputView.printLadder(players.findMaxNameLength(), ladder);
+            return Optional.of(supplier.get());
         } catch (Exception e) {
             OutputView.printErrorMessage(e);
+            return Optional.empty();
         }
     }
 
-    private Players generatePlayers() {
-        List<String> names = InputView.inputPlayerNames();
-        return names.stream()
-                .map(Name::new)
-                .collect(collectingAndThen(toList(), Players::new));
-    }
-
-    private Height generateHeight() {
-        int height = InputView.inputHeight();
-        return new Height(height);
+    private void searchPlayerResult(LadderResult result) {
+        String playerName = InputView.inputPlayerNameToFindResult();
+        while (!GAME_OVER_NAME.equals(playerName)) {
+            OutputView.printSinglePlayerResult(result.findPrizeByPlayerName(playerName));
+            playerName = InputView.inputPlayerNameToFindResult();
+        }
+        OutputView.printAllPlayerResult(result.getAllResults());
     }
 }
