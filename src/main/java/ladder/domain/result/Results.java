@@ -2,22 +2,25 @@ package ladder.domain.result;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Results {
-    private final List<Result> results;
+    private List<Result> results;
 
-    public Results(List<String> rawResults, int countStandard) {
-        List<Result> results = rawResults.stream()
+    public Results(List<String> rawResults) {
+        this.results = rawResults.stream()
                 .map(Result::new)
-                .toList();
-        validateCount(results, countStandard);
-        this.results = results;
+                .collect(Collectors.toList());
     }
 
-    private void validateCount(List<Result> results, int countStandard) {
-        if (results.size() != countStandard) {
-            throw new IllegalArgumentException("결과 수가 올바르지 않습니다.");
+    public Results refactor(int size) {
+        while (results.size() < size) {
+            results.addAll(results);
         }
+        if (results.size() > size) {
+            results = results.subList(0, size);
+        }
+        return this;
     }
 
     public Result find(int position) {

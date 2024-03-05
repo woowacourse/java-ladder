@@ -19,15 +19,14 @@ public class LadderController {
 
     public void run() {
         Players players = createPlayers();
-        Results results = createResults(players.count());
+        Results results = createResults();
         Height height = createHeight();
 
         List<Line> lines = createLines(players, height);
         Ladder ladder = new Ladder(lines);
 
-        outputView.printGame(players, ladder, results);
-
         LadderGame ladderGame = new LadderGame(players, results, ladder);
+        outputView.printGame(ladderGame);
         play(ladderGame);
     }
 
@@ -58,13 +57,13 @@ public class LadderController {
         return new Players(players);
     }
 
-    private Results createResults(int countStandard) {
-        return retryWhileException(() -> readResults(countStandard));
+    private Results createResults() {
+        return retryWhileException(this::readResults);
     }
 
-    private Results readResults(int countStandard) {
+    private Results readResults() {
         List<String> results = inputView.readResults();
-        return new Results(results, countStandard);
+        return new Results(results);
     }
 
     private Height createHeight() {

@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderGame;
 import ladder.domain.ladder.Line;
 import ladder.domain.ladder.Point;
 import ladder.domain.player.Name;
@@ -23,10 +24,10 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public void printGame(Players players, Ladder ladder, Results results) {
-        printPlayers(players);
-        printLadder(ladder);
-        printResults(results);
+    public void printGame(LadderGame ladderGame) {
+        printPlayers(ladderGame.getPlayers());
+        printLadder(ladderGame.getLadder());
+        printResults(ladderGame.getResults());
     }
 
     private void printPlayers(Players players) {

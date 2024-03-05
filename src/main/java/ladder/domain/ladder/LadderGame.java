@@ -17,7 +17,7 @@ public class LadderGame {
 
     public LadderGame(Players players, Results results, Ladder ladder) {
         this.players = players;
-        this.results = results;
+        this.results = results.refactor(players.count());
         this.ladder = ladder;
     }
 
@@ -42,5 +42,17 @@ public class LadderGame {
             results.put(name, result);
         }
         return new PlayResults(results);
+    }
+
+    public Players getPlayers() {
+        return players;
+    }
+
+    public Results getResults() {
+        return results;
+    }
+
+    public Ladder getLadder() {
+        return ladder;
     }
 }

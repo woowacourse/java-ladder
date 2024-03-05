@@ -40,7 +40,7 @@ class LadderGameTest {
     void setUp() {
         players = new Players(List.of("pobi", "honux", "crong", "jk"));
 
-        results = new Results(List.of("꽝", "3000", "꽝", "5000"), 4);
+        results = new Results(List.of("꽝", "3000", "꽝", "5000"));
 
         Line line1 = new Line(pointsGenerator1.generate(3));
         Line line2 = new Line(pointsGenerator2.generate(3));
