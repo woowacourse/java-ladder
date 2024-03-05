@@ -72,15 +72,12 @@ public class Ladder {
     }
 
     public List<Integer> climb() {
-        List<Integer> positions = new ArrayList<>(IntStream.range(0, getWidth())
+        List<Integer> result = new ArrayList<>(IntStream.range(0, getWidth())
                 .boxed()
                 .toList());
+        ladder.forEach(line -> result.replaceAll(line::climbDown));
 
-        for (Line line : ladder) {
-            positions = line.climbDown(positions);
-        }
-
-        return positions;
+        return result;
     }
 
     public List<Line> getLadder() {

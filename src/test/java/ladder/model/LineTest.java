@@ -1,10 +1,11 @@
 package ladder.model;
 
-import java.util.ArrayList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static ladder.model.LadderPath.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -56,15 +57,14 @@ class LineTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    @DisplayName("사다리의 가로줄 한 줄(Line)을 내려온 결과는 각 Path의 direction 값에 따라 원소를 이동시킨 것과 같다.")
-    void climbDownTest() {
-        ArrayList<Integer> initialPosition = new ArrayList<>(List.of(0, 1, 2, 3, 4, 5, 6));
-        List<Integer> expectedPosition = List.of(1, 0, 3, 2, 4, 6, 5);
+    @ParameterizedTest(name = "초기 위치: {0} -> 내려온 후 위치: {1}")
+    @CsvSource(value = {"0,1", "1,0", "2,3", "3,2", "4,4", "5,6", "6,5"})
+    @DisplayName("사다리의 가로줄 한 줄(Line)을 내려온 결과는 각 지점의 direction 값에 따라 원소를 이동시킨 것과 같다.")
+    void climbDownTest(int initialPosition, int expected) {
         List<LadderPath> validPath = List.of(RIGHT, LEFT, RIGHT, LEFT, STAY, RIGHT, LEFT);
         Line line = new Line(validPath);
 
         assertThat(line.climbDown(initialPosition))
-                .isEqualTo(expectedPosition);
+                .isEqualTo(expected);
     }
 }
