@@ -1,7 +1,7 @@
 package ladder.model;
 
+import java.util.Collections;
 import java.util.stream.IntStream;
-import ladder.dto.LineDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,37 +36,55 @@ public class Ladder {
     }
 
     private static List<LadderPath> makeRandomRow(int width) {
-        List<LadderPath> randomPath = new ArrayList<>(generatePairableRandomPath(width));
+        List<LadderPath> randomPaths = new ArrayList<>();
 
-        if (randomPath.size() < width) {
-            randomPath.add(LadderPath.STAY);
+        while (randomPaths.size() < width) {
+            randomPaths.add(generateRandomPath(randomPaths, width));
         }
 
-        return randomPath;
+        return randomPaths;
     }
 
-    private static List<LadderPath> generatePairableRandomPath(int maxWidth) {
-        List<LadderPath> randomPathWithPair = new ArrayList<>();
-
-        while (randomPathWithPair.size() < maxWidth - 1) {
-            randomPathWithPair.addAll(generateRandomPath());
+    private static LadderPath generateRandomPath(List<LadderPath> currentPaths, int width) {
+        if (isLastPathConnected(currentPaths)) {
+            return LadderPath.LEFT;
         }
 
-        return randomPathWithPair;
-    }
+        boolean isLastElement = currentPaths.size() == width - 1;
+        if (isLastElement) {
+            return LadderPath.STAY;
+        }
 
-    private static List<LadderPath> generateRandomPath() {
         boolean isConnectedPath = random.nextBoolean();
-
         if (isConnectedPath) {
-            return List.of(LadderPath.RIGHT, LadderPath.LEFT);
+            return LadderPath.RIGHT;
         }
-        return List.of(LadderPath.STAY);
+        return LadderPath.STAY;
     }
 
-    public List<LineDto> toLineDtoList() {
-        return ladder.stream()
-                .map(LineDto::from)
-                .toList();
+    private static boolean isLastPathConnected(List<LadderPath> currentPaths) {
+        if (currentPaths.isEmpty()) {
+            return false;
+        }
+
+        LadderPath lastPath = currentPaths.get(currentPaths.size() - 1);
+        return lastPath.equals(LadderPath.RIGHT);
+    }
+
+    public List<Integer> climb() {
+        List<Integer> result = new ArrayList<>(IntStream.range(0, getWidth())
+                .boxed()
+                .toList());
+        ladder.forEach(line -> result.replaceAll(line::climbDown));
+
+        return result;
+    }
+
+    public List<Line> getLadder() {
+        return Collections.unmodifiableList(ladder);
+    }
+
+    public int getWidth() {
+        return ladder.get(0).size();
     }
 }

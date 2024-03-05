@@ -1,27 +1,34 @@
 package ladder.controller;
 
+import java.util.Map;
+import ladder.dto.LineDto;
 import ladder.model.Ladder;
 import ladder.model.Players;
+import ladder.service.LadderGame;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
 import java.util.List;
 
 public class LadderController {
-    private Players ladderPlayers;
-    private Ladder ladder;
+    private static final String QUERY_FOR_ALL_REWARD = "all";
+    private LadderGame ladderGame;
 
     public void start() {
         init();
-        printResult();
+        showGame();
+        showReward(readLookupTarget());
     }
 
     private void init() {
-        ladderPlayers = Players.from(readPlayerNames());
+        Players ladderPlayers = Players.from(readPlayerNames());
 
         int height = readLadderHeight();
         int width = ladderPlayers.getSize();
-        ladder = Ladder.of(height, width);
+
+        List<String> rewards = readRewards();
+        Ladder ladder = Ladder.of(height, width);
+        ladderGame = LadderGame.from(ladderPlayers, rewards, ladder);
     }
 
     private List<String> readPlayerNames() {
@@ -32,9 +39,29 @@ public class LadderController {
         return InputView.inputLadderHeight();
     }
 
-    private void printResult() {
-        OutputView.printResultDescription();
-        OutputView.printPlayerNames(ladderPlayers.getPlayerNames());
-        OutputView.printLadder(ladder.toLineDtoList());
+    private List<String> readRewards() {
+        return InputView.inputRewards();
+    }
+
+    private String readLookupTarget() {
+        return InputView.inputLookupTarget();
+    }
+
+    private void showGame() {
+        OutputView.printGame(
+                ladderGame.getPlayerNames(),
+                LineDto.asList(ladderGame.getLadder()),
+                ladderGame.getRewards()
+        );
+    }
+
+    private void showReward(String target) {
+        Map<String, String> result = ladderGame.play();
+
+        if (target.equals(QUERY_FOR_ALL_REWARD)) {
+            OutputView.printRewardForAll(result);
+            return;
+        }
+        OutputView.printRewardForTarget(result.get(target));
     }
 }

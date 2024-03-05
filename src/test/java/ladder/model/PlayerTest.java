@@ -30,4 +30,11 @@ class PlayerTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("참여자 이름이 'all'인 경우 예외가 발생한다.")
+    void prohibitedNameTest() {
+        String name = "all";
+        assertThatThrownBy(() -> new Player(name))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -13,13 +13,16 @@ public class Player {
 
     private void validate(String name) {
         if (isNameLengthLongerThanMaxLength(name)) {
-            throw new IllegalArgumentException("이름의 길이는 5를 초과할 수 없다.");
+            throw new IllegalArgumentException("이름의 길이는 5를 초과할 수 없습니다.");
         }
         if (isNameEmpty(name)) {
             throw new IllegalArgumentException("이름이 비어 있습니다.");
         }
         if (!isNameFormatValid(name)) {
             throw new IllegalArgumentException("이름은 영문자와 숫자로 구성되어야 합니다.");
+        }
+        if (isProhibitedName(name)) {
+            throw new IllegalArgumentException("사용할 수 없는 이름입니다.");
         }
     }
 
@@ -33,6 +36,10 @@ public class Player {
 
     private boolean isNameFormatValid(String name) {
         return name.matches(NAME_PATTERN);
+    }
+
+    private boolean isProhibitedName(String name) {
+        return name.equals("all");
     }
 
     public String getName() {
