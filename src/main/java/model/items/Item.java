@@ -1,15 +1,21 @@
 package model.items;
 
-import model.Name;
 
 public class Item {
-    private final Name name;
+    private final String name;
 
     public Item(final String rawName) {
-        this.name = new ItemName(rawName);
+        validateBlankName(rawName);
+        this.name = rawName;
     }
 
     public String getName() {
-        return name.getName();
+        return name;
+    }
+
+    private void validateBlankName(final String rawName) {
+        if (rawName.isBlank()) {
+            throw new IllegalArgumentException("실행 결과의 이름은 공백일 수 없습니다.");
+        }
     }
 }
