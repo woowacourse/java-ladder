@@ -2,6 +2,13 @@ package model;
 
 import java.util.Arrays;
 import java.util.List;
+import model.ladder.Ladder;
+import model.ladder.Position;
+import model.people.People;
+import model.people.Person;
+import model.prizes.Prize;
+import model.prizes.Prizes;
+import model.prizes.RewardBoard;
 
 public class LadderGame {
     private final People people;

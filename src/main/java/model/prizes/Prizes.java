@@ -1,4 +1,4 @@
-package model;
+package model.prizes;
 
 import java.util.Arrays;
 import java.util.List;

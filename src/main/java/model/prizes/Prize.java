@@ -1,4 +1,4 @@
-package model;
+package model.prizes;
 
 import java.util.Objects;
 

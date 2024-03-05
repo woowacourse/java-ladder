@@ -1,7 +1,8 @@
-package model;
+package model.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Direction;
 import utils.ThresholdChecker;
 
 public class Ladder {

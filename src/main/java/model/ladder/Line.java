@@ -1,8 +1,9 @@
-package model;
+package model.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
+import model.Direction;
 import utils.ThresholdChecker;
 
 public class Line {

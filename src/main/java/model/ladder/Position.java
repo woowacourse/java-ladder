@@ -1,6 +1,7 @@
-package model;
+package model.ladder;
 
 import java.util.Objects;
+import model.Direction;
 
 public class Position {
     private int horizontal;

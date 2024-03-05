@@ -2,11 +2,11 @@ package view;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import model.Ladder;
-import model.People;
-import model.Person;
-import model.Prize;
-import model.RewardBoard;
+import model.ladder.Ladder;
+import model.people.People;
+import model.people.Person;
+import model.prizes.Prize;
+import model.prizes.RewardBoard;
 
 public class ResultView {
     private static final int MAX_INTERVAL = 6;

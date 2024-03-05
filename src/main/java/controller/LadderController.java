@@ -2,11 +2,11 @@ package controller;
 
 import java.util.Arrays;
 import model.Command;
-import model.Ladder;
 import model.LadderGame;
-import model.People;
-import model.Prize;
-import model.RewardBoard;
+import model.ladder.Ladder;
+import model.people.People;
+import model.prizes.Prize;
+import model.prizes.RewardBoard;
 import utils.RandomThresholdChecker;
 import view.InputView;
 import view.ResultView;
