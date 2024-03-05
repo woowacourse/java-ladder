@@ -1,9 +1,9 @@
-package ladder.exception;
+package ladder.view.exception;
 
 import java.util.function.Supplier;
 
 public class ExceptionHandler {
-    public static <T> T run(Supplier<T> callback) {
+    public <T> T run(final Supplier<T> callback) {
         try {
             return callback.get();
         } catch (IllegalArgumentException exception) {
