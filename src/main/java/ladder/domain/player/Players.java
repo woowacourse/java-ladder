@@ -49,14 +49,14 @@ public class Players {
                 .orElse(0);
     }
 
-    public List<Player> getNames() {
-        return Collections.unmodifiableList(players);
-    }
-
     public int findPosition(Name name) {
         if (players.contains(name)) {
             return players.indexOf(name);
         }
         throw new IllegalArgumentException("존재하지 않는 참여자입니다.");
+    }
+
+    public List<Player> getNames() {
+        return Collections.unmodifiableList(players);
     }
 }
