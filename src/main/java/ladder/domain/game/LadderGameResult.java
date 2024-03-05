@@ -6,7 +6,13 @@ import java.util.function.BiConsumer;
 import ladder.domain.player.Player;
 import ladder.domain.reward.Reward;
 
-public record LadderGameResult(Map<Player, Reward> result) {
+public class LadderGameResult {
+
+    private final Map<Player, Reward> result;
+
+    public LadderGameResult(final Map<Player, Reward> result) {
+        this.result = result;
+    }
 
     public boolean contains(final Player player) {
         return result.containsKey(player);
