@@ -33,17 +33,20 @@ public class LadderController {
 
     private void play(LadderGame ladderGame) {
         Name name = createName();
-        try {
-            PlayResults playResult = ladderGame.play(name);
-            outputView.printPlayResultNotice();
-            outputView.printPlayResult(playResult);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-        }
+        showPlay(ladderGame, name);
         if (name.isAll()) {
             return;
         }
         play(ladderGame);
+    }
+
+    private void showPlay(LadderGame ladderGame, Name name) {
+        try {
+            PlayResults playResult = ladderGame.play(name);
+            outputView.printPlayResult(playResult);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+        }
     }
 
     private Players createPlayers() {

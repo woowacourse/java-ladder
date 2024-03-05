@@ -65,12 +65,9 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printPlayResultNotice() {
+    public void printPlayResult(PlayResults playResults) {
         System.out.println();
         System.out.println("실행결과");
-    }
-
-    public void printPlayResult(PlayResults playResults) {
         Map<Name, Result> value = playResults.getValue();
         if (value.size() == 1) {
             value.values().forEach(result -> System.out.println(result.toString()));
