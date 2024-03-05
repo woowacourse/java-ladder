@@ -10,8 +10,8 @@ public class PlayersResult {
 
     private final Map<Player, ResultItem> allResult;
 
-    public PlayersResult() {
-        this.allResult = new LinkedHashMap<>();
+    public PlayersResult(Map<Player, ResultItem> allResult) {
+        this.allResult = allResult;
     }
 
     public void addResult(Player player, ResultItem item) {
