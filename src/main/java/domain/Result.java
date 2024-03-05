@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Result {
 
@@ -10,8 +11,8 @@ public class Result {
 
     public Result(List<String> prizes, int numberOfPrize) {
         validateNumberOfPrize(prizes, numberOfPrize);
-        this.prizes = prizes.stream()
-                .map(Prize::new)
+        this.prizes = IntStream.range(0, numberOfPrize)
+                .mapToObj(i -> new Prize(prizes.get(i), i))
                 .toList();
     }
 
@@ -26,6 +27,9 @@ public class Result {
     }
 
     public Prize getPrizeOf(Position position) {
-        return prizes.get(position.getPosition());
+        return prizes.stream()
+                .filter(prize -> prize.getPosition() == position)
+                .findFirst()
+                .get();
     }
 }

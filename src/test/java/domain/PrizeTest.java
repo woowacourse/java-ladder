@@ -12,7 +12,7 @@ public class PrizeTest {
     @DisplayName("결과가 없을 때 예외가 발생한다.")
     @NullAndEmptySource
     void noPrizeExceptionTest(String prize) {
-        assertThatThrownBy(() -> new Prize(prize))
+        assertThatThrownBy(() -> new Prize(prize, 0))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Prize.NO_PRIZE);
     }

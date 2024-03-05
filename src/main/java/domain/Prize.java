@@ -7,10 +7,12 @@ public class Prize {
     public static final String NO_PRIZE = "[ERROR] 결과가 없습니다.";
 
     private final String prize;
+    private final Position position;
 
-    public Prize(String prize) {
+    public Prize(String prize, int position) {
         validateNoPrize(prize);
         this.prize = prize;
+        this.position = new Position(position);
     }
 
     private void validateNoPrize(String prize) {
@@ -21,6 +23,9 @@ public class Prize {
 
     public String getPrize() {
         return prize;
+    }
+    public Position getPosition() {
+        return position;
     }
 
     @Override
