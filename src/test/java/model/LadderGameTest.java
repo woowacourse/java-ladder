@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 class LadderGameTest {
 
-
     @Test
     @DisplayName("사다리게임은 한번에 모든 참가자들의 경품을 최초 한번 계산한다.")
     void calculatePrizeTest() {
