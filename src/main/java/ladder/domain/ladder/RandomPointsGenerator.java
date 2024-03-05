@@ -22,7 +22,7 @@ public class RandomPointsGenerator {
     }
 
     private Point getPoints(Point previous) {
-        if (Point.ON.equals(previous)) {
+        if (Point.ON == previous) {
             return Point.OFF;
         }
         return Point.match(random.nextBoolean());
