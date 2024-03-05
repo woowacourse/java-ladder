@@ -12,7 +12,7 @@ import view.InputView;
 import view.ResultView;
 
 public class LadderController {
-    private static final String DELIMITER = ",";
+    private static final String INPUT_PARSE_DELIMITER = ",";
 
     private final ResultView resultView;
     private final InputView inputView;
@@ -70,7 +70,7 @@ public class LadderController {
 
         String prizesText = handler.handleWithRetry(() -> makeLadder(people, ladder));
         resultView.printLadderResult(people, ladder);
-        resultView.printPrizes(Arrays.stream(prizesText.split(DELIMITER)).toList());
+        resultView.printPrizes(Arrays.stream(prizesText.split(INPUT_PARSE_DELIMITER)).toList());
     }
 
     private String makeLadder(People people, Ladder ladder) {
