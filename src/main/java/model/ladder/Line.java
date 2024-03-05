@@ -1,10 +1,10 @@
-package model;
-
-import utils.ThresholdChecker;
+package model.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
+import model.Direction;
+import utils.ThresholdChecker;
 
 public class Line {
 
@@ -31,23 +31,34 @@ public class Line {
 
     private void makeHorizontalLine(ThresholdChecker generator, int position) {
         points.add(false);
-        if (generator.isAboveThreshold() && !hasLeftConnectedLine(position)) {
+        if (isPassGenerateRuleByPosition(generator, position)) {
             points.set(position, true);
         }
     }
 
-    public boolean hasLeftConnectedLine(int position) {
-        if (position == 0) {
-            return false;
-        }
-        return points.get(position - 1);
+    private boolean isPassGenerateRuleByPosition(ThresholdChecker generator, int position) {
+        return generator.isAboveThreshold() && !hasLeftConnectedLine(position);
     }
 
-    public Direction showDirection(int position) {
-        if (points.get(position)) {
+    private boolean hasLeftConnectedLine(int horizontalIndex) {
+        if (horizontalIndex == 0) {
+            return false;
+        }
+        return points.get(horizontalIndex - 1);
+    }
+
+    private boolean hasRightConnectedLine(int horizontalIndex) {
+        if (horizontalIndex == points.size()) {
+            return false;
+        }
+        return points.get(horizontalIndex);
+    }
+
+    public Direction findDirection(int horizontalIndex) {
+        if (hasRightConnectedLine(horizontalIndex)) {
             return Direction.RIGHT;
         }
-        if (position > 0 && points.get(position - 1)) {
+        if (hasLeftConnectedLine(horizontalIndex)) {
             return Direction.LEFT;
         }
         return Direction.NONE;

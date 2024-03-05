@@ -1,10 +1,10 @@
-package model;
-
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+package model.people;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 public class PeopleTest {
 
@@ -32,6 +32,20 @@ public class PeopleTest {
     void duplicateParticipantTest() {
         assertThatThrownBy(() -> new People("a,a,v"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("특정 참가자가 몇 번째 참가자인지 알려준다.")
+    void findIndexByPersonTest() {
+        //given
+        People people = new People("프람,초롱,호티");
+
+        //when
+        int indexOfPerson = people.findIndex(new Person("프람"));
+
+        //then
+        assertThat(indexOfPerson)
+                .isEqualTo(0);
     }
 
 }

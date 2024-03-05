@@ -2,18 +2,19 @@ package view;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import model.Ladder;
-import model.People;
-import model.Person;
+import model.ladder.Ladder;
+import model.people.People;
+import model.people.Person;
+import model.prizes.Prize;
+import model.prizes.RewardBoard;
 
 public class ResultView {
     private static final int MAX_INTERVAL = 6;
-    private static final int START_POSITION = 0;
     private static final String VERTICAL_LINE = "|";
     private static final String HORIZONTAL_LINE = "-----";
     private static final String INTERVAL = "     ";
 
-    public void printResult(People people, Ladder ladder) {
+    public void printLadderResult(People people, Ladder ladder) {
         System.out.printf("%n실행결과%n");
         printNames(people);
 
@@ -43,18 +44,40 @@ public class ResultView {
     }
 
     private void printNames(People people) {
-        people.getParticipants()
-                .stream()
-                .map(Person::getName)
-                .forEach(name -> System.out.print(fillInterval(name)));
-
+        for (Person participant : people.getParticipants()) {
+            String name = participant.getName();
+            printNameInterval(name);
+            System.out.print(name);
+        }
         System.out.println();
     }
 
-    private String fillInterval(String name) {
-        StringBuilder filledName = new StringBuilder(name);
-        return filledName.insert(START_POSITION, " ".repeat(MAX_INTERVAL - name.length()))
-                .toString();
+    public void printPrizes(List<String> prizeName) {
+        for (String name : prizeName) {
+            printNameInterval(name);
+            System.out.print(name);
+        }
+        System.out.println();
+    }
+
+    private void printNameInterval(String name) {
+        for (int i = 0; i < MAX_INTERVAL - name.length(); i++) {
+            System.out.print(" ");
+        }
+    }
+
+    public void printProceedResult(Prize prize) {
+        System.out.printf("%n실행결과%n");
+        System.out.println(prize.getPrizeName());
+    }
+
+    public void printAllProceedResult(RewardBoard rewardBoard, People people) {
+        System.out.printf("%n실행결과%n");
+        for (Person participant : people.getParticipants()) {
+            String findName = participant.getName();
+            String findPrizeName = rewardBoard.findPrizeByName(findName).getPrizeName();
+            System.out.printf("%s : %s%n", findName, findPrizeName);
+        }
     }
 
 }

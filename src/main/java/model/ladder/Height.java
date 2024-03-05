@@ -1,4 +1,4 @@
-package model;
+package model.ladder;
 
 public class Height {
     private static final int MINIMUM_HEIGHT_LIMIT = 1;
@@ -15,10 +15,10 @@ public class Height {
         return height;
     }
 
-    private int parseIntWithCustomException(String heightText){
-        try{
+    private int parseIntWithCustomException(String heightText) {
+        try {
             return Integer.parseInt(heightText);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("사다리의 높이는 숫자만 입력해주세요.");
         }
     }
@@ -26,7 +26,7 @@ public class Height {
     private void validateMinimumLimit(int parsedHeight) {
         if (parsedHeight < MINIMUM_HEIGHT_LIMIT) {
             throw new IllegalArgumentException(String
-                    .format("사다리의 길이는 최소 %s 이상이어야합니다.",MINIMUM_HEIGHT_LIMIT));
+                    .format("사다리의 길이는 최소 %s 이상이어야합니다.", MINIMUM_HEIGHT_LIMIT));
         }
     }
 }
