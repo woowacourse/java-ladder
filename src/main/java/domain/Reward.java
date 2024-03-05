@@ -1,13 +1,13 @@
 package domain;
 
-public class Result {
+public class Reward {
 
     private static final int MIN_RESULT_LENGTH = 1;
     private static final int MAX_RESULT_LENGTH = 5;
 
     private final String value;
 
-    public Result(String value) {
+    public Reward(String value) {
         validateNull(value);
         validateLength(value);
         this.value = value;

@@ -6,14 +6,14 @@ import java.util.Map.Entry;
 
 public class GameResult {
 
-    private final HashMap<Member, Result> gameResult;
+    private final HashMap<Member, Reward> gameResult;
 
     public GameResult() {
         this.gameResult = new LinkedHashMap<>();
     }
 
-    public void addGameResult(Member member, Result result) {
-        gameResult.put(member, result);
+    public void addGameResult(Member member, Reward reward) {
+        gameResult.put(member, reward);
     }
 
     public GameResultDto getResultByTarget(ResultTarget target) {
@@ -28,8 +28,8 @@ public class GameResult {
     }
 
     private GameResultDto getResultOfMember(String memberName) {
-        HashMap<Member, Result> resolvedResult = new LinkedHashMap<>();
-        Entry<Member, Result> memberResult = gameResult.entrySet().stream()
+        HashMap<Member, Reward> resolvedResult = new LinkedHashMap<>();
+        Entry<Member, Reward> memberResult = gameResult.entrySet().stream()
                 .filter(entry -> entry.getKey().hasSameNameWith(memberName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("해당 이름을 가진 참여자가 없습니다."));

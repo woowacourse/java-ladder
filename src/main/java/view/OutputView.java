@@ -7,8 +7,8 @@ import domain.Ladder;
 import domain.Line;
 import domain.Member;
 import domain.Members;
-import domain.Result;
-import domain.Results;
+import domain.Reward;
+import domain.Rewards;
 import java.util.HashMap;
 import java.util.List;
 
@@ -67,16 +67,16 @@ public class OutputView {
         return character.repeat(times);
     }
 
-    private String resolveResults(Results results) {
+    private String resolveResults(Rewards rewards) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (String name : results.getValues()) {
+        for (String name : rewards.getValues()) {
             stringBuilder.append(String.format("%" + MAX_NAME_LENGTH + "s ", name));
         }
         return stringBuilder.toString();
     }
 
     public void printResult(GameResultDto gameResultDto) {
-        HashMap<Member, Result> results = gameResultDto.getGameResult();
+        HashMap<Member, Reward> results = gameResultDto.getGameResult();
         if (results.size() == 1) {
             System.out.println(resolveResult(gameResultDto));
             return;
@@ -85,9 +85,9 @@ public class OutputView {
     }
 
     private String resolveResult(GameResultDto gameResultDto) {
-        HashMap<Member, Result> results = gameResultDto.getGameResult();
+        HashMap<Member, Reward> results = gameResultDto.getGameResult();
         return results.values().stream()
-                .map(Result::getValue)
+                .map(Reward::getValue)
                 .toList()
                 .get(0);
     }

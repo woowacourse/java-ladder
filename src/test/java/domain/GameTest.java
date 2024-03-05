@@ -1,6 +1,7 @@
 package domain;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -16,9 +17,9 @@ public class GameTest {
 
         Ladder ladder = Ladder.of(5, 4, new RandomConnectionStrategy());
 
-        Results results = Results.of(List.of("a!", "b!", "c!", "d!"), 4);
+        Rewards rewards = Rewards.of(List.of("a!", "b!", "c!", "d!"), 4);
 
-        assertThatCode(() -> new Game(members, ladder, results))
+        assertThatCode(() -> new Game(members, ladder, rewards))
                 .doesNotThrowAnyException();
     }
 
@@ -45,9 +46,9 @@ public class GameTest {
             }
         });
 
-        Results results = Results.of(List.of("a!", "b!", "c!", "d!"), 4);
+        Rewards rewards = Rewards.of(List.of("a!", "b!", "c!", "d!"), 4);
 
-        Game game = new Game(members, ladder, results);
+        Game game = new Game(members, ladder, rewards);
 
         GameResult actual = game.matchResult();
 
@@ -85,9 +86,9 @@ public class GameTest {
             }
         });
 
-        Results results = Results.of(List.of("a!", "b!", "c!", "d!"), 4);
+        Rewards rewards = Rewards.of(List.of("a!", "b!", "c!", "d!"), 4);
 
-        Game game = new Game(members, ladder, results);
+        Game game = new Game(members, ladder, rewards);
 
         GameResult actual = game.matchResult();
 

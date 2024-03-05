@@ -6,13 +6,13 @@ public class Game {
 
     private final Members members;
     private final Ladder ladder;
-    private final Results results;
+    private final Rewards rewards;
     private final GameResult gameResult;
 
-    public Game(Members members, Ladder ladder, Results results) {
+    public Game(Members members, Ladder ladder, Rewards rewards) {
         this.members = members;
         this.ladder = ladder;
-        this.results = results;
+        this.rewards = rewards;
         this.gameResult = new GameResult();
     }
 
@@ -20,8 +20,8 @@ public class Game {
         for (Member member : members.getMembers()) {
             int firstPosition = members.findPositionOfMember(member);
             int finalPosition = tryMoveAll(firstPosition);
-            Result result = results.findResultByPosition(finalPosition);
-            gameResult.addGameResult(member, result);
+            Reward reward = rewards.findResultByPosition(finalPosition);
+            gameResult.addGameResult(member, reward);
         }
         return gameResult;
     }
@@ -68,7 +68,7 @@ public class Game {
         return ladder;
     }
 
-    public Results getResults() {
-        return results;
+    public Rewards getResults() {
+        return rewards;
     }
 }

@@ -6,7 +6,7 @@ import domain.GameResultDto;
 import domain.Ladder;
 import domain.Members;
 import domain.ResultTarget;
-import domain.Results;
+import domain.Rewards;
 import error.ErrorHandler;
 import java.util.List;
 import strategy.RandomConnectionStrategy;
@@ -31,11 +31,11 @@ public class GameController {
 
         Members members = errorHandler.readUntilNoError(this::makeMembers);
 
-        Results results = errorHandler.readUntilNoError(() -> makeResults(members));
+        Rewards rewards = errorHandler.readUntilNoError(() -> makeRewards(members));
 
         Ladder ladder = errorHandler.readUntilNoError(() -> makeLadder(members));
 
-        Game game = new Game(members, ladder, results);
+        Game game = new Game(members, ladder, rewards);
         outputView.printLadder(game);
 
         GameResult gameResult = game.matchResult();
@@ -48,9 +48,9 @@ public class GameController {
         return Members.from(names);
     }
 
-    private Results makeResults(Members members) {
-        List<String> results = inputView.readResults();
-        return Results.of(results, members.getCount());
+    private Rewards makeRewards(Members members) {
+        List<String> rewards = inputView.readRewards();
+        return Rewards.of(rewards, members.getCount());
     }
 
     private Ladder makeLadder(Members members) {

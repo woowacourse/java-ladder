@@ -20,7 +20,7 @@ public class InputView {
         return StringParser.splitByDelimiter(rawNames, DELIMITER);
     }
 
-    public List<String> readResults() {
+    public List<String> readRewards() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String rawResults = sc.nextLine();
         return StringParser.splitByDelimiter(rawResults, DELIMITER);
