@@ -10,6 +10,7 @@ import ladder.domain.result.Result;
 import ladder.domain.result.Results;
 
 import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
 
 public class OutputView {
@@ -70,18 +71,19 @@ public class OutputView {
     }
 
     public void printPlayResult(PlayResults playResults) {
-        for (Name name : playResults.getNames()) {
-            String formattedResult = getFormattedResult(playResults, name);
-            System.out.println(formattedResult);
+        Map<Name, Result> value = playResults.getValue();
+        if (value.size() == 1) {
+            value.values().forEach(result -> System.out.println(result.toString()));
+            return;
         }
+        value.forEach(this::printAllFormattedResult);
     }
 
-    private String getFormattedResult(PlayResults playResults, Name name) {
+    private void printAllFormattedResult(Name name, Result result) {
         StringJoiner stringJoiner = new StringJoiner(" : ");
-        if (playResults.size() > 1) {
-            stringJoiner.add(name.toString());
-        }
-        Result result = playResults.find(name);
-        return stringJoiner.add(result.toString()).toString();
+        String formattedResult = stringJoiner.add(name.toString())
+                .add(result.toString())
+                .toString();
+        System.out.println(formattedResult);
     }
 }
