@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
 
-    private final RandomPointsGenerator testPointsGenerator = new RandomPointsGenerator() {
+    private final RandomPointsGenerator pointsGenerator = new RandomPointsGenerator() {
         @Override
         public List<Point> generate(int size) {
             return List.of(Point.ON, Point.OFF, Point.ON, Point.OFF);
@@ -32,7 +32,7 @@ public class LineTest {
     @DisplayName("사다리가 오른쪽으로 연결되어 있다면 오른쪽으로 내려온다.")
     public void ride_HasRightPoint_PositionPlusOne() {
         // given
-        List<Point> points = testPointsGenerator.generate(4);
+        List<Point> points = pointsGenerator.generate(4);
         Line line = new Line(points);
 
         // when
@@ -46,7 +46,7 @@ public class LineTest {
     @DisplayName("사다리가 왼쪽으로 연결되어 있다면 왼쪽으로 내려온다.")
     public void ride_HasLeftPoint_PositionMinusOne() {
         // given
-        List<Point> points = testPointsGenerator.generate(4);
+        List<Point> points = pointsGenerator.generate(4);
         Line line = new Line(points);
 
         // when
@@ -60,7 +60,7 @@ public class LineTest {
     @DisplayName("사다리가 없는 위치라면 예외가 발생한다.")
     public void ride_HasNoneLine_ExceptionThrown() {
         // given
-        List<Point> points = testPointsGenerator.generate(4);
+        List<Point> points = pointsGenerator.generate(4);
         Line line = new Line(points);
 
         // when & then
