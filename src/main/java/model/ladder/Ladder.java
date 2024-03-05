@@ -6,7 +6,6 @@ import model.Index;
 import model.MatchedIndex;
 import model.ladder.line.Line;
 import model.ladder.line.LinesGenerator;
-import model.people.PersonCount;
 
 public class Ladder {
     private final List<Line> lines;
@@ -15,8 +14,8 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder from(final Height height, final PersonCount personCount, final LinesGenerator linesGenerator) {
-        int pathCount = personCount.getCount() - 1;
+    public static Ladder from(final Height height, final int personCount, final LinesGenerator linesGenerator) {
+        int pathCount = personCount - 1;
         final List<Line> lines = linesGenerator.generate(height, pathCount);
         validateLineSize(lines.size(), height);
         return new Ladder(lines);

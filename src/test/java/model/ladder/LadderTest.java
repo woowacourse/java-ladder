@@ -10,7 +10,6 @@ import model.Index;
 import model.MatchedIndex;
 import model.ladder.line.Line;
 import model.ladder.line.FixedLinesGenerator;
-import model.people.PersonCount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +22,7 @@ class LadderTest {
         List<Line> expectedLines = List.of(line);
         FixedLinesGenerator pathGenerator = new FixedLinesGenerator(expectedLines);
         Height height = new Height(1);
-        PersonCount personCount = new PersonCount(2);
+        int personCount = 2;
 
         Ladder ladder = Ladder.from(height, personCount, pathGenerator);
         assertThat(ladder.getLines()).isEqualTo(expectedLines);
@@ -38,7 +37,7 @@ class LadderTest {
         FixedLinesGenerator pathGenerator = new FixedLinesGenerator(expectedLines);
 
         Height height = new Height(1);
-        PersonCount personCount = new PersonCount(2);
+        int personCount = 2;
 
         assertThatThrownBy(() -> Ladder.from(height, personCount, pathGenerator))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -49,7 +48,7 @@ class LadderTest {
     @DisplayName("사다리의 개인별 결과를 확인한다.")
     void climbLadderPersonResult() {
         Height height = new Height(2);
-        PersonCount personCount = new PersonCount(4);
+        int personCount = 4;
         FixedLinesGenerator pathGenerator = new FixedLinesGenerator(
                 List.of(new Line(List.of(EXIST, NOT_EXIST, EXIST)),
                         new Line(List.of(NOT_EXIST, EXIST, NOT_EXIST)))
@@ -66,7 +65,7 @@ class LadderTest {
     @DisplayName("사다리의 전체 결과를 확인한다.")
     void climbLadderAllResult() {
         Height height = new Height(2);
-        PersonCount personCount = new PersonCount(4);
+        int personCount = 4;
         FixedLinesGenerator pathGenerator = new FixedLinesGenerator(
                 List.of(new Line(List.of(EXIST, NOT_EXIST, EXIST)),
                         new Line(List.of(NOT_EXIST, EXIST, NOT_EXIST)))

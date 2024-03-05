@@ -4,21 +4,27 @@ import java.util.List;
 import model.Index;
 
 public class People {
-    private final List<Person> personGroup;
-    private final PersonCount personCount;
+    private static final int MIN_PERSON_COUNT = 2;
 
-    private People(final List<Person> personGroup, final PersonCount personCount) {
+    private final List<Person> personGroup;
+
+    private People(final List<Person> personGroup) {
+        validateMinimumPersonCount(personGroup.size());
         validateDuplicatePerson(personGroup);
         this.personGroup = personGroup;
-        this.personCount = personCount;
     }
 
     public static People from(final List<String> names) {
         final List<Person> personGroup = names.stream()
                 .map(Person::new)
                 .toList();
-        final PersonCount personCount = new PersonCount(names.size());
-        return new People(personGroup, personCount);
+        return new People(personGroup);
+    }
+
+    private void validateMinimumPersonCount(final int rawCount) {
+        if (rawCount < MIN_PERSON_COUNT) {
+            throw new IllegalArgumentException("참여 인원은 최소 2여야 합니다.");
+        }
     }
 
     private void validateDuplicatePerson(final List<Person> personGroup) {
@@ -40,7 +46,7 @@ public class People {
                 .toList();
     }
 
-    public PersonCount getPersonCount() {
-        return personCount;
+    public int findPeopleSize() {
+        return personGroup.size();
     }
 }
