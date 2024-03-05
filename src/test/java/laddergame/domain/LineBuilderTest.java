@@ -14,6 +14,7 @@ public class LineBuilderTest {
     public void testRandomBuildStrategy() {
         //given
         final int count = 4;
+
         // when
         LineBuilder lineBuilder = new LineBuilder(new RandomRungGenerator(), count);
 

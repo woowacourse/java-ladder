@@ -14,10 +14,6 @@ public class PlayersResult {
         this.allResult = allResult;
     }
 
-    public void addResult(Player player, ResultItem item) {
-        allResult.put(player, item);
-    }
-
     public ResultItem findItemByName(String name) {
         return allResult.keySet().stream()
                 .filter(player -> player.getName().equals(name))
