@@ -1,13 +1,12 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Members {
 
-    private static final String DELIMITER = ",";
     private static final int MIN_MEMBER_COUNT = 2;
     private static final int MAX_MEMBER_COUNT = 15;
 
@@ -17,12 +16,18 @@ public class Members {
         this.members = members;
     }
 
-    public static Members from(String rawNames) {
-        List<String> names = StringParser.splitByDelimiter(rawNames, DELIMITER);
+    public static Members from(List<String> names) {
+        validateNull(names);
         validateDuplication(names);
         validateCount(names);
-        List<Member> members = makeMembers(names);
+        List<Member> members = createMembersWithNames(names);
         return new Members(members);
+    }
+
+    private static void validateNull(List<String> names) {
+        if (names == null) {
+            throw new IllegalArgumentException("null을 입력할 수 없습니다.");
+        }
     }
 
     private static void validateDuplication(List<String> names) {
@@ -38,10 +43,14 @@ public class Members {
         }
     }
 
-    private static List<Member> makeMembers(List<String> names) {
-        List<Member> members = new ArrayList<>();
-        names.forEach(name -> members.add(new Member(name)));
-        return members;
+    private static List<Member> createMembersWithNames(List<String> names) {
+        return names.stream()
+                .map(Member::new)
+                .toList();
+    }
+
+    public int findPositionOfMember(Member member) {
+        return members.indexOf(member);
     }
 
     public int getCount() {
@@ -52,5 +61,9 @@ public class Members {
         return members.stream()
                 .map(Member::getName)
                 .toList();
+    }
+
+    public List<Member> getMembers() {
+        return Collections.unmodifiableList(members);
     }
 }

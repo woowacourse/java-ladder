@@ -2,9 +2,14 @@ package view;
 
 import domain.Connection;
 import domain.Game;
+import domain.GameResultDto;
+import domain.Ladder;
 import domain.Line;
-import domain.Lines;
+import domain.Member;
 import domain.Members;
+import domain.Reward;
+import domain.Rewards;
+import java.util.HashMap;
 import java.util.List;
 
 public class OutputView {
@@ -14,10 +19,11 @@ public class OutputView {
     private static final String DISCONNECTED_CHARACTER = " ";
     private static final String FRAME_OF_LADDER = "|";
 
-    public void printResult(Game game) {
-        System.out.println("실행결과");
+    public void printLadder(Game game) {
+        System.out.println("사다리 결과");
         System.out.println(resolveMembers(game.getMembers()));
-        System.out.println(resolveLines(game.getLines()));
+        System.out.println(resolveLadder(game.getLadder()));
+        System.out.println(resolveResults(game.getResults()));
     }
 
     private String resolveMembers(Members members) {
@@ -28,13 +34,14 @@ public class OutputView {
         return stringBuilder.toString();
     }
 
-    private String resolveLines(Lines ladder) {
+    private String resolveLadder(Ladder ladder) {
         StringBuilder stringBuilder = new StringBuilder();
         List<Line> lines = ladder.getLines();
         for (Line line : lines) {
             stringBuilder.append(resolveLine(line));
             stringBuilder.append("\n");
         }
+        stringBuilder.deleteCharAt(stringBuilder.lastIndexOf("\n"));
         return stringBuilder.toString();
     }
 
@@ -58,5 +65,41 @@ public class OutputView {
 
     private String repeatCharacter(String character, int times) {
         return character.repeat(times);
+    }
+
+    private String resolveResults(Rewards rewards) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String name : rewards.getValues()) {
+            stringBuilder.append(String.format("%" + MAX_NAME_LENGTH + "s ", name));
+        }
+        return stringBuilder.toString();
+    }
+
+    public void printResult(GameResultDto gameResultDto) {
+        HashMap<Member, Reward> results = gameResultDto.getGameResult();
+        if (results.size() == 1) {
+            System.out.println(resolveResult(gameResultDto));
+            return;
+        }
+        System.out.println(resolveAllResults(gameResultDto));
+    }
+
+    private String resolveResult(GameResultDto gameResultDto) {
+        HashMap<Member, Reward> results = gameResultDto.getGameResult();
+        return results.values().stream()
+                .map(Reward::getValue)
+                .toList()
+                .get(0);
+    }
+
+    private String resolveAllResults(GameResultDto gameResultDto) {
+        StringBuilder stringBuilder = new StringBuilder();
+        gameResultDto.getGameResult().forEach((member, result) -> {
+            stringBuilder.append(member.getName());
+            stringBuilder.append(" : ");
+            stringBuilder.append(result.getValue());
+            stringBuilder.append("\n");
+        });
+        return stringBuilder.toString();
     }
 }

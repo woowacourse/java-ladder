@@ -1,15 +1,21 @@
 package controller;
 
 import domain.Game;
-import domain.Lines;
+import domain.GameResult;
+import domain.GameResultDto;
+import domain.Ladder;
 import domain.Members;
-import domain.StringParser;
+import domain.ResultTarget;
+import domain.Rewards;
 import error.ErrorHandler;
+import java.util.List;
 import strategy.RandomConnectionStrategy;
 import view.InputView;
 import view.OutputView;
 
 public class GameController {
+
+    private static final int MAX_RESULT_COUNT = 50;
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -23,26 +29,52 @@ public class GameController {
 
     public void run() {
 
-        Members members = makeMembers();
+        Members members = errorHandler.readUntilNoError(this::makeMembers);
 
-        Lines lines = makeLines(members);
+        Rewards rewards = errorHandler.readUntilNoError(() -> makeRewards(members));
 
-        Game game = new Game(members, lines);
-        outputView.printResult(game);
+        Ladder ladder = errorHandler.readUntilNoError(() -> makeLadder(members));
+
+        Game game = new Game(members, ladder, rewards);
+        outputView.printLadder(game);
+
+        GameResult gameResult = game.matchResult();
+
+        manageResult(members, gameResult);
     }
 
     private Members makeMembers() {
-        return errorHandler.readUntilNoError(() -> {
-            String rawNames = inputView.readNames();
-            return Members.from(rawNames);
-        });
+        List<String> names = inputView.readNames();
+        return Members.from(names);
     }
 
-    private Lines makeLines(Members members) {
-        return errorHandler.readUntilNoError(() -> {
-            String rawHeight = inputView.readHeight();
-            int height = StringParser.stringToInt(rawHeight);
-            return Lines.of(members.getCount(), height, new RandomConnectionStrategy());
-        });
+    private Rewards makeRewards(Members members) {
+        List<String> rewards = inputView.readRewards();
+        return Rewards.of(rewards, members.getCount());
+    }
+
+    private Ladder makeLadder(Members members) {
+        int height = inputView.readHeight();
+        return Ladder.of(height, members.getCount(), new RandomConnectionStrategy());
+    }
+
+    private void manageResult(Members members, GameResult gameResult) {
+        int count = MAX_RESULT_COUNT;
+        ResultTarget resultTarget;
+        do {
+            resultTarget = showResult(members, gameResult);
+        } while (--count > 0 && !resultTarget.isAllMembers());
+    }
+
+    private ResultTarget showResult(Members members, GameResult gameResult) {
+        ResultTarget resultTarget = errorHandler.readUntilNoError(() -> makeResultTarget(members));
+        GameResultDto result = gameResult.getResultByTarget(resultTarget);
+        outputView.printResult(result);
+        return resultTarget;
+    }
+
+    private ResultTarget makeResultTarget(Members members) {
+        String rawTargetName = inputView.readTarget();
+        return ResultTarget.of(rawTargetName, members.getMembers());
     }
 }

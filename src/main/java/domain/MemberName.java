@@ -1,14 +1,17 @@
 package domain;
 
-public class Name {
+import java.util.Objects;
+
+public class MemberName {
 
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
+    private static final String INVALID_NAME = "all";
     private static final String FORMAT_NAME = "^[A-Za-z0-9]+$";
 
     private final String name;
 
-    public Name(String name) {
+    public MemberName(String name) {
         validate(name);
         this.name = name;
     }
@@ -32,6 +35,9 @@ public class Name {
     }
 
     private void validatePattern(String name) {
+        if (name.equals(INVALID_NAME)) {
+            throw new IllegalArgumentException("'all'이라는 이름을 사용할 수 없습니다.");
+        }
         if (!name.matches(FORMAT_NAME)) {
             throw new IllegalArgumentException("이름은 알파벳과 숫자만 허용합니다.");
         }
@@ -39,5 +45,22 @@ public class Name {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        MemberName that = (MemberName) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
