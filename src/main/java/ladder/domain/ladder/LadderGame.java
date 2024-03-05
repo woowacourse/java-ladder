@@ -29,7 +29,7 @@ public class LadderGame {
         return new PlayResults(Map.of(name, result));
     }
 
-    private Result playOne(Name name) throws IllegalArgumentException {
+    private Result playOne(Name name) {
         int startPosition = players.findPosition(name);
         int resultPosition = ladder.ride(startPosition);
         return results.find(resultPosition);
