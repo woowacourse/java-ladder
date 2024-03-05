@@ -1,5 +1,7 @@
 package ladder.view;
 
+import static ladder.view.LadderGameResultCommand.ALL_PLAYERS;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -34,7 +36,7 @@ public class InputView {
     }
 
     private String validateNotAll(final String input) {
-        if (input.equals("all")) {
+        if (input.equals(ALL_PLAYERS)) {
             throw new IllegalArgumentException("참여자 이름으로 all을 입력할 수 없습니다");
         }
         return input;
@@ -57,22 +59,28 @@ public class InputView {
         });
     }
 
-    public Player inputPlayerOrAll(final LadderGameResult ladderGameResults) {
+    public LadderGameResultCommand inputGameResultCommand(final LadderGameResult ladderGameResults) {
         return exceptionHandler.run(() -> {
             System.out.println("\n결과를 보고 싶은 사람은?");
             Player player = new Player(readLine());
-            return playerOrAll(ladderGameResults, player);
+            LadderGameResultCommand resultCommand = new LadderGameResultCommand(player);
+            return playerOrAll(ladderGameResults, resultCommand);
         });
     }
 
-    private Player playerOrAll(final LadderGameResult result, final Player player) {
-        if (player.isAll()) {
-            return player;
+    private LadderGameResultCommand playerOrAll(final LadderGameResult result,
+                                                final LadderGameResultCommand resultCommand) {
+        if (resultCommand.isAll()) {
+            return resultCommand;
         }
+        requireContainsName(result, resultCommand.player());
+        return resultCommand;
+    }
+
+    private void requireContainsName(final LadderGameResult result, final Player player) {
         if (!result.contains(player)) {
             throw new IllegalArgumentException("존재하지 않는 이름입니다: %s".formatted(player.name()));
         }
-        return player;
     }
 
     private String readLine() {

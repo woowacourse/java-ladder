@@ -2,8 +2,6 @@ package ladder.domain.player;
 
 public record Player(String name) {
 
-    public static final Player ALL = new Player("all");
-
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
 
@@ -12,9 +10,5 @@ public record Player(String name) {
             throw new IllegalArgumentException(
                     "이름은 %d~%d글자로 입력해주세요: %s".formatted(MIN_LENGTH, MAX_LENGTH, name));
         }
-    }
-
-    public boolean isAll() {
-        return this.equals(ALL);
     }
 }

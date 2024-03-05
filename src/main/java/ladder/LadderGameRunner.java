@@ -5,10 +5,10 @@ import ladder.domain.attribute.Width;
 import ladder.domain.game.LadderGame;
 import ladder.domain.game.LadderGameResult;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.reward.Rewards;
 import ladder.view.InputView;
+import ladder.view.LadderGameResultCommand;
 import ladder.view.ResultView;
 
 public class LadderGameRunner {
@@ -29,7 +29,7 @@ public class LadderGameRunner {
         Ladder ladder = Ladder.of(height, width);
         LadderGame ladderGame = LadderGame.of(players, rewards, ladder);
         LadderGameResult result = play(ladderGame);
-        askPlayerAndPrintLadderGameResult(result);
+        askCommandAndPrintResult(result);
     }
 
     private LadderGameResult play(final LadderGame ladderGame) {
@@ -37,12 +37,12 @@ public class LadderGameRunner {
         return ladderGame.play();
     }
 
-    private void askPlayerAndPrintLadderGameResult(final LadderGameResult result) {
-        Player player = inputView.inputPlayerOrAll(result);
-        resultView.printResult(result, player);
-        if (player.isAll()) {
+    private void askCommandAndPrintResult(final LadderGameResult result) {
+        LadderGameResultCommand resultCommand = inputView.inputGameResultCommand(result);
+        resultView.printResult(result, resultCommand);
+        if (resultCommand.isAll()) {
             return;
         }
-        askPlayerAndPrintLadderGameResult(result);
+        askCommandAndPrintResult(result);
     }
 }
