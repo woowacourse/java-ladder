@@ -41,7 +41,6 @@ public class LadderGame {
                     position.getVertical());
             position.moveHorizontally(nextHorizontalPath);
             position.moveToDownStair();
-            System.out.println();
         }
     }
 
