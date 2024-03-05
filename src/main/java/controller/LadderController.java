@@ -65,8 +65,8 @@ public class LadderController {
         People people = handler.handleWithRetry(() -> new People(inputView.askParticipants()));
         Ladder ladder = handler.handleWithRetry(() ->
                 new Ladder(new RandomThresholdChecker(),
-                inputView.askLadderHeight(),
-                people.getParticipantsSize()));
+                        inputView.askLadderHeight(),
+                        people.getParticipantsSize()));
 
         String prizesText = handler.handleWithRetry(() -> makeLadder(people, ladder));
         resultView.printLadderResult(people, ladder);

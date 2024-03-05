@@ -16,7 +16,7 @@ public class RewardBoard {
     }
 
     public Prize findPrizeByName(String name) {
-        if(!board.containsKey(new Person(name))) {
+        if (!board.containsKey(new Person(name))) {
             throw new IllegalArgumentException("해당 참가자를 찾을 수 없습니다.");
         }
         return board.get(new Person(name));

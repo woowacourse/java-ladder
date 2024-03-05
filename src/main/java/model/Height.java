@@ -15,10 +15,10 @@ public class Height {
         return height;
     }
 
-    private int parseIntWithCustomException(String heightText){
-        try{
+    private int parseIntWithCustomException(String heightText) {
+        try {
             return Integer.parseInt(heightText);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("사다리의 높이는 숫자만 입력해주세요.");
         }
     }

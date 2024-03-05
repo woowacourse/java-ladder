@@ -36,7 +36,7 @@ public class LadderGame {
     }
 
     private void goDownOneself(Position position) {
-        while(isWalkingTightrope(position)) {
+        while (isWalkingTightrope(position)) {
             Direction nextHorizontalPath = ladder.findNextHorizontalPath(position.getHorizontal(),
                     position.getVertical());
             position.moveHorizontally(nextHorizontalPath);

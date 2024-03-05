@@ -10,7 +10,7 @@ public class Position {
         this.horizontal = horizontal;
         this.vertical = vertical;
     }
-    
+
     public void moveHorizontally(Direction direction) {
         this.horizontal += direction.getValue();
     }

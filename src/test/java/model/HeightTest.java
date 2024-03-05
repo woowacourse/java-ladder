@@ -24,7 +24,7 @@ public class HeightTest {
         assertThatThrownBy(() -> new Height("프람"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리의 높이는 숫자만 입력해주세요.");
-     }
+    }
 
     @Test
     @DisplayName("사다리의 높이가 음수일 경우 예외를 발생시킨다.")

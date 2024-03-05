@@ -13,7 +13,7 @@ class LadderTest {
 
     @BeforeAll
     static void makeLadder() {
-        ladder = new Ladder(()-> true, "3",4);
+        ladder = new Ladder(() -> true, "3", 4);
     }
 
     @ParameterizedTest

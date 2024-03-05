@@ -16,11 +16,11 @@ public class LineTest {
     @DisplayName("우측으로 가로 라인이 있는 위치들을 반환한다")
     void findHorizontalTest() {
         //given
-        Line line=new Line(() -> true, 4);
+        Line line = new Line(() -> true, 4);
         line.draw(() -> true, 4);
 
         //when
-        List<Integer> expect=List.of(0, 2);
+        List<Integer> expect = List.of(0, 2);
         List<Integer> actual = line.findHorizontalPosition();
 
         //then
@@ -31,7 +31,7 @@ public class LineTest {
     @DisplayName("특정 위치를 지정하면 이동 할수 있는 가로 위치를 반환한다.")
     class findDirectionTest {
         @ParameterizedTest
-        @ValueSource(ints = {0,2})
+        @ValueSource(ints = {0, 2})
         @DisplayName("오른쪽에 가로라인이 있는 위치를 지정하면 오른쪽 방향을 반환한다.")
         void findRightDirectionTest(int horizontalIndex) {
             //given
@@ -59,7 +59,7 @@ public class LineTest {
         }
 
         @ParameterizedTest
-        @ValueSource(ints = {0,1,2})
+        @ValueSource(ints = {0, 1, 2})
         @DisplayName("양쪽 모두 가로라인이 없는 경우에도 위치를 반환한다.")
         void findNoneDirectionTest(int horizontalIndex) {
             //given

@@ -16,7 +16,7 @@ public class Ladder {
     }
 
     public Direction findNextHorizontalPath(int horizontalPosition, int verticalPosition) {
-       return lines.get(verticalPosition)
+        return lines.get(verticalPosition)
                 .findDirection(horizontalPosition);
     }
 
