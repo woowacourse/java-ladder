@@ -50,6 +50,8 @@ public class Users {
     }
 
     public List<String> getUsersNames() {
-        return this.users.stream().map(User::getUserName).collect(Collectors.toList());
+        return this.users.stream()
+                .map(User::getUserName)
+                .collect(Collectors.toList());
     }
 }
