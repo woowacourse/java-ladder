@@ -12,10 +12,6 @@ public class LadderGame {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private Participants participants;
-    private Result result;
-    private Ladder ladder;
-    private MatchResult matchResult;
 
     public void play() {
         try {
@@ -26,13 +22,13 @@ public class LadderGame {
     }
 
     private void run() {
-        participants = recruitParticipants();
-        result = decideResult(participants.getCount());
-        ladder = makeLadder();
-        matchResult = new MatchResult(participants, result, ladder);
+        Participants participants = recruitParticipants();
+        Result result = decideResult(participants.getCount());
+        Ladder ladder = makeLadder(participants);
+        MatchResult matchResult = new MatchResult(participants, result, ladder);
         outputView.printLadderResult(participants, ladder, result);
         while (true) {
-            showResult();
+            showResult(matchResult);
         }
     }
 
@@ -56,35 +52,35 @@ public class LadderGame {
         }
     }
 
-    private Ladder makeLadder() {
+    private Ladder makeLadder(Participants participants) {
         try {
             int height = inputView.readHeight();
             return new Ladder(height, participants.getCount(), new RandomStepGenerator());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return makeLadder();
+            return makeLadder(participants);
         }
     }
 
-    private void showResult() {
+    private void showResult(MatchResult matchResult) {
         String input = inputView.readWhatResult();
         if (Command.contains(input)) {
-            showResultByCommand(input);
+            showResultByCommand(matchResult, input);
             return;
         }
-        showResultByName(input);
+        showResultByName(matchResult, input);
     }
 
-    private void showResultByCommand(String input) {
+    private void showResultByCommand(MatchResult matchResult, String input) {
         if (Command.isExit(input)) {
             System.exit(0);
         }
         if (Command.isAll(input)) {
-            showResultAll();
+            showResultAll(matchResult);
         }
     }
 
-    private void showResultByName(String who) {
+    private void showResultByName(MatchResult matchResult, String who) {
         try {
             Name name = new Name(who);
             Prize prize = matchResult.getResultByName(name);
@@ -94,7 +90,7 @@ public class LadderGame {
         }
     }
 
-    private void showResultAll() {
+    private void showResultAll(MatchResult matchResult) {
         outputView.printAllResult(matchResult.getResultAll());
     }
 }
