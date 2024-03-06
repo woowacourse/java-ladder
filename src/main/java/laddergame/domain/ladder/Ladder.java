@@ -2,14 +2,14 @@ package laddergame.domain.ladder;
 
 import laddergame.domain.connectiongenerator.ConnectionGenerator;
 import laddergame.domain.connectiongenerator.RandomConnectionGenerator;
+import laddergame.domain.gameelements.Players;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
 public class Ladder {
     private final List<RowLine> rowLines;
-    Height height;
+    private final Height height;
 
     public Ladder(int height, int peopleNumber) {
         this(height, peopleNumber, new RandomConnectionGenerator());
@@ -22,7 +22,13 @@ public class Ladder {
                 .toList();
     }
 
+    public void climb(Players players) {
+        for (RowLine rowLine : rowLines) {
+            rowLine.move(players);
+        }
+    }
+
     public List<RowLine> getRowLines() {
-        return Collections.unmodifiableList(rowLines);
+        return rowLines;
     }
 }

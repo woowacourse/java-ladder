@@ -5,11 +5,10 @@ import laddergame.domain.ladder.Connection;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class AllFalseConnectionGenerator implements ConnectionGenerator {
-
+public class AllTrueConnectionGenerator implements ConnectionGenerator {
     @Override
     public List<Connection> generate(int number) {
-        return Stream.iterate(Connection.NOT_CONNECTED, connection -> connection)
+        return Stream.iterate(Connection.CONNECTED, connection -> connection)
                 .limit(number)
                 .toList();
     }

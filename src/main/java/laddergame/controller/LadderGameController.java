@@ -1,29 +1,42 @@
 package laddergame.controller;
 
+import laddergame.domain.LadderGame;
+import laddergame.domain.gameelements.Players;
+import laddergame.domain.gameelements.Prizes;
 import laddergame.domain.ladder.Ladder;
-import laddergame.domain.people.People;
-import laddergame.view.ExceptionHandledReader;
 import laddergame.view.InputView;
-import laddergame.view.ResultView;
+
+import static laddergame.view.ExceptionHandledReader.retryUntilNoError;
+import static laddergame.view.ResultView.printLadder;
+import static laddergame.view.ResultView.printPlayerResult;
 
 public class LadderGameController {
+
     private LadderGameController() {
     }
 
     public static void run() {
-        People people = ExceptionHandledReader.readUntilNoError(LadderGameController::getPeople);
-        Ladder ladder = ExceptionHandledReader.readUntilNoError(() -> getLadder(people));
+        Players players = retryUntilNoError(() -> new Players(InputView.readNames()));
+        Ladder ladder = retryUntilNoError(() -> makeLadder(players));
+        Prizes prizes = retryUntilNoError(() -> new Prizes(InputView.readPrizes(), players.count()));
 
-        ResultView.printLadder(people, ladder);
+        LadderGame ladderGame = new LadderGame(players, ladder, prizes);
+        ladderGame.playGame();
+
+        printLadder(players, ladder, prizes);
+        String playerName = retryUntilNoError(() -> getPlayerName(players));
+        printPlayerResult(playerName, ladderGame);
     }
 
-    private static People getPeople() {
-        return new People(InputView.readNames());
+    private static Ladder makeLadder(Players players) {
+        return new Ladder(InputView.readHeight(), players.count());
     }
 
-    private static Ladder getLadder(People people) {
-        int peopleNumber = people.getNames().size();
-        return new Ladder(InputView.readHeight(), peopleNumber);
+    private static String getPlayerName(Players players) {
+        String playerName = InputView.readPlayerName();
+        if (playerName.equals("all")) {
+            return playerName;
+        }
+        return players.findPlayerByName(playerName).getName();
     }
-
 }

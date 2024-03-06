@@ -3,27 +3,27 @@ package laddergame.domain.connectiongenerator;
 import laddergame.domain.ladder.Connection;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Stream;
 
 import static laddergame.domain.ladder.Connection.CONNECTED;
-import static laddergame.domain.ladder.Connection.NOTCONNECTED;
+import static laddergame.domain.ladder.Connection.NOT_CONNECTED;
 
 public class RandomConnectionGenerator implements ConnectionGenerator {
-    private static final double PERCENTAGE_OF_CONNECTION = 0.5;
+    private static final Random random = new Random();
 
     @Override
-    public List<Connection> getConnections(int peopleNumber) {
-        int connectionNumber = peopleNumber - 1;
+    public List<Connection> generate(int number) {
         Connection beforeConnection = addRandomConnection();
 
         return Stream.iterate(beforeConnection, this::addConnection)
-                .limit(connectionNumber)
+                .limit(number)
                 .toList();
     }
 
     private Connection addConnection(Connection beforeConnection) {
-        if (beforeConnection==CONNECTED) {
-            beforeConnection = NOTCONNECTED;
+        if (beforeConnection == CONNECTED) {
+            beforeConnection = NOT_CONNECTED;
             return beforeConnection;
         }
 
@@ -32,10 +32,9 @@ public class RandomConnectionGenerator implements ConnectionGenerator {
     }
 
     private Connection addRandomConnection() {
-
-        if(Math.random() <= PERCENTAGE_OF_CONNECTION){
+        if (random.nextBoolean()) {
             return CONNECTED;
         }
-        return NOTCONNECTED;
+        return NOT_CONNECTED;
     }
 }
