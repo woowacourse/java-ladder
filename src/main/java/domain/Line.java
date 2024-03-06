@@ -1,7 +1,5 @@
 package domain;
 
-import utils.StepGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,5 +32,23 @@ public class Line {
 
     public List<StepPoint> getStepPoints() {
         return stepPoints;
+    }
+
+    public void moveSideways(Player player) {
+        if (canMoveToLeft(player.getPosition())) {
+            player.moveLeft();
+            return;
+        }
+        if (canMoveToRight(player.getPosition())) {
+            player.moveRight();
+        }
+    }
+
+    private boolean canMoveToLeft(Position position) {
+        return position.getPosition() > 0 && stepPoints.get(position.getPosition() - 1) == StepPoint.PRESENT;
+    }
+
+    private boolean canMoveToRight(Position position) {
+        return position.getPosition() < stepPoints.size() && stepPoints.get(position.getPosition()) == StepPoint.PRESENT;
     }
 }

@@ -3,6 +3,7 @@ package view;
 import domain.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -10,16 +11,17 @@ public class OutputView {
     public static final String EXIST_POINT = "-----|";
     public static final String EMPTY_POINT = "     |";
 
-    public void printResult(Participants participants, Ladder ladder) {
-        System.out.println("\n실행결과\n");
+    public void printLadderResult(Participants participants, Ladder ladder, Result prizes) {
+        System.out.println("\n사다리 결과\n");
         printNames(participants);
         printLadder(ladder);
+        printPrizes(prizes);
     }
 
     private void printNames(Participants participants) {
-        List<Name> names = participants.getNames();
-        for (Name name : names) {
-            System.out.printf("%5s ", name.getName());
+        List<Player> players = participants.getPlayers();
+        for (Player player : players) {
+            System.out.printf("%5s ", player.getName().getName());
         }
         System.out.println();
     }
@@ -46,5 +48,27 @@ public class OutputView {
             return;
         }
         System.out.print(EMPTY_POINT);
+    }
+
+    private void printPrizes(Result result) {
+        List<Prize> prizes = result.getPrizes();
+        for (Prize prize : prizes) {
+            System.out.printf("%5s ", prize.getPrize());
+        }
+        System.out.println();
+    }
+
+    public void printAllResult(Map<Name, Prize> matchResult) {
+        System.out.println("\n실행 결과");
+        for (Map.Entry<Name, Prize> entry : matchResult.entrySet()) {
+            String name = entry.getKey().getName();
+            String prize = entry.getValue().getPrize();
+            System.out.println(name + " : " + prize);
+        }
+    }
+
+    public void printOneResult(Prize prize) {
+        System.out.println("\n실행 결과");
+        System.out.println(prize.getPrize());
     }
 }

@@ -1,6 +1,5 @@
 package domain;
 
-import constant.domain.ParticipantsExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +16,7 @@ class ParticipantsTest {
 
         assertThatThrownBy(() -> new Participants(oneNames))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ParticipantsExceptionMessage.OUT_OF_RANGE_PARTICIPANTS_COUNT.getExceptionMessage());
+                .hasMessage(Participants.OUT_OF_RANGE_PARTICIPANTS_COUNT);
     }
 
     @Test
@@ -31,7 +30,7 @@ class ParticipantsTest {
 
         assertThatThrownBy(() -> new Participants(fiftyOneNames))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ParticipantsExceptionMessage.OUT_OF_RANGE_PARTICIPANTS_COUNT.getExceptionMessage());
+                .hasMessage(Participants.OUT_OF_RANGE_PARTICIPANTS_COUNT);
     }
 
     @Test
@@ -41,7 +40,7 @@ class ParticipantsTest {
 
         assertThatThrownBy(() -> new Participants(duplicateNames))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ParticipantsExceptionMessage.DUPLICATE_PARTICIPANTS.getExceptionMessage());
+                .hasMessage(Participants.DUPLICATE_PARTICIPANTS);
     }
 
 }
