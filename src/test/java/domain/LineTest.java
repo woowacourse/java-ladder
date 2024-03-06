@@ -1,52 +1,73 @@
 package domain;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Stream;
-
-import domain.line.Line;
-import domain.line.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+import java.util.List;
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 class LineTest {
-    @ParameterizedTest
-    @MethodSource("provideGenerator")
-    @DisplayName("가로 라인은 겹치지 않아야 한다.")
-    void isLineCannotNextToLine(BooleanGenerator generator) {
-        int personCount = 1000;
-        Line line = new Line(personCount, generator);
-        List<Point> points = line.getPoints();
-        int isInvalidLine = Collections.indexOfSubList(points, List.of(Point.CONNECTED, Point.CONNECTED));
-
-        assertEquals(-1, isInvalidLine);
+    @Test
+    @DisplayName("가로 라인은 겹칠 수 없다.")
+    void isLineCannotNextToLine() {
+        assertThrows(IllegalStateException.class, () -> new Line(List.of(Point.CONNECTED, Point.CONNECTED)));
     }
 
-    Stream<Arguments> provideGenerator() {
+    @ParameterizedTest
+    @MethodSource("argumentsStreamProvider")
+    @DisplayName("다음 이동 방향을 결정한다.")
+    void nextPosition(int nextIndex, int index) {
+        int personCount = 5;
+        BooleanGenerator generator = new TogleBooleanGenerator(true);
+        LineGenerator lineGenerator = new LineGenerator(personCount, generator);
+        Line line = new Line(lineGenerator.createPoints());
+        // 라인 생성 결과
+        // [CONNECTED, DISCONNECTED, DISCONNECTED, CONNECTED]
+
+        assertEquals(nextIndex, line.nextIndex(index));
+    }
+
+    static Stream<Arguments> argumentsStreamProvider() {
         return Stream.of(
-                Arguments.of(new FixedBooleanGenerator(true)),
-                Arguments.of(new FixedBooleanGenerator(false)),
-                Arguments.of(new RandomBooleanGenerator())
+                Arguments.of(1, 0),
+                Arguments.of(0, 1),
+                Arguments.of(2, 2),
+                Arguments.of(4, 3),
+                Arguments.of(3, 4)
         );
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 5})
+    @DisplayName("음수이거나 포인트의 개수보다 큰 인덱스는 허용하지 않는다.")
+    void invalidIndex(int testIndex) {
+        int personCount = 5;
+        LineGenerator lineGenerator = new LineGenerator(personCount, new RandomBooleanGenerator());
+        Line line = new Line(lineGenerator.createPoints());
+
+        assertThrows(IllegalArgumentException.class, () -> line.nextIndex(testIndex));
     }
 }
 
-class FixedBooleanGenerator implements BooleanGenerator {
-    private final boolean value;
+class TogleBooleanGenerator implements BooleanGenerator {
+    private boolean value;
 
-    public FixedBooleanGenerator(boolean value) {
+    public TogleBooleanGenerator(boolean value) {
         this.value = value;
     }
 
     @Override
     public Boolean generate() {
-        return value;
+        boolean result = value;
+        value = !value;
+        return result;
     }
 }
+

@@ -1,4 +1,4 @@
-package domain.line;
+package domain;
 
 public enum Point {
     CONNECTED(true),
