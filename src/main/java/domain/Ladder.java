@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Ladder {
 
-    private static final int WIDTH_IDX = 1;
+    private static final int LAST_POINT = 1;
 
     private final List<RowLine> lines;
 
@@ -33,7 +33,7 @@ public class Ladder {
         return List.copyOf(lines);
     }
 
-    public int getWidthSize() {
-        return lines.get(0).getSize() + WIDTH_IDX;
+    public int countStartingPoints() {
+        return lines.get(0).getSize() + LAST_POINT;
     }
 }

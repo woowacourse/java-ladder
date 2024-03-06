@@ -21,7 +21,7 @@ public class LadderIndexConnection {
         Map<Integer, Integer> indexConnections = new LinkedHashMap<>();
         List<RowLine> lines = ladder.getLines();
 
-        for (int position = 0; position < ladder.getWidthSize(); position++) {
+        for (int position = 0; position < ladder.countStartingPoints(); position++) {
             int endPosition = findEndPosition(position, lines);
             indexConnections.put(position, endPosition);
         }
