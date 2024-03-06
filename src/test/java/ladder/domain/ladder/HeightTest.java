@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ class HeightTest {
 
     @Test
     @DisplayName("높이는 1 이상의 숫자이다.")
-    void createHeight() {
+    void height_LargerThanOne_NoException() {
         // when & then
         assertThatCode(() -> new Height(1))
                 .doesNotThrowAnyException();
@@ -21,7 +21,7 @@ class HeightTest {
     @ParameterizedTest
     @ValueSource(ints = {0, -1})
     @DisplayName("입력된 높이가 0 이하라면 예외가 발생한다.")
-    void outOfBoundsHeightExceptionTest(int outOfBounds) {
+    void height_OutOfBounds_ExceptionThrown(int outOfBounds) {
         // when & then
         assertThatThrownBy(() -> new Height(outOfBounds))
                 .isInstanceOf(IllegalArgumentException.class);
