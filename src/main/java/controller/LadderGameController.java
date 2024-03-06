@@ -1,6 +1,9 @@
 package controller;
 
-import domain.*;
+import domain.EndingSelecter;
+import domain.Height;
+import domain.Ladder;
+import domain.LadderGameResult;
 import domain.line.RandomLinesGenerator;
 import domain.name.Name;
 import domain.name.Names;
@@ -26,8 +29,7 @@ public class LadderGameController {
         Ladder ladder = Ladder.createFrom(new RandomLinesGenerator(), names, height, prizes);
         resultView.printLadder(ladder, names, prizes);
 
-        LadderIndexConnection ladderIndexConnection = LadderIndexConnection.of(ladder);
-        LadderGameResult ladderGameResult = new LadderGameResult(names, prizes, ladderIndexConnection);
+        LadderGameResult ladderGameResult = new LadderGameResult(names, prizes, ladder);
         printResult(ladderGameResult);
     }
 

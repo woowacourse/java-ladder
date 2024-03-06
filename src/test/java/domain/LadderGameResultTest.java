@@ -20,7 +20,6 @@ class LadderGameResultTest {
     private Names names;
     private Prizes prizes;
     private Ladder ladder;
-    private LadderIndexConnection ladderIndexConnection;
     private LadderGameResult ladderGameResult;
 
     @BeforeEach
@@ -33,14 +32,14 @@ class LadderGameResultTest {
                         List.of(CONNECTED, DISCONNECTED, CONNECTED))),
                 names, new Height(5), prizes);
 
-        ladderIndexConnection = LadderIndexConnection.of(ladder);
-        ladderGameResult = new LadderGameResult(names, prizes, ladderIndexConnection);
+        ladderGameResult = new LadderGameResult(names, prizes, ladder);
     }
 
     @DisplayName("이름과 매칭되는 상품 이름을 반환한다.")
     @ParameterizedTest
     @CsvSource(value = {"a,4", "b,2", "c,3", "d,1"})
     void getOneResult(String name, String prize) {
+        ladder.matchLadderPoints();
         assertThat(ladderGameResult.getOneResult(new Name(name)).getPrizeName()).isEqualTo(prize);
     }
 }
