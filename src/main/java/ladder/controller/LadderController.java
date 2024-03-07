@@ -43,11 +43,29 @@ public class LadderController {
     }
 
     private LadderItems requestLadderItems() {
+        People people = requestPeopleUntilValid();
+        WinningItems winningItems = requestWinningItemsUntilValid();
+
+        return new LadderItems(people, winningItems);
+    }
+
+    private People requestPeopleUntilValid() {
+        return ExceptionRetryHandler.handle(this::requestPeople);
+    }
+
+    private People requestPeople() {
         List<String> peopleNames = inputView.readPeopleNames();
         validateIsPeopleNamesCommand(peopleNames);
-        List<String> winningItems = inputView.readWinningItems();
 
-        return new LadderItems(new People(peopleNames), new WinningItems(winningItems));
+        return new People(peopleNames);
+    }
+
+    private WinningItems requestWinningItemsUntilValid() {
+        return ExceptionRetryHandler.handle(this::requestWinningItems);
+    }
+
+    private WinningItems requestWinningItems() {
+        return new WinningItems(inputView.readWinningItems());
     }
 
     private void validateIsPeopleNamesCommand(List<String> peopleNames) {
