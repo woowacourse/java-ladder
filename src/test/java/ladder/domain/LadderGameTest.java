@@ -5,8 +5,6 @@ import ladder.domain.creator.RandomLadderCreator;
 import ladder.domain.creator.RandomLineCreator;
 import ladder.domain.item.LadderItems;
 import ladder.domain.item.People;
-import ladder.domain.item.Person;
-import ladder.domain.item.WinningItem;
 import ladder.domain.item.WinningItems;
 import ladder.domain.ladder.Connection;
 import ladder.domain.ladder.Ladder;
@@ -73,11 +71,11 @@ public class LadderGameTest {
         List<String> winningItemNames = List.of("1등", "2등", "3등", "4등");
 
         LadderItems ladderItems = new LadderItems(new People(peopleNames), new WinningItems(winningItemNames));
-        Map<Person, WinningItem> expected = Map.of(
-                new Person("pobi"), new WinningItem("3등"),
-                new Person("neo"), new WinningItem("1등"),
-                new Person("kaki"), new WinningItem("4등"),
-                new Person("lisa"), new WinningItem("2등")
+        Map<String, String> expected = Map.of(
+                "pobi", "3등",
+                "neo", "1등",
+                "kaki", "4등",
+                "lisa", "2등"
         );
 
         // when & then

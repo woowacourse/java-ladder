@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.domain.item.Person;
-import ladder.domain.item.WinningItem;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,11 +14,11 @@ public class LadderResultTest {
     void nonexistencePersonNameTest() {
         // given
         LadderResult ladderResult = new LadderResult(Map.of(
-                new Person("pobi"), new WinningItem("1등"),
-                new Person("neo"), new WinningItem("2등")));
+                "pobi", "1등",
+                "neo", "2등"));
 
         // when & then
-        assertThatThrownBy(() -> ladderResult.findWinningItemByPersonName("nak"))
+        assertThatThrownBy(() -> ladderResult.findWinningItemNameByPersonName("nak"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("존재하지 않는 사람의 이름입니다.");
     }

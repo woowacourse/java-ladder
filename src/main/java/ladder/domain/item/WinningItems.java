@@ -23,8 +23,8 @@ public class WinningItems {
         }
     }
 
-    public WinningItem getByIndex(int index) {
-        return winningItems.get(index);
+    public String getNameByIndex(int index) {
+        return winningItems.get(index).getName();
     }
 
     public int count() {

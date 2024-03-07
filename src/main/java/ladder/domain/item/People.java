@@ -38,8 +38,8 @@ public class People {
         }
     }
 
-    public Person getByIndex(int index) {
-        return people.get(index);
+    public String getNameByIndex(int index) {
+        return people.get(index).getName();
     }
 
     public int count() {

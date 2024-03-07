@@ -7,7 +7,6 @@ import ladder.domain.creator.RandomLadderCreator;
 import ladder.domain.creator.RandomLineCreator;
 import ladder.domain.item.LadderItems;
 import ladder.domain.item.People;
-import ladder.domain.item.WinningItem;
 import ladder.domain.item.WinningItems;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderHeight;
@@ -90,8 +89,8 @@ public class LadderController {
         String personName = inputView.readPersonNameForResult();
 
         while (!Command.ALL_RESULT.isText(personName)) {
-            WinningItem winningItem = ladderResult.findWinningItemByPersonName(personName);
-            outputView.printResultOfPerson(winningItem);
+            String winningItemName = ladderResult.findWinningItemNameByPersonName(personName);
+            outputView.printResultOfPerson(winningItemName);
             personName = inputView.readPersonNameForResult();
         }
 

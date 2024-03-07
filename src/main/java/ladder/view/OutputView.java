@@ -3,7 +3,6 @@ package ladder.view;
 import ladder.domain.LadderResult;
 import ladder.domain.item.LadderItems;
 import ladder.domain.item.Person;
-import ladder.domain.item.WinningItem;
 import ladder.domain.ladder.Connection;
 import ladder.domain.ladder.Ladder;
 
@@ -63,9 +62,9 @@ public class OutputView {
         System.out.println(joiner);
     }
 
-    public void printResultOfPerson(WinningItem winningItem) {
+    public void printResultOfPerson(String winningItemName) {
         System.out.println(EXECUTION_RESULT);
-        System.out.println(winningItem.getName());
+        System.out.println(winningItemName);
         System.out.println();
     }
 
