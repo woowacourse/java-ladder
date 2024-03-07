@@ -6,7 +6,9 @@ import ladder.domain.LadderResult;
 import ladder.domain.creator.RandomLadderCreator;
 import ladder.domain.creator.RandomLineCreator;
 import ladder.domain.item.LadderItems;
+import ladder.domain.item.People;
 import ladder.domain.item.WinningItem;
+import ladder.domain.item.WinningItems;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderHeight;
 import ladder.util.ExceptionRetryHandler;
@@ -45,7 +47,7 @@ public class LadderController {
         validateIsPeopleNamesCommand(peopleNames);
         List<String> winningItems = inputView.readWinningItems();
 
-        return LadderItems.of(peopleNames, winningItems);
+        return new LadderItems(new People(peopleNames), new WinningItems(winningItems));
     }
 
     private void validateIsPeopleNamesCommand(List<String> peopleNames) {

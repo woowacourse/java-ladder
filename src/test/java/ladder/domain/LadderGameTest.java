@@ -4,8 +4,10 @@ import ladder.domain.creator.LadderCreator;
 import ladder.domain.creator.RandomLadderCreator;
 import ladder.domain.creator.RandomLineCreator;
 import ladder.domain.item.LadderItems;
+import ladder.domain.item.People;
 import ladder.domain.item.Person;
 import ladder.domain.item.WinningItem;
+import ladder.domain.item.WinningItems;
 import ladder.domain.ladder.Connection;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderHeight;
@@ -43,9 +45,9 @@ public class LadderGameTest {
     @Test
     void createLadderTest() {
         // given
-        LadderItems ladderItems = LadderItems.of(
-                List.of("pobi", "nak"),
-                List.of("1등", "2등"));
+        LadderItems ladderItems = new LadderItems(
+                new People(List.of("pobi", "nak")),
+                new WinningItems(List.of("1등", "2등")));
         LadderHeight ladderHeight = new LadderHeight(2);
         LadderGame ladderGame = new LadderGame(FIXED_LADDER_CREATOR);
 
@@ -70,7 +72,7 @@ public class LadderGameTest {
         List<String> peopleNames = List.of("pobi", "neo", "kaki", "lisa");
         List<String> winningItemNames = List.of("1등", "2등", "3등", "4등");
 
-        LadderItems ladderItems = LadderItems.of(peopleNames, winningItemNames);
+        LadderItems ladderItems = new LadderItems(new People(peopleNames), new WinningItems(winningItemNames));
         Map<Person, WinningItem> expected = Map.of(
                 new Person("pobi"), new WinningItem("3등"),
                 new Person("neo"), new WinningItem("1등"),
