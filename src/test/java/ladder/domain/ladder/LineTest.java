@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -41,5 +41,35 @@ public class LineTest {
         assertThatThrownBy(() -> new Line(List.of(Connection.RUNG, Connection.RUNG, Connection.EMPTY)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("좌우 연속해서 발판이 존재할 수 없습니다.");
+    }
+
+    @DisplayName("레일 오른쪽에 발판이 있으면 오른쪽으로 움직인다.")
+    @Test
+    void leftMoveTest() {
+        // given
+        Line line = new Line(List.of(Connection.RUNG, Connection.EMPTY));
+
+        // when & then
+        assertThat(line.climb(0)).isEqualTo(1);
+    }
+
+    @DisplayName("레일 왼쪽에 발판이 있으면 왼쪽으로 움직인다.")
+    @Test
+    void rightMoveTest() {
+        // given
+        Line line = new Line(List.of(Connection.RUNG, Connection.EMPTY));
+
+        // when & then
+        assertThat(line.climb(1)).isEqualTo(0);
+    }
+
+    @DisplayName("레일 양쪽에 발판이 없다면 움직이지 않는다.")
+    @Test
+    void notMoveTest() {
+        // given
+        Line line = new Line(List.of(Connection.RUNG, Connection.EMPTY));
+
+        // when & then
+        assertThat(line.climb(2)).isEqualTo(2);
     }
 }

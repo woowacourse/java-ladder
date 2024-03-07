@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,14 @@ public class Ladder {
         if (lines.size() < MIN_LINE_COUNT) {
             throw new IllegalArgumentException("사다리는 1개 이상의 라인으로 이루어져야 합니다.");
         }
+    }
+
+    public int climb(int railOrder) {
+        for (Line line : lines) {
+            railOrder = line.climb(railOrder);
+        }
+
+        return railOrder;
     }
 
     public List<List<Connection>> getConnections() {

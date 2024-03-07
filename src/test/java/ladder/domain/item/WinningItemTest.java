@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.item.WinningItem;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,36 +9,37 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-@DisplayName("사람")
-public class PersonTest {
+@DisplayName("당첨 아이템")
+public class WinningItemTest {
     @DisplayName("생성 테스트")
     @Test
     void createTest() {
         // given
-        String name = "pobip";
+        String name = "당첨입니다";
 
         // when
-        Person person = new Person(name);
+        WinningItem winningItem = new WinningItem(name);
 
         // then
-        assertThat(person).extracting("name")
+        assertThat(winningItem).extracting("name")
                 .isEqualTo(name);
     }
 
-    @DisplayName("이름이 5글자를 넘으면 예외가 발생한다.")
+    @DisplayName("이름이 5글자를 넘어가면 예외가 발생한다.")
     @Test
-    void nameLengthExceptionTest() {
-        assertThatThrownBy(() -> new Person("naknak"))
+    void nameMaxLengthExceptionTest() {
+        assertThatThrownBy(() -> new WinningItem("naknak"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사람 이름의 길이는 5자 이하이어야 합니다.");
+                .hasMessage("당첨 아이템 이름의 길이는 5자 이하이어야 합니다.");
     }
 
     @DisplayName("이름이 비어있거나 공백인 경우 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "   "})
-    void nameBlankExceptionTest(String name) {
-        assertThatThrownBy(() -> new Person(name))
+    void nameBlankExceptionTest(String winningItemName) {
+        assertThatThrownBy(() -> new WinningItem(winningItemName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사람 이름의 비어있거나 공백일 수 없습니다.");
+                .hasMessage("당첨 아이템의 이름은 비어있거나 공백일 수 없습니다.");
     }
+
 }
