@@ -2,8 +2,6 @@ package ladder.domain;
 
 import ladder.domain.creator.LadderCreator;
 import ladder.domain.item.LadderItems;
-import ladder.domain.item.Person;
-import ladder.domain.item.WinningItem;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderHeight;
 
@@ -28,12 +26,6 @@ public class LadderGame {
     public LadderResult findResult(Ladder ladder, LadderItems ladderItems) {
         Map<Integer, Integer> climbResult = climbAll(ladder, ladderItems.countItems());
         return ladderItems.mapResult(climbResult);
-    }
-
-    public Map<Person, WinningItem> findResult2(Ladder ladder, LadderItems ladderItems) {
-        Map<Integer, Integer> climbResult = climbAll(ladder, ladderItems.countItems());
-
-        return ladderItems.mapResult2(climbResult);
     }
 
     private Map<Integer, Integer> climbAll(Ladder ladder, int railCounts) {

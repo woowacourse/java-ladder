@@ -29,11 +29,6 @@ public class LadderItems {
                         entry -> winningItems.getByIndex(entry.getValue()))));
     }
 
-    public Map<Person, WinningItem> mapResult2(Map<Integer, Integer> result) {
-        return result.entrySet().stream()
-                .collect(Collectors.toMap(entry -> people.getByIndex(entry.getKey()), entry -> winningItems.getByIndex(entry.getValue())));
-    }
-
     public int countItems() {
         return people.count();
     }
