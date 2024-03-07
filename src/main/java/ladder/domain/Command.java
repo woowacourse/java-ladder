@@ -9,7 +9,7 @@ public enum Command {
         this.text = text;
     }
 
-    public boolean isText(String text) {
-        return this.text.equals(text);
+    public boolean isText(String input) {
+        return text.equals(input);
     }
 }
