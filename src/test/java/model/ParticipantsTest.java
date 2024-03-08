@@ -29,10 +29,10 @@ class ParticipantsTest {
     @DisplayName("Participants 객체에 참여자 수가 1명이면 예외가 발생한다.")
     @Test
     void validateParticipantsSizeWhenOne() {
-        List<Participant> InputOutOfRange = List.of(
+        List<Participant> inputOutOfRange = List.of(
                 new Participant("daon")
         );
-        assertThatThrownBy(() -> new Participants(InputOutOfRange))
+        assertThatThrownBy(() -> new Participants(inputOutOfRange))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
