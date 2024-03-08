@@ -1,7 +1,7 @@
 package model;
 
 public class Prize {
-    private static final int MAX_LIMIT = 5;
+    private static final int NAME_MAX_LENGTH_LIMIT = 5;
 
     private final String prizeName;
 
@@ -15,8 +15,8 @@ public class Prize {
             throw new IllegalArgumentException("[ERROR] 실행 결과 이름은 null이거나 공백일 수 없다.");
         }
 
-        if (prizeName.length() > MAX_LIMIT) {
-            throw new IllegalArgumentException("[ERROR] 실행 결과 이름의 길이는 " + MAX_LIMIT + "자를 초과할 수 없다.");
+        if (prizeName.length() > NAME_MAX_LENGTH_LIMIT) {
+            throw new IllegalArgumentException("[ERROR] 실행 결과 이름의 길이는 " + NAME_MAX_LENGTH_LIMIT + "자를 초과할 수 없다.");
         }
     }
 
