@@ -45,7 +45,7 @@ public class Names {
         return List.copyOf(names);
     }
 
-    public int getNameCount() {
+    public int size() {
         return names.size();
     }
 }

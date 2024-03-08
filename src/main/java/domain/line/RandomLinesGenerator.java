@@ -13,7 +13,7 @@ public class RandomLinesGenerator implements RowLinesGenerator {
     @Override
     public List<RowLine> generateLines(int personCount, int height) {
         List<RowLine> lines = new ArrayList<>();
-        for (int j = 0; j < height; j++) {
+        for (int i = 0; i < height; i++) {
             List<ConnectionStatus> connections = new ArrayList<>();
             makeRandomConnections(personCount, DISCONNECTED, connections);
             lines.add(new RowLine(connections));

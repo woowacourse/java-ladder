@@ -28,7 +28,9 @@ public class InputView {
 
     public Prizes readPrizes() {
         System.out.println(LINE_SEPARATOR + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-        List<String> prizes = Arrays.asList(scanner.nextLine().split(","));
+        String userInput = scanner.nextLine();
+        String[] userInputPrizes = userInput.split(",");
+        List<String> prizes = Arrays.stream(userInputPrizes).toList();
         return Prizes.from(prizes);
     }
 

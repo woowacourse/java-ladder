@@ -16,12 +16,16 @@ public class Prizes {
                 .toList());
     }
 
-    public int getSize() {
+    public int size() {
         return prizes.size();
     }
 
     public Prize getBy(int prizeIndex) {
         return prizes.get(prizeIndex);
+    }
+
+    public Prize findByIndex(int index) {
+        return prizes.get(index);
     }
 
     public List<Prize> getPrizes() {
