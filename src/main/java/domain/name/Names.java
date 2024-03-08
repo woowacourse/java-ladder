@@ -37,11 +37,15 @@ public class Names {
         }
     }
 
-    public int getNameCount() {
-        return names.size();
+    public Name getByIndex(int i) {
+        return names.get(i);
     }
 
     public List<Name> getNames() {
         return List.copyOf(names);
+    }
+
+    public int size() {
+        return names.size();
     }
 }

@@ -9,14 +9,14 @@ import static domain.ConnectionStatus.CONNECTED;
 import static domain.ConnectionStatus.DISCONNECTED;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DisplayName("연결이 연속되지 않는 라인 생성 전략 테스트")
-class NonContinuousLineGeneratorTest {
+@DisplayName("상태가 랜덤한 라인 생성 전략 테스트")
+class RandomLinesGeneratorTest {
 
-    private NonContinuousLineGenerator nonContinuousLineGenerator;
+    private RandomLinesGenerator nonContinuousLineGenerator;
 
     @BeforeEach
     void setUp() {
-        nonContinuousLineGenerator = new NonContinuousLineGenerator();
+        nonContinuousLineGenerator = new RandomLinesGenerator();
     }
 
     @DisplayName("라인을 생성할 때 이전의 연결상태가 true이면 false를 다음값으로 채택한다")
