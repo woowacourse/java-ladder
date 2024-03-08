@@ -63,6 +63,6 @@ class LadderResultTest {
 
         LadderResult ladderResult = new LadderResult(new Participants(participants), prizes, ladder);
 
-        Assertions.assertThat(ladderResult.getEntireResult().size()).isEqualTo(participants.size());
+        Assertions.assertThat(ladderResult.getEntireResult()).hasSameSizeAs(participants);
     }
 }
