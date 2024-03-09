@@ -44,7 +44,7 @@ public class LadderGameController {
     private void printSoloResult(Participants participants, LadderResult ladderResult, String name) {
         try {
             Participant target = participants.findTargetParticipant(name);
-            Prize result = ladderResult.searchOne(target);
+            Prize result = ladderResult.getSpecificResult(target);
             outputView.printSoloResult(result);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());

@@ -17,13 +17,13 @@ public class LadderResult {
         List<Prize> entirePrize = prizes.getPrizes();
 
         for (int startIndex = 0; startIndex < participants.getSize(); startIndex++) {
-            int destination = ladder.climbLadder(startIndex);
-            result.put(entireParticipant.get(startIndex), entirePrize.get(destination));
+            int destinationIndex = ladder.climbLadder(startIndex);
+            result.put(entireParticipant.get(startIndex), entirePrize.get(destinationIndex));
         }
         return result;
     }
 
-    public Prize searchOne(Participant target) {
+    public Prize getSpecificResult(Participant target) {
         return result.get(target);
     }
 

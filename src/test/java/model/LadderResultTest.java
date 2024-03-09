@@ -43,7 +43,7 @@ class LadderResultTest {
 
         LadderResult ladderResult = new LadderResult(participants, prizes, ladder);
 
-        Assertions.assertThat(ladderResult.searchOne(ash)).isInstanceOf(Prize.class);
+        Assertions.assertThat(ladderResult.getSpecificResult(ash)).isInstanceOf(Prize.class);
     }
 
     @DisplayName("participants와 크기가 똑같은 게임 결과가 반환된다.")
