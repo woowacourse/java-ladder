@@ -8,11 +8,11 @@ import view.OutputView;
 
 public class LadderGameController {
 
-    private final String PRINT_ALL_COMMAND = "all";
+    private static final String PRINT_ALL_COMMAND = "all";
 
     private final InputView inputView;
     private final OutputView outputView;
-    RandomGenerator generator = new RandomGenerator();
+    private final RandomGenerator generator = new RandomGenerator();
 
     public LadderGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
