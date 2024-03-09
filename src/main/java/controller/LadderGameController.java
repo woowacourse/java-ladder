@@ -35,7 +35,7 @@ public class LadderGameController {
         String target = inputView.readResultSearch();
         outputView.printResultHeader();
         if (target.equals(PRINT_ALL_COMMAND)) {
-            outputView.printEntireResult(ladderResult.getEntireResult());
+            outputView.printResultAll(ladderResult.getAllResult());
             return;
         }
         printSoloResult(participants, ladderResult, target);

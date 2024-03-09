@@ -27,7 +27,7 @@ public class LadderResult {
         return result.get(target);
     }
 
-    public Map<Participant, Prize> getEntireResult() {
+    public Map<Participant, Prize> getAllResult() {
         return result;
     }
 }

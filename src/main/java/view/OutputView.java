@@ -57,7 +57,7 @@ public class OutputView {
         System.out.println(prize.getName());
     }
 
-    public void printEntireResult(Map<Participant, Prize> gameResult) {
+    public void printResultAll(Map<Participant, Prize> gameResult) {
         for (Participant key : gameResult.keySet()) {
             String keyName = key.getName();
             String valueName = gameResult.get(key).getName();
