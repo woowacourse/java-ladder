@@ -8,9 +8,11 @@ import view.OutputView;
 
 public class LadderGameController {
 
+    private static final String PRINT_ALL_COMMAND = "all";
+
     private final InputView inputView;
     private final OutputView outputView;
-    RandomGenerator generator = new RandomGenerator();
+    private final RandomGenerator generator = new RandomGenerator();
 
     public LadderGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -19,22 +21,35 @@ public class LadderGameController {
 
     public void run() {
         Participants participants = retryUntilSuccess(inputView::readParticipantNames);
+        Prizes prizes = retryUntilSuccess(() -> inputView.readPrizesNames(participants.getSize()));
         Height height = retryUntilSuccess(inputView::readLadderHeight);
 
-        Ladder ladder = createLadder(height, participants);
+        Ladder ladder = new Ladder(height, participants.getSize(), generator);
+        LadderResult ladderResult = new LadderResult(participants, prizes, ladder);
 
-        printResult(participants, ladder);
+        outputView.printGame(participants, prizes, ladder);
+        printResult(participants, ladderResult);
     }
 
-    private Ladder createLadder(Height height, Participants participants) {
-        LadderGame ladderGame = new LadderGame(height, participants, generator);
-        return ladderGame.createLadder();
-    }
-
-    private void printResult(Participants participants, Ladder ladder) {
+    private void printResult(Participants participants, LadderResult ladderResult) {
+        String target = inputView.readResultSearch();
         outputView.printResultHeader();
-        outputView.printParticipantsNames(participants);
-        outputView.printLadder(ladder);
+        if (target.equals(PRINT_ALL_COMMAND)) {
+            outputView.printResultAll(ladderResult.getAllResult());
+            return;
+        }
+        printSoloResult(participants, ladderResult, target);
+    }
+
+    private void printSoloResult(Participants participants, LadderResult ladderResult, String name) {
+        try {
+            Participant target = participants.findTargetParticipant(name);
+            Prize result = ladderResult.getSpecificResult(target);
+            outputView.printSoloResult(result);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            printResult(participants, ladderResult);
+        }
     }
 
     private <T> T retryUntilSuccess(Supplier<T> supplier) {

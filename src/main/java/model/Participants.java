@@ -6,12 +6,21 @@ import java.util.stream.Collectors;
 
 public class Participants {
     private static final int MIN_LIMIT = 2;
+
     private final List<Participant> participants;
 
     public Participants(List<Participant> participants) {
         validateParticipantsSize(participants);
         validateParticipantsDuplication(participants);
         this.participants = participants;
+    }
+
+    public Participant findTargetParticipant(String target) {
+        Participant targetParticipant = new Participant(target);
+        if (participants.contains(targetParticipant)) {
+            return targetParticipant;
+        }
+        throw new IllegalArgumentException("[ERROR] 목록에 없는 참여자입니다.");
     }
 
     private void validateParticipantsSize(List<Participant> participants) {

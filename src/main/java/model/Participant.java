@@ -1,7 +1,10 @@
 package model;
 
+import java.util.Objects;
+
 public class Participant {
     private static final int MAX_LENGTH = 5;
+
     private final String name;
 
     public Participant(final String name) {
@@ -21,4 +24,19 @@ public class Participant {
     public String getName() {
         return name;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Participant that = (Participant) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 }
+
+
